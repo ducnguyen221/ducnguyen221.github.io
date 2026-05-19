@@ -1,0 +1,1370 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Website cá nhân của Duc Nguyen: AI, web experiences, interactive visualizations, và public GitHub Pages portfolio.">
+  <title>Duc Nguyen | AI & Web Portfolio</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080910;
+      --paper: #f6f3e8;
+      --ink: #f5f7fb;
+      --muted: #a9b2c3;
+      --line: rgba(255, 255, 255, 0.14);
+      --panel: rgba(16, 18, 28, 0.76);
+      --panel-strong: rgba(18, 21, 32, 0.94);
+      --cyan: #38dff8;
+      --green: #b9ff70;
+      --coral: #ff7768;
+      --violet: #b79cff;
+      --amber: #ffd166;
+      --radius: 8px;
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.48);
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--bg);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(56, 223, 248, 0.14), transparent 26rem),
+        radial-gradient(circle at 86% 12%, rgba(255, 119, 104, 0.13), transparent 25rem),
+        radial-gradient(circle at 64% 92%, rgba(185, 255, 112, 0.1), transparent 30rem),
+        linear-gradient(140deg, #07080d 0%, #111018 52%, #080b10 100%);
+      color: var(--ink);
+      font-family: var(--font);
+      letter-spacing: 0;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      content: "";
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.032) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.032) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.2));
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .ai-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      opacity: 0.62;
+    }
+
+    .site {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 20px 0 14px;
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border: 1px solid rgba(56, 223, 248, 0.4);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 223, 248, 0.28), rgba(185, 255, 112, 0.08) 52%, rgba(9, 10, 16, 0.94) 74%);
+      box-shadow: 0 0 30px rgba(56, 223, 248, 0.22);
+    }
+
+    .brand-mark svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .brand strong,
+    .brand span {
+      display: block;
+    }
+
+    .brand strong {
+      font-size: 0.98rem;
+      font-weight: 820;
+      line-height: 1.15;
+    }
+
+    .brand span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav a,
+    .button,
+    .repo-action,
+    .branch-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.055);
+      color: var(--ink);
+      font-weight: 760;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav a {
+      min-height: 38px;
+      padding: 0 12px;
+      color: #dfe6ef;
+      font-size: 0.8rem;
+    }
+
+    .button {
+      min-height: 44px;
+      padding: 0 16px;
+      font-size: 0.88rem;
+    }
+
+    .button.primary {
+      border-color: rgba(56, 223, 248, 0.48);
+      background: rgba(56, 223, 248, 0.14);
+      color: #effcff;
+    }
+
+    .nav a:hover,
+    .button:hover,
+    .repo-action:hover,
+    .branch-link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(56, 223, 248, 0.6);
+      background: rgba(56, 223, 248, 0.11);
+      box-shadow: 0 14px 36px rgba(56, 223, 248, 0.12);
+    }
+
+    .button svg,
+    .repo-action svg,
+    .branch-link svg,
+    .nav svg {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+    }
+
+    .hero {
+      min-height: calc(100vh - 76px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(330px, 0.72fr);
+      align-items: center;
+      gap: clamp(34px, 6vw, 84px);
+      padding: 40px 0 72px;
+    }
+
+    h1 {
+      max-width: 790px;
+      margin: 0;
+      font-size: clamp(3.25rem, 8.2vw, 7.2rem);
+      font-weight: 880;
+      line-height: 0.94;
+      letter-spacing: 0;
+    }
+
+    .gradient-text {
+      display: block;
+      color: transparent;
+      background: linear-gradient(90deg, var(--cyan), var(--green) 42%, var(--coral));
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .lead {
+      max-width: 680px;
+      margin: 28px 0 0;
+      color: #d4dbe6;
+      font-size: clamp(1.03rem, 2vw, 1.25rem);
+      line-height: 1.72;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+    }
+
+    .proof-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 660px;
+      margin-top: 38px;
+    }
+
+    .proof {
+      min-height: 96px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.045);
+      backdrop-filter: blur(16px);
+    }
+
+    .proof strong {
+      display: block;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 840;
+      line-height: 1;
+    }
+
+    .proof span {
+      display: block;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.4;
+    }
+
+    .profile-card {
+      position: relative;
+      min-width: 0;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(18, 21, 32, 0.92), rgba(9, 11, 17, 0.8));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(24px);
+    }
+
+    .profile-card::before {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+      background:
+        linear-gradient(126deg, rgba(56, 223, 248, 0.18), transparent 28%),
+        radial-gradient(circle at 90% 10%, rgba(255, 119, 104, 0.18), transparent 15rem);
+    }
+
+    .portrait {
+      position: relative;
+      z-index: 1;
+      padding: 18px;
+    }
+
+    .portrait-frame {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #11141f;
+    }
+
+    .portrait-frame img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: saturate(1.02) contrast(1.04);
+    }
+
+    .portrait-frame::after {
+      position: absolute;
+      inset: auto 0 0;
+      height: 44%;
+      content: "";
+      background: linear-gradient(to top, rgba(6, 8, 12, 0.72), transparent);
+    }
+
+    .profile-info {
+      position: relative;
+      z-index: 1;
+      padding: 0 18px 18px;
+    }
+
+    .profile-info h2 {
+      margin: 0;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      line-height: 1.1;
+    }
+
+    .profile-info p {
+      margin: 12px 0 0;
+      color: #c4cedb;
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .profile-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      display: inline-flex;
+      min-height: 30px;
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 999px;
+      padding: 0 10px;
+      color: #e4edf8;
+      background: rgba(255, 255, 255, 0.055);
+      font-size: 0.74rem;
+      font-weight: 720;
+    }
+
+    .section {
+      padding: 76px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(280px, 0.72fr);
+      align-items: end;
+      gap: 28px;
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4.2vw, 4rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: #c7d1df;
+      font-size: 1rem;
+      line-height: 1.68;
+    }
+
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .focus-card,
+    .work-card,
+    .contact-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.045);
+      backdrop-filter: blur(18px);
+    }
+
+    .focus-card {
+      min-height: 220px;
+      padding: 22px;
+    }
+
+    .focus-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(56, 223, 248, 0.34);
+      border-radius: 50%;
+      color: var(--cyan);
+      background: rgba(56, 223, 248, 0.08);
+    }
+
+    .focus-icon svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .focus-card h3,
+    .work-card h3 {
+      margin: 20px 0 0;
+      font-size: 1.08rem;
+      line-height: 1.25;
+    }
+
+    .focus-card p,
+    .work-card p,
+    .contact-card p {
+      margin: 12px 0 0;
+      color: #b9c4d2;
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .work-card {
+      min-height: 260px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .work-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .work-code {
+      color: var(--green);
+      font: 0.78rem/1.3 "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    .work-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      color: #effcff;
+      font-size: 0.82rem;
+      font-weight: 780;
+    }
+
+    .work-link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .directory-layout {
+      display: grid;
+      grid-template-columns: minmax(250px, 0.42fr) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .directory-note {
+      position: sticky;
+      top: 92px;
+      padding: 20px;
+      border: 1px solid rgba(185, 255, 112, 0.2);
+      border-radius: var(--radius);
+      background: rgba(185, 255, 112, 0.055);
+    }
+
+    .directory-note strong {
+      display: block;
+      font-size: 1.05rem;
+      line-height: 1.35;
+    }
+
+    .directory-note p {
+      margin: 12px 0 0;
+      color: #d4ddc8;
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .directory-shell {
+      position: relative;
+      min-width: 0;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(16, 18, 28, 0.9), rgba(10, 12, 18, 0.82));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(24px);
+    }
+
+    .directory-shell::before {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+      background:
+        linear-gradient(115deg, rgba(56, 223, 248, 0.14), transparent 26%),
+        radial-gradient(circle at 90% 8%, rgba(183, 156, 255, 0.15), transparent 16rem);
+      opacity: 0.86;
+    }
+
+    .window-bar {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .dots {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .dots i {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--coral);
+      box-shadow: 0 0 14px currentColor;
+    }
+
+    .dots i:nth-child(2) {
+      background: var(--amber);
+    }
+
+    .dots i:nth-child(3) {
+      background: var(--green);
+    }
+
+    .window-title {
+      min-width: 0;
+      color: #d9e3ec;
+      font: 0.76rem/1.25 "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tree {
+      position: relative;
+      z-index: 1;
+      padding: 18px;
+      overflow: auto;
+      scrollbar-color: rgba(56, 223, 248, 0.44) transparent;
+    }
+
+    .tree-root {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 4px 16px;
+      color: var(--ink);
+      font-weight: 820;
+    }
+
+    .tree-root svg {
+      width: 18px;
+      height: 18px;
+      color: var(--cyan);
+    }
+
+    .repo-list {
+      position: relative;
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0 0 0 20px;
+      list-style: none;
+    }
+
+    .repo-list::before {
+      position: absolute;
+      top: 0;
+      bottom: 18px;
+      left: 8px;
+      width: 1px;
+      content: "";
+      background: linear-gradient(to bottom, rgba(56, 223, 248, 0.72), rgba(185, 255, 112, 0.18));
+    }
+
+    .repo-node {
+      position: relative;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: var(--radius);
+      background: rgba(7, 9, 15, 0.62);
+    }
+
+    .repo-node::before {
+      position: absolute;
+      top: 28px;
+      left: -13px;
+      width: 13px;
+      height: 1px;
+      content: "";
+      background: rgba(56, 223, 248, 0.58);
+    }
+
+    .repo-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .repo-name {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+      color: var(--ink);
+      font-size: 1rem;
+      font-weight: 820;
+      line-height: 1.25;
+    }
+
+    .repo-name svg {
+      width: 17px;
+      height: 17px;
+      flex: 0 0 auto;
+      color: var(--green);
+    }
+
+    .repo-name span {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .repo-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.3;
+    }
+
+    .language-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 13px rgba(56, 223, 248, 0.72);
+    }
+
+    .repo-desc {
+      margin: 10px 0 0;
+      color: #b6c1cf;
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+
+    .repo-actions {
+      display: flex;
+      flex: 0 0 auto;
+      gap: 8px;
+    }
+
+    .repo-action {
+      min-height: 34px;
+      padding: 0 10px;
+      font-size: 0.75rem;
+    }
+
+    .repo-action.primary {
+      border-color: rgba(56, 223, 248, 0.44);
+      background: rgba(56, 223, 248, 0.13);
+    }
+
+    .branch-list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 13px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .branch-link {
+      min-height: 30px;
+      max-width: 100%;
+      padding: 0 9px;
+      font-size: 0.72rem;
+      line-height: 1;
+    }
+
+    .branch-link.default {
+      border-color: rgba(185, 255, 112, 0.38);
+      background: rgba(185, 255, 112, 0.09);
+      color: #efffde;
+    }
+
+    .branch-link span {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.54fr);
+      gap: 14px;
+    }
+
+    .contact-card {
+      padding: 24px;
+    }
+
+    .contact-card h2 {
+      font-size: clamp(2rem, 5vw, 4.8rem);
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 26px 0 42px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 920px) {
+      .site {
+        width: min(100% - 28px, 760px);
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        width: 100%;
+        justify-content: stretch;
+      }
+
+      .nav a {
+        flex: 1 1 auto;
+      }
+
+      .hero,
+      .section-head,
+      .directory-layout,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 28px;
+      }
+
+      .directory-note {
+        position: static;
+      }
+
+      .focus-grid,
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site {
+        width: min(100% - 22px, 560px);
+      }
+
+      h1 {
+        font-size: clamp(3rem, 17vw, 4.9rem);
+      }
+
+      .lead {
+        font-size: 1rem;
+      }
+
+      .hero-actions,
+      .proof-row,
+      .repo-head,
+      .footer {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .proof-row {
+        display: flex;
+      }
+
+      .button,
+      .repo-action {
+        width: 100%;
+      }
+
+      .repo-actions {
+        width: 100%;
+      }
+
+      .tree {
+        padding: 14px 10px 14px 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas class="ai-canvas" id="aiCanvas" aria-hidden="true"></canvas>
+
+  <div class="site">
+    <header class="topbar" aria-label="Site header">
+      <a class="brand" href="#home" aria-label="Duc Nguyen home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 3v18M4 8.5l8-4.5 8 4.5M4 15.5l8 4.5 8-4.5M4 8.5v7l8 4.5 8-4.5v-7L12 13 4 8.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span>
+          <strong>Duc Nguyen</strong>
+          <span>AI / Web / Visual systems</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#pages">Pages</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero" aria-label="Personal introduction">
+        <div>
+          <h1>
+            Duc Nguyen
+            <span class="gradient-text">builds AI-ready web experiences.</span>
+          </h1>
+          <p class="lead">
+            Tôi xây các giao diện web gọn, trực quan và có tính tương tác cao cho học tập,
+            portfolio, công cụ nội bộ và thử nghiệm AI. Trang này là hồ sơ cá nhân kiêm
+            bản đồ các dự án public đang chạy trên GitHub Pages.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#work">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 5h7l2 3h7v11H4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              </svg>
+              Xem dự án
+            </a>
+            <a class="button" href="https://github.com/ducnguyen221" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.7 11.7 0 0 0-6.2 0C6.6 2.8 5.6 3.1 5.6 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.2 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              GitHub profile
+            </a>
+          </div>
+
+          <div class="proof-row" aria-label="Portfolio summary">
+            <div class="proof">
+              <strong>6</strong>
+              <span>public project Pages online</span>
+            </div>
+            <div class="proof">
+              <strong>HTML</strong>
+              <span>lightweight, direct, deployable UI</span>
+            </div>
+            <div class="proof">
+              <strong>AI</strong>
+              <span>interface ideas and tool experiments</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="profile-card" aria-label="Duc Nguyen profile card">
+          <div class="portrait">
+            <div class="portrait-frame">
+              <img src="https://avatars.githubusercontent.com/u/31231137?v=4" alt="Duc Nguyen GitHub avatar">
+            </div>
+          </div>
+          <div class="profile-info">
+            <h2>Builder mindset, product surface, deployable pages.</h2>
+            <p>
+              Tôi thích biến ý tưởng phức tạp thành trải nghiệm web rõ ràng:
+              có cấu trúc, dễ quét, có điểm nhấn thị giác và đủ nhẹ để publish nhanh.
+            </p>
+            <div class="profile-tags" aria-label="Profile tags">
+              <span class="tag">AI tools</span>
+              <span class="tag">Interactive HTML</span>
+              <span class="tag">GitHub Pages</span>
+              <span class="tag">Visual learning</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" id="about" aria-label="About Duc Nguyen">
+        <div class="section-head">
+          <h2>About</h2>
+          <p>
+            Hồ sơ này tập trung vào những gì có thể xem và dùng ngay: các trang web,
+            prototype, visualization và công cụ được publish công khai.
+          </p>
+        </div>
+
+        <div class="focus-grid">
+          <article class="focus-card">
+            <div class="focus-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3v18M4 8.5l8-4.5 8 4.5M4 15.5l8 4.5 8-4.5M4 8.5v7l8 4.5 8-4.5v-7L12 13 4 8.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>AI-assisted interfaces</h3>
+            <p>Thiết kế các bề mặt giao diện có thể trình bày, điều hướng và demo ý tưởng AI một cách dễ hiểu.</p>
+          </article>
+
+          <article class="focus-card">
+            <div class="focus-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Knowledge visualization</h3>
+            <p>Biến nội dung nhiều tầng thành visual, flow, page và module học tập có thể chia sẻ nhanh.</p>
+          </article>
+
+          <article class="focus-card">
+            <div class="focus-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 19V5h14v14H5Z" stroke="currentColor" stroke-width="1.7"/>
+                <path d="M8 9h8M8 13h5M8 17h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Public web portfolio</h3>
+            <p>Ưu tiên trang tĩnh, nhẹ, rõ cấu trúc, dễ deploy trên GitHub Pages và dễ mở rộng về sau.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="work" aria-label="Selected work">
+        <div class="section-head">
+          <h2>Selected work</h2>
+          <p>
+            Một vài hướng dự án nổi bật từ các repo public: visualization, workspace,
+            CRM docs và portfolio.
+          </p>
+        </div>
+
+        <div class="work-grid">
+          <article class="work-card">
+            <div>
+              <div class="work-top">
+                <span class="work-code">01 / atlas</span>
+                <span class="tag">HTML</span>
+              </div>
+              <h3>Atlas</h3>
+              <p>Bộ sưu tập visualization tương tác để biến kiến thức phức tạp thành trải nghiệm học tập trực quan.</p>
+            </div>
+            <a class="work-link" href="https://ducnguyen221.github.io/atlas/" target="_blank" rel="noreferrer">
+              Open Page
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </article>
+
+          <article class="work-card">
+            <div>
+              <div class="work-top">
+                <span class="work-code">02 / ai-workspace</span>
+                <span class="tag">AI</span>
+              </div>
+              <h3>AI Workspace</h3>
+              <p>Một tool web thử nghiệm cho workflow AI, đặt trọng tâm vào không gian làm việc rõ và thao tác nhanh.</p>
+            </div>
+            <a class="work-link" href="https://ducnguyen221.github.io/ai-workspace/" target="_blank" rel="noreferrer">
+              Open Page
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </article>
+
+          <article class="work-card">
+            <div>
+              <div class="work-top">
+                <span class="work-code">03 / profile</span>
+                <span class="tag">Portfolio</span>
+              </div>
+              <h3>Profile</h3>
+              <p>Trang cá nhân responsive bằng HTML, CSS và JavaScript thuần, dùng như online resume hoặc portfolio starter.</p>
+            </div>
+            <a class="work-link" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noreferrer">
+              Open Page
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="pages" aria-label="Live GitHub Pages directory">
+        <div class="section-head">
+          <h2>Live pages</h2>
+          <p>
+            Cây thư mục dưới đây giữ lại yêu cầu ban đầu: các nút trỏ đến repo public,
+            Page đang hiển thị, và các nhánh liên quan.
+          </p>
+        </div>
+
+        <div class="directory-layout">
+          <aside class="directory-note">
+            <strong>Portfolio directory</strong>
+            <p>
+              Mỗi node có nút Page để mở website đã publish, nút Repo để xem source,
+              và chip branch để kiểm tra nhánh đang tồn tại trên GitHub.
+            </p>
+          </aside>
+
+          <div class="directory-shell">
+            <div class="window-bar">
+              <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="window-title">~/ducnguyen221/public-pages.tree</span>
+            </div>
+            <div class="tree">
+              <div class="tree-root">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M4 5h7l2 3h7v11H4V5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                </svg>
+                <span>public-pages</span>
+              </div>
+              <ul class="repo-list" id="repoList"></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact" aria-label="Contact">
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h2>Let’s connect.</h2>
+            <p>
+              Nếu bạn muốn xem thêm source, theo dõi các prototype mới hoặc mở nhanh
+              những trang đang publish, GitHub là điểm bắt đầu rõ nhất.
+            </p>
+            <div class="contact-links">
+              <a class="button primary" href="https://github.com/ducnguyen221" target="_blank" rel="noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.7 11.7 0 0 0-6.2 0C6.6 2.8 5.6 3.1 5.6 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.2 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                github.com/ducnguyen221
+              </a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <h3>Current public stack</h3>
+            <p>HTML, CSS, JavaScript, GitHub Pages, interactive visualizations, AI-oriented web tools.</p>
+            <div class="profile-tags">
+              <span class="tag">Static-first</span>
+              <span class="tag">Responsive</span>
+              <span class="tag">Deployable</span>
+              <span class="tag">Readable UI</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© 2026 Duc Nguyen</span>
+      <span>Built as a personal GitHub Pages portfolio.</span>
+    </footer>
+  </div>
+
+  <script>
+    const repos = [
+      {
+        name: "ducnguyen221.github.io",
+        description: "Personal website and public Pages hub.",
+        language: "HTML",
+        updated: "2026-05-20",
+        pageUrl: "https://ducnguyen221.github.io/",
+        repoUrl: "https://github.com/ducnguyen221/ducnguyen221.github.io",
+        defaultBranch: "main",
+        branches: ["main"]
+      },
+      {
+        name: "my-project",
+        description: "My project.",
+        language: "HTML",
+        updated: "2026-05-19",
+        pageUrl: "https://ducnguyen221.github.io/my-project/",
+        repoUrl: "https://github.com/ducnguyen221/my-project",
+        defaultBranch: "main",
+        branches: ["main", "BISHOP", "codex/build-flappy-bird-game-for-desktop", "codex/check-index-file-for-technology-effect"]
+      },
+      {
+        name: "atlas",
+        description: "Interactive HTML visualizations that turn complex knowledge into simple, visual, shareable learning experiences.",
+        language: "HTML",
+        updated: "2026-05-19",
+        pageUrl: "https://ducnguyen221.github.io/atlas/",
+        repoUrl: "https://github.com/ducnguyen221/atlas",
+        defaultBranch: "main",
+        branches: ["main"]
+      },
+      {
+        name: "docs",
+        description: "COMPA CRM.",
+        language: "HTML",
+        updated: "2026-05-13",
+        pageUrl: "https://ducnguyen221.github.io/docs/",
+        repoUrl: "https://github.com/ducnguyen221/docs",
+        defaultBranch: "main",
+        branches: ["main"]
+      },
+      {
+        name: "mixfolio",
+        description: "JavaScript project published with GitHub Pages.",
+        language: "JavaScript",
+        updated: "2026-05-02",
+        pageUrl: "https://ducnguyen221.github.io/mixfolio/",
+        repoUrl: "https://github.com/ducnguyen221/mixfolio",
+        defaultBranch: "main",
+        branches: ["main"]
+      },
+      {
+        name: "profile",
+        description: "Clean responsive personal profile website built with HTML, CSS, and JavaScript.",
+        language: "HTML",
+        updated: "2026-04-21",
+        pageUrl: "https://ducnguyen221.github.io/profile/",
+        repoUrl: "https://github.com/ducnguyen221/profile",
+        defaultBranch: "main",
+        branches: ["main"]
+      },
+      {
+        name: "ai-workspace",
+        description: "AI Workspace tool.",
+        language: "HTML",
+        updated: "2026-01-10",
+        pageUrl: "https://ducnguyen221.github.io/ai-workspace/",
+        repoUrl: "https://github.com/ducnguyen221/ai-workspace",
+        defaultBranch: "main",
+        branches: ["main"]
+      }
+    ];
+
+    const icons = {
+      page: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 4h6l4 4v12H8V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 4v4h4M10.5 12h5M10.5 16h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
+      repo: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 17h11M8 7h7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
+      branch: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 5v7a5 5 0 0 0 5 5h5M17 17l-3-3m3 3-3 3M7 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      folder: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h7l2 3h7v11H4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>'
+    };
+
+    function branchUrl(repo, branch) {
+      return `${repo.repoUrl}/tree/${encodeURIComponent(branch).replace(/%2F/g, "/")}`;
+    }
+
+    function renderRepos() {
+      const list = document.querySelector("#repoList");
+      list.innerHTML = repos.map((repo) => {
+        const branches = repo.branches.map((branch) => `
+          <a class="branch-link ${branch === repo.defaultBranch ? "default" : ""}" href="${branchUrl(repo, branch)}" target="_blank" rel="noreferrer" title="${repo.name}/${branch}">
+            ${icons.branch}<span>${branch}</span>
+          </a>
+        `).join("");
+
+        return `
+          <li class="repo-node">
+            <div class="repo-head">
+              <div>
+                <div class="repo-name">${icons.folder}<span>${repo.name}</span></div>
+                <div class="repo-meta">
+                  <span class="language-dot" aria-hidden="true"></span>
+                  <span>${repo.language || "Pages"}</span>
+                  <span>updated ${repo.updated}</span>
+                </div>
+              </div>
+              <div class="repo-actions">
+                <a class="repo-action primary" href="${repo.pageUrl}" target="_blank" rel="noreferrer" aria-label="Open ${repo.name} GitHub Pages site">${icons.page}Page</a>
+                <a class="repo-action" href="${repo.repoUrl}" target="_blank" rel="noreferrer" aria-label="Open ${repo.name} repository">${icons.repo}Repo</a>
+              </div>
+            </div>
+            <p class="repo-desc">${repo.description}</p>
+            <div class="branch-list" aria-label="${repo.name} branches">${branches}</div>
+          </li>
+        `;
+      }).join("");
+    }
+
+    function startNeuralCanvas() {
+      const canvas = document.querySelector("#aiCanvas");
+      const ctx = canvas.getContext("2d");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const pointer = { x: 0, y: 0, active: false };
+      let width = 0;
+      let height = 0;
+      let particles = [];
+      let rafId = 0;
+
+      function resize() {
+        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = Math.floor(width * ratio);
+        canvas.height = Math.floor(height * ratio);
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+        const count = Math.min(84, Math.max(40, Math.floor((width * height) / 20000)));
+        particles = Array.from({ length: count }, (_, index) => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.38,
+          vy: (Math.random() - 0.5) * 0.38,
+          r: 1.1 + Math.random() * 1.8,
+          hue: index % 4
+        }));
+      }
+
+      function colorFor(hue, alpha) {
+        if (hue === 0) return `rgba(56, 223, 248, ${alpha})`;
+        if (hue === 1) return `rgba(185, 255, 112, ${alpha})`;
+        if (hue === 2) return `rgba(255, 119, 104, ${alpha})`;
+        return `rgba(183, 156, 255, ${alpha})`;
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+
+        particles.forEach((p) => {
+          if (!reduceMotion) {
+            p.x += p.vx;
+            p.y += p.vy;
+          }
+
+          if (p.x < -20) p.x = width + 20;
+          if (p.x > width + 20) p.x = -20;
+          if (p.y < -20) p.y = height + 20;
+          if (p.y > height + 20) p.y = -20;
+
+          if (pointer.active && !reduceMotion) {
+            const dx = pointer.x - p.x;
+            const dy = pointer.y - p.y;
+            const distance = Math.hypot(dx, dy);
+            if (distance < 170) {
+              p.x -= dx * 0.0022;
+              p.y -= dy * 0.0022;
+            }
+          }
+        });
+
+        for (let i = 0; i < particles.length; i += 1) {
+          for (let j = i + 1; j < particles.length; j += 1) {
+            const a = particles[i];
+            const b = particles[j];
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+            const distance = Math.hypot(dx, dy);
+
+            if (distance < 128) {
+              const alpha = (1 - distance / 128) * 0.2;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.strokeStyle = colorFor(a.hue, alpha);
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+
+        particles.forEach((p) => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = colorFor(p.hue, 0.82);
+          ctx.shadowColor = colorFor(p.hue, 0.9);
+          ctx.shadowBlur = 12;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        });
+
+        rafId = window.requestAnimationFrame(draw);
+      }
+
+      window.addEventListener("resize", resize, { passive: true });
+      window.addEventListener("pointermove", (event) => {
+        pointer.x = event.clientX;
+        pointer.y = event.clientY;
+        pointer.active = true;
+      }, { passive: true });
+      window.addEventListener("pointerleave", () => {
+        pointer.active = false;
+      });
+
+      resize();
+      draw();
+
+      window.addEventListener("pagehide", () => window.cancelAnimationFrame(rafId));
+    }
+
+    renderRepos();
+    startNeuralCanvas();
+  </script>
+</body>
+</html>
