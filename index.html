@@ -5,28 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Website cá nhân của Duc Nguyen: AI, web experiences, interactive visualizations, và public GitHub Pages portfolio.">
   <title>Duc Nguyen | AI & Web Portfolio</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans (Headings), Be Vietnam Pro (Body), JetBrains Mono (Code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       color-scheme: dark;
-      --bg: #07090d;
-      --paper: #f6f3e8;
-      --ink: #f5f7fb;
-      --muted: #a9b2c3;
-      --line: rgba(255, 255, 255, 0.14);
-      --panel: rgba(16, 18, 28, 0.76);
-      --panel-strong: rgba(18, 21, 32, 0.94);
-      --cyan: #58d7e8;
-      --green: #9ee8a5;
-      --coral: #e59b86;
-      --violet: #a9a7ff;
-      --amber: #d9bd75;
-      --radius: 8px;
-      --shadow: 0 28px 90px rgba(0, 0, 0, 0.48);
-      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --bg: #04060a;
+      --ink: #f8fafc;
+      --muted: #94a3b8;
+      --line: rgba(255, 255, 255, 0.08);
+      --line-active: rgba(0, 240, 255, 0.3);
+      --panel: rgba(8, 12, 21, 0.72);
+      --panel-strong: rgba(11, 17, 28, 0.9);
+      
+      /* Neon Cyber Theme Colors */
+      --cyan: #00f0ff;
+      --cyan-glow: rgba(0, 240, 255, 0.4);
+      --green: #39ff14;
+      --green-glow: rgba(57, 255, 20, 0.3);
+      --purple: #bd00ff;
+      --purple-glow: rgba(189, 0, 255, 0.3);
+      --coral: #ff4757;
+      --amber: #ffd32a;
+      
+      --radius: 12px;
+      --radius-sm: 6px;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      
+      /* Unified Vietnamese Typography System */
+      --font-body: 'Be Vietnam Pro', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --font-heading: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
     }
 
     * {
       box-sizing: border-box;
+      scrollbar-width: thin;
+      scrollbar-color: var(--cyan-glow) transparent;
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--line-active);
+      border-radius: 99px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--cyan);
     }
 
     html {
@@ -39,16 +74,17 @@
       min-height: 100vh;
       margin: 0;
       overflow-x: hidden;
-      background:
-        radial-gradient(circle at 14% 18%, rgba(88, 215, 232, 0.08), transparent 27rem),
-        radial-gradient(circle at 88% 12%, rgba(169, 167, 255, 0.07), transparent 26rem),
-        radial-gradient(circle at 64% 92%, rgba(158, 232, 165, 0.055), transparent 30rem),
-        linear-gradient(140deg, #07090d 0%, #10131b 54%, #080b10 100%);
       color: var(--ink);
-      font-family: var(--font);
-      letter-spacing: 0;
+      font-family: var(--font-body);
+      line-height: 1.65;
+      letter-spacing: -0.01em;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(0, 240, 255, 0.05), transparent 40rem),
+        radial-gradient(circle at 90% 10%, rgba(189, 0, 255, 0.04), transparent 35rem),
+        linear-gradient(180deg, #04060a 0%, #080d1a 60%, #030508 100%);
     }
 
+    /* Cyber overlay scanlines & noise background grid */
     body::before {
       position: fixed;
       inset: 0;
@@ -56,10 +92,11 @@
       pointer-events: none;
       content: "";
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
-      background-size: 54px 54px;
-      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.2));
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.15));
+      opacity: 0.7;
     }
 
     a {
@@ -67,73 +104,88 @@
       text-decoration: none;
     }
 
+    /* Background tech canvas */
     .ai-canvas {
       position: fixed;
       inset: 0;
       z-index: -1;
       width: 100%;
       height: 100%;
-      opacity: 0.34;
+      pointer-events: none;
+      opacity: 0.65;
     }
 
     .site {
-      width: min(1180px, calc(100% - 36px));
+      width: min(1240px, calc(100% - 40px));
       margin: 0 auto;
     }
 
+    /* Sticky Futuristic Header */
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 50;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      padding: 20px 0 14px;
-      backdrop-filter: blur(18px);
+      padding: 16px 20px;
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(4, 6, 10, 0.7);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       min-width: 0;
     }
 
     .brand-mark {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       display: grid;
       place-items: center;
       flex: 0 0 auto;
-      border: 1px solid rgba(56, 223, 248, 0.4);
+      border: 1px solid rgba(0, 240, 255, 0.4);
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(56, 223, 248, 0.28), rgba(185, 255, 112, 0.08) 52%, rgba(9, 10, 16, 0.94) 74%);
-      box-shadow: 0 0 30px rgba(56, 223, 248, 0.22);
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.25), rgba(189, 0, 255, 0.05) 50%, rgba(4, 6, 10, 0.95) 75%);
+      box-shadow: 0 0 20px var(--cyan-glow);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .brand:hover .brand-mark {
+      transform: rotate(180deg) scale(1.05);
+      border-color: var(--cyan);
+      box-shadow: 0 0 25px var(--cyan);
     }
 
     .brand-mark svg {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
+      color: var(--cyan);
     }
 
-    .brand strong,
-    .brand span {
-      display: block;
-    }
-
-    .brand strong {
-      font-size: 0.98rem;
-      font-weight: 820;
+    .brand-title {
+      font-size: 1.05rem;
+      font-weight: 800;
       line-height: 1.15;
+      font-family: var(--font-heading);
+      letter-spacing: -0.02em;
     }
 
-    .brand span {
+    .brand-subtitle {
       margin-top: 3px;
       color: var(--muted);
-      font-size: 0.78rem;
-      line-height: 1.2;
-      white-space: nowrap;
+      font-size: 0.76rem;
+      font-family: var(--font-mono);
+      display: block;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
     .nav {
@@ -141,166 +193,212 @@
       align-items: center;
       justify-content: flex-end;
       gap: 8px;
-      flex-wrap: wrap;
     }
 
     .nav a,
     .button,
-    .repo-action {
+    .action-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.055);
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.03);
       color: var(--ink);
-      font-weight: 760;
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       -webkit-tap-highlight-color: transparent;
+      position: relative;
+      overflow: hidden;
     }
 
     .nav a {
-      min-height: 38px;
-      padding: 0 12px;
-      color: #dfe6ef;
-      font-size: 0.8rem;
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 6px;
+      color: #94a3b8;
+    }
+
+    .nav a:hover, .nav a.active {
+      color: var(--cyan);
+      border-color: var(--cyan-glow);
+      background: rgba(0, 240, 255, 0.06);
+      text-shadow: 0 0 8px var(--cyan-glow);
     }
 
     .button {
-      min-height: 44px;
-      padding: 0 16px;
-      font-size: 0.88rem;
+      height: 46px;
+      padding: 0 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: var(--radius);
     }
 
     .button.primary {
-      border-color: rgba(56, 223, 248, 0.48);
-      background: rgba(56, 223, 248, 0.14);
-      color: #effcff;
+      border-color: var(--cyan);
+      background: rgba(0, 240, 255, 0.12);
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
     }
 
-    .nav a:hover,
+    .button.primary:hover {
+      background: rgba(0, 240, 255, 0.22);
+      box-shadow: 0 0 25px var(--cyan-glow);
+      border-color: #ffffff;
+    }
+
     .button:hover,
-    .repo-action:hover {
-      transform: translateY(-1px);
-      border-color: rgba(56, 223, 248, 0.6);
-      background: rgba(56, 223, 248, 0.11);
-      box-shadow: 0 14px 36px rgba(56, 223, 248, 0.12);
+    .action-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--cyan-glow);
+      background: rgba(0, 240, 255, 0.08);
+      box-shadow: 0 10px 25px rgba(0, 240, 255, 0.08);
+    }
+
+    .button:active,
+    .action-btn:active {
+      transform: translateY(0);
     }
 
     .button svg,
-    .repo-action svg,
+    .action-btn svg,
     .nav svg {
       width: 16px;
       height: 16px;
       flex: 0 0 auto;
     }
 
+    /* Hero Section */
     .hero {
-      min-height: calc(100vh - 76px);
+      min-height: calc(100vh - 100px);
       display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(330px, 0.72fr);
+      grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
       align-items: center;
-      gap: clamp(34px, 6vw, 84px);
-      padding: 40px 0 72px;
+      gap: clamp(40px, 6vw, 90px);
+      padding: 60px 0 80px;
     }
 
     h1 {
-      max-width: 790px;
+      max-width: 820px;
       margin: 0;
-      font-size: clamp(3.25rem, 8.2vw, 7.2rem);
-      font-weight: 880;
-      line-height: 0.94;
-      letter-spacing: 0;
+      font-family: var(--font-heading);
+      font-size: clamp(3.2rem, 7.8vw, 6.8rem);
+      font-weight: 850;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
     }
 
     .gradient-text {
       display: block;
       color: transparent;
-      background: linear-gradient(90deg, #dceff4, var(--cyan) 44%, #d8e6d9);
+      background: linear-gradient(135deg, #ffffff 20%, var(--cyan) 60%, #b8f2f9 100%);
       -webkit-background-clip: text;
       background-clip: text;
+      filter: drop-shadow(0 2px 8px rgba(0, 240, 255, 0.1));
     }
 
     .lead {
-      max-width: 680px;
+      max-width: 660px;
       margin: 28px 0 0;
-      color: #d4dbe6;
-      font-size: clamp(1.03rem, 2vw, 1.25rem);
-      line-height: 1.72;
+      color: #cbd5e1;
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+      line-height: 1.75;
+      font-weight: 400;
     }
 
     .hero-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
       flex-wrap: wrap;
-      margin-top: 34px;
+      margin-top: 36px;
     }
 
     .route-list {
       display: grid;
-      gap: 10px;
+      gap: 12px;
       max-width: 660px;
-      margin-top: 38px;
+      margin-top: 40px;
     }
 
     .route-button {
       display: grid;
       grid-template-columns: auto minmax(0, 1fr) auto;
       align-items: center;
-      gap: 14px;
-      min-height: 72px;
-      padding: 14px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.13);
+      gap: 16px;
+      min-height: 76px;
+      padding: 16px 20px;
+      border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(16px);
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+      background: rgba(8, 12, 21, 0.4);
+      backdrop-filter: blur(12px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .route-button:hover {
-      transform: translateY(-1px);
-      border-color: rgba(88, 215, 232, 0.44);
-      background: rgba(88, 215, 232, 0.07);
+      transform: translateX(6px);
+      border-color: var(--cyan-glow);
+      background: rgba(0, 240, 255, 0.05);
+      box-shadow: 0 10px 30px rgba(0, 240, 255, 0.05);
     }
 
     .route-index {
       color: var(--green);
-      font: 0.78rem/1.2 "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-    }
-
-    .route-copy strong,
-    .route-copy span {
-      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      border: 1px solid rgba(57, 255, 20, 0.2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(57, 255, 20, 0.05);
     }
 
     .route-copy strong {
-      font-size: 0.98rem;
-      line-height: 1.3;
+      display: block;
+      font-size: 1.05rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--ink);
     }
 
     .route-copy span {
-      margin-top: 3px;
+      margin-top: 4px;
       color: var(--muted);
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       line-height: 1.4;
+      display: block;
     }
 
     .route-arrow {
       color: var(--cyan);
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
     }
 
+    .route-button:hover .route-arrow {
+      transform: translate(3px, -3px);
+    }
+
+    /* Cyber Profile Card Aside */
     .profile-card {
       position: relative;
       min-width: 0;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 16px;
-      background: linear-gradient(180deg, rgba(18, 21, 32, 0.92), rgba(9, 11, 17, 0.8));
-      box-shadow: var(--shadow);
+      border: 1px solid var(--line-active);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(8, 12, 21, 0.95), rgba(4, 6, 10, 0.85));
+      box-shadow: var(--shadow), 0 0 30px rgba(0, 240, 255, 0.05);
       overflow: hidden;
-      backdrop-filter: blur(24px);
+      backdrop-filter: blur(20px);
+      transition: all 0.4s ease;
+    }
+
+    .profile-card:hover {
+      border-color: var(--cyan);
+      box-shadow: var(--shadow), 0 0 40px rgba(0, 240, 255, 0.15);
     }
 
     .profile-card::before {
@@ -309,23 +407,23 @@
       pointer-events: none;
       content: "";
       background:
-        linear-gradient(126deg, rgba(56, 223, 248, 0.18), transparent 28%),
-        radial-gradient(circle at 90% 10%, rgba(255, 119, 104, 0.18), transparent 15rem);
+        linear-gradient(135deg, rgba(0, 240, 255, 0.12), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(189, 0, 255, 0.1), transparent 18rem);
     }
 
     .portrait {
       position: relative;
       z-index: 1;
-      padding: 18px;
+      padding: 24px;
     }
 
     .portrait-frame {
       position: relative;
       aspect-ratio: 1 / 1;
-      border: 1px solid rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 14px;
       overflow: hidden;
-      background: #11141f;
+      background: #080c14;
     }
 
     .portrait-frame img {
@@ -333,251 +431,369 @@
       height: 100%;
       display: block;
       object-fit: cover;
-      filter: saturate(1.02) contrast(1.04);
+      filter: saturate(1.05) contrast(1.02);
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
+    .profile-card:hover .portrait-frame img {
+      transform: scale(1.05);
+    }
+
+    /* Cyber overlay details on image */
     .portrait-frame::after {
       position: absolute;
-      inset: auto 0 0;
-      height: 44%;
+      inset: 0;
       content: "";
-      background: linear-gradient(to top, rgba(6, 8, 12, 0.72), transparent);
+      background: linear-gradient(to top, rgba(4, 6, 10, 0.9) 0%, rgba(4, 6, 10, 0) 50%);
+      pointer-events: none;
+    }
+
+    .portrait-hud {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      z-index: 2;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--cyan);
+      background: rgba(4, 6, 10, 0.75);
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--cyan-glow);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .profile-info {
       position: relative;
       z-index: 1;
-      padding: 0 18px 18px;
+      padding: 0 24px 24px;
     }
 
     .profile-info h2 {
       margin: 0;
-      font-size: clamp(1.45rem, 3vw, 2rem);
-      line-height: 1.1;
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+      font-weight: 800;
+      line-height: 1.2;
     }
 
     .profile-info p {
-      margin: 12px 0 0;
-      color: #c4cedb;
-      font-size: 0.92rem;
-      line-height: 1.65;
+      margin: 14px 0 0;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+      line-height: 1.7;
     }
 
     .profile-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 16px;
+      margin-top: 18px;
     }
 
     .tag {
       display: inline-flex;
-      min-height: 30px;
       align-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.13);
-      border-radius: 999px;
-      padding: 0 10px;
-      color: #e4edf8;
-      background: rgba(255, 255, 255, 0.055);
+      height: 28px;
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      padding: 0 12px;
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.03);
       font-size: 0.74rem;
-      font-weight: 720;
+      font-weight: 500;
+      transition: all 0.25s ease;
     }
 
+    .tag.primary {
+      border-color: rgba(0, 240, 255, 0.3);
+      color: var(--cyan);
+      background: rgba(0, 240, 255, 0.04);
+    }
+
+    .profile-card:hover .tag {
+      border-color: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .profile-card:hover .tag.primary {
+      border-color: var(--cyan);
+      background: rgba(0, 240, 255, 0.08);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.08);
+    }
+
+    /* Sections Shared Styles */
     .section {
-      padding: 76px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 80px 0;
+      border-top: 1px solid var(--line);
     }
 
     .section-head {
       display: grid;
-      grid-template-columns: minmax(0, 0.72fr) minmax(280px, 0.72fr);
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.85fr);
       align-items: end;
-      gap: 28px;
-      margin-bottom: 30px;
+      gap: 32px;
+      margin-bottom: 44px;
     }
 
     .section h2 {
       margin: 0;
-      font-size: clamp(2rem, 4.2vw, 4rem);
-      line-height: 1;
-      letter-spacing: 0;
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 850;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
     }
 
     .section-head p {
       margin: 0;
-      color: #c7d1df;
-      font-size: 1rem;
-      line-height: 1.68;
+      color: #94a3b8;
+      font-size: 1.05rem;
+      line-height: 1.7;
     }
 
+    /* Focus Cards Grid */
     .focus-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .focus-card,
-    .work-card,
-    .contact-card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.045);
-      backdrop-filter: blur(18px);
+      gap: 16px;
     }
 
     .focus-card {
-      min-height: 220px;
-      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(8, 12, 21, 0.4);
+      backdrop-filter: blur(12px);
+      min-height: 240px;
+      padding: 28px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .focus-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cyan-glow);
+      background: rgba(8, 12, 21, 0.6);
+      box-shadow: 0 15px 35px rgba(0, 240, 255, 0.05);
     }
 
     .focus-icon {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       display: grid;
       place-items: center;
-      border: 1px solid rgba(56, 223, 248, 0.34);
-      border-radius: 50%;
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 10px;
       color: var(--cyan);
-      background: rgba(56, 223, 248, 0.08);
+      background: rgba(0, 240, 255, 0.06);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .focus-card:hover .focus-icon {
+      border-color: var(--cyan);
+      color: #ffffff;
+      background: var(--cyan);
+      box-shadow: 0 0 20px var(--cyan-glow);
     }
 
     .focus-icon svg {
-      width: 21px;
-      height: 21px;
+      width: 22px;
+      height: 22px;
     }
 
-    .focus-card h3,
-    .work-card h3 {
-      margin: 20px 0 0;
-      font-size: 1.08rem;
-      line-height: 1.25;
+    .focus-card h3 {
+      margin: 24px 0 0;
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 780;
+      line-height: 1.3;
     }
 
-    .focus-card p,
-    .work-card p,
-    .contact-card p {
+    .focus-card p {
       margin: 12px 0 0;
-      color: #b9c4d2;
-      font-size: 0.92rem;
+      color: #94a3b8;
+      font-size: 0.88rem;
       line-height: 1.65;
     }
 
+    /* Selected Work Grid */
     .work-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
+      gap: 16px;
     }
 
     .work-card {
-      min-height: 260px;
-      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(8, 12, 21, 0.4);
+      backdrop-filter: blur(12px);
+      min-height: 280px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .work-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cyan-glow);
+      background: rgba(8, 12, 21, 0.6);
+      box-shadow: 0 15px 35px rgba(0, 240, 255, 0.05);
     }
 
     .work-top {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
       gap: 12px;
     }
 
     .work-code {
       color: var(--green);
-      font: 0.78rem/1.3 "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .work-card h3 {
+      margin: 20px 0 0;
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      line-height: 1.3;
+      color: #ffffff;
+    }
+
+    .work-card p {
+      margin: 12px 0 0;
+      color: #94a3b8;
+      font-size: 0.88rem;
+      line-height: 1.65;
     }
 
     .work-link {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-top: 20px;
-      color: #effcff;
-      font-size: 0.82rem;
-      font-weight: 780;
+      margin-top: 24px;
+      color: var(--cyan);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      transition: gap 0.25s ease, color 0.25s ease;
+    }
+
+    .work-link:hover {
+      color: #ffffff;
+      gap: 12px;
     }
 
     .work-link svg {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
     }
 
-    .directory-layout {
-      display: grid;
-      grid-template-columns: minmax(250px, 0.42fr) minmax(0, 1fr);
-      gap: 22px;
-      align-items: start;
+    /* INTERACTIVE CYBER FILE EXPLORER SECTION */
+    .explorer-container {
+      width: 100%;
     }
 
-    .directory-note {
-      position: sticky;
-      top: 92px;
-      padding: 20px;
-      border: 1px solid rgba(185, 255, 112, 0.2);
+    /* Tab Selector Groups */
+    .explorer-tabs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding: 6px;
+      border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: rgba(185, 255, 112, 0.055);
+      background: rgba(4, 6, 10, 0.5);
     }
 
-    .directory-note strong {
-      display: block;
-      font-size: 1.05rem;
-      line-height: 1.35;
+    .explorer-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      height: 40px;
+      padding: 0 16px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      background: transparent;
+      color: #64748b;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .directory-note p {
-      margin: 12px 0 0;
-      color: #d4ddc8;
-      font-size: 0.92rem;
-      line-height: 1.65;
+    .explorer-tab:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.03);
     }
 
-    .directory-shell {
+    .explorer-tab.active {
+      color: var(--cyan);
+      border-color: var(--cyan-glow);
+      background: rgba(0, 240, 255, 0.08);
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+    }
+
+    .explorer-tab .tab-icon {
+      width: 14px;
+      height: 14px;
+      opacity: 0.7;
+    }
+    
+    .explorer-tab.active .tab-icon {
+      opacity: 1;
+      filter: drop-shadow(0 0 4px var(--cyan));
+    }
+
+    /* Interactive IDE Frame */
+    .explorer-window {
       position: relative;
-      min-width: 0;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 14px;
-      background: linear-gradient(180deg, rgba(16, 18, 28, 0.9), rgba(10, 12, 18, 0.82));
+      border: 1px solid var(--line-active);
+      border-radius: 16px;
+      background: var(--panel-strong);
       box-shadow: var(--shadow);
       overflow: hidden;
       backdrop-filter: blur(24px);
+      display: flex;
+      flex-direction: column;
+      height: 580px;
+      transition: border-color 0.3s ease;
     }
 
-    .directory-shell::before {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      content: "";
-      background:
-        linear-gradient(115deg, rgba(56, 223, 248, 0.14), transparent 26%),
-        radial-gradient(circle at 90% 8%, rgba(183, 156, 255, 0.15), transparent 16rem);
-      opacity: 0.86;
+    .explorer-window:hover {
+      border-color: rgba(0, 240, 255, 0.25);
     }
 
     .window-bar {
-      position: relative;
-      z-index: 1;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 14px 16px;
+      padding: 14px 20px;
       border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(4, 6, 10, 0.6);
     }
 
     .dots {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 8px;
     }
 
     .dots i {
-      width: 10px;
-      height: 10px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
       background: var(--coral);
-      box-shadow: 0 0 14px currentColor;
     }
 
     .dots i:nth-child(2) {
@@ -589,255 +805,574 @@
     }
 
     .window-title {
-      min-width: 0;
-      color: #d9e3ec;
-      font: 0.76rem/1.25 "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      color: #94a3b8;
+      font-size: 0.74rem;
+      letter-spacing: 0.02em;
+    }
+
+    .explorer-status {
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 700;
+      color: var(--green);
+      border: 1px solid rgba(57, 255, 20, 0.3);
+      background: rgba(57, 255, 20, 0.06);
+      padding: 2px 8px;
+      border-radius: 99px;
+      letter-spacing: 0.05em;
+    }
+
+    /* IDE Layout */
+    .explorer-body {
+      display: grid;
+      grid-template-columns: 280px 340px 1fr;
+      flex: 1 1 auto;
+      overflow: hidden;
+      height: calc(100% - 46px);
+    }
+
+    .pane-title {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #64748b;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--line);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(4, 6, 10, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Col 1: Repositories List */
+    .explorer-sidebar {
+      border-right: 1px solid var(--line);
+      overflow-y: auto;
+      background: rgba(4, 6, 10, 0.2);
+    }
+
+    .repo-item {
+      display: flex;
+      flex-direction: column;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .repo-item::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 3px;
+      content: "";
+      background: transparent;
+      transition: background 0.2s ease;
+    }
+
+    .repo-item:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .repo-item.active {
+      background: rgba(0, 240, 255, 0.04);
+    }
+
+    .repo-item.active::before {
+      background: var(--cyan);
+    }
+
+    .repo-item-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .repo-item-title svg {
+      width: 15px;
+      height: 15px;
+      color: var(--cyan);
+      flex-shrink: 0;
+    }
+
+    .repo-item-desc {
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.4;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .tree {
-      position: relative;
-      z-index: 1;
-      padding: 18px;
-      overflow: auto;
-      scrollbar-color: rgba(56, 223, 248, 0.44) transparent;
+    .repo-item-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      color: #64748b;
     }
 
-    .tree-root {
+    .repo-lang-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--muted);
+    }
+    
+    .repo-lang-dot.html { background: var(--cyan); }
+    .repo-lang-dot.js { background: var(--amber); }
+
+    /* Col 2: File Tree Inside Repo */
+    .explorer-main {
+      border-right: 1px solid var(--line);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .file-tree-container {
+      padding: 16px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .file-node {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      margin-bottom: 4px;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+    }
+
+    .file-node:hover {
+      background: rgba(255, 255, 255, 0.03);
+      color: #ffffff;
+    }
+
+    .file-node.active {
+      color: var(--cyan);
+      background: rgba(0, 240, 255, 0.05);
+      border-color: rgba(0, 240, 255, 0.15);
+      font-weight: 600;
+    }
+
+    .file-info-left {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 9px 4px 16px;
-      color: var(--ink);
-      font-weight: 820;
+      min-width: 0;
     }
 
-    .tree-root svg {
-      width: 18px;
-      height: 18px;
-      color: var(--cyan);
+    .file-info-left span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .repo-list {
-      position: relative;
-      display: grid;
-      gap: 12px;
-      margin: 0;
-      padding: 0 0 0 20px;
-      list-style: none;
+    .file-icon {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+    
+    .file-icon.html { color: var(--coral); }
+    .file-icon.css { color: var(--cyan); }
+    .file-icon.js { color: var(--amber); }
+    .file-icon.md { color: var(--green); }
+    .file-icon.config { color: #cbd5e1; }
+
+    .file-size {
+      font-size: 0.68rem;
+      color: #64748b;
     }
 
-    .repo-list::before {
-      position: absolute;
-      top: 0;
-      bottom: 18px;
-      left: 8px;
-      width: 1px;
-      content: "";
-      background: linear-gradient(to bottom, rgba(56, 223, 248, 0.72), rgba(185, 255, 112, 0.18));
+    .file-node.active .file-size {
+      color: rgba(0, 240, 255, 0.6);
     }
 
-    .repo-node {
-      position: relative;
-      padding: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.13);
-      border-radius: var(--radius);
-      background: rgba(7, 9, 15, 0.62);
+    /* Col 3: File Preview & Info Pane */
+    .explorer-preview {
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      background: rgba(4, 6, 10, 0.1);
     }
 
-    .repo-node::before {
-      position: absolute;
-      top: 28px;
-      left: -13px;
-      width: 13px;
-      height: 1px;
-      content: "";
-      background: rgba(56, 223, 248, 0.58);
+    .preview-content {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
-    .repo-head {
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.82rem;
+      padding: 40px;
+      flex: 1;
+    }
+
+    .empty-state svg {
+      width: 48px;
+      height: 48px;
+      color: #334155;
+      margin-bottom: 16px;
+    }
+
+    /* Repository view details card */
+    .repo-overview {
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .repo-overview-header {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .repo-overview h3 {
+      margin: 0;
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .repo-overview-desc {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      line-height: 1.7;
+      margin: 16px 0;
+    }
+
+    .repo-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
+      margin: 24px 0;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(4, 6, 10, 0.4);
     }
 
-    .repo-name {
+    .repo-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .repo-meta-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .repo-meta-val {
+      font-size: 0.85rem;
+      color: #f1f5f9;
+      font-weight: 600;
+    }
+
+    .repo-preview-actions {
       display: flex;
       align-items: center;
-      gap: 9px;
-      min-width: 0;
-      color: var(--ink);
-      font-size: 1rem;
-      font-weight: 820;
-      line-height: 1.25;
-    }
-
-    .repo-name svg {
-      width: 17px;
-      height: 17px;
-      flex: 0 0 auto;
-      color: var(--green);
-    }
-
-    .repo-name span {
-      min-width: 0;
-      overflow-wrap: anywhere;
-    }
-
-    .repo-meta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 0.76rem;
-      line-height: 1.3;
     }
 
-    .repo-category {
-      display: inline-flex;
-      min-height: 24px;
+    .repo-preview-actions .action-btn {
+      height: 40px;
+      padding: 0 16px;
+      font-size: 0.8rem;
+    }
+    
+    .repo-preview-actions .action-btn.primary {
+      border-color: var(--cyan);
+      background: rgba(0, 240, 255, 0.08);
+      color: #ffffff;
+    }
+
+    /* File Inspector Details Card */
+    .file-details {
+      animation: fadeIn 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .file-details-header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+
+    .file-path {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--cyan);
+      letter-spacing: -0.01em;
+    }
+
+    .file-details h3 {
+      margin: 6px 0 0;
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .file-desc-text {
+      font-size: 0.86rem;
+      color: #cbd5e1;
+      margin: 0 0 20px;
+      line-height: 1.6;
+    }
+
+    .code-editor {
+      position: relative;
+      flex: 1;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #05080f;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      max-height: 280px;
+    }
+
+    .code-editor-header {
+      display: flex;
       align-items: center;
-      border: 1px solid rgba(88, 215, 232, 0.22);
-      border-radius: 999px;
-      padding: 0 8px;
-      color: #d8eef2;
-      background: rgba(88, 215, 232, 0.06);
-      font-size: 0.7rem;
-      font-weight: 740;
+      justify-content: space-between;
+      padding: 8px 16px;
+      background: #03050a;
+      border-bottom: 1px solid var(--line);
     }
 
-    .language-dot {
+    .editor-dot {
+      display: inline-flex;
+      gap: 6px;
+    }
+
+    .editor-dot i {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 13px rgba(56, 223, 248, 0.72);
+      background: rgba(255, 255, 255, 0.15);
     }
 
-    .repo-desc {
-      margin: 10px 0 0;
-      color: #b6c1cf;
-      font-size: 0.84rem;
-      line-height: 1.55;
+    .editor-lang {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: #64748b;
+      text-transform: uppercase;
     }
 
-    .repo-actions {
-      display: flex;
-      flex: 0 0 auto;
-      gap: 8px;
+    .code-scroll {
+      overflow: auto;
+      flex: 1;
+      padding: 14px;
+      margin: 0;
     }
 
-    .repo-action {
-      min-height: 34px;
-      padding: 0 10px;
-      font-size: 0.75rem;
+    .code-display {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: #e2e8f0;
+      margin: 0;
+      white-space: pre;
+      line-height: 1.5;
     }
 
-    .repo-action.primary {
-      border-color: rgba(56, 223, 248, 0.44);
-      background: rgba(56, 223, 248, 0.13);
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-
+    /* Contact Details Grid */
     .contact-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.54fr);
-      gap: 14px;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.65fr);
+      gap: 16px;
     }
 
     .contact-card {
-      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(8, 12, 21, 0.4);
+      backdrop-filter: blur(12px);
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      border-color: var(--cyan-glow);
     }
 
     .contact-card h2 {
-      font-size: clamp(2rem, 5vw, 4.8rem);
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 4.2rem);
+      font-weight: 850;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-card p {
+      margin: 16px 0 0;
+      color: #94a3b8;
+      font-size: 0.95rem;
+      line-height: 1.7;
     }
 
     .contact-links {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-top: 24px;
+      margin-top: 28px;
     }
 
+    .contact-card h3 {
+      margin: 0;
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    /* Footer */
     .footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      padding: 26px 0 42px;
+      padding: 30px 20px 48px;
+      border-top: 1px solid var(--line);
       color: var(--muted);
-      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      margin-top: 40px;
+    }
+
+    /* Responsive Styling for Explorer */
+    @media (max-width: 1024px) {
+      .explorer-body {
+        grid-template-columns: 240px 1fr;
+        height: 520px;
+      }
+      .explorer-preview {
+        display: none; /* Hide preview on medium screens, we'll access directly */
+      }
     }
 
     @media (max-width: 920px) {
       .site {
-        width: min(100% - 28px, 760px);
+        width: min(100% - 32px, 760px);
       }
 
       .topbar {
-        align-items: flex-start;
         flex-direction: column;
+        align-items: stretch;
+        padding: 14px;
       }
 
       .nav {
         width: 100%;
-        justify-content: stretch;
+        margin-top: 12px;
       }
 
       .nav a {
         flex: 1 1 auto;
-      }
-
-      .hero,
-      .section-head,
-      .directory-layout,
-      .contact-grid {
-        grid-template-columns: 1fr;
+        font-size: 0.74rem;
+        padding: 0 10px;
       }
 
       .hero {
-        min-height: auto;
-        padding-top: 28px;
+        grid-template-columns: 1fr;
+        padding: 40px 0 60px;
+        gap: 40px;
       }
 
-      .directory-note {
-        position: static;
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 16px;
       }
 
       .focus-grid,
       .work-grid {
         grid-template-columns: 1fr;
       }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .explorer-body {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow-y: visible;
+      }
+      .explorer-sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        max-height: 200px;
+      }
+      .explorer-main {
+        border-right: none;
+        max-height: 240px;
+      }
+      .explorer-window {
+        height: auto;
+      }
+      /* On mobile, let's keep a popup or inline preview instead */
+      .explorer-preview-mobile-active {
+        display: block;
+        border-top: 1px solid var(--line);
+        background: rgba(4, 6, 10, 0.4);
+      }
     }
 
     @media (max-width: 640px) {
-      .site {
-        width: min(100% - 22px, 560px);
-      }
-
       h1 {
-        font-size: clamp(3rem, 17vw, 4.9rem);
+        font-size: clamp(2.8rem, 15vw, 4.4rem);
       }
 
-      .lead {
-        font-size: 1rem;
-      }
-
-      .hero-actions,
-      .repo-head,
-      .footer {
-        align-items: stretch;
+      .hero-actions {
         flex-direction: column;
+        align-items: stretch;
       }
 
-      .button,
-      .repo-action {
+      .button {
         width: 100%;
       }
 
@@ -849,12 +1384,11 @@
         display: none;
       }
 
-      .repo-actions {
-        width: 100%;
-      }
-
-      .tree {
-        padding: 14px 10px 14px 14px;
+      .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
       }
     }
 
@@ -871,9 +1405,13 @@
   </style>
 </head>
 <body>
+  
+  <!-- Canvas for tech visual system -->
   <canvas class="ai-canvas" id="aiCanvas" aria-hidden="true"></canvas>
 
   <div class="site">
+    
+    <!-- Header -->
     <header class="topbar" aria-label="Site header">
       <a class="brand" href="#home" aria-label="Duc Nguyen home">
         <span class="brand-mark" aria-hidden="true">
@@ -882,20 +1420,22 @@
           </svg>
         </span>
         <span>
-          <strong>Duc Nguyen</strong>
-          <span>AI / Web / Visual systems</span>
+          <strong class="brand-title">Duc Nguyen</strong>
+          <span class="brand-subtitle">AI & Web Hub</span>
         </span>
       </a>
 
       <nav class="nav" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="#pages">Pages</a>
-        <a href="#contact">Contact</a>
+        <a href="#about">Về Tôi</a>
+        <a href="#work">Dự Án</a>
+        <a href="#pages">Tệp Tin</a>
+        <a href="#contact">Liên Hệ</a>
       </nav>
     </header>
 
     <main id="home">
+      
+      <!-- Hero Section -->
       <section class="hero" aria-label="Personal introduction">
         <div>
           <h1>
@@ -903,31 +1443,32 @@
             <span class="gradient-text">AI & Web Portfolio.</span>
           </h1>
           <p class="lead">
-            Tôi xây các giao diện web gọn, rõ cấu trúc và có tính tương tác cho portfolio,
-            visualization, công cụ học tập và thử nghiệm AI. Trang này là hồ sơ cá nhân
-            kiêm bản đồ những dự án public đang chạy trên GitHub Pages.
+            Tôi xây dựng các giao diện web gọn gàng, rõ cấu trúc và có tính tương tác cao dành cho portfolio, 
+            hệ thống trực quan hóa (visualization), công cụ học tập tương tác và thử nghiệm AI. 
+            Hồ sơ này là cổng thông tin cá nhân kiêm bản đồ tệp tin các dự án đang hoạt động trên GitHub Pages.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#work">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M4 5h7l2 3h7v11H4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
               </svg>
-              Xem dự án
+              Xem Dự Án
             </a>
             <a class="button" href="https://github.com/ducnguyen221" target="_blank" rel="noreferrer">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.7 11.7 0 0 0-6.2 0C6.6 2.8 5.6 3.1 5.6 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.2 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              GitHub profile
+              GitHub Profile
             </a>
           </div>
 
+          <!-- Featured Quick Links -->
           <div class="route-list" aria-label="Featured portfolio routes">
             <a class="route-button" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noreferrer">
               <span class="route-index">01</span>
               <span class="route-copy">
                 <strong>/profile</strong>
-                <span>Hồ sơ cá nhân và portfolio starter.</span>
+                <span>Hồ sơ cá nhân và sơ yếu lý lịch tương tác.</span>
               </span>
               <span class="route-arrow" aria-hidden="true">↗</span>
             </a>
@@ -935,7 +1476,7 @@
               <span class="route-index">02</span>
               <span class="route-copy">
                 <strong>/atlas</strong>
-                <span>Visual learning và interactive knowledge maps.</span>
+                <span>Bộ trực quan hóa tri thức (Interactive knowledge maps).</span>
               </span>
               <span class="route-arrow" aria-hidden="true">↗</span>
             </a>
@@ -943,41 +1484,44 @@
               <span class="route-index">03</span>
               <span class="route-copy">
                 <strong>/my-project</strong>
-                <span>Dự án web public mới nhất để theo dõi thử nghiệm.</span>
+                <span>Dự án web thử nghiệm và nguyên mẫu giao diện mới.</span>
               </span>
               <span class="route-arrow" aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
 
+        <!-- Sidebar Profile Card -->
         <aside class="profile-card" aria-label="Duc Nguyen profile card">
           <div class="portrait">
             <div class="portrait-frame">
               <img src="https://avatars.githubusercontent.com/u/31231137?v=4" alt="Duc Nguyen GitHub avatar">
+              <span class="portrait-hud" aria-hidden="true">Active // Dev</span>
             </div>
           </div>
           <div class="profile-info">
-            <h2>Focused on clean interfaces and deployable web systems.</h2>
+            <h2>Thiết kế giao diện tinh gọn và các hệ thống web thực tiễn.</h2>
             <p>
-              Tôi thích biến ý tưởng phức tạp thành trải nghiệm web rõ ràng:
-              có cấu trúc, dễ quét, có điểm nhấn thị giác và đủ nhẹ để publish nhanh.
+              Tôi đam mê chuyển đổi các ý tưởng công nghệ phức tạp thành trải nghiệm web rõ ràng: 
+              có cấu trúc tốt, dễ đọc quét dữ liệu, tương tác mượt mà và tối ưu hóa tải trang cực kỳ nhẹ.
             </p>
             <div class="profile-tags" aria-label="Profile tags">
-              <span class="tag">AI tools</span>
-              <span class="tag">Interactive HTML</span>
+              <span class="tag primary">AI Workspace</span>
+              <span class="tag">Interactive Web</span>
               <span class="tag">GitHub Pages</span>
-              <span class="tag">Visual learning</span>
+              <span class="tag">Knowledge Maps</span>
             </div>
           </div>
         </aside>
       </section>
 
+      <!-- About Section -->
       <section class="section" id="about" aria-label="About Duc Nguyen">
         <div class="section-head">
-          <h2>About</h2>
+          <h2>Về Tôi</h2>
           <p>
-            Hồ sơ này tập trung vào những gì có thể xem và dùng ngay: các trang web,
-            prototype, visualization và công cụ được publish công khai.
+            Sự tập trung của tôi dành cho những sản phẩm thực tế: giao diện web có thể sử dụng ngay, 
+            trực quan hóa dữ liệu động, các tài liệu hướng dẫn chuẩn hóa và các nguyên mẫu ứng dụng AI.
           </p>
         </div>
 
@@ -988,8 +1532,8 @@
                 <path d="M12 3v18M4 8.5l8-4.5 8 4.5M4 15.5l8 4.5 8-4.5M4 8.5v7l8 4.5 8-4.5v-7L12 13 4 8.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
               </svg>
             </div>
-            <h3>AI-assisted interfaces</h3>
-            <p>Thiết kế các bề mặt giao diện có thể trình bày, điều hướng và demo ý tưởng AI một cách dễ hiểu.</p>
+            <h3>Giao Diện Trợ Lực AI</h3>
+            <p>Xây dựng các giao diện điều hướng trực quan giúp hiển thị thông tin và cấu hình tác vụ Agent AI một cách hiệu quả.</p>
           </article>
 
           <article class="focus-card">
@@ -998,8 +1542,8 @@
                 <path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3>Knowledge visualization</h3>
-            <p>Biến nội dung nhiều tầng thành visual, flow, page và module học tập có thể chia sẻ nhanh.</p>
+            <h3>Trực Quan Hóa Tri Thức</h3>
+            <p>Trình diễn các cấu trúc dữ liệu, luồng thông tin và sơ đồ tư duy tương tác giúp tối đa khả năng tiếp nhận kiến thức.</p>
           </article>
 
           <article class="focus-card">
@@ -1009,18 +1553,19 @@
                 <path d="M8 9h8M8 13h5M8 17h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3>Public web portfolio</h3>
-            <p>Ưu tiên trang tĩnh, nhẹ, rõ cấu trúc, dễ deploy trên GitHub Pages và dễ mở rộng về sau.</p>
+            <h3>Kiến Trúc Tĩnh Hiện Đại</h3>
+            <p>Ưu tiên thiết kế gọn gàng, hiệu năng cao, dễ dàng đóng gói và deploy nhanh trên nền tảng GitHub Pages tĩnh.</p>
           </article>
         </div>
       </section>
 
+      <!-- Selected Work Section -->
       <section class="section" id="work" aria-label="Selected work">
         <div class="section-head">
-          <h2>Selected work</h2>
+          <h2>Dự Án Tiêu Biểu</h2>
           <p>
-            Một vài hướng dự án nổi bật từ các repo public: visualization, workspace,
-            CRM docs và portfolio.
+            Các lĩnh vực hoạt động chính được tách lọc từ các kho lưu trữ public: 
+            Trải nghiệm tương tác, Bản đồ tri thức, Công cụ AI và Tài liệu tích hợp.
           </p>
         </div>
 
@@ -1029,13 +1574,13 @@
             <div>
               <div class="work-top">
                 <span class="work-code">01 / profile</span>
-                <span class="tag">Portfolio</span>
+                <span class="tag primary">Sơ yếu</span>
               </div>
               <h3>Profile</h3>
-              <p>Trang cá nhân responsive bằng HTML, CSS và JavaScript thuần, dùng như online resume hoặc portfolio starter.</p>
+              <p>Trang thông tin cá nhân dạng dọc, hỗ trợ đổi theme sáng tối và định dạng lý lịch có thể cuộn tương tác.</p>
             </div>
             <a class="work-link" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noreferrer">
-              Open Page
+              Mở Trang Web
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -1046,13 +1591,13 @@
             <div>
               <div class="work-top">
                 <span class="work-code">02 / atlas</span>
-                <span class="tag">HTML</span>
+                <span class="tag primary">Học tập</span>
               </div>
               <h3>Atlas</h3>
-              <p>Bộ sưu tập visualization tương tác để biến kiến thức phức tạp thành trải nghiệm học tập trực quan.</p>
+              <p>Bản đồ trực quan tương tác chứa các sơ đồ luồng dữ liệu, hỗ trợ học tập và ghi nhớ thông tin lập trình.</p>
             </div>
             <a class="work-link" href="https://ducnguyen221.github.io/atlas/" target="_blank" rel="noreferrer">
-              Open Page
+              Mở Trang Web
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -1063,13 +1608,13 @@
             <div>
               <div class="work-top">
                 <span class="work-code">03 / my-project</span>
-                <span class="tag">Experiment</span>
+                <span class="tag primary">Nguyên mẫu</span>
               </div>
               <h3>My Project</h3>
-              <p>Dự án web public mới nhất, dùng để theo dõi các thử nghiệm giao diện và Pages prototype.</p>
+              <p>Hộp thử nghiệm (sandbox) chứa các thành phần giao diện mới, phục vụ test tương tác trước khi deploy chính thức.</p>
             </div>
             <a class="work-link" href="https://ducnguyen221.github.io/my-project/" target="_blank" rel="noreferrer">
-              Open Page
+              Mở Trang Web
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -1078,49 +1623,96 @@
         </div>
       </section>
 
-      <section class="section" id="pages" aria-label="Live GitHub Pages directory">
+      <!-- CYBER FILE EXPLORER SECTION -->
+      <section class="section" id="pages" aria-label="GitHub Pages Workspace Explorer">
         <div class="section-head">
-          <h2>Live pages</h2>
+          <h2>Quản Lý Tệp Tin</h2>
           <p>
-            Cây thư mục dưới đây giữ lại yêu cầu ban đầu: các nút trỏ đến repo public,
-            Page đang hiển thị, và các nhánh liên quan.
+            Trình duyệt tệp tin tương tác được chia theo các nhóm nội dung. Chọn một thư mục dự án 
+            để duyệt cấu trúc tệp tin liên quan và kiểm tra chi tiết mã nguồn.
           </p>
         </div>
 
-        <div class="directory-layout">
-          <aside class="directory-note">
-            <strong>Portfolio directory</strong>
-            <p>
-              Mỗi node hiển thị tên repo, phân loại, mô tả ngắn và nút mở Page hoặc
-              source. Phần này không hiển thị nhánh để giữ cấu trúc gọn và dễ quét.
-            </p>
-          </aside>
+        <div class="explorer-container">
+          
+          <!-- Group Tabs -->
+          <div class="explorer-tabs" role="tablist" aria-label="Project categories">
+            <button class="explorer-tab active" data-group="all" role="tab" aria-selected="true">
+              <svg class="tab-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-6l-2-2H5a2 2 0 0 0-2 2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+              TẤT CẢ DỰ ÁN
+            </button>
+            <button class="explorer-tab" data-group="ai" role="tab" aria-selected="false">
+              <svg class="tab-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z" stroke="currentColor" stroke-width="1.7"/></svg>
+              AI & WORKSPACE
+            </button>
+            <button class="explorer-tab" data-group="visuals" role="tab" aria-selected="false">
+              <svg class="tab-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+              HỌC TẬP & TRỰC QUAN
+            </button>
+            <button class="explorer-tab" data-group="portfolios" role="tab" aria-selected="false">
+              <svg class="tab-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              HỒ SƠ & PORTFOLIO
+            </button>
+            <button class="explorer-tab" data-group="docs" role="tab" aria-selected="false">
+              <svg class="tab-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              TÀI LIỆU & CRM
+            </button>
+          </div>
 
-          <div class="directory-shell">
+          <!-- IDE Explorer Window -->
+          <div class="explorer-window">
             <div class="window-bar">
               <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="window-title">~/ducnguyen221/public-pages.tree</span>
+              <span class="window-title" id="windowTitlePath">workspace://ducnguyen221/repos</span>
+              <span class="explorer-status">SYS_READY</span>
             </div>
-            <div class="tree">
-              <div class="tree-root">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M4 5h7l2 3h7v11H4V5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                </svg>
-                <span>public-pages</span>
+            
+            <div class="explorer-body">
+              
+              <!-- Col 1: Repositories List -->
+              <div class="explorer-sidebar" aria-label="Repository directory">
+                <div class="pane-title">Thư Mục Dự Án</div>
+                <div class="repo-groups-list" id="repoListContainer">
+                  <!-- Dynamically Rendered -->
+                </div>
               </div>
-              <ul class="repo-list" id="repoList"></ul>
+
+              <!-- Col 2: Internal Files of Selected Repo -->
+              <div class="explorer-main" aria-label="File tree navigation">
+                <div class="pane-title">
+                  <span>Cấu Trúc Tệp Tin</span>
+                  <span id="activeRepoFileCount" style="color:var(--cyan); font-weight:bold;">0 tệp</span>
+                </div>
+                <div class="file-tree-container" id="fileTreeContainer">
+                  <!-- Dynamically Rendered -->
+                </div>
+              </div>
+
+              <!-- Col 3: Selected File Preview Inspector -->
+              <div class="explorer-preview" id="explorerPreviewPane" aria-label="File preview">
+                <div class="pane-title">Trình Thanh Tra Tệp (Inspector)</div>
+                <div class="preview-content" id="previewContent">
+                  <!-- Dynamically Rendered -->
+                </div>
+              </div>
+
             </div>
           </div>
+          
+          <!-- Mobile Preview Panel (displayed below window on small screens) -->
+          <div class="explorer-preview-mobile" id="mobilePreviewPane" style="display:none;"></div>
+
         </div>
       </section>
 
-      <section class="section" id="contact" aria-label="Contact">
+      <!-- Contact Section -->
+      <section class="section" id="contact" aria-label="Contact information">
         <div class="contact-grid">
           <div class="contact-card">
-            <h2>Let’s connect.</h2>
+            <h2>Kết nối với tôi.</h2>
             <p>
-              Nếu bạn muốn xem thêm source, theo dõi các prototype mới hoặc mở nhanh
-              những trang đang publish, GitHub là điểm bắt đầu rõ nhất.
+              Nếu bạn muốn xem chi tiết mã nguồn các dự án, tham khảo các cấu hình ứng dụng, 
+              hoặc thảo luận về các giải pháp thiết kế giao diện web tương tác, GitHub của tôi luôn cập nhật thường xuyên.
             </p>
             <div class="contact-links">
               <a class="button primary" href="https://github.com/ducnguyen221" target="_blank" rel="noreferrer">
@@ -1132,129 +1724,771 @@
             </div>
           </div>
           <div class="contact-card">
-            <h3>Current public stack</h3>
-            <p>HTML, CSS, JavaScript, GitHub Pages, interactive visualizations, AI-oriented web tools.</p>
+            <h3>Công Cụ Hiện Tại</h3>
+            <p>Môi trường phát triển tĩnh tối ưu, giao diện HTML/CSS/JS thuần, trực quan hóa dữ liệu và thiết lập tài liệu CRM.</p>
             <div class="profile-tags">
               <span class="tag">Static-first</span>
               <span class="tag">Responsive</span>
-              <span class="tag">Deployable</span>
-              <span class="tag">Readable UI</span>
+              <span class="tag">Optimized Load</span>
+              <span class="tag">Clean Typography</span>
             </div>
           </div>
         </div>
       </section>
+
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
       <span>© 2026 Duc Nguyen</span>
-      <span>Built as a personal GitHub Pages portfolio.</span>
+      <span>Hồ sơ cá nhân và Trung tâm dự án GitHub Pages</span>
     </footer>
   </div>
 
+  <!-- Interactive Logic Script -->
   <script>
-    const repos = [
+    // Repository Data with Group ID, Descriptions, Categories, and File Structure Mockups
+    const reposData = [
       {
+        id: "ducnguyen221-io",
         name: "ducnguyen221.github.io",
-        description: "Personal website and public Pages hub.",
-        category: "Portfolio hub",
+        description: "Trang chủ cá nhân và trung tâm định hướng các dự án GitHub Pages.",
+        category: "Portfolios & Profiles",
+        groupId: "portfolios",
         language: "HTML",
-        updated: "2026-05-20",
+        updated: "2026-05-21",
         pageUrl: "https://ducnguyen221.github.io/",
-        repoUrl: "https://github.com/ducnguyen221/ducnguyen221.github.io"
+        repoUrl: "https://github.com/ducnguyen221/ducnguyen221.github.io",
+        files: [
+          { 
+            name: "index.html", 
+            size: "42.5 KB", 
+            type: "html", 
+            desc: "Landing page chính với background canvas công nghệ và split-pane File Explorer.", 
+            preview: `<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Duc Nguyen | Portfolio</title>
+  <!-- Google Fonts & Canvas Setup -->
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro..." rel="stylesheet">
+  <style>
+    :root {
+      --font-body: 'Be Vietnam Pro', sans-serif;
+      --font-heading: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <canvas class="ai-canvas" id="aiCanvas"></canvas>
+  <!-- ... code ... -->
+</body>
+</html>` 
+          },
+          { 
+            name: "TYPOGRAPHY.md", 
+            size: "3.2 KB", 
+            type: "md", 
+            desc: "Hướng dẫn đồng bộ hóa font chữ tiếng Việt không bị lỗi diacritics.", 
+            preview: `# Hướng Dẫn Typography Tiếng Việt
+Hệ thống portfolio sử dụng 3 font chữ chuyên biệt:
+1. Be Vietnam Pro (Body) - Tránh lỗi cắt dấu phụ
+2. Plus Jakarta Sans (Headings) - Phong cách hình học công nghệ
+3. JetBrains Mono (Code) - Monospace cực kỳ dễ đọc
+
+Khai báo CSS:
+--font-body: 'Be Vietnam Pro', sans-serif;` 
+          },
+          { 
+            name: "CNAME", 
+            size: "22 B", 
+            type: "config", 
+            desc: "Tệp tin cấu hình Custom Domain cho GitHub Pages.", 
+            preview: `ducnguyen221.github.io` 
+          },
+          { 
+            name: "README.md", 
+            size: "2.1 KB", 
+            type: "md", 
+            desc: "Tệp tin tài liệu giới thiệu tổng quát về kho lưu trữ landing hub.", 
+            preview: `# ducnguyen221.github.io
+Đây là trang chủ cá nhân được thiết kế như một Cyber Terminal để duyệt nhanh các dự án static trên GitHub Pages.` 
+          }
+        ]
       },
       {
+        id: "profile",
         name: "profile",
-        description: "Clean responsive personal profile website built with HTML, CSS, and JavaScript.",
-        category: "Personal profile",
+        description: "Trang sơ yếu lý lịch cá nhân dạng timeline tương tác, thiết kế tinh gọn chuyên nghiệp.",
+        category: "Portfolios & Profiles",
+        groupId: "portfolios",
         language: "HTML",
         updated: "2026-04-21",
         pageUrl: "https://ducnguyen221.github.io/profile/",
-        repoUrl: "https://github.com/ducnguyen221/profile"
+        repoUrl: "https://github.com/ducnguyen221/profile",
+        files: [
+          { 
+            name: "index.html", 
+            size: "24.1 KB", 
+            type: "html", 
+            desc: "Bố cục HTML chính chứa cây timeline và biểu đồ radar phân tích kỹ năng.", 
+            preview: `<section class="timeline-container">
+  <div class="timeline-item" data-date="2025-2026">
+    <h3>Lập Trình Viên Web & AI</h3>
+    <p>Xây dựng và phát triển các giao diện tương tác hỗ trợ Agentic AI và CRM...</p>
+  </div>
+</section>` 
+          },
+          { 
+            name: "styles.css", 
+            size: "12.8 KB", 
+            type: "css", 
+            desc: "CSS định dạng hiệu ứng cuộn mượt và giao diện responsive tối ưu.", 
+            preview: `body {
+  font-family: var(--font-body);
+  background-color: #0f172a;
+}
+.timeline-item {
+  position: relative;
+  border-left: 2px solid var(--cyan);
+}` 
+          },
+          { 
+            name: "script.js", 
+            size: "8.4 KB", 
+            type: "js", 
+            desc: "Javascript quản lý sự kiện cuộn trang, hiển thị hiệu ứng fade-in khi phần tử xuất hiện.", 
+            preview: `document.addEventListener('DOMContentLoaded', () => {
+  const items = document.querySelectorAll('.timeline-item');
+  const observer = new IntersectionObserver((entries) => {
+    // Reveal animation
+  });
+});` 
+          },
+          { 
+            name: "resume.pdf", 
+            size: "1.2 MB", 
+            type: "config", 
+            desc: "Bản sao PDF của CV để người dùng tải về trực tiếp.", 
+            preview: `[Tệp tin nhị phân PDF - Dữ liệu CV đã mã hóa]` 
+          }
+        ]
       },
       {
-        name: "atlas",
-        description: "Interactive HTML visualizations that turn complex knowledge into simple, visual, shareable learning experiences.",
-        category: "Knowledge visualizations",
-        language: "HTML",
-        updated: "2026-05-19",
-        pageUrl: "https://ducnguyen221.github.io/atlas/",
-        repoUrl: "https://github.com/ducnguyen221/atlas"
-      },
-      {
-        name: "my-project",
-        description: "Public web project used for experiments and ongoing Pages prototypes.",
-        category: "Web experiment",
-        language: "HTML",
-        updated: "2026-05-19",
-        pageUrl: "https://ducnguyen221.github.io/my-project/",
-        repoUrl: "https://github.com/ducnguyen221/my-project"
-      },
-      {
-        name: "docs",
-        description: "COMPA CRM.",
-        category: "Documentation",
-        language: "HTML",
-        updated: "2026-05-13",
-        pageUrl: "https://ducnguyen221.github.io/docs/",
-        repoUrl: "https://github.com/ducnguyen221/docs"
-      },
-      {
+        id: "mixfolio",
         name: "mixfolio",
-        description: "JavaScript project published with GitHub Pages.",
-        category: "JavaScript portfolio",
+        description: "Dự án portfolio tổng hợp các thành phần giao diện động và thư viện JS.",
+        category: "Portfolios & Profiles",
+        groupId: "portfolios",
         language: "JavaScript",
         updated: "2026-05-02",
         pageUrl: "https://ducnguyen221.github.io/mixfolio/",
-        repoUrl: "https://github.com/ducnguyen221/mixfolio"
+        repoUrl: "https://github.com/ducnguyen221/mixfolio",
+        files: [
+          { 
+            name: "index.html", 
+            size: "11.2 KB", 
+            type: "html", 
+            desc: "Trang tổng quan chứa khung lưới hiển thị các widget JS động.", 
+            preview: `<div id="mixfolio-grid">
+  <!-- JavaScript dynamically generates cards representing different visual components -->
+</div>` 
+          },
+          { 
+            name: "mixfolio.js", 
+            size: "18.5 KB", 
+            type: "js", 
+            desc: "Mã nguồn quản lý trạng thái, sắp xếp lưới thẻ (masonry layout) và hiệu ứng chuyển cảnh.", 
+            preview: `class Mixfolio {
+  constructor(el) {
+    this.container = document.querySelector(el);
+    this.init();
+  }
+  init() {
+    this.renderWidgets();
+  }
+}` 
+          },
+          { 
+            name: "theme.css", 
+            size: "6.2 KB", 
+            type: "css", 
+            desc: "Định dạng cho các widget card kính mờ (glassmorphism).", 
+            preview: `.widget-card {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}` 
+          }
+        ]
       },
       {
+        id: "ai-workspace",
         name: "ai-workspace",
-        description: "AI Workspace tool.",
-        category: "AI tool",
+        description: "Bộ công cụ giao diện AI workspace giúp quản lý prompt, thiết lập tham số API và kiểm thử các tác vụ agent.",
+        category: "AI & Workspaces",
+        groupId: "ai",
         language: "HTML",
         updated: "2026-01-10",
         pageUrl: "https://ducnguyen221.github.io/ai-workspace/",
-        repoUrl: "https://github.com/ducnguyen221/ai-workspace"
+        repoUrl: "https://github.com/ducnguyen221/ai-workspace",
+        files: [
+          { 
+            name: "index.html", 
+            size: "15.6 KB", 
+            type: "html", 
+            desc: "Khung giao diện Workspace chia 3 cột (Prompts, Model Settings, Chat Panel).", 
+            preview: `<div class="workspace-grid">
+  <div class="sidebar-prompts">Thư viện Prompts</div>
+  <div class="chat-area">Màn hình hội thoại AI</div>
+  <div class="settings-panel">Cấu hình mô hình</div>
+</div>` 
+          },
+          { 
+            name: "workspace.js", 
+            size: "26.4 KB", 
+            type: "js", 
+            desc: "Xử lý kết nối API mô hình lớn, truyền nhận tin nhắn trực tiếp và lưu trữ hội thoại.", 
+            preview: `export async function callAIModel(messages, temperature) {
+  const payload = { model: 'gemini-1.5-pro', messages, temperature };
+  const res = await fetch('/api/chat', { method: 'POST', body: JSON.stringify(payload) });
+  return res.json();
+}` 
+          },
+          { 
+            name: "agent-api.js", 
+            size: "14.2 KB", 
+            type: "js", 
+            desc: "Định nghĩa các tác vụ tự động (agents) chạy ngầm để phân tích mã nguồn.", 
+            preview: `export class CodebaseAgent {
+  async runInvestigation(query) {
+    const files = await this.scanFiles();
+    return this.analyzeWithLLM(files, query);
+  }
+}` 
+          },
+          { 
+            name: "model-selector.css", 
+            size: "7.8 KB", 
+            type: "css", 
+            desc: "CSS định dạng thanh trượt tham số (temperature, top_p) phát sáng neon.", 
+            preview: `.slider-thumb {
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+}` 
+          }
+        ]
+      },
+      {
+        id: "atlas",
+        name: "atlas",
+        description: "Bộ trực quan hóa tri thức tương tác bằng node-graph, giúp chuyển hóa tài liệu phức tạp thành bản đồ đồ họa động.",
+        category: "Visuals & Learning",
+        groupId: "visuals",
+        language: "HTML",
+        updated: "2026-05-19",
+        pageUrl: "https://ducnguyen221.github.io/atlas/",
+        repoUrl: "https://github.com/ducnguyen221/atlas",
+        files: [
+          { 
+            name: "index.html", 
+            size: "38.2 KB", 
+            type: "html", 
+            desc: "Trang hiển thị chính chứa Canvas đồ họa và bảng điều khiển bộ lọc.", 
+            preview: `<div class="atlas-view">
+  <aside class="atlas-sidebar">Chương trình học tập</aside>
+  <main class="canvas-wrapper">
+    <canvas id="graphCanvas"></canvas>
+  </main>
+</div>` 
+          },
+          { 
+            name: "knowledge-map.js", 
+            size: "40.5 KB", 
+            type: "js", 
+            desc: "Động cơ liên kết mô phỏng lực hút vật lý (force-directed graph) vẽ mạng lưới kiến thức bằng D3.", 
+            preview: `const simulation = d3.forceSimulation(nodes)
+  .force("link", d3.forceLink(links).id(d => d.id))
+  .force("charge", d3.forceManyBody().strength(-120))
+  .force("center", d3.forceCenter(width / 2, height / 2));` 
+          },
+          { 
+            name: "neural-net.js", 
+            size: "14.8 KB", 
+            type: "js", 
+            desc: "Trực quan hóa hoạt động truyền xung điện (feedforward) chạy dọc các liên kết neuron.", 
+            preview: `class NeuronNode {
+  triggerActivation() {
+    this.opacity = 1.0;
+    this.pulseRadius = 20;
+  }
+}` 
+          },
+          { 
+            name: "data-stream.js", 
+            size: "10.2 KB", 
+            type: "js", 
+            desc: "Tạo các dòng hạt nhị phân chuyển động mô phỏng dòng chảy dữ liệu.", 
+            preview: `class BinaryStream {
+  update() {
+    this.y += this.speed;
+    if (this.y > height) this.reset();
+  }
+}` 
+          },
+          { 
+            name: "style.css", 
+            size: "11.5 KB", 
+            type: "css", 
+            desc: "CSS tối ưu hóa hiển thị node phát sáng và bảng màu tối tương phản cao.", 
+            preview: `.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+  cursor: pointer;
+  transition: r 0.2s ease;
+}` 
+          }
+        ]
+      },
+      {
+        id: "my-project",
+        name: "my-project",
+        description: "Không gian hộp cát (sandbox) thử nghiệm giao diện web và các nguyên mẫu ứng dụng front-end mới nhất.",
+        category: "Visuals & Learning",
+        groupId: "visuals",
+        language: "HTML",
+        updated: "2026-05-19",
+        pageUrl: "https://ducnguyen221.github.io/my-project/",
+        repoUrl: "https://github.com/ducnguyen221/my-project",
+        files: [
+          { 
+            name: "index.html", 
+            size: "8.5 KB", 
+            type: "html", 
+            desc: "Trang index đơn giản tải các module và widget đang phát triển ngầm.", 
+            preview: `<main id="sandbox-root">
+  <!-- Thử nghiệm component layout ở đây -->
+  <div class="test-component">Component A</div>
+</main>` 
+          },
+          { 
+            name: "app.js", 
+            size: "11.2 KB", 
+            type: "js", 
+            desc: "Logic khởi tạo các biến toàn cục và quản lý tải gói kiểm thử.", 
+            preview: `console.log("Welcome to my-project sandbox!");
+const config = { version: '1.0.0', debug: true };` 
+          },
+          { 
+            name: "styles.css", 
+            size: "4.9 KB", 
+            type: "css", 
+            desc: "Các định dạng layout nhanh cho grids và flexbox.", 
+            preview: `.test-component {
+  padding: 20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+}` 
+          },
+          { 
+            name: "package.json", 
+            size: "1.0 KB", 
+            type: "config", 
+            desc: "Định nghĩa môi trường cài đặt thư viện phát triển local.", 
+            preview: `{
+  "name": "my-project",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite"
+  }
+}` 
+          }
+        ]
+      },
+      {
+        id: "docs",
+        name: "docs",
+        description: "Tài liệu chi tiết hướng dẫn vận hành và tham chiếu mã API tích hợp cho cổng COMPA CRM thương mại.",
+        category: "Docs & Corporate",
+        groupId: "docs",
+        language: "HTML",
+        updated: "2026-05-13",
+        pageUrl: "https://ducnguyen221.github.io/docs/",
+        repoUrl: "https://github.com/ducnguyen221/docs",
+        files: [
+          { 
+            name: "index.html", 
+            size: "18.2 KB", 
+            type: "html", 
+            desc: "Bố cục hai cột (Sidebar Menu và Content View) hiển thị tài liệu.", 
+            preview: `<div class="docs-layout">
+  <nav class="docs-navigation">Menu chương mục</nav>
+  <article class="docs-body">Nội dung hướng dẫn</article>
+</div>` 
+          },
+          { 
+            name: "crm-guide.html", 
+            size: "33.5 KB", 
+            type: "html", 
+            desc: "Tài liệu hướng dẫn cài đặt CRM, quản lý cơ sở dữ liệu khách hàng.", 
+            preview: `<h2>Thiết Lập COMPA CRM</h2>
+<p>Bước 1: Chạy lệnh setup database</p>
+<pre><code>bash setup.sh</code></pre>
+<p>Bước 2: Thay đổi thông tin kết nối trong file config.json</p>` 
+          },
+          { 
+            name: "api-reference.html", 
+            size: "44.1 KB", 
+            type: "html", 
+            desc: "Thông tin mô tả các endpoints API, tham số đầu vào và ví dụ phản hồi JSON.", 
+            preview: `<h3>API: Tạo Khách Hàng Mới</h3>
+<p>Endpoint: <code>POST /api/v1/customers</code></p>
+<pre><code>{
+  "name": "Nguyen Van A",
+  "phone": "0900000000"
+}</code></pre>` 
+          },
+          { 
+            name: "setup.sh", 
+            size: "820 B", 
+            type: "config", 
+            desc: "Script Shell tự động cấu hình cơ sở dữ liệu CRM mẫu ở local.", 
+            preview: `#!/bin/bash
+echo "Đang khởi tạo cơ sở dữ liệu COMPA CRM..."
+npm install -g crm-tools
+crm-tools init-db` 
+          },
+          { 
+            name: "config.json", 
+            size: "1.1 KB", 
+            type: "config", 
+            desc: "Các cấu hình cổng kết nối và phân quyền người dùng mặc định.", 
+            preview: `{
+  "port": 8080,
+  "db_host": "localhost",
+  "features": {
+    "leads": true,
+    "invoices": false
+  }
+}` 
+          }
+        ]
       }
     ];
 
-    const icons = {
-      page: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 4h6l4 4v12H8V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 4v4h4M10.5 12h5M10.5 16h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
-      repo: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 17h11M8 7h7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
-      folder: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h7l2 3h7v11H4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>'
+    // File icons mapping
+    const fileIcons = {
+      html: '<svg class="file-icon html" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13l2 2-2 2M16 13l-2 2 2 2M12 14l-1 4"/></svg>',
+      css: '<svg class="file-icon css" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M8 17v-3a2 2 0 1 1 4 0v3M12 14h4"/></svg>',
+      js: '<svg class="file-icon js" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M10 13a2 2 0 1 1-4 0M14 17a2 2 0 1 0 4 0"/></svg>',
+      md: '<svg class="file-icon md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M8 12v4M12 12v4M8 12l2 2 2-2"/></svg>',
+      config: '<svg class="file-icon config" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><circle cx="12" cy="14" r="2"/><path d="M12 12v1M12 16v1M10 14h1M13 14h1"/></svg>'
     };
 
+    const folderIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>';
+    const externalLinkIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>';
+    const githubIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>';
+
+    // App state
+    let activeGroupId = "all";
+    let activeRepoId = reposData[0].id;
+    let activeFileName = null;
+
+    // Helper functions to HTML escape
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    // Render repository list in Sidebar based on active category
     function renderRepos() {
-      const list = document.querySelector("#repoList");
-      list.innerHTML = repos.map((repo) => {
+      const container = document.getElementById("repoListContainer");
+      const filtered = activeGroupId === "all" 
+        ? reposData 
+        : reposData.filter(r => r.groupId === activeGroupId);
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div class="empty-state">Không tìm thấy kho lưu trữ.</div>';
+        return;
+      }
+
+      container.innerHTML = filtered.map(repo => {
+        const isActive = repo.id === activeRepoId;
+        const langClass = repo.language.toLowerCase() === "html" ? "html" : "js";
         return `
-          <li class="repo-node">
-            <div class="repo-head">
-              <div>
-                <div class="repo-name">${icons.folder}<span>${repo.name}</span></div>
-                <div class="repo-meta">
-                  <span class="language-dot" aria-hidden="true"></span>
-                  <span class="repo-category">${repo.category}</span>
-                  <span>${repo.language || "Pages"}</span>
-                  <span>updated ${repo.updated}</span>
-                </div>
-              </div>
-              <div class="repo-actions">
-                <a class="repo-action primary" href="${repo.pageUrl}" target="_blank" rel="noreferrer" aria-label="Open ${repo.name} GitHub Pages site">${icons.page}Page</a>
-                <a class="repo-action" href="${repo.repoUrl}" target="_blank" rel="noreferrer" aria-label="Open ${repo.name} repository">${icons.repo}Repo</a>
-              </div>
+          <div class="repo-item ${isActive ? 'active' : ''}" onclick="selectRepo('${repo.id}')" role="button" aria-pressed="${isActive}">
+            <div class="repo-item-title">
+              ${folderIcon}
+              <span>${repo.name}</span>
             </div>
-            <p class="repo-desc">${repo.description}</p>
-          </li>
+            <div class="repo-item-desc">${repo.description}</div>
+            <div class="repo-item-meta">
+              <span class="repo-lang-dot ${langClass}"></span>
+              <span>${repo.language}</span>
+              <span>updated ${repo.updated}</span>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      // If active repo is not in the filtered list, select the first in the filtered list
+      const isFound = filtered.some(r => r.id === activeRepoId);
+      if (!isFound && filtered.length > 0) {
+        selectRepo(filtered[0].id);
+      } else {
+        renderFiles();
+      }
+    }
+
+    // Select repository
+    function selectRepo(id) {
+      activeRepoId = id;
+      activeFileName = null; // Reset selected file when switching repo
+      document.getElementById("windowTitlePath").innerText = `workspace://ducnguyen221/${reposData.find(r => r.id === id).name}`;
+      
+      // Re-render sidebar to update active styles
+      const items = document.querySelectorAll(".repo-item");
+      const filtered = activeGroupId === "all" ? reposData : reposData.filter(r => r.groupId === activeGroupId);
+      const activeIndex = filtered.findIndex(r => r.id === id);
+      
+      items.forEach((item, index) => {
+        if (index === activeIndex) {
+          item.classList.add("active");
+          item.setAttribute("aria-pressed", "true");
+        } else {
+          item.classList.remove("active");
+          item.setAttribute("aria-pressed", "false");
+        }
+      });
+
+      renderFiles();
+      renderPreview();
+    }
+
+    // Render files inside active repository
+    function renderFiles() {
+      const container = document.getElementById("fileTreeContainer");
+      const repo = reposData.find(r => r.id === activeRepoId);
+      
+      if (!repo || !repo.files || repo.files.length === 0) {
+        container.innerHTML = '<div class="empty-state">Thư mục trống.</div>';
+        document.getElementById("activeRepoFileCount").innerText = `0 tệp`;
+        return;
+      }
+
+      document.getElementById("activeRepoFileCount").innerText = `${repo.files.length} tệp`;
+
+      container.innerHTML = repo.files.map(file => {
+        const iconSvg = fileIcons[file.type] || fileIcons['config'];
+        const isActive = file.name === activeFileName;
+        return `
+          <div class="file-node ${isActive ? 'active' : ''}" onclick="selectFile('${file.name}')" role="button" aria-pressed="${isActive}">
+            <div class="file-info-left">
+              ${iconSvg}
+              <span>${file.name}</span>
+            </div>
+            <span class="file-size">${file.size}</span>
+          </div>
         `;
       }).join("");
     }
 
+    // Select file
+    function selectFile(name) {
+      activeFileName = name;
+      
+      // Update file list active class
+      const repo = reposData.find(r => r.id === activeRepoId);
+      const fileIndex = repo.files.findIndex(f => f.name === name);
+      const nodes = document.querySelectorAll(".file-node");
+      
+      nodes.forEach((node, index) => {
+        if (index === fileIndex) {
+          node.classList.add("active");
+          node.setAttribute("aria-pressed", "true");
+        } else {
+          node.classList.remove("active");
+          node.setAttribute("aria-pressed", "false");
+        }
+      });
+
+      renderPreview();
+    }
+
+    // Render file contents preview or repository overview in preview pane
+    function renderPreview() {
+      const previewPane = document.getElementById("previewContent");
+      const mobilePreviewPane = document.getElementById("mobilePreviewPane");
+      const repo = reposData.find(r => r.id === activeRepoId);
+
+      if (!repo) {
+        const emptyHtml = `<div class="empty-state">Chọn một kho lưu trữ để bắt đầu kiểm tra.</div>`;
+        previewPane.innerHTML = emptyHtml;
+        mobilePreviewPane.style.display = "none";
+        return;
+      }
+
+      let contentHtml = "";
+
+      // Case A: No file is selected -> Show Repo Overview
+      if (!activeFileName) {
+        contentHtml = `
+          <div class="repo-overview">
+            <div class="repo-overview-header">
+              <div>
+                <span class="repo-meta-label" style="color: var(--cyan)">Dự án</span>
+                <h3>${repo.name}</h3>
+              </div>
+              <span class="tag primary">${repo.category}</span>
+            </div>
+            <p class="repo-overview-desc">${repo.description}</p>
+            
+            <div class="repo-meta-grid">
+              <div class="repo-meta-item">
+                <span class="repo-meta-label">Ngôn Ngữ Chính</span>
+                <span class="repo-meta-val">${repo.language}</span>
+              </div>
+              <div class="repo-meta-item">
+                <span class="repo-meta-label">Cập Nhật Mới Nhất</span>
+                <span class="repo-meta-val">${repo.updated}</span>
+              </div>
+              <div class="repo-meta-item" style="grid-column: span 2; margin-top: 6px;">
+                <span class="repo-meta-label">Domain Liên Kết</span>
+                <span class="repo-meta-val" style="color:var(--cyan); font-family:var(--font-mono); font-size:0.78rem;">${repo.pageUrl}</span>
+              </div>
+            </div>
+
+            <div class="repo-preview-actions">
+              <a href="${repo.pageUrl}" target="_blank" rel="noreferrer" class="action-btn primary">
+                ${externalLinkIcon} Open Page
+              </a>
+              <a href="${repo.repoUrl}" target="_blank" rel="noreferrer" class="action-btn">
+                ${githubIcon} GitHub Repo
+              </a>
+            </div>
+          </div>
+        `;
+      } 
+      // Case B: A file is selected -> Show File metadata and code preview
+      else {
+        const file = repo.files.find(f => f.name === activeFileName);
+        const codeEscaped = escapeHtml(file.preview);
+        const fileLines = file.preview.split("\n");
+        const numberedCode = fileLines.map((line, idx) => {
+          return `<span style="color:#475569; display:inline-block; width:22px; text-align:right; margin-right:12px; user-select:none;">${idx+1}</span>${escapeHtml(line)}`;
+        }).join("\n");
+
+        contentHtml = `
+          <div class="file-details">
+            <div class="file-details-header">
+              <span class="file-path">workspace://${repo.name}/${file.name}</span>
+              <h3>${file.name}</h3>
+            </div>
+            <p class="file-desc-text">${file.desc}</p>
+            
+            <div class="code-editor">
+              <div class="code-editor-header">
+                <span class="editor-dot"><i></i><i></i><i></i></span>
+                <span class="editor-lang">${file.type}</span>
+              </div>
+              <div class="code-scroll">
+                <pre class="code-display"><code>${numberedCode}</code></pre>
+              </div>
+            </div>
+            
+            <div class="repo-preview-actions" style="margin-top: 18px;">
+              <a href="${repo.pageUrl}" target="_blank" rel="noreferrer" class="action-btn primary">
+                ${externalLinkIcon} Open Live Page
+              </a>
+              <a href="${repo.repoUrl}" target="_blank" rel="noreferrer" class="action-btn">
+                ${githubIcon} View Source
+              </a>
+              <button class="action-btn" onclick="selectRepo('${repo.id}')" style="margin-left:auto; border-color:transparent; background:transparent; color:#64748b;">
+                 Quay lại
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      previewPane.innerHTML = contentHtml;
+
+      // Handle mobile display (duplicate content to mobile preview panel and show it)
+      if (window.innerWidth <= 768) {
+        mobilePreviewPane.innerHTML = `
+          <div class="explorer-card" style="margin-top:16px; border:1px solid var(--line-active); border-radius:16px; background:var(--panel-strong); padding:20px; box-shadow:var(--shadow);">
+            ${contentHtml}
+          </div>
+        `;
+        mobilePreviewPane.style.display = "block";
+        // Scroll mobile viewport to preview container
+        mobilePreviewPane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        mobilePreviewPane.style.display = "none";
+      }
+    }
+
+    // Set up tabs events
+    function setupTabs() {
+      const tabs = document.querySelectorAll(".explorer-tab");
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          tabs.forEach(t => {
+            t.classList.remove("active");
+            t.setAttribute("aria-selected", "false");
+          });
+          tab.classList.add("active");
+          tab.setAttribute("aria-selected", "true");
+          activeGroupId = tab.dataset.group;
+          
+          // Switch active repo to the first one available in this category
+          const filtered = activeGroupId === "all" 
+            ? reposData 
+            : reposData.filter(r => r.groupId === activeGroupId);
+          if (filtered.length > 0) {
+            activeRepoId = filtered[0].id;
+          }
+          activeFileName = null; // Reset selected file
+
+          renderRepos();
+        });
+      });
+    }
+
+    // Setup active state tracking for header links on scroll
+    function setupScrollSpy() {
+      const links = document.querySelectorAll(".nav a");
+      const sections = document.querySelectorAll("main section");
+
+      window.addEventListener("scroll", () => {
+        let currentSectionId = "";
+        sections.forEach(sec => {
+          const top = sec.offsetTop - 120;
+          const height = sec.offsetHeight;
+          if (window.scrollY >= top && window.scrollY < top + height) {
+            currentSectionId = sec.getAttribute("id");
+          }
+        });
+
+        links.forEach(link => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${currentSectionId}`) {
+            link.classList.add("active");
+          }
+        });
+      });
+    }
+
+    // Futuristic Background Canvas drawing
     function startNeuralCanvas() {
       const canvas = document.querySelector("#aiCanvas");
+      if (!canvas) return;
       const ctx = canvas.getContext("2d");
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const pointer = { x: 0, y: 0, active: false };
+      
+      // HUD spring ease state
+      const hud = { x: 0, y: 0 };
+      
       let width = 0;
       let height = 0;
       let particles = [];
@@ -1270,49 +2504,88 @@
         canvas.style.height = `${height}px`;
         ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
-        const count = Math.min(84, Math.max(40, Math.floor((width * height) / 20000)));
+        // Responsive particles count
+        const count = Math.min(75, Math.max(30, Math.floor((width * height) / 24000)));
         particles = Array.from({ length: count }, (_, index) => ({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.38,
-          vy: (Math.random() - 0.5) * 0.38,
-          r: 1.1 + Math.random() * 1.8,
-          hue: index % 4
+          vx: (Math.random() - 0.5) * 0.32,
+          vy: (Math.random() - 0.5) * 0.32,
+          r: 1.0 + Math.random() * 1.5,
+          hue: index % 3 // cyan, purple, green
         }));
       }
 
       function colorFor(hue, alpha) {
-        if (hue === 0) return `rgba(56, 223, 248, ${alpha})`;
-        if (hue === 1) return `rgba(185, 255, 112, ${alpha})`;
-        if (hue === 2) return `rgba(255, 119, 104, ${alpha})`;
-        return `rgba(183, 156, 255, ${alpha})`;
+        if (hue === 0) return `rgba(0, 240, 255, ${alpha})`; // Cyan
+        if (hue === 1) return `rgba(189, 0, 255, ${alpha})`; // Purple
+        return `rgba(57, 255, 20, ${alpha})`; // Green
       }
 
       function draw() {
         ctx.clearRect(0, 0, width, height);
 
+        // Step 1: Draw interactive perspective grid
+        const gridGap = 60;
+        const gridColor = "rgba(255, 255, 255, 0.015)";
+        const gridInteractiveColor = "rgba(0, 240, 255, 0.04)";
+
+        const startX = Math.floor(window.scrollY * 0.1) % gridGap;
+        ctx.lineWidth = 0.5;
+
+        for (let x = -startX; x < width; x += gridGap) {
+          for (let y = 0; y < height; y += gridGap) {
+            let drawX = x;
+            let drawY = y;
+
+            if (pointer.active && !reduceMotion) {
+              const dx = pointer.x - x;
+              const dy = pointer.y - y;
+              const dist = Math.hypot(dx, dy);
+              if (dist < 180) {
+                const force = (1 - dist / 180) * 12;
+                drawX -= (dx / dist) * force;
+                drawY -= (dy / dist) * force;
+              }
+            }
+
+            // Draw coordinate grid tick mark (+)
+            ctx.strokeStyle = pointer.active && Math.hypot(pointer.x - x, pointer.y - y) < 180 ? gridInteractiveColor : gridColor;
+            ctx.beginPath();
+            ctx.moveTo(drawX - 3, drawY);
+            ctx.lineTo(drawX + 3, drawY);
+            ctx.moveTo(drawX, drawY - 3);
+            ctx.lineTo(drawX, drawY + 3);
+            ctx.stroke();
+          }
+        }
+
+        // Step 2: Update and draw constellation particles
         particles.forEach((p) => {
           if (!reduceMotion) {
             p.x += p.vx;
             p.y += p.vy;
-          }
 
-          if (p.x < -20) p.x = width + 20;
-          if (p.x > width + 20) p.x = -20;
-          if (p.y < -20) p.y = height + 20;
-          if (p.y > height + 20) p.y = -20;
+            // Boundary wrapping
+            if (p.x < -10) p.x = width + 10;
+            if (p.x > width + 10) p.x = -10;
+            if (p.y < -10) p.y = height + 10;
+            if (p.y > height + 10) p.y = -10;
 
-          if (pointer.active && !reduceMotion) {
-            const dx = pointer.x - p.x;
-            const dy = pointer.y - p.y;
-            const distance = Math.hypot(dx, dy);
-            if (distance < 170) {
-              p.x -= dx * 0.0022;
-              p.y -= dy * 0.0022;
+            // Pointer attraction
+            if (pointer.active) {
+              const dx = pointer.x - p.x;
+              const dy = pointer.y - p.y;
+              const distance = Math.hypot(dx, dy);
+              if (distance < 160) {
+                p.x += dx * 0.001;
+                p.y += dy * 0.001;
+              }
             }
           }
         });
 
+        // Draw connection lines
         for (let i = 0; i < particles.length; i += 1) {
           for (let j = i + 1; j < particles.length; j += 1) {
             const a = particles[i];
@@ -1321,27 +2594,69 @@
             const dy = a.y - b.y;
             const distance = Math.hypot(dx, dy);
 
-            if (distance < 128) {
-              const alpha = (1 - distance / 128) * 0.2;
+            if (distance < 120) {
+              const alpha = (1 - distance / 120) * 0.15;
               ctx.beginPath();
               ctx.moveTo(a.x, a.y);
               ctx.lineTo(b.x, b.y);
-              ctx.strokeStyle = colorFor(a.hue, alpha);
-              ctx.lineWidth = 1;
+              
+              // Gradient connection line
+              const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+              grad.addColorStop(0, colorFor(a.hue, alpha));
+              grad.addColorStop(1, colorFor(b.hue, alpha));
+              ctx.strokeStyle = grad;
+              ctx.lineWidth = 0.8;
               ctx.stroke();
             }
           }
         }
 
+        // Draw particle nodes
         particles.forEach((p) => {
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = colorFor(p.hue, 0.82);
-          ctx.shadowColor = colorFor(p.hue, 0.9);
-          ctx.shadowBlur = 12;
+          ctx.fillStyle = colorFor(p.hue, 0.7);
           ctx.fill();
-          ctx.shadowBlur = 0;
         });
+
+        // Step 3: Draw interactive tech HUD crosshair following mouse with spring ease
+        if (pointer.active && !reduceMotion) {
+          hud.x += (pointer.x - hud.x) * 0.08;
+          hud.y += (pointer.y - hud.y) * 0.08;
+
+          // Draw rotating dashed hud ring
+          const time = Date.now() * 0.001;
+          ctx.strokeStyle = "rgba(0, 240, 255, 0.15)";
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.arc(hud.x, hud.y, 25, time, time + Math.PI * 1.5);
+          ctx.stroke();
+          
+          ctx.strokeStyle = "rgba(189, 0, 255, 0.12)";
+          ctx.beginPath();
+          ctx.arc(hud.x, hud.y, 35, -time * 0.8, -time * 0.8 + Math.PI * 0.8);
+          ctx.stroke();
+
+          // Hud tiny crosshair dot
+          ctx.fillStyle = "rgba(0, 240, 255, 0.5)";
+          ctx.beginPath();
+          ctx.arc(hud.x, hud.y, 2, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Coordinate label text
+          ctx.fillStyle = "rgba(0, 240, 255, 0.4)";
+          ctx.font = "8px 'JetBrains Mono', monospace";
+          ctx.fillText(`LOC: [${Math.round(hud.x)}, ${Math.round(hud.y)}]`, hud.x + 45, hud.y + 4);
+          
+          // Technical vector bracket lines
+          ctx.strokeStyle = "rgba(0, 240, 255, 0.2)";
+          ctx.beginPath();
+          ctx.moveTo(hud.x + 40, hud.y - 4);
+          ctx.lineTo(hud.x + 42, hud.y - 4);
+          ctx.lineTo(hud.x + 42, hud.y + 8);
+          ctx.lineTo(hud.x + 40, hud.y + 8);
+          ctx.stroke();
+        }
 
         rafId = window.requestAnimationFrame(draw);
       }
@@ -1362,8 +2677,19 @@
       window.addEventListener("pagehide", () => window.cancelAnimationFrame(rafId));
     }
 
-    renderRepos();
-    startNeuralCanvas();
+    // App Initialization
+    window.addEventListener("DOMContentLoaded", () => {
+      setupTabs();
+      renderRepos();
+      setupScrollSpy();
+      startNeuralCanvas();
+
+      // Listen for window resize to handle layout adjustments
+      window.addEventListener("resize", () => {
+        // Redraw preview in case columns config shifts on mobile size
+        renderPreview();
+      });
+    });
   </script>
 </body>
 </html>
