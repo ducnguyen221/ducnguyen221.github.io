@@ -129,7 +129,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      padding: 16px 20px;
+      padding: 14px 20px;
       margin-top: 10px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -271,23 +271,23 @@
       flex: 0 0 auto;
     }
 
-    /* Hero Section */
+    /* Hero Section - Compressed Heights & Padding */
     .hero {
-      min-height: calc(100vh - 100px);
+      min-height: auto;
       display: grid;
       grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
       align-items: center;
-      gap: clamp(40px, 6vw, 90px);
-      padding: 60px 0 80px;
+      gap: clamp(24px, 4vw, 50px);
+      padding: 30px 0 45px;
     }
 
     h1 {
       max-width: 820px;
       margin: 0;
       font-family: var(--font-heading);
-      font-size: clamp(3.2rem, 7.8vw, 6.8rem);
+      font-size: clamp(2.8rem, 6.2vw, 4.8rem);
       font-weight: 850;
-      line-height: 0.95;
+      line-height: 1.0;
       letter-spacing: -0.03em;
     }
 
@@ -302,10 +302,10 @@
 
     .lead {
       max-width: 660px;
-      margin: 28px 0 0;
+      margin: 18px 0 0;
       color: #cbd5e1;
-      font-size: clamp(1rem, 1.8vw, 1.18rem);
-      line-height: 1.75;
+      font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+      line-height: 1.7;
       font-weight: 400;
     }
 
@@ -314,14 +314,14 @@
       align-items: center;
       gap: 16px;
       flex-wrap: wrap;
-      margin-top: 36px;
+      margin-top: 24px;
     }
 
     .route-list {
       display: grid;
-      gap: 12px;
+      gap: 10px;
       max-width: 660px;
-      margin-top: 40px;
+      margin-top: 24px;
     }
 
     .route-button {
@@ -329,8 +329,8 @@
       grid-template-columns: auto minmax(0, 1fr) auto;
       align-items: center;
       gap: 16px;
-      min-height: 76px;
-      padding: 16px 20px;
+      min-height: 64px;
+      padding: 10px 16px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: rgba(8, 12, 21, 0.4);
@@ -359,16 +359,16 @@
 
     .route-copy strong {
       display: block;
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       font-family: var(--font-heading);
       font-weight: 700;
       color: var(--ink);
     }
 
     .route-copy span {
-      margin-top: 4px;
+      margin-top: 2px;
       color: var(--muted);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       line-height: 1.4;
       display: block;
     }
@@ -383,7 +383,7 @@
       transform: translate(3px, -3px);
     }
 
-    /* Cyber Profile Card Aside */
+    /* Cyber Profile Card Aside with Connector Canvas Background */
     .profile-card {
       position: relative;
       min-width: 0;
@@ -394,6 +394,18 @@
       overflow: hidden;
       backdrop-filter: blur(20px);
       transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.45;
     }
 
     .profile-card:hover {
@@ -1317,8 +1329,8 @@
 
       .hero {
         grid-template-columns: 1fr;
-        padding: 40px 0 60px;
-        gap: 40px;
+        padding: 24px 0 40px;
+        gap: 30px;
       }
 
       .section-head {
@@ -1491,11 +1503,12 @@
           </div>
         </div>
 
-        <!-- Sidebar Profile Card -->
+        <!-- Sidebar Profile Card with Secondary Tech Connectors Background Canvas -->
         <aside class="profile-card" aria-label="Duc Nguyen profile card">
+          <canvas class="card-canvas" id="cardCanvas" aria-hidden="true"></canvas>
           <div class="portrait">
             <div class="portrait-frame">
-              <img src="https://avatars.githubusercontent.com/u/31231137?v=4" alt="Duc Nguyen GitHub avatar">
+              <img src="cyber_ai_profile.png" alt="Cyber AI Neural Core">
               <span class="portrait-hud" aria-hidden="true">Active // Dev</span>
             </div>
           </div>
@@ -1519,10 +1532,18 @@
       <section class="section" id="about" aria-label="About Duc Nguyen">
         <div class="section-head">
           <h2>Về Tôi</h2>
-          <p>
-            Sự tập trung của tôi dành cho những sản phẩm thực tế: giao diện web có thể sử dụng ngay, 
-            trực quan hóa dữ liệu động, các tài liệu hướng dẫn chuẩn hóa và các nguyên mẫu ứng dụng AI.
-          </p>
+          <div>
+            <p style="margin-bottom: 20px;">
+              Sự tập trung của tôi dành cho những sản phẩm thực tế: giao diện web có thể sử dụng ngay, 
+              trực quan hóa dữ liệu động, các tài liệu hướng dẫn chuẩn hóa và các nguyên mẫu ứng dụng AI.
+            </p>
+            <a class="button primary" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noreferrer" style="height: 38px; padding: 0 16px; font-size: 0.8rem; display: inline-flex;">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" style="width: 14px; height: 14px; margin-right: 2px;">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Xem Hồ Sơ Chi Tiết
+            </a>
+          </div>
         </div>
 
         <div class="focus-grid">
@@ -2677,12 +2698,99 @@ crm-tools init-db`
       window.addEventListener("pagehide", () => window.cancelAnimationFrame(rafId));
     }
 
+    // Secondary Animated Card Technology Connectors Canvas Background
+    function startCardCanvas() {
+      const canvas = document.querySelector("#cardCanvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let width = 0;
+      let height = 0;
+      let points = [];
+      let rafId = 0;
+
+      function resize() {
+        const rect = canvas.getBoundingClientRect();
+        width = rect.width;
+        height = rect.height;
+        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.floor(width * ratio);
+        canvas.height = Math.floor(height * ratio);
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+        // Generate 14 floating tech connection nodes
+        points = Array.from({ length: 14 }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.18,
+          vy: (Math.random() - 0.5) * 0.18,
+          r: 1 + Math.random() * 1.8
+        }));
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Update particle positions
+        points.forEach(p => {
+          if (!reduceMotion) {
+            p.x += p.vx;
+            p.y += p.vy;
+
+            // Wrap edges
+            if (p.x < 0) p.x = width;
+            if (p.x > width) p.x = 0;
+            if (p.y < 0) p.y = height;
+            if (p.y > height) p.y = 0;
+          }
+        });
+
+        // Draw connections lines
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i < points.length; i++) {
+          for (let j = i + 1; j < points.length; j++) {
+            const a = points[i];
+            const b = points[j];
+            const dist = Math.hypot(a.x - b.x, a.y - b.y);
+
+            if (dist < 90) {
+              const alpha = (1 - dist / 90) * 0.14;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.strokeStyle = `rgba(0, 240, 255, ${alpha})`;
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Draw node circles
+        points.forEach(p => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(0, 240, 255, 0.35)";
+          ctx.fill();
+        });
+
+        rafId = window.requestAnimationFrame(draw);
+      }
+
+      window.addEventListener("resize", resize, { passive: true });
+      resize();
+      draw();
+
+      window.addEventListener("pagehide", () => window.cancelAnimationFrame(rafId));
+    }
+
     // App Initialization
     window.addEventListener("DOMContentLoaded", () => {
       setupTabs();
       renderRepos();
       setupScrollSpy();
       startNeuralCanvas();
+      startCardCanvas();
 
       // Listen for window resize to handle layout adjustments
       window.addEventListener("resize", () => {
