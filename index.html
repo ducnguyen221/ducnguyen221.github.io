@@ -636,8 +636,8 @@
     /* Selected Work Grid */
     .work-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
     }
 
     .work-card {
@@ -1331,6 +1331,9 @@
       }
       .explorer-preview {
         display: none; /* Hide preview on medium screens, we'll access directly */
+      }
+      .work-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
