@@ -750,7 +750,7 @@
     }
     .about-photo {
       width: 100%;
-      max-width: 230px;
+      max-width: 345px;
       aspect-ratio: 1/1;
       object-fit: cover;
       border-radius: 18px;
@@ -778,14 +778,37 @@
 
     /* Language toggle */
     .lang-toggle {
-      display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
-      font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700; color: var(--cyan);
-      border: 1px solid var(--line-active); border-radius: 8px; padding: 7px 11px;
-      background: rgba(0, 240, 255, 0.06); transition: 0.2s;
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+      height: 38px; padding: 0 15px; border-radius: var(--radius-sm);
+      font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; color: var(--cyan);
+      border: 1px solid var(--line-active); background: rgba(0, 240, 255, 0.06);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .lang-toggle:hover { background: rgba(0, 240, 255, 0.14); }
-    .lang-toggle svg { width: 14px; height: 14px; }
+    .lang-toggle svg { width: 15px; height: 15px; }
     @media (max-width: 920px) { .product-row { grid-template-columns: 1fr; } }
+
+    /* Author / Tác giả card (matches the /atlas style) */
+    .author-section { margin-top: 48px; }
+    .author-card {
+      display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+      border: 1px solid var(--line); border-radius: 16px;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), var(--panel)); padding: 26px 28px;
+    }
+    .author-avatar img {
+      width: 92px; height: 92px; border-radius: 50%; object-fit: cover;
+      border: 2px solid var(--line-active); box-shadow: 0 0 22px rgba(0, 240, 255, 0.25);
+    }
+    .author-info { flex: 1 1 280px; }
+    .author-info .kicker { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cyan); margin-bottom: 6px; }
+    .author-info h3 { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; }
+    .author-info p { color: #cbd5e1; font-size: 0.92rem; line-height: 1.65; }
+    .author-info a { color: var(--cyan); }
+    .social-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    .social-btn { width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); background: rgba(255, 255, 255, 0.03); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+    .social-btn svg { width: 19px; height: 19px; }
+    .social-btn:hover { color: var(--cyan); border-color: var(--cyan-glow); background: rgba(0, 240, 255, 0.08); transform: translateY(-2px); }
+    @media (max-width: 640px) { .author-card { flex-direction: column; text-align: center; } .social-grid { justify-content: center; } }
 
     /* Featured CTA banner (Đào tạo & Khóa học) */
     .feature-cta {
@@ -1609,9 +1632,10 @@
       <nav class="nav" aria-label="Primary navigation">
         <button class="lang-toggle" id="langToggle" type="button" onclick="toggleLang()" aria-label="Đổi ngôn ngữ / Switch language">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-          <span id="langLabel">EN</span>
+          <span id="langLabel">VI</span>
         </button>
         <a href="#about">Mình là ai?</a>
+        <a href="#products">Sản phẩm</a>
         <a href="#work">Khám phá</a>
         <a href="#pages">Tin mới</a>
         <a href="#contact">Ới mình</a>
@@ -1798,13 +1822,13 @@
         </div>
       </section>
 
-      <!-- Selected Work Section -->
-      <section class="section" id="work" aria-label="Selected work">
+      <!-- Products Section -->
+      <section class="section" id="products" aria-label="Sản phẩm">
         <div class="section-head">
-          <h2>Khám phá</h2>
+          <h2>Sản phẩm</h2>
           <p>
-            Các điểm đến chính của mình: hồ sơ chuyên môn, kho tri thức,
-            hai bản tin AI &amp; Data hàng tuần, dự án tham khảo và tài nguyên miễn phí cho học viên, khách hàng.
+            Danh sách các sản phẩm mình quản lý và vibe-code. Trong đây có sản phẩm mình xây dựng bằng tâm huyết
+            và là startup của mình, cùng phần lớn các sản phẩm khác mình vibe-code để phục vụ nhu cầu cá nhân.
           </p>
         </div>
 
@@ -1827,6 +1851,17 @@
             <p>Nhúng và quản lý các báo cáo PowerBI Service trên giải pháp của bạn.</p>
             <span class="pc-btn">Truy cập <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
+        </div>
+      </section>
+
+      <!-- Selected Work Section -->
+      <section class="section" id="work" aria-label="Selected work">
+        <div class="section-head">
+          <h2>Khám phá</h2>
+          <p>
+            Các điểm đến chính của mình: hồ sơ chuyên môn, kho tri thức,
+            hai bản tin AI &amp; Data hàng tuần, dự án tham khảo và tài nguyên miễn phí cho học viên, khách hàng.
+          </p>
         </div>
 
         <div class="work-grid">
@@ -2077,6 +2112,49 @@
               <span class="tag">EdTech</span>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- Author / Tác giả -->
+      <section class="author-section" id="author" aria-labelledby="author-name">
+        <div class="author-card">
+          <div class="author-avatar">
+            <img src="/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức" loading="lazy" width="92" height="92">
+          </div>
+          <div class="author-info">
+            <div class="kicker">Author · Tác giả</div>
+            <h3 id="author-name">Nguyễn Quang Đức</h3>
+            <p>
+              Data &amp; AI Engineer · Trainer tại KPIM Academy &amp; COMPA Class · Founder COMPA, Co-founder KPIM.
+              Xem hồ sơ đầy đủ tại <a href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener">ducnguyen.vn/profile</a>.
+            </p>
+          </div>
+          <nav class="social-grid" aria-label="Author social links">
+            <a class="social-btn" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" aria-label="E-Profile" title="E-Profile">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+            </a>
+            <a class="social-btn" href="https://www.facebook.com/TobiNguyenData/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+            </a>
+            <a class="social-btn" href="https://www.linkedin.com/in/tobi-nguyen/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a class="social-btn" href="https://github.com/ducnguyen221" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
+            </a>
+            <a class="social-btn" href="https://www.youtube.com/@PowerBIHeroVn" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a class="social-btn" href="mailto:duc.nguyen@kpim.vn" aria-label="Email duc.nguyen@kpim.vn" title="duc.nguyen@kpim.vn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            </a>
+            <a class="social-btn" href="https://kpim.vn" target="_blank" rel="noopener" aria-label="kpim.vn" title="kpim.vn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+            </a>
+            <a class="social-btn" href="tel:+84932215555" aria-label="Phone 0932 215 555" title="0932 215 555">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </a>
+          </nav>
         </div>
       </section>
 
@@ -3134,6 +3212,8 @@ edtech-tools download-lessons`
   (function () {
     var DICT = {
       "Mình là ai?": "About me",
+      "Sản phẩm": "Products",
+      "Danh sách các sản phẩm mình quản lý và vibe-code. Trong đây có sản phẩm mình xây dựng bằng tâm huyết và là startup của mình, cùng phần lớn các sản phẩm khác mình vibe-code để phục vụ nhu cầu cá nhân.": "A list of products I manage and vibe-code. Some are built with real dedication and are my own startup, while most others I vibe-code to serve my personal needs.",
       "Khám phá": "Explore",
       "Tin mới": "News",
       "Ới mình": "Contact",
@@ -3190,7 +3270,7 @@ edtech-tools download-lessons`
         }
       }
       var lbl = document.getElementById("langLabel");
-      if (lbl) lbl.textContent = (lang === "en") ? "VI" : "EN";
+      if (lbl) lbl.textContent = (lang === "en") ? "EN" : "VI";
       document.documentElement.lang = (lang === "en") ? "en" : "vi";
       try { localStorage.setItem("site-lang", lang); } catch (e) {}
     }

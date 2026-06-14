@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark" data-page="home">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design System — ducnguyen.vn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<link rel="stylesheet" href="assets/components.css" />
+<style>
+  .sg-hero { padding-block: var(--s-16) var(--s-12); }
+  .sg-title { font-size: var(--t-3xl); }
+  .sg-block { padding-block: var(--s-12); border-top: 1px solid var(--border); }
+  .sg-label { font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: var(--tracking-mono); color: var(--text-faint); text-transform: uppercase; }
+  .swatch { border-radius: var(--r-md); border: 1px solid var(--border); overflow: hidden; }
+  .swatch__chip { height: 72px; }
+  .swatch__meta { padding: 10px 12px; background: var(--elev-1); }
+  .swatch__name { font-size: var(--t-sm); font-weight: 600; }
+  .swatch__val { font-family: var(--font-mono); font-size: var(--t-xs); color: var(--text-faint); }
+  .type-row { display: flex; align-items: baseline; gap: var(--s-6); padding-block: var(--s-3); border-bottom: 1px dashed var(--border); }
+  .type-row .tag { font-family: var(--font-mono); font-size: var(--t-xs); color: var(--text-faint); width: 90px; flex: none; }
+  .space-bar { background: var(--page); height: 16px; border-radius: 3px; }
+  .moodcard { padding: var(--s-5); border-radius: var(--r-lg); border: 1px solid var(--page-line); background: var(--page-soft); }
+  .demo-grid { display: grid; gap: var(--s-4); }
+  .pageswatch { display: flex; flex-direction: column; gap: var(--s-3); }
+  .pageswatch__bar { height: 56px; border-radius: var(--r-md); border: 1px solid var(--page-line); background: linear-gradient(90deg, var(--page), var(--page-strong)); }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="#">
+      <span class="brand__mark">DN</span>
+      <span>
+        Duc Nguyen
+        <span class="brand__sub" style="display:block">design-system // v1.0</span>
+      </span>
+    </a>
+    <nav class="nav__links">
+      <a class="nav__link is-active" href="#tokens">TOKENS</a>
+      <a class="nav__link" href="#type">TYPE</a>
+      <a class="nav__link" href="#components">COMPONENTS</a>
+      <a class="nav__link" href="#moods">MOODS</a>
+    </nav>
+    <div class="dn-row" style="gap:8px; margin-left:var(--s-4)">
+      <button class="icon-btn" data-toggle-lang title="Language"><span data-lang-label style="font-family:var(--font-mono);font-size:0.72rem">VI</span></button>
+      <button class="icon-btn" data-toggle-theme title="Theme"><span class="material-symbols-rounded" data-theme-icon>light_mode</span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="dn-container sg-hero">
+  <p class="dn-eyebrow" style="margin-bottom:var(--s-4)">Design System // Hệ thống thiết kế</p>
+  <h1 class="sg-title" style="max-width:18ch">Một ngôn ngữ thiết kế cho toàn bộ ducnguyen.vn</h1>
+  <p class="dn-muted" style="max-width:60ch; font-size:var(--t-md); margin-top:var(--s-5)">
+    Hiện đại, sạch sẽ với vài chi tiết kỹ thuật tinh tế. Nền tảng dùng chung cho mọi trang;
+    mỗi trang giữ một “mood” riêng qua màu nhấn. Hỗ trợ dark/light và song ngữ Việt–Anh.
+  </p>
+  <div class="dn-row" style="margin-top:var(--s-8); gap:var(--s-3)">
+    <a class="btn btn--primary" href="#components"><span class="material-symbols-rounded">widgets</span> Xem components</a>
+    <a class="btn btn--ghost" href="templates/home.html"><span class="material-symbols-rounded">dashboard</span> Xem templates</a>
+  </div>
+</section>
+
+<!-- ===================== COLOR TOKENS ===================== -->
+<section id="tokens" class="dn-container sg-block">
+  <div class="sec-head">
+    <div>
+      <p class="dn-eyebrow">01 / Foundations</p>
+      <h2 style="margin-top:var(--s-3)">Màu nền & văn bản</h2>
+      <p>Nền tảng tông lạnh, chroma thấp. Bấm nút theme ở góc trên để xem cả hai chế độ.</p>
+    </div>
+  </div>
+  <div class="dn-grid dn-grid--4">
+    <div class="swatch"><div class="swatch__chip" style="background:var(--bg)"></div><div class="swatch__meta"><div class="swatch__name">Background</div><div class="swatch__val">--bg</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:var(--elev-1)"></div><div class="swatch__meta"><div class="swatch__name">Elevation 1</div><div class="swatch__val">--elev-1</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:var(--elev-2)"></div><div class="swatch__meta"><div class="swatch__name">Elevation 2</div><div class="swatch__val">--elev-2</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:var(--elev-3)"></div><div class="swatch__meta"><div class="swatch__name">Elevation 3</div><div class="swatch__val">--elev-3</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:var(--text)"></div><div class="swatch__meta"><div class="swatch__name">Text</div><div class="swatch__val">--text</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:var(--text-muted)"></div><div class="swatch__meta"><div class="swatch__name">Text muted</div><div class="swatch__val">--text-muted</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:var(--text-faint)"></div><div class="swatch__meta"><div class="swatch__name">Text faint</div><div class="swatch__val">--text-faint</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:var(--border-strong)"></div><div class="swatch__meta"><div class="swatch__name">Border</div><div class="swatch__val">--border / strong</div></div></div>
+  </div>
+
+  <h3 style="margin:var(--s-12) 0 var(--s-5); font-size:var(--t-lg)">Màu nhấn thương hiệu & ngữ nghĩa</h3>
+  <div class="dn-grid dn-grid--4">
+    <div class="swatch"><div class="swatch__chip" style="background:var(--accent)"></div><div class="swatch__meta"><div class="swatch__name">Accent (teal)</div><div class="swatch__val">--accent</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:var(--ok)"></div><div class="swatch__meta"><div class="swatch__name">Success</div><div class="swatch__val">--ok</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:var(--warn)"></div><div class="swatch__meta"><div class="swatch__name">Warning</div><div class="swatch__val">--warn</div></div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:var(--danger)"></div><div class="swatch__meta"><div class="swatch__name">Danger</div><div class="swatch__val">--danger</div></div></div>
+  </div>
+</section>
+
+<!-- ===================== PAGE MOODS ===================== -->
+<section id="moods" class="dn-container sg-block">
+  <div class="sec-head">
+    <div>
+      <p class="dn-eyebrow">02 / Page moods</p>
+      <h2 style="margin-top:var(--s-3)">Một bộ khung, năm tâm trạng</h2>
+      <p>Mỗi trang đổi <code class="dn-kbd">--page-h</code> để có màu nhấn riêng, giữ nguyên cấu trúc & độ tương phản.</p>
+    </div>
+  </div>
+  <div class="dn-grid dn-grid--3">
+    <div data-page="home" class="pageswatch"><div class="pageswatch__bar"></div><div class="dn-row" style="justify-content:space-between"><strong>Home</strong><span class="dn-mono">teal · 178</span></div><p class="dn-muted" style="font-size:var(--t-sm)">AI &amp; Web Hub — folder/repo</p></div>
+    <div data-page="profile" class="pageswatch"><div class="pageswatch__bar"></div><div class="dn-row" style="justify-content:space-between"><strong>Profile</strong><span class="dn-mono">blue · 255</span></div><p class="dn-muted" style="font-size:var(--t-sm)">Hồ sơ chuyên môn, KPI</p></div>
+    <div data-page="atlas" class="pageswatch"><div class="pageswatch__bar"></div><div class="dn-row" style="justify-content:space-between"><strong>Atlas</strong><span class="dn-mono">violet · 295</span></div><p class="dn-muted" style="font-size:var(--t-sm)">Nghiên cứu &amp; tri thức</p></div>
+    <div data-page="news" class="pageswatch"><div class="pageswatch__bar"></div><div class="dn-row" style="justify-content:space-between"><strong>Daily AI News</strong><span class="dn-mono">amber · 70</span></div><p class="dn-muted" style="font-size:var(--t-sm)">Feed tin tức tự động</p></div>
+    <div data-page="lab" class="pageswatch"><div class="pageswatch__bar"></div><div class="dn-row" style="justify-content:space-between"><strong>My Project</strong><span class="dn-mono">green · 158</span></div><p class="dn-muted" style="font-size:var(--t-sm)">Sandbox nguyên mẫu</p></div>
+  </div>
+</section>
+
+<!-- ===================== TYPOGRAPHY ===================== -->
+<section id="type" class="dn-container sg-block">
+  <div class="sec-head">
+    <div>
+      <p class="dn-eyebrow">03 / Typography</p>
+      <h2 style="margin-top:var(--s-3)">Space Grotesk · Manrope · JetBrains Mono</h2>
+      <p>Display cho tiêu đề, Manrope cho thân, Mono cho nhãn kỹ thuật.</p>
+    </div>
+  </div>
+  <div class="type-row"><span class="tag">3xl · display</span><span style="font-family:var(--font-display); font-size:var(--t-3xl); font-weight:600; letter-spacing:var(--tracking-tight)">Aa Bản đồ tri thức</span></div>
+  <div class="type-row"><span class="tag">2xl · display</span><span style="font-family:var(--font-display); font-size:var(--t-2xl); font-weight:600">Giao diện web tinh gọn</span></div>
+  <div class="type-row"><span class="tag">xl · display</span><span style="font-family:var(--font-display); font-size:var(--t-xl); font-weight:600">Dự án tiêu biểu</span></div>
+  <div class="type-row"><span class="tag">md · body</span><span style="font-size:var(--t-md)">Chuyển ý tưởng công nghệ phức tạp thành trải nghiệm web rõ ràng.</span></div>
+  <div class="type-row"><span class="tag">base · body</span><span style="font-size:var(--t-base)">Thân văn bản mặc định, dễ đọc, tối ưu khả năng quét dữ liệu.</span></div>
+  <div class="type-row"><span class="tag">mono · label</span><span class="dn-mono" style="font-size:var(--t-sm)">workspace://ducnguyen221/repos &nbsp; SYS_READY</span></div>
+</section>
+
+<!-- ===================== SPACING & RADIUS ===================== -->
+<section class="dn-container sg-block">
+  <div class="sec-head"><div><p class="dn-eyebrow">04 / Space &amp; radius</p><h2 style="margin-top:var(--s-3)">Thang 4px · bo góc vừa phải</h2></div></div>
+  <div class="dn-grid" style="grid-template-columns:1fr 1fr; gap:var(--s-12)">
+    <div class="dn-stack" style="gap:var(--s-3)">
+      <span class="sg-label">Spacing</span>
+      <div class="dn-row"><span class="tag" style="width:60px;font-family:var(--font-mono);font-size:var(--t-xs);color:var(--text-faint)">s-2</span><div class="space-bar" style="width:8px"></div></div>
+      <div class="dn-row"><span class="tag" style="width:60px;font-family:var(--font-mono);font-size:var(--t-xs);color:var(--text-faint)">s-4</span><div class="space-bar" style="width:16px"></div></div>
+      <div class="dn-row"><span class="tag" style="width:60px;font-family:var(--font-mono);font-size:var(--t-xs);color:var(--text-faint)">s-6</span><div class="space-bar" style="width:24px"></div></div>
+      <div class="dn-row"><span class="tag" style="width:60px;font-family:var(--font-mono);font-size:var(--t-xs);color:var(--text-faint)">s-8</span><div class="space-bar" style="width:32px"></div></div>
+      <div class="dn-row"><span class="tag" style="width:60px;font-family:var(--font-mono);font-size:var(--t-xs);color:var(--text-faint)">s-12</span><div class="space-bar" style="width:48px"></div></div>
+      <div class="dn-row"><span class="tag" style="width:60px;font-family:var(--font-mono);font-size:var(--t-xs);color:var(--text-faint)">s-16</span><div class="space-bar" style="width:64px"></div></div>
+    </div>
+    <div class="dn-stack" style="gap:var(--s-4)">
+      <span class="sg-label">Radius</span>
+      <div class="dn-row" style="gap:var(--s-4); flex-wrap:wrap">
+        <div style="width:84px;height:60px;background:var(--elev-2);border:1px solid var(--border);border-radius:var(--r-sm)"></div>
+        <div style="width:84px;height:60px;background:var(--elev-2);border:1px solid var(--border);border-radius:var(--r-md)"></div>
+        <div style="width:84px;height:60px;background:var(--elev-2);border:1px solid var(--border);border-radius:var(--r-lg)"></div>
+        <div style="width:84px;height:60px;background:var(--elev-2);border:1px solid var(--border);border-radius:var(--r-xl)"></div>
+      </div>
+      <div class="dn-row" style="gap:var(--s-4)"><span class="dn-mono">sm 6</span><span class="dn-mono">md 10</span><span class="dn-mono">lg 16</span><span class="dn-mono">xl 22</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COMPONENTS ===================== -->
+<section id="components" class="dn-container sg-block">
+  <div class="sec-head"><div><p class="dn-eyebrow">05 / Components</p><h2 style="margin-top:var(--s-3)">Thư viện thành phần</h2></div></div>
+
+  <!-- buttons -->
+  <span class="sg-label">Buttons</span>
+  <div class="dn-row" style="margin:var(--s-4) 0 var(--s-10)">
+    <button class="btn btn--primary"><span class="material-symbols-rounded">bolt</span> Primary</button>
+    <button class="btn btn--ghost">Ghost</button>
+    <button class="btn"><span class="material-symbols-rounded">code</span> Default</button>
+    <button class="btn btn--page">Page accent</button>
+    <button class="btn btn--ghost btn--sm">Small</button>
+    <button class="btn btn--ghost btn--icon"><span class="material-symbols-rounded">arrow_outward</span></button>
+  </div>
+
+  <!-- badges & chips -->
+  <span class="sg-label">Badges &amp; chips</span>
+  <div class="dn-row" style="margin:var(--s-4) 0 var(--s-10)">
+    <span class="badge">v1.0</span>
+    <span class="badge badge--accent">accent</span>
+    <span class="badge badge--page">page</span>
+    <span class="badge badge--ok">stable</span>
+    <span class="badge badge--live">LIVE</span>
+    <span class="chip is-active">All</span>
+    <span class="chip">AI &amp; Workspace</span>
+    <span class="chip">Knowledge</span>
+  </div>
+
+  <!-- cards -->
+  <span class="sg-label">Cards</span>
+  <div class="dn-grid dn-grid--3" style="margin:var(--s-4) 0 var(--s-10)">
+    <article class="card card--interactive card--rail">
+      <p class="dn-eyebrow">01 / profile</p>
+      <h3 style="font-size:var(--t-lg); margin:var(--s-3) 0 var(--s-2)">Profile</h3>
+      <p class="dn-muted" style="font-size:var(--t-sm)">Hồ sơ cá nhân dạng dọc, đổi theme sáng tối, lý lịch cuộn tương tác.</p>
+      <div class="dn-row" style="margin-top:var(--s-5); justify-content:space-between">
+        <span class="badge badge--page">portfolio</span>
+        <span class="dn-mono dn-page">Mở ↗</span>
+      </div>
+    </article>
+    <article class="card">
+      <div class="dn-row" style="justify-content:space-between; margin-bottom:var(--s-4)">
+        <span class="badge badge--live">LIVE</span><span class="dn-mono dn-faint">build #284</span>
+      </div>
+      <div class="stat"><div class="stat__num"><em>2.332</em></div><div class="stat__label">Học viên đào tạo</div></div>
+    </article>
+    <article class="card card--pad-lg" style="display:flex;flex-direction:column;justify-content:space-between">
+      <div class="dn-window__dots" style="margin-bottom:var(--s-4)"><i></i><i></i><i></i></div>
+      <p class="dn-mono" style="font-size:var(--t-sm)">$ git push origin main<br/><span class="dn-page">✓ deployed</span> · 3 files</p>
+    </article>
+  </div>
+
+  <!-- repo list -->
+  <span class="sg-label">Repo / folder item (home)</span>
+  <div class="dn-stack" style="margin:var(--s-4) 0 var(--s-10); gap:var(--s-3)">
+    <div class="repo">
+      <span class="repo__icon"><span class="material-symbols-rounded">folder</span></span>
+      <div>
+        <div class="dn-row" style="gap:var(--s-3)"><span class="repo__name">atlas</span><span class="badge badge--page">featured</span></div>
+        <div class="repo__desc">Interactive knowledge maps &amp; data-flow diagrams.</div>
+      </div>
+      <div class="repo__meta">
+        <span class="repo__lang"><span class="repo__dot"></span> HTML</span>
+        <span><span class="material-symbols-rounded" style="font-size:1em">star</span> 24</span>
+        <span class="dn-mono">2d ago</span>
+      </div>
+    </div>
+    <div class="repo">
+      <span class="repo__icon"><span class="material-symbols-rounded">terminal</span></span>
+      <div>
+        <span class="repo__name">daily-ai-news</span>
+        <div class="repo__desc">Auto-generated AI news summaries by agent.</div>
+      </div>
+      <div class="repo__meta">
+        <span class="repo__lang"><span class="repo__dot"></span> JS</span>
+        <span class="dn-mono">5h ago</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- window / inspector -->
+  <span class="sg-label">Window chrome</span>
+  <div class="dn-window" style="margin-top:var(--s-4)">
+    <div class="dn-window__bar">
+      <span class="dn-window__dots"><i></i><i></i><i></i></span>
+      <span style="margin-left:var(--s-2)">workspace://ducnguyen221/repos</span>
+      <span class="badge badge--ok" style="margin-left:auto">SYS_READY</span>
+    </div>
+    <div style="padding:var(--s-6)">
+      <p class="dn-muted" style="font-size:var(--t-sm)">Khung cửa sổ dùng cho file-browser, code inspector, terminal feed. Thanh trên dùng mono + chấm điều khiển.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="dn-container footer__grid">
+    <div class="dn-stack" style="gap:var(--s-2)">
+      <span class="brand"><span class="brand__mark">DN</span> Duc Nguyen</span>
+      <small>© 2026 · Design System v1.0 · ducnguyen.vn</small>
+    </div>
+    <div class="dn-row" style="gap:var(--s-3)">
+      <a class="btn btn--ghost btn--sm" href="design.md"><span class="material-symbols-rounded">description</span> design.md</a>
+      <a class="btn btn--ghost btn--sm" href="templates/home.html"><span class="material-symbols-rounded">grid_view</span> Templates</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/theme.js"></script>
+</body>
+</html>
