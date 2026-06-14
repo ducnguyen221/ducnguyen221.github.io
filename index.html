@@ -17,10 +17,10 @@
       --bg: #04060a;
       --ink: #f8fafc;
       --muted: #94a3b8;
-      --line: rgba(255, 255, 255, 0.08);
-      --line-active: rgba(0, 240, 255, 0.3);
-      --panel: rgba(8, 12, 21, 0.55);
-      --panel-strong: rgba(11, 17, 28, 0.65);
+      --line: rgba(255, 255, 255, 0.16);
+      --line-active: rgba(0, 240, 255, 0.45);
+      --panel: rgba(8, 12, 22, 0.96);
+      --panel-strong: rgba(5, 7, 13, 0.98);
       
       /* Neon Cyber Theme Colors */
       --cyan: #00f0ff;
@@ -133,11 +133,11 @@
       gap: 18px;
       padding: 14px 20px;
       margin-top: 10px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       border-radius: var(--radius);
-      background: rgba(4, 6, 10, 0.7);
+      background: rgba(4, 6, 10, 0.93);
       backdrop-filter: blur(20px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     }
 
     .brand {
@@ -333,18 +333,19 @@
       gap: 16px;
       min-height: 64px;
       padding: 10px 16px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: var(--radius);
-      background: rgba(8, 12, 21, 0.4);
-      backdrop-filter: blur(12px);
+      background: rgba(8, 12, 21, 0.92);
+      backdrop-filter: blur(16px);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
     .route-button:hover {
       transform: translateX(6px);
-      border-color: var(--cyan-glow);
-      background: rgba(0, 240, 255, 0.05);
-      box-shadow: 0 10px 30px rgba(0, 240, 255, 0.05);
+      border-color: var(--cyan);
+      background: rgba(8, 12, 21, 0.98);
+      box-shadow: 0 10px 30px rgba(0, 240, 255, 0.12);
     }
 
     .route-index {
@@ -389,12 +390,12 @@
     .profile-card {
       position: relative;
       min-width: 0;
-      border: 1px solid var(--line-active);
+      border: 1px solid rgba(0, 240, 255, 0.6);
       border-radius: 20px;
-      background: linear-gradient(180deg, rgba(8, 12, 21, 0.55), rgba(4, 6, 10, 0.35));
-      box-shadow: var(--shadow), 0 0 30px rgba(0, 240, 255, 0.05);
+      background: linear-gradient(180deg, rgba(8, 13, 24, 0.98), rgba(4, 6, 11, 0.95));
+      box-shadow: var(--shadow), 0 0 35px rgba(0, 240, 255, 0.1);
       overflow: hidden;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(20px);
       transition: all 0.4s ease;
       display: flex;
       flex-direction: column;
@@ -570,25 +571,26 @@
     /* Focus Cards Grid */
     .focus-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 16px;
     }
 
     .focus-card {
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: var(--radius);
-      background: rgba(8, 12, 21, 0.4);
-      backdrop-filter: blur(12px);
+      background: rgba(8, 13, 24, 0.96);
+      backdrop-filter: blur(20px);
       min-height: 240px;
       padding: 28px;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     }
 
     .focus-card:hover {
       transform: translateY(-4px);
-      border-color: var(--cyan-glow);
-      background: rgba(8, 12, 21, 0.6);
-      box-shadow: 0 15px 35px rgba(0, 240, 255, 0.05);
+      border-color: var(--cyan);
+      background: rgba(4, 7, 12, 0.99);
+      box-shadow: 0 15px 35px rgba(0, 240, 255, 0.15);
     }
 
     .focus-icon {
@@ -634,28 +636,29 @@
     /* Selected Work Grid */
     .work-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 16px;
     }
 
     .work-card {
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: var(--radius);
-      background: rgba(8, 12, 21, 0.4);
-      backdrop-filter: blur(12px);
+      background: rgba(8, 13, 24, 0.96);
+      backdrop-filter: blur(20px);
       min-height: 280px;
       padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     }
 
     .work-card:hover {
       transform: translateY(-4px);
-      border-color: var(--cyan-glow);
-      background: rgba(8, 12, 21, 0.6);
-      box-shadow: 0 15px 35px rgba(0, 240, 255, 0.05);
+      border-color: var(--cyan);
+      background: rgba(4, 7, 12, 0.99);
+      box-shadow: 0 15px 35px rgba(0, 240, 255, 0.15);
     }
 
     .work-top {
@@ -686,6 +689,25 @@
       color: #94a3b8;
       font-size: 0.88rem;
       line-height: 1.65;
+    }
+
+    .work-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      color: var(--cyan);
+      border: 1px solid var(--line-active);
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.12), rgba(0, 240, 255, 0.02));
+      box-shadow: 0 0 18px rgba(0, 240, 255, 0.12);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .work-icon svg { width: 26px; height: 26px; }
+    .work-card:hover .work-icon {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 0 26px rgba(0, 240, 255, 0.3);
     }
 
     .work-link {
@@ -723,9 +745,11 @@
       flex-wrap: wrap;
       margin-bottom: 20px;
       padding: 6px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: var(--radius);
-      background: rgba(4, 6, 10, 0.5);
+      background: rgba(5, 8, 15, 0.96);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     }
 
     .explorer-tab {
@@ -771,10 +795,10 @@
     /* Interactive IDE Frame */
     .explorer-window {
       position: relative;
-      border: 1px solid var(--line-active);
+      border: 1px solid rgba(0, 240, 255, 0.45);
       border-radius: 16px;
-      background: var(--panel-strong);
-      box-shadow: var(--shadow);
+      background: rgba(4, 7, 12, 0.98);
+      box-shadow: var(--shadow), 0 0 35px rgba(0, 240, 255, 0.05);
       overflow: hidden;
       backdrop-filter: blur(24px);
       display: flex;
@@ -864,7 +888,7 @@
     .explorer-sidebar {
       border-right: 1px solid var(--line);
       overflow-y: auto;
-      background: rgba(4, 6, 10, 0.2);
+      background: rgba(2, 3, 6, 0.45);
     }
 
     .repo-item {
@@ -1028,7 +1052,7 @@
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      background: rgba(4, 6, 10, 0.1);
+      background: rgba(2, 3, 6, 0.3);
     }
 
     .preview-content {
@@ -1092,9 +1116,9 @@
       gap: 12px;
       margin: 24px 0;
       padding: 16px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: var(--radius);
-      background: rgba(4, 6, 10, 0.4);
+      background: rgba(2, 3, 6, 0.7);
     }
 
     .repo-meta-item {
@@ -1175,9 +1199,9 @@
     .code-editor {
       position: relative;
       flex: 1;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 8px;
-      background: #05080f;
+      background: #020306;
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -1241,16 +1265,19 @@
     }
 
     .contact-card {
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: var(--radius);
-      background: rgba(8, 12, 21, 0.4);
-      backdrop-filter: blur(12px);
+      background: rgba(8, 13, 24, 0.96);
+      backdrop-filter: blur(20px);
       padding: 32px;
       transition: all 0.3s ease;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     }
 
     .contact-card:hover {
-      border-color: var(--cyan-glow);
+      border-color: var(--cyan);
+      background: rgba(4, 7, 12, 0.99);
+      box-shadow: 0 15px 35px rgba(0, 240, 255, 0.15);
     }
 
     .contact-card h2 {
@@ -1351,22 +1378,28 @@
     }
 
     @media (max-width: 768px) {
+      /* Mobile: let the explorer FLOW with the page — no nested fixed-height
+         scroll panels (those trapped touch-scroll and jumped to the bottom). */
       .explorer-body {
+        display: block;
         grid-template-columns: 1fr;
         height: auto;
-        overflow-y: visible;
+        overflow: visible;
       }
       .explorer-sidebar {
         border-right: none;
         border-bottom: 1px solid var(--line);
-        max-height: 200px;
+        max-height: none;
+        overflow: visible;
       }
       .explorer-main {
         border-right: none;
-        max-height: 240px;
+        max-height: none;
+        overflow: visible;
       }
       .explorer-window {
         height: auto;
+        overflow: visible;
       }
       /* On mobile, let's keep a popup or inline preview instead */
       .explorer-preview-mobile-active {
@@ -1427,23 +1460,23 @@
     
     <!-- Header -->
     <header class="topbar" aria-label="Site header">
-      <a class="brand" href="#home" aria-label="Duc Nguyen home">
+      <a class="brand" href="#home" aria-label="Tobi Duc Nguyen home">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none">
             <path d="M12 3v18M4 8.5l8-4.5 8 4.5M4 15.5l8 4.5 8-4.5M4 8.5v7l8 4.5 8-4.5v-7L12 13 4 8.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
           </svg>
         </span>
         <span>
-          <strong class="brand-title">Duc Nguyen</strong>
-          <span class="brand-subtitle">AI & Web Hub</span>
+          <strong class="brand-title">Tobi (Đức Nguyễn)</strong>
+          <span class="brand-subtitle">Vibe-coded with AI 🤖</span>
         </span>
       </a>
 
       <nav class="nav" aria-label="Primary navigation">
-        <a href="#about">Về Tôi</a>
-        <a href="#work">Dự Án</a>
-        <a href="#pages">Tệp Tin</a>
-        <a href="#contact">Liên Hệ</a>
+        <a href="#about">Mình là ai?</a>
+        <a href="#work">Đang nghịch gì</a>
+        <a href="#pages">Tệp tin</a>
+        <a href="#contact">Ới mình</a>
       </nav>
     </header>
 
@@ -1453,26 +1486,26 @@
       <section class="hero" aria-label="Personal introduction">
         <div>
           <h1>
-            Duc Nguyen
-            <span class="gradient-text">AI & Web Portfolio.</span>
+            Đức Nguyễn
+            <span class="gradient-text">Vibe-code với AI.</span>
           </h1>
           <p class="lead">
-            Tôi xây dựng các giao diện web gọn gàng, rõ cấu trúc và có tính tương tác cao dành cho portfolio, 
-            hệ thống trực quan hóa (visualization), công cụ học tập tương tác và thử nghiệm AI. 
-            Hồ sơ này là cổng thông tin cá nhân kiêm bản đồ tệp tin các dự án đang hoạt động trên GitHub Pages.
+            Chào bạn ghé chơi! Mình không biết code. Website này và mọi dự án nhỏ bên dưới đều được "vibe-code" 100% 
+            bởi mình (người ra đề) và đám bạn AI (Claude Code cặm cụi gõ phím). 🤖 Đây là góc internet nhỏ để mình bày biện 
+            mấy thứ nghịch ngợm về Data, AI, Power BI và EdTech.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#work">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M4 5h7l2 3h7v11H4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
               </svg>
-              Xem Dự Án
+              Xem mình đang nghịch gì →
             </a>
-            <a class="button" href="https://github.com/ducnguyen221" target="_blank" rel="noreferrer">
+            <a class="button" href="#pages">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.7 11.7 0 0 0-6.2 0C6.6 2.8 5.6 3.1 5.6 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.2 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
               </svg>
-              GitHub Profile
+              Duyệt qua tệp tin 📂
             </a>
           </div>
 
@@ -1482,7 +1515,7 @@
               <span class="route-index">01</span>
               <span class="route-copy">
                 <strong>/profile</strong>
-                <span>Hồ sơ cá nhân và sơ yếu lý lịch tương tác.</span>
+                <span>Hành trình mò mẫm của mình dưới dạng sơ yếu lý lịch tương tác.</span>
               </span>
               <span class="route-arrow" aria-hidden="true">↗</span>
             </a>
@@ -1490,7 +1523,7 @@
               <span class="route-index">02</span>
               <span class="route-copy">
                 <strong>/atlas</strong>
-                <span>Bộ trực quan hóa tri thức (Interactive knowledge maps).</span>
+                <span>Bản đồ tri thức. Nơi mình hệ thống hóa đống kiến thức tự học.</span>
               </span>
               <span class="route-arrow" aria-hidden="true">↗</span>
             </a>
@@ -1498,7 +1531,7 @@
               <span class="route-index">03</span>
               <span class="route-copy">
                 <strong>/my-project</strong>
-                <span>Dự án web thử nghiệm và nguyên mẫu giao diện mới.</span>
+                <span>Hộp cát (sandbox). Nơi test thử mấy thứ linh tinh xem có chạy không.</span>
               </span>
               <span class="route-arrow" aria-hidden="true">↗</span>
             </a>
@@ -1510,21 +1543,21 @@
           <canvas class="card-canvas" id="cardCanvas" aria-hidden="true"></canvas>
           <div class="portrait">
             <div class="portrait-frame">
-              <img src="cyber_ai_profile.png" alt="Cyber AI Neural Core">
-              <span class="portrait-hud" aria-hidden="true">Active // Dev</span>
+              <img src="cyber_ai_profile.png" alt="Tobi Duc Nguyen Profile">
+              <span class="portrait-hud" aria-hidden="true">Active // Vibe Coding</span>
             </div>
           </div>
           <div class="profile-info">
-            <h2>Thiết kế giao diện tinh gọn và các hệ thống web thực tiễn.</h2>
+            <h2>Góc nhỏ bày biện của Tobi (Đức Nguyễn)</h2>
             <p>
-              Tôi đam mê chuyển đổi các ý tưởng công nghệ phức tạp thành trải nghiệm web rõ ràng: 
-              có cấu trúc tốt, dễ đọc quét dữ liệu, tương tác mượt mà và tối ưu hóa tải trang cực kỳ nhẹ.
+              Mình mê Data, thích vọc vạch AI và cực kỳ lười học các framework code phức tạp. 
+              Nhờ có đám AI làm "đồng nghiệp", mình mới có thể tự tay dựng nên góc làm việc lộn xộn này. ☕
             </p>
             <div class="profile-tags" aria-label="Profile tags">
-              <span class="tag primary">AI Workspace</span>
-              <span class="tag">Interactive Web</span>
-              <span class="tag">GitHub Pages</span>
-              <span class="tag">Knowledge Maps</span>
+              <span class="tag primary">⚡ Vibe-coded with AI</span>
+              <span class="tag">Mê Board Game</span>
+              <span class="tag">Chơi Pickleball</span>
+              <span class="tag">Data & AI stuff</span>
             </div>
           </div>
         </aside>
@@ -1533,17 +1566,16 @@
       <!-- About Section -->
       <section class="section" id="about" aria-label="About Duc Nguyen">
         <div class="section-head">
-          <h2>Về Tôi</h2>
+          <h2>Mình là ai?</h2>
           <div>
             <p style="margin-bottom: 20px;">
-              Sự tập trung của tôi dành cho những sản phẩm thực tế: giao diện web có thể sử dụng ngay, 
-              trực quan hóa dữ liệu động, các tài liệu hướng dẫn chuẩn hóa và các nguyên mẫu ứng dụng AI.
+              Mình làm việc liên quan đến Data và AI. Mình thích ghi chép, làm slide chia sẻ kiến thức, thỉnh thoảng tự làm mấy chiếc app nho nhỏ để phục vụ bản thân. Mình tin rằng website cá nhân là một thực thể sống — nó sẽ thay đổi và hoàn thiện dần theo thời gian (hoặc dở dang mãi mãi nhưng vẫn vui).
             </p>
             <a class="button primary" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noreferrer" style="height: 38px; padding: 0 16px; font-size: 0.8rem; display: inline-flex;">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" style="width: 14px; height: 14px; margin-right: 2px;">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              Xem Hồ Sơ Chi Tiết
+              Ghé xem profile chi tiết của mình →
             </a>
           </div>
         </div>
@@ -1551,33 +1583,45 @@
         <div class="focus-grid">
           <article class="focus-card">
             <div class="focus-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 3v18M4 8.5l8-4.5 8 4.5M4 15.5l8 4.5 8-4.5M4 8.5v7l8 4.5 8-4.5v-7L12 13 4 8.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 3h12M8 3v13a4 4 0 0 0 8 0V3M3 21h18M12 3v10M8 8h8"/>
               </svg>
             </div>
-            <h3>Giao Diện Trợ Lực AI</h3>
-            <p>Xây dựng các giao diện điều hướng trực quan giúp hiển thị thông tin và cấu hình tác vụ Agent AI một cách hiệu quả.</p>
+            <h3>🧪 Labs</h3>
+            <p>Mấy thứ mình build thử để vọc vạch công cụ mới. Có cái chạy ngon, có cái dở dang, chủ yếu để thỏa chí tò mò.</p>
           </article>
 
           <article class="focus-card">
             <div class="focus-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5v-15z"/>
               </svg>
             </div>
-            <h3>Trực Quan Hóa Tri Thức</h3>
-            <p>Trình diễn các cấu trúc dữ liệu, luồng thông tin và sơ đồ tư duy tương tác giúp tối đa khả năng tiếp nhận kiến thức.</p>
+            <h3>📚 Bài viết</h3>
+            <p>Nơi mình ghi chép lại những điều học được, từ chuyện làm dữ liệu đến tips dùng AI. Nghĩ gì viết nấy, không cần chờ chín muồi.</p>
           </article>
 
           <article class="focus-card">
             <div class="focus-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 19V5h14v14H5Z" stroke="currentColor" stroke-width="1.7"/>
-                <path d="M8 9h8M8 13h5M8 17h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
               </svg>
             </div>
-            <h3>Kiến Trúc Tĩnh Hiện Đại</h3>
-            <p>Ưu tiên thiết kế gọn gàng, hiệu năng cao, dễ dàng đóng gói và deploy nhanh trên nền tảng GitHub Pages tĩnh.</p>
+            <h3>🎨 Portfolio</h3>
+            <p>Vài dự án thực tế mình đã tham gia hoặc tự tay xây dựng. Mỗi cái đều có một câu chuyện hậu trường đi kèm.</p>
+          </article>
+
+          <article class="focus-card">
+            <div class="focus-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
+                <rect x="9" y="9" width="6" height="6"/>
+                <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"/>
+              </svg>
+            </div>
+            <h3>🤖 AI Stuff</h3>
+            <p>Prompts tiện ích, workflow tự động hóa và các kỹ năng agent mình gom góp được. Share lại cho ai cùng đam mê.</p>
           </article>
         </div>
       </section>
@@ -1585,25 +1629,28 @@
       <!-- Selected Work Section -->
       <section class="section" id="work" aria-label="Selected work">
         <div class="section-head">
-          <h2>Dự Án Tiêu Biểu</h2>
+          <h2>Khám phá</h2>
           <p>
-            Các lĩnh vực hoạt động chính được tách lọc từ các kho lưu trữ public: 
-            Trải nghiệm tương tác, Bản đồ tri thức, Công cụ AI và Tài liệu tích hợp.
+            Năm điểm đến chính của mình: hồ sơ chuyên môn, kho tri thức,
+            hai bản tin AI &amp; Data hàng tuần, và các dự án tham khảo cho học viên, khách hàng.
           </p>
         </div>
 
         <div class="work-grid">
           <article class="work-card">
             <div>
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </div>
               <div class="work-top">
                 <span class="work-code">01 / profile</span>
-                <span class="tag primary">Sơ yếu</span>
+                <span class="tag primary">Hồ sơ</span>
               </div>
               <h3>Profile</h3>
-              <p>Trang thông tin cá nhân dạng dọc, hỗ trợ đổi theme sáng tối và định dạng lý lịch có thể cuộn tương tác.</p>
+              <p>Trang hồ sơ chuyên môn giúp bạn hiểu thêm về hành trình công tác, kinh nghiệm triển khai dự án và đào tạo của mình.</p>
             </div>
-            <a class="work-link" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noreferrer">
-              Mở Trang Web
+            <a class="work-link" href="/profile/">
+              Xem hồ sơ
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -1612,15 +1659,18 @@
 
           <article class="work-card">
             <div>
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="2.4" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="7" r="2.4" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="18" r="2.4" stroke="currentColor" stroke-width="1.8"/><path d="M7.7 7.5 10.6 16M16.6 9 13.2 16.4M8.2 6.5h7.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              </div>
               <div class="work-top">
                 <span class="work-code">02 / atlas</span>
-                <span class="tag primary">Học tập</span>
+                <span class="tag primary">Tri thức</span>
               </div>
               <h3>Atlas</h3>
-              <p>Bản đồ trực quan tương tác chứa các sơ đồ luồng dữ liệu, hỗ trợ học tập và ghi nhớ thông tin lập trình.</p>
+              <p>Tổng hợp kiến thức chuyên môn được mình đóng gói thành các bài viết và blog chia sẻ, kết nối thành một bản đồ tri thức.</p>
             </div>
-            <a class="work-link" href="https://ducnguyen221.github.io/atlas/" target="_blank" rel="noreferrer">
-              Mở Trang Web
+            <a class="work-link" href="/atlas/">
+              Khám phá Atlas
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -1629,15 +1679,58 @@
 
           <article class="work-card">
             <div>
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h11v14H6a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M15 8h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M7 9h5M7 12h5M7 15h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              </div>
               <div class="work-top">
-                <span class="work-code">03 / my-project</span>
-                <span class="tag primary">Nguyên mẫu</span>
+                <span class="work-code">03 / ai-news</span>
+                <span class="tag primary">Tin tức</span>
+              </div>
+              <h3>AI News</h3>
+              <p>Trang tổng hợp các tin tức hot về AI hàng tuần, biên tập bằng tiếng Việt kèm video và audio dễ theo dõi.</p>
+            </div>
+            <a class="work-link" href="/ai-news/">
+              Đọc AI News
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </article>
+
+          <article class="work-card">
+            <div>
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="7" ry="2.8" stroke="currentColor" stroke-width="1.8"/><path d="M5 5.5v6c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8v-6M5 11.5v6c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8v-6" stroke="currentColor" stroke-width="1.8"/></svg>
+              </div>
+              <div class="work-top">
+                <span class="work-code">04 / data-news</span>
+                <span class="tag primary">Tin tức</span>
+              </div>
+              <h3>Data News</h3>
+              <p>Trang tổng hợp các tin tức hot về Data hàng tuần: Data Engineering, BI, Data Science, lakehouse và AI×Data.</p>
+            </div>
+            <a class="work-link" href="/data-news/">
+              Đọc Data News
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </article>
+
+          <article class="work-card">
+            <div>
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 3 7l9 5 9-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 12l9 5 9-5M3 17l9 5 9-5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="work-top">
+                <span class="work-code">05 / my-project</span>
+                <span class="tag primary">Dự án</span>
               </div>
               <h3>My Project</h3>
-              <p>Hộp thử nghiệm (sandbox) chứa các thành phần giao diện mới, phục vụ test tương tác trước khi deploy chính thức.</p>
+              <p>Trang liệt kê một số project nhỏ cho học viên và khách hàng tham khảo, kèm demo và ý tưởng triển khai.</p>
             </div>
-            <a class="work-link" href="https://ducnguyen221.github.io/my-project/" target="_blank" rel="noreferrer">
-              Mở Trang Web
+            <a class="work-link" href="/my-project/">
+              Xem dự án
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -1649,10 +1742,9 @@
       <!-- CYBER FILE EXPLORER SECTION -->
       <section class="section" id="pages" aria-label="GitHub Pages Workspace Explorer">
         <div class="section-head">
-          <h2>Quản Lý Tệp Tin</h2>
+          <h2>Bày biện tệp tin</h2>
           <p>
-            Trình duyệt tệp tin tương tác được chia theo các nhóm nội dung. Chọn một thư mục dự án 
-            để duyệt cấu trúc tệp tin liên quan và kiểm tra chi tiết mã nguồn.
+            Đây là nơi mình show thử cấu trúc thư mục của các dự án. Bạn có thể bấm chọn một dự án để xem các file code bên trong và đọc preview nhé. (Chỉ là mockup thôi, nhưng code thật 100% đấy!)
           </p>
         </div>
 
@@ -1662,23 +1754,23 @@
           <div class="explorer-tabs" role="tablist" aria-label="Project categories">
             <button class="explorer-tab active" data-group="all" role="tab" aria-selected="true">
               <svg class="tab-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-6l-2-2H5a2 2 0 0 0-2 2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
-              TẤT CẢ DỰ ÁN
+              Tất cả
             </button>
             <button class="explorer-tab" data-group="ai" role="tab" aria-selected="false">
               <svg class="tab-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z" stroke="currentColor" stroke-width="1.7"/></svg>
-              AI & WORKSPACE
+              AI & Workspace
             </button>
             <button class="explorer-tab" data-group="visuals" role="tab" aria-selected="false">
               <svg class="tab-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
-              HỌC TẬP & TRỰC QUAN
+              Trực quan & Tự học
             </button>
             <button class="explorer-tab" data-group="portfolios" role="tab" aria-selected="false">
               <svg class="tab-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              HỒ SƠ & PORTFOLIO
+              Hồ sơ cá nhân
             </button>
             <button class="explorer-tab" data-group="docs" role="tab" aria-selected="false">
               <svg class="tab-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-              TÀI LIỆU & CRM
+              Tài liệu & Học liệu
             </button>
           </div>
 
@@ -1728,32 +1820,86 @@
         </div>
       </section>
 
+      <!-- The Vibe Way Section -->
+      <section class="section" id="vibe-way" aria-label="How this site was build">
+        <div class="section-head">
+          <h2>Mình vibe code thế nào?</h2>
+          <p>
+            Quy trình phát triển phần mềm siêu chuẩn chỉ, không một dòng code tay, được bảo chứng bởi sự kiên nhẫn và đám bạn AI. ☕
+          </p>
+        </div>
+
+        <div class="focus-grid">
+          <article class="focus-card">
+            <div class="focus-icon" style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: bold; border-color: rgba(0, 240, 255, 0.45); color: var(--cyan);">
+              1
+            </div>
+            <h3>💡 1. Mơ mộng</h3>
+            <p>Ngồi nghĩ ra một tính năng cực kỳ bay bổng hoặc một hiệu ứng thật lung linh, bất chấp việc mình có biết viết code hay không.</p>
+          </article>
+
+          <article class="focus-card">
+            <div class="focus-icon" style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: bold; border-color: rgba(189, 0, 255, 0.45); color: var(--purple);">
+              2
+            </div>
+            <h3>✍️ 2. Ra lệnh</h3>
+            <p>Mở Claude Code lên, gõ tiếng Việt tự nhiên kiểu: "Dựng cho mình một trang terminal đẹp như phim viễn tưởng để duyệt các dự án GitHub".</p>
+          </article>
+
+          <article class="focus-card">
+            <div class="focus-icon" style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: bold; border-color: rgba(57, 255, 20, 0.45); color: var(--green);">
+              3
+            </div>
+            <h3>🤖 3. AI cày cuốc</h3>
+            <p>AI bắt đầu phân tích cấu trúc, cặm cụi tạo file, sửa logic CSS và HTML. Mình chỉ cần nhâm nhi cafe và xem code tự chạy rầm rầm.</p>
+          </article>
+
+          <article class="focus-card">
+            <div class="focus-icon" style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: bold; border-color: rgba(255, 71, 87, 0.45); color: var(--coral);">
+              4
+            </div>
+            <h3>🔄 4. "Không, sửa lại!"</h3>
+            <p>Chạy thử, thấy chưa ưng mắt hoặc có lỗi. Mình bảo: "Không, đổi màu nền xịn hơn, làm card nổi bật hơn". Lặp lại đến khi ưng ý.</p>
+          </article>
+        </div>
+        
+        <div style="margin-top: 36px; text-align: center; font-family: var(--font-mono); font-size: 0.9rem; color: var(--muted);">
+          💬 <em>"Nhìn thì hiện đại thế thôi chứ mình lười lắm. Mình chỉ là người biết đặt câu hỏi và kiên nhẫn uống cafe đợi AI làm."</em>
+        </div>
+      </section>
+
       <!-- Contact Section -->
       <section class="section" id="contact" aria-label="Contact information">
         <div class="contact-grid">
           <div class="contact-card">
-            <h2>Kết nối với tôi.</h2>
+            <h2>Ới mình ở đâu?</h2>
             <p>
-              Nếu bạn muốn xem chi tiết mã nguồn các dự án, tham khảo các cấu hình ứng dụng, 
-              hoặc thảo luận về các giải pháp thiết kế giao diện web tương tác, GitHub của tôi luôn cập nhật thường xuyên.
+              Nếu thấy gì đó hay ho, hoặc đơn giản là muốn rủ mình chơi board game, bóng bàn, pickleball, hay cafe chém gió về Data và AI, cứ thoải mái ping mình nhé. Mình không bán khóa học hay nhận dự án outsource đâu, chỉ muốn kết bạn thôi! ☕
             </p>
             <div class="contact-links">
               <a class="button primary" href="https://github.com/ducnguyen221" target="_blank" rel="noreferrer">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.7 11.7 0 0 0-6.2 0C6.6 2.8 5.6 3.1 5.6 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.2 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                github.com/ducnguyen221
+                Ghé GitHub của mình
+              </a>
+              <a class="button" href="mailto:ducnguyen221@gmail.com">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Gửi email cho mình
               </a>
             </div>
           </div>
           <div class="contact-card">
-            <h3>Công Cụ Hiện Tại</h3>
-            <p>Môi trường phát triển tĩnh tối ưu, giao diện HTML/CSS/JS thuần, trực quan hóa dữ liệu và thiết lập tài liệu CRM.</p>
+            <h3>Sở thích & Vibe</h3>
+            <p>Môi trường làm việc tối giản, thích HTML/CSS/JS thuần và cực kỳ ghét cấu hình webpack/build tools phức tạp. Mê board game chiến thuật.</p>
             <div class="profile-tags">
               <span class="tag">Static-first</span>
-              <span class="tag">Responsive</span>
-              <span class="tag">Optimized Load</span>
-              <span class="tag">Clean Typography</span>
+              <span class="tag">Mê Board Game</span>
+              <span class="tag">Chơi Pickleball</span>
+              <span class="tag">Cafe & Code</span>
             </div>
           </div>
         </div>
@@ -1763,8 +1909,11 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <span>© 2026 Duc Nguyen</span>
-      <span>Hồ sơ cá nhân và Trung tâm dự án GitHub Pages</span>
+      <div>
+        <span>© 2026 Tobi (Đức Nguyễn)</span>
+        <span style="margin-left: 10px; color: var(--muted)">· Vibe-coded with Claude · Powered by curiosity</span>
+      </div>
+      <span style="font-size: 0.7rem; color: rgba(255,255,255,0.3)">Nếu trang lag hoặc lỗi, đổ lỗi cho AI hộ mình nhé! 🤖</span>
     </footer>
   </div>
 
@@ -1857,8 +2006,8 @@ Khai báo CSS:
             desc: "Bố cục HTML chính chứa cây timeline và biểu đồ radar phân tích kỹ năng.", 
             preview: `<section class="timeline-container">
   <div class="timeline-item" data-date="2025-2026">
-    <h3>Lập Trình Viên Web & AI</h3>
-    <p>Xây dựng và phát triển các giao diện tương tác hỗ trợ Agentic AI và CRM...</p>
+    <h3>Mò Mẫm Tự Học Lập Trình</h3>
+    <p>Tự build các giao diện tương tác nhỏ hỗ trợ Agentic AI và phân tích dữ liệu...</p>
   </div>
 </section>` 
           },
@@ -2131,8 +2280,8 @@ const config = { version: '1.0.0', debug: true };`
       {
         id: "docs",
         name: "docs",
-        description: "Tài liệu chi tiết hướng dẫn vận hành và tham chiếu mã API tích hợp cho cổng COMPA CRM thương mại.",
-        category: "Docs & Corporate",
+        description: "Học liệu và giáo án nguồn mở cho các lớp tự học EdTech của mình.",
+        category: "Docs & Learning",
         groupId: "docs",
         language: "HTML",
         updated: "2026-05-13",
@@ -2145,53 +2294,54 @@ const config = { version: '1.0.0', debug: true };`
             type: "html", 
             desc: "Bố cục hai cột (Sidebar Menu và Content View) hiển thị tài liệu.", 
             preview: `<div class="docs-layout">
-  <nav class="docs-navigation">Menu chương mục</nav>
-  <article class="docs-body">Nội dung hướng dẫn</article>
+  <nav class="docs-navigation">Menu bài học</nav>
+  <article class="docs-body">Nội dung bài viết & video</article>
 </div>` 
           },
           { 
-            name: "crm-guide.html", 
+            name: "edtech-guide.html", 
             size: "33.5 KB", 
             type: "html", 
-            desc: "Tài liệu hướng dẫn cài đặt CRM, quản lý cơ sở dữ liệu khách hàng.", 
-            preview: `<h2>Thiết Lập COMPA CRM</h2>
-<p>Bước 1: Chạy lệnh setup database</p>
+            desc: "Hướng dẫn cài đặt môi trường học tập, tải công cụ tự học.", 
+            preview: `<h2>Hướng Dẫn Tự Học EdTech</h2>
+<p>Bước 1: Chạy script để tải các giáo trình mẫu về máy</p>
 <pre><code>bash setup.sh</code></pre>
-<p>Bước 2: Thay đổi thông tin kết nối trong file config.json</p>` 
+<p>Bước 2: Chỉnh sửa token học viên cá nhân trong config.json</p>` 
           },
           { 
             name: "api-reference.html", 
             size: "44.1 KB", 
             type: "html", 
-            desc: "Thông tin mô tả các endpoints API, tham số đầu vào và ví dụ phản hồi JSON.", 
-            preview: `<h3>API: Tạo Khách Hàng Mới</h3>
-<p>Endpoint: <code>POST /api/v1/customers</code></p>
+            desc: "Tham chiếu API lấy danh sách bài tập và gửi kết quả chấm bài tự động.", 
+            preview: `<h3>API: Lấy Danh Sách Bài Tập</h3>
+<p>Endpoint: <code>GET /api/v1/lessons</code></p>
 <pre><code>{
-  "name": "Nguyen Van A",
-  "phone": "0900000000"
+  "lesson_id": "L1",
+  "title": "Nhập môn phân tích dữ liệu",
+  "difficulty": "Easy"
 }</code></pre>` 
           },
           { 
             name: "setup.sh", 
             size: "820 B", 
             type: "config", 
-            desc: "Script Shell tự động cấu hình cơ sở dữ liệu CRM mẫu ở local.", 
+            desc: "Script Shell tự động tải giáo án và tài liệu thực hành về local.", 
             preview: `#!/bin/bash
-echo "Đang khởi tạo cơ sở dữ liệu COMPA CRM..."
-npm install -g crm-tools
-crm-tools init-db` 
+echo "Đang tải bài tập EdTech..."
+npm install -g edtech-tools
+edtech-tools download-lessons` 
           },
           { 
             name: "config.json", 
             size: "1.1 KB", 
             type: "config", 
-            desc: "Các cấu hình cổng kết nối và phân quyền người dùng mặc định.", 
+            desc: "Cấu hình cổng local host và API token học viên để đồng bộ bài tập.", 
             preview: `{
-  "port": 8080,
-  "db_host": "localhost",
+  "port": 3000,
+  "student_token": "learn_tobi_12345",
   "features": {
-    "leads": true,
-    "invoices": false
+    "auto_grading": true,
+    "interactive_canvas": true
   }
 }` 
           }
