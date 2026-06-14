@@ -748,6 +748,44 @@
       padding: 3px 11px;
       background: rgba(0, 240, 255, 0.06);
     }
+    .about-photo {
+      width: 100%;
+      max-width: 230px;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-top: 16px;
+      border: 1px solid var(--line-active);
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Product CTAs row (COMPA CLASS / EDP.vn / PowerBI) */
+    .product-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; }
+    .product-cta {
+      display: flex; flex-direction: column; gap: 10px; padding: 20px;
+      border: 1px solid var(--line-active); border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(189, 0, 255, 0.05));
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .product-cta:hover { transform: translateY(-3px); border-color: var(--cyan); box-shadow: 0 12px 32px rgba(0, 240, 255, 0.12); }
+    .product-cta .pc-logo { width: 52px; height: 52px; border-radius: 12px; flex: 0 0 auto; display: grid; place-items: center; overflow: hidden; background: #fff; }
+    .product-cta .pc-logo img { width: 100%; height: 100%; object-fit: contain; padding: 6px; }
+    .product-cta .pc-logo.edp { font-family: var(--font-heading); font-weight: 800; font-size: 0.78rem; color: #04060a; border-radius: 50%; }
+    .product-cta h3 { font-family: var(--font-heading); font-size: 1rem; font-weight: 800; color: #fff; }
+    .product-cta p { color: #cbd5e1; font-size: 0.84rem; line-height: 1.55; flex: 1; }
+    .product-cta .pc-btn { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: 0.84rem; color: var(--cyan); }
+    .product-cta .pc-btn svg { width: 14px; height: 14px; }
+
+    /* Language toggle */
+    .lang-toggle {
+      display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
+      font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700; color: var(--cyan);
+      border: 1px solid var(--line-active); border-radius: 8px; padding: 7px 11px;
+      background: rgba(0, 240, 255, 0.06); transition: 0.2s;
+    }
+    .lang-toggle:hover { background: rgba(0, 240, 255, 0.14); }
+    .lang-toggle svg { width: 14px; height: 14px; }
+    @media (max-width: 920px) { .product-row { grid-template-columns: 1fr; } }
 
     /* Featured CTA banner (Đào tạo & Khóa học) */
     .feature-cta {
@@ -1569,6 +1607,10 @@
       </a>
 
       <nav class="nav" aria-label="Primary navigation">
+        <button class="lang-toggle" id="langToggle" type="button" onclick="toggleLang()" aria-label="Đổi ngôn ngữ / Switch language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+          <span id="langLabel">EN</span>
+        </button>
         <a href="#about">Mình là ai?</a>
         <a href="#work">Khám phá</a>
         <a href="#pages">Tin mới</a>
@@ -1586,22 +1628,22 @@
             <span class="gradient-text">Vibe-code với AI.</span>
           </h1>
           <p class="lead">
-            Chào bạn ghé chơi! Mình không biết code. Website này và mọi dự án nhỏ bên dưới đều được "vibe-code" 100% 
-            bởi mình (người ra đề) và đám bạn AI (Claude Code cặm cụi gõ phím). 🤖 Đây là góc internet nhỏ để mình bày biện 
-            mấy thứ nghịch ngợm về Data, AI, Power BI và EdTech.
+            Mình không biết code. Nhưng với vai trò PM nhiều dự án, mình đã vibe-code 100% để tạo nên website này
+            và các sản phẩm nhỏ bên dưới cùng đám bạn AI. 🤖 Đây là góc chia sẻ nhỏ của mình về những tìm hiểu
+            về AI, Data và EdTech.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#work">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M4 5h7l2 3h7v11H4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
               </svg>
-              Xem mình đang nghịch gì →
+              Xem mình đang làm gì →
             </a>
             <a class="button" href="#pages">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
               </svg>
-              Duyệt qua tệp tin 📂
+              Tin tức về AI và Data
             </a>
           </div>
 
@@ -1631,6 +1673,14 @@
               </span>
               <span class="route-arrow" aria-hidden="true">↗</span>
             </a>
+            <a class="route-button" href="/resources/">
+              <span class="route-index">04</span>
+              <span class="route-copy">
+                <strong>/resources</strong>
+                <span>Kho tài liệu, template và cheat-sheet mình chia sẻ cho mọi người.</span>
+              </span>
+              <span class="route-arrow" aria-hidden="true">↗</span>
+            </a>
           </div>
         </div>
 
@@ -1644,16 +1694,19 @@
             </div>
           </div>
           <div class="profile-info">
-            <h2>Góc nhỏ bày biện của Tobi (Đức Nguyễn)</h2>
+            <h2>Mình mê Data &amp; AI 🤖</h2>
             <p>
-              Mình mê Data, thích vọc vạch AI và cực kỳ lười học các framework code phức tạp. 
-              Nhờ có đám AI làm "đồng nghiệp", mình mới có thể tự tay dựng nên góc làm việc lộn xộn này. ☕
+              Mình mê Data và AI, và cũng là một chuyên gia, giảng viên về lĩnh vực này. Nhờ có đội ngũ AI làm việc cùng
+              mà mình đã tăng gấp mười lần tốc độ làm, nghiên cứu và thực thi các công việc và đam mê của mình.
+              Hãy cùng tìm hiểu với mình những ứng dụng hay này nhé.
             </p>
             <div class="profile-tags" aria-label="Profile tags">
               <span class="tag primary">⚡ Vibe-coded with AI</span>
-              <span class="tag">Mê Board Game</span>
-              <span class="tag">Chơi Pickleball</span>
-              <span class="tag">Data & AI stuff</span>
+              <span class="tag">🤖 Data &amp; AI stuff</span>
+              <span class="tag">🎲 Mê Board Game</span>
+              <span class="tag">🏓 Chơi Pickleball</span>
+              <span class="tag">📚 Thích đọc truyện</span>
+              <span class="tag">🎮 Chơi Game</span>
             </div>
           </div>
         </aside>
@@ -1662,7 +1715,10 @@
       <!-- About Section -->
       <section class="section" id="about" aria-label="About Duc Nguyen">
         <div class="section-head">
-          <h2>Mình là ai?</h2>
+          <div>
+            <h2 style="margin-bottom: 0;">Mình là ai?</h2>
+            <img class="about-photo" src="/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức" loading="lazy">
+          </div>
           <div>
             <p style="margin-bottom: 4px;">
               Mình là <strong>Nguyễn Quang Đức</strong> — chuyên gia Data Analytics, Founder COMPA và Co-founder KPIM.
@@ -1682,6 +1738,9 @@
               <span class="about-tag">#SQL</span>
               <span class="about-tag">#Python</span>
               <span class="about-tag">#AIApplication</span>
+              <span class="about-tag">#Databricks</span>
+              <span class="about-tag">#RAG&amp;GenAI</span>
+              <span class="about-tag">#VibeCoding</span>
               <span class="about-tag">#Training</span>
             </div>
             <a class="button primary" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noreferrer" style="height: 38px; padding: 0 16px; font-size: 0.8rem; display: inline-flex;">
@@ -1749,19 +1808,26 @@
           </p>
         </div>
 
-        <a class="feature-cta" href="https://compaclass.com/academy/kpim-academy" target="_blank" rel="noopener">
-          <span class="fc-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M22 10 12 5 2 10l10 5 10-5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5M22 10v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <span class="fc-body">
-            <h3>Đào tạo &amp; Khóa học cùng KPIM Academy</h3>
-            <p>Các khóa học Data, Power BI, SQL, Python và ứng dụng AI vào công việc — lộ trình thực chiến cho cá nhân và doanh nghiệp.</p>
-          </span>
-          <span class="fc-btn">
-            Xem khóa học
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </a>
+        <div class="product-row">
+          <a class="product-cta" href="https://compaclass.com" target="_blank" rel="noopener">
+            <span class="pc-logo"><img src="/profile/assets/images/COMPA-CLASS.jpg" alt="COMPA CLASS" loading="lazy"></span>
+            <h3>Sản phẩm EduTech COMPA CLASS</h3>
+            <p>Sản phẩm LMS ứng dụng AI trong tạo và quản lý tài liệu, kiến thức học tập.</p>
+            <span class="pc-btn">Truy cập <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="product-cta" href="https://edp.vn/" target="_blank" rel="noopener">
+            <span class="pc-logo edp">EDP.vn</span>
+            <h3>EDP.vn</h3>
+            <p>Quản lý giải pháp dữ liệu và ứng dụng AI trong DA, DE, BI và quản lý dữ liệu doanh nghiệp.</p>
+            <span class="pc-btn">Truy cập <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="product-cta" href="https://bi.edp.vn/auth/signin" target="_blank" rel="noopener">
+            <span class="pc-logo"><img src="/profile/assets/images/powerbi-logo.svg" alt="Power BI" loading="lazy"></span>
+            <h3>Giải pháp PowerBI Embedded</h3>
+            <p>Nhúng và quản lý các báo cáo PowerBI Service trên giải pháp của bạn.</p>
+            <span class="pc-btn">Truy cập <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+        </div>
 
         <div class="work-grid">
           <article class="work-card">
@@ -2001,13 +2067,14 @@
             </div>
           </div>
           <div class="contact-card">
-            <h3>Sở thích & Vibe</h3>
-            <p>Môi trường làm việc tối giản, thích HTML/CSS/JS thuần và cực kỳ ghét cấu hình webpack/build tools phức tạp. Mê board game chiến thuật.</p>
+            <h3>Quote</h3>
+            <p style="font-style: italic;">"Có thể AI sẽ không thay thế bạn trong công việc, nhưng một người khác giỏi AI sẽ có thể thay thế bạn."</p>
             <div class="profile-tags">
-              <span class="tag">Static-first</span>
-              <span class="tag">Mê Board Game</span>
-              <span class="tag">Chơi Pickleball</span>
-              <span class="tag">Cafe & Code</span>
+              <span class="tag">Data</span>
+              <span class="tag">AI</span>
+              <span class="tag">Vibe-code</span>
+              <span class="tag">Vibe-work</span>
+              <span class="tag">EdTech</span>
             </div>
           </div>
         </div>
@@ -2019,7 +2086,7 @@
     <footer class="footer">
       <div>
         <span>© 2026 Tobi (Đức Nguyễn)</span>
-        <span style="margin-left: 10px; color: var(--muted)">· Vibe-coded with Claude · Powered by curiosity</span>
+        <span style="margin-left: 10px; color: var(--muted)">· Vibe-code with AI · Powered by curiosity</span>
       </div>
       <span style="font-size: 0.7rem; color: rgba(255,255,255,0.3)">Nếu trang lag hoặc lỗi, đổ lỗi cho AI hộ mình nhé! 🤖</span>
     </footer>
@@ -3061,6 +3128,74 @@ edtech-tools download-lessons`
         if (document.getElementById("previewContent")) renderPreview();
       });
     });
+  </script>
+  <!-- Lightweight VI/EN toggle: matches visible text by normalized content, no per-element markup needed. -->
+  <script>
+  (function () {
+    var DICT = {
+      "Mình là ai?": "About me",
+      "Khám phá": "Explore",
+      "Tin mới": "News",
+      "Ới mình": "Contact",
+      "Vibe-code với AI.": "Vibe-coded with AI.",
+      "Mình không biết code. Nhưng với vai trò PM nhiều dự án, mình đã vibe-code 100% để tạo nên website này và các sản phẩm nhỏ bên dưới cùng đám bạn AI. 🤖 Đây là góc chia sẻ nhỏ của mình về những tìm hiểu về AI, Data và EdTech.": "I can't code. But as a PM on many projects, I vibe-coded this website and all the small products below 100% with my AI teammates. 🤖 This is my little corner for sharing what I'm exploring about AI, Data and EdTech.",
+      "Xem mình đang làm gì →": "See what I'm building →",
+      "Tin tức về AI và Data": "AI & Data news",
+      "Hành trình mò mẫm của mình dưới dạng sơ yếu lý lịch tương tác.": "My journey as an interactive résumé.",
+      "Bản đồ tri thức. Nơi mình hệ thống hóa đống kiến thức tự học.": "A knowledge map where I organize what I've self-taught.",
+      "Hộp cát (sandbox). Nơi test thử mấy thứ linh tinh xem có chạy không.": "A sandbox to test random ideas and see if they run.",
+      "Kho tài liệu, template và cheat-sheet mình chia sẻ cho mọi người.": "Templates, docs and cheat-sheets I share with everyone.",
+      "Mình mê Data & AI 🤖": "I love Data & AI 🤖",
+      "Mình mê Data và AI, và cũng là một chuyên gia, giảng viên về lĩnh vực này. Nhờ có đội ngũ AI làm việc cùng mà mình đã tăng gấp mười lần tốc độ làm, nghiên cứu và thực thi các công việc và đam mê của mình. Hãy cùng tìm hiểu với mình những ứng dụng hay này nhé.": "I love Data and AI, and I'm also an expert and trainer in this field. With an AI team working alongside me, I've 10x'd the speed of building, researching and executing my work and passions. Let's explore these useful applications together.",
+      "Các điểm đến chính của mình: hồ sơ chuyên môn, kho tri thức, hai bản tin AI & Data hàng tuần, dự án tham khảo và tài nguyên miễn phí cho học viên, khách hàng.": "My main destinations: professional profile, knowledge base, two weekly AI & Data newsletters, reference projects and free resources for learners and clients.",
+      "Sản phẩm EduTech COMPA CLASS": "COMPA CLASS — EduTech product",
+      "Sản phẩm LMS ứng dụng AI trong tạo và quản lý tài liệu, kiến thức học tập.": "An AI-powered LMS for creating and managing learning materials and knowledge.",
+      "EDP.vn": "EDP.vn",
+      "Quản lý giải pháp dữ liệu và ứng dụng AI trong DA, DE, BI và quản lý dữ liệu doanh nghiệp.": "Managing data solutions and AI across DA, DE, BI and enterprise data management.",
+      "Giải pháp PowerBI Embedded": "PowerBI Embedded solution",
+      "Nhúng và quản lý các báo cáo PowerBI Service trên giải pháp của bạn.": "Embed and manage PowerBI Service reports inside your own solution.",
+      "Tài nguyên": "Resources",
+      "Trang hồ sơ chuyên môn giúp bạn hiểu thêm về hành trình công tác, kinh nghiệm triển khai dự án và đào tạo của mình.": "A professional profile to learn about my career journey, project delivery and training experience.",
+      "Tổng hợp kiến thức chuyên môn được mình đóng gói thành các bài viết và blog chia sẻ, kết nối thành một bản đồ tri thức.": "Professional knowledge packaged into shared articles and blog posts, connected into a knowledge map.",
+      "Trang tổng hợp các tin tức hot về AI hàng tuần, biên tập bằng tiếng Việt kèm video và audio dễ theo dõi.": "A weekly roundup of hot AI news, edited in Vietnamese with easy-to-follow video and audio.",
+      "Trang tổng hợp các tin tức hot về Data hàng tuần: Data Engineering, BI, Data Science, lakehouse và AI×Data.": "A weekly roundup of hot Data news: Data Engineering, BI, Data Science, lakehouse and AI×Data.",
+      "Trang liệt kê một số project nhỏ cho học viên và khách hàng tham khảo, kèm demo và ý tưởng triển khai.": "A list of small projects for learners and clients to reference, with demos and implementation ideas.",
+      "Kho template, cheat-sheet và bộ prompt miễn phí mình chia sẻ để bạn áp dụng ngay vào công việc.": "Free templates, cheat-sheets and prompt packs you can apply to your work right away.",
+      "Tin mới nhất": "Latest news",
+      "Mỗi tuần mình tổng hợp tin nóng nhất về AI và Data thành video, audio và bài viết tiếng Việt. Bấm để xem toàn bộ bản tin.": "Every week I turn the hottest AI and Data news into Vietnamese video, audio and articles. Click to see all newsletters.",
+      "Bản tin AI hàng tuần + tin nóng mỗi ngày": "Weekly AI newsletter + daily hot news",
+      "Bản tin Data hàng tuần: DE, BI, DS, AI×Data": "Weekly Data newsletter: DE, BI, DS, AI×Data",
+      "Quote": "Quote",
+      "\"Có thể AI sẽ không thay thế bạn trong công việc, nhưng một người khác giỏi AI sẽ có thể thay thế bạn.\"": "\"AI may not replace you at work, but someone who's good at AI just might.\"",
+      "năm ngành data": "yrs in data",
+      "học viên": "students",
+      "khóa học": "courses",
+      "dự án": "projects"
+    };
+    var RDICT = {}; for (var k in DICT) { RDICT[DICT[k]] = k; }
+    var SEL = ".site h1, .site h2, .site h3, .site p, .site .nav a, .site .gradient-text, .site .about-stat .t, .site .route-copy > span";
+    function norm(s) { return s.replace(/\s+/g, " ").trim(); }
+    function apply(lang) {
+      var map = lang === "en" ? DICT : RDICT;
+      document.querySelectorAll(SEL).forEach(function (el) {
+        if (el.children.length) return; // leaf text nodes only
+        var t = norm(el.textContent);
+        if (map[t] !== undefined) el.textContent = map[t];
+      });
+      var lbl = document.getElementById("langLabel");
+      if (lbl) lbl.textContent = (lang === "en") ? "VI" : "EN";
+      document.documentElement.lang = (lang === "en") ? "en" : "vi";
+      try { localStorage.setItem("site-lang", lang); } catch (e) {}
+    }
+    window.toggleLang = function () {
+      var cur = "vi";
+      try { cur = localStorage.getItem("site-lang") || "vi"; } catch (e) {}
+      apply(cur === "en" ? "vi" : "en");
+    };
+    var saved = "vi";
+    try { saved = localStorage.getItem("site-lang") || "vi"; } catch (e) {}
+    if (saved === "en") apply("en");
+  })();
   </script>
 </body>
 </html>
