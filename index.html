@@ -786,6 +786,20 @@
     }
     .lang-toggle:hover { background: rgba(0, 240, 255, 0.14); }
     .lang-toggle svg { width: 15px; height: 15px; }
+
+    /* Mobile hamburger (hidden on desktop) */
+    .nav-toggle {
+      display: none; align-items: center; justify-content: center;
+      width: 44px; height: 40px; flex: 0 0 auto; cursor: pointer;
+      border: 1px solid var(--line-active); border-radius: var(--radius-sm);
+      background: rgba(0, 240, 255, 0.06); color: var(--cyan);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-toggle:hover { background: rgba(0, 240, 255, 0.14); }
+    .nav-toggle svg { width: 22px; height: 22px; }
+    .nav-toggle .ico-close { display: none; }
+    .topbar.nav-open .nav-toggle .ico-open { display: none; }
+    .topbar.nav-open .nav-toggle .ico-close { display: block; }
     @media (max-width: 920px) { .product-row { grid-template-columns: 1fr; } }
 
     /* Author / Tác giả card (matches the /atlas style) */
@@ -1497,20 +1511,34 @@
       }
 
       .topbar {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 14px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 14px;
       }
 
+      .nav-toggle { display: inline-flex; }
+
       .nav {
+        display: none;
         width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
         margin-top: 12px;
       }
 
-      .nav a {
+      .topbar.nav-open .nav { display: flex; }
+
+      .nav a,
+      .nav .lang-toggle {
+        width: 100%;
         flex: 1 1 auto;
-        font-size: 0.74rem;
-        padding: 0 10px;
+        justify-content: flex-start;
+        height: 44px;
+        font-size: 0.92rem;
+        padding: 0 14px;
       }
 
       .hero {
@@ -1629,7 +1657,12 @@
         </span>
       </a>
 
-      <nav class="nav" aria-label="Primary navigation">
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="primaryNav" onclick="toggleNav()">
+        <svg class="ico-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+
+      <nav class="nav" id="primaryNav" aria-label="Primary navigation">
         <button class="lang-toggle" id="langToggle" type="button" onclick="toggleLang()" aria-label="Đổi ngôn ngữ / Switch language">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
           <span id="langLabel">VI</span>
@@ -3327,6 +3360,23 @@ edtech-tools download-lessons`
     var saved = "vi";
     try { saved = localStorage.getItem("site-lang") || "vi"; } catch (e) {}
     if (saved === "en") apply("en");
+
+    // Mobile hamburger menu
+    window.toggleNav = function () {
+      var tb = document.querySelector(".topbar");
+      if (!tb) return;
+      var open = tb.classList.toggle("nav-open");
+      var bt = document.getElementById("navToggle");
+      if (bt) bt.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    document.querySelectorAll(".nav a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        var tb = document.querySelector(".topbar");
+        if (tb) tb.classList.remove("nav-open");
+        var bt = document.getElementById("navToggle");
+        if (bt) bt.setAttribute("aria-expanded", "false");
+      });
+    });
   })();
   </script>
 </body>
