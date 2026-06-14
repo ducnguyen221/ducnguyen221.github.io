@@ -3173,15 +3173,22 @@ edtech-tools download-lessons`
       "dự án": "projects"
     };
     var RDICT = {}; for (var k in DICT) { RDICT[DICT[k]] = k; }
-    var SEL = ".site h1, .site h2, .site h3, .site p, .site .nav a, .site .gradient-text, .site .about-stat .t, .site .route-copy > span";
     function norm(s) { return s.replace(/\s+/g, " ").trim(); }
     function apply(lang) {
       var map = lang === "en" ? DICT : RDICT;
-      document.querySelectorAll(SEL).forEach(function (el) {
-        if (el.children.length) return; // leaf text nodes only
-        var t = norm(el.textContent);
-        if (map[t] !== undefined) el.textContent = map[t];
-      });
+      // Walk direct text nodes so buttons/links (text + svg) translate too.
+      var all = document.querySelectorAll(".site *");
+      for (var j = 0; j < all.length; j++) {
+        var el = all[j];
+        if (el.id === "langLabel" || el.tagName === "SCRIPT" || el.tagName === "STYLE") continue;
+        for (var i = 0; i < el.childNodes.length; i++) {
+          var n = el.childNodes[i];
+          if (n.nodeType === 3) {
+            var t = norm(n.nodeValue);
+            if (t && map[t] !== undefined) n.nodeValue = map[t];
+          }
+        }
+      }
       var lbl = document.getElementById("langLabel");
       if (lbl) lbl.textContent = (lang === "en") ? "VI" : "EN";
       document.documentElement.lang = (lang === "en") ? "en" : "vi";
