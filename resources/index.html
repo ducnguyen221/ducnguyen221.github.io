@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tài nguyên miễn phí của Duc Nguyen: template Power BI, cheat-sheet SQL/Excel, bộ prompt AI và mẫu dự án dữ liệu cho học viên và doanh nghiệp.">
+  <title>Tài nguyên miễn phí | Duc Nguyen</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Tài nguyên miễn phí | Duc Nguyen">
+  <meta property="og:description" content="Template Power BI, cheat-sheet SQL/Excel, bộ prompt AI và mẫu dự án dữ liệu — tải miễn phí.">
+  <meta property="og:url" content="https://ducnguyen.vn/resources/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#04060a;--ink:#f8fafc;--muted:#94a3b8;--line:rgba(255,255,255,.14);
+    --line-active:rgba(0,240,255,.45);--cyan:#00f0ff;--cyan-glow:rgba(0,240,255,.4);--purple:#bd00ff;
+    --green:#39ff7a;--amber:#ffb340;--panel:rgba(8,12,22,.96);--radius:12px;
+    --font-body:'Be Vietnam Pro',system-ui,sans-serif;--font-heading:'Plus Jakarta Sans',system-ui,sans-serif;--font-mono:'JetBrains Mono',Consolas,monospace}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{background:var(--bg);scroll-behavior:smooth}
+    body{min-height:100vh;color:var(--ink);font-family:var(--font-body);line-height:1.65;letter-spacing:-.01em;
+    background:radial-gradient(circle at 10% 20%,rgba(0,240,255,.05),transparent 40rem),
+    radial-gradient(circle at 90% 10%,rgba(189,0,255,.04),transparent 35rem),
+    linear-gradient(180deg,#04060a 0%,#080d1a 60%,#030508 100%);padding-bottom:48px}
+    a{color:inherit;text-decoration:none}
+    .site{position:relative;z-index:1;width:min(1100px,calc(100% - 40px));margin:0 auto}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px 20px;margin-top:14px;
+    border:1px solid var(--line);border-radius:var(--radius);background:rgba(6,9,16,.93);backdrop-filter:blur(20px)}
+    .brand{display:inline-flex;align-items:center;gap:13px}
+    .brand-mark{width:44px;height:44px;display:grid;place-items:center;flex:0 0 auto;border:1px solid var(--line-active);border-radius:50%;
+    background:radial-gradient(circle,rgba(0,240,255,.22),rgba(189,0,255,.06) 55%,rgba(4,6,10,.95) 78%);box-shadow:0 0 18px rgba(0,240,255,.3)}
+    .brand-name{font-family:var(--font-heading);font-size:1.2rem;font-weight:800}
+    .brand-name b{color:var(--cyan)}
+    .brand-sub{display:block;color:var(--muted);font-size:.66rem;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase}
+    .nav{display:flex;gap:8px}
+    .nav a{padding:8px 14px;border:1px solid var(--line);border-radius:8px;font-size:.84rem;color:var(--muted);transition:.2s}
+    .nav a:hover{color:var(--cyan);border-color:var(--cyan-glow)}
+    .hero{margin-top:32px}
+    .label{font-family:var(--font-mono);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+    .hero h1{font-family:var(--font-heading);font-size:2rem;font-weight:800;line-height:1.15;margin-bottom:8px}
+    .hero p{color:#cbd5e1;font-size:1rem;max-width:60rem}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:30px}
+    .res-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:22px;display:flex;flex-direction:column;min-height:230px;transition:.25s}
+    .res-card:hover{transform:translateY(-3px);border-color:var(--cyan);box-shadow:0 12px 32px rgba(0,240,255,.12)}
+    .res-icon{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;color:var(--cyan);margin-bottom:16px;
+    border:1px solid var(--line-active);background:linear-gradient(135deg,rgba(0,240,255,.12),rgba(0,240,255,.02))}
+    .res-icon svg{width:25px;height:25px}
+    .res-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+    .res-code{font-family:var(--font-mono);font-size:.74rem;color:var(--green);font-weight:700}
+    .badge{font-family:var(--font-mono);font-size:.66rem;color:#a5f3fc;border:1px solid var(--line-active);border-radius:99px;padding:2px 9px;background:rgba(0,240,255,.06)}
+    .badge.soon{color:var(--amber);border-color:rgba(255,179,64,.4);background:rgba(255,179,64,.07)}
+    .res-card h3{font-family:var(--font-heading);font-size:1.1rem;font-weight:800;margin-bottom:6px}
+    .res-card p{color:var(--muted);font-size:.88rem;line-height:1.6;flex:1}
+    .res-link{margin-top:16px;display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:.86rem;color:var(--cyan)}
+    .res-link.disabled{color:#5b6675;cursor:default}
+    .res-link svg{width:15px;height:15px}
+    .cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;
+    border:1px solid var(--line-active);border-radius:16px;background:linear-gradient(135deg,rgba(189,0,255,.08),var(--panel));padding:22px 24px}
+    .cta h3{font-family:var(--font-heading);font-size:1.15rem;font-weight:800}
+    .cta p{color:#cbd5e1;font-size:.9rem;margin-top:4px}
+    .cta a{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;font-weight:800;color:#04060a;
+    background:linear-gradient(90deg,#00f0ff,#39ff7a);border-radius:10px;padding:12px 22px;font-size:.9rem}
+    .cta a:hover{filter:brightness(1.1)}
+    .footer{margin-top:50px;text-align:center;font-size:.8rem;color:#4b5563}
+    .footer a{color:#818cf8}
+    @media (max-width:920px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:640px){.grid{grid-template-columns:1fr}.hero h1{font-size:1.5rem}.nav{order:3;width:100%}.nav a{flex:1;text-align:center}.cta a{width:100%;justify-content:center}}
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <a class="brand" href="../" title="Về trang chủ">
+        <span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M13 3v5h5M9 13h6M9 16h6"/></svg></span>
+        <span><span class="brand-name">Tài <b>nguyên</b></span><span class="brand-sub">Miễn phí · by Duc Nguyen</span></span>
+      </a>
+      <nav class="nav">
+        <a href="../">← Trang chủ</a>
+        <a href="https://compaclass.com/academy/kpim-academy" target="_blank" rel="noopener">Khóa học ↗</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="label">▍Free resources</div>
+      <h1>Tài nguyên miễn phí</h1>
+      <p>Bộ template, cheat-sheet và prompt mình dùng thật trong công việc Data &amp; AI, chia sẻ lại để bạn áp dụng ngay. Tải về, chỉnh theo nhu cầu, dùng thoải mái.</p>
+    </section>
+
+    <!--
+      CÁCH THÊM TÀI NGUYÊN THẬT:
+      1. Bỏ file vào thư mục resources/files/ (vd: resources/files/powerbi-template.pbit)
+      2. Đổi href của .res-link sang đường dẫn đó, thêm download.
+      3. Đổi badge "Sắp ra mắt" -> loại file (PBIT/XLSX/PDF...) và bỏ class "soon"/"disabled".
+    -->
+    <div class="grid">
+
+      <article class="res-card">
+        <div class="res-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M7 14l3-3 2 2 4-4M3 18h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="res-top"><span class="res-code">01 / powerbi</span><span class="badge soon">Sắp ra mắt</span></div>
+        <h3>Template Power BI</h3>
+        <p>Bộ báo cáo mẫu (sales, tài chính, KPI) với theme, đo lường DAX và bố cục dựng sẵn để bạn cắm dữ liệu vào dùng ngay.</p>
+        <span class="res-link disabled">Đang cập nhật</span>
+      </article>
+
+      <article class="res-card">
+        <div class="res-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 3h16v18H4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 9h16M4 15h16M10 3v18" stroke="currentColor" stroke-width="1.7"/></svg></div>
+        <div class="res-top"><span class="res-code">02 / sql-excel</span><span class="badge soon">Sắp ra mắt</span></div>
+        <h3>Cheat-sheet SQL &amp; Excel</h3>
+        <p>Tóm tắt cú pháp SQL hay dùng và các hàm Excel quan trọng cho phân tích dữ liệu, gói gọn trong vài trang dễ tra cứu.</p>
+        <span class="res-link disabled">Đang cập nhật</span>
+      </article>
+
+      <article class="res-card">
+        <div class="res-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+        <div class="res-top"><span class="res-code">03 / prompts</span><span class="badge soon">Sắp ra mắt</span></div>
+        <h3>Bộ prompt AI cho công việc</h3>
+        <p>Tuyển tập prompt cho phân tích dữ liệu, viết báo cáo, tự động hóa và học tập — kèm ghi chú cách tinh chỉnh.</p>
+        <span class="res-link disabled">Đang cập nhật</span>
+      </article>
+
+      <article class="res-card">
+        <div class="res-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 3 7l9 5 9-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 12l9 5 9-5M3 17l9 5 9-5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <div class="res-top"><span class="res-code">04 / data-project</span><span class="badge soon">Sắp ra mắt</span></div>
+        <h3>Mẫu dự án dữ liệu</h3>
+        <p>Khung triển khai một dự án data từ đầu: thu thập, làm sạch, mô hình hóa, trực quan — kèm checklist và cấu trúc thư mục.</p>
+        <span class="res-link disabled">Đang cập nhật</span>
+      </article>
+
+      <article class="res-card">
+        <div class="res-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="6" r="2.4" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="6" r="2.4" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="18" r="2.4" stroke="currentColor" stroke-width="1.8"/><path d="M8.3 6.5h7.4M7.3 8 11 16M16.7 8 13 16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+        <div class="res-top"><span class="res-code">05 / automation</span><span class="badge soon">Sắp ra mắt</span></div>
+        <h3>Workflow tự động hóa</h3>
+        <p>Các workflow mẫu cho n8n / Make / Power Automate giúp tự động hóa việc lặp đi lặp lại trong xử lý dữ liệu.</p>
+        <span class="res-link disabled">Đang cập nhật</span>
+      </article>
+
+      <article class="res-card">
+        <div class="res-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="6" r="2.4" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="7" r="2.4" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="18" r="2.4" stroke="currentColor" stroke-width="1.8"/><path d="M7.7 7.5 10.6 16M16.6 9 13.2 16.4M8.2 6.5h7.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+        <div class="res-top"><span class="res-code">06 / atlas</span><span class="badge">Có sẵn</span></div>
+        <h3>Atlas — bản đồ tri thức</h3>
+        <p>Kho kiến thức Data &amp; AI mình hệ thống thành bài viết và sơ đồ tương tác. Đọc miễn phí, không cần tải.</p>
+        <a class="res-link" href="/atlas/">Mở Atlas
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </article>
+
+    </div>
+
+    <div class="cta">
+      <div>
+        <h3>Muốn nhận tài nguyên ngay khi ra mắt?</h3>
+        <p>Theo dõi bản tin AI &amp; Data hàng tuần, hoặc tham gia khóa học để được hướng dẫn dùng các bộ tài nguyên này.</p>
+      </div>
+      <a href="https://compaclass.com/academy/kpim-academy" target="_blank" rel="noopener">Xem khóa học ↗</a>
+    </div>
+
+    <div class="footer">Tài nguyên miễn phí · by Duc Nguyen · <a href="../">Trang chủ</a> · <a href="/ai-news/">AI News</a> · <a href="/data-news/">Data News</a></div>
+  </div>
+</body>
+</html>
