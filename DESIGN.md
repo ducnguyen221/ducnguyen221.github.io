@@ -5,7 +5,38 @@
 > thống nhất, hiện đại–công nghệ nhưng dễ đọc cho bất kỳ ai**, dùng chung nền tảng nhưng
 > mỗi trang giữ một “mood” riêng đúng mục đích.
 
-Phiên bản: **v1.0** · Ngôn ngữ giao diện: **song ngữ Việt–Anh (VI mặc định)** · Theme: **dark + light**
+Phiên bản: **v1.0 (spec/north-star)** · Ngôn ngữ giao diện: **song ngữ Việt–Anh (VI mặc định)** · Theme: **dark + light**
+
+---
+
+## 0a. Monorepo & HIỆN TRẠNG thực tế (đọc trước §0)
+
+Repo này giờ là **monorepo** (xem [`AGENTS.md`](./AGENTS.md)): mỗi trang con là một thư mục
+phục vụ tại path cùng tên (`/atlas`, `/profile`, `/project`, `/docs`); `news` ở repo riêng.
+
+⚠️ **Có drift giữa spec (v1.0 dưới đây) và code đang chạy.** Spec mô tả hệ `assets/tokens.css`
++ `components.css` + font Space Grotesk/Manrope + oklch + `data-page` mood + `templates/` +
+`scripts/build-repos.mjs` + workflow cron. **Những thứ này HIỆN CHƯA tồn tại trên đĩa.** Thực tế:
+
+| Khía cạnh | Spec v1.0 (lý tưởng) | Thực tế đang chạy |
+|---|---|---|
+| Token | `assets/tokens.css` (oklch, dùng chung) | **Inline `<style>`** trong từng `index.html` (hex, vd `--bg:#04060a`) |
+| Font | Space Grotesk + Manrope | **Plus Jakarta Sans + Be Vietnam Pro + JetBrains Mono** (home & project) |
+| Build repo list | `data/repos.json` + `scripts/build-repos.mjs` + workflow | Chưa có; home dùng dữ liệu inline + fetch `/news/...json` |
+| Shared `assets/` | Có | Chưa tách ra; mỗi trang tự chứa style |
+
+**Đồng bộ giữa các trang HIỆN tại** (sự thật để tái dùng): **home và `/project` đã dùng CHUNG**
+nền `#04060a`, dark theme, cùng bộ font ở trên, cùng motif (topbar `.brand` + `.nav`, card,
+mono label). `/atlas` dùng `assets/styles.css` riêng + FontAwesome (tông tím tri thức).
+`/profile` dùng **Tailwind CDN + Material Symbols** (PWA, `sw.js`) — khác hệ, cố ý giữ nguyên.
+`/docs` là các mockup CRM độc lập, mỗi file tự style.
+
+**Định hướng (khi có thời gian, không bắt buộc ngay):** trích token chung của home+project ra
+`assets/tokens.css` để các trang Editable link chung; giữ atlas/profile theo hệ riêng của chúng.
+Khi làm, cập nhật bảng trên + bump version. Cho tới lúc đó, **§0–§13 dưới đây là “north-star”**:
+bám tinh thần (dark tinh tế, mono label, token hoá, AA, song ngữ) chứ không phải tên file tuyệt đối.
+
+Mỗi thư mục con có `DESIGN.md` riêng liệt kê khác biệt cụ thể so với home.
 
 ---
 
