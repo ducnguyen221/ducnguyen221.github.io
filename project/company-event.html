@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KPIM 2026 Fixed Monthly Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2bd4bd",
+              "background-light": "#f6f8f8",
+              "background-dark": "#0B1B3A", 
+              "surface-dark": "#162a4d",
+              "navy-deep": "#0B1B3A",
+              "accent-teal": "#2bd4bd",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+            backdropBlur: {
+              xs: '2px',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(43, 212, 189, 0.3);
+            border-radius: 10px;
+        }
+        .tech-bg {
+            background-color: #0B1B3A;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(43, 212, 189, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(43, 212, 189, 0.08) 0%, transparent 25%),
+                linear-gradient(to bottom, #0B1B3A, #081226);
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .glass-panel {
+            background: rgba(22, 42, 77, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .glass-card-accent {
+            background: linear-gradient(135deg, rgba(43, 212, 189, 0.1) 0%, rgba(43, 212, 189, 0.02) 100%);
+            border: 1px solid rgba(43, 212, 189, 0.2);
+        }
+        .calendar-day.active {
+            background-color: #2bd4bd;
+            color: #0B1B3A;
+            font-weight: 700;
+            box-shadow: 0 0 10px rgba(43, 212, 189, 0.4);
+        }
+        .calendar-day:hover:not(.active) {
+            background-color: rgba(255,255,255,0.1);
+        }.chart-svg circle {
+          transition: opacity 0.3s ease, stroke-width 0.3s ease;
+          cursor: pointer;
+        }
+        .chart-svg circle:hover {
+          filter: brightness(1.2);
+          transform: scale(1.01);
+          transform-origin: center;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        tr.selected-row {
+            background-color: rgba(43, 212, 189, 0.1);
+            border-left: 2px solid #2bd4bd;
+        }.hidden-event {
+            display: none !important;
+        }
+        .hidden-marker {
+            opacity: 0.1 !important;
+            filter: grayscale(100%);
+        }
+        .calendar-day.dimmed {
+            opacity: 0.4;
+            pointer-events: none;
+        }.calendar-dropdown {
+            opacity: 0;
+            transform: translateY(10px) scale(0.95);
+            pointer-events: none;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            position: absolute;
+            z-index: 50;
+        }
+        .calendar-dropdown.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+        .view-toggle-btn.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: 100dvh;
+    }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark text-gray-100 font-display tech-bg h-screen w-screen overflow-hidden flex flex-col selection:bg-primary selection:text-navy-deep">
+<header class="h-16 shrink-0 glass-panel border-b border-white/5 flex items-center justify-between px-4 md:px-6 z-50">
+<div class="flex items-center gap-3 md:gap-4">
+<div class="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-primary/20 flex items-center justify-center border border-primary/30 shadow-[0_0_15px_rgba(43,212,189,0.2)]">
+<i class="fa-solid fa-graduation-cap text-primary text-sm md:text-lg"></i>
+</div>
+<div>
+<h1 class="text-base md:text-lg font-bold tracking-tight text-white leading-tight">KPIM Academy</h1>
+<p class="text-[10px] md:text-xs text-primary font-medium tracking-widest uppercase opacity-90">Sự kiện nội bộ 2026</p>
+</div>
+</div>
+</header>
+<main class="flex-1 p-4 md:p-6 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 overflow-y-auto md:overflow-hidden md:h-[calc(100vh-4rem)]">
+<aside class="col-span-1 md:col-span-3 flex flex-col gap-4 md:gap-6 md:h-full md:overflow-y-auto md:pr-2 order-1">
+<div class="glass-panel rounded-2xl p-4 md:p-5 space-y-4 md:space-y-5">
+<div class="flex items-center justify-between">
+<h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Search &amp; Filter</h3>
+<button class="text-[10px] uppercase font-bold text-primary hover:text-white transition-colors flex items-center gap-1 opacity-80 hover:opacity-100" id="resetFiltersBtn">
+<span class="material-symbols-outlined text-sm">restart_alt</span>
+        Reset
+    </button>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<i class="fa-solid fa-search text-gray-500 text-sm"></i>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 md:py-2.5 border border-white/10 rounded-xl leading-5 bg-surface-dark/50 text-gray-300 placeholder-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 text-sm transition-colors" id="searchInput" placeholder="Search events..." type="text"/>
+</div>
+<div class="hidden md:block space-y-3">
+<h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Categories</h3>
+<label class="flex items-center justify-between group cursor-pointer p-2 rounded-lg hover:bg-white/5 transition" id="filter-holiday-container">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 border border-blue-500/30">
+<i class="fa-solid fa-umbrella-beach text-xs"></i>
+</div>
+<span class="text-sm text-gray-300 font-medium group-hover:text-white">Nghỉ lễ</span>
+</div>
+<input checked="" class="filter-checkbox rounded border-gray-600 bg-surface-dark text-primary focus:ring-0 focus:ring-offset-0 w-4 h-4" data-category="holiday" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between group cursor-pointer p-2 rounded-lg hover:bg-white/5 transition" id="filter-teambuilding-container">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary border border-primary/30">
+<i class="fa-solid fa-people-group text-xs"></i>
+</div>
+<span class="text-sm text-gray-300 font-medium group-hover:text-white">Teambuilding</span>
+</div>
+<input checked="" class="filter-checkbox rounded border-gray-600 bg-surface-dark text-primary focus:ring-0 focus:ring-offset-0 w-4 h-4" data-category="teambuilding" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between group cursor-pointer p-2 rounded-lg hover:bg-white/5 transition" id="filter-trip-container">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400 border border-purple-500/30">
+<i class="fa-solid fa-plane-departure text-xs"></i>
+</div>
+<span class="text-sm text-gray-300 font-medium group-hover:text-white">Company Trip</span>
+</div>
+<input checked="" class="filter-checkbox rounded border-gray-600 bg-surface-dark text-primary focus:ring-0 focus:ring-offset-0 w-4 h-4" data-category="trip" type="checkbox"/>
+</label>
+</div>
+<div class="md:hidden flex gap-2 overflow-x-auto hide-scrollbar pb-1">
+<button class="mobile-filter-btn flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/20 border border-blue-500/30 whitespace-nowrap active:scale-95 transition-transform" data-category="holiday">
+<i class="fa-solid fa-umbrella-beach text-[10px] text-blue-400"></i>
+<span class="text-xs text-blue-100 font-medium">Nghỉ lễ</span>
+</button>
+<button class="mobile-filter-btn flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/20 border border-primary/30 whitespace-nowrap active:scale-95 transition-transform" data-category="teambuilding">
+<i class="fa-solid fa-people-group text-[10px] text-primary"></i>
+<span class="text-xs text-primary font-medium">Teambuilding</span>
+</button>
+<button class="mobile-filter-btn flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/20 border border-purple-500/30 whitespace-nowrap active:scale-95 transition-transform" data-category="trip">
+<i class="fa-solid fa-plane-departure text-[10px] text-purple-400"></i>
+<span class="text-xs text-purple-100 font-medium">Trip</span>
+</button>
+</div>
+</div>
+<div class="glass-panel rounded-2xl p-4 md:p-5 flex md:flex-col md:flex-1 md:min-h-[250px] gap-4 md:gap-0">
+<h3 class="text-sm font-bold text-white mb-2 md:mb-6 flex items-center justify-between w-full md:w-auto">
+<span class="hidden md:inline">Category Distribution</span>
+<span class="md:hidden">Event Mix</span>
+<button class="text-gray-500 hover:text-white" title="Click slice to filter"><i class="fa-solid fa-circle-info"></i></button>
+</h3>
+<div class="flex flex-row md:flex-col items-center justify-between w-full h-full gap-4">
+<div class="flex-1 flex flex-col items-center justify-center relative">
+<div class="relative w-24 h-24 md:w-40 md:h-40 flex items-center justify-center shrink-0 group" title="Click slice to filter">
+<svg class="w-full h-full -rotate-90 chart-svg" viewBox="0 0 100 100">
+<circle cx="50" cy="50" data-category="holiday" fill="transparent" r="40" stroke="#3b82f6" stroke-dasharray="115.5 251.2" stroke-dashoffset="0" stroke-width="20"></circle>
+<circle cx="50" cy="50" data-category="teambuilding" fill="transparent" r="40" stroke="#2bd4bd" stroke-dasharray="82.9 251.2" stroke-dashoffset="-115.5" stroke-width="20"></circle>
+<circle cx="50" cy="50" data-category="trip" fill="transparent" r="40" stroke="#a855f7" stroke-dasharray="52.8 251.2" stroke-dashoffset="-198.4" stroke-width="20"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+<div class="w-16 h-16 md:w-24 md:h-24 bg-[#101F3C] rounded-full flex flex-col items-center justify-center shadow-inner z-10">
+<span class="text-xl md:text-2xl font-bold text-white" id="totalEventsCount">15</span>
+<span class="text-[8px] md:text-[9px] text-gray-400 uppercase tracking-widest mt-1 hidden md:block">Total</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 md:mt-6 space-y-2 w-full">
+<button class="flex justify-between items-center text-xs w-full hover:bg-white/5 p-1 rounded transition group chart-legend-btn" data-category="holiday">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-sm bg-blue-500 group-hover:scale-110 transition"></span>
+<span class="text-gray-300 truncate">Nghỉ lễ</span>
+</div>
+<span class="text-white font-semibold">47%</span>
+</button>
+<button class="flex justify-between items-center text-xs w-full hover:bg-white/5 p-1 rounded transition group chart-legend-btn" data-category="teambuilding">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-sm bg-primary group-hover:scale-110 transition"></span>
+<span class="text-gray-300 truncate">Teambuilding</span>
+</div>
+<span class="text-white font-semibold">33%</span>
+</button>
+<button class="flex justify-between items-center text-xs w-full hover:bg-white/5 p-1 rounded transition group chart-legend-btn" data-category="trip">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-sm bg-purple-500 group-hover:scale-110 transition"></span>
+<span class="text-gray-300 truncate">Company Trip</span>
+</div>
+<span class="text-white font-semibold">20%</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+<section class="col-span-1 md:col-span-6 h-auto md:h-full flex flex-col gap-6 order-2">
+<div class="glass-panel rounded-2xl p-4 md:p-6 flex flex-col relative overflow-hidden min-h-[400px]">
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+<div class="flex items-center justify-between mb-4 md:mb-6 z-10">
+<div>
+<h2 class="text-xl md:text-2xl font-bold text-white" id="currentDateTitle">September 2026</h2>
+<p class="text-xs md:text-sm text-gray-400 mt-1">KPIM Academy Internal Events</p>
+</div>
+<div class="flex items-center bg-surface-dark/80 rounded-lg p-1 border border-white/5 backdrop-blur-sm">
+<div class="flex">
+<button class="w-8 h-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 transition" id="prevPeriodBtn">
+<i class="fa-solid fa-chevron-left text-xs"></i>
+</button>
+<button class="w-8 h-7 flex items-center justify-center rounded hover:bg-white/10 text-gray-400 transition" id="nextPeriodBtn">
+<i class="fa-solid fa-chevron-right text-xs"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-7 mb-2 px-1 md:px-2 z-10">
+<div class="text-center text-[10px] md:text-xs uppercase text-gray-500 font-semibold tracking-wider">Mon</div>
+<div class="text-center text-[10px] md:text-xs uppercase text-gray-500 font-semibold tracking-wider">Tue</div>
+<div class="text-center text-[10px] md:text-xs uppercase text-gray-500 font-semibold tracking-wider">Wed</div>
+<div class="text-center text-[10px] md:text-xs uppercase text-gray-500 font-semibold tracking-wider">Thu</div>
+<div class="text-center text-[10px] md:text-xs uppercase text-gray-500 font-semibold tracking-wider">Fri</div>
+<div class="text-center text-[10px] md:text-xs uppercase text-primary font-bold tracking-wider">Sat</div>
+<div class="text-center text-[10px] md:text-xs uppercase text-primary font-bold tracking-wider">Sun</div>
+</div>
+<div class="grid grid-cols-7 gap-1 md:gap-2 flex-1 z-10 min-h-[300px]" id="calendarGrid">
+</div>
+</div>
+<div class="glass-panel rounded-2xl p-0 flex flex-col overflow-hidden flex-1 h-[250px] md:h-auto">
+<div class="p-4 border-b border-white/5 flex items-center justify-between bg-surface-dark/50">
+<h3 class="text-sm font-bold text-white flex items-center gap-2">
+<i class="fa-solid fa-list-ul text-primary"></i> Filtered Events
+                    </h3>
+<div class="text-xs text-gray-400" id="eventCountDisplay">Showing events</div>
+</div>
+<div class="overflow-auto custom-scrollbar flex-1">
+<table class="w-full text-left border-collapse" id="eventsTable">
+<thead class="bg-surface-dark sticky top-0 z-10 shadow-sm">
+<tr>
+<th class="p-3 text-[10px] md:text-xs font-semibold text-gray-400 uppercase tracking-wider">Date</th>
+<th class="p-3 text-[10px] md:text-xs font-semibold text-gray-400 uppercase tracking-wider hidden sm:table-cell">Time</th>
+<th class="p-3 text-[10px] md:text-xs font-semibold text-gray-400 uppercase tracking-wider">Event Name</th>
+<th class="p-3 text-[10px] md:text-xs font-semibold text-gray-400 uppercase tracking-wider hidden md:table-cell">Category</th>
+<th class="p-3 text-[10px] md:text-xs font-semibold text-gray-400 uppercase tracking-wider hidden lg:table-cell">Location</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5 text-xs md:text-sm" id="eventsTableBody">
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<aside class="col-span-1 md:col-span-3 flex flex-col gap-6 md:h-full md:overflow-y-auto md:pl-2 order-3 pb-6 md:pb-0">
+<div class="relative w-full rounded-2xl overflow-hidden shadow-2xl group shrink-0 min-h-[340px] glass-card-accent border border-primary/30">
+<div class="absolute inset-0 z-0">
+<img alt="Event background" class="w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw_lUcoGWdXLs226DnckGYH_7qiU0EoUT4MarHJFnnUhsUDCyuGoe3ghDGckNP9YqlcM0vSmJ63XD0fDxwYFmCvh1htfvkrFFLZv4aT2txWjLm4L_sEo1q50i_NgxGoWHd55Zd6vY8uFlb9vuGUxFGcnoFaFyqHD0VVz3o33s5qI_X_2U6Si2O6phnErj4_zcfQilqiPeUQ5DwnMeRkR0gUFBo4mpcvGEgy03DZtfxwJUYpeCMoCLcE3GgM39Yc_Kar_SQWVnrTHOH"/>
+<div class="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/90 to-transparent"></div>
+</div>
+<div class="relative z-10 p-5 md:p-6 h-full flex flex-col justify-end">
+<div class="flex items-center gap-2 mb-3">
+<span class="bg-primary text-navy-deep text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wide shadow-[0_0_10px_rgba(43,212,189,0.4)]">
+<i class="fa-solid fa-people-group mr-1"></i> Teambuilding
+                        </span>
+<span class="bg-black/30 backdrop-blur-md text-white border border-white/10 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wide">
+                            Internal
+                        </span>
+</div>
+<h2 class="text-xl md:text-2xl font-bold text-white leading-tight mb-2">Summer Summit '26</h2>
+<p class="text-gray-300 text-xs md:text-sm mb-4 md:mb-5 leading-relaxed">Annual strategic meeting and team bonding activities for all employees.</p>
+<div class="grid grid-cols-2 md:grid-cols-1 gap-2 md:gap-3 mb-4 md:mb-6">
+<div class="flex items-center gap-3 bg-white/5 p-2 rounded-lg border border-white/5 hover:bg-white/10 transition cursor-pointer">
+<div class="w-8 h-8 rounded-full bg-surface-dark flex items-center justify-center text-primary shrink-0 border border-white/10">
+<i class="fa-regular fa-calendar text-xs"></i>
+</div>
+<div class="min-w-0">
+<p class="text-[9px] md:text-[10px] text-gray-400 uppercase tracking-wider">Date &amp; Time</p>
+<p class="text-xs font-semibold text-white truncate">Jul 15, 08:00 - 17:00</p>
+</div>
+</div>
+<div class="flex items-center gap-3 bg-white/5 p-2 rounded-lg border border-white/5 hover:bg-white/10 transition cursor-pointer">
+<div class="w-8 h-8 rounded-full bg-surface-dark flex items-center justify-center text-primary shrink-0 border border-white/10">
+<i class="fa-solid fa-map-pin text-xs"></i>
+</div>
+<div class="min-w-0">
+<p class="text-[9px] md:text-[10px] text-gray-400 uppercase tracking-wider">Location</p>
+<p class="text-xs font-semibold text-white truncate">Da Nang, VN</p>
+</div>
+</div>
+</div>
+<div class="flex gap-3 relative">
+<button class="flex-1 bg-primary hover:bg-primary/90 text-navy-deep text-sm font-bold py-2.5 md:py-3 rounded-xl flex items-center justify-center gap-2 transition shadow-[0_0_20px_rgba(43,212,189,0.3)] hover:shadow-[0_0_30px_rgba(43,212,189,0.5)] active:scale-95" id="addToCalendarBtn">
+<span class="material-symbols-outlined text-lg">calendar_add_on</span> <span class="hidden md:inline">Add to Calendar</span><span class="md:hidden">Add</span>
+</button>
+<div class="glass-panel rounded-xl shadow-2xl calendar-dropdown overflow-hidden flex flex-col w-64 bottom-full mb-2" id="calendarDropdown">
+<a class="flex items-center gap-3 px-4 py-3 hover:bg-white/10 transition text-sm text-gray-200 hover:text-white" href="#">
+<i class="fa-brands fa-google text-red-500 w-5 text-center"></i> Add to Google Calendar
+    </a>
+<a class="flex items-center gap-3 px-4 py-3 hover:bg-white/10 transition text-sm text-gray-200 hover:text-white" href="#">
+<i class="fa-brands fa-apple text-white w-5 text-center"></i> Add to Apple Calendar
+    </a>
+<div class="h-px bg-white/10 w-full"></div>
+<a class="flex items-center gap-3 px-4 py-3 hover:bg-white/10 transition text-sm text-gray-200 hover:text-white" href="#">
+<i class="fa-solid fa-file-arrow-down text-primary w-5 text-center"></i> Download .ics
+    </a>
+</div>
+<button class="w-12 bg-white/5 hover:bg-white/10 backdrop-blur-md text-white rounded-xl flex items-center justify-center border border-white/10 transition hover:border-white/30 active:scale-95" title="Copy Info">
+<i class="fa-regular fa-copy"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-panel rounded-2xl flex-1 flex flex-col overflow-hidden min-h-[300px]">
+<div class="p-4 border-b border-white/5 flex justify-between items-center">
+<h3 class="text-sm font-bold text-white uppercase tracking-wider">Upcoming Events</h3>
+<button class="text-xs text-primary hover:text-white transition">See All</button>
+</div>
+<div class="flex-1 overflow-y-auto p-2 space-y-2 custom-scrollbar" id="upcomingEventsContainer">
+</div>
+</div>
+</aside>
+</main>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Official 2026 Data ---
+            const currentYear = 2026;
+            // 15 Events Total
+            const eventsData = [
+                // Holidays (7 events)
+                { id: 1, date: `2026-01-01`, time: 'All Day', title: "Nghỉ Tết Dương lịch", category: 'holiday', location: 'Nationwide', search: "tết dương lịch new year" },
+                { id: 2, date: `2026-02-17`, time: 'All Day', title: "Nghỉ Tết Nguyên đán", category: 'holiday', location: 'Nationwide', search: "tết nguyên đán lunar new year" }, // Approx date
+                { id: 3, date: `2026-04-27`, time: 'All Day', title: "Giỗ Tổ Hùng Vương", category: 'holiday', location: 'Nationwide', search: "giỗ tổ hùng vương hung kings" },
+                { id: 4, date: `2026-04-30`, time: 'All Day', title: "Nghỉ Lễ 30/4", category: 'holiday', location: 'Nationwide', search: "30/4 liberation day" },
+                { id: 5, date: `2026-05-01`, time: 'All Day', title: "Nghỉ Quốc tế Lao động", category: 'holiday', location: 'Nationwide', search: "1/5 labor day" },
+                { id: 6, date: `2026-09-02`, time: 'All Day', title: "Nghỉ Quốc khánh", category: 'holiday', location: 'Nationwide', search: "2/9 national day" },
+                { id: 7, date: `2026-12-25`, time: '18:00', title: "Giáng sinh", category: 'holiday', location: 'Office', search: "christmas noel" },
+                // Company Trips (3 events)
+                { id: 8, date: `2026-02-06`, time: '18:00', title: "Year-end Party", category: 'trip', location: 'Grand Hotel', search: "year end party yep" },
+                { id: 9, date: `2026-05-25`, time: 'All Day', title: "Company Trip (Summer)", category: 'trip', location: 'Da Nang', search: "company trip summer da nang" },
+                { id: 10, date: `2026-11-20`, time: 'All Day', title: "Company Trip (Winter)", category: 'trip', location: 'Da Lat', search: "company trip winter da lat" },
+                // Teambuilding (5 events)
+                { id: 11, date: `2026-03-08`, time: '14:00', title: "Women's Day Celebration", category: 'teambuilding', location: 'Office Lounge', search: "women's day 8/3" },
+                { id: 12, date: `2026-06-01`, time: '10:00', title: "Children's Day Event", category: 'teambuilding', location: 'Park', search: "children's day 1/6" },
+                { id: 13, date: `2026-07-15`, time: '09:00', title: "Mid-Year Review & Team Bonding", category: 'teambuilding', location: 'Meeting Room A', search: "mid-year review" },
+                { id: 14, date: `2026-10-20`, time: '14:00', title: "Vietnamese Women's Day", category: 'teambuilding', location: 'Office Lounge', search: "vietnamese women's day 20/10" },
+                { id: 15, date: `2026-10-31`, time: '16:00', title: "Halloween Party", category: 'teambuilding', location: 'Office Pantry', search: "halloween" },
+            ];
+            // --- State ---
+            let currentDate = new Date(2026, 0, 1); // Start Jan 2026
+            const todayReal = new Date();
+            // If we are actually in 2026, show current month, otherwise show Jan 2026
+            if (todayReal.getFullYear() === 2026) {
+                currentDate = new Date(todayReal);
+            }
+            let activeFilters = {
+                search: '',
+                categories: {
+                    'holiday': true,
+                    'teambuilding': true,
+                    'trip': true
+                }
+            };
+            // --- DOM Elements ---
+            const calendarGrid = document.getElementById('calendarGrid');
+            const currentDateTitle = document.getElementById('currentDateTitle');
+            const eventsTableBody = document.getElementById('eventsTableBody');
+            const eventCountDisplay = document.getElementById('eventCountDisplay');
+            const prevPeriodBtn = document.getElementById('prevPeriodBtn');
+            const nextPeriodBtn = document.getElementById('nextPeriodBtn');
+            const searchInput = document.getElementById('searchInput');
+            const checkboxes = document.querySelectorAll('.filter-checkbox');
+            const mobileFilterBtns = document.querySelectorAll('.mobile-filter-btn');
+            const chartCircles = document.querySelectorAll('.chart-svg circle');
+            const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+            const addToCalendarBtn = document.getElementById('addToCalendarBtn');
+            const calendarDropdown = document.getElementById('calendarDropdown');
+            const chartLegendBtns = document.querySelectorAll('.chart-legend-btn');
+            const upcomingEventsContainer = document.getElementById('upcomingEventsContainer');
+            // --- Calendar Logic ---
+            function getDaysInMonth(year, month) {
+                return new Date(year, month + 1, 0).getDate();
+            }
+            function getFirstDayOfMonth(year, month) {
+                // Returns 0 (Sun) to 6 (Sat). Adjust for Mon start (0) to Sun (6)
+                let day = new Date(year, month, 1).getDay();
+                return day === 0 ? 6 : day - 1; // Convert to Mon=0 ... Sun=6
+            }
+            function formatDateKey(year, month, day) {
+                return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            }
+            function renderCalendar() {
+                calendarGrid.innerHTML = '';
+                const year = currentDate.getFullYear();
+                const month = currentDate.getMonth();
+                // Update Title
+                currentDateTitle.textContent = currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+                const daysInMonth = getDaysInMonth(year, month);
+                const firstDayIndex = getFirstDayOfMonth(year, month);
+                const prevMonthDays = getDaysInMonth(year, month - 1);
+                // Previous month padding
+                for (let i = firstDayIndex; i > 0; i--) {
+                    const dayNum = prevMonthDays - i + 1;
+                    const cell = createDayCell(dayNum, true);
+                    calendarGrid.appendChild(cell);
+                }
+                // Current month days
+                for (let i = 1; i <= daysInMonth; i++) {
+                    const dateKey = formatDateKey(year, month, i);
+                    // Check 'today' logic - only highlight if real date matches or if simulated for demo
+                    const isToday = (year === todayReal.getFullYear() && month === todayReal.getMonth() && i === todayReal.getDate());
+                    const cell = createDayCell(i, false, isToday, dateKey);
+                    calendarGrid.appendChild(cell);
+                }
+                // Next month padding
+                const totalCells = firstDayIndex + daysInMonth;
+                const remainingCells = 7 - (totalCells % 7);
+                if (remainingCells < 7) {
+                    for (let i = 1; i <= remainingCells; i++) {
+                        const cell = createDayCell(i, true);
+                        calendarGrid.appendChild(cell);
+                    }
+                }
+                // After rendering calendar, update the list below based on visible dates
+                updateEventsList();
+            }
+            function createDayCell(dayNum, isPadding, isToday = false, dateKey = null) {
+                const cell = document.createElement('div');
+                cell.className = `border border-white/5 rounded-md md:rounded-lg p-1 md:p-2 flex flex-col justify-between transition group h-[60px] md:h-auto min-h-[60px] relative`;
+                if (isPadding) {
+                    cell.classList.add('bg-surface-dark/20', 'opacity-50');
+                    cell.innerHTML = `<span class="text-gray-500 text-xs">${dayNum}</span>`;
+                } else {
+                    cell.classList.add('bg-surface-dark/20', 'cursor-pointer', 'calendar-day');
+                    if (isToday) {
+                        cell.classList.add('active'); // Apply the active/today style
+                         cell.classList.add('border-primary/50');
+                    } else {
+                        cell.classList.add('hover:bg-surface-dark/40');
+                    }
+                    // Date Number
+                    const numberSpan = document.createElement('span');
+                    numberSpan.className = isToday ? 'text-navy-deep font-bold text-xs' : 'text-white font-medium text-xs';
+                    numberSpan.textContent = dayNum;
+                    cell.appendChild(numberSpan);
+                    // Find events for this date
+                    const dayEvents = eventsData.filter(e => e.date === dateKey);
+                    // Event Markers
+                    dayEvents.forEach(event => {
+                        const marker = document.createElement('div');
+                        marker.className = `event-marker mt-1 rounded px-1 py-0.5 text-[8px] truncate hidden md:block border`;
+                        marker.setAttribute('title', event.title);
+                        // Mobile dot
+                        const dot = document.createElement('div');
+                        dot.className = `event-marker mt-1 w-1.5 h-1.5 rounded-full md:hidden mx-auto`;
+                        // Apply styles based on category
+                        if (event.category === 'teambuilding') {
+                            marker.className += ' bg-primary/20 text-primary border-primary/30';
+                            dot.className += ' bg-primary';
+                        } else if (event.category === 'trip') {
+                            marker.className += ' bg-purple-500/20 text-purple-300 border-purple-500/30';
+                            dot.className += ' bg-purple-500';
+                        } else if (event.category === 'holiday') {
+                             marker.className += ' bg-blue-500/20 text-blue-300 border-blue-500/30';
+                             dot.className += ' bg-blue-500';
+                        }
+                        // Filter check
+                        if (!activeFilters.categories[event.category]) {
+                            marker.classList.add('hidden-marker');
+                            dot.classList.add('hidden-marker');
+                        }
+                        marker.textContent = event.title;
+                        cell.appendChild(marker);
+                        cell.appendChild(dot);
+                        // Set data attribute for filtering logic
+                        cell.setAttribute('data-event-type', event.category);
+                    });
+                }
+                return cell;
+            }
+            // --- List Sync Logic ---
+            function updateEventsList() {
+                eventsTableBody.innerHTML = '';
+                // Determine date range of current view
+                const year = currentDate.getFullYear();
+                const month = currentDate.getMonth();
+                const rangeStart = new Date(year, month, 1);
+                const rangeEnd = new Date(year, month + 1, 0); // Last day of month
+                // Filter events within range AND matching filters
+                const visibleEvents = eventsData.filter(event => {
+                    const eventDate = new Date(event.date);
+                    // Reset times for accurate comparison
+                    eventDate.setHours(0,0,0,0);
+                    const rStart = new Date(rangeStart); rStart.setHours(0,0,0,0);
+                    const rEnd = new Date(rangeEnd); rEnd.setHours(0,0,0,0);
+                    const inRange = eventDate >= rStart && eventDate <= rEnd;
+                    const matchesCategory = activeFilters.categories[event.category];
+                    const matchesSearch = activeFilters.search === '' || event.search.includes(activeFilters.search);
+                    return inRange && matchesCategory && matchesSearch;
+                });
+                // Render Rows
+                visibleEvents.forEach(event => {
+                    const tr = document.createElement('tr');
+                    tr.className = 'event-row hover:bg-white/5 transition cursor-pointer group';
+                    tr.setAttribute('data-category', event.category);
+                    // Formatting helper
+                    const dateObj = new Date(event.date);
+                    const dateStr = dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
+                    let catBadgeClass = '';
+                    let catName = '';
+                    if(event.category === 'teambuilding') { catBadgeClass = 'bg-primary/20 text-primary border-primary/20'; catName = 'Teambuilding'; }
+                    if(event.category === 'trip') { catBadgeClass = 'bg-purple-500/20 text-purple-400 border-purple-500/20'; catName = 'Company Trip'; }
+                    if(event.category === 'holiday') { catBadgeClass = 'bg-blue-500/20 text-blue-400 border-blue-500/20'; catName = 'Nghỉ lễ'; }
+                    tr.innerHTML = `
+                        <td class="p-3 font-medium text-white whitespace-nowrap">${dateStr}</td>
+                        <td class="p-3 text-gray-300 hidden sm:table-cell">${event.time}</td>
+                        <td class="p-3 font-semibold ${event.category === 'teambuilding' ? 'text-primary' : 'text-gray-200'} group-hover:text-primary/80 transition">${event.title}</td>
+                        <td class="p-3 hidden md:table-cell">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium ${catBadgeClass} border">${catName}</span>
+                        </td>
+                        <td class="p-3 text-gray-400 hidden lg:table-cell">${event.location}</td>
+                    `;
+                    eventsTableBody.appendChild(tr);
+                });
+                // Update count
+                if(eventCountDisplay) {
+                    eventCountDisplay.textContent = `Showing ${visibleEvents.length} events`;
+                }
+            }
+            // --- Upcoming Events Logic ---
+            function renderUpcomingEvents() {
+                // Determine 'today' reference for logic - use 2026 if not actual year
+                let referenceDate = new Date();
+                if (referenceDate.getFullYear() !== 2026) {
+                    // Default to Jan 1st 2026 if not currently in 2026, or use user's simulated date? 
+                    // Let's assume 'today' is the actual day if in 2026, else Jan 1st 2026 for demo purposes as per prompt context usually implies
+                    // However, request says "relative to 'today' in 2026". 
+                    // If today is 2025, we should probably act as if today is Jan 1 2026 or similar to show data.
+                    // But typically "today" means the system clock. 
+                    // Let's use system clock but map year to 2026 for the check to be meaningful if we are testing in 2025.
+                    referenceDate.setFullYear(2026);
+                }
+                // If testing strictly, let's just use current system date but ignore year if needed, or stick to strict date comparison.
+                // The prompt says "Ensure that if today is February 2026..." imply dynamic check.
+                // Let's stick to a robust check: Get all events where event date > today.
+                // For demo stability, if the real year is not 2026, let's pretend today is Feb 15, 2026 to show some variety or use real date projected to 2026.
+                // Actually, best practice is to use real date. If real date > all 2026 events, show nothing.
+                // However, since this is a 2026 dashboard, let's assume we are viewing it in 2026. 
+                // We will use the `todayReal` variable but forced to 2026 for logic if needed.
+                const now = new Date();
+                // If we are not in 2026 yet (e.g., 2025), let's treat "now" as Jan 1 2026 so we see upcoming events.
+                if (now.getFullYear() < 2026) {
+                    now.setFullYear(2026);
+                    now.setMonth(0);
+                    now.setDate(1);
+                }
+                const upcomingEvents = eventsData
+                    .filter(event => new Date(event.date) >= now) // Future events only
+                    .sort((a, b) => new Date(a.date) - new Date(b.date)) // Chronological
+                    .slice(0, 4); // Take next 4
+                upcomingEventsContainer.innerHTML = '';
+                if (upcomingEvents.length === 0) {
+                     upcomingEventsContainer.innerHTML = `<div class="p-4 text-center text-gray-500 text-xs">No upcoming events found.</div>`;
+                     return;
+                }
+                upcomingEvents.forEach(event => {
+                    const eventDate = new Date(event.date);
+                    const monthName = eventDate.toLocaleDateString('en-US', { month: 'short' });
+                    const dayNum = eventDate.getDate().toString().padStart(2, '0');
+                    // Styles based on category
+                    let iconClass = '';
+                    let colorClass = '';
+                    let dotColor = '';
+                    let categoryLabel = '';
+                    if(event.category === 'holiday') {
+                        iconClass = 'fa-umbrella-beach';
+                        colorClass = 'text-blue-400 group-hover:border-blue-500/30 group-hover:text-blue-400';
+                        dotColor = 'bg-blue-500';
+                        categoryLabel = 'Holiday';
+                    } else if(event.category === 'teambuilding') {
+                        iconClass = 'fa-people-group';
+                        colorClass = 'text-primary group-hover:border-primary/30 group-hover:text-primary';
+                        dotColor = 'bg-primary';
+                        categoryLabel = 'Teambuilding';
+                    } else if(event.category === 'trip') {
+                        iconClass = 'fa-plane-departure';
+                        colorClass = 'text-purple-400 group-hover:border-purple-500/30 group-hover:text-purple-400';
+                        dotColor = 'bg-purple-500';
+                        categoryLabel = 'Trip';
+                    }
+                    const item = document.createElement('div');
+                    item.className = 'p-3 rounded-xl bg-transparent hover:bg-white/5 border border-transparent hover:border-white/5 transition cursor-pointer flex gap-3 group';
+                    item.innerHTML = `
+                        <div class="flex flex-col items-center justify-center w-10 h-10 bg-surface-dark rounded-lg border border-white/5 shrink-0 transition-colors ${colorClass.split(' ').filter(c => c.startsWith('group-hover')).join(' ')}">
+                            <span class="text-[9px] text-gray-400 font-bold uppercase">${monthName}</span>
+                            <span class="text-sm font-bold text-white leading-none">${dayNum}</span>
+                        </div>
+                        <div class="flex-1 min-w-0 flex flex-col justify-center">
+                            <h4 class="text-gray-200 font-semibold text-xs truncate transition ${colorClass.split(' ').filter(c => !c.startsWith('group')).join(' ')}">${event.title}</h4>
+                            <div class="flex items-center gap-2 mt-1">
+                                <span class="w-1.5 h-1.5 rounded-full ${dotColor}"></span>
+                                <span class="text-[10px] text-gray-400 truncate">${event.time} • ${event.location}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center w-6 h-6 rounded-full bg-white/5 group-hover:bg-white/10 transition">
+                             <i class="fa-solid ${iconClass} text-[10px] text-gray-400 group-hover:text-white transition"></i>
+                        </div>
+                    `;
+                    upcomingEventsContainer.appendChild(item);
+                });
+            }
+            // --- Interaction Handlers ---
+            // Navigation
+            prevPeriodBtn.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                renderCalendar();
+            });
+            nextPeriodBtn.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                renderCalendar();
+            });
+            // Filtering
+            function applyFilters() {
+                renderCalendar(); 
+            }
+            // Search
+            searchInput.addEventListener('input', (e) => {
+                activeFilters.search = e.target.value.toLowerCase();
+                applyFilters();
+            });
+            // Checkboxes
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    const category = e.target.getAttribute('data-category');
+                    activeFilters.categories[category] = e.target.checked;
+                    updateControlStates();
+                    applyFilters();
+                    updateChartOpacity();
+                });
+            });
+            // Mobile Filters
+            mobileFilterBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const category = btn.getAttribute('data-category');
+                    activeFilters.categories[category] = !activeFilters.categories[category];
+                    updateControlStates();
+                    applyFilters();
+                    updateChartOpacity();
+                });
+            });
+            // Chart Interaction
+             function handleChartClick(category) {
+                const othersAreOff = Object.keys(activeFilters.categories).every(k => {
+                    if (k === category) return activeFilters.categories[k] === true;
+                    return activeFilters.categories[k] === false;
+                });
+                if (othersAreOff) {
+                    Object.keys(activeFilters.categories).forEach(k => activeFilters.categories[k] = true);
+                } else {
+                    Object.keys(activeFilters.categories).forEach(k => {
+                        activeFilters.categories[k] = (k === category);
+                    });
+                }
+                updateControlStates();
+                applyFilters();
+                updateChartOpacity();
+            }
+            // Sync visual controls
+            function updateControlStates() {
+                checkboxes.forEach(cb => {
+                    const cat = cb.getAttribute('data-category');
+                    cb.checked = activeFilters.categories[cat];
+                    if(cb.checked) {
+                        cb.parentElement.classList.remove('opacity-50');
+                    } else {
+                        cb.parentElement.classList.add('opacity-50');
+                    }
+                });
+                mobileFilterBtns.forEach(btn => {
+                    const cat = btn.getAttribute('data-category');
+                    if (activeFilters.categories[cat]) {
+                        btn.classList.remove('opacity-50', 'grayscale');
+                    } else {
+                        btn.classList.add('opacity-50', 'grayscale');
+                    }
+                });
+            }
+            // Chart Opacity
+            function updateChartOpacity() {
+                const allActive = Object.values(activeFilters.categories).every(v => v === true);
+                chartCircles.forEach(circle => {
+                    const cat = circle.getAttribute('data-category');
+                    if (allActive || activeFilters.categories[cat]) {
+                        circle.style.opacity = '1';
+                    } else {
+                        circle.style.opacity = '0.3';
+                    }
+                });
+            }
+            // Reset
+            resetFiltersBtn.addEventListener('click', () => {
+                activeFilters.search = '';
+                Object.keys(activeFilters.categories).forEach(k => activeFilters.categories[k] = true);
+                searchInput.value = '';
+                updateControlStates();
+                applyFilters();
+                updateChartOpacity();
+            });
+            // Chart Listeners
+            chartLegendBtns.forEach(btn => {
+                btn.addEventListener('click', () => handleChartClick(btn.getAttribute('data-category')));
+            });
+            chartCircles.forEach(circle => {
+                circle.addEventListener('click', (e) => handleChartClick(e.target.getAttribute('data-category')));
+            });
+            // Dropdown Logic
+            addToCalendarBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                calendarDropdown.classList.toggle('active');
+            });
+            document.addEventListener('click', (e) => {
+                if (!addToCalendarBtn.contains(e.target) && !calendarDropdown.contains(e.target)) {
+                    calendarDropdown.classList.remove('active');
+                }
+            });
+            // --- Initialization ---
+            renderCalendar(); 
+            updateChartOpacity();
+            renderUpcomingEvents(); // Initial render of upcoming events
+        });
+    </script>
+</body></html>

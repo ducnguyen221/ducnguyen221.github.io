@@ -1,0 +1,120 @@
+[
+  {
+    "slug": "n8n-vs-knime",
+    "title": "Báo cáo So sánh Chuyên sâu: n8n vs KNIME",
+    "description": "Tài liệu phân tích kiến trúc công nghệ, mô hình vận hành và định hướng ứng dụng n8n vs KNIME trong Ngân hàng, HR & Hệ thống AI Agent.",
+    "categories": [
+      "automation",
+      "ai"
+    ],
+    "path": "content/automation/n8n-vs-knime.html",
+    "thumbnail": "",
+    "lastModified": "2026-05-21",
+    "fileSize": 79836
+  },
+  {
+    "slug": "databricks-genai",
+    "title": "Databricks GenAI Engineer · Study Tool",
+    "description": "Interactive study tool with glossary, flashcards, and evaluation framework for the Databricks Certified Generative AI Engineer Associate certification.",
+    "categories": [
+      "ai",
+      "de",
+      "edtech"
+    ],
+    "path": "content/ai/databricks-genai.html",
+    "thumbnail": "",
+    "lastModified": "2026-05-21",
+    "fileSize": 92644
+  },
+  {
+    "slug": "cai-dat-n8n-desktop-1",
+    "title": "Hướng dẫn Cài đặt n8n chi tiết cho người mới bắt đầu (Non-Tech)",
+    "description": "Hướng dẫn từng bước cài đặt n8n trên máy tính cá nhân bằng Node.js và Docker Desktop chi tiết, trực quan và dễ hiểu dành cho người dùng non-tech.",
+    "categories": [
+      "instruction",
+      "coding",
+      "automation"
+    ],
+    "path": "content/instruction/cai-dat-n8n-desktop-1.html",
+    "thumbnail": "",
+    "lastModified": "2026-05-22",
+    "fileSize": 59324
+  },
+  {
+    "slug": "cai-dat-n8n-desktop",
+    "title": "Hướng dẫn Cài đặt n8n chi tiết cho người mới bắt đầu (Non-Tech)",
+    "description": "Hướng dẫn từng bước cài đặt n8n trên máy tính cá nhân bằng Node.js và Docker Desktop chi tiết, trực quan và dễ hiểu dành cho người dùng non-tech.",
+    "categories": [
+      "instruction",
+      "coding",
+      "automation"
+    ],
+    "path": "content/instruction/cai-dat-n8n-desktop.html",
+    "thumbnail": "",
+    "lastModified": "2026-05-21",
+    "fileSize": 55281
+  },
+  {
+    "slug": "lasoong-loyalty-os",
+    "title": "LaSoong Loyalty OS V1.1 — Interactive Overview",
+    "description": "Interactive visualization: LaSoong Loyalty OS V1.1 — Interactive Overview",
+    "categories": [
+      "strategy"
+    ],
+    "path": "content/strategy/LaSoong_Loyalty_OS.html",
+    "thumbnail": "",
+    "lastModified": "2026-06-04",
+    "fileSize": 31300
+  },
+  {
+    "slug": "powerbi-glossary-domain-knowledge",
+    "title": "Power BI Glossary & Domain Knowledge · Atlas",
+    "description": "Interactive Power BI glossary and PL-300 domain knowledge reference with searchable terms, flashcards, lifecycle framework, and exam areas.",
+    "categories": [
+      "bi",
+      "edtech"
+    ],
+    "path": "content/bi/powerbi-glossary-domain-knowledge.html",
+    "thumbnail": "",
+    "lastModified": "2026-05-21",
+    "fileSize": 140075
+  },
+  {
+    "slug": "prompt-nhu-mot-ban-yeu-cau",
+    "title": "Prompt không chỉ là câu hỏi: viết prompt như một bản yêu cầu · Học cùng Tobi",
+    "description": "Prompt mơ hồ ra sản phẩm mơ hồ, không phải lỗi AI",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/prompt-nhu-mot-ban-yeu-cau.html",
+    "thumbnail": "content/ai/prompt-nhu-mot-ban-yeu-cau.jpg",
+    "lastModified": "2026-06-23",
+    "fileSize": 36630
+  },
+  {
+    "slug": "tu-duy-nguoi-ra-de",
+    "title": "Tư duy &quot;người ra đề&quot; thay vì &quot;người làm bài&quot;: Bạn không cần biết nấu, bạn cần biết gọi đúng món · Học cùng Tobi",
+    "description": "Bạn không cần biết nấu, bạn cần biết gọi đúng món",
+    "categories": [
+      "ai",
+      "bi"
+    ],
+    "path": "content/ai/tu-duy-nguoi-ra-de.html",
+    "thumbnail": "content/ai/tu-duy-nguoi-ra-de.jpg",
+    "lastModified": "2026-06-23",
+    "fileSize": 37374
+  },
+  {
+    "slug": "vibe-coding-thuc-ra-la-gi",
+    "title": "Vibe coding thực ra là gì khi bạn không phải dân code · Học cùng Tobi",
+    "description": "Không phải &#x27;lười học code&#x27; mà là đổi vai: bạn mô tả, AI gõ phím",
+    "categories": [
+      "ai",
+      "coding"
+    ],
+    "path": "content/ai/vibe-coding-thuc-ra-la-gi.html",
+    "thumbnail": "content/ai/vibe-coding-thuc-ra-la-gi.jpg",
+    "lastModified": "2026-06-23",
+    "fileSize": 26003
+  }
+]

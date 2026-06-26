@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agribank - Danh sách nhân sự</title>
+  <style>
+    :root {
+      --brand-red: #AE1C3F;
+      --brand-red-soft: #F7E7EC;
+      --brand-green: #053E2B;
+      --brand-green-soft: #E8F1ED;
+      --brand-gold: #FFDD00;
+      --brand-gold-soft: #FFF8CC;
+      --bg: #F7F7F7;
+      --surface: #FFFFFF;
+      --border: #E5E5E5;
+      --text: #222222;
+      --muted: #666666;
+      --shadow: 0 10px 24px rgba(5, 62, 43, 0.06);
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 8px;
+      --danger-soft: #FDECEF;
+      --danger-border: #F3C2CC;
+      --success-soft: #EEF6F2;
+      --success-border: #C6DFD2;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .container {
+      width: min(1440px, calc(100% - 32px));
+      margin: 24px auto 40px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .header-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 22px 24px;
+      margin-bottom: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 92px;
+      height: 92px;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .title-wrap h1 {
+      margin: 0 0 6px;
+      font-size: 30px;
+      line-height: 1.15;
+      color: var(--brand-red);
+      font-weight: 700;
+    }
+
+    .title-wrap p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 680px;
+    }
+
+    .meta-panel {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .meta-chip {
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .meta-chip strong {
+      color: var(--brand-green);
+      font-weight: 700;
+    }
+
+    .section {
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--brand-green);
+    }
+
+    .section-title span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .kpi-card {
+      padding: 16px 16px 14px;
+      position: relative;
+      overflow: hidden;
+      min-height: 122px;
+    }
+
+    .kpi-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--brand-red);
+    }
+
+    .kpi-card.green::before {
+      background: var(--brand-green);
+    }
+
+    .kpi-card.gold::before {
+      background: var(--brand-gold);
+    }
+
+    .kpi-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .kpi-card.red .kpi-icon {
+      background: var(--brand-red-soft);
+      color: var(--brand-red);
+    }
+
+    .kpi-card.green .kpi-icon {
+      background: var(--brand-green-soft);
+      color: var(--brand-green);
+    }
+
+    .kpi-card.gold .kpi-icon {
+      background: var(--brand-gold-soft);
+      color: #8A7300;
+    }
+
+    .kpi-label {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .kpi-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .kpi-sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .filter-card {
+      padding: 18px;
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr 1fr auto;
+      gap: 14px;
+      align-items: end;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--brand-green);
+    }
+
+    .input, .select, .button {
+      height: 44px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 0 14px;
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .input:focus, .select:focus {
+      border-color: rgba(174, 28, 63, 0.45);
+      box-shadow: 0 0 0 4px rgba(174, 28, 63, 0.08);
+    }
+
+    .button {
+      cursor: pointer;
+      min-width: 120px;
+      font-weight: 700;
+    }
+
+    .button-primary {
+      background: var(--brand-red);
+      color: #fff;
+      border-color: var(--brand-red);
+    }
+
+    .button-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(174, 28, 63, 0.18);
+    }
+
+    .button-secondary {
+      background: #fff;
+      color: var(--brand-green);
+      border-color: rgba(5, 62, 43, 0.2);
+    }
+
+    .button-secondary:hover {
+      background: var(--brand-green-soft);
+    }
+
+    .button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    .filter-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .filter-tag {
+      font-size: 13px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: var(--brand-green-soft);
+      color: var(--brand-green);
+      border: 1px solid var(--success-border);
+    }
+
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .chart-card {
+      padding: 16px 16px 14px;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chart-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .chart-head h3 {
+      margin: 0 0 4px;
+      font-size: 17px;
+      color: var(--text);
+    }
+
+    .chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .chart-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 260px;
+    }
+
+    .chart-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-md);
+      color: var(--muted);
+      background: #fafafa;
+      padding: 20px;
+    }
+
+    .donut-layout {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .donut-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .donut-center-label {
+      font-size: 13px;
+      fill: var(--muted);
+    }
+
+    .donut-center-value {
+      font-size: 24px;
+      font-weight: 700;
+      fill: var(--text);
+    }
+
+    .legend {
+      display: grid;
+      gap: 10px;
+    }
+
+    .legend-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .legend-label {
+      color: var(--text);
+    }
+
+    .legend-value {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .table-card {
+      padding: 16px;
+    }
+
+    .table-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .table-toolbar .note {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .table-wrap {
+      overflow: auto;
+      max-height: 620px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 1120px;
+    }
+
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: #FAFBFC;
+      color: var(--brand-green);
+      font-size: 13px;
+      font-weight: 700;
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    thead th.sortable:hover {
+      background: #F3F5F7;
+    }
+
+    thead th[data-active="true"] {
+      color: var(--brand-red);
+    }
+
+    thead th .sort-indicator {
+      font-size: 11px;
+      margin-left: 6px;
+      color: #999;
+    }
+
+    tbody td {
+      padding: 11px 14px;
+      border-bottom: 1px solid #F0F0F0;
+      font-size: 14px;
+      vertical-align: middle;
+      color: var(--text);
+    }
+
+    tbody tr:nth-child(even) {
+      background: #FCFCFC;
+    }
+
+    tbody tr:hover {
+      background: #FAF3F5;
+    }
+
+    tbody tr.warning-row {
+      background: #FFF8E8;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 66px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1;
+      border: 1px solid transparent;
+    }
+
+    .badge.gender-nam {
+      background: var(--brand-green-soft);
+      color: var(--brand-green);
+      border-color: var(--success-border);
+    }
+
+    .badge.gender-nu {
+      background: var(--brand-red-soft);
+      color: var(--brand-red);
+      border-color: var(--danger-border);
+    }
+
+    .badge.gender-khac {
+      background: var(--brand-gold-soft);
+      color: #7B6800;
+      border-color: #F0E2A8;
+    }
+
+    .badge.leave-low {
+      background: #FFF2D9;
+      color: #9A6200;
+      border-color: #F0D9A7;
+    }
+
+    .badge.leave-ok {
+      background: #EEF6F2;
+      color: var(--brand-green);
+      border-color: var(--success-border);
+    }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .pagination-info {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pagination-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .page-number {
+      min-width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--brand-green);
+      font-weight: 700;
+    }
+
+    .footer {
+      padding: 16px 18px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .footer strong {
+      color: var(--brand-green);
+    }
+
+    @media (max-width: 1200px) {
+      .kpi-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .filter-grid {
+        grid-template-columns: 1.4fr 1fr 1fr auto;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        width: min(100% - 20px, 100%);
+        margin: 14px auto 24px;
+      }
+      .header-card {
+        grid-template-columns: 1fr;
+        justify-items: start;
+      }
+      .meta-panel {
+        justify-content: flex-start;
+      }
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .filter-grid,
+      .charts-grid,
+      .donut-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+      .title-wrap h1 {
+        font-size: 24px;
+      }
+      .brand {
+        align-items: flex-start;
+      }
+      .brand img {
+        width: 72px;
+        height: 72px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="card header-card">
+      <div class="brand">
+        <img src="data:image/webp;base64,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" alt="Agribank Logo" />
+        <div class="title-wrap">
+          <h1>Danh sách nhân sự</h1>
+          <p>Trang trực quan hóa dữ liệu nhân sự phục vụ tra cứu và theo dõi thông tin cơ bản trong nội bộ doanh nghiệp theo phong cách báo cáo gọn, rõ và phù hợp bộ nhận diện Agribank.</p>
+        </div>
+      </div>
+      <div></div>
+      <div class="meta-panel">
+        <div class="meta-chip">Đơn vị hiển thị: <strong>Nhân sự / Ngày phép</strong></div>
+        <div class="meta-chip">Tổng dữ liệu gốc: <strong id="metaTotal">0</strong></div>
+        <div class="meta-chip">Hiển thị sau lọc: <strong id="metaFiltered">0</strong></div>
+        <div class="meta-chip">Thời điểm render: <strong id="metaRendered">-</strong></div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>Tổng quan nhân sự</h2>
+        <span>Các chỉ số cập nhật theo điều kiện lọc hiện tại</span>
+      </div>
+      <div id="kpiGrid" class="kpi-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>Bộ lọc và tra cứu</h2>
+        <span>Tra cứu nhanh theo tên, email, mã nhân sự hoặc tình trạng ngày phép</span>
+      </div>
+      <div class="card filter-card">
+        <div class="filter-grid">
+          <div class="field">
+            <label for="searchInput">Tìm kiếm</label>
+            <input id="searchInput" class="input" type="text" placeholder="Nhập Họ Tên / Email / ID Nhân Sự" />
+          </div>
+          <div class="field">
+            <label for="genderFilter">Giới tính</label>
+            <select id="genderFilter" class="select">
+              <option value="all">Tất cả</option>
+              <option value="Nam">Nam</option>
+              <option value="Nữ">Nữ</option>
+              <option value="Khác">Khác</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="leaveFilter">Ngày phép còn lại</label>
+            <select id="leaveFilter" class="select">
+              <option value="all">Tất cả</option>
+              <option value="low">&lt;= 5 ngày</option>
+              <option value="mid">6 - 10 ngày</option>
+              <option value="high">&gt; 10 ngày</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>&nbsp;</label>
+            <button id="resetBtn" class="button button-secondary" type="button">Đặt lại bộ lọc</button>
+          </div>
+        </div>
+        <div id="filterSummary" class="filter-summary"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>Biểu đồ trực quan</h2>
+        <span>Cơ cấu giới tính, nhóm tuổi, thâm niên và trạng thái ngày phép</span>
+      </div>
+      <div class="charts-grid">
+        <div class="card chart-card">
+          <div class="chart-head">
+            <div>
+              <h3>Cơ cấu giới tính</h3>
+              <p>Biểu đồ doughnut thể hiện phân bổ Nam / Nữ / Khác</p>
+            </div>
+          </div>
+          <div id="genderChart" class="chart-body"></div>
+        </div>
+
+        <div class="card chart-card">
+          <div class="chart-head">
+            <div>
+              <h3>Phân bố theo nhóm tuổi</h3>
+              <p>Tự động tính tuổi từ ngày sinh đến thời điểm hiện tại</p>
+            </div>
+          </div>
+          <div id="ageChart" class="chart-body"></div>
+        </div>
+
+        <div class="card chart-card">
+          <div class="chart-head">
+            <div>
+              <h3>Phân bố theo thâm niên làm việc</h3>
+              <p>Tự động tính thâm niên từ ngày vào làm đến hiện tại</p>
+            </div>
+          </div>
+          <div id="tenureChart" class="chart-body"></div>
+        </div>
+
+        <div class="card chart-card">
+          <div class="chart-head">
+            <div>
+              <h3>Tổng quan ngày phép</h3>
+              <p>So sánh tổng ngày phép năm, đã sử dụng và còn lại</p>
+            </div>
+          </div>
+          <div id="leaveChart" class="chart-body"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>Bảng dữ liệu chi tiết</h2>
+        <span>Click vào tiêu đề cột để sắp xếp dữ liệu</span>
+      </div>
+      <div class="card table-card">
+        <div class="table-toolbar">
+          <div class="note">Nhân sự có <strong>ngày phép còn lại &lt;= 5</strong> sẽ được highlight nhẹ để thuận tiện theo dõi.</div>
+          <div class="note" id="sortStatus">Đang sắp xếp: <strong>Họ Tên (A → Z)</strong></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr id="tableHeadRow"></tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <div class="pagination-info" id="paginationInfo">-</div>
+          <div class="pagination-actions">
+            <button id="prevPageBtn" class="button button-secondary" type="button">Trang trước</button>
+            <div class="page-number" id="pageNumber">1</div>
+            <button id="nextPageBtn" class="button button-primary" type="button">Trang sau</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="card footer">
+      Dữ liệu phục vụ mục đích <strong>tra cứu và quản lý nội bộ</strong>. Trang HTML hoạt động độc lập, dữ liệu đã được ánh xạ sẵn từ file Excel và tối ưu cho việc demo nhanh trên trình duyệt.
+    </footer>
+  </div>
+
+  <script>
+    const RAW_DATA = [{"ID Nhân Sự": "NV0001", "Email": "duc.nguyen.quang@kpim.vn", "Họ Tên": "Nguyễn Quang Đức", "Giới Tính": "Nam", "Ngày Sinh": "1994-01-22", "Ngày Vào Làm": "2024-10-07", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 8, "Ngày phép còn lại": 10}, {"ID Nhân Sự": "NV0002", "Email": "phuc.pham.duc@kpim.vn", "Họ Tên": "Phạm Đức Phúc", "Giới Tính": "Nam", "Ngày Sinh": "2003-12-21", "Ngày Vào Làm": "2020-10-13", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 7, "Ngày phép còn lại": 11}, {"ID Nhân Sự": "NV0003", "Email": "hai.nguyen.hoang@kpim.vn", "Họ Tên": "Nguyễn Hoàng Hải", "Giới Tính": "Nam", "Ngày Sinh": "1994-01-25", "Ngày Vào Làm": "2023-06-15", "Số ngày phép năm": 15, "Ngày phép đã sử dụng": 5, "Ngày phép còn lại": 10}, {"ID Nhân Sự": "NV0004", "Email": "phuong.le.thu@kpim.vn", "Họ Tên": "Lê Thu Phương", "Giới Tính": "Nữ", "Ngày Sinh": "1988-09-27", "Ngày Vào Làm": "2020-12-09", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 5, "Ngày phép còn lại": 13}, {"ID Nhân Sự": "NV0005", "Email": "linh.ngo.nhat@kpim.vn", "Họ Tên": "Ngô Nhật Linh", "Giới Tính": "Nam", "Ngày Sinh": "1975-11-01", "Ngày Vào Làm": "2021-04-02", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 5, "Ngày phép còn lại": 13}, {"ID Nhân Sự": "NV0006", "Email": "long.tran.minh@kpim.vn", "Họ Tên": "Trần Minh Long", "Giới Tính": "Nam", "Ngày Sinh": "1984-06-01", "Ngày Vào Làm": "2023-02-05", "Số ngày phép năm": 15, "Ngày phép đã sử dụng": 3, "Ngày phép còn lại": 12}, {"ID Nhân Sự": "NV0007", "Email": "vy.do.thu@kpim.vn", "Họ Tên": "Đỗ Thu Vy", "Giới Tính": "Nam", "Ngày Sinh": "1991-04-24", "Ngày Vào Làm": "2021-07-21", "Số ngày phép năm": 15, "Ngày phép đã sử dụng": 2, "Ngày phép còn lại": 13}, {"ID Nhân Sự": "NV0008", "Email": "phuong.nguyen.ngoc@kpim.vn", "Họ Tên": "Nguyễn Ngọc Phương", "Giới Tính": "Nam", "Ngày Sinh": "2002-10-21", "Ngày Vào Làm": "2024-02-02", "Số ngày phép năm": 16, "Ngày phép đã sử dụng": 5, "Ngày phép còn lại": 11}, {"ID Nhân Sự": "NV0009", "Email": "duc.dang.bao@kpim.vn", "Họ Tên": "Đặng Bảo Đức", "Giới Tính": "Nam", "Ngày Sinh": "1977-04-19", "Ngày Vào Làm": "2021-01-20", "Số ngày phép năm": 16, "Ngày phép đã sử dụng": 10, "Ngày phép còn lại": 6}, {"ID Nhân Sự": "NV0010", "Email": "thao.nguyen.huu@kpim.vn", "Họ Tên": "Nguyễn Hữu Thảo", "Giới Tính": "Nữ", "Ngày Sinh": "1984-04-27", "Ngày Vào Làm": "2024-04-24", "Số ngày phép năm": 16, "Ngày phép đã sử dụng": 5, "Ngày phép còn lại": 11}, {"ID Nhân Sự": "NV0011", "Email": "anh.vo.nhat@kpim.vn", "Họ Tên": "Võ Nhật Anh", "Giới Tính": "Nam", "Ngày Sinh": "1991-05-08", "Ngày Vào Làm": "2023-05-14", "Số ngày phép năm": 19, "Ngày phép đã sử dụng": 10, "Ngày phép còn lại": 9}, {"ID Nhân Sự": "NV0012", "Email": "phuong.phan.huu@kpim.vn", "Họ Tên": "Phan Hữu Phương", "Giới Tính": "Nữ", "Ngày Sinh": "2002-10-20", "Ngày Vào Làm": "2020-05-07", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 4, "Ngày phép còn lại": 14}, {"ID Nhân Sự": "NV0013", "Email": "hung.le.tuan@kpim.vn", "Họ Tên": "Lê Tuấn Hùng", "Giới Tính": "Nam", "Ngày Sinh": "1986-09-19", "Ngày Vào Làm": "2021-02-12", "Số ngày phép năm": 17, "Ngày phép đã sử dụng": 0, "Ngày phép còn lại": 17}, {"ID Nhân Sự": "NV0014", "Email": "ngan.hoang.hong@kpim.vn", "Họ Tên": "Hoàng Hồng Ngân", "Giới Tính": "Nam", "Ngày Sinh": "1995-02-16", "Ngày Vào Làm": "2020-12-10", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 1, "Ngày phép còn lại": 17}, {"ID Nhân Sự": "NV0015", "Email": "long.dinh.van@kpim.vn", "Họ Tên": "Đinh Văn Long", "Giới Tính": "Nữ", "Ngày Sinh": "1985-06-03", "Ngày Vào Làm": "2023-02-28", "Số ngày phép năm": 15, "Ngày phép đã sử dụng": 0, "Ngày phép còn lại": 15}, {"ID Nhân Sự": "NV0016", "Email": "trang.dang.bao@kpim.vn", "Họ Tên": "Đặng Bảo Trang", "Giới Tính": "Nữ", "Ngày Sinh": "1977-02-21", "Ngày Vào Làm": "2020-05-14", "Số ngày phép năm": 20, "Ngày phép đã sử dụng": 4, "Ngày phép còn lại": 16}, {"ID Nhân Sự": "NV0017", "Email": "ngan.hoang.quang@kpim.vn", "Họ Tên": "Hoàng Quang Ngân", "Giới Tính": "Nam", "Ngày Sinh": "1994-02-16", "Ngày Vào Làm": "2020-04-23", "Số ngày phép năm": 15, "Ngày phép đã sử dụng": 9, "Ngày phép còn lại": 6}, {"ID Nhân Sự": "NV0018", "Email": "long.tran.hong@kpim.vn", "Họ Tên": "Trần Hồng Long", "Giới Tính": "Nữ", "Ngày Sinh": "1999-06-22", "Ngày Vào Làm": "2023-08-08", "Số ngày phép năm": 17, "Ngày phép đã sử dụng": 9, "Ngày phép còn lại": 8}, {"ID Nhân Sự": "NV0019", "Email": "anh.dinh.hai@kpim.vn", "Họ Tên": "Đinh Hải Anh", "Giới Tính": "Nam", "Ngày Sinh": "1979-08-12", "Ngày Vào Làm": "2020-12-03", "Số ngày phép năm": 20, "Ngày phép đã sử dụng": 3, "Ngày phép còn lại": 17}, {"ID Nhân Sự": "NV0020", "Email": "yen.dinh.ngoc@kpim.vn", "Họ Tên": "Đinh Ngọc Yến", "Giới Tính": "Nam", "Ngày Sinh": "1991-08-22", "Ngày Vào Làm": "2022-12-27", "Số ngày phép năm": 17, "Ngày phép đã sử dụng": 8, "Ngày phép còn lại": 9}, {"ID Nhân Sự": "NV0021", "Email": "linh.do.quang@kpim.vn", "Họ Tên": "Đỗ Quang Linh", "Giới Tính": "Nữ", "Ngày Sinh": "1983-10-12", "Ngày Vào Làm": "2022-11-26", "Số ngày phép năm": 19, "Ngày phép đã sử dụng": 7, "Ngày phép còn lại": 12}, {"ID Nhân Sự": "NV0022", "Email": "my.ngo.huu@kpim.vn", "Họ Tên": "Ngô Hữu My", "Giới Tính": "Nữ", "Ngày Sinh": "1995-02-15", "Ngày Vào Làm": "2020-11-18", "Số ngày phép năm": 15, "Ngày phép đã sử dụng": 4, "Ngày phép còn lại": 11}, {"ID Nhân Sự": "NV0023", "Email": "linh.duong.ngoc@kpim.vn", "Họ Tên": "Dương Ngọc Linh", "Giới Tính": "Nữ", "Ngày Sinh": "1992-12-02", "Ngày Vào Làm": "2021-04-09", "Số ngày phép năm": 16, "Ngày phép đã sử dụng": 5, "Ngày phép còn lại": 11}, {"ID Nhân Sự": "NV0024", "Email": "quyen.vo.bao@kpim.vn", "Họ Tên": "Võ Bảo Quyên", "Giới Tính": "Nam", "Ngày Sinh": "1989-04-21", "Ngày Vào Làm": "2020-07-18", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 2, "Ngày phép còn lại": 16}, {"ID Nhân Sự": "NV0025", "Email": "nam.tran.hong@kpim.vn", "Họ Tên": "Trần Hồng Nam", "Giới Tính": "Nam", "Ngày Sinh": "2003-07-03", "Ngày Vào Làm": "2022-09-26", "Số ngày phép năm": 19, "Ngày phép đã sử dụng": 8, "Ngày phép còn lại": 11}, {"ID Nhân Sự": "NV0026", "Email": "vy.duong.thu@kpim.vn", "Họ Tên": "Dương Thu Vy", "Giới Tính": "Nam", "Ngày Sinh": "1983-08-01", "Ngày Vào Làm": "2021-02-14", "Số ngày phép năm": 16, "Ngày phép đã sử dụng": 2, "Ngày phép còn lại": 14}, {"ID Nhân Sự": "NV0027", "Email": "my.dang.hong@kpim.vn", "Họ Tên": "Đặng Hồng My", "Giới Tính": "Nữ", "Ngày Sinh": "1977-04-15", "Ngày Vào Làm": "2024-09-10", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 3, "Ngày phép còn lại": 15}, {"ID Nhân Sự": "NV0028", "Email": "my.bui.thi@kpim.vn", "Họ Tên": "Bùi Thị My", "Giới Tính": "Nam", "Ngày Sinh": "2002-03-18", "Ngày Vào Làm": "2024-05-19", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 4, "Ngày phép còn lại": 14}, {"ID Nhân Sự": "NV0029", "Email": "nam.le.van@kpim.vn", "Họ Tên": "Lê Văn Nam", "Giới Tính": "Nữ", "Ngày Sinh": "1992-10-04", "Ngày Vào Làm": "2023-02-23", "Số ngày phép năm": 15, "Ngày phép đã sử dụng": 0, "Ngày phép còn lại": 15}, {"ID Nhân Sự": "NV0030", "Email": "giang.tran.tuan@kpim.vn", "Họ Tên": "Trần Tuấn Giang", "Giới Tính": "Nam", "Ngày Sinh": "2003-08-17", "Ngày Vào Làm": "2022-02-07", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 0, "Ngày phép còn lại": 18}, {"ID Nhân Sự": "NV0031", "Email": "trang.ngo.thi@kpim.vn", "Họ Tên": "Ngô Thị Trang", "Giới Tính": "Nữ", "Ngày Sinh": "1985-12-12", "Ngày Vào Làm": "2021-10-16", "Số ngày phép năm": 20, "Ngày phép đã sử dụng": 7, "Ngày phép còn lại": 13}, {"ID Nhân Sự": "NV0032", "Email": "thao.le.nhat@kpim.vn", "Họ Tên": "Lê Nhật Thảo", "Giới Tính": "Nữ", "Ngày Sinh": "1994-03-18", "Ngày Vào Làm": "2021-11-18", "Số ngày phép năm": 17, "Ngày phép đã sử dụng": 10, "Ngày phép còn lại": 7}, {"ID Nhân Sự": "NV0033", "Email": "khoa.le.ngoc@kpim.vn", "Họ Tên": "Lê Ngọc Khoa", "Giới Tính": "Nữ", "Ngày Sinh": "2003-04-07", "Ngày Vào Làm": "2021-02-05", "Số ngày phép năm": 16, "Ngày phép đã sử dụng": 5, "Ngày phép còn lại": 11}, {"ID Nhân Sự": "NV0034", "Email": "duc.vu.anh@kpim.vn", "Họ Tên": "Vũ Anh Đức", "Giới Tính": "Nữ", "Ngày Sinh": "1979-04-13", "Ngày Vào Làm": "2020-02-07", "Số ngày phép năm": 16, "Ngày phép đã sử dụng": 7, "Ngày phép còn lại": 9}, {"ID Nhân Sự": "NV0035", "Email": "hung.dinh.hong@kpim.vn", "Họ Tên": "Đinh Hồng Hùng", "Giới Tính": "Nữ", "Ngày Sinh": "1990-02-01", "Ngày Vào Làm": "2020-09-20", "Số ngày phép năm": 15, "Ngày phép đã sử dụng": 7, "Ngày phép còn lại": 8}, {"ID Nhân Sự": "NV0036", "Email": "tuan.vu.anh@kpim.vn", "Họ Tên": "Vũ Anh Tuấn", "Giới Tính": "Khác", "Ngày Sinh": "1996-02-19", "Ngày Vào Làm": "2020-03-22", "Số ngày phép năm": 19, "Ngày phép đã sử dụng": 7, "Ngày phép còn lại": 12}, {"ID Nhân Sự": "NV0037", "Email": "hoa.ngo.huu@kpim.vn", "Họ Tên": "Ngô Hữu Hoa", "Giới Tính": "Nam", "Ngày Sinh": "1995-12-02", "Ngày Vào Làm": "2021-03-14", "Số ngày phép năm": 16, "Ngày phép đã sử dụng": 6, "Ngày phép còn lại": 10}, {"ID Nhân Sự": "NV0038", "Email": "hoa.bui.anh@kpim.vn", "Họ Tên": "Bùi Anh Hoa", "Giới Tính": "Nam", "Ngày Sinh": "1977-12-28", "Ngày Vào Làm": "2023-10-20", "Số ngày phép năm": 19, "Ngày phép đã sử dụng": 0, "Ngày phép còn lại": 19}, {"ID Nhân Sự": "NV0039", "Email": "duc.dinh.anh@kpim.vn", "Họ Tên": "Đinh Anh Đức", "Giới Tính": "Nam", "Ngày Sinh": "1985-09-23", "Ngày Vào Làm": "2022-07-25", "Số ngày phép năm": 20, "Ngày phép đã sử dụng": 2, "Ngày phép còn lại": 18}, {"ID Nhân Sự": "NV0040", "Email": "hieu.dang.bao@kpim.vn", "Họ Tên": "Đặng Bảo Hiếu", "Giới Tính": "Khác", "Ngày Sinh": "2003-10-02", "Ngày Vào Làm": "2021-05-22", "Số ngày phép năm": 20, "Ngày phép đã sử dụng": 7, "Ngày phép còn lại": 13}, {"ID Nhân Sự": "NV0041", "Email": "hieu.do.ngoc@kpim.vn", "Họ Tên": "Đỗ Ngọc Hiếu", "Giới Tính": "Nữ", "Ngày Sinh": "1999-07-19", "Ngày Vào Làm": "2020-02-20", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 5, "Ngày phép còn lại": 13}, {"ID Nhân Sự": "NV0042", "Email": "khoa.vu.hai@kpim.vn", "Họ Tên": "Vũ Hải Khoa", "Giới Tính": "Nam", "Ngày Sinh": "1983-05-11", "Ngày Vào Làm": "2024-09-17", "Số ngày phép năm": 19, "Ngày phép đã sử dụng": 0, "Ngày phép còn lại": 19}, {"ID Nhân Sự": "NV0043", "Email": "hung.truong.thu@kpim.vn", "Họ Tên": "Trương Thu Hùng", "Giới Tính": "Nam", "Ngày Sinh": "1980-08-18", "Ngày Vào Làm": "2024-10-02", "Số ngày phép năm": 17, "Ngày phép đã sử dụng": 1, "Ngày phép còn lại": 16}, {"ID Nhân Sự": "NV0044", "Email": "quyen.vo.hong@kpim.vn", "Họ Tên": "Võ Hồng Quyên", "Giới Tính": "Nam", "Ngày Sinh": "1983-09-10", "Ngày Vào Làm": "2022-01-01", "Số ngày phép năm": 20, "Ngày phép đã sử dụng": 1, "Ngày phép còn lại": 19}, {"ID Nhân Sự": "NV0045", "Email": "vy.phan.quang@kpim.vn", "Họ Tên": "Phan Quang Vy", "Giới Tính": "Nữ", "Ngày Sinh": "1976-10-24", "Ngày Vào Làm": "2022-02-26", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 8, "Ngày phép còn lại": 10}, {"ID Nhân Sự": "NV0046", "Email": "hung.nguyen.nhat@kpim.vn", "Họ Tên": "Nguyễn Nhật Hùng", "Giới Tính": "Nam", "Ngày Sinh": "2001-04-20", "Ngày Vào Làm": "2020-01-20", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 9, "Ngày phép còn lại": 9}, {"ID Nhân Sự": "NV0047", "Email": "son.pham.bao@kpim.vn", "Họ Tên": "Phạm Bảo Sơn", "Giới Tính": "Nam", "Ngày Sinh": "1988-08-20", "Ngày Vào Làm": "2022-11-19", "Số ngày phép năm": 15, "Ngày phép đã sử dụng": 6, "Ngày phép còn lại": 9}, {"ID Nhân Sự": "NV0048", "Email": "linh.nguyen.nhat@kpim.vn", "Họ Tên": "Nguyễn Nhật Linh", "Giới Tính": "Nữ", "Ngày Sinh": "1994-06-09", "Ngày Vào Làm": "2022-10-22", "Số ngày phép năm": 15, "Ngày phép đã sử dụng": 10, "Ngày phép còn lại": 5}, {"ID Nhân Sự": "NV0049", "Email": "trang.bui.ngoc@kpim.vn", "Họ Tên": "Bùi Ngọc Trang", "Giới Tính": "Nữ", "Ngày Sinh": "1976-11-02", "Ngày Vào Làm": "2020-05-09", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 6, "Ngày phép còn lại": 12}, {"ID Nhân Sự": "NV0050", "Email": "hung.pham.khanh@kpim.vn", "Họ Tên": "Phạm Khánh Hùng", "Giới Tính": "Nữ", "Ngày Sinh": "1980-09-08", "Ngày Vào Làm": "2022-08-16", "Số ngày phép năm": 15, "Ngày phép đã sử dụng": 1, "Ngày phép còn lại": 14}, {"ID Nhân Sự": "NV0051", "Email": "vy.phan.huu@kpim.vn", "Họ Tên": "Phan Hữu Vy", "Giới Tính": "Nữ", "Ngày Sinh": "1999-04-15", "Ngày Vào Làm": "2023-12-09", "Số ngày phép năm": 15, "Ngày phép đã sử dụng": 3, "Ngày phép còn lại": 12}, {"ID Nhân Sự": "NV0052", "Email": "nam.le.anh@kpim.vn", "Họ Tên": "Lê Anh Nam", "Giới Tính": "Nam", "Ngày Sinh": "1986-10-04", "Ngày Vào Làm": "2023-06-03", "Số ngày phép năm": 19, "Ngày phép đã sử dụng": 5, "Ngày phép còn lại": 14}, {"ID Nhân Sự": "NV0053", "Email": "hoa.do.ngoc@kpim.vn", "Họ Tên": "Đỗ Ngọc Hoa", "Giới Tính": "Nam", "Ngày Sinh": "1984-08-24", "Ngày Vào Làm": "2022-05-05", "Số ngày phép năm": 20, "Ngày phép đã sử dụng": 2, "Ngày phép còn lại": 18}, {"ID Nhân Sự": "NV0054", "Email": "vy.pham.thanh@kpim.vn", "Họ Tên": "Phạm Thành Vy", "Giới Tính": "Nam", "Ngày Sinh": "2000-05-15", "Ngày Vào Làm": "2022-04-13", "Số ngày phép năm": 17, "Ngày phép đã sử dụng": 0, "Ngày phép còn lại": 17}, {"ID Nhân Sự": "NV0055", "Email": "hung.phan.nhat@kpim.vn", "Họ Tên": "Phan Nhật Hùng", "Giới Tính": "Nữ", "Ngày Sinh": "2000-04-24", "Ngày Vào Làm": "2024-06-26", "Số ngày phép năm": 16, "Ngày phép đã sử dụng": 3, "Ngày phép còn lại": 13}, {"ID Nhân Sự": "NV0056", "Email": "trang.vo.tuan@kpim.vn", "Họ Tên": "Võ Tuấn Trang", "Giới Tính": "Nữ", "Ngày Sinh": "1992-03-19", "Ngày Vào Làm": "2022-01-21", "Số ngày phép năm": 20, "Ngày phép đã sử dụng": 2, "Ngày phép còn lại": 18}, {"ID Nhân Sự": "NV0057", "Email": "ngan.tran.quang@kpim.vn", "Họ Tên": "Trần Quang Ngân", "Giới Tính": "Nữ", "Ngày Sinh": "1977-01-21", "Ngày Vào Làm": "2021-02-24", "Số ngày phép năm": 16, "Ngày phép đã sử dụng": 4, "Ngày phép còn lại": 12}, {"ID Nhân Sự": "NV0058", "Email": "tuan.nguyen.hong@kpim.vn", "Họ Tên": "Nguyễn Hồng Tuấn", "Giới Tính": "Nam", "Ngày Sinh": "2000-06-22", "Ngày Vào Làm": "2021-08-16", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 3, "Ngày phép còn lại": 15}, {"ID Nhân Sự": "NV0059", "Email": "my.vu.huu@kpim.vn", "Họ Tên": "Vũ Hữu My", "Giới Tính": "Nữ", "Ngày Sinh": "1995-01-17", "Ngày Vào Làm": "2022-12-01", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 2, "Ngày phép còn lại": 16}, {"ID Nhân Sự": "NV0060", "Email": "ngan.vu.van@kpim.vn", "Họ Tên": "Vũ Văn Ngân", "Giới Tính": "Nam", "Ngày Sinh": "1987-07-17", "Ngày Vào Làm": "2022-05-02", "Số ngày phép năm": 18, "Ngày phép đã sử dụng": 10, "Ngày phép còn lại": 8}];
+
+    const COLORS = {
+      red: "#AE1C3F",
+      green: "#053E2B",
+      gold: "#FFDD00",
+      goldText: "#7B6800",
+      gray: "#D8D8D8",
+      softGrid: "#ECECEC",
+      text: "#222222",
+      muted: "#666666"
+    };
+
+    const PAGE_SIZE = 10;
+
+    const state = {
+      search: "",
+      gender: "all",
+      leaveRange: "all",
+      sortKey: "name",
+      sortDir: "asc",
+      page: 1
+    };
+
+    const columns = [
+      { key: "id", label: "ID Nhân Sự", type: "text", className: "" },
+      { key: "name", label: "Họ Tên", type: "text", className: "" },
+      { key: "email", label: "Email", type: "text", className: "" },
+      { key: "gender", label: "Giới Tính", type: "text", className: "text-center" },
+      { key: "birthDate", label: "Ngày Sinh", type: "date", className: "text-center" },
+      { key: "age", label: "Tuổi", type: "number", className: "text-center" },
+      { key: "joinDate", label: "Ngày Vào Làm", type: "date", className: "text-center" },
+      { key: "tenure", label: "Thâm Niên", type: "number", className: "text-center" },
+      { key: "annualLeave", label: "Số ngày phép năm", type: "number", className: "text-right" },
+      { key: "usedLeave", label: "Ngày phép đã sử dụng", type: "number", className: "text-right" },
+      { key: "remainingLeave", label: "Ngày phép còn lại", type: "number", className: "text-right" }
+    ];
+
+    function parseISODate(value) {
+      if (!value) return null;
+      const parts = String(value).split("-");
+      if (parts.length !== 3) return null;
+      const year = Number(parts[0]);
+      const month = Number(parts[1]) - 1;
+      const day = Number(parts[2]);
+      const date = new Date(year, month, day);
+      return Number.isNaN(date.getTime()) ? null : date;
+    }
+
+    function normalizeText(value) {
+      return String(value ?? "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+    }
+
+    function safeNumber(value) {
+      const num = Number(value);
+      return Number.isFinite(num) ? num : 0;
+    }
+
+    function round1(value) {
+      return Math.round(value * 10) / 10;
+    }
+
+    function calcAge(dateStr) {
+      const date = parseISODate(dateStr);
+      if (!date) return null;
+      const today = new Date();
+      let age = today.getFullYear() - date.getFullYear();
+      const monthDiff = today.getMonth() - date.getMonth();
+      const dayDiff = today.getDate() - date.getDate();
+      if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) age--;
+      return age;
+    }
+
+    function calcTenure(dateStr) {
+      const date = parseISODate(dateStr);
+      if (!date) return null;
+      const today = new Date();
+      const diffMs = today.getTime() - date.getTime();
+      const years = diffMs / (365.25 * 24 * 60 * 60 * 1000);
+      return round1(Math.max(0, years));
+    }
+
+    function formatDate(dateStr) {
+      const date = parseISODate(dateStr);
+      if (!date) return "-";
+      const dd = String(date.getDate()).padStart(2, "0");
+      const mm = String(date.getMonth() + 1).padStart(2, "0");
+      const yyyy = date.getFullYear();
+      return `${dd}/${mm}/${yyyy}`;
+    }
+
+    function formatDateTime(date = new Date()) {
+      const dd = String(date.getDate()).padStart(2, "0");
+      const mm = String(date.getMonth() + 1).padStart(2, "0");
+      const yyyy = date.getFullYear();
+      const hh = String(date.getHours()).padStart(2, "0");
+      const min = String(date.getMinutes()).padStart(2, "0");
+      return `${dd}/${mm}/${yyyy} ${hh}:${min}`;
+    }
+
+    function ageBucket(age) {
+      if (age == null) return "Không xác định";
+      if (age < 25) return "Dưới 25";
+      if (age <= 34) return "25–34";
+      if (age <= 44) return "35–44";
+      return "45+";
+    }
+
+    function tenureBucket(years) {
+      if (years == null) return "Không xác định";
+      if (years < 1) return "Dưới 1 năm";
+      if (years <= 3) return "1–3 năm";
+      if (years <= 5) return "3–5 năm";
+      return "Trên 5 năm";
+    }
+
+    function genderLabel(value) {
+      const normalized = String(value || "").trim();
+      if (normalized === "Nam") return "Nam";
+      if (normalized === "Nữ" || normalized === "Nu") return "Nữ";
+      return "Khác";
+    }
+
+    function enrichRecord(record) {
+      const age = calcAge(record["Ngày Sinh"]);
+      const tenure = calcTenure(record["Ngày Vào Làm"]);
+      return {
+        id: record["ID Nhân Sự"] || "-",
+        email: record["Email"] || "-",
+        name: record["Họ Tên"] || "-",
+        gender: genderLabel(record["Giới Tính"]),
+        birthDate: record["Ngày Sinh"] || "",
+        joinDate: record["Ngày Vào Làm"] || "",
+        age,
+        tenure,
+        ageGroup: ageBucket(age),
+        tenureGroup: tenureBucket(tenure),
+        annualLeave: safeNumber(record["Số ngày phép năm"]),
+        usedLeave: safeNumber(record["Ngày phép đã sử dụng"]),
+        remainingLeave: safeNumber(record["Ngày phép còn lại"])
+      };
+    }
+
+    const ALL_RECORDS = RAW_DATA.map(enrichRecord);
+
+    function sumBy(records, key) {
+      return records.reduce((sum, item) => sum + safeNumber(item[key]), 0);
+    }
+
+    function countBy(records, predicate) {
+      return records.reduce((sum, item) => sum + (predicate(item) ? 1 : 0), 0);
+    }
+
+    function applyFilters(records) {
+      const keyword = normalizeText(state.search);
+      return records.filter((item) => {
+        const matchesSearch = !keyword || [
+          item.id,
+          item.name,
+          item.email
+        ].some((value) => normalizeText(value).includes(keyword));
+
+        const matchesGender = state.gender === "all" || item.gender === state.gender;
+
+        let matchesLeave = true;
+        if (state.leaveRange === "low") {
+          matchesLeave = item.remainingLeave <= 5;
+        } else if (state.leaveRange === "mid") {
+          matchesLeave = item.remainingLeave >= 6 && item.remainingLeave <= 10;
+        } else if (state.leaveRange === "high") {
+          matchesLeave = item.remainingLeave > 10;
+        }
+
+        return matchesSearch && matchesGender && matchesLeave;
+      });
+    }
+
+    function compareValues(a, b, type) {
+      if (type === "number") {
+        return safeNumber(a) - safeNumber(b);
+      }
+      if (type === "date") {
+        const da = parseISODate(a);
+        const db = parseISODate(b);
+        const ta = da ? da.getTime() : 0;
+        const tb = db ? db.getTime() : 0;
+        return ta - tb;
+      }
+      return String(a ?? "").localeCompare(String(b ?? ""), "vi", { sensitivity: "base" });
+    }
+
+    function sortRecords(records) {
+      const col = columns.find((item) => item.key === state.sortKey) || columns[1];
+      const direction = state.sortDir === "asc" ? 1 : -1;
+      return [...records].sort((left, right) => direction * compareValues(left[col.key], right[col.key], col.type));
+    }
+
+    function paginate(records) {
+      const totalPages = Math.max(1, Math.ceil(records.length / PAGE_SIZE));
+      if (state.page > totalPages) state.page = totalPages;
+      const start = (state.page - 1) * PAGE_SIZE;
+      return {
+        totalPages,
+        items: records.slice(start, start + PAGE_SIZE),
+        startIndex: records.length ? start + 1 : 0,
+        endIndex: Math.min(start + PAGE_SIZE, records.length)
+      };
+    }
+
+    function getSummary(records) {
+      const total = records.length;
+      const male = countBy(records, (r) => r.gender === "Nam");
+      const female = countBy(records, (r) => r.gender === "Nữ");
+      const other = countBy(records, (r) => r.gender === "Khác");
+      const annual = sumBy(records, "annualLeave");
+      const remaining = sumBy(records, "remainingLeave");
+      const lowLeave = countBy(records, (r) => r.remainingLeave <= 5);
+      return { total, male, female, other, annual, remaining, lowLeave };
+    }
+
+    function renderKpis(records) {
+      const summary = getSummary(records);
+      const cards = [
+        { tone: "red", icon: "👥", label: "Tổng số nhân sự", value: summary.total, sub: "Số lượng sau lọc hiện tại" },
+        { tone: "green", icon: "♂", label: "Số nhân sự Nam", value: summary.male, sub: `Chiếm ${summary.total ? Math.round(summary.male / summary.total * 100) : 0}%` },
+        { tone: "red", icon: "♀", label: "Số nhân sự Nữ", value: summary.female, sub: `Chiếm ${summary.total ? Math.round(summary.female / summary.total * 100) : 0}%` },
+        { tone: "gold", icon: "◎", label: "Giới tính khác", value: summary.other, sub: "Theo dữ liệu hồ sơ hiện có" },
+        { tone: "green", icon: "📅", label: "Tổng ngày phép năm", value: summary.annual, sub: "Tổng hạn mức phép trong tập hiển thị" },
+        { tone: "gold", icon: "✓", label: "Tổng ngày phép còn lại", value: summary.remaining, sub: `${summary.lowLeave} nhân sự còn <= 5 ngày phép` }
+      ];
+
+      const html = cards.map((card) => `
+        <div class="card kpi-card ${card.tone}">
+          <div class="kpi-icon">${card.icon}</div>
+          <div class="kpi-label">${card.label}</div>
+          <div class="kpi-value">${formatInteger(card.value)}</div>
+          <div class="kpi-sub">${card.sub}</div>
+        </div>
+      `).join("");
+
+      document.getElementById("kpiGrid").innerHTML = html;
+    }
+
+    function formatInteger(value) {
+      return new Intl.NumberFormat("vi-VN").format(safeNumber(value));
+    }
+
+    function formatDecimal(value) {
+      if (value == null || Number.isNaN(value)) return "-";
+      return new Intl.NumberFormat("vi-VN", {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+      }).format(value);
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function renderEmpty(targetId, message) {
+      document.getElementById(targetId).innerHTML = `<div class="chart-placeholder">${escapeHtml(message)}</div>`;
+    }
+
+    function describeArc(cx, cy, radius, startAngle, endAngle) {
+      const start = polarToCartesian(cx, cy, radius, endAngle);
+      const end = polarToCartesian(cx, cy, radius, startAngle);
+      const largeArcFlag = endAngle - startAngle <= 180 ? 0 : 1;
+      return [
+        "M", start.x, start.y,
+        "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
+      ].join(" ");
+    }
+
+    function polarToCartesian(cx, cy, radius, angleInDegrees) {
+      const angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
+      return {
+        x: cx + (radius * Math.cos(angleInRadians)),
+        y: cy + (radius * Math.sin(angleInRadians))
+      };
+    }
+
+    function renderDonutChart(targetId, segments, total) {
+      const activeSegments = segments.filter((segment) => segment.value > 0);
+      if (!total || activeSegments.length === 0) {
+        renderEmpty(targetId, "Không có dữ liệu phù hợp để hiển thị biểu đồ.");
+        return;
+      }
+
+      let startAngle = 0;
+      const paths = activeSegments.map((segment) => {
+        const angle = (segment.value / total) * 360;
+        const endAngle = startAngle + angle;
+        const path = describeArc(100, 100, 62, startAngle, endAngle);
+        const result = `<path d="${path}" fill="none" stroke="${segment.color}" stroke-width="24" stroke-linecap="butt"></path>`;
+        startAngle = endAngle;
+        return result;
+      }).join("");
+
+      const legend = activeSegments.map((segment) => {
+        const pct = total ? Math.round((segment.value / total) * 100) : 0;
+        return `
+          <div class="legend-item">
+            <span class="legend-dot" style="background:${segment.color};"></span>
+            <span class="legend-label">${escapeHtml(segment.label)}</span>
+            <span class="legend-value">${formatInteger(segment.value)} (${pct}%)</span>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById(targetId).innerHTML = `
+        <div class="donut-layout">
+          <div class="donut-wrap">
+            <svg viewBox="0 0 200 200" width="220" height="220" aria-label="Biểu đồ doughnut giới tính">
+              <circle cx="100" cy="100" r="62" fill="none" stroke="#EFEFEF" stroke-width="24"></circle>
+              <g transform="rotate(0 100 100)">
+                ${paths}
+              </g>
+              <text x="100" y="94" text-anchor="middle" class="donut-center-label">Tổng nhân sự</text>
+              <text x="100" y="122" text-anchor="middle" class="donut-center-value">${formatInteger(total)}</text>
+            </svg>
+          </div>
+          <div class="legend">${legend}</div>
+        </div>
+      `;
+    }
+
+    function renderVerticalBarChart(targetId, series, barColor) {
+      const maxVal = Math.max(1, ...series.map((item) => item.value));
+      if (!series.some((item) => item.value > 0)) {
+        renderEmpty(targetId, "Không có dữ liệu phù hợp để hiển thị biểu đồ.");
+        return;
+      }
+
+      const width = 420;
+      const height = 250;
+      const padding = { top: 22, right: 18, bottom: 58, left: 36 };
+      const plotWidth = width - padding.left - padding.right;
+      const plotHeight = height - padding.top - padding.bottom;
+      const slotWidth = plotWidth / series.length;
+      const barWidth = Math.min(56, slotWidth * 0.55);
+
+      const gridLines = [0.25, 0.5, 0.75, 1].map((ratio) => {
+        const y = padding.top + plotHeight - ratio * plotHeight;
+        return `<line x1="${padding.left}" y1="${y}" x2="${width - padding.right}" y2="${y}" stroke="${COLORS.softGrid}" stroke-width="1"></line>`;
+      }).join("");
+
+      const bars = series.map((item, index) => {
+        const x = padding.left + slotWidth * index + (slotWidth - barWidth) / 2;
+        const barHeight = (item.value / maxVal) * plotHeight;
+        const y = padding.top + plotHeight - barHeight;
+        const labelY = height - 22;
+        const displayLabel = item.label.includes(" ") ? item.label.split(" ") : [item.label];
+        const textLines = displayLabel.slice(0, 2).map((part, lineIndex) =>
+          `<tspan x="${x + barWidth / 2}" dy="${lineIndex === 0 ? 0 : 14}">${escapeHtml(part)}</tspan>`
+        ).join("");
+
+        return `
+          <g>
+            <rect x="${x}" y="${y}" width="${barWidth}" height="${barHeight}" rx="8" fill="${barColor}"></rect>
+            <text x="${x + barWidth / 2}" y="${y - 8}" text-anchor="middle" font-size="12" font-weight="700" fill="${COLORS.text}">${formatInteger(item.value)}</text>
+            <text x="${x + barWidth / 2}" y="${labelY}" text-anchor="middle" font-size="12" fill="${COLORS.muted}">${textLines}</text>
+          </g>
+        `;
+      }).join("");
+
+      document.getElementById(targetId).innerHTML = `
+        <svg viewBox="0 0 ${width} ${height}" width="100%" height="250" aria-hidden="true">
+          ${gridLines}
+          <line x1="${padding.left}" y1="${padding.top + plotHeight}" x2="${width - padding.right}" y2="${padding.top + plotHeight}" stroke="#D8D8D8"></line>
+          ${bars}
+        </svg>
+      `;
+    }
+
+    function renderHorizontalBarChart(targetId, series) {
+      const maxVal = Math.max(1, ...series.map((item) => item.value));
+      if (!series.some((item) => item.value > 0)) {
+        renderEmpty(targetId, "Không có dữ liệu phù hợp để hiển thị biểu đồ.");
+        return;
+      }
+
+      const width = 460;
+      const height = 220;
+      const padding = { top: 20, right: 28, bottom: 18, left: 120 };
+      const plotWidth = width - padding.left - padding.right;
+      const trackHeight = 22;
+      const gap = 40;
+
+      const bars = series.map((item, index) => {
+        const y = padding.top + index * (trackHeight + gap);
+        const barWidth = (item.value / maxVal) * plotWidth;
+        return `
+          <g>
+            <text x="${padding.left - 12}" y="${y + 16}" text-anchor="end" font-size="13" font-weight="600" fill="${COLORS.text}">${escapeHtml(item.label)}</text>
+            <rect x="${padding.left}" y="${y}" width="${plotWidth}" height="${trackHeight}" rx="11" fill="#EFEFEF"></rect>
+            <rect x="${padding.left}" y="${y}" width="${barWidth}" height="${trackHeight}" rx="11" fill="${item.color}"></rect>
+            <text x="${padding.left + barWidth + 8}" y="${y + 16}" font-size="12" font-weight="700" fill="${COLORS.text}">${formatInteger(item.value)}</text>
+          </g>
+        `;
+      }).join("");
+
+      document.getElementById(targetId).innerHTML = `
+        <svg viewBox="0 0 ${width} ${height}" width="100%" height="220" aria-hidden="true">
+          ${bars}
+        </svg>
+      `;
+    }
+
+    function buildGrouping(records, key, order) {
+      const map = new Map(order.map((label) => [label, 0]));
+      records.forEach((record) => {
+        const label = record[key];
+        map.set(label, (map.get(label) || 0) + 1);
+      });
+      return order.map((label) => ({
+        label,
+        value: map.get(label) || 0
+      }));
+    }
+
+    function renderCharts(records) {
+      const summary = getSummary(records);
+
+      renderDonutChart("genderChart", [
+        { label: "Nam", value: summary.male, color: COLORS.green },
+        { label: "Nữ", value: summary.female, color: COLORS.red },
+        { label: "Khác", value: summary.other, color: COLORS.gold }
+      ], summary.total);
+
+      const ageSeries = buildGrouping(records, "ageGroup", ["Dưới 25", "25–34", "35–44", "45+"]);
+      renderVerticalBarChart("ageChart", ageSeries, COLORS.red);
+
+      const tenureSeries = buildGrouping(records, "tenureGroup", ["Dưới 1 năm", "1–3 năm", "3–5 năm", "Trên 5 năm"]);
+      renderVerticalBarChart("tenureChart", tenureSeries, COLORS.green);
+
+      renderHorizontalBarChart("leaveChart", [
+        { label: "Phép năm", value: summary.annual, color: COLORS.red },
+        { label: "Đã sử dụng", value: sumBy(records, "usedLeave"), color: COLORS.green },
+        { label: "Còn lại", value: summary.remaining, color: COLORS.gold }
+      ]);
+    }
+
+    function badgeGender(gender) {
+      if (gender === "Nam") return `<span class="badge gender-nam">Nam</span>`;
+      if (gender === "Nữ") return `<span class="badge gender-nu">Nữ</span>`;
+      return `<span class="badge gender-khac">Khác</span>`;
+    }
+
+    function badgeLeave(value) {
+      if (safeNumber(value) <= 5) return `<span class="badge leave-low">${formatInteger(value)} ngày</span>`;
+      return `<span class="badge leave-ok">${formatInteger(value)} ngày</span>`;
+    }
+
+    function renderTableHead() {
+      const html = columns.map((col) => {
+        const active = state.sortKey === col.key;
+        const arrow = !active ? "↕" : state.sortDir === "asc" ? "↑" : "↓";
+        return `
+          <th
+            class="sortable ${col.className || ""}"
+            data-key="${col.key}"
+            data-active="${active ? "true" : "false"}"
+            scope="col"
+          >
+            ${escapeHtml(col.label)} <span class="sort-indicator">${arrow}</span>
+          </th>
+        `;
+      }).join("");
+      document.getElementById("tableHeadRow").innerHTML = html;
+
+      document.querySelectorAll("#tableHeadRow th").forEach((th) => {
+        th.addEventListener("click", () => {
+          const key = th.getAttribute("data-key");
+          if (state.sortKey === key) {
+            state.sortDir = state.sortDir === "asc" ? "desc" : "asc";
+          } else {
+            state.sortKey = key;
+            state.sortDir = key === "name" ? "asc" : "desc";
+          }
+          state.page = 1;
+          render();
+        });
+      });
+    }
+
+    function renderTable(records) {
+      const sorted = sortRecords(records);
+      const paged = paginate(sorted);
+
+      const rowsHtml = paged.items.map((item) => `
+        <tr class="${item.remainingLeave <= 5 ? "warning-row" : ""}">
+          <td>${escapeHtml(item.id)}</td>
+          <td><strong>${escapeHtml(item.name)}</strong></td>
+          <td class="muted">${escapeHtml(item.email)}</td>
+          <td class="text-center">${badgeGender(item.gender)}</td>
+          <td class="text-center">${formatDate(item.birthDate)}</td>
+          <td class="text-center">${item.age ?? "-"}</td>
+          <td class="text-center">${formatDate(item.joinDate)}</td>
+          <td class="text-center">${item.tenure != null ? `${formatDecimal(item.tenure)} năm` : "-"}</td>
+          <td class="text-right">${formatInteger(item.annualLeave)}</td>
+          <td class="text-right">${formatInteger(item.usedLeave)}</td>
+          <td class="text-right">${badgeLeave(item.remainingLeave)}</td>
+        </tr>
+      `).join("");
+
+      document.getElementById("tableBody").innerHTML = rowsHtml || `
+        <tr>
+          <td colspan="${columns.length}" class="text-center muted" style="padding: 28px 14px;">
+            Không tìm thấy dữ liệu phù hợp với điều kiện lọc hiện tại.
+          </td>
+        </tr>
+      `;
+
+      document.getElementById("paginationInfo").textContent = records.length
+        ? `Hiển thị ${paged.startIndex}–${paged.endIndex} trên tổng ${records.length} nhân sự`
+        : "Không có bản ghi phù hợp";
+
+      document.getElementById("pageNumber").textContent = `${state.page} / ${paged.totalPages}`;
+      document.getElementById("prevPageBtn").disabled = state.page <= 1;
+      document.getElementById("nextPageBtn").disabled = state.page >= paged.totalPages;
+
+      const sortCol = columns.find((col) => col.key === state.sortKey);
+      const dirLabel = state.sortDir === "asc" ? "A → Z / Tăng dần" : "Z → A / Giảm dần";
+      document.getElementById("sortStatus").innerHTML = `Đang sắp xếp: <strong>${escapeHtml(sortCol?.label || "")} (${dirLabel})</strong>`;
+    }
+
+    function renderFilterSummary(records) {
+      const parts = [];
+      parts.push(`<span class="filter-tag">Tổng hiển thị: ${formatInteger(records.length)} nhân sự</span>`);
+      if (state.search.trim()) {
+        parts.push(`<span class="filter-tag">Từ khóa: ${escapeHtml(state.search.trim())}</span>`);
+      }
+      if (state.gender !== "all") {
+        parts.push(`<span class="filter-tag">Giới tính: ${escapeHtml(state.gender)}</span>`);
+      }
+      if (state.leaveRange !== "all") {
+        const leaveText = state.leaveRange === "low" ? "<= 5 ngày" : state.leaveRange === "mid" ? "6 - 10 ngày" : "> 10 ngày";
+        parts.push(`<span class="filter-tag">Phép còn lại: ${leaveText}</span>`);
+      }
+      if (parts.length === 1) {
+        parts.push(`<span class="filter-tag">Đang xem toàn bộ dữ liệu gốc</span>`);
+      }
+      document.getElementById("filterSummary").innerHTML = parts.join("");
+    }
+
+    function updateMeta(records) {
+      document.getElementById("metaTotal").textContent = formatInteger(ALL_RECORDS.length);
+      document.getElementById("metaFiltered").textContent = formatInteger(records.length);
+      document.getElementById("metaRendered").textContent = formatDateTime(new Date());
+    }
+
+    function render() {
+      const filtered = applyFilters(ALL_RECORDS);
+      renderTableHead();
+      renderKpis(filtered);
+      renderCharts(filtered);
+      renderTable(filtered);
+      renderFilterSummary(filtered);
+      updateMeta(filtered);
+    }
+
+    function bindEvents() {
+      document.getElementById("searchInput").addEventListener("input", (event) => {
+        state.search = event.target.value || "";
+        state.page = 1;
+        render();
+      });
+
+      document.getElementById("genderFilter").addEventListener("change", (event) => {
+        state.gender = event.target.value;
+        state.page = 1;
+        render();
+      });
+
+      document.getElementById("leaveFilter").addEventListener("change", (event) => {
+        state.leaveRange = event.target.value;
+        state.page = 1;
+        render();
+      });
+
+      document.getElementById("resetBtn").addEventListener("click", () => {
+        state.search = "";
+        state.gender = "all";
+        state.leaveRange = "all";
+        state.page = 1;
+        document.getElementById("searchInput").value = "";
+        document.getElementById("genderFilter").value = "all";
+        document.getElementById("leaveFilter").value = "all";
+        render();
+      });
+
+      document.getElementById("prevPageBtn").addEventListener("click", () => {
+        if (state.page > 1) {
+          state.page -= 1;
+          render();
+        }
+      });
+
+      document.getElementById("nextPageBtn").addEventListener("click", () => {
+        const filtered = applyFilters(ALL_RECORDS);
+        const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+        if (state.page < totalPages) {
+          state.page += 1;
+          render();
+        }
+      });
+    }
+
+    bindEvents();
+    render();
+  </script>
+</body>
+</html>

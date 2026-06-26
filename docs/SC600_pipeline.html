@@ -1,0 +1,2400 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pipeline - COMPA STUDIO</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0ea5e9",
+                        secondary: "#0f172a",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                        "border-light": "#e2e8f0",
+                        "border-dark": "#334155",
+                        "text-main-light": "#1e293b",
+                        "text-main-dark": "#f1f5f9",
+                        "text-sub-light": "#64748b",
+                        "text-sub-dark": "#94a3b8",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'lg': '0.75rem',
+                        'xl': '1rem',
+                    },
+                },
+            },
+        };
+    </script>
+
+<!-- Styles merged for single-file navigation -->
+<style>
+
+
+/* ---- Merged styles from screens ---- */
+
+::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        select {
+            background-image: none;
+        }
+        .flow-arrow::after {
+            content: '';
+            position: absolute;
+            right: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0; 
+            height: 0; 
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-left: 8px solid #cbd5e1;
+        }
+        .dark .flow-arrow::after {
+            border-left-color: #475569;
+        }
+        .last-node::after {
+            display: none;
+        }
+
+::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 2px;
+            background-color: #e2e8f0;
+            z-index: 0;
+        }
+        .dark .timeline-line::before {
+            background-color: #334155;
+        }
+
+::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 2px;
+            background-color: #e2e8f0;
+            z-index: 0;
+        }
+        .dark .timeline-line::before {
+            background-color: #334155;
+        }
+        .step-clip-path {
+             clip-path: polygon(0 0, 95% 0, 100% 50%, 95% 100%, 0 100%, 5% 50%);
+        }
+        .step-clip-path:first-child {
+            clip-path: polygon(0 0, 95% 0, 100% 50%, 95% 100%, 0 100%);
+        }
+        .step-clip-path-active {
+            clip-path: polygon(0 0, 95% 0, 100% 50%, 95% 100%, 0 100%, 5% 50%);
+        }
+</style>
+
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-body text-text-main-light dark:text-text-main-dark h-screen flex overflow-hidden selection:bg-primary selection:text-white">
+<!--
+  COMPA STUDIO - PIPELINE (Single file)
+  - Base layout (Header + Navigation): SC600_pipeline
+  - Detail screens embedded: SC610 / SC620 / SC630
+  - Interaction:
+    + Click row 1 / 3 / 4 in "Danh sách Pipeline" to open details
+    + Use header back button to return
+-->
+<aside class="w-20 lg:w-24 flex-shrink-0 bg-secondary flex flex-col items-center py-6 z-20 shadow-xl border-r border-slate-800">
+<div class="flex flex-col items-center justify-center mb-6">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white mb-2 shadow-lg shadow-sky-500/20">
+<span class="font-bold text-xl font-display">C</span>
+</div>
+<div class="flex flex-col items-center leading-none">
+<span class="text-[10px] font-bold text-white tracking-wider">COMPA</span>
+<span class="text-[8px] font-semibold text-sky-400 tracking-widest mt-0.5">STUDIO</span>
+</div>
+</div>
+<nav class="flex-1 w-full space-y-2 px-2 overflow-y-auto no-scrollbar">
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="#" data-href="SC100_dashboard.html">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">dashboard</span>
+<span class="text-[9px] font-medium tracking-wide">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="#" data-href="SC200_chat.html">
+<span class="material-icons-outlined text-2xl mb-1">chat</span>
+<span class="text-[9px] font-medium tracking-wide">Hội thoại</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="#" data-href="SC300_call.html">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">call</span>
+<span class="text-[9px] font-medium tracking-wide">Cuộc gọi</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="#" data-href="SC400_email.html">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">email</span>
+<span class="text-[9px] font-medium tracking-wide">Email</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200"  href="#" data-href="SC500_contact.html">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">contacts</span>
+<span class="text-[9px] font-medium tracking-wide">Liên hệ</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-primary transition-all duration-200"  href="#" data-href="SC600_pipeline.html">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">monetization_on</span>
+<span class="text-[9px] font-medium tracking-wide">Pipeline</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="#" data-href="SC700_customer.html">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">people</span>
+<span class="text-[9px] font-medium tracking-wide">Khách hàng</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="#" data-href="SC800_marketing.html">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">campaign</span>
+<span class="text-[9px] font-medium tracking-wide">Marketing</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="#" data-href="SC900_affiliate.html">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">handshake</span>
+<span class="text-[9px] font-medium tracking-wide">Affiliate</span>
+</a>
+</nav>
+<div class="w-full px-2 mt-2 pt-4 border-t border-slate-800/50">
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="#" data-href="settings">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">settings</span>
+<span class="text-[9px] font-medium tracking-wide">Cài đặt</span>
+</a>
+</div>
+</aside>
+
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+<header class="bg-surface-light dark:bg-surface-dark h-16 border-b border-border-light dark:border-border-dark flex items-center justify-between px-6 z-10 shadow-sm">
+<div class="flex items-center gap-3">
+<button id="btnBackToPipeline" type="button" class="hidden items-center gap-1 text-text-sub-light dark:text-text-sub-dark hover:text-primary transition-colors">
+  <span class="material-icons-outlined text-base">arrow_back</span>
+  <span class="text-sm font-semibold">Danh sách Pipeline</span>
+</button>
+<div id="headerBackDivider" class="hidden h-6 w-px bg-border-light dark:bg-border-dark mx-1"></div>
+<span class="material-icons-outlined text-text-sub-light dark:text-text-sub-dark" id="headerIcon">monetization_on</span>
+<div class="font-display font-bold text-lg tracking-tight text-text-main-light dark:text-text-main-dark" id="headerTitle">
+                Pipeline - Tổng quan &amp; Chi tiết
+            </div>
+</div>
+<div class="flex items-center gap-3">
+<button class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-transparent">
+<span class="text-xs font-bold text-primary">KPIM</span>
+<span class="text-text-main-light dark:text-text-main-dark">Học viện KPIM</span>
+<span class="material-icons-outlined text-base">expand_more</span>
+</button>
+<div class="flex items-center gap-2">
+<button class="h-9 px-3 flex items-center justify-center gap-1.5 border border-primary bg-primary text-white rounded text-xs font-bold hover:bg-sky-600 transition-colors">
+<span class="material-icons-outlined text-sm">workspace_premium</span>
+                        Premium
+                    </button>
+<button class="w-9 h-9 flex items-center justify-center border border-border-light dark:border-border-dark rounded text-xs font-bold text-text-sub-light hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                        VI
+                    </button>
+<button class="w-9 h-9 flex items-center justify-center border border-border-light dark:border-border-dark rounded text-text-sub-light hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-icons-outlined text-xl">dark_mode</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 flex items-center justify-center border border-border-light dark:border-border-dark rounded text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors relative">
+<span class="material-icons-outlined text-xl text-text-sub-light">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-surface-dark"></span>
+</button>
+<button class="w-9 h-9 rounded-full overflow-hidden border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzul7yPV6V9pSxsCXWH65xnycjRYO_3piuXvieSZpnm0KuuNQcRm1B5WnnsE2KeJxOk4rby6RKGEATn-xdLru73fGHuSvyADKWSimFDY0hiLS8cnoowwH9U03hLS5pc-EmWe64H7ofm5uemKqIFbl0avrK7CGfN-IivADty3rjUxlvY0gP_Y8prCbXYRyILoYhBsv7X-2e4aMYR4oWhMIgS3dPX1JVuQ0zK172NQhvDr5rwzFTlGVNwfbF2TveNIx48-iGjFXLusU"/>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-x-hidden overflow-y-auto bg-background-light dark:bg-background-dark p-6">
+<!-- ================== SCREEN: SC600 (Danh sách Pipeline) ================== -->
+<section id="screen-sc600" data-screen="sc600">
+
+<div class="flex flex-col gap-6 h-full">
+<section class="w-full mb-2">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-6">
+<div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2">
+<div class="flex-1 flex flex-col items-center relative w-full md:w-auto group cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors" onclick="alert('Lọc bảng: Giai đoạn Nhận biết')">
+<div class="flex items-center justify-center w-full mb-3 relative">
+<div class="w-12 h-12 rounded-full bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center text-sky-600 dark:text-sky-400 group-hover:scale-110 transition-transform duration-300 shadow-sm border border-sky-200 dark:border-sky-800 z-10">
+<span class="material-icons-outlined text-2xl">visibility</span>
+</div>
+<div class="hidden md:block absolute top-1/2 left-1/2 w-full h-0.5 bg-slate-200 dark:bg-slate-700 -z-0"></div>
+</div>
+<h3 class="text-sm font-bold text-text-main-light dark:text-text-main-dark text-center mb-1">Nhận biết khách hàng tiềm năng</h3>
+<div class="flex items-center gap-2 bg-sky-50 dark:bg-sky-900/10 px-3 py-1 rounded-full border border-sky-100 dark:border-sky-900/30">
+<span class="text-lg font-bold text-sky-600 dark:text-sky-400">1,245</span>
+<span class="text-[10px] font-medium text-text-sub-light dark:text-text-sub-dark uppercase tracking-wide">Leads</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col items-center relative w-full md:w-auto group cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors" onclick="alert('Lọc bảng: Giai đoạn Quan tâm')">
+<div class="flex items-center justify-center w-full mb-3 relative">
+<div class="w-12 h-12 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform duration-300 shadow-sm border border-amber-200 dark:border-amber-800 z-10">
+<span class="material-icons-outlined text-2xl">favorite_border</span>
+</div>
+<div class="hidden md:block absolute top-1/2 left-1/2 w-full h-0.5 bg-slate-200 dark:bg-slate-700 -z-0"></div>
+<div class="hidden md:block absolute top-1/2 right-1/2 w-full h-0.5 bg-slate-200 dark:bg-slate-700 -z-0"></div>
+</div>
+<h3 class="text-sm font-bold text-text-main-light dark:text-text-main-dark text-center mb-1">Khách hàng quan tâm</h3>
+<div class="flex items-center gap-2 bg-amber-50 dark:bg-amber-900/10 px-3 py-1 rounded-full border border-amber-100 dark:border-amber-900/30">
+<span class="text-lg font-bold text-amber-600 dark:text-amber-400">852</span>
+<span class="text-[10px] font-medium text-text-sub-light dark:text-text-sub-dark uppercase tracking-wide">Interests</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col items-center relative w-full md:w-auto group cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors" onclick="alert('Lọc bảng: Giai đoạn Tin tưởng')">
+<div class="flex items-center justify-center w-full mb-3 relative">
+<div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform duration-300 shadow-sm border border-indigo-200 dark:border-indigo-800 z-10">
+<span class="material-icons-outlined text-2xl">verified</span>
+</div>
+<div class="hidden md:block absolute top-1/2 left-1/2 w-full h-0.5 bg-slate-200 dark:bg-slate-700 -z-0"></div>
+<div class="hidden md:block absolute top-1/2 right-1/2 w-full h-0.5 bg-slate-200 dark:bg-slate-700 -z-0"></div>
+</div>
+<h3 class="text-sm font-bold text-text-main-light dark:text-text-main-dark text-center mb-1">Khách hàng tin tưởng</h3>
+<div class="flex items-center gap-2 bg-indigo-50 dark:bg-indigo-900/10 px-3 py-1 rounded-full border border-indigo-100 dark:border-indigo-900/30">
+<span class="text-lg font-bold text-indigo-600 dark:text-indigo-400">452</span>
+<span class="text-[10px] font-medium text-text-sub-light dark:text-text-sub-dark uppercase tracking-wide">OPPORTUNITIES</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col items-center relative w-full md:w-auto group cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors" onclick="alert('Lọc bảng: Giai đoạn Mua hàng')">
+<div class="flex items-center justify-center w-full mb-3 relative">
+<div class="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform duration-300 shadow-sm border border-emerald-200 dark:border-emerald-800 z-10">
+<span class="material-icons-outlined text-2xl">shopping_cart</span>
+</div>
+<div class="hidden md:block absolute top-1/2 right-1/2 w-full h-0.5 bg-slate-200 dark:bg-slate-700 -z-0"></div>
+</div>
+<h3 class="text-sm font-bold text-text-main-light dark:text-text-main-dark text-center mb-1">Khách mua hàng</h3>
+<div class="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-900/10 px-3 py-1 rounded-full border border-emerald-100 dark:border-emerald-900/30">
+<span class="text-lg font-bold text-emerald-600 dark:text-emerald-400">128</span>
+<span class="text-[10px] font-medium text-text-sub-light dark:text-text-sub-dark uppercase tracking-wide">Clients</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="flex-1 flex flex-col min-h-0">
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-4">
+<div class="flex items-center gap-3">
+<h2 class="text-xl font-bold text-text-main-light dark:text-text-main-dark">Danh sách Pipeline</h2>
+<div class="hidden md:block h-6 w-px bg-border-light dark:bg-border-dark mx-2"></div>
+<div class="relative group">
+<select class="appearance-none bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-main-light dark:text-text-main-dark text-sm rounded-lg pl-3 pr-10 py-2 focus:ring-primary focus:border-primary cursor-pointer hover:border-primary transition-colors outline-none shadow-sm">
+<option>01/10/2023 - 31/10/2023</option>
+<option>Năm nay (2023)</option>
+<option>Cùng kỳ năm ngoái</option>
+<option>Tất cả thời gian</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-text-sub-light dark:text-text-sub-dark group-hover:text-primary transition-colors">
+<span class="material-icons-outlined text-base">calendar_today</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 w-full md:w-auto">
+<div class="relative flex-grow md:flex-grow-0">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+<span class="material-icons-outlined text-xl">search</span>
+</span>
+<input class="w-full md:w-64 pl-10 pr-4 py-2 rounded-lg border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark text-sm focus:ring-primary focus:border-primary dark:placeholder-slate-500 shadow-sm outline-none" placeholder="Tìm kiếm Lead, Deal..." type="text"/>
+</div>
+<button class="bg-surface-light dark:bg-surface-dark dark:bg-secondary border border-border-light dark:border-border-dark hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium px-4 py-2 rounded flex items-center gap-2 transition-colors shadow-sm relative group">
+<span class="material-icons-outlined text-sm">filter_list</span> Lọc
+    <div class="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700 hidden group-focus:block group-active:block focus-within:block z-50 p-2">
+<div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2 px-2">Giai đoạn</div>
+<div class="space-y-1">
+<label class="flex items-center px-2 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 rounded cursor-pointer">
+<input class="rounded border-slate-300 text-primary focus:ring-primary mr-2" type="checkbox"/>
+<span class="text-sm">Leads</span>
+</label>
+<label class="flex items-center px-2 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 rounded cursor-pointer">
+<input class="rounded border-slate-300 text-primary focus:ring-primary mr-2" type="checkbox"/>
+<span class="text-sm">Interests</span>
+</label>
+<label class="flex items-center px-2 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 rounded cursor-pointer">
+<input class="rounded border-slate-300 text-primary focus:ring-primary mr-2" type="checkbox"/>
+<span class="text-sm">Opportunities</span>
+</label>
+<label class="flex items-center px-2 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 rounded cursor-pointer">
+<input class="rounded border-slate-300 text-primary focus:ring-primary mr-2" type="checkbox"/>
+<span class="text-sm">Clients</span>
+</label>
+</div>
+</div>
+</button>
+<button class="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white text-sm font-medium px-4 py-2 rounded flex items-center gap-2 transition-all shadow-md shadow-indigo-500/20">
+<span class="material-icons-outlined text-sm">auto_awesome</span> AI Phân tích
+</button>
+<button class="bg-secondary dark:bg-slate-700 hover:bg-slate-800 dark:hover:bg-slate-600 text-white text-sm font-medium px-4 py-2 rounded flex items-center gap-2 transition-colors shadow-sm whitespace-nowrap shadow-slate-300 dark:shadow-slate-900/50">
+<span class="material-icons-outlined text-sm">add</span> Thêm Pipeline
+                        </button>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark overflow-hidden flex-1 flex flex-col">
+<div class="overflow-x-auto custom-scrollbar flex-1 w-full">
+<table class="min-w-[1800px] w-full text-left text-sm text-text-sub-light dark:text-text-sub-dark whitespace-nowrap">
+<thead class="bg-slate-50 dark:bg-slate-800/50 text-xs uppercase font-semibold text-text-main-light dark:text-text-main-dark border-b border-border-light dark:border-border-dark sticky top-0 z-10 backdrop-blur-sm bg-opacity-90">
+<tr>
+<th class="px-6 py-4 sticky left-0 bg-slate-50 dark:bg-slate-800/90 z-20">Liên hệ</th>
+<th class="px-6 py-4">Tổ chức / Công ty</th>
+<th class="px-6 py-4">Thông tin liên hệ</th>
+<th class="px-6 py-4">Giai đoạn</th>
+<th class="px-6 py-4">Nguồn</th>
+<th class="px-6 py-4">Ngày chuyển đổi</th>
+<th class="px-6 py-4">Hành động cuối cùng</th>
+<th class="px-6 py-4">Hành động tiếp theo</th>
+<th class="px-6 py-4">Expected Revenue</th>
+<th class="px-6 py-4">Close Rate</th>
+<th class="px-6 py-4 text-center sticky right-0 bg-slate-50 dark:bg-slate-800/90 z-20 shadow-[-4px_0_12px_-4px_rgba(0,0,0,0.1)]">Thao tác</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light dark:divide-border-dark">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group cursor-pointer" data-open="sc610">
+<td class="px-6 py-4 sticky left-0 bg-surface-light dark:bg-surface-dark group-hover:bg-slate-50 dark:group-hover:bg-slate-800/50 transition-colors z-20">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-700 dark:text-blue-300 font-bold text-xs">VK</div>
+<div>
+<div class="font-medium text-text-main-light dark:text-text-main-dark group-hover:text-primary transition-colors">Võ Nguyễn Khôi</div>
+<div class="text-xs">Giám đốc Marketing</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-medium text-text-main-light dark:text-text-main-dark">Công ty CP Kỹ thuật Số</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">MST: 0312345678</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-0.5">
+<span class="text-text-main-light dark:text-text-main-dark">vkhoi@example.com</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">090 123 4567</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300 border border-sky-200 dark:border-sky-800">LEAD</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5"><span class="material-icons text-base text-blue-600">facebook</span> Facebook Ads</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium">24 Thg 10, 2023</td>
+<td class="px-6 py-4">
+<div class="flex flex-col text-xs">
+<span class="font-medium text-text-main-light dark:text-text-main-dark">Đăng ký form</span>
+<span>Hôm nay, 10:00 AM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-sky-400"></span>
+<span class="text-text-main-light dark:text-text-main-dark">Xác nhận nhu cầu</span>
+</div>
+</td>
+<td class="px-6 py-4 font-medium text-text-main-light dark:text-text-main-dark">
+                                    50.000.000 ₫
+                                </td>
+<td class="px-6 py-4 min-w-[140px]">
+<div class="flex items-center gap-2">
+<div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 rounded-full" style="width: 25%"></div>
+</div>
+<span class="text-xs font-bold text-text-main-light dark:text-text-main-dark w-8 text-right">25%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center sticky right-0 bg-surface-light dark:bg-surface-dark group-hover:bg-slate-50 dark:group-hover:bg-slate-800/50 transition-colors z-20 shadow-[-4px_0_12px_-4px_rgba(0,0,0,0.1)]">
+<div class="flex items-center justify-center gap-1">
+<button class="text-text-sub-light dark:text-text-sub-dark hover:text-primary dark:hover:text-primary transition-colors p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-icons-outlined text-lg">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group cursor-pointer" data-open="sc620">
+<td class="px-6 py-4 sticky left-0 bg-surface-light dark:bg-surface-dark group-hover:bg-slate-50 dark:group-hover:bg-slate-800/50 transition-colors z-20">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-pink-100 dark:bg-pink-900 flex items-center justify-center text-pink-700 dark:text-pink-300 font-bold text-xs">PH</div>
+<div>
+<div class="font-medium text-text-main-light dark:text-text-main-dark group-hover:text-primary transition-colors">Phan Hoàng</div>
+<div class="text-xs">CEO - TechStart</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-medium text-text-main-light dark:text-text-main-dark">TechStart Solutions</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">MST: 0398765432</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-0.5">
+<span class="text-text-main-light dark:text-text-main-dark">phoang@techstart.vn</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">091 888 9999</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 border border-amber-200 dark:border-amber-800">INTERESTS</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5"><span class="material-icons text-base text-red-500">play_circle</span> Youtube</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium">21 Thg 10, 2023</td>
+<td class="px-6 py-4">
+<div class="flex flex-col text-xs">
+<span class="font-medium text-text-main-light dark:text-text-main-dark">Quan tâm sản phẩm</span>
+<span>21 Thg 12, 02:30 PM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-amber-400"></span>
+<span class="text-text-main-light dark:text-text-main-dark">Gửi Demo</span>
+</div>
+</td>
+<td class="px-6 py-4 font-medium text-text-main-light dark:text-text-main-dark">
+                                    120.000.000 ₫
+                                </td>
+<td class="px-6 py-4 min-w-[140px]">
+<div class="flex items-center gap-2">
+<div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full" style="width: 45%"></div>
+</div>
+<span class="text-xs font-bold text-text-main-light dark:text-text-main-dark w-8 text-right">45%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center sticky right-0 bg-surface-light dark:bg-surface-dark group-hover:bg-slate-50 dark:group-hover:bg-slate-800/50 transition-colors z-20 shadow-[-4px_0_12px_-4px_rgba(0,0,0,0.1)]">
+<div class="flex items-center justify-center gap-1">
+<button class="text-text-sub-light dark:text-text-sub-dark hover:text-primary dark:hover:text-primary transition-colors p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-icons-outlined text-lg">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group cursor-pointer" data-open="sc630">
+<td class="px-6 py-4 sticky left-0 bg-surface-light dark:bg-surface-dark group-hover:bg-slate-50 dark:group-hover:bg-slate-800/50 transition-colors z-20">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold text-xs">TH</div>
+<div>
+<div class="font-medium text-text-main-light dark:text-text-main-dark group-hover:text-primary transition-colors">Trần Hương</div>
+<div class="text-xs">Freelancer</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-medium text-text-main-light dark:text-text-main-dark">Dịch vụ Trần Hương</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">MST: 8765432109</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-0.5">
+<span class="text-text-main-light dark:text-text-main-dark">huong.tran@freelance.io</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">097 112 2334</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/40 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">OPPORTUNITIES</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5"><span class="material-icons text-base text-pink-500">photo_camera</span> Instagram</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium">15 Thg 10, 2023</td>
+<td class="px-6 py-4">
+<div class="flex flex-col text-xs">
+<span class="font-medium text-text-main-light dark:text-text-main-dark">Xem demo sản phẩm</span>
+<span>18 Thg 12, 11:20 AM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+<span class="text-text-main-light dark:text-text-main-dark">Thương lượng giá</span>
+</div>
+</td>
+<td class="px-6 py-4 font-medium text-text-main-light dark:text-text-main-dark">
+                                    85.000.000 ₫
+                                </td>
+<td class="px-6 py-4 min-w-[140px]">
+<div class="flex items-center gap-2">
+<div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-indigo-500 rounded-full" style="width: 70%"></div>
+</div>
+<span class="text-xs font-bold text-text-main-light dark:text-text-main-dark w-8 text-right">70%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center sticky right-0 bg-surface-light dark:bg-surface-dark group-hover:bg-slate-50 dark:group-hover:bg-slate-800/50 transition-colors z-20 shadow-[-4px_0_12px_-4px_rgba(0,0,0,0.1)]">
+<div class="flex items-center justify-center gap-1">
+<button class="text-text-sub-light dark:text-text-sub-dark hover:text-primary dark:hover:text-primary transition-colors p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-icons-outlined text-lg">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-4 sticky left-0 bg-surface-light dark:bg-surface-dark group-hover:bg-slate-50 dark:group-hover:bg-slate-800/50 transition-colors z-20">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-orange-100 dark:bg-orange-900 flex items-center justify-center text-orange-700 dark:text-orange-300 font-bold text-xs">LM</div>
+<div>
+<div class="font-medium text-text-main-light dark:text-text-main-dark group-hover:text-primary transition-colors">Lê Minh</div>
+<div class="text-xs">Chủ cửa hàng</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-medium text-text-main-light dark:text-text-main-dark">Cửa hàng Minh Lê</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">MST: 1122334455</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-0.5">
+<span class="text-text-main-light dark:text-text-main-dark">minh.le@store.net</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">098 765 4321</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">CLIENTS</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5"><span class="material-icons text-base text-blue-400">language</span> Web Form</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium">10 Thg 10, 2023</td>
+<td class="px-6 py-4">
+<div class="flex flex-col text-xs">
+<span class="font-medium text-text-main-light dark:text-text-main-dark">Support ticket #123</span>
+<span>19 Thg 12, 04:45 PM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+<span class="text-text-main-light dark:text-text-main-dark">Chăm sóc</span>
+</div>
+</td>
+<td class="px-6 py-4 font-medium text-text-main-light dark:text-text-main-dark">
+                                    15.500.000 ₫
+                                </td>
+<td class="px-6 py-4 min-w-[140px]">
+<div class="flex items-center gap-2">
+<div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-600 rounded-full" style="width: 100%"></div>
+</div>
+<span class="text-xs font-bold text-text-main-light dark:text-text-main-dark w-8 text-right">100%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center sticky right-0 bg-surface-light dark:bg-surface-dark group-hover:bg-slate-50 dark:group-hover:bg-slate-800/50 transition-colors z-20 shadow-[-4px_0_12px_-4px_rgba(0,0,0,0.1)]">
+<div class="flex items-center justify-center gap-1">
+<button class="text-text-sub-light dark:text-text-sub-dark hover:text-primary dark:hover:text-primary transition-colors p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-icons-outlined text-lg">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-4 sticky left-0 bg-surface-light dark:bg-surface-dark group-hover:bg-slate-50 dark:group-hover:bg-slate-800/50 transition-colors z-20">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center text-purple-700 dark:text-purple-300 font-bold text-xs">NA</div>
+<div>
+<div class="font-medium text-text-main-light dark:text-text-main-dark group-hover:text-primary transition-colors">Nguyễn An</div>
+<div class="text-xs">Trưởng phòng Nhân sự</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-medium text-text-main-light dark:text-text-main-dark">Tập đoàn An Nam</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">MST: 9988776655</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-0.5">
+<span class="text-text-main-light dark:text-text-main-dark">an.nguyen@hr.com</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">093 456 7890</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300 border border-sky-200 dark:border-sky-800">LEAD</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5"><span class="material-icons text-base text-slate-500">link</span> Giới thiệu</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium">05 Thg 11, 2023</td>
+<td class="px-6 py-4">
+<div class="flex flex-col text-xs">
+<span class="font-medium text-text-main-light dark:text-text-main-dark">Gửi email giới thiệu</span>
+<span>20 Thg 12, 09:15 AM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-sky-400"></span>
+<span class="text-text-main-light dark:text-text-main-dark">Tìm hiểu</span>
+</div>
+</td>
+<td class="px-6 py-4 font-medium text-text-main-light dark:text-text-main-dark">
+                                    300.000.000 ₫
+                                </td>
+<td class="px-6 py-4 min-w-[140px]">
+<div class="flex items-center gap-2">
+<div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-sky-500 rounded-full" style="width: 15%"></div>
+</div>
+<span class="text-xs font-bold text-text-main-light dark:text-text-main-dark w-8 text-right">15%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center sticky right-0 bg-surface-light dark:bg-surface-dark group-hover:bg-slate-50 dark:group-hover:bg-slate-800/50 transition-colors z-20 shadow-[-4px_0_12px_-4px_rgba(0,0,0,0.1)]">
+<div class="flex items-center justify-center gap-1">
+<button class="text-text-sub-light dark:text-text-sub-dark hover:text-primary dark:hover:text-primary transition-colors p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-icons-outlined text-lg">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-4 sticky left-0 bg-surface-light dark:bg-surface-dark group-hover:bg-slate-50 dark:group-hover:bg-slate-800/50 transition-colors z-20">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-teal-100 dark:bg-teal-900 flex items-center justify-center text-teal-700 dark:text-teal-300 font-bold text-xs">TD</div>
+<div>
+<div class="font-medium text-text-main-light dark:text-text-main-dark group-hover:text-primary transition-colors">Trần Đức</div>
+<div class="text-xs">Giám đốc Kinh doanh</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-medium text-text-main-light dark:text-text-main-dark">Công ty TNHH Đức Phát</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">MST: 1122338899</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-0.5">
+<span class="text-text-main-light dark:text-text-main-dark">duc.tran@phatgroup.com</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">090 999 8888</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 border border-amber-200 dark:border-amber-800">INTERESTS</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5"><span class="material-icons text-base text-blue-600">linkedin</span> LinkedIn</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium">12 Thg 11, 2023</td>
+<td class="px-6 py-4">
+<div class="flex flex-col text-xs">
+<span class="font-medium text-text-main-light dark:text-text-main-dark">Gọi điện tư vấn</span>
+<span>15 Thg 12, 03:00 PM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-amber-400"></span>
+<span class="text-text-main-light dark:text-text-main-dark">Gửi báo giá sơ bộ</span>
+</div>
+</td>
+<td class="px-6 py-4 font-medium text-text-main-light dark:text-text-main-dark">
+                                    65.000.000 ₫
+                                </td>
+<td class="px-6 py-4 min-w-[140px]">
+<div class="flex items-center gap-2">
+<div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full" style="width: 55%"></div>
+</div>
+<span class="text-xs font-bold text-text-main-light dark:text-text-main-dark w-8 text-right">55%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center sticky right-0 bg-surface-light dark:bg-surface-dark group-hover:bg-slate-50 dark:group-hover:bg-slate-800/50 transition-colors z-20 shadow-[-4px_0_12px_-4px_rgba(0,0,0,0.1)]">
+<div class="flex items-center justify-center gap-1">
+<button class="text-text-sub-light dark:text-text-sub-dark hover:text-primary dark:hover:text-primary transition-colors p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-icons-outlined text-lg">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-4 sticky left-0 bg-surface-light dark:bg-surface-dark group-hover:bg-slate-50 dark:group-hover:bg-slate-800/50 transition-colors z-20">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-rose-100 dark:bg-rose-900 flex items-center justify-center text-rose-700 dark:text-rose-300 font-bold text-xs">HV</div>
+<div>
+<div class="font-medium text-text-main-light dark:text-text-main-dark group-hover:text-primary transition-colors">Hoàng Văn</div>
+<div class="text-xs">Quản lý Dự án</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-medium text-text-main-light dark:text-text-main-dark">Startup Việt Hóa</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">MST: 5566778899</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-0.5">
+<span class="text-text-main-light dark:text-text-main-dark">van.hoang@viethoa.vn</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">091 222 3333</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/40 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">OPPORTUNITIES</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5"><span class="material-icons text-base text-gray-600">email</span> Email Mkt</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium">08 Thg 11, 2023</td>
+<td class="px-6 py-4">
+<div class="flex flex-col text-xs">
+<span class="font-medium text-text-main-light dark:text-text-main-dark">Meeting demo</span>
+<span>10 Thg 12, 10:00 AM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+<span class="text-text-main-light dark:text-text-main-dark">Chốt hợp đồng</span>
+</div>
+</td>
+<td class="px-6 py-4 font-medium text-text-main-light dark:text-text-main-dark">
+                                    92.000.000 ₫
+                                </td>
+<td class="px-6 py-4 min-w-[140px]">
+<div class="flex items-center gap-2">
+<div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-indigo-600 rounded-full" style="width: 85%"></div>
+</div>
+<span class="text-xs font-bold text-text-main-light dark:text-text-main-dark w-8 text-right">85%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center sticky right-0 bg-surface-light dark:bg-surface-dark group-hover:bg-slate-50 dark:group-hover:bg-slate-800/50 transition-colors z-20 shadow-[-4px_0_12px_-4px_rgba(0,0,0,0.1)]">
+<div class="flex items-center justify-center gap-1">
+<button class="text-text-sub-light dark:text-text-sub-dark hover:text-primary dark:hover:text-primary transition-colors p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-icons-outlined text-lg">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 border-t border-border-light dark:border-border-dark flex items-center justify-between bg-surface-light dark:bg-surface-dark">
+<div class="text-xs text-text-sub-light dark:text-text-sub-dark">
+                            Hiển thị <span class="font-medium text-text-main-light dark:text-text-main-dark">1</span> đến <span class="font-medium text-text-main-light dark:text-text-main-dark">7</span> của <span class="font-medium text-text-main-light dark:text-text-main-dark">2550</span> kết quả
+                        </div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-50 text-text-sub-light dark:text-text-sub-dark transition-colors" disabled="">
+<span class="material-icons-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded flex items-center justify-center text-sm font-medium bg-primary text-white shadow-sm shadow-sky-500/20">1</button>
+<button class="w-8 h-8 rounded flex items-center justify-center text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800 text-text-sub-light dark:text-text-sub-dark transition-colors">2</button>
+<button class="w-8 h-8 rounded flex items-center justify-center text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800 text-text-sub-light dark:text-text-sub-dark transition-colors">3</button>
+<span class="text-text-sub-light dark:text-text-sub-dark text-sm">...</span>
+<button class="p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-text-sub-light dark:text-text-sub-dark transition-colors">
+<span class="material-icons-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+</section>
+
+<!-- ================== SCREEN: SC610 (Chi tiết - Tiềm năng) ================== -->
+<section id="screen-sc610" data-screen="sc610" class="hidden">
+
+<div class="max-w-[1600px] mx-auto h-full flex flex-col">
+<div class="grid grid-cols-12 gap-6 h-full">
+<div class="col-span-12 lg:col-span-9 flex flex-col gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-5 relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-blue-500"></div>
+<div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-5">
+<div class="flex gap-4">
+<div class="relative">
+<img alt="Contact Avatar" class="w-20 h-20 rounded-xl object-cover border-2 border-white dark:border-surface-dark shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASeWAHxCPHYbmawnAlAD3z45VOKUWnDzzYp1QPOFli0fU8iYhw_NCUBKvKN8WOXD-lZ_s7EtEE9GG-45w2hf6VMA_UOXXG7lLbaWUJnQsbvHkjR9vR9vOH1LwDKMwKvu2O8jlLuNhMGG40BavpY0YyEptrJHij3CiHlY6XJ7zAcQpKe781R31aWkYJmZ_8V9BbfzMVcWd-NxecBF8K4d3G-9MVqf2MOziHUovoXx7A29zapFdkY35EnitU8dhbfFVR1JKMsytuJL8">
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h1 class="text-2xl font-bold text-text-main-light dark:text-text-main-dark">Nguyễn Văn An</h1>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 uppercase tracking-wide">
+                                                Tiềm năng
+                                            </span>
+<button class="flex items-center gap-1 px-2 py-1 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border-none" title="Thông tin học viên">
+<span class="material-icons-outlined text-lg">school</span>
+<span class="text-xs font-bold uppercase">Học viên</span>
+</button>
+</div>
+<p class="text-text-sub-light dark:text-text-sub-dark text-sm mb-2 flex items-center gap-1">
+<span class="material-icons-outlined text-base">business</span>
+                                            Trưởng phòng Marketing @ Công ty ABC
+                                        </p>
+<div class="flex flex-wrap gap-2 text-xs">
+<div class="flex items-center gap-1.5 px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-text-main-light dark:text-text-main-dark">
+<span class="material-icons-outlined text-sm text-slate-400">phone</span>
+                                                090 123 4567
+                                            </div>
+<div class="flex items-center gap-1.5 px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-text-main-light dark:text-text-main-dark">
+<span class="material-icons-outlined text-sm text-slate-400">email</span>
+                                                an.nguyen@abc.com
+                                            </div>
+<div class="flex items-center gap-1.5 px-2 py-1 bg-blue-500/10 dark:bg-blue-900/40 rounded text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800">
+<span class="material-icons text-sm">public</span>
+                                                Website
+                                            </div>
+<div class="flex items-center gap-1.5 px-2 py-1 bg-amber-50 dark:bg-amber-900/20 rounded text-amber-700 dark:text-amber-400 border border-amber-100 dark:border-amber-800">
+<span class="material-icons-outlined text-sm">stars</span>
+                                                Score: 65
+                                            </div>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-3 w-full md:w-auto relative group">
+<div class="flex flex-wrap items-center gap-2 justify-end w-full">
+<button class="bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark hover:bg-slate-50 dark:hover:bg-slate-800 text-text-sub-light dark:text-text-sub-dark p-2 rounded-lg transition-colors peer">
+<span class="material-icons-outlined text-lg">more_horiz</span>
+</button>
+<button class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center gap-2 text-sm font-medium shadow-sm">
+<span class="material-icons-outlined text-base animate-pulse">auto_awesome</span>
+    AI báo cáo
+</button>
+<div class="absolute top-full right-0 mt-1 w-56 bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg shadow-xl z-50 invisible peer-focus:visible hover:visible opacity-0 peer-focus:opacity-100 hover:opacity-100 transition-all duration-200 transform origin-top-right">
+<div class="py-1">
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">merge_type</span>
+        Gộp liên hệ trùng
+    </a>
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">edit</span>
+        Chỉnh sửa thông tin
+    </a>
+</div>
+<div class="border-t border-border-light dark:border-border-dark py-1">
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">thumb_down</span>
+        Đánh dấu "Lost"
+    </a>
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">archive</span>
+        Archive liên hệ
+    </a>
+</div>
+<div class="border-t border-border-light dark:border-border-dark py-1">
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">picture_as_pdf</span>
+        Export PDF
+    </a>
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">table_view</span>
+        Export CSV
+    </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 bg-slate-50 dark:bg-slate-800/50 rounded-xl p-0 border border-border-light dark:border-border-dark flex flex-col xl:flex-row overflow-hidden divide-y xl:divide-y-0 xl:divide-x divide-border-light dark:divide-border-dark">
+<div class="flex-1 p-4 flex flex-col gap-1.5">
+<span class="text-[10px] uppercase font-bold text-text-sub-light dark:text-text-sub-dark">Người phụ trách</span>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold text-xs shadow-sm">
+                                            VK
+                                        </div>
+<span class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Võ Nguyễn Khôi</span>
+</div>
+</div>
+<div class="flex-1 p-4 flex flex-col gap-1.5">
+<span class="text-[10px] uppercase font-bold text-text-sub-light dark:text-text-sub-dark">SLA Phản hồi</span>
+<div class="flex items-center">
+<div class="flex items-center gap-1.5 text-blue-600 dark:text-blue-400 bg-white dark:bg-blue-900/20 px-2.5 py-1 rounded-md text-xs font-bold border border-blue-100 dark:border-blue-800 shadow-sm">
+<span class="material-icons text-sm">timer</span>
+                                            Còn 24h
+                                        </div>
+</div>
+</div>
+<div class="flex-1 p-4 flex flex-col gap-1.5">
+<span class="text-[10px] uppercase font-bold text-text-sub-light dark:text-text-sub-dark">Sản phẩm</span>
+<span class="text-sm font-semibold text-text-main-light dark:text-text-main-dark truncate">Khóa học DA Pro</span>
+</div>
+<div class="flex-1 p-4 flex flex-col gap-1.5">
+<span class="text-[10px] uppercase font-bold text-text-sub-light dark:text-text-sub-dark">Giá trị</span>
+<span class="text-sm font-bold text-green-600 dark:text-green-400">15.000.000 ₫</span>
+</div>
+<div class="flex-1 p-4 flex flex-col gap-1.5">
+<span class="text-[10px] uppercase font-bold text-text-sub-light dark:text-text-sub-dark">Dự kiến chốt</span>
+<span class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">30/12/2023</span>
+</div>
+</div>
+<div class="mt-2 pt-2 border-t border-transparent mt-4 pt-4">
+<div class="flex items-center justify-between mb-4">
+<div class="relative inline-block text-left">
+<button class="flex items-center gap-1 text-blue-600 font-bold hover:text-blue-700 transition-colors text-sm" type="button">
+                                            Phân loại Tiềm năng
+                                            <span class="material-icons-outlined text-base">expand_more</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors shadow-sm">
+<span class="material-icons-outlined text-base animate-pulse">auto_awesome</span>
+                                            AI tư vấn
+                                        </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<div class="lg:col-span-7 flex flex-col justify-center">
+<div class="mb-6">
+<div class="relative w-full">
+<div class="flex rounded-lg overflow-hidden border border-border-light dark:border-border-dark relative z-10">
+<div class="bg-green-500 text-white text-[10px] font-bold px-4 py-2 flex-1 text-center border-r border-green-600">Liên hệ</div>
+<div class="bg-blue-600 text-white text-[10px] font-bold px-4 py-2 flex-1 text-center relative border-r border-blue-700">
+                                                        Tiềm năng
+                                                         <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-white/30"></div>
+</div>
+<div class="bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[10px] font-bold px-4 py-2 flex-1 text-center border-r border-slate-200 dark:border-slate-700">Tìm hiểu</div>
+<div class="bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[10px] font-bold px-4 py-2 flex-1 text-center border-r border-slate-200 dark:border-slate-700">Quan tâm</div>
+<div class="bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[10px] font-bold px-4 py-2 flex-1 text-center relative">
+                                                        Mua hàng
+                                                    </div>
+</div>
+<div class="absolute top-full left-0 w-full h-4 mt-1 pointer-events-none">
+<span class="absolute left-[10%] -translate-x-1/2 text-[10px] text-text-sub-light dark:text-text-sub-dark font-medium leading-none mt-1">10/11</span>
+<span class="absolute left-[30%] -translate-x-1/2 text-[10px] text-text-sub-light dark:text-text-sub-dark font-medium leading-none mt-1">15/11</span>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5">
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/50 h-full">
+<div class="flex items-center gap-3">
+<div class="bg-white dark:bg-indigo-900 p-1.5 rounded-md shadow-sm text-indigo-600 dark:text-indigo-300">
+<span class="material-icons-outlined text-lg">event_available</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-indigo-600 dark:text-indigo-400 tracking-wide">Bước tiếp theo</span>
+<span class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Setup lịch phỏng vấn/tư vấn</span>
+</div>
+</div>
+<div class="flex items-center gap-3 flex-col items-end">
+<div class="text-right hidden sm:block">
+<div class="text-xs text-text-sub-light dark:text-text-sub-dark">Hạn: <span class="text-indigo-600 font-medium">Ngày mai, 10:00</span></div>
+</div>
+<button class="text-xs font-medium bg-white dark:bg-indigo-900 hover:bg-slate-50 dark:hover:bg-indigo-800 text-indigo-600 dark:text-indigo-300 px-3 py-1.5 rounded border border-indigo-200 dark:border-indigo-700 transition-colors shadow-sm whitespace-nowrap">
+                                                    Hoàn thành
+                                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark flex-1 flex flex-col min-h-0">
+<div class="p-4 border-b border-border-light dark:border-border-dark">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+<h3 class="font-bold text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-slate-400">history</span>
+                                        Lịch sử tương tác
+                                    </h3>
+<div class="flex items-center gap-2">
+<div class="relative">
+<span class="absolute inset-y-0 left-0 flex items-center pl-2 text-slate-400">
+<span class="material-icons-outlined text-lg">search</span>
+</span>
+<input class="pl-8 pr-3 py-1.5 text-xs rounded-lg border border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800 text-text-main-light focus:ring-primary focus:border-primary w-48" placeholder="Tìm trong lịch sử..." type="text">
+</div>
+<button class="p-1.5 rounded-lg border border-border-light dark:border-border-dark hover:bg-slate-50 dark:hover:bg-slate-800 text-text-sub-light transition-colors" title="Lọc theo ngày">
+<span class="material-icons-outlined text-lg">date_range</span>
+</button>
+<button class="bg-white hover:bg-slate-50 text-primary border border-border-light text-xs font-medium px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors shadow-sm relative group">
+<span class="material-icons-outlined text-sm">add_task</span>
+                                            Tạo hoạt động
+                                            <span class="material-icons-outlined text-sm">expand_more</span>
+<div class="hidden absolute top-full right-0 mt-2 w-48 bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg shadow-xl z-50 group-focus:block group-hover:block">
+<div class="py-1">
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">check_circle</span> Task
+            </a>
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">email</span> Email
+            </a>
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">call</span> Call
+            </a>
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">groups</span> Meeting
+            </a>
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">note</span> Note
+            </a>
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">handshake</span> Deal
+            </a>
+</div>
+</div>
+</button>
+<div class="relative group">
+<button class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white text-xs font-medium px-4 py-1.5 rounded-lg flex items-center gap-1.5 transition-all shadow-sm">
+<span class="material-icons-outlined text-sm animate-pulse">auto_awesome</span>
+        AI trợ lý
+    </button>
+<div class="absolute top-full right-0 mt-2 w-56 bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg shadow-xl z-50 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200">
+<div class="p-2 space-y-1">
+<a class="flex items-center gap-2 px-3 py-2 text-xs rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 text-text-main-light dark:text-text-main-dark" href="#">
+<span class="material-icons-outlined text-sm text-slate-400">summarize</span>
+                Tóm tắt bối cảnh
+            </a>
+<a class="flex items-center gap-2 px-3 py-2 text-xs rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 text-text-main-light dark:text-text-main-dark" href="#">
+<span class="material-icons-outlined text-sm text-slate-400">label</span>
+                Gán nhãn dữ liệu
+            </a>
+<a class="flex items-center gap-2 px-3 py-2 text-xs rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 text-text-main-light dark:text-text-main-dark" href="#">
+<span class="material-icons-outlined text-sm text-slate-400">task_alt</span>
+                Đề xuất tác vụ
+            </a>
+<a class="flex items-center gap-2 px-3 py-2 text-xs rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 text-text-main-light dark:text-text-main-dark" href="#">
+<span class="material-icons-outlined text-sm text-slate-400">email</span>
+                Đề xuất email
+            </a>
+<a class="flex items-center gap-2 px-3 py-2 text-xs rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 text-text-main-light dark:text-text-main-dark" href="#">
+<span class="material-icons-outlined text-sm text-slate-400">call</span>
+                Đề xuất cuộc gọi
+            </a>
+<a class="flex items-center gap-2 px-3 py-2 text-xs rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 text-text-main-light dark:text-text-main-dark" href="#">
+<span class="material-icons-outlined text-sm text-slate-400">school</span>
+                Đề xuất khóa học
+            </a>
+<a class="flex items-center gap-2 px-3 py-2 text-xs rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 text-text-main-light dark:text-text-main-dark" href="#">
+<span class="material-icons-outlined text-sm text-slate-400">local_offer</span>
+                Đề xuất khuyến mãi
+            </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 px-4">
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-white shadow-sm transition-colors">Tất cả</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Chat</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Email</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Call</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Meeting</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Task</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Note</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Deal</button>
+</div>
+</div>
+<div class="p-4 overflow-y-auto custom-scrollbar relative timeline-line flex-1">
+<div class="text-xs text-center text-text-sub-light mb-4 sticky top-0 bg-background-light dark:bg-background-dark py-2 z-10">
+                                    Hôm nay
+                                </div>
+<div class="relative pl-8 pb-4 group">
+<div class="absolute left-0 top-0 w-10 h-10 -ml-5 bg-background-light dark:bg-background-dark rounded-full flex items-center justify-center z-10 border-4 border-white dark:border-surface-dark">
+<div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-400 shadow-sm">
+<span class="material-icons-outlined text-sm">email</span>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg p-3 relative">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<h4 class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Email gửi tài liệu</h4>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-green-50 text-green-700 border border-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800">Đã gửi</span>
+</div>
+<span class="text-xs text-text-sub-light">11:45 AM</span>
+</div>
+<p class="text-xs text-text-main-light dark:text-text-sub-dark mb-2">Đã gửi thông tin khóa học DA Pro và profile giảng viên theo yêu cầu.</p>
+<div class="flex items-center justify-between text-[10px] text-text-sub-light border-t border-slate-100 dark:border-slate-800 pt-2 mt-2">
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1">
+<span class="material-icons text-[12px]">person</span>
+<span>Võ Nguyễn Khôi</span>
+</div>
+</div>
+<div class="flex gap-2 text-text-sub-light">
+<button class="text-primary hover:underline">Xem nội dung</button>
+</div>
+</div>
+</div>
+</div>
+<div class="relative pl-8 pb-4 group">
+<div class="absolute left-0 top-0 w-10 h-10 -ml-5 bg-background-light dark:bg-background-dark rounded-full flex items-center justify-center z-10 border-4 border-white dark:border-surface-dark">
+<div class="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center text-green-600 dark:text-green-400 shadow-sm">
+<span class="material-icons-outlined text-sm">call</span>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg p-3 relative">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<h4 class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Cuộc gọi sơ bộ (Qualify)</h4>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-green-50 text-green-700 border border-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800">Đã hoàn thành</span>
+</div>
+<span class="text-xs text-text-sub-light">10:30 AM</span>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800 rounded-lg p-2.5 text-xs text-text-main-light dark:text-text-main-dark border border-border-light dark:border-border-dark mb-2">
+                                        Note: Khách hàng là Trưởng phòng Marketing, quan tâm lớp DA cho Leader. Budget công ty chi trả. Đánh giá: Tiềm năng cao, cần tư vấn chuyên sâu về lộ trình.
+                                    </div>
+<div class="flex items-center justify-between text-[10px] text-text-sub-light border-t border-slate-100 dark:border-slate-800 pt-2 mt-2">
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1">
+<span class="material-icons text-[12px]">person</span>
+<span>Võ Nguyễn Khôi</span>
+</div>
+<span class="text-slate-300">•</span>
+<div class="flex items-center gap-1">
+<span class="material-icons text-[12px]">timer</span>
+<span>15m 30s</span>
+</div>
+</div>
+<div class="flex gap-2 text-text-sub-light">
+<button class="text-primary hover:underline">Nghe lại (Record)</button>
+</div>
+</div>
+</div>
+</div>
+<div class="sticky bottom-0 bg-surface-light dark:bg-surface-dark p-4 border-t border-border-light dark:border-border-dark flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold text-[10px] shrink-0">
+                                        VK
+                                    </div>
+<input class="flex-1 p-2 text-sm rounded-lg border border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800 text-text-main-light focus:ring-primary focus:border-primary" placeholder="Nhập tin nhắn hoặc ghi chú mới..." type="text">
+<button class="w-9 h-9 flex items-center justify-center bg-primary hover:bg-sky-600 text-white rounded-lg transition-colors shrink-0">
+<span class="material-icons-outlined text-xl">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-3 flex flex-col gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark mb-4 flex items-center gap-2">
+<span class="material-icons-outlined text-blue-500 text-lg">ads_click</span>
+                                Nguồn &amp; Attribution
+                            </h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="text-xs text-text-sub-light">Source</span>
+<span class="text-xs font-semibold text-text-main-light dark:text-text-main-dark">Website / Organic</span>
+</div>
+<div class="flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="text-xs text-text-sub-light">Campaign</span>
+<span class="text-xs font-semibold text-text-main-light dark:text-text-main-dark truncate max-w-[140px]" title="Q4_Conversion_Lead">Q4_Lead_Gen</span>
+</div>
+<div class="flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="text-xs text-text-sub-light">Medium</span>
+<span class="text-xs font-semibold text-text-main-light dark:text-text-main-dark">referral</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-4">
+<div class="text-center p-2.5 rounded-lg border border-border-light dark:border-border-dark">
+<span class="block text-[10px] text-text-sub-light uppercase font-bold mb-1">CPL</span>
+<span class="block text-sm font-bold text-text-main-light dark:text-text-main-dark">0đ</span>
+</div>
+<div class="text-center p-2.5 rounded-lg border border-border-light dark:border-border-dark">
+<span class="block text-[10px] text-text-sub-light uppercase font-bold mb-1">Quality</span>
+<span class="block text-sm font-bold text-green-600 dark:text-green-400">High</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-4">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark mb-3 flex items-center gap-2">
+<span class="material-icons-outlined text-purple-500 text-base">label</span>
+                                Tags &amp; Qualification
+                            </h3>
+<div class="flex flex-wrap gap-1.5 mb-4">
+<span class="px-2 py-0.5 rounded text-[10px] bg-purple-50 text-purple-700 border border-purple-100 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800">Persona: Leader</span>
+<span class="px-2 py-0.5 rounded text-[10px] bg-slate-100 text-slate-700 border border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700">Ngành: Retail</span>
+<span class="px-2 py-0.5 rounded text-[10px] bg-amber-50 text-amber-700 border border-amber-100 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800">Score: 65</span>
+<button class="px-2 py-0.5 rounded text-[10px] border border-dashed border-slate-300 text-slate-400 hover:text-primary hover:border-primary transition-colors flex items-center">
+<span class="material-icons text-[12px]">add</span>
+</button>
+</div>
+<div class="space-y-2">
+<div class="group">
+<label class="text-[10px] text-text-sub-light font-medium block">Mục tiêu học</label>
+<div class="text-xs text-text-main-light dark:text-text-main-dark border-b border-dashed border-slate-300 group-hover:border-primary cursor-pointer py-0.5 truncate">
+                                        Quản lý team data hiệu quả
+                                    </div>
+</div>
+<div class="group">
+<label class="text-[10px] text-text-sub-light font-medium block">Budget dự kiến</label>
+<div class="text-xs text-text-main-light dark:text-text-main-dark border-b border-dashed border-slate-300 group-hover:border-primary cursor-pointer py-0.5 truncate">
+                                        Công ty tài trợ (Full)
+                                    </div>
+</div>
+<div class="group">
+<label class="text-[10px] text-text-sub-light font-medium block">Timeline học</label>
+<div class="text-xs text-text-main-light dark:text-text-main-dark border-b border-dashed border-slate-300 group-hover:border-primary cursor-pointer py-0.5 truncate">
+                                        Tháng tới
+                                    </div>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-4">
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-orange-500 text-base">check_circle</span>
+                                    Task đang mở (1)
+                                </h3>
+<button class="w-6 h-6 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-text-sub-light hover:text-primary transition-colors">
+<span class="material-icons text-sm">add</span>
+</button>
+</div>
+<div class="space-y-3">
+<div class="group flex items-start gap-3 pb-3 border-b border-border-light dark:border-border-dark last:border-0 last:pb-0">
+<div class="mt-0.5">
+<div class="w-4 h-4 rounded border-2 border-slate-300 dark:border-slate-600 hover:border-primary cursor-pointer"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-xs font-medium text-text-main-light dark:text-text-main-dark hover:text-primary cursor-pointer line-clamp-1">Setup lịch phỏng vấn/tư vấn</p>
+<span class="bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300 text-[9px] px-1 rounded font-bold uppercase">High</span>
+</div>
+<div class="flex items-center gap-2 mt-1 text-[10px] text-text-sub-light">
+<span class="flex items-center gap-0.5">
+<span class="material-icons text-[10px]">schedule</span> 10:00 Ngày mai
+                                            </span>
+<div class="w-4 h-4 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-[8px] text-indigo-700 dark:text-indigo-300 font-bold ml-auto">VK</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+
+</section>
+
+<!-- ================== SCREEN: SC620 (Chi tiết - Tìm hiểu) ================== -->
+<section id="screen-sc620" data-screen="sc620" class="hidden">
+
+<div class="max-w-[1600px] mx-auto h-full flex flex-col">
+<div class="grid grid-cols-12 gap-6 h-full">
+<div class="col-span-12 lg:col-span-9 flex flex-col gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-5 relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-blue-500"></div>
+<div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-5">
+<div class="flex gap-4">
+<div class="relative">
+<img alt="Contact Avatar" class="w-20 h-20 rounded-xl object-cover border-2 border-white dark:border-surface-dark shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASeWAHxCPHYbmawnAlAD3z45VOKUWnDzzYp1QPOFli0fU8iYhw_NCUBKvKN8WOXD-lZ_s7EtEE9GG-45w2hf6VMA_UOXXG7lLbaWUJnQsbvHkjR9vR9vOH1LwDKMwKvu2O8jlLuNhMGG40BavpY0YyEptrJHij3CiHlY6XJ7zAcQpKe781R31aWkYJmZ_8V9BbfzMVcWd-NxecBF8K4d3G-9MVqf2MOziHUovoXx7A29zapFdkY35EnitU8dhbfFVR1JKMsytuJL8">
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h1 class="text-2xl font-bold text-text-main-light dark:text-text-main-dark">Nguyễn Văn An</h1>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 uppercase tracking-wide">
+                                                Tìm hiểu
+                                            </span>
+<button class="flex items-center gap-1 px-2 py-1 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border-none" title="Thông tin học viên">
+<span class="material-icons-outlined text-lg">school</span>
+<span class="text-xs font-bold uppercase">Học viên</span>
+</button>
+</div>
+<p class="text-text-sub-light dark:text-text-sub-dark text-sm mb-2 flex items-center gap-1">
+<span class="material-icons-outlined text-base">business</span>
+                                            Trưởng phòng Marketing @ Công ty ABC
+                                        </p>
+<div class="flex flex-wrap gap-2 text-xs">
+<div class="flex items-center gap-1.5 px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-text-main-light dark:text-text-main-dark">
+<span class="material-icons-outlined text-sm text-slate-400">phone</span>
+                                                090 123 4567
+                                            </div>
+<div class="flex items-center gap-1.5 px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-text-main-light dark:text-text-main-dark">
+<span class="material-icons-outlined text-sm text-slate-400">email</span>
+                                                an.nguyen@abc.com
+                                            </div>
+<div class="flex items-center gap-1.5 px-2 py-1 bg-blue-500/10 dark:bg-blue-900/40 rounded text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800">
+<span class="material-icons text-sm">campaign</span>
+                                                Facebook Ads
+                                            </div>
+<div class="flex items-center gap-1.5 px-2 py-1 bg-amber-50 dark:bg-amber-900/20 rounded text-amber-700 dark:text-amber-400 border border-amber-100 dark:border-amber-800">
+<span class="material-icons-outlined text-sm">stars</span>
+                                                Score: 65
+                                            </div>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-3 w-full md:w-auto relative group">
+<div class="flex flex-wrap items-center gap-2 justify-end w-full">
+<button class="bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark hover:bg-slate-50 dark:hover:bg-slate-800 text-text-sub-light dark:text-text-sub-dark p-2 rounded-lg transition-colors peer">
+<span class="material-icons-outlined text-lg">more_horiz</span>
+</button>
+<button class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center gap-2 text-sm font-medium shadow-sm">
+<span class="material-icons-outlined text-base animate-pulse">auto_awesome</span>
+    AI báo cáo
+</button>
+<div class="absolute top-full right-0 mt-1 w-56 bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg shadow-xl z-50 invisible peer-focus:visible hover:visible opacity-0 peer-focus:opacity-100 hover:opacity-100 transition-all duration-200 transform origin-top-right">
+<div class="py-1">
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">merge_type</span>
+        Gộp liên hệ trùng
+    </a>
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">edit</span>
+        Chỉnh sửa thông tin
+    </a>
+</div>
+<div class="border-t border-border-light dark:border-border-dark py-1">
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">thumb_down</span>
+        Đánh dấu "Lost"
+    </a>
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">archive</span>
+        Archive liên hệ
+    </a>
+</div>
+<div class="border-t border-border-light dark:border-border-dark py-1">
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">picture_as_pdf</span>
+        Export PDF
+    </a>
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">table_view</span>
+        Export CSV
+    </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 bg-slate-50 dark:bg-slate-800/50 rounded-xl p-0 border border-border-light dark:border-border-dark flex flex-col xl:flex-row overflow-hidden divide-y xl:divide-y-0 xl:divide-x divide-border-light dark:divide-border-dark">
+<div class="flex-1 p-4 flex flex-col gap-1.5">
+<span class="text-[10px] uppercase font-bold text-text-sub-light dark:text-text-sub-dark">Người phụ trách</span>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold text-xs shadow-sm">
+                                            VK
+                                        </div>
+<span class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Võ Nguyễn Khôi</span>
+</div>
+</div>
+<div class="flex-1 p-4 flex flex-col gap-1.5">
+<span class="text-[10px] uppercase font-bold text-text-sub-light dark:text-text-sub-dark">SLA Phản hồi</span>
+<div class="flex items-center">
+<div class="flex items-center gap-1.5 text-green-600 dark:text-green-400 bg-white dark:bg-green-900/20 px-2.5 py-1 rounded-md text-xs font-bold border border-green-100 dark:border-green-800 shadow-sm">
+<span class="material-icons text-sm">schedule</span>
+                                            Còn 4h
+                                        </div>
+</div>
+</div>
+<div class="flex-1 p-4 flex flex-col gap-1.5">
+<span class="text-[10px] uppercase font-bold text-text-sub-light dark:text-text-sub-dark">Sản phẩm quan tâm</span>
+<span class="text-sm font-semibold text-text-main-light dark:text-text-main-dark truncate">Khóa học DA Pro</span>
+</div>
+<div class="flex-1 p-4 flex flex-col gap-1.5">
+<span class="text-[10px] uppercase font-bold text-text-sub-light dark:text-text-sub-dark">Giá trị (Est)</span>
+<span class="text-sm font-bold text-slate-500 dark:text-slate-400">Đang đánh giá</span>
+</div>
+<div class="flex-1 p-4 flex flex-col gap-1.5">
+<span class="text-[10px] uppercase font-bold text-text-sub-light dark:text-text-sub-dark">Dự kiến chốt</span>
+<span class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">--/--/----</span>
+</div>
+</div>
+<div class="mt-2 pt-2 border-t border-transparent mt-4 pt-4">
+<div class="flex items-center justify-between mb-4">
+<div class="relative inline-block text-left">
+<button class="flex items-center gap-1 text-blue-600 font-bold hover:text-blue-700 transition-colors text-sm" type="button">
+                                            Tìm hiểu / Khám phá
+                                            <span class="material-icons-outlined text-base">expand_more</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors shadow-sm">
+<span class="material-icons-outlined text-base animate-pulse">auto_awesome</span>
+                                            AI tư vấn
+                                        </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<div class="lg:col-span-7 flex flex-col justify-center">
+<div class="mb-6">
+<div class="relative w-full">
+<div class="flex rounded-lg overflow-hidden border border-border-light dark:border-border-dark relative z-10">
+<div class="bg-green-500 text-white text-[10px] font-bold px-4 py-2 flex-1 text-center border-r border-green-600">Liên hệ</div>
+<div class="bg-green-500 text-white text-[10px] font-bold px-4 py-2 flex-1 text-center border-r border-green-600">Tiềm năng</div>
+<div class="bg-blue-600 text-white text-[10px] font-bold px-4 py-2 flex-1 text-center relative border-r border-blue-700">
+                                                        Tìm hiểu
+                                                        <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-white/30"></div>
+</div>
+<div class="bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 text-[10px] font-bold px-4 py-2 flex-1 text-center border-r border-slate-200 dark:border-slate-700">Quan tâm</div>
+<div class="bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 text-[10px] font-bold px-4 py-2 flex-1 text-center">Mua hàng</div>
+</div>
+<div class="absolute top-full left-0 w-full h-4 mt-1 pointer-events-none">
+<span class="absolute left-[20%] -translate-x-1/2 text-[10px] text-text-sub-light dark:text-text-sub-dark font-medium leading-none mt-1">10/11</span>
+<span class="absolute left-[40%] -translate-x-1/2 text-[10px] text-text-sub-light dark:text-text-sub-dark font-medium leading-none mt-1">12/11</span>
+<span class="absolute left-[60%] -translate-x-1/2 text-[10px] text-blue-600 dark:text-blue-400 font-bold leading-none mt-1">Hôm nay</span>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5">
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/50 h-full">
+<div class="flex items-center gap-3">
+<div class="bg-white dark:bg-indigo-900 p-1.5 rounded-md shadow-sm text-indigo-600 dark:text-indigo-300">
+<span class="material-icons-outlined text-lg">forward_to_inbox</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-indigo-600 dark:text-indigo-400 tracking-wide">Bước tiếp theo</span>
+<span class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Gửi tài liệu chi tiết khóa học</span>
+</div>
+</div>
+<div class="flex items-center gap-3 flex-col items-end">
+<div class="text-right hidden sm:block">
+<div class="text-xs text-text-sub-light dark:text-text-sub-dark">Hạn: <span class="text-orange-500 font-medium">Hôm nay</span></div>
+</div>
+<button class="text-xs font-medium bg-white dark:bg-indigo-900 hover:bg-slate-50 dark:hover:bg-indigo-800 text-indigo-600 dark:text-indigo-300 px-3 py-1.5 rounded border border-indigo-200 dark:border-indigo-700 transition-colors shadow-sm whitespace-nowrap">
+                                                    Gửi ngay
+                                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark flex-1 flex flex-col min-h-0">
+<div class="p-4 border-b border-border-light dark:border-border-dark">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+<h3 class="font-bold text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-slate-400">history</span>
+                                        Lịch sử tương tác
+                                    </h3>
+<div class="flex items-center gap-2">
+<div class="relative">
+<span class="absolute inset-y-0 left-0 flex items-center pl-2 text-slate-400">
+<span class="material-icons-outlined text-lg">search</span>
+</span>
+<input class="pl-8 pr-3 py-1.5 text-xs rounded-lg border border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800 text-text-main-light focus:ring-primary focus:border-primary w-48" placeholder="Tìm trong lịch sử..." type="text">
+</div>
+<button class="p-1.5 rounded-lg border border-border-light dark:border-border-dark hover:bg-slate-50 dark:hover:bg-slate-800 text-text-sub-light transition-colors" title="Lọc theo ngày">
+<span class="material-icons-outlined text-lg">date_range</span>
+</button>
+<button class="bg-white hover:bg-slate-50 text-primary border border-border-light text-xs font-medium px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors shadow-sm relative group">
+<span class="material-icons-outlined text-sm">add_task</span>
+                                            Tạo hoạt động
+                                            <span class="material-icons-outlined text-sm">expand_more</span>
+<div class="hidden absolute top-full right-0 mt-2 w-48 bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg shadow-xl z-50 group-focus:block group-hover:block">
+<div class="py-1">
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">check_circle</span> Task
+            </a>
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">email</span> Email
+            </a>
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">call</span> Call
+            </a>
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">groups</span> Meeting
+            </a>
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">note</span> Note
+            </a>
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">handshake</span> Deal
+            </a>
+</div>
+</div>
+</button>
+<div class="relative group">
+<button class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white text-xs font-medium px-4 py-1.5 rounded-lg flex items-center gap-1.5 transition-all shadow-sm">
+<span class="material-icons-outlined text-sm animate-pulse">auto_awesome</span>
+        AI trợ lý
+    </button>
+<div class="absolute top-full right-0 mt-2 w-56 bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg shadow-xl z-50 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200">
+<div class="p-2 space-y-1">
+<a class="flex items-center gap-2 px-3 py-2 text-xs rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 text-text-main-light dark:text-text-main-dark" href="#">
+<span class="material-icons-outlined text-sm text-slate-400">summarize</span>
+                Tóm tắt bối cảnh
+            </a>
+<a class="flex items-center gap-2 px-3 py-2 text-xs rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 text-text-main-light dark:text-text-main-dark" href="#">
+<span class="material-icons-outlined text-sm text-slate-400">label</span>
+                Gán nhãn dữ liệu
+            </a>
+<a class="flex items-center gap-2 px-3 py-2 text-xs rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 text-text-main-light dark:text-text-main-dark" href="#">
+<span class="material-icons-outlined text-sm text-slate-400">task_alt</span>
+                Đề xuất tác vụ
+            </a>
+<a class="flex items-center gap-2 px-3 py-2 text-xs rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 text-text-main-light dark:text-text-main-dark" href="#">
+<span class="material-icons-outlined text-sm text-slate-400">email</span>
+                Đề xuất email
+            </a>
+<a class="flex items-center gap-2 px-3 py-2 text-xs rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 text-text-main-light dark:text-text-main-dark" href="#">
+<span class="material-icons-outlined text-sm text-slate-400">call</span>
+                Đề xuất cuộc gọi
+            </a>
+<a class="flex items-center gap-2 px-3 py-2 text-xs rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 text-text-main-light dark:text-text-main-dark" href="#">
+<span class="material-icons-outlined text-sm text-slate-400">school</span>
+                Đề xuất khóa học
+            </a>
+<a class="flex items-center gap-2 px-3 py-2 text-xs rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 text-text-main-light dark:text-text-main-dark" href="#">
+<span class="material-icons-outlined text-sm text-slate-400">local_offer</span>
+                Đề xuất khuyến mãi
+            </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 px-4">
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-white shadow-sm transition-colors">Tất cả</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Chat</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Email</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Call</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Meeting</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Task</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Note</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Deal</button>
+</div>
+</div>
+<div class="p-4 overflow-y-auto custom-scrollbar relative timeline-line flex-1">
+<div class="text-xs text-center text-text-sub-light mb-4 sticky top-0 bg-background-light dark:bg-background-dark py-2 z-10">
+                                    Hôm nay
+                                </div>
+<div class="relative pl-8 pb-4 group">
+<div class="absolute left-0 top-0 w-10 h-10 -ml-5 bg-background-light dark:bg-background-dark rounded-full flex items-center justify-center z-10 border-4 border-white dark:border-surface-dark">
+<div class="w-8 h-8 rounded-full bg-sky-100 dark:bg-sky-900 flex items-center justify-center text-sky-600 dark:text-sky-400 shadow-sm">
+<span class="material-icons-outlined text-sm">email</span>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg p-3 relative">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<h4 class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Email: Gửi thông tin khóa học</h4>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-700 border border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700">Đã gửi</span>
+</div>
+<span class="text-xs text-text-sub-light">14:00 PM</span>
+</div>
+<p class="text-xs text-text-main-light dark:text-text-sub-dark mb-2">Đã gửi tài liệu brochure và outline chi tiết khóa DA Pro theo yêu cầu.</p>
+<div class="flex items-center justify-between text-[10px] text-text-sub-light border-t border-slate-100 dark:border-slate-800 pt-2 mt-2">
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1">
+<span class="material-icons text-[12px]">person</span>
+<span>Võ Nguyễn Khôi</span>
+</div>
+</div>
+<div class="flex gap-2 text-text-sub-light">
+<button class="text-primary hover:underline">Xem nội dung</button>
+</div>
+</div>
+</div>
+</div>
+<div class="relative pl-8 pb-4 group">
+<div class="absolute left-0 top-0 w-10 h-10 -ml-5 bg-background-light dark:bg-background-dark rounded-full flex items-center justify-center z-10 border-4 border-white dark:border-surface-dark">
+<div class="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center text-green-600 dark:text-green-400 shadow-sm">
+<span class="material-icons-outlined text-sm">call</span>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg p-3 relative">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<h4 class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Cuộc gọi thảo luận ban đầu</h4>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-green-50 text-green-700 border border-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800">Hoàn thành</span>
+</div>
+<span class="text-xs text-text-sub-light">10:30 AM</span>
+</div>
+<p class="text-xs text-text-main-light dark:text-text-sub-dark mb-2">Trao đổi sơ bộ về nhu cầu học tập và background của học viên.</p>
+<div class="flex items-center justify-between text-[10px] text-text-sub-light border-t border-slate-100 dark:border-slate-800 pt-2 mt-2">
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1">
+<span class="material-icons text-[12px]">person</span>
+<span>Võ Nguyễn Khôi</span>
+</div>
+<span class="text-slate-300">•</span>
+<div class="flex items-center gap-1">
+<span class="material-icons text-[12px]">smartphone</span>
+<span>Mobile</span>
+</div>
+</div>
+<div class="flex gap-2 text-text-sub-light">
+<button class="text-primary hover:underline">Nghe lại</button>
+</div>
+</div>
+</div>
+</div>
+<div class="text-xs text-center text-text-sub-light mb-4 mt-2">Hôm qua</div>
+<div class="relative pl-8 pb-4 group">
+<div class="absolute left-0 top-0 w-10 h-10 -ml-5 bg-background-light dark:bg-background-dark rounded-full flex items-center justify-center z-10 border-4 border-white dark:border-surface-dark">
+<div class="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center text-purple-600 dark:text-purple-400 shadow-sm">
+<span class="material-icons-outlined text-sm">chat</span>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg p-3 relative">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<h4 class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Chat tư vấn lộ trình</h4>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-purple-50 text-purple-700 border border-purple-100 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800">Đã đóng</span>
+</div>
+<span class="text-xs text-text-sub-light">15:45 PM</span>
+</div>
+<p class="text-xs text-text-main-light dark:text-text-sub-dark mb-2">Học viên hỏi về lịch khai giảng và học phí.</p>
+<div class="relative mt-2">
+<div class="absolute -left-10 top-2 w-7 h-7 rounded-full bg-red-100 dark:bg-red-900 flex items-center justify-center text-red-700 dark:text-red-300 font-bold text-[10px] shadow-sm z-10">
+                                            AN
+                                        </div>
+<div class="flex-1 ml-auto bg-primary/10 dark:bg-primary/20 rounded-lg p-2.5 text-xs text-text-main-light dark:text-text-main-dark border border-primary/20 relative pl-8">
+                                            "Chào bạn, mình muốn tìm hiểu về khóa DA sắp tới?"
+                                            <div class="absolute bottom-1 right-2 text-[10px] text-text-sub-light">15:45 PM</div>
+</div>
+</div>
+<div class="relative mt-2">
+<div class="absolute -left-10 top-2 w-7 h-7 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold text-[10px] shadow-sm z-10">
+                                            VK
+                                        </div>
+<div class="flex-1 ml-auto bg-slate-50 dark:bg-slate-800 rounded-lg p-2.5 text-xs text-text-main-light dark:text-text-main-dark border border-border-light dark:border-border-dark relative pl-8">
+                                            "Dạ chào anh An, khóa DA Pro dự kiến khai giảng vào ngày 15/12 ạ."
+                                            <div class="absolute bottom-1 right-2 text-[10px] text-text-sub-light">15:46 PM</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sticky bottom-0 bg-surface-light dark:bg-surface-dark p-4 border-t border-border-light dark:border-border-dark flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold text-[10px] shrink-0">
+                                        VK
+                                    </div>
+<input class="flex-1 p-2 text-sm rounded-lg border border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800 text-text-main-light focus:ring-primary focus:border-primary" placeholder="Nhập tin nhắn hoặc ghi chú mới..." type="text">
+<button class="w-9 h-9 flex items-center justify-center bg-primary hover:bg-sky-600 text-white rounded-lg transition-colors shrink-0">
+<span class="material-icons-outlined text-xl">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-3 flex flex-col gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark mb-4 flex items-center gap-2">
+<span class="material-icons-outlined text-blue-500 text-lg">ads_click</span>
+                                Nguồn &amp; Attribution
+                            </h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="text-xs text-text-sub-light">Source</span>
+<span class="text-xs font-semibold text-text-main-light dark:text-text-main-dark">Facebook Ads</span>
+</div>
+<div class="flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="text-xs text-text-sub-light">Campaign</span>
+<span class="text-xs font-semibold text-text-main-light dark:text-text-main-dark truncate max-w-[140px]" title="Q4_Conversion_Lead">Q4_Conversion_Lead</span>
+</div>
+<div class="flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="text-xs text-text-sub-light">Medium</span>
+<span class="text-xs font-semibold text-text-main-light dark:text-text-main-dark">cpc</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-4">
+<div class="text-center p-2.5 rounded-lg border border-border-light dark:border-border-dark">
+<span class="block text-[10px] text-text-sub-light uppercase font-bold mb-1">CPL</span>
+<span class="block text-sm font-bold text-text-main-light dark:text-text-main-dark">150k</span>
+</div>
+<div class="text-center p-2.5 rounded-lg border border-border-light dark:border-border-dark">
+<span class="block text-[10px] text-text-sub-light uppercase font-bold mb-1">CAC (Est)</span>
+<span class="block text-sm font-bold text-text-main-light dark:text-text-main-dark">--</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-4">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark mb-3 flex items-center gap-2">
+<span class="material-icons-outlined text-purple-500 text-base">label</span>
+                                Tags &amp; Qualification
+                            </h3>
+<div class="flex flex-wrap gap-1.5 mb-4">
+<span class="px-2 py-0.5 rounded text-[10px] bg-purple-50 text-purple-700 border border-purple-100 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800">Persona: Manager</span>
+<span class="px-2 py-0.5 rounded text-[10px] bg-slate-100 text-slate-700 border border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700">Ngành: Retail</span>
+<span class="px-2 py-0.5 rounded text-[10px] bg-orange-50 text-orange-700 border border-orange-100 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-800">Nhu cầu: Tìm hiểu</span>
+<button class="px-2 py-0.5 rounded text-[10px] border border-dashed border-slate-300 text-slate-400 hover:text-primary hover:border-primary transition-colors flex items-center">
+<span class="material-icons text-[12px]">add</span>
+</button>
+</div>
+<div class="space-y-2">
+<div class="group">
+<label class="text-[10px] text-text-sub-light font-medium block">Mục tiêu học</label>
+<div class="text-xs text-text-main-light dark:text-text-main-dark border-b border-dashed border-slate-300 group-hover:border-primary cursor-pointer py-0.5 truncate">
+                                        Nâng cao kỹ năng phân tích
+                                    </div>
+</div>
+<div class="group">
+<label class="text-[10px] text-text-sub-light font-medium block">Budget dự kiến</label>
+<div class="text-xs text-text-main-light dark:text-text-main-dark border-b border-dashed border-slate-300 group-hover:border-primary cursor-pointer py-0.5 truncate">
+                                        Chưa xác định
+                                    </div>
+</div>
+<div class="group">
+<label class="text-[10px] text-text-sub-light font-medium block">Timeline học</label>
+<div class="text-xs text-text-main-light dark:text-text-main-dark border-b border-dashed border-slate-300 group-hover:border-primary cursor-pointer py-0.5 truncate">
+                                        Q1 Năm sau
+                                    </div>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-4">
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-orange-500 text-base">check_circle</span>
+                                    Task đang mở (2)
+                                </h3>
+<button class="w-6 h-6 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-text-sub-light hover:text-primary transition-colors">
+<span class="material-icons text-sm">add</span>
+</button>
+</div>
+<div class="space-y-3">
+<div class="group flex items-start gap-3 pb-3 border-b border-border-light dark:border-border-dark last:border-0 last:pb-0">
+<div class="mt-0.5">
+<div class="w-4 h-4 rounded border-2 border-slate-300 dark:border-slate-600 hover:border-primary cursor-pointer"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-xs font-medium text-text-main-light dark:text-text-main-dark hover:text-primary cursor-pointer line-clamp-1">Chuẩn bị tài liệu khóa học</p>
+<span class="bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300 text-[9px] px-1 rounded font-bold uppercase">High</span>
+</div>
+<div class="flex items-center gap-2 mt-1 text-[10px] text-text-sub-light">
+<span class="flex items-center gap-0.5">
+<span class="material-icons text-[10px]">schedule</span> 14:30 Hôm nay
+                                            </span>
+<div class="w-4 h-4 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-[8px] text-indigo-700 dark:text-indigo-300 font-bold ml-auto">VK</div>
+</div>
+</div>
+</div>
+<div class="group flex items-start gap-3">
+<div class="mt-0.5">
+<div class="w-4 h-4 rounded border-2 border-slate-300 dark:border-slate-600 hover:border-primary cursor-pointer"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-xs font-medium text-text-main-light dark:text-text-main-dark hover:text-primary cursor-pointer line-clamp-1">Follow up sau khi gửi tài liệu</p>
+<span class="bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 text-[9px] px-1 rounded font-bold uppercase">Med</span>
+</div>
+<div class="flex items-center gap-2 mt-1 text-[10px] text-text-sub-light">
+<span class="flex items-center gap-0.5">
+<span class="material-icons text-[10px]">schedule</span> Ngày mai
+                                            </span>
+<div class="w-4 h-4 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-[8px] text-indigo-700 dark:text-indigo-300 font-bold ml-auto">VK</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+
+</section>
+
+<!-- ================== SCREEN: SC630 (Chi tiết - Quan tâm) ================== -->
+<section id="screen-sc630" data-screen="sc630" class="hidden">
+
+<div class="max-w-[1600px] mx-auto h-full flex flex-col">
+<div class="grid grid-cols-12 gap-6 h-full">
+<div class="col-span-12 lg:col-span-9 flex flex-col gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-5 relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-blue-500"></div>
+<div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-5">
+<div class="flex gap-4">
+<div class="relative">
+<img alt="Contact Avatar" class="w-20 h-20 rounded-xl object-cover border-2 border-white dark:border-surface-dark shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASeWAHxCPHYbmawnAlAD3z45VOKUWnDzzYp1QPOFli0fU8iYhw_NCUBKvKN8WOXD-lZ_s7EtEE9GG-45w2hf6VMA_UOXXG7lLbaWUJnQsbvHkjR9vR9vOH1LwDKMwKvu2O8jlLuNhMGG40BavpY0YyEptrJHij3CiHlY6XJ7zAcQpKe781R31aWkYJmZ_8V9BbfzMVcWd-NxecBF8K4d3G-9MVqf2MOziHUovoXx7A29zapFdkY35EnitU8dhbfFVR1JKMsytuJL8"/>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h1 class="text-2xl font-bold text-text-main-light dark:text-text-main-dark">Nguyễn Văn An</h1>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 uppercase tracking-wide">
+                        Quan tâm
+                    </span>
+<button class="flex items-center gap-1 px-2 py-1 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border-none" title="Thông tin học viên">
+<span class="material-icons-outlined text-lg">school</span>
+<span class="text-xs font-bold uppercase">Học viên</span>
+</button>
+</div>
+<p class="text-text-sub-light dark:text-text-sub-dark text-sm mb-2 flex items-center gap-1">
+<span class="material-icons-outlined text-base">business</span>
+                    Trưởng phòng Marketing @ Công ty ABC
+                </p>
+<div class="flex flex-wrap gap-2 text-xs">
+<div class="flex items-center gap-1.5 px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-text-main-light dark:text-text-main-dark">
+<span class="material-icons-outlined text-sm text-slate-400">phone</span>
+                        090 123 4567
+                    </div>
+<div class="flex items-center gap-1.5 px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-text-main-light dark:text-text-main-dark">
+<span class="material-icons-outlined text-sm text-slate-400">email</span>
+                        an.nguyen@abc.com
+                    </div>
+<div class="flex items-center gap-1.5 px-2 py-1 bg-blue-500/10 dark:bg-blue-900/40 rounded text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800">
+<span class="material-icons text-sm">campaign</span>
+                        Facebook Ads
+                    </div>
+<div class="flex items-center gap-1.5 px-2 py-1 bg-green-50 dark:bg-green-900/20 rounded text-green-700 dark:text-green-400 border border-green-100 dark:border-green-800">
+<span class="material-icons-outlined text-sm">stars</span>
+                        Score: 92
+                    </div>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-3 w-full md:w-auto relative group">
+<div class="flex flex-wrap items-center gap-2 justify-end w-full">
+<button class="bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark hover:bg-slate-50 dark:hover:bg-slate-800 text-text-sub-light dark:text-text-sub-dark p-2 rounded-lg transition-colors peer">
+<span class="material-icons-outlined text-lg">more_horiz</span>
+</button>
+<button class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center gap-2 text-sm font-medium shadow-sm">
+<span class="material-icons-outlined text-base animate-pulse">auto_awesome</span>
+                    AI báo cáo
+                </button>
+<div class="absolute top-full right-0 mt-1 w-56 bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg shadow-xl z-50 invisible peer-focus:visible hover:visible opacity-0 peer-focus:opacity-100 hover:opacity-100 transition-all duration-200 transform origin-top-right">
+<div class="py-1">
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">merge_type</span>
+                            Gộp liên hệ trùng
+                        </a>
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">edit</span>
+                            Chỉnh sửa thông tin
+                        </a>
+</div>
+<div class="border-t border-border-light dark:border-border-dark py-1">
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">thumb_down</span>
+                            Đánh dấu "Lost"
+                        </a>
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">archive</span>
+                            Archive liên hệ
+                        </a>
+</div>
+<div class="border-t border-border-light dark:border-border-dark py-1">
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">picture_as_pdf</span>
+                            Export PDF
+                        </a>
+<a class="flex items-center gap-2 px-4 py-2 text-sm text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-base text-slate-400">table_view</span>
+                            Export CSV
+                        </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 bg-slate-50 dark:bg-slate-800/50 rounded-xl p-0 border border-border-light dark:border-border-dark flex flex-col xl:flex-row overflow-hidden divide-y xl:divide-y-0 xl:divide-x divide-border-light dark:divide-border-dark">
+<div class="flex-1 p-4 flex flex-col gap-1.5">
+<span class="text-[10px] uppercase font-bold text-text-sub-light dark:text-text-sub-dark">Người phụ trách</span>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold text-xs shadow-sm">
+                    VK
+                </div>
+<span class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Võ Nguyễn Khôi</span>
+</div>
+</div>
+<div class="flex-1 p-4 flex flex-col gap-1.5">
+<span class="text-[10px] uppercase font-bold text-text-sub-light dark:text-text-sub-dark">Trạng thái</span>
+<div class="flex items-center">
+<div class="flex items-center gap-1.5 text-orange-600 dark:text-orange-400 bg-white dark:bg-orange-900/20 px-2.5 py-1 rounded-md text-xs font-bold border border-orange-100 dark:border-orange-800 shadow-sm">
+<span class="material-icons text-sm">pending</span>
+                    Chờ thanh toán
+                </div>
+</div>
+</div>
+<div class="flex-1 p-4 flex flex-col gap-1.5">
+<span class="text-[10px] uppercase font-bold text-text-sub-light dark:text-text-sub-dark">Sản phẩm</span>
+<span class="text-sm font-semibold text-text-main-light dark:text-text-main-dark truncate" title="Combo 2 Khóa DA &amp; BA Pro">Combo 2 Khóa DA &amp; BA</span>
+</div>
+<div class="flex-1 p-4 flex flex-col gap-1.5">
+<span class="text-[10px] uppercase font-bold text-text-sub-light dark:text-text-sub-dark">Giá trị Deal</span>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-green-600 dark:text-green-400">12.000.000 ₫</span>
+<span class="text-[10px] text-text-sub-light line-through">15.000.000 ₫</span>
+</div>
+</div>
+<div class="flex-1 p-4 flex flex-col gap-1.5">
+<span class="text-[10px] uppercase font-bold text-text-sub-light dark:text-text-sub-dark">Dự kiến chốt</span>
+<span class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">15/12/2023</span>
+</div>
+</div>
+<div class="mt-2 pt-2 border-t border-transparent mt-4 pt-4">
+<div class="flex items-center justify-between mb-4">
+<div class="relative inline-block text-left">
+<button class="flex items-center gap-1 text-blue-600 font-bold hover:text-blue-700 transition-colors text-sm" type="button">
+                    Quan tâm / Chốt Deal
+                    <span class="material-icons-outlined text-base">expand_more</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors shadow-sm">
+<span class="material-icons-outlined text-base animate-pulse">auto_awesome</span>
+                    AI tư vấn chốt sale
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<div class="lg:col-span-7 flex flex-col justify-center">
+<div class="mb-6">
+<div class="relative w-full">
+<div class="flex rounded-lg overflow-hidden border border-border-light dark:border-border-dark relative z-10">
+<div class="bg-green-500 text-white text-[10px] font-bold px-4 py-2 flex-1 text-center border-r border-green-600">Liên hệ</div>
+<div class="bg-green-500 text-white text-[10px] font-bold px-4 py-2 flex-1 text-center border-r border-green-600">Tiềm năng</div>
+<div class="bg-green-500 text-white text-[10px] font-bold px-4 py-2 flex-1 text-center border-r border-green-600">Tìm hiểu</div>
+<div class="bg-blue-600 text-white text-[10px] font-bold px-4 py-2 flex-1 text-center relative border-r border-blue-700 shadow-inner">
+                                Quan tâm
+                                <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-white/50"></div>
+</div>
+<div class="bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 text-[10px] font-bold px-4 py-2 flex-1 text-center">
+                                Mua hàng
+                            </div>
+</div>
+<div class="absolute top-full left-0 w-full h-4 mt-1 pointer-events-none">
+<span class="absolute left-[20%] -translate-x-1/2 text-[10px] text-text-sub-light dark:text-text-sub-dark font-medium leading-none mt-1">10/11</span>
+<span class="absolute left-[40%] -translate-x-1/2 text-[10px] text-text-sub-light dark:text-text-sub-dark font-medium leading-none mt-1">15/11</span>
+<span class="absolute left-[60%] -translate-x-1/2 text-[10px] text-text-sub-light dark:text-text-sub-dark font-medium leading-none mt-1">20/11</span>
+<span class="absolute left-[80%] -translate-x-1/2 text-[10px] text-blue-600 dark:text-blue-400 font-bold leading-none mt-1">Hôm nay</span>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5">
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-orange-50 dark:bg-orange-900/20 border border-orange-100 dark:border-orange-800/50 h-full">
+<div class="flex items-center gap-3">
+<div class="bg-white dark:bg-orange-900 p-1.5 rounded-md shadow-sm text-orange-600 dark:text-orange-300">
+<span class="material-icons-outlined text-lg">arrow_forward</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-orange-600 dark:text-orange-400 tracking-wide">Bước tiếp theo</span>
+<span class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Gửi hợp đồng / link thanh toán</span>
+</div>
+</div>
+<div class="flex items-center gap-3 flex-col items-end">
+<div class="text-right hidden sm:block">
+<div class="text-xs text-text-sub-light dark:text-text-sub-dark">Hết hạn: <span class="text-red-600 font-bold">Hôm nay</span></div>
+</div>
+<button class="text-xs font-medium bg-white dark:bg-orange-900 hover:bg-slate-50 dark:hover:bg-orange-800 text-orange-600 dark:text-orange-300 px-3 py-1.5 rounded border border-orange-200 dark:border-orange-700 transition-colors shadow-sm whitespace-nowrap">
+                            Thực hiện
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark flex-1 flex flex-col min-h-0">
+<div class="p-4 border-b border-border-light dark:border-border-dark">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+<h3 class="font-bold text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-slate-400">history</span>
+            Lịch sử tương tác
+        </h3>
+<div class="flex items-center gap-2">
+<div class="relative">
+<span class="absolute inset-y-0 left-0 flex items-center pl-2 text-slate-400">
+<span class="material-icons-outlined text-lg">search</span>
+</span>
+<input class="pl-8 pr-3 py-1.5 text-xs rounded-lg border border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800 text-text-main-light focus:ring-primary focus:border-primary w-48" placeholder="Tìm trong lịch sử..." type="text"/>
+</div>
+<button class="p-1.5 rounded-lg border border-border-light dark:border-border-dark hover:bg-slate-50 dark:hover:bg-slate-800 text-text-sub-light transition-colors" title="Lọc theo ngày">
+<span class="material-icons-outlined text-lg">date_range</span>
+</button>
+<button class="bg-white hover:bg-slate-50 text-primary border border-border-light text-xs font-medium px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors shadow-sm relative group">
+<span class="material-icons-outlined text-sm">add_task</span>
+                Tạo hoạt động
+                <span class="material-icons-outlined text-sm">expand_more</span>
+<div class="hidden absolute top-full right-0 mt-2 w-48 bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg shadow-xl z-50 group-focus:block group-hover:block">
+<div class="py-1">
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">check_circle</span> Task
+                        </a>
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">email</span> Email
+                        </a>
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">call</span> Call
+                        </a>
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">groups</span> Meeting
+                        </a>
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">note</span> Note
+                        </a>
+<a class="flex items-center px-4 py-2 text-xs text-text-main-light dark:text-text-main-dark hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-icons-outlined text-sm mr-2 text-slate-400">handshake</span> Deal
+                        </a>
+</div>
+</div>
+</button>
+<div class="relative group">
+<button class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white text-xs font-medium px-4 py-1.5 rounded-lg flex items-center gap-1.5 transition-all shadow-sm">
+<span class="material-icons-outlined text-sm animate-pulse">auto_awesome</span>
+                    AI trợ lý
+                </button>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 px-4">
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-white shadow-sm transition-colors">Tất cả</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Chat</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Email</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Call</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Meeting</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Task</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Note</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Deal</button>
+</div>
+</div>
+<div class="p-4 overflow-y-auto custom-scrollbar relative timeline-line flex-1">
+<div class="text-xs text-center text-text-sub-light mb-4 sticky top-0 bg-background-light dark:bg-background-dark py-2 z-10">
+        Hôm nay
+    </div>
+<div class="relative pl-8 pb-6 group">
+<div class="absolute left-0 top-0 w-10 h-10 -ml-5 bg-background-light dark:bg-background-dark rounded-full flex items-center justify-center z-10 border-4 border-white dark:border-surface-dark">
+<div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-400 shadow-sm">
+<span class="material-icons-outlined text-sm">email</span>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg p-3 relative">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<h4 class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Gửi Hợp đồng &amp; Link thanh toán</h4>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-blue-50 text-blue-700 border border-blue-100 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800">Đã gửi</span>
+</div>
+<span class="text-xs text-text-sub-light">15:45 PM</span>
+</div>
+<p class="text-xs text-text-main-light dark:text-text-sub-dark mb-2">Đã gửi email draft hợp đồng và link thanh toán VNPAY (giảm 20% theo promo). Đang chờ phản hồi xác nhận.</p>
+<div class="flex items-center justify-between text-[10px] text-text-sub-light border-t border-slate-100 dark:border-slate-800 pt-2 mt-2">
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1">
+<span class="material-icons text-[12px]">person</span>
+<span>Võ Nguyễn Khôi</span>
+</div>
+</div>
+<div class="flex gap-2 text-text-sub-light">
+<button class="text-primary hover:underline">Xem email</button>
+</div>
+</div>
+</div>
+</div>
+<div class="relative pl-8 pb-6 group">
+<div class="absolute left-0 top-0 w-10 h-10 -ml-5 bg-background-light dark:bg-background-dark rounded-full flex items-center justify-center z-10 border-4 border-white dark:border-surface-dark">
+<div class="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center text-purple-600 dark:text-purple-400 shadow-sm">
+<span class="material-icons-outlined text-sm">groups</span>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg p-3 relative">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<h4 class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Cuộc họp chốt sales</h4>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-green-50 text-green-700 border border-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800">Hoàn thành</span>
+</div>
+<span class="text-xs text-text-sub-light">14:00 PM</span>
+</div>
+<p class="text-xs text-text-main-light dark:text-text-sub-dark mb-2">Demo sản phẩm trực tiếp. Khách hàng hài lòng với module Data Visualization. Chốt deal size 12tr.</p>
+<div class="flex items-center justify-between text-[10px] text-text-sub-light border-t border-slate-100 dark:border-slate-800 pt-2 mt-2">
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1">
+<span class="material-icons text-[12px]">videocam</span>
+<span>Google Meet</span>
+</div>
+<span class="text-slate-300">•</span>
+<span>45 phút</span>
+</div>
+<div class="flex gap-2 text-text-sub-light">
+<button class="text-primary hover:underline">Xem ghi chú</button>
+</div>
+</div>
+</div>
+</div>
+<div class="relative pl-8 pb-6 group">
+<div class="absolute left-0 top-0 w-10 h-10 -ml-5 bg-background-light dark:bg-background-dark rounded-full flex items-center justify-center z-10 border-4 border-white dark:border-surface-dark">
+<div class="w-8 h-8 rounded-full bg-orange-100 dark:bg-orange-900 flex items-center justify-center text-orange-600 dark:text-orange-400 shadow-sm">
+<span class="material-icons-outlined text-sm">description</span>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg p-3 relative">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<h4 class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Gửi báo giá</h4>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-orange-50 text-orange-700 border border-orange-100 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-800">Review</span>
+</div>
+<span class="text-xs text-text-sub-light">09:30 AM</span>
+</div>
+<p class="text-xs text-text-main-light dark:text-text-sub-dark mb-2">Đã gửi file báo giá chi tiết qua Zalo theo yêu cầu.</p>
+</div>
+</div>
+<div class="sticky bottom-0 bg-surface-light dark:bg-surface-dark p-4 border-t border-border-light dark:border-border-dark flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold text-[10px] shrink-0">
+            VK
+        </div>
+<input class="flex-1 p-2 text-sm rounded-lg border border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800 text-text-main-light focus:ring-primary focus:border-primary" placeholder="Nhập tin nhắn hoặc ghi chú mới..." type="text"/>
+<button class="w-9 h-9 flex items-center justify-center bg-primary hover:bg-sky-600 text-white rounded-lg transition-colors shrink-0">
+<span class="material-icons-outlined text-xl">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-3 flex flex-col gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark mb-4 flex items-center gap-2">
+<span class="material-icons-outlined text-blue-500 text-lg">ads_click</span>
+            Nguồn &amp; Attribution
+        </h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="text-xs text-text-sub-light">Source</span>
+<span class="text-xs font-semibold text-text-main-light dark:text-text-main-dark">Facebook Ads</span>
+</div>
+<div class="flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="text-xs text-text-sub-light">Campaign</span>
+<span class="text-xs font-semibold text-text-main-light dark:text-text-main-dark truncate max-w-[140px]" title="Q4_Conversion_Lead">Q4_Conversion_Lead</span>
+</div>
+<div class="flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="text-xs text-text-sub-light">Medium</span>
+<span class="text-xs font-semibold text-text-main-light dark:text-text-main-dark">cpc</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-4">
+<div class="text-center p-2.5 rounded-lg border border-border-light dark:border-border-dark">
+<span class="block text-[10px] text-text-sub-light uppercase font-bold mb-1">CPL</span>
+<span class="block text-sm font-bold text-text-main-light dark:text-text-main-dark">150k</span>
+</div>
+<div class="text-center p-2.5 rounded-lg border border-border-light dark:border-border-dark">
+<span class="block text-[10px] text-text-sub-light uppercase font-bold mb-1">CAC (Est)</span>
+<span class="block text-sm font-bold text-text-main-light dark:text-text-main-dark">1.2m</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-4">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark mb-3 flex items-center gap-2">
+<span class="material-icons-outlined text-purple-500 text-base">label</span>
+            Tags &amp; Qualification
+        </h3>
+<div class="flex flex-wrap gap-1.5 mb-4">
+<span class="px-2 py-0.5 rounded text-[10px] bg-red-50 text-red-700 border border-red-100 dark:bg-red-900/20 dark:text-red-300 dark:border-red-800">Hot Lead</span>
+<span class="px-2 py-0.5 rounded text-[10px] bg-purple-50 text-purple-700 border border-purple-100 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800">Persona: Manager</span>
+<span class="px-2 py-0.5 rounded text-[10px] bg-slate-100 text-slate-700 border border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700">Ngành: Retail</span>
+<span class="px-2 py-0.5 rounded text-[10px] bg-green-50 text-green-700 border border-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800">Budget OK</span>
+<button class="px-2 py-0.5 rounded text-[10px] border border-dashed border-slate-300 text-slate-400 hover:text-primary hover:border-primary transition-colors flex items-center">
+<span class="material-icons text-[12px]">add</span>
+</button>
+</div>
+<div class="space-y-2">
+<div class="group">
+<label class="text-[10px] text-text-sub-light font-medium block">Mục tiêu học</label>
+<div class="text-xs text-text-main-light dark:text-text-main-dark border-b border-dashed border-slate-300 group-hover:border-primary cursor-pointer py-0.5 truncate">
+                    Nâng cao kỹ năng phân tích
+                </div>
+</div>
+<div class="group">
+<label class="text-[10px] text-text-sub-light font-medium block">Budget duyệt</label>
+<div class="text-xs text-text-main-light dark:text-text-main-dark border-b border-dashed border-slate-300 group-hover:border-primary cursor-pointer py-0.5 truncate">
+                    12.000.000 (Đã chốt)
+                </div>
+</div>
+<div class="group">
+<label class="text-[10px] text-text-sub-light font-medium block">Timeline thanh toán</label>
+<div class="text-xs text-text-main-light dark:text-text-main-dark border-b border-dashed border-slate-300 group-hover:border-primary cursor-pointer py-0.5 truncate">
+                    Ngay trong tuần này
+                </div>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-4">
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-orange-500 text-base">check_circle</span>
+                Task đang mở (2)
+            </h3>
+<button class="w-6 h-6 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-text-sub-light hover:text-primary transition-colors">
+<span class="material-icons text-sm">add</span>
+</button>
+</div>
+<div class="space-y-3">
+<div class="group flex items-start gap-3 pb-3 border-b border-border-light dark:border-border-dark last:border-0 last:pb-0">
+<div class="mt-0.5">
+<div class="w-4 h-4 rounded border-2 border-slate-300 dark:border-slate-600 hover:border-primary cursor-pointer"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-xs font-medium text-text-main-light dark:text-text-main-dark hover:text-primary cursor-pointer line-clamp-1">Theo dõi thanh toán</p>
+<span class="bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300 text-[9px] px-1 rounded font-bold uppercase">Urgent</span>
+</div>
+<div class="flex items-center gap-2 mt-1 text-[10px] text-text-sub-light">
+<span class="flex items-center gap-0.5">
+<span class="material-icons text-[10px]">schedule</span> 17:00 Hôm nay
+                        </span>
+<div class="w-4 h-4 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-[8px] text-indigo-700 dark:text-indigo-300 font-bold ml-auto">VK</div>
+</div>
+</div>
+</div>
+<div class="group flex items-start gap-3">
+<div class="mt-0.5">
+<div class="w-4 h-4 rounded border-2 border-slate-300 dark:border-slate-600 hover:border-primary cursor-pointer"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-xs font-medium text-text-main-light dark:text-text-main-dark hover:text-primary cursor-pointer line-clamp-1">Chuẩn bị account học viên</p>
+<span class="bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 text-[9px] px-1 rounded font-bold uppercase">Med</span>
+</div>
+<div class="flex items-center gap-2 mt-1 text-[10px] text-text-sub-light">
+<span class="flex items-center gap-0.5">
+<span class="material-icons text-[10px]">schedule</span> Ngày mai
+                        </span>
+<div class="w-4 h-4 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-[8px] text-indigo-700 dark:text-indigo-300 font-bold ml-auto">VK</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+
+<script>
+/**
+ * Single-file navigation controller
+ * - Default screen: sc600
+ * - Click table rows:
+ *   Row 1 -> sc610
+ *   Row 3 -> sc620
+ *   Row 4 -> sc630
+ */
+
+(function () {
+  const SCREEN_IDS = ["sc600", "sc610", "sc620", "sc630"];
+  const TITLE_MAP = {
+    sc600: "Pipeline - Tổng quan & Chi tiết",
+    sc610: "Chi tiết Pipeline - Tiềm năng",
+    sc620: "Chi tiết Pipeline - Tìm hiểu",
+    sc630: "Chi tiết Pipeline - Quan tâm"
+  };
+  const ICON_MAP = {
+    sc600: "monetization_on",
+    sc610: "contacts",
+    sc620: "contacts",
+    sc630: "contacts"
+  };
+
+  const elMain = document.querySelector("main");
+  const elTitle = document.getElementById("headerTitle");
+  const elIcon = document.getElementById("headerIcon");
+  const elBackBtn = document.getElementById("btnBackToPipeline");
+  const elBackDivider = document.getElementById("headerBackDivider");
+
+  function setHeader(screenId) {
+    if (elTitle) elTitle.textContent = TITLE_MAP[screenId] || "COMPA STUDIO";
+    if (elIcon) elIcon.textContent = ICON_MAP[screenId] || "monetization_on";
+
+    const inDetail = screenId !== "sc600";
+    if (elBackBtn) elBackBtn.classList.toggle("hidden", !inDetail);
+    if (elBackDivider) elBackDivider.classList.toggle("hidden", !inDetail);
+  }
+
+  window.showScreen = function (screenId) {
+    SCREEN_IDS.forEach((id) => {
+      const el = document.getElementById("screen-" + id);
+      if (!el) return;
+      el.classList.toggle("hidden", id !== screenId);
+    });
+
+    setHeader(screenId);
+
+    // scroll to top for better UX
+    if (elMain) elMain.scrollTop = 0;
+  };
+
+  // Back button in header
+  if (elBackBtn) {
+    elBackBtn.addEventListener("click", function () {
+      window.showScreen("sc600");
+    });
+  }
+
+  // Row click navigation (ignore clicks on interactive elements)
+  document.addEventListener("click", function (e) {
+    const tr = e.target.closest("tr[data-open]");
+    if (!tr) return;
+
+    // Don't navigate if user clicks on buttons/inputs/links inside the row
+    if (e.target.closest("button, a, input, select, textarea, label")) return;
+
+    const target = tr.getAttribute("data-open");
+    if (!target) return;
+
+    e.preventDefault();
+    window.showScreen(target);
+  });
+
+  // Init
+  window.showScreen("sc600");
+})();
+</script>
+
+<!-- =========================================================
+  NAV LINKS (same behavior as SC600_pipeline.html)
+  - Sidebar items use href="#" + data-href="...".
+  - This script converts data-href to real href so clicking navigates.
+  - Change BASE_PATH once to match your deploy path.
+========================================================== -->
+<script>
+  // ====== CONFIG ======
+  // If you deploy under a subfolder (e.g., GitHub Pages), set BASE_PATH accordingly.
+  // Examples:
+  //   const BASE_PATH = (location.protocol === "file:") ? "./" : "/compa-crm-public/";
+  //   const BASE_PATH = "./"; // when opening local files in the same folder
+  const BASE_PATH = (location.protocol === "file:") ? "./" : "/compa-crm-public/";
+
+  (function applySidebarLinks() {
+    document.querySelectorAll('aside a[data-href]').forEach(a => {
+      const p = (a.getAttribute('data-href') || '').trim();
+      if (!p) return;
+
+      // allow absolute URLs
+      if (/^https?:\/\//i.test(p)) {
+        a.href = p;
+        return;
+      }
+
+      // if user already put an absolute path like "/xxx/SC200.html"
+      if (p.startsWith('/')) {
+        a.href = p;
+        return;
+      }
+
+      a.href = BASE_PATH + p;
+    });
+  })();
+</script>
+
+</body>
+</html>

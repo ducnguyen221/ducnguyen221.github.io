@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hội thoại đa kênh - Chat Module</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0ea5e9",
+                        secondary: "#0f172a",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                        "border-light": "#e2e8f0",
+                        "border-dark": "#334155",
+                        "text-main-light": "#1e293b",
+                        "text-main-dark": "#f1f5f9",
+                        "text-sub-light": "#64748b",
+                        "text-sub-dark": "#94a3b8",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'lg': '0.75rem',
+                        'xl': '1rem',
+                        '2xl': '1.25rem',
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-body text-text-main-light dark:text-text-main-dark h-screen flex overflow-hidden selection:bg-primary selection:text-white">
+<aside class="w-20 lg:w-24 flex-shrink-0 bg-secondary flex flex-col items-center py-6 z-20 shadow-xl border-r border-slate-800">
+<div class="flex flex-col items-center justify-center mb-6">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white mb-2 shadow-lg shadow-sky-500/20">
+<span class="font-bold text-xl font-display">C</span>
+</div>
+<div class="flex flex-col items-center leading-none">
+<span class="text-[10px] font-bold text-white tracking-wider">COMPA</span>
+<span class="text-[8px] font-semibold text-sky-400 tracking-widest mt-0.5">CRM</span>
+</div>
+</div>
+<nav class="flex-1 w-full space-y-2 px-2 overflow-y-auto no-scrollbar">
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC100_dashboard.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">dashboard</span>
+<span class="text-[9px] font-medium tracking-wide">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-primary transition-all duration-200" data-href="SC200_chat.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1">chat</span>
+<span class="text-[9px] font-medium tracking-wide">Hội thoại</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC300_call.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">call</span>
+<span class="text-[9px] font-medium tracking-wide">Cuộc gọi</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC400_email.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">email</span>
+<span class="text-[9px] font-medium tracking-wide">Email</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC500_contact.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">contacts</span>
+<span class="text-[9px] font-medium tracking-wide">Liên hệ</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC600_pipeline.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">monetization_on</span>
+<span class="text-[9px] font-medium tracking-wide">Pipeline</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC700_customer.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">people</span>
+<span class="text-[9px] font-medium tracking-wide">Khách hàng</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC800_marketing.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">campaign</span>
+<span class="text-[9px] font-medium tracking-wide">Marketing</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC900_affiliate.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">handshake</span>
+<span class="text-[9px] font-medium tracking-wide">Affiliate</span>
+</a>
+</nav>
+<div class="w-full px-2 mt-2 pt-4 border-t border-slate-800/50">
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="settings" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">settings</span>
+<span class="text-[9px] font-medium tracking-wide">Cài đặt</span>
+</a>
+</div>
+</aside>
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+<header class="bg-surface-light dark:bg-surface-dark h-16 border-b border-border-light dark:border-border-dark flex items-center justify-between px-6 z-10 shadow-sm shrink-0">
+<div class="flex items-center gap-3">
+<div class="font-display font-bold text-lg tracking-tight text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-primary">forum</span>
+                    Hội thoại đa kênh
+                </div>
+<div class="hidden md:flex relative group ml-4">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+<span class="material-icons-outlined text-slate-400 text-lg">search</span>
+</div>
+<input class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-80 pl-10 p-2" placeholder="Tìm kiếm cuộc trò chuyện..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-transparent">
+<span class="text-xs font-bold text-primary">KPIM</span>
+<span class="text-text-main-light dark:text-text-main-dark">Học viện KPIM</span>
+<span class="material-icons-outlined text-base">expand_more</span>
+</button>
+<div class="flex items-center gap-2">
+<button class="h-9 px-3 flex items-center justify-center gap-1.5 border border-primary bg-primary text-white rounded text-xs font-bold hover:bg-sky-600 transition-colors">
+<span class="material-icons-outlined text-sm">workspace_premium</span>
+                        Premium
+                    </button>
+<button class="w-9 h-9 flex items-center justify-center border border-border-light dark:border-border-dark rounded text-xs font-bold text-text-sub-light hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                        VI
+                    </button>
+<button class="w-9 h-9 flex items-center justify-center border border-border-light dark:border-border-dark rounded text-text-sub-light hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-icons-outlined text-xl">dark_mode</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 flex items-center justify-center border border-border-light dark:border-border-dark rounded text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors relative">
+<span class="material-icons-outlined text-xl text-text-sub-light">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-surface-dark"></span>
+</button>
+<button class="w-9 h-9 rounded-full overflow-hidden border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzul7yPV6V9pSxsCXWH65xnycjRYO_3piuXvieSZpnm0KuuNQcRm1B5WnnsE2KeJxOk4rby6RKGEATn-xdLru73fGHuSvyADKWSimFDY0hiLS8cnoowwH9U03hLS5pc-EmWe64H7ofm5uemKqIFbl0avrK7CGfN-IivADty3rjUxlvY0gP_Y8prCbXYRyILoYhBsv7X-2e4aMYR4oWhMIgS3dPX1JVuQ0zK172NQhvDr5rwzFTlGVNwfbF2TveNIx48-iGjFXLusU"/>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 flex overflow-hidden bg-background-light dark:bg-background-dark">
+<!-- VIEW: SC200 Chat (default) -->
+<section class="flex-1 flex overflow-hidden w-full" id="view-chat">
+<div class="w-[30%] min-w-[320px] max-w-sm flex flex-col border-r border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+<div class="p-4 border-b border-border-light dark:border-border-dark space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<h2 class="font-bold text-lg text-text-main-light dark:text-text-main-dark">Tin nhắn</h2>
+</div>
+<div class="flex gap-2 items-center h-10">
+<button class="flex items-center justify-center w-10 h-full rounded-full border border-border-light hover:bg-slate-50 text-text-sub-light transition-colors" title="Lọc kênh">
+<span class="material-icons-outlined text-lg">filter_list</span>
+</button>
+<button class="flex items-center justify-center gap-2 h-full text-sm font-bold bg-primary hover:bg-sky-600 text-white px-4 rounded-lg transition-colors shadow-lg shadow-sky-500/30" id="btnConnectChannel">
+<span class="material-icons-outlined text-lg">add_link</span> Kết nối kênh
+                            </button>
+</div>
+</div>
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-slate-800 text-white shadow-sm transition-colors">Tất cả</button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors relative">
+                            Chưa đọc
+                            <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white dark:border-surface-dark"></span>
+</button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Đã gán</button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Cần phản hồi</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<div class="group flex items-center gap-3 p-4 bg-primary/5 dark:bg-primary/10 border-l-4 border-primary cursor-pointer hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors relative">
+<div class="relative flex-shrink-0">
+<img alt="User" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASeWAHxCPHYbmawnAlAD3z45VOKUWnDzzYp1QPOFli0fU8iYhw_NCUBKvKN8WOXD-lZ_s7EtEE9GG-45w2hf6VMA_UOXXG7lLbaWUJnQsbvHkjR9vR9vOH1LwDKMwKvu2O8jlLuNhMGG40BavpY0YyEptrJHij3CiHlY6XJ7zAcQpKe781R31aWkYJmZ_8V9BbfzMVcWd-NxecBF8K4d3G-9MVqf2MOziHUovoXx7A29zapFdkY35EnitU8dhbfFVR1JKMsytuJL8"/>
+<div class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center p-0.5 shadow-sm">
+<img alt="Facebook" class="w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6gxlAWbjVLd0PxIqZFji2BI_ox5OkK_f3jWqdvoz0RxnKjsvwWGvl9CTpPT93te-P3_PiiGOXCufE-bt9bQTVRBAzeCHYud4xC_0o4SWQX1QOekvYytHIvsxWIzk3LIQgTF9ZeXyESNSYs5JywCJTWlLtd2lZM333_tBVJINGX8PPPtbloOzjy_Ixl2NgxNuWnE8Hzg5yn5Yklh7I3v_48joqQPuzvbeqf6JglVUL6EBEPSwZyxo8oEWKufRoyIXsr81sT3CFRHQ"/>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Nguyễn Văn An</h3>
+<span class="text-[10px] text-text-sub-light whitespace-nowrap">11:20 AM</span>
+</div>
+<div class="flex items-center gap-1 mb-1">
+<span class="text-[10px] font-medium text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded dark:bg-blue-900/30 dark:text-blue-300">Facebook</span>
+</div>
+<p class="text-xs text-text-main-light dark:text-text-main-dark truncate font-medium">Ok bạn, để mình cân nhắc thêm nhé.</p>
+</div>
+</div>
+<div class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold text-lg">
+                                TH
+                            </div>
+<div class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center p-0.5 shadow-sm text-blue-500">
+<span class="material-icons text-[12px]">public</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Trần Thị Hoa</h3>
+<span class="text-[10px] text-primary font-bold whitespace-nowrap">09:15 AM</span>
+</div>
+<div class="flex items-center gap-1 mb-1">
+<span class="text-[10px] font-medium text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded dark:bg-slate-700 dark:text-slate-300">Website</span>
+</div>
+<p class="text-xs text-text-main-light dark:text-text-main-dark truncate font-bold">Em muốn đăng ký khóa học DA Pro ạ?</p>
+</div>
+<div class="w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white text-[10px] font-bold shadow-sm flex-shrink-0">2</div>
+</div>
+<div class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent">
+<div class="relative flex-shrink-0">
+<img alt="User" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQFlB4gskQrSlQUoyOF-mTJHh0Fgw_JXqPXgmSLI0Ikl93AyDFCl56me1XOV3rat1q2_aHARYeDc9RovGAMWftPu4g3biOCJW1jvifz8EMl3L_tL3dnQJpLtN9eJpW7lW5GYUfYiDNWNqflXUt__Rjp7mNAPOuCxtccb_OYfAWPqet7jk_qRHeAZYNE691NyAlJopp1h46xR0HiuRcXbcxGkEOa9yPHpWsWJ-jljNJvD0IfpbILsG-S7lRZ9ui8rNcjS0Y8FXPazQ"/>
+<div class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center p-0.5 shadow-sm">
+<img alt="Zalo" class="w-full h-full rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv8l94xzi95aJGhVLWKkmpuHpP7yb6ttbrrP7VU1mbk48yth6yqdTfQgIS54x2hRWR02wszwfdw__ZDGJotlxlOduK6bgn3mvOplt8AW2RqNNp4WrNAHxoa7b41JJTK0OQ_opVXMNo7WqRgCnzK_tKtyLy12VHcGrfjxw_USUV3RCP3PUR2ZauoorZhWtLQ6sWA6r4bs8wojwBBzZbsCkdcfiqupWpQHOgymIYXMWJNyvtcpOHzaHeg9k5FN7euXoSPakqMLLSUFw"/>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Lê Minh Tuấn</h3>
+<span class="text-[10px] text-text-sub-light whitespace-nowrap">Hôm qua</span>
+</div>
+<div class="flex items-center gap-1 mb-1">
+<span class="text-[10px] font-medium text-blue-500 bg-blue-50 px-1.5 py-0.5 rounded dark:bg-blue-900/20 dark:text-blue-300">Zalo OA</span>
+</div>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark truncate">Bạn: Dạ vâng, em sẽ gửi thông tin chi tiết qua email ạ.</p>
+</div>
+</div>
+<div class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center text-green-700 dark:text-green-300 font-bold text-lg">
+                                PD
+                            </div>
+<div class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center p-0.5 shadow-sm text-green-500">
+<span class="material-icons text-[12px]">call</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Phạm Đức</h3>
+<span class="text-[10px] text-text-sub-light whitespace-nowrap">Hôm qua</span>
+</div>
+<div class="flex items-center gap-1 mb-1">
+<span class="text-[10px] font-medium text-green-600 bg-green-50 px-1.5 py-0.5 rounded dark:bg-green-900/30 dark:text-green-300">Tổng đài</span>
+</div>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark truncate">Cuộc gọi nhỡ (2)</p>
+</div>
+</div>
+<div class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent opacity-60">
+<div class="relative flex-shrink-0">
+<img alt="User" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBCPDu_HcPDLn9BgbzfsAMvji_Vi7deZ2bFoeUZ_72ieWCXNfvCdW98AZid9mTDw6h4TqMajpJI2Z_YJuA2baSXemGgK3RRAGfYy3-QuHI8usaIQeQ4KgSt1Ixx20eZaOXbtfH-rimZGhkiOXXcaJ39DvYRQ2Pdb0BzznzDWeiSx_-7SRHho0HOjjfO-MYBG4AI_HeI2ucZT_kJoa0GrBAjMT8ZNP66lzEX4SyHo9AL16LZS_ot3rf39WqP4DSKu6c6Ki8J7WyC9Y"/>
+<div class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center p-0.5 shadow-sm">
+<img alt="Messenger" class="w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoqAjBNg3_xNSI0Ss49mqoYvuDm4QAh18tjeCetaZtbNt6ESpeeAHxJTrZ9jlPbpkO4Ct9hoxw0FdtqwtlnCoINOA3UBndr-hqhlBapP8nnGNpPEwXD2pcdOccrdMK3okELDDF7DglYyqO2Aj0leHYWvZF32bzmnmyZssiYDlloLVmoP41c3kh0CbRjVqJi1T7Fxpscji-2556sFZPaLS1ZYl-GBfwL7NafbzTyP0ucG5MYYdeFJWxI6yl9to_anQq2pp2Z8R4lPY"/>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Hoàng Yến</h3>
+<span class="text-[10px] text-text-sub-light whitespace-nowrap">05/11</span>
+</div>
+<div class="flex items-center gap-1 mb-1">
+<span class="text-[10px] font-medium text-pink-600 bg-pink-50 px-1.5 py-0.5 rounded dark:bg-pink-900/30 dark:text-pink-300">Instagram</span>
+</div>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark truncate">Bạn: Cảm ơn chị đã quan tâm.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col bg-slate-50/50 dark:bg-slate-900/50 min-w-[400px]">
+<div class="h-16 px-6 py-3 border-b border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark flex items-center justify-between shrink-0">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Current Contact" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASeWAHxCPHYbmawnAlAD3z45VOKUWnDzzYp1QPOFli0fU8iYhw_NCUBKvKN8WOXD-lZ_s7EtEE9GG-45w2hf6VMA_UOXXG7lLbaWUJnQsbvHkjR9vR9vOH1LwDKMwKvu2O8jlLuNhMGG40BavpY0YyEptrJHij3CiHlY6XJ7zAcQpKe781R31aWkYJmZ_8V9BbfzMVcWd-NxecBF8K4d3G-9MVqf2MOziHUovoXx7A29zapFdkY35EnitU8dhbfFVR1JKMsytuJL8"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-surface-dark"></div>
+</div>
+<div>
+<h2 class="font-bold text-sm text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+                                Nguyễn Văn An
+                                <span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300 uppercase tracking-wide">Khách hàng</span>
+</h2>
+<div class="flex items-center gap-1.5 text-xs text-text-sub-light">
+<img alt="Source" class="w-3.5 h-3.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUo7pyISkEvbbD1IQaCo9aGwrpe87XuSCx6uWb7nFDEdx7Su_zL0JHBYyLiq0NCBlRudVP720SoU0ba6dqlU8WkTfOTEllHsBCSr2E370VNZtDoEw3a08O2y87vkpgrCgU9fjJ3ZmOiiHEEVJemdZ3wD68xdcFMonAZdTbGZkVZNzN0jUCEznva1sUdy6uw4q1Y9WZuktn6UsXsim8Fayac34NbF2FKxzeoGJULWXE7B0VZ1rot_W2KpMkWyo1SZB_VQ2lMsG-Sqo"/>
+<span class="truncate">Messenger • Đang hoạt động</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-text-sub-light transition-colors" title="Tìm kiếm trong hội thoại">
+<span class="material-icons-outlined text-xl">search</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-text-sub-light transition-colors" title="Gán cho nhân viên">
+<span class="material-icons-outlined text-xl">person_add</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-text-sub-light transition-colors" title="Đánh dấu quan trọng">
+<span class="material-icons-outlined text-xl">star_border</span>
+</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar bg-slate-50 dark:bg-slate-900">
+<div class="flex justify-center">
+<span class="text-[10px] font-medium text-text-sub-light bg-slate-200 dark:bg-slate-800 px-3 py-1 rounded-full">Hôm nay, 15 tháng 11</span>
+</div>
+<div class="flex gap-3 max-w-[85%]">
+<img alt="User" class="w-8 h-8 rounded-full object-cover self-end mb-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASeWAHxCPHYbmawnAlAD3z45VOKUWnDzzYp1QPOFli0fU8iYhw_NCUBKvKN8WOXD-lZ_s7EtEE9GG-45w2hf6VMA_UOXXG7lLbaWUJnQsbvHkjR9vR9vOH1LwDKMwKvu2O8jlLuNhMGG40BavpY0YyEptrJHij3CiHlY6XJ7zAcQpKe781R31aWkYJmZ_8V9BbfzMVcWd-NxecBF8K4d3G-9MVqf2MOziHUovoXx7A29zapFdkY35EnitU8dhbfFVR1JKMsytuJL8"/>
+<div>
+<div class="bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark p-3 rounded-2xl rounded-bl-none shadow-sm text-sm text-text-main-light dark:text-text-main-dark">
+                                Chào bạn, mình muốn hỏi về cam kết đầu ra của khóa học DA Pro bên mình?
+                            </div>
+<span class="text-[10px] text-text-sub-light ml-1 mt-1 block">11:15 AM</span>
+</div>
+</div>
+<div class="flex flex-row-reverse gap-3 max-w-[85%] ml-auto">
+<div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold text-xs self-end mb-1">
+                            VK
+                        </div>
+<div>
+<div class="bg-primary text-white p-3 rounded-2xl rounded-br-none shadow-md text-sm">
+                                Dạ chào anh An 👋. Bên em cam kết giới thiệu việc làm và hỗ trợ CV trọn đời ạ.
+                            </div>
+<div class="bg-primary text-white p-3 rounded-2xl rounded-tr-none shadow-md text-sm mt-1">
+                                Ngoài ra còn có cam kết hoàn tiền nếu không đạt yêu cầu đầu ra (với điều kiện đi học đầy đủ và làm bài tập đúng hạn ạ).
+                            </div>
+<span class="text-[10px] text-text-sub-light text-right mr-1 mt-1 block">11:18 AM • Đã xem</span>
+</div>
+</div>
+<div class="flex gap-3 max-w-[85%]">
+<img alt="User" class="w-8 h-8 rounded-full object-cover self-end mb-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASeWAHxCPHYbmawnAlAD3z45VOKUWnDzzYp1QPOFli0fU8iYhw_NCUBKvKN8WOXD-lZ_s7EtEE9GG-45w2hf6VMA_UOXXG7lLbaWUJnQsbvHkjR9vR9vOH1LwDKMwKvu2O8jlLuNhMGG40BavpY0YyEptrJHij3CiHlY6XJ7zAcQpKe781R31aWkYJmZ_8V9BbfzMVcWd-NxecBF8K4d3G-9MVqf2MOziHUovoXx7A29zapFdkY35EnitU8dhbfFVR1JKMsytuJL8"/>
+<div>
+<div class="bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark p-3 rounded-2xl rounded-bl-none shadow-sm text-sm text-text-main-light dark:text-text-main-dark">
+                                Ok bạn, để mình cân nhắc thêm nhé.
+                            </div>
+<span class="text-[10px] text-text-sub-light ml-1 mt-1 block">11:20 AM</span>
+</div>
+</div>
+</div>
+<div class="p-4 bg-surface-light dark:bg-surface-dark border-t border-border-light dark:border-border-dark shrink-0">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
+<button class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-3 py-1.5 rounded-full transition-colors flex items-center gap-1 text-xs font-medium whitespace-nowrap">
+<span class="material-icons-outlined text-sm animate-pulse">auto_awesome</span>
+    AI Gợi ý trả lời
+</button>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-text-sub-light hover:text-primary transition-colors whitespace-nowrap">
+<span class="material-icons-outlined text-sm">bolt</span>
+                                Câu trả lời nhanh
+                            </button>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-text-sub-light hover:text-primary transition-colors whitespace-nowrap">
+<span class="material-icons-outlined text-sm">description</span>
+                                Gửi tài liệu khóa học
+                            </button>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-text-sub-light hover:text-primary transition-colors whitespace-nowrap">
+<span class="material-icons-outlined text-sm">calendar_month</span>
+                                Đặt lịch hẹn
+                            </button>
+</div>
+<div class="relative group">
+<div class="flex items-center gap-2 p-1.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl focus-within:ring-2 focus-within:ring-primary focus-within:border-transparent transition-all shadow-sm">
+<button class="p-2 text-slate-400 hover:text-primary rounded-xl transition-colors hover:bg-slate-100 dark:hover:bg-slate-700">
+<span class="material-icons-outlined text-xl">attach_file</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary rounded-xl transition-colors hover:bg-slate-100 dark:hover:bg-slate-700">
+<span class="material-icons-outlined text-xl">mood</span>
+</button>
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 text-sm p-2 resize-none max-h-[150px] min-h-[44px]" placeholder="Nhập tin nhắn... (Shift + Enter để xuống dòng)" rows="1"></textarea>
+<button class="bg-primary hover:bg-sky-600 text-white p-2 rounded-xl shadow-md shadow-sky-500/30 transition-all transform active:scale-95 flex items-center justify-center self-end mb-0.5">
+<span class="material-icons text-xl">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden xl:flex w-[25%] min-w-[280px] max-w-sm flex-col border-l border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark overflow-y-auto custom-scrollbar">
+<div class="p-5 border-b border-border-light dark:border-border-dark sticky top-0 bg-surface-light dark:bg-surface-dark z-10">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark">Thông tin liên hệ</h3>
+<button class="text-text-sub-light hover:text-primary transition-colors">
+<span class="material-icons-outlined text-xl">edit_note</span>
+</button>
+</div>
+<div class="flex flex-col items-center">
+<img alt="Contact Avatar" class="w-20 h-20 rounded-xl object-cover border-2 border-white dark:border-surface-dark shadow-md mb-3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASeWAHxCPHYbmawnAlAD3z45VOKUWnDzzYp1QPOFli0fU8iYhw_NCUBKvKN8WOXD-lZ_s7EtEE9GG-45w2hf6VMA_UOXXG7lLbaWUJnQsbvHkjR9vR9vOH1LwDKMwKvu2O8jlLuNhMGG40BavpY0YyEptrJHij3CiHlY6XJ7zAcQpKe781R31aWkYJmZ_8V9BbfzMVcWd-NxecBF8K4d3G-9MVqf2MOziHUovoXx7A29zapFdkY35EnitU8dhbfFVR1JKMsytuJL8"/>
+<h2 class="text-lg font-bold text-text-main-light dark:text-text-main-dark">Nguyễn Văn An</h2>
+<p class="text-sm text-text-sub-light dark:text-text-sub-dark mb-1">Trưởng phòng Marketing</p>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark">@ Công ty ABC</p>
+<div class="flex gap-2 mt-4 w-full">
+<button class="flex-1 py-1.5 rounded-lg border border-border-light dark:border-border-dark text-xs font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-center justify-center gap-1">
+<span class="material-icons-outlined text-sm">call</span> Gọi điện
+                            </button>
+<button class="flex-1 py-1.5 rounded-lg border border-border-light dark:border-border-dark text-xs font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-center justify-center gap-1">
+<span class="material-icons-outlined text-sm">email</span> Email
+                            </button>
+</div>
+</div>
+</div>
+<div class="p-5 space-y-6">
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
+<span class="material-icons-outlined text-lg">phone</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-text-sub-light">Điện thoại</span>
+<span class="text-sm font-medium text-text-main-light dark:text-text-main-dark hover:text-primary cursor-pointer">090 123 4567</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
+<span class="material-icons-outlined text-lg">email</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-text-sub-light">Email</span>
+<span class="text-sm font-medium text-text-main-light dark:text-text-main-dark hover:text-primary cursor-pointer truncate max-w-[180px]">an.nguyen@abc.com</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
+<span class="material-icons-outlined text-lg">ads_click</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-text-sub-light">Nguồn</span>
+<span class="text-sm font-medium text-text-main-light dark:text-text-main-dark">Facebook Ads</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
+<span class="material-icons-outlined text-lg">manage_accounts</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-text-sub-light">Phụ trách</span>
+<span class="text-sm font-medium text-text-main-light dark:text-text-main-dark flex items-center gap-1">
+                                    VK <span class="text-xs font-normal text-text-sub-light">(Võ Nguyễn Khôi)</span>
+</span>
+</div>
+</div>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 border border-border-light dark:border-border-dark">
+<div class="flex items-center justify-between mb-2">
+<h4 class="text-xs font-bold text-text-sub-light uppercase">Cơ hội (Deal)</h4>
+<button class="text-primary text-xs font-bold hover:underline">Chi tiết</button>
+</div>
+<div class="mb-3">
+<span class="text-sm font-bold text-text-main-light dark:text-text-main-dark block mb-1">Khóa học DA Pro</span>
+<span class="text-sm font-bold text-green-600 dark:text-green-400">15.000.000 ₫</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden mb-1">
+<div class="bg-blue-600 h-full w-[80%] rounded-full"></div>
+</div>
+<div class="flex justify-between text-[10px] text-text-sub-light">
+<span>Quan tâm</span>
+<span>80%</span>
+</div>
+</div>
+<div>
+<h4 class="text-xs font-bold text-text-sub-light uppercase mb-3">Tags &amp; Nhãn</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 rounded text-[10px] bg-purple-50 text-purple-700 border border-purple-100 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800">Persona: Manager</span>
+<span class="px-2 py-1 rounded text-[10px] bg-red-50 text-red-700 border border-red-100 dark:bg-red-900/20 dark:text-red-300 dark:border-red-800">Độ nóng: Cao</span>
+<button class="px-2 py-1 rounded text-[10px] border border-dashed border-slate-300 text-slate-400 hover:text-primary hover:border-primary transition-colors flex items-center">
+<span class="material-icons text-[12px]">add</span>
+</button>
+</div>
+</div>
+<div>
+<h4 class="text-xs font-bold text-text-sub-light uppercase mb-3">Hoạt động gần đây</h4>
+<div class="space-y-3 pl-2 border-l border-border-light dark:border-border-dark ml-1">
+<div class="relative pl-4">
+<div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-blue-500 border-2 border-white dark:border-surface-dark"></div>
+<p class="text-xs text-text-main-light dark:text-text-main-dark">Truy cập trang <span class="font-semibold">Bảng giá</span></p>
+<span class="text-[10px] text-text-sub-light">10 phút trước</span>
+</div>
+<div class="relative pl-4">
+<div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-green-500 border-2 border-white dark:border-surface-dark"></div>
+<p class="text-xs text-text-main-light dark:text-text-main-dark">Cuộc gọi thành công</p>
+<span class="text-[10px] text-text-sub-light">Hôm qua 14:30</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- VIEW: SC210 Connect Sources (hidden by default) -->
+<section id="view-connect" class="flex-1 flex overflow-hidden w-full hidden">
+  <!--
+    VIEW: Kết nối kênh (SC220/SC210/SC230/SC240) trong 1 file
+    - Mặc định hiển thị Facebook (SC220)
+    - Click nguồn bên trái để đổi panel
+    - Click "<- Tin nhắn" để quay lại SC200
+  -->
+  <div class="w-[30%] min-w-[320px] max-w-sm flex flex-col border-r border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+<div class="p-4 border-b border-border-light dark:border-border-dark space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button id="btnBackToChat" class="flex items-center gap-2 text-text-sub-light hover:text-primary transition-colors group">
+<span class="material-icons-outlined text-xl group-hover:text-primary transition-colors">arrow_back</span>
+<h2 class="font-bold text-lg text-text-main-light dark:text-text-main-dark group-hover:text-primary transition-colors">Tin nhắn</h2>
+</button>
+</div>
+</div>
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-slate-800 text-white shadow-sm transition-colors">Tất cả</button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors relative">
+                        Lỗi kết nối
+                    </button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Chưa kết nối</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<div data-channel-btn="facebook" class="group flex items-center gap-3 p-4 bg-primary/5 dark:bg-primary/10 border-l-4 border-primary cursor-pointer hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors relative channel-item">
+<div class="relative flex-shrink-0">
+<img alt="Facebook Page" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6gxlAWbjVLd0PxIqZFji2BI_ox5OkK_f3jWqdvoz0RxnKjsvwWGvl9CTpPT93te-P3_PiiGOXCufE-bt9bQTVRBAzeCHYud4xC_0o4SWQX1QOekvYytHIvsxWIzk3LIQgTF9ZeXyESNSYs5JywCJTWlLtd2lZM333_tBVJINGX8PPPtbloOzjy_Ixl2NgxNuWnE8Hzg5yn5Yklh7I3v_48joqQPuzvbeqf6JglVUL6EBEPSwZyxo8oEWKufRoyIXsr81sT3CFRHQ"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Facebook Fanpage</h3>
+<span class="text-[10px] text-green-600 font-bold whitespace-nowrap flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Đã kết nối</span>
+</div>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark truncate font-medium">Học viện KPIM</p>
+</div>
+</div>
+<div class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold text-lg">
+<span class="material-icons-outlined text-3xl">public</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Website Livechat</h3>
+<span class="text-[10px] text-green-600 font-bold whitespace-nowrap flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Đã kết nối</span>
+</div>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark truncate font-medium">kpim.vn</p>
+</div>
+</div>
+<div data-channel-btn="zalo" class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent channel-item">
+<div class="relative flex-shrink-0">
+<img alt="Zalo OA" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv8l94xzi95aJGhVLWKkmpuHpP7yb6ttbrrP7VU1mbk48yth6yqdTfQgIS54x2hRWR02wszwfdw__ZDGJotlxlOduK6bgn3mvOplt8AW2RqNNp4WrNAHxoa7b41JJTK0OQ_opVXMNo7WqRgCnzK_tKtyLy12VHcGrfjxw_USUV3RCP3PUR2ZauoorZhWtLQ6sWA6r4bs8wojwBBzZbsCkdcfiqupWpQHOgymIYXMWJNyvtcpOHzaHeg9k5FN7euXoSPakqMLLSUFw"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Zalo Official Account</h3>
+<span class="text-[10px] text-green-600 font-bold whitespace-nowrap flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Đã kết nối</span>
+</div>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark truncate font-medium">Học viện KPIM</p>
+</div>
+</div>
+<div class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center text-green-700 dark:text-green-300 font-bold text-lg">
+<span class="material-icons-outlined text-3xl">call</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Tổng đài ảo</h3>
+<span class="text-[10px] text-green-600 font-bold whitespace-nowrap flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Đã kết nối</span>
+</div>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark truncate font-medium">090 123 4567</p>
+</div>
+</div>
+<div data-channel-btn="instagram" class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent channel-item">
+<div class="relative flex-shrink-0">
+<img alt="Instagram" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoqAjBNg3_xNSI0Ss49mqoYvuDm4QAh18tjeCetaZtbNt6ESpeeAHxJTrZ9jlPbpkO4Ct9hoxw0FdtqwtlnCoINOA3UBndr-hqhlBapP8nnGNpPEwXD2pcdOccrdMK3okELDDF7DglYyqO2Aj0leHYWvZF32bzmnmyZssiYDlloLVmoP41c3kh0CbRjVqJi1T7Fxpscji-2556sFZPaLS1ZYl-GBfwL7NafbzTyP0ucG5MYYdeFJWxI6yl9to_anQq2pp2Z8R4lPY"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Instagram Business</h3>
+<span class="text-[10px] text-green-600 font-bold whitespace-nowrap flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Đã kết nối</span>
+</div>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark truncate font-medium">@kpim.academy</p>
+</div>
+</div>
+<div data-channel-btn="tiktok" class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent channel-item">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-black flex items-center justify-center text-white font-bold text-lg shadow-sm">
+<span class="material-icons text-2xl">music_note</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Tiktok Channel</h3>
+<span class="text-[10px] text-slate-400 font-bold whitespace-nowrap flex items-center gap-1">Chưa kết nối</span>
+</div>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark truncate font-medium">Kết nối tài khoản</p>
+</div>
+</div>
+</div>
+</div>
+  <div data-channel-panel="facebook" class="flex-1 flex flex-col min-w-0 bg-slate-50/50 dark:bg-slate-900/50 overflow-y-auto custom-scrollbar p-6">
+<div class="max-w-6xl mx-auto w-full space-y-6">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="text-2xl font-bold text-text-main-light dark:text-text-main-dark">Cấu hình Kênh Facebook</h1>
+<p class="text-sm text-text-sub-light mt-1">Quản lý kết nối Facebook Fanpage &amp; Quảng cáo để đồng bộ tin nhắn và leads</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="flex h-3 w-3 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</span>
+<span class="text-sm font-medium text-green-600 dark:text-green-400">Hệ thống hoạt động ổn định</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6 shadow-sm flex flex-col h-full border-2 border-facebook relative">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-14 h-14 rounded-full bg-[#1877F2] flex items-center justify-center text-white shadow-sm shrink-0">
+<span class="material-icons text-3xl">facebook</span>
+</div>
+<div>
+<h3 class="font-bold text-lg text-text-main-light dark:text-text-main-dark">Facebook Pages &amp; Ads</h3>
+<a class="text-sm text-facebook hover:underline flex items-center gap-1" href="https://business.facebook.com" target="_blank">
+                                        business.facebook.com <span class="material-icons-outlined text-sm">open_in_new</span>
+</a>
+</div>
+</div>
+<p class="text-sm text-text-sub-light leading-relaxed mb-4">
+                                Kết nối Fanpage giúp bạn quản lý tin nhắn, bình luận tập trung. Đồng bộ Leads từ các chiến dịch quảng cáo về CRM tự động.
+                            </p>
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-3 border border-border-light dark:border-border-dark flex items-center justify-between mb-4">
+<div class="flex items-center gap-3 overflow-hidden">
+<img alt="User Avatar" class="w-10 h-10 rounded-full object-cover border border-white dark:border-slate-600 shadow-sm flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzul7yPV6V9pSxsCXWH65xnycjRYO_3piuXvieSZpnm0KuuNQcRm1B5WnnsE2KeJxOk4rby6RKGEATn-xdLru73fGHuSvyADKWSimFDY0hiLS8cnoowwH9U03hLS5pc-EmWe64H7ofm5uemKqIFbl0avrK7CGfN-IivADty3rjUxlvY0gP_Y8prCbXYRyILoYhBsv7X-2e4aMYR4oWhMIgS3dPX1JVuQ0zK172NQhvDr5rwzFTlGVNwfbF2TveNIx48-iGjFXLusU"/>
+<div class="min-w-0">
+<div class="text-[10px] uppercase font-bold text-text-sub-light tracking-wide">Đã kết nối với Facebook</div>
+<div class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Nguyễn Văn A</div>
+</div>
+</div>
+<button class="flex-shrink-0 px-3 py-1.5 rounded-lg border border-border-light dark:border-slate-600 bg-white dark:bg-slate-700 text-xs font-medium hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors">
+                                    Đổi tài khoản
+                                </button>
+</div>
+<button class="w-full flex items-center justify-center gap-2 p-3 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors font-semibold text-sm mb-6">
+<span class="material-icons-outlined">menu_book</span>
+                                Hướng dẫn cài đặt
+                            </button>
+<hr class="border-slate-100 dark:border-slate-700 mb-6"/>
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark mb-4">Danh sách Fanpage đã kết nối</h3>
+<div class="overflow-hidden rounded-lg border border-border-light dark:border-border-dark">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-[10px] font-bold text-text-sub-light uppercase tracking-wider border-b border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800/50">
+<th class="px-3 py-2">Fanpage</th>
+<th class="px-3 py-2 text-center w-16">Trạng thái</th>
+<th class="px-3 py-2 text-right w-12">Thao tác</th>
+</tr>
+</thead>
+<tbody class="text-xs divide-y divide-border-light dark:divide-border-dark">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-3">
+<div class="flex flex-col">
+<span class="font-medium text-text-main-light dark:text-text-main-dark leading-tight">Học viện KPIM</span>
+<span class="text-[10px] text-text-sub-light mt-0.5">ID: 1000281928</span>
+</div>
+</td>
+<td class="px-3 py-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-green-100 text-green-700 text-[9px] font-bold leading-tight dark:bg-green-900/30 dark:text-green-400">
+                                                    Hoạt động
+                                                </span>
+</td>
+<td class="px-3 py-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="text-slate-400 hover:text-primary transition-colors p-1 rounded hover:bg-blue-50 dark:hover:bg-blue-900/20" title="Kích hoạt nhận tin nhắn">
+<span class="material-icons-outlined text-base">mark_chat_read</span>
+</button>
+<button class="text-slate-400 hover:text-red-500 transition-colors p-1 rounded hover:bg-red-50 dark:hover:bg-red-900/20" title="Gỡ bỏ">
+<span class="material-icons-outlined text-base">link_off</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-3">
+<div class="flex flex-col">
+<span class="font-medium text-text-main-light dark:text-text-main-dark leading-tight">KPIM Store</span>
+<span class="text-[10px] text-text-sub-light mt-0.5">ID: 2981237123</span>
+</div>
+</td>
+<td class="px-3 py-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-amber-100 text-amber-700 text-[9px] font-bold leading-tight dark:bg-amber-900/30 dark:text-amber-400">
+                                                    Cần cấp quyền
+                                                </span>
+</td>
+<td class="px-3 py-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="text-slate-400 hover:text-primary transition-colors p-1 rounded hover:bg-blue-50 dark:hover:bg-blue-900/20" title="Kết nối lại">
+<span class="material-icons-outlined text-base">refresh</span>
+</button>
+<button class="text-slate-400 hover:text-red-500 transition-colors p-1 rounded hover:bg-red-50 dark:hover:bg-red-900/20" title="Gỡ bỏ">
+<span class="material-icons-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7 flex flex-col h-full">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6 shadow-sm h-full flex flex-col">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark mb-5 flex items-center gap-2">
+<span class="material-icons-outlined text-primary">settings_input_antenna</span>
+                                Tài khoản quảng cáo đã kết nối
+                            </h3>
+<p class="text-sm text-text-sub-light mb-6">
+                                Danh sách các tài khoản quảng cáo được ủy quyền. Hệ thống sẽ tự động đồng bộ Leads mới nhất từ các tài khoản này về CRM.
+                            </p>
+<div class="overflow-hidden rounded-lg border border-border-light dark:border-border-dark flex-1">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-[10px] font-bold text-text-sub-light uppercase tracking-wider border-b border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800/50">
+<th class="px-4 py-3">Tên tài khoản</th>
+<th class="px-4 py-3">ID Tài khoản</th>
+<th class="px-4 py-3 text-center">Trạng thái</th>
+<th class="px-4 py-3 text-right">Thao tác</th>
+</tr>
+</thead>
+<tbody class="text-xs divide-y divide-border-light dark:divide-border-dark">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+<span class="material-icons-outlined text-sm">person</span>
+</div>
+<span class="font-medium text-text-main-light dark:text-text-main-dark">TKQC Cá nhân - A</span>
+</div>
+</td>
+<td class="px-4 py-3 text-text-sub-light font-mono">
+                                                act_283910283
+                                            </td>
+<td class="px-4 py-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-green-100 text-green-700 text-[9px] font-bold leading-tight dark:bg-green-900/30 dark:text-green-400">
+                                                    Đang đồng bộ
+                                                </span>
+</td>
+<td class="px-4 py-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-7 h-4 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+<button class="text-slate-400 hover:text-red-500 transition-colors" title="Ngắt kết nối">
+<span class="material-icons-outlined text-base">link_off</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
+<span class="material-icons-outlined text-sm">business</span>
+</div>
+<span class="font-medium text-text-main-light dark:text-text-main-dark">BM Agency KPIM</span>
+</div>
+</td>
+<td class="px-4 py-3 text-text-sub-light font-mono">
+                                                act_998231231
+                                            </td>
+<td class="px-4 py-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-green-100 text-green-700 text-[9px] font-bold leading-tight dark:bg-green-900/30 dark:text-green-400">
+                                                    Đang đồng bộ
+                                                </span>
+</td>
+<td class="px-4 py-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-7 h-4 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+<button class="text-slate-400 hover:text-red-500 transition-colors" title="Ngắt kết nối">
+<span class="material-icons-outlined text-base">link_off</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
+<span class="material-icons-outlined text-sm">person</span>
+</div>
+<span class="font-medium text-text-main-light dark:text-text-main-dark">TK Phụ - Thử nghiệm</span>
+</div>
+</td>
+<td class="px-4 py-3 text-text-sub-light font-mono">
+                                                act_551239991
+                                            </td>
+<td class="px-4 py-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-slate-100 text-slate-500 text-[9px] font-bold leading-tight dark:bg-slate-800 dark:text-slate-400">
+                                                    Đã tắt
+                                                </span>
+</td>
+<td class="px-4 py-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-7 h-4 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+<button class="text-slate-400 hover:text-red-500 transition-colors" title="Gỡ bỏ">
+<span class="material-icons-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-6 pt-6 border-t border-border-light dark:border-border-dark">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 flex-shrink-0 flex items-center justify-center">
+<span class="material-icons-outlined">info</span>
+</div>
+<div class="text-sm">
+<h4 class="font-bold text-text-main-light dark:text-text-main-dark mb-1">Lưu ý đồng bộ Leads</h4>
+<p class="text-text-sub-light text-xs leading-relaxed">
+                                    Hệ thống chỉ đồng bộ Leads từ các Form Lead được tạo trong các tài khoản quảng cáo trên. Hãy đảm bảo bạn có quyền Admin/Advertiser trên các tài khoản này. Để xem danh sách leads, vui lòng truy cập module <a class="text-primary hover:underline" href="#">Khách hàng</a>.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sticky bottom-0 bg-background-light dark:bg-background-dark pt-4 pb-2 border-t border-transparent z-10 flex items-center justify-end gap-3">
+<button class="px-5 py-2.5 rounded-xl text-sm font-bold text-text-sub-light hover:text-text-main-light hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                        Hủy bỏ
+                    </button>
+<button class="px-6 py-2.5 rounded-xl bg-primary hover:bg-sky-600 text-white text-sm font-bold shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 transition-all flex items-center gap-2">
+<span class="material-icons-outlined text-lg">save</span>
+                        Lưu cấu hình
+                    </button>
+</div>
+</div>
+  <div data-channel-panel="zalo" class="flex-1 flex flex-col min-w-0 bg-slate-50/50 dark:bg-slate-900/50 overflow-y-auto custom-scrollbar p-6 hidden">
+<div class="max-w-5xl mx-auto w-full space-y-6">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="text-2xl font-bold text-text-main-light dark:text-text-main-dark">Cấu hình Kênh Zalo</h1>
+<p class="text-sm text-text-sub-light mt-1">Quản lý kết nối Zalo Official Account với hệ thống CRM</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="flex h-3 w-3 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</span>
+<span class="text-sm font-medium text-green-600 dark:text-green-400">Hệ thống hoạt động ổn định</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6 shadow-sm flex flex-col h-full border-2 border-blue-500 relative">
+<div class="flex items-center gap-4 mb-4">
+<img alt="Zalo Logo" class="w-14 h-14 rounded-full border border-slate-100 dark:border-slate-700 shadow-sm object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv8l94xzi95aJGhVLWKkmpuHpP7yb6ttbrrP7VU1mbk48yth6yqdTfQgIS54x2hRWR02wszwfdw__ZDGJotlxlOduK6bgn3mvOplt8AW2RqNNp4WrNAHxoa7b41JJTK0OQ_opVXMNo7WqRgCnzK_tKtyLy12VHcGrfjxw_USUV3RCP3PUR2ZauoorZhWtLQ6sWA6r4bs8wojwBBzZbsCkdcfiqupWpQHOgymIYXMWJNyvtcpOHzaHeg9k5FN7euXoSPakqMLLSUFw"/>
+<div>
+<h3 class="font-bold text-lg text-text-main-light dark:text-text-main-dark">Zalo Official Account</h3>
+<a class="text-sm text-primary hover:underline flex items-center gap-1" href="https://oa.zalo.me" target="_blank">
+                                        oa.zalo.me <span class="material-icons-outlined text-sm">open_in_new</span>
+</a>
+</div>
+</div>
+<p class="text-sm text-text-sub-light leading-relaxed mb-6">
+                                Tích hợp Zalo OA giúp doanh nghiệp tương tác với khách hàng, gửi tin nhắn chăm sóc, và đồng bộ lịch sử chat tự động.
+                            </p>
+<button class="w-full flex items-center justify-center gap-2 p-3 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors font-semibold text-sm mb-6">
+<span class="material-icons-outlined">menu_book</span>
+    Hướng dẫn cài đặt
+</button>
+<hr class="border-slate-100 dark:border-slate-700 mb-8"/>
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark mb-4">Danh sách OA đã kết nối</h3>
+<div class="overflow-hidden rounded-lg border border-border-light dark:border-border-dark">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-[10px] font-bold text-text-sub-light uppercase tracking-wider border-b border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800/50">
+<th class="px-3 py-2">Tên OA</th>
+<th class="px-3 py-2 text-center w-16">Trạng thái</th>
+<th class="px-3 py-2 text-right w-12">Thao tác</th>
+</tr>
+</thead>
+<tbody class="text-xs divide-y divide-border-light dark:divide-border-dark">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-3">
+<div class="flex flex-col">
+<span class="font-medium text-text-main-light dark:text-text-main-dark leading-tight">Học viện KPIM</span>
+<span class="text-[10px] text-text-sub-light mt-0.5">428941209312</span>
+</div>
+</td>
+<td class="px-3 py-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-green-100 text-green-700 text-[9px] font-bold leading-tight dark:bg-green-900/30 dark:text-green-400">
+                                                    Hoạt động
+                                                </span>
+</td>
+<td class="px-3 py-3 text-right">
+<button class="text-slate-400 hover:text-red-500 transition-colors rounded hover:bg-red-50 dark:hover:bg-red-900/20" title="Ngắt kết nối">
+<span class="material-icons-outlined text-base">link_off</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-3">
+<div class="flex flex-col">
+<span class="font-medium text-text-main-light dark:text-text-main-dark leading-tight">CSKH Online</span>
+<span class="text-[10px] text-text-sub-light mt-0.5">981237123123</span>
+</div>
+</td>
+<td class="px-3 py-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-slate-100 text-slate-500 text-[9px] font-bold leading-tight dark:bg-slate-800 dark:text-slate-400">
+                                                    Hết hạn
+                                                </span>
+</td>
+<td class="px-3 py-3 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors rounded hover:bg-blue-50 dark:hover:bg-blue-900/20" title="Kết nối lại">
+<span class="material-icons-outlined text-base">refresh</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7 flex flex-col h-full">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6 shadow-sm h-full flex flex-col">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark mb-5 flex items-center gap-2">
+<span class="material-icons-outlined text-primary">settings</span>
+                                Cấu hình thủ công
+                            </h3>
+<div class="space-y-4 mb-8">
+<div>
+<label class="block text-sm font-semibold text-text-main-light dark:text-text-main-dark mb-1.5">App ID <span class="text-red-500">*</span></label>
+<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-sm focus:ring-primary focus:border-primary p-2.5 transition-shadow" placeholder="Nhập App ID của ứng dụng Zalo" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-semibold text-text-main-light dark:text-text-main-dark mb-1.5">Secret Key <span class="text-red-500">*</span></label>
+<div class="relative">
+<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-sm focus:ring-primary focus:border-primary p-2.5 pr-10 transition-shadow" type="password" value="your-secret-key-hidden"/>
+<button class="absolute inset-y-0 right-0 px-3 flex items-center text-slate-400 hover:text-primary transition-colors">
+<span class="material-icons-outlined text-lg">visibility</span>
+</button>
+</div>
+</div>
+<div>
+<label class="block text-sm font-semibold text-text-main-light dark:text-text-main-dark mb-1.5">Access Token</label>
+<textarea class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-sm focus:ring-primary focus:border-primary p-2.5 transition-shadow resize-none" placeholder="Dán Access Token (OA Access Token) tại đây nếu có..." rows="3"></textarea>
+<p class="text-[11px] text-text-sub-light mt-1.5">Access Token dùng để xác thực các yêu cầu API. Nếu để trống, hệ thống sẽ tự động lấy Token mới khi kết nối thành công.</p>
+</div>
+</div>
+<div class="flex-1 border-t border-slate-100 dark:border-slate-700/50 pt-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark text-left">Quét mã kết nối</h3>
+<div class="flex items-center text-sm">
+<span class="text-text-sub-light mr-2">Thời gian hiệu lực:</span>
+<span class="font-medium text-orange-500 font-mono">04:59</span>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center mb-4 mx-auto w-full">
+<img alt="QR Code Connection" class="w-32 h-32 mix-blend-multiply dark:mix-blend-normal dark:invert-qr mb-4 opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQdv-PMl3z2GYBSr8OGVQ82dst-ptDhaKuCqG_fqN-8QDS6jNOExvw8mP1O9z8yg1XNVM6g991n80_a2TfFBYy1_v4c_FtMQ90LMr1rRWPgla21R_XwNR11K07sKOEG3kE4sDLB958o2YNPgczOFBqkaXzHcWUTEOGjm532-ctmfBkTqmmilT8ujGq5NKLRBLzOlo9q9TQFTUPwzU9ETZ7J1Rv9ZJMnZij-25SicE3IreHAgUzKfN0THRs7mSIWChAy6YfmwnTAKI"/>
+<p class="text-xs text-text-sub-light text-center px-2">Sử dụng ứng dụng Zalo trên điện thoại để quét mã và cấp quyền truy cập.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sticky bottom-0 bg-background-light dark:bg-background-dark pt-4 pb-2 border-t border-transparent z-10 flex items-center justify-end gap-3">
+<button class="px-5 py-2.5 rounded-xl text-sm font-bold text-text-sub-light hover:text-text-main-light hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                        Hủy bỏ
+                    </button>
+<button class="px-6 py-2.5 rounded-xl bg-primary hover:bg-sky-600 text-white text-sm font-bold shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 transition-all flex items-center gap-2">
+<span class="material-icons-outlined text-lg">save</span>
+                        Lưu cấu hình
+                    </button>
+</div>
+</div>
+</div>
+  <div data-channel-panel="instagram" class="flex-1 flex flex-col min-w-0 bg-slate-50/50 dark:bg-slate-900/50 overflow-y-auto custom-scrollbar p-6 hidden">
+<div class="max-w-6xl mx-auto w-full space-y-6">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="text-2xl font-bold text-text-main-light dark:text-text-main-dark">Cấu hình Kênh Facebook</h1>
+<p class="text-sm text-text-sub-light mt-1">Quản lý kết nối Facebook Fanpage &amp; Quảng cáo để đồng bộ tin nhắn và leads</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="flex h-3 w-3 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</span>
+<span class="text-sm font-medium text-green-600 dark:text-green-400">Hệ thống hoạt động ổn định</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6 shadow-sm flex flex-col h-full border-2 border-facebook relative">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-14 h-14 rounded-full bg-[#1877F2] flex items-center justify-center text-white shadow-sm shrink-0">
+<span class="material-icons text-3xl">facebook</span>
+</div>
+<div>
+<h3 class="font-bold text-lg text-text-main-light dark:text-text-main-dark">Facebook Pages &amp; Ads</h3>
+<a class="text-sm text-facebook hover:underline flex items-center gap-1" href="https://business.facebook.com" target="_blank">
+                                        business.facebook.com <span class="material-icons-outlined text-sm">open_in_new</span>
+</a>
+</div>
+</div>
+<p class="text-sm text-text-sub-light leading-relaxed mb-4">
+                                Kết nối Fanpage giúp bạn quản lý tin nhắn, bình luận tập trung. Đồng bộ Leads từ các chiến dịch quảng cáo về CRM tự động.
+                            </p>
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-3 border border-border-light dark:border-border-dark flex items-center justify-between mb-4">
+<div class="flex items-center gap-3 overflow-hidden">
+<img alt="User Avatar" class="w-10 h-10 rounded-full object-cover border border-white dark:border-slate-600 shadow-sm flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzul7yPV6V9pSxsCXWH65xnycjRYO_3piuXvieSZpnm0KuuNQcRm1B5WnnsE2KeJxOk4rby6RKGEATn-xdLru73fGHuSvyADKWSimFDY0hiLS8cnoowwH9U03hLS5pc-EmWe64H7ofm5uemKqIFbl0avrK7CGfN-IivADty3rjUxlvY0gP_Y8prCbXYRyILoYhBsv7X-2e4aMYR4oWhMIgS3dPX1JVuQ0zK172NQhvDr5rwzFTlGVNwfbF2TveNIx48-iGjFXLusU"/>
+<div class="min-w-0">
+<div class="text-[10px] uppercase font-bold text-text-sub-light tracking-wide">Đã kết nối với Facebook</div>
+<div class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Nguyễn Văn A</div>
+</div>
+</div>
+<button class="flex-shrink-0 px-3 py-1.5 rounded-lg border border-border-light dark:border-slate-600 bg-white dark:bg-slate-700 text-xs font-medium hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors">
+                                    Đổi tài khoản
+                                </button>
+</div>
+<button class="w-full flex items-center justify-center gap-2 p-3 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors font-semibold text-sm mb-6">
+<span class="material-icons-outlined">menu_book</span>
+                                Hướng dẫn cài đặt
+                            </button>
+<hr class="border-slate-100 dark:border-slate-700 mb-6"/>
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark mb-4">Danh sách Fanpage đã kết nối</h3>
+<div class="overflow-hidden rounded-lg border border-border-light dark:border-border-dark">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-[10px] font-bold text-text-sub-light uppercase tracking-wider border-b border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800/50">
+<th class="px-3 py-2">Fanpage</th>
+<th class="px-3 py-2 text-center w-16">Trạng thái</th>
+<th class="px-3 py-2 text-right w-12">Thao tác</th>
+</tr>
+</thead>
+<tbody class="text-xs divide-y divide-border-light dark:divide-border-dark">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-3">
+<div class="flex flex-col">
+<span class="font-medium text-text-main-light dark:text-text-main-dark leading-tight">Học viện KPIM</span>
+<span class="text-[10px] text-text-sub-light mt-0.5">ID: 1000281928</span>
+</div>
+</td>
+<td class="px-3 py-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-green-100 text-green-700 text-[9px] font-bold leading-tight dark:bg-green-900/30 dark:text-green-400">
+                                                    Hoạt động
+                                                </span>
+</td>
+<td class="px-3 py-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="text-slate-400 hover:text-primary transition-colors p-1 rounded hover:bg-blue-50 dark:hover:bg-blue-900/20" title="Kích hoạt nhận tin nhắn">
+<span class="material-icons-outlined text-base">mark_chat_read</span>
+</button>
+<button class="text-slate-400 hover:text-red-500 transition-colors p-1 rounded hover:bg-red-50 dark:hover:bg-red-900/20" title="Gỡ bỏ">
+<span class="material-icons-outlined text-base">link_off</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-3">
+<div class="flex flex-col">
+<span class="font-medium text-text-main-light dark:text-text-main-dark leading-tight">KPIM Store</span>
+<span class="text-[10px] text-text-sub-light mt-0.5">ID: 2981237123</span>
+</div>
+</td>
+<td class="px-3 py-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-amber-100 text-amber-700 text-[9px] font-bold leading-tight dark:bg-amber-900/30 dark:text-amber-400">
+                                                    Cần cấp quyền
+                                                </span>
+</td>
+<td class="px-3 py-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="text-slate-400 hover:text-primary transition-colors p-1 rounded hover:bg-blue-50 dark:hover:bg-blue-900/20" title="Kết nối lại">
+<span class="material-icons-outlined text-base">refresh</span>
+</button>
+<button class="text-slate-400 hover:text-red-500 transition-colors p-1 rounded hover:bg-red-50 dark:hover:bg-red-900/20" title="Gỡ bỏ">
+<span class="material-icons-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7 flex flex-col h-full">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6 shadow-sm h-full flex flex-col">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark mb-5 flex items-center gap-2">
+<span class="material-icons-outlined text-primary">settings_input_antenna</span>
+                                Tài khoản quảng cáo đã kết nối
+                            </h3>
+<p class="text-sm text-text-sub-light mb-6">
+                                Danh sách các tài khoản quảng cáo được ủy quyền. Hệ thống sẽ tự động đồng bộ Leads mới nhất từ các tài khoản này về CRM.
+                            </p>
+<div class="overflow-hidden rounded-lg border border-border-light dark:border-border-dark flex-1">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-[10px] font-bold text-text-sub-light uppercase tracking-wider border-b border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800/50">
+<th class="px-4 py-3">Tên tài khoản</th>
+<th class="px-4 py-3">ID Tài khoản</th>
+<th class="px-4 py-3 text-center">Trạng thái</th>
+<th class="px-4 py-3 text-right">Thao tác</th>
+</tr>
+</thead>
+<tbody class="text-xs divide-y divide-border-light dark:divide-border-dark">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+<span class="material-icons-outlined text-sm">person</span>
+</div>
+<span class="font-medium text-text-main-light dark:text-text-main-dark">TKQC Cá nhân - A</span>
+</div>
+</td>
+<td class="px-4 py-3 text-text-sub-light font-mono">
+                                                act_283910283
+                                            </td>
+<td class="px-4 py-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-green-100 text-green-700 text-[9px] font-bold leading-tight dark:bg-green-900/30 dark:text-green-400">
+                                                    Đang đồng bộ
+                                                </span>
+</td>
+<td class="px-4 py-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-7 h-4 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+<button class="text-slate-400 hover:text-red-500 transition-colors" title="Ngắt kết nối">
+<span class="material-icons-outlined text-base">link_off</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
+<span class="material-icons-outlined text-sm">business</span>
+</div>
+<span class="font-medium text-text-main-light dark:text-text-main-dark">BM Agency KPIM</span>
+</div>
+</td>
+<td class="px-4 py-3 text-text-sub-light font-mono">
+                                                act_998231231
+                                            </td>
+<td class="px-4 py-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-green-100 text-green-700 text-[9px] font-bold leading-tight dark:bg-green-900/30 dark:text-green-400">
+                                                    Đang đồng bộ
+                                                </span>
+</td>
+<td class="px-4 py-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-7 h-4 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+<button class="text-slate-400 hover:text-red-500 transition-colors" title="Ngắt kết nối">
+<span class="material-icons-outlined text-base">link_off</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
+<span class="material-icons-outlined text-sm">person</span>
+</div>
+<span class="font-medium text-text-main-light dark:text-text-main-dark">TK Phụ - Thử nghiệm</span>
+</div>
+</td>
+<td class="px-4 py-3 text-text-sub-light font-mono">
+                                                act_551239991
+                                            </td>
+<td class="px-4 py-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-slate-100 text-slate-500 text-[9px] font-bold leading-tight dark:bg-slate-800 dark:text-slate-400">
+                                                    Đã tắt
+                                                </span>
+</td>
+<td class="px-4 py-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-7 h-4 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+<button class="text-slate-400 hover:text-red-500 transition-colors" title="Gỡ bỏ">
+<span class="material-icons-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-6 pt-6 border-t border-border-light dark:border-border-dark">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 flex-shrink-0 flex items-center justify-center">
+<span class="material-icons-outlined">info</span>
+</div>
+<div class="text-sm">
+<h4 class="font-bold text-text-main-light dark:text-text-main-dark mb-1">Lưu ý đồng bộ Leads</h4>
+<p class="text-text-sub-light text-xs leading-relaxed">
+                                    Hệ thống chỉ đồng bộ Leads từ các Form Lead được tạo trong các tài khoản quảng cáo trên. Hãy đảm bảo bạn có quyền Admin/Advertiser trên các tài khoản này. Để xem danh sách leads, vui lòng truy cập module <a class="text-primary hover:underline" href="#">Khách hàng</a>.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sticky bottom-0 bg-background-light dark:bg-background-dark pt-4 pb-2 border-t border-transparent z-10 flex items-center justify-end gap-3">
+<button class="px-5 py-2.5 rounded-xl text-sm font-bold text-text-sub-light hover:text-text-main-light hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                        Hủy bỏ
+                    </button>
+<button class="px-6 py-2.5 rounded-xl bg-primary hover:bg-sky-600 text-white text-sm font-bold shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 transition-all flex items-center gap-2">
+<span class="material-icons-outlined text-lg">save</span>
+                        Lưu cấu hình
+                    </button>
+</div>
+</div>
+  <div data-channel-panel="tiktok" class="flex-1 flex flex-col min-w-0 bg-slate-50/50 dark:bg-slate-900/50 overflow-y-auto custom-scrollbar p-6 hidden">
+<div class="max-w-5xl mx-auto w-full space-y-6">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="text-2xl font-bold text-text-main-light dark:text-text-main-dark">Cấu hình Kênh TikTok</h1>
+<p class="text-sm text-text-sub-light mt-1">Quản lý kết nối TikTok Channel với hệ thống CRM</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="flex h-3 w-3 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</span>
+<span class="text-sm font-medium text-green-600 dark:text-green-400">Hệ thống hoạt động ổn định</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6 shadow-sm flex flex-col h-full border-2 border-slate-900 relative">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-14 h-14 rounded-full bg-black text-white flex items-center justify-center shadow-sm border border-slate-100 dark:border-slate-700">
+<span class="material-icons text-3xl">music_note</span>
+</div>
+<div>
+<h3 class="font-bold text-lg text-text-main-light dark:text-text-main-dark">TikTok Channel</h3>
+<a class="text-sm text-primary hover:underline flex items-center gap-1" href="https://tiktok.com" target="_blank">
+                                        tiktok.com <span class="material-icons-outlined text-sm">open_in_new</span>
+</a>
+</div>
+</div>
+<p class="text-sm text-text-sub-light leading-relaxed mb-6">
+                                Tích hợp TikTok giúp doanh nghiệp quản lý bình luận, tin nhắn trực tiếp và tương tác với khách hàng từ TikTok Shop &amp; Creator.
+                            </p>
+<button class="w-full flex items-center justify-center gap-2 p-3 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors font-semibold text-sm mb-6">
+<span class="material-icons-outlined">menu_book</span>
+    Hướng dẫn cài đặt
+</button>
+<hr class="border-slate-100 dark:border-slate-700 mb-8"/>
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark mb-4">Danh sách tài khoản TikTok đã kết nối</h3>
+<div class="overflow-hidden rounded-lg border border-border-light dark:border-border-dark">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-[10px] font-bold text-text-sub-light uppercase tracking-wider border-b border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800/50">
+<th class="px-3 py-2">Tên tài khoản</th>
+<th class="px-3 py-2 text-center w-16">Trạng thái</th>
+<th class="px-3 py-2 text-right w-12">Thao tác</th>
+</tr>
+</thead>
+<tbody class="text-xs divide-y divide-border-light dark:divide-border-dark">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-3">
+<div class="flex flex-col">
+<span class="font-medium text-text-main-light dark:text-text-main-dark leading-tight">KPIM Academy</span>
+<span class="text-[10px] text-text-sub-light mt-0.5">@kpim.academy</span>
+</div>
+</td>
+<td class="px-3 py-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-green-100 text-green-700 text-[9px] font-bold leading-tight dark:bg-green-900/30 dark:text-green-400">
+                                                    Hoạt động
+                                                </span>
+</td>
+<td class="px-3 py-3 text-right">
+<button class="text-slate-400 hover:text-red-500 transition-colors rounded hover:bg-red-50 dark:hover:bg-red-900/20" title="Gỡ bỏ">
+<span class="material-icons-outlined text-base">link_off</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-3">
+<div class="flex flex-col">
+<span class="font-medium text-text-main-light dark:text-text-main-dark leading-tight">Kênh Giải Trí</span>
+<span class="text-[10px] text-text-sub-light mt-0.5">@kpim.ent</span>
+</div>
+</td>
+<td class="px-3 py-3 text-center">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-red-100 text-red-700 text-[9px] font-bold leading-tight dark:bg-red-900/30 dark:text-red-400">
+                                                    Lỗi Token
+                                                </span>
+</td>
+<td class="px-3 py-3 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors rounded hover:bg-blue-50 dark:hover:bg-blue-900/20" title="Kết nối lại">
+<span class="material-icons-outlined text-base">refresh</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7 flex flex-col h-full">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6 shadow-sm h-full flex flex-col">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark mb-5 flex items-center gap-2">
+<span class="material-icons-outlined text-primary">settings_applications</span>
+                                Cấu hình kết nối API
+                            </h3>
+<div class="space-y-4 mb-8">
+<div>
+<label class="block text-sm font-semibold text-text-main-light dark:text-text-main-dark mb-1.5">Client Key <span class="text-red-500">*</span></label>
+<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-sm focus:ring-primary focus:border-primary p-2.5 transition-shadow" placeholder="Nhập Client Key từ TikTok for Developers" type="text" value="aw39c8x20d0s9"/>
+</div>
+<div>
+<label class="block text-sm font-semibold text-text-main-light dark:text-text-main-dark mb-1.5">Client Secret <span class="text-red-500">*</span></label>
+<div class="relative">
+<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-sm focus:ring-primary focus:border-primary p-2.5 pr-10 transition-shadow" type="password" value="your-secret-key-hidden"/>
+<button class="absolute inset-y-0 right-0 px-3 flex items-center text-slate-400 hover:text-primary transition-colors">
+<span class="material-icons-outlined text-lg">visibility</span>
+</button>
+</div>
+<p class="text-[11px] text-text-sub-light mt-1.5">Thông tin này được sử dụng để xác thực OAuth và tạo Access Token cho tài khoản của bạn.</p>
+</div>
+</div>
+<div class="flex-1 border-t border-slate-100 dark:border-slate-700/50 pt-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark text-left">Tài khoản liên kết</h3>
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-green-100 text-green-700 text-xs font-bold leading-tight dark:bg-green-900/30 dark:text-green-400">
+                                    Đang hoạt động
+                                </span>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-6 border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center w-full">
+<div class="relative mb-3">
+<img alt="TikTok Avatar" class="w-20 h-20 rounded-full border-4 border-white dark:border-slate-700 shadow-md object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzul7yPV6V9pSxsCXWH65xnycjRYO_3piuXvieSZpnm0KuuNQcRm1B5WnnsE2KeJxOk4rby6RKGEATn-xdLru73fGHuSvyADKWSimFDY0hiLS8cnoowwH9U03hLS5pc-EmWe64H7ofm5uemKqIFbl0avrK7CGfN-IivADty3rjUxlvY0gP_Y8prCbXYRyILoYhBsv7X-2e4aMYR4oWhMIgS3dPX1JVuQ0zK172NQhvDr5rwzFTlGVNwfbF2TveNIx48-iGjFXLusU"/>
+<div class="absolute bottom-0 right-0 bg-black text-white p-1 rounded-full border-2 border-white dark:border-slate-700">
+<span class="material-icons text-sm block">music_note</span>
+</div>
+</div>
+<h4 class="font-bold text-lg text-text-main-light dark:text-text-main-dark">Học viện KPIM</h4>
+<p class="text-sm text-text-sub-light mb-5">Đã kết nối với TikTok như <span class="font-semibold text-slate-900 dark:text-white">@kpim.academy</span></p>
+<div class="flex gap-3">
+<button class="px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 text-sm font-semibold hover:bg-white dark:hover:bg-slate-700 transition-colors flex items-center gap-2 bg-white dark:bg-transparent shadow-sm">
+<span class="material-icons-outlined text-lg">switch_account</span>
+                                        Đổi tài khoản TikTok
+                                    </button>
+<button class="px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 text-sm font-semibold hover:bg-white dark:hover:bg-slate-700 transition-colors flex items-center gap-2 bg-white dark:bg-transparent shadow-sm text-red-600 hover:text-red-700">
+<span class="material-icons-outlined text-lg">link_off</span>
+                                        Ngắt kết nối
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sticky bottom-0 bg-background-light dark:bg-background-dark pt-4 pb-2 border-t border-transparent z-10 flex items-center justify-end gap-3">
+<button class="px-5 py-2.5 rounded-xl text-sm font-bold text-text-sub-light hover:text-text-main-light hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                        Hủy bỏ
+                    </button>
+<button class="px-6 py-2.5 rounded-xl bg-primary hover:bg-sky-600 text-white text-sm font-bold shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 transition-all flex items-center gap-2">
+<span class="material-icons-outlined text-lg">save</span>
+                        Lưu cấu hình
+                    </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- =========================================================
+  CONFIG - Dễ thay thế link
+  - BASE_PATH: đường dẫn gốc tới các file HTML khác (sidebar)
+  Ví dụ:
+    const BASE_PATH = "/compa-crm-public/";
+========================================================== -->
+<script>
+  // ====== CONFIG ======
+  const BASE_PATH = "/compa-crm-public/";
+
+  // ====== Helpers: apply sidebar links from data-href ======
+  (function applySidebarLinks() {
+    document.querySelectorAll('[data-href]').forEach(a => {
+      const p = a.getAttribute('data-href') || '';
+      // allow absolute URLs if user puts full link later
+      if (/^https?:\/\//i.test(p)) {
+        a.href = p;
+      } else {
+        a.href = BASE_PATH + p;
+      }
+    });
+  })();
+
+  // ====== View Switching (SC200 Chat <-> Kết nối kênh + Multi-channel panels) ======
+  const viewChat = document.getElementById('view-chat');
+  const viewConnect = document.getElementById('view-connect');
+  const btnConnect = document.getElementById('btnConnectChannel');
+  const btnBack = document.getElementById('btnBackToChat');
+
+  const channelButtons = Array.from(document.querySelectorAll('[data-channel-btn]'));
+  const channelPanels  = Array.from(document.querySelectorAll('[data-channel-panel]'));
+
+  function showView(view) {
+    if (view === 'connect') {
+      viewChat.classList.add('hidden');
+      viewConnect.classList.remove('hidden');
+    } else {
+      viewConnect.classList.add('hidden');
+      viewChat.classList.remove('hidden');
+    }
+  }
+
+  function setActiveChannel(channelKey) {
+    channelButtons.forEach(btn => {
+      const isActive = btn.getAttribute('data-channel-btn') === channelKey;
+      // reset
+      btn.classList.remove('bg-primary/5','dark:bg-primary/10','border-primary','hover:bg-primary/10','dark:hover:bg-primary/20');
+      btn.classList.add('hover:bg-slate-50','dark:hover:bg-slate-800/40','border-transparent');
+      if (isActive) {
+        btn.classList.add('bg-primary/5','dark:bg-primary/10','border-primary','hover:bg-primary/10','dark:hover:bg-primary/20');
+        btn.classList.remove('border-transparent','hover:bg-slate-50','dark:hover:bg-slate-800/40');
+      }
+    });
+  }
+
+  function selectChannel(channelKey) {
+    const key = channelKey || 'facebook';
+    channelPanels.forEach(p => p.classList.add('hidden'));
+    const panel = document.querySelector(`[data-channel-panel="${key}"]`);
+    (panel || document.querySelector('[data-channel-panel="facebook"]'))?.classList.remove('hidden');
+    setActiveChannel(key);
+  }
+
+  function openConnect(defaultChannel = 'facebook') {
+    showView('connect');
+    selectChannel(defaultChannel);
+  }
+
+  // SC200: nút 'Kết nối kênh' -> mở mặc định Facebook (SC220)
+  if (btnConnect) {
+    btnConnect.addEventListener('click', () => {
+      openConnect('facebook');
+      location.hash = 'connect';
+    });
+  }
+
+  // Connect view: '<- Tin nhắn' -> quay lại màn chat
+  if (btnBack) {
+    btnBack.addEventListener('click', () => {
+      showView('chat');
+      location.hash = 'chat';
+    });
+  }
+
+  // Click nguồn bên trái -> đổi panel
+  channelButtons.forEach(btn => {
+    btn.addEventListener('click', () => openConnect(btn.getAttribute('data-channel-btn')));
+  });
+
+  // Optional: back/forward via hash (#connect / #chat)
+  function syncHash() {
+    const h = (location.hash || '').replace('#','');
+    if (h === 'connect') openConnect('facebook');
+    else showView('chat');
+  }
+  window.addEventListener('hashchange', syncHash);
+  syncHash();
+</script>
+<script>
+/* =========================================================
+  View Router for Chat (SC200) <-> Connect (SC22x/21x/23x/24x)
+  - Default: Chat view
+  - Click "Kết nối kênh" in chat -> open connect + select Facebook
+  - Click source items in left list -> swap right panel
+  - Click back "Tin nhắn" in connect left header -> return to chat
+========================================================= */
+(function () {
+  const viewChat = document.getElementById('view-chat');
+  const viewConnect = document.getElementById('view-connect');
+
+  function showChat() {
+    viewChat.classList.remove('hidden');
+    viewConnect.classList.add('hidden');
+    // keep hash optional
+    if (location.hash !== '#chat') history.replaceState(null, '', '#chat');
+  }
+
+  function showConnect(channel) {
+    viewChat.classList.add('hidden');
+    viewConnect.classList.remove('hidden');
+    selectChannel(channel || 'facebook');
+    if (location.hash !== '#connect') history.replaceState(null, '', '#connect');
+  }
+
+  function selectChannel(channel) {
+    const panels = viewConnect.querySelectorAll('.connect-panel');
+    panels.forEach(p => p.classList.add('hidden'));
+    const active = viewConnect.querySelector('.connect-panel[data-channel="' + channel + '"]');
+    if (active) active.classList.remove('hidden');
+
+    // active style on left list: find items by label and toggle bg/border
+    const items = viewConnect.querySelectorAll('[data-channel-item]');
+    items.forEach(it => {
+      it.classList.remove('bg-slate-50','dark:bg-slate-800/60');
+      it.classList.remove('border-primary');
+      it.classList.add('border-transparent');
+    });
+    const activeItem = viewConnect.querySelector('[data-channel-item="' + channel + '"]');
+    if (activeItem) {
+      activeItem.classList.add('bg-slate-50','dark:bg-slate-800/60');
+      activeItem.classList.remove('border-transparent');
+      activeItem.classList.add('border-primary');
+    }
+  }
+
+  // -------- Bind: "Kết nối kênh" button in chat (SC200) ----------
+  function bindConnectButton() {
+    // find a button that contains text "Kết nối kênh"
+    const btn = Array.from(document.querySelectorAll('button, a')).find(el =>
+      (el.textContent || '').replace(/\s+/g,' ').trim().toLowerCase().includes('kết nối kênh')
+    );
+    if (btn) {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showConnect('facebook');
+      });
+    }
+  }
+
+  // -------- Prepare left list items in connect view ----------
+  function tagSourceItems() {
+    // We tag the 4 source rows by their visible labels.
+    const map = [
+      { key:'facebook',  label:/Facebook\s*Fanpage/i },
+      { key:'zalo',      label:/Zalo\s*Official\s*Account/i },
+      { key:'instagram', label:/Instagram\s*Business/i },
+      { key:'tiktok',    label:/Tiktok\s*Channel/i }
+    ];
+    const rows = Array.from(viewConnect.querySelectorAll('.group, .cursor-pointer, .hover\:bg-slate-50\/80')).filter(el => {
+      const t = (el.textContent||'').trim();
+      return t.length>0 && (/(Facebook|Zalo|Instagram|Tiktok)/i.test(t));
+    });
+
+    // pick best match for each label
+    map.forEach(m => {
+      const row = rows.find(r => m.label.test((r.textContent||'')));
+      if (row) {
+        row.setAttribute('data-channel-item', m.key);
+        row.style.cursor = 'pointer';
+        row.addEventListener('click', (e) => {
+          e.preventDefault();
+          selectChannel(m.key);
+        });
+      }
+    });
+
+    // Default active (facebook)
+    selectChannel('facebook');
+  }
+
+  // -------- Bind back "Tin nhắn" in connect view ----------
+  function bindBackToChat() {
+    const backBtn = Array.from(viewConnect.querySelectorAll('button, a')).find(el =>
+      /Tin nhắn/i.test((el.textContent||'')) && /arrow_back|chevron_left|←/.test((el.textContent||''))
+    );
+    if (backBtn) {
+      backBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showChat();
+      });
+    }
+  }
+
+  // -------- Init routing ----------
+  function init() {
+    // Always start at chat by requirement
+    showChat();
+
+    bindConnectButton();
+
+    // When user opens connect view, we need the items tagged (once)
+    tagSourceItems();
+    bindBackToChat();
+
+    // Allow direct hash navigation
+    window.addEventListener('hashchange', () => {
+      if (location.hash === '#connect') showConnect('facebook');
+      else showChat();
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+})();
+</script></body>
+</html>

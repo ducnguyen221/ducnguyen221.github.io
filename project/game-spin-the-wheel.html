@@ -1,0 +1,2311 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Spin the Wheel — n8n Automation Basics (Offline)</title>
+  <style>
+    :root{
+      --bg0:#050b1f;
+      --bg1:#071232;
+      --card:#0b1d43;
+      --card2:#0e2657;
+      --fg:#eaf0ff;
+      --muted:#b7c5ff;
+      --muted2:#93a7f7;
+      --line:rgba(255,255,255,.12);
+      --line2:rgba(255,255,255,.18);
+      --shadow: 0 16px 42px rgba(0,0,0,.45);
+      --shadow2: 0 10px 28px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --space-1: 6px;
+      --space-2: 10px;
+      --space-3: 14px;
+      --space-4: 18px;
+      --space-5: 24px;
+      --tap: 44px;
+
+      --ok:#2be7a4;
+      --bad:#ff5b7b;
+      --warn:#ffd166;
+      --info:#7aa7ff;
+      --accent:#6d7dff;
+
+      --maxw: 1180px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(109,125,255,.26), transparent 55%),
+        radial-gradient(900px 520px at 70% 20%, rgba(43,231,164,.14), transparent 55%),
+        radial-gradient(900px 520px at 60% 90%, rgba(122,167,255,.12), transparent 50%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      color:var(--fg);
+      overflow:hidden;
+    }
+
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: var(--space-3);
+      padding: var(--space-4) var(--space-5);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.10));
+      backdrop-filter: blur(10px);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: var(--space-3);
+      min-width: 240px;
+      user-select:none;
+    }
+    .logo{
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 18px rgba(0,0,0,.35);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      flex: 0 0 auto;
+    }
+    .brand h1{
+      margin:0;
+      font-size: 14px;
+      line-height: 1.2;
+      letter-spacing:.2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .brand p{
+      margin:2px 0 0;
+      font-size: 11px;
+      color: var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      gap: var(--space-2);
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .chip{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 8px 18px rgba(0,0,0,.2);
+      min-height: var(--tap);
+      user-select:none;
+      font-size: 13px;
+    }
+    .chip .k{color: var(--muted)}
+    .chip .v{font-weight:900}
+    .chip .em{font-size: 15px}
+
+    .progress{
+      width: 180px;
+      height: 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      overflow:hidden;
+      position:relative;
+    }
+    .bar{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, rgba(109,125,255,.95), rgba(43,231,164,.9));
+      border-radius: 999px;
+      transition: width .22s ease;
+    }
+    .bar.danger{
+      background: linear-gradient(90deg, rgba(255,209,102,.95), rgba(255,91,123,.9));
+    }
+
+    .iconbtn{
+      width: var(--tap);
+      height: var(--tap);
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--fg);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .iconbtn:hover{background: rgba(255,255,255,.09); border-color: var(--line2)}
+    .iconbtn:active{transform: scale(.98)}
+    .iconbtn:focus-visible{
+      outline: 3px solid rgba(109,125,255,.55);
+      outline-offset: 2px;
+    }
+
+    .btn{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.08);
+      color: var(--fg);
+      border-radius: 14px;
+      padding: 12px 12px;
+      min-height: var(--tap);
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      font-weight: 800;
+      letter-spacing:.1px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+    }
+    .btn:hover{background: rgba(255,255,255,.10); border-color: var(--line2)}
+    .btn:active{transform: translateY(1px) scale(.99)}
+    .btn:focus-visible{
+      outline: 3px solid rgba(109,125,255,.55);
+      outline-offset: 2px;
+    }
+    .btn.primary{
+      border-color: rgba(109,125,255,.6);
+      background: linear-gradient(180deg, rgba(109,125,255,.25), rgba(109,125,255,.14));
+    }
+    .btn.good{
+      border-color: rgba(43,231,164,.55);
+      background: linear-gradient(180deg, rgba(43,231,164,.18), rgba(43,231,164,.10));
+    }
+    .btn.danger{
+      border-color: rgba(255,91,123,.55);
+      background: linear-gradient(180deg, rgba(255,91,123,.18), rgba(255,91,123,.10));
+    }
+    .btn.ghost{background: transparent}
+    .btn[disabled]{opacity:.55; cursor:not-allowed}
+
+    main{
+      height: calc(100% - 84px);
+      display:flex;
+      gap: var(--space-4);
+      padding: var(--space-4) var(--space-5);
+      width: 100%;
+      max-width: calc(var(--maxw) + 520px);
+      margin: 0 auto;
+      overflow:hidden;
+    }
+
+    /* Teacher panel */
+    .teacher{
+      width: 420px;
+      max-width: 420px;
+      flex: 0 0 420px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height:0;
+    }
+    .teacher.collapsed{width:56px; max-width:56px; flex-basis:56px}
+    .t-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 12px 12px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,0,0,.12);
+    }
+    .t-title{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width:0;
+    }
+    .t-title h2{
+      margin:0;
+      font-size: 13px;
+      letter-spacing:.2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .pill{
+      font-size: 11px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    .t-body{
+      padding: 12px;
+      overflow:auto;
+      min-height:0;
+    }
+    .t-body::-webkit-scrollbar{width:10px}
+    .t-body::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.12);
+      border-radius: 999px;
+      border: 2px solid rgba(0,0,0,.0);
+      background-clip: padding-box;
+    }
+    .teacher.collapsed .t-title,
+    .teacher.collapsed .t-body,
+    .teacher.collapsed .t-foot{display:none}
+    .teacher.collapsed .t-head{justify-content:center; padding:10px}
+
+    fieldset{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px;
+      margin: 0 0 12px;
+      background: rgba(0,0,0,.10);
+    }
+    legend{
+      padding: 0 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    label{
+      display:block;
+      font-size: 12px;
+      color: var(--muted);
+      margin: 10px 0 6px;
+    }
+    input[type="text"], input[type="number"], textarea, select{
+      width:100%;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--fg);
+      padding: 10px 12px;
+      outline:none;
+      font-size: 13px;
+    }
+    textarea{min-height: 120px; resize: vertical}
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(109,125,255,.7);
+      box-shadow: 0 0 0 3px rgba(109,125,255,.25);
+    }
+    .row2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .status{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.12);
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: rgba(122,167,255,.8);
+      box-shadow: 0 0 0 4px rgba(122,167,255,.18);
+      flex: 0 0 auto;
+    }
+    .status.ok .dot{background: rgba(43,231,164,.9); box-shadow: 0 0 0 4px rgba(43,231,164,.18)}
+    .status.err .dot{background: rgba(255,91,123,.95); box-shadow: 0 0 0 4px rgba(255,91,123,.18)}
+    .status.warn .dot{background: rgba(255,209,102,.95); box-shadow: 0 0 0 4px rgba(255,209,102,.18)}
+    .spinner{
+      width: 14px; height: 14px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,.25);
+      border-top-color: rgba(255,255,255,.9);
+      animation: spin .8s linear infinite;
+      flex: 0 0 auto;
+    }
+    @keyframes spin{to{transform: rotate(360deg)}}
+
+    /* Game panel */
+    .game{
+      flex: 1 1 auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height:0;
+      position:relative;
+    }
+    .g-body{
+      flex:1;
+      padding: 14px;
+      min-height:0;
+      overflow:hidden;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 12px;
+    }
+    .panel{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.12);
+      box-shadow: 0 8px 18px rgba(0,0,0,.25);
+      overflow:hidden;
+      min-height:0;
+      display:flex;
+      flex-direction:column;
+    }
+    .panel .p-head{
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,0,0,.10);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 10px;
+      flex-wrap:wrap;
+    }
+    .panel .p-head h3{
+      margin:0;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing:.2px;
+      display:flex;
+      align-items:center;
+      gap: 8px;
+    }
+    .panel .p-body{
+      padding: 14px;
+      overflow:auto;
+      min-height:0;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+    .panel .p-body::-webkit-scrollbar{width:10px}
+    .panel .p-body::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.12);
+      border-radius: 999px;
+      border: 2px solid rgba(0,0,0,.0);
+      background-clip: padding-box;
+    }
+
+    /* Wheel */
+    .wheelWrap{
+      display:grid;
+      place-items:center;
+      gap: 12px;
+    }
+    .wheelStage{
+      position: relative;
+      width: min(420px, 100%);
+      aspect-ratio: 1/1;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    canvas#wheel{
+      width: 100%;
+      height: 100%;
+      display:block;
+      filter: drop-shadow(0 18px 28px rgba(0,0,0,.30));
+    }
+    .pointer{
+      position:absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-bottom: 22px solid rgba(255,255,255,.92);
+      filter: drop-shadow(0 10px 12px rgba(0,0,0,.35));
+    }
+    .hub{
+      position:absolute;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%,-50%);
+      width: 92px;
+      height: 92px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: radial-gradient(circle at 30% 30%, rgba(109,125,255,.35), rgba(0,0,0,.25));
+      display:grid;
+      place-items:center;
+      box-shadow: 0 16px 30px rgba(0,0,0,.35);
+    }
+    .hub button{
+      width: 68px;
+      height: 68px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.18);
+      color: var(--fg);
+      cursor:pointer;
+      font-weight: 900;
+      letter-spacing:.2px;
+      display:grid;
+      place-items:center;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .hub button:hover{background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22)}
+    .hub button:active{transform: scale(.98)}
+    .hub button:focus-visible{
+      outline: 3px solid rgba(109,125,255,.55);
+      outline-offset: 2px;
+    }
+
+    .wheelActions{
+      display:flex;
+      gap: 10px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    /* Q display / answers */
+    .qTitle{
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing:.2px;
+      margin: 0;
+    }
+    .qMeta{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+    .qCard{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+      padding: 12px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.22);
+    }
+
+    .options{
+      display:grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .opt{
+      display:flex;
+      align-items:flex-start;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(0,0,0,.10);
+      padding: 12px 12px;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      min-height: var(--tap);
+    }
+    .opt:hover{background: rgba(255,255,255,.08); border-color: var(--line2)}
+    .opt:active{transform: translateY(1px) scale(.99)}
+    .opt[aria-disabled="true"]{opacity:.6; cursor:not-allowed}
+    .opt:focus-visible{
+      outline: 3px solid rgba(109,125,255,.55);
+      outline-offset: 2px;
+    }
+    .opt .idx{
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      display:grid;
+      place-items:center;
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+    .opt .txt{
+      flex: 1 1 auto;
+      font-size: 13px;
+      line-height: 1.35;
+      color: var(--fg);
+    }
+    .opt.selected{
+      border-color: rgba(109,125,255,.55);
+      background: rgba(109,125,255,.10);
+    }
+    .opt.correct{
+      border-color: rgba(43,231,164,.55);
+      background: rgba(43,231,164,.12);
+    }
+    .opt.wrong{
+      border-color: rgba(255,91,123,.55);
+      background: rgba(255,91,123,.12);
+    }
+
+    .feedback{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(0,0,0,.12);
+      padding: 10px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap:wrap;
+      min-height: var(--tap);
+    }
+    .badge{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      user-select:none;
+      min-height: var(--tap);
+      font-size: 13px;
+    }
+    .badge.ok{border-color: rgba(43,231,164,.55)}
+    .badge.bad{border-color: rgba(255,91,123,.55)}
+    .badge.warn{border-color: rgba(255,209,102,.55)}
+    .badge .big{font-weight: 900}
+    .explain{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      padding: 10px 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      display:none;
+    }
+
+    /* History */
+    .history{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+    .hItem{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(0,0,0,.10);
+      padding: 10px 12px;
+      display:flex;
+      align-items:flex-start;
+      gap: 10px;
+    }
+    .hIcon{
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+    }
+    .hText{
+      flex: 1 1 auto;
+      min-width:0;
+    }
+    .hText b{
+      display:block;
+      font-size: 13px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .hText span{
+      display:block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+      line-height:1.3;
+    }
+
+    /* Overlay pause */
+    .overlay{
+      position: absolute;
+      inset: 0;
+      display:none;
+      place-items:center;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+      z-index: 20;
+      padding: 14px;
+    }
+    .overlay.show{display:grid}
+    .modal{
+      max-width: min(720px, 100%);
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.45);
+      box-shadow: var(--shadow2);
+      padding: 14px;
+    }
+    .modal h2{margin:0 0 6px; font-size: 18px}
+    .modal p{margin:0; color: var(--muted); line-height:1.45; font-size: 13px}
+    .modal .actions{margin-top: 12px; display:flex; gap: 10px; justify-content:flex-end; flex-wrap:wrap}
+
+    .toast{
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: rgba(0,0,0,.52);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      padding: 10px 12px;
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      box-shadow: var(--shadow2);
+      max-width: min(860px, calc(100vw - 24px));
+      z-index: 50;
+      opacity: 0;
+      pointer-events:none;
+      transition: opacity .18s ease, transform .18s ease;
+      color: var(--fg);
+      font-size: 13px;
+      backdrop-filter: blur(10px);
+    }
+    .toast.show{opacity:1; transform: translateX(-50%) translateY(0)}
+
+    .help{
+      border-top: 1px solid var(--line);
+      margin-top: 12px;
+      padding-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .help kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      padding: 3px 7px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--fg);
+    }
+
+    @media (max-width: 980px){
+      header{padding: 12px}
+      main{
+        height: calc(100% - 74px);
+        flex-direction:column;
+        padding: 12px;
+        gap: 12px;
+      }
+      .teacher{width:100%; max-width:none; flex-basis:auto}
+      .teacher.collapsed{width:100%; max-width:none; flex-basis:auto}
+      .teacher.collapsed .t-title,
+      .teacher.collapsed .t-body,
+      .teacher.collapsed .t-foot{display:block}
+      .teacher.collapsed .t-head{justify-content:space-between}
+      .g-body{grid-template-columns: 1fr; }
+      .progress{width: 140px}
+      main{max-width: var(--maxw)}
+      .wheelStage{width: min(380px, 100%)}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{transition:none !important; animation:none !important; scroll-behavior:auto !important;}
+    }
+  </style>
+</head>
+
+<body>
+  <!--
+    SPIN THE WHEEL — n8n Automation Basics (Offline Single HTML)
+    ============================================================
+    CÁCH CHẠY:
+    1) Lưu file thành: spin-the-wheel-n8n.html
+    2) Mở trực tiếp trên trình duyệt (Chrome/Edge/Firefox) — không cần internet.
+    3) (Tuỳ chọn) Teacher Unlock để chỉnh set/timer và export CSV.
+
+    PHÍM TẮT:
+    - Space: Next (sang câu/ vòng tiếp theo sau khi chấm)
+    - R: Reveal (Teacher) / Reveal đáp án
+    - Esc: Pause/Resume
+    - 1/2/3/4: chọn đáp án A/B/C/D (nếu có)
+
+    CUỐI FILE có hướng dẫn nhanh: đổi dữ liệu & cách chơi trên lớp.
+  -->
+
+  <header>
+    <div class="brand" aria-label="Game header">
+      <div class="logo" id="brandLogo" aria-hidden="true"></div>
+      <div style="min-width:0">
+        <h1 id="brandName">Spin the Wheel: n8n Automation Basics</h1>
+        <p id="brandTagline">Quay vòng để chọn câu hỏi / thử thách — trả lời nhanh — ghi kết quả</p>
+      </div>
+    </div>
+
+    <div class="topbar" aria-label="Header stats and actions">
+      <div class="chip" aria-label="Timer">
+        <span class="em" aria-hidden="true">⏱️</span>
+        <span class="k">Time</span>
+        <span class="v" id="kpiTime">--</span>
+      </div>
+
+      <div class="chip" aria-label="Score">
+        <span class="em" aria-hidden="true">🏆</span>
+        <span class="k">Score</span>
+        <span class="v" id="kpiScore">0</span>
+      </div>
+
+      <div class="chip" aria-label="Progress">
+        <span class="em" aria-hidden="true">📌</span>
+        <span class="k">Q</span>
+        <span class="v" id="kpiProg">0/0</span>
+      </div>
+
+      <div class="progress" role="progressbar" aria-label="Progress bar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="bar" id="progressBar"></div>
+      </div>
+
+      <button class="iconbtn" id="btnReset" type="button" aria-label="Reset game" title="Reset">
+        <span aria-hidden="true">🔄</span>
+      </button>
+
+      <button class="iconbtn" id="btnTeacher" type="button" aria-label="Teacher mode" title="Teacher Mode">
+        <span aria-hidden="true">🧑‍🏫</span>
+      </button>
+
+      <button class="iconbtn" id="btnDownload" type="button" aria-label="Download this HTML file" title="Download HTML">
+        <span aria-hidden="true">⬇️</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <aside class="teacher" id="teacherPanel" aria-label="Teacher panel">
+      <div class="t-head">
+        <div class="t-title">
+          <span aria-hidden="true">🧑‍🏫</span>
+          <h2>Teacher Mode</h2>
+          <span class="pill" id="teacherPill">Locked</span>
+        </div>
+        <button class="iconbtn" id="btnCollapseTeacher" type="button" aria-label="Collapse teacher panel">
+          <span aria-hidden="true">⟨⟨</span>
+        </button>
+      </div>
+
+      <div class="t-body">
+        <fieldset>
+          <legend>Access</legend>
+          <div class="row2">
+            <button class="btn" id="btnUnlock" type="button" aria-label="Unlock teacher mode">
+              🔒 Unlock
+            </button>
+            <button class="btn ghost" id="btnLock" type="button" aria-label="Lock teacher mode" disabled>
+              🔐 Lock
+            </button>
+          </div>
+          <div class="status warn" id="teacherStatus" role="status" aria-live="polite" style="margin-top:10px">
+            <span class="dot" aria-hidden="true"></span>
+            <span id="teacherStatusText">Teacher Mode đang khóa. Nhấn Unlock để cấu hình.</span>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Game Control</legend>
+          <label for="setSelect">Chọn bộ câu hỏi</label>
+          <select id="setSelect" aria-label="Question set select" disabled></select>
+
+          <div class="row2">
+            <div>
+              <label for="timePerQ">⏱️ Time / vòng (giây)</label>
+              <input id="timePerQ" type="number" min="20" max="120" step="1" value="40" aria-label="Time per round seconds" disabled />
+            </div>
+            <div>
+              <label for="spinMin">🎡 Spin (vòng tối thiểu)</label>
+              <input id="spinMin" type="number" min="3" max="10" step="1" value="4" aria-label="Minimum spins" disabled />
+            </div>
+          </div>
+
+          <div class="row2" style="margin-top:10px">
+            <button class="btn primary" id="btnStart" type="button" aria-label="Start game" disabled>▶️ Start</button>
+            <button class="btn" id="btnNext" type="button" aria-label="Next round" disabled>⏭️ Next</button>
+          </div>
+
+          <div class="row2" style="margin-top:10px">
+            <button class="btn danger" id="btnReveal" type="button" aria-label="Reveal answer" disabled>👁️ Reveal</button>
+            <button class="btn" id="btnExport" type="button" aria-label="Export CSV" disabled>⬇️ Export CSV</button>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Edit Data (JSON)</legend>
+          <label for="jsonEditor">Dán/sửa CONFIG.questionSets (array)</label>
+          <textarea id="jsonEditor" spellcheck="false" aria-label="JSON editor" disabled></textarea>
+          <div class="row2" style="margin-top:10px">
+            <button class="btn good" id="btnApplyJson" type="button" aria-label="Apply JSON" disabled>✅ Apply</button>
+            <button class="btn" id="btnExportJson" type="button" aria-label="Export JSON" disabled>⬆️ Export</button>
+          </div>
+          <p style="margin:10px 0 0;color:var(--muted);font-size:12px;line-height:1.35">
+            Schema item: {"label":"...","question":"...","options":["A","B","C","D"],"correct":[0],"explain":"..."}
+          </p>
+        </fieldset>
+
+        <div class="help">
+          <div><b>Phím tắt:</b> <kbd>Space</kbd> Next • <kbd>R</kbd> Reveal • <kbd>Esc</kbd> Pause/Resume • <kbd>1</kbd>/<kbd>2</kbd>/<kbd>3</kbd>/<kbd>4</kbd> chọn đáp án</div>
+        </div>
+      </div>
+
+      <div class="t-foot" style="padding:12px; border-top:1px solid var(--line); background:rgba(0,0,0,.10)">
+        <div style="display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap">
+          <div style="color:var(--muted); font-size:12px">
+            Tip: Collapse Teacher panel để tối ưu máy chiếu.
+          </div>
+          <button class="btn ghost" id="btnFullscreen" type="button" aria-label="Toggle browser fullscreen">⛶ Fullscreen</button>
+        </div>
+      </div>
+    </aside>
+
+    <section class="game" aria-label="Game play area">
+      <div class="g-body">
+        <!-- Left: Wheel -->
+        <div class="panel" aria-label="Wheel panel">
+          <div class="p-head">
+            <h3><span aria-hidden="true">🎡</span> Spin the Wheel</h3>
+            <div class="badge" aria-label="Round status" id="roundBadge">
+              <span aria-hidden="true">⚡</span>
+              <span class="big" id="roundTitle">Sẵn sàng</span>
+              <span style="color:var(--muted)" id="roundSub">Nhấn Start (Teacher) rồi bấm SPIN</span>
+            </div>
+          </div>
+          <div class="p-body">
+            <div class="wheelWrap">
+              <div class="wheelStage" aria-label="Wheel stage">
+                <div class="pointer" aria-hidden="true"></div>
+                <canvas id="wheel" width="900" height="900" aria-label="Wheel canvas"></canvas>
+                <div class="hub">
+                  <button id="btnSpin" type="button" aria-label="Spin the wheel" title="Spin">SPIN</button>
+                </div>
+              </div>
+
+              <div class="wheelActions">
+                <button class="btn" id="btnPause" type="button" aria-label="Pause game">⏸ Pause</button>
+                <button class="btn" id="btnMarkCorrect" type="button" aria-label="Mark correct">✅ Correct</button>
+                <button class="btn" id="btnMarkWrong" type="button" aria-label="Mark wrong">❌ Wrong</button>
+              </div>
+
+              <div class="feedback" aria-label="Feedback">
+                <div class="badge warn" id="fbBadge">
+                  <span aria-hidden="true" id="fbIcon">⏱️</span>
+                  <span class="big" id="fbTitle">Chưa quay</span>
+                  <span id="fbSub" style="color:var(--muted)">Bấm SPIN để chọn câu hỏi</span>
+                </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap">
+                  <button class="btn ghost" id="btnDownloadCsv" type="button" aria-label="Export CSV quick">⬇️ CSV</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Question + History -->
+        <div class="panel" aria-label="Question panel">
+          <div class="p-head">
+            <h3><span aria-hidden="true">🧩</span> Câu hỏi / Thử thách</h3>
+            <div class="badge" aria-label="Set name">
+              <span aria-hidden="true">📚</span>
+              <span class="big" id="setName">—</span>
+            </div>
+          </div>
+          <div class="p-body">
+            <div class="qCard" aria-label="Question card">
+              <p class="qTitle" id="qTitle">—</p>
+              <div class="qMeta" id="qMeta">
+                <span>Loại: <b id="qType">—</b></span>
+                <span>Điểm: <b id="qPoints">—</b></span>
+                <span>Wheel: <b id="qLabel">—</b></span>
+              </div>
+
+              <div class="options" id="options" aria-label="Options"></div>
+
+              <div class="explain" id="explain" aria-live="polite"></div>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+                <button class="btn primary" id="btnSubmit" type="button" aria-label="Submit answer">📨 Submit</button>
+                <button class="btn danger" id="btnRevealStudent" type="button" aria-label="Reveal answer">👁️ Reveal</button>
+                <button class="btn" id="btnNextStudent" type="button" aria-label="Next round">⏭️ Next</button>
+              </div>
+            </div>
+
+            <div class="history" aria-label="History">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap">
+                <div style="color:var(--muted); font-size:12px">📜 Lịch sử vòng quay (mới nhất ở trên)</div>
+                <button class="btn ghost" id="btnClearHistory" type="button" aria-label="Clear history">🧹 Clear</button>
+              </div>
+              <div id="historyList"></div>
+            </div>
+
+            <div class="help">
+              <div><b>Flow gợi ý:</b> Quay → đọc câu → học viên chọn 1/2/3/4 → Submit → Correct/Wrong → Next.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay" id="pauseOverlay" aria-label="Pause overlay">
+        <div class="modal" role="dialog" aria-modal="true" aria-label="Paused dialog">
+          <h2>⏸ Đang tạm dừng</h2>
+          <p>Nhấn <b>Esc</b> hoặc bấm Resume để tiếp tục. (Timer sẽ dừng lại.)</p>
+          <div class="actions">
+            <button class="btn" id="btnResume" type="button" aria-label="Resume">▶️ Resume</button>
+            <button class="btn danger" id="btnReveal2" type="button" aria-label="Reveal answer">👁️ Reveal</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span aria-hidden="true" id="toastIcon">ℹ️</span>
+    <span id="toastText">...</span>
+  </div>
+
+  <script>
+    "use strict";
+
+    /* =========================
+       CONFIG (Teacher chỉnh nhanh)
+       ========================= */
+    const CONFIG = {
+      topic: "Ứng dụng n8n tự động hóa cơ bản",
+      brand: { name: "Spin the Wheel: n8n Automation Basics", tagline: "Quay vòng để chọn câu hỏi / thử thách — trả lời nhanh — ghi kết quả" },
+      teacher: {
+        password: "n8n",
+        allowJsonEdit: true
+      },
+      gameplay: {
+        timePerRoundSec: 40,   // 20–40s phù hợp lớp
+        scoreCorrect: 100,
+        scoreWrong: -20,
+        scoreNoAnswer: 0,
+        spinMinTurns: 4,
+        spinMaxTurns: 7,
+        spinDurationMs: 4200,
+        shuffle: true
+      },
+      // 10–20 câu hỏi/keyword mẫu (demo). Mỗi item vừa là "ô" trên wheel vừa là 1 câu hỏi.
+      // type: "single" (1 đáp án đúng) / "multi" (nhiều đáp án đúng)
+      questionSets: [
+        {
+          id: "basics",
+          name: "n8n Automation — Core Concepts",
+          items: [
+            {
+              label: "TRIGGER",
+              question: "Trong n8n, Trigger dùng để làm gì?",
+              type: "single",
+              options: ["Bắt đầu workflow khi có sự kiện", "Vẽ biểu đồ dữ liệu", "Tăng tốc Internet", "Mã hóa mật khẩu"],
+              correct: [0],
+              explain: "Trigger là điểm khởi đầu: Webhook, Cron, Manual, App events…",
+              points: 100
+            },
+            {
+              label: "WEBHOOK",
+              question: "Webhook trong n8n phù hợp nhất để làm gì?",
+              type: "single",
+              options: ["Nhận request từ hệ thống ngoài", "Lưu file video", "Tạo database", "Tắt server"],
+              correct: [0],
+              explain: "Webhook nhận HTTP request → kích hoạt luồng (form, chatbot, app).",
+              points: 120
+            },
+            {
+              label: "CRON",
+              question: "Cron giúp workflow chạy theo cơ chế nào?",
+              type: "single",
+              options: ["Theo lịch thời gian", "Theo cảm xúc", "Theo pin thiết bị", "Theo số người dùng"],
+              correct: [0],
+              explain: "Cron chạy định kỳ (mỗi giờ/mỗi ngày…).",
+              points: 90
+            },
+            {
+              label: "HTTP REQUEST",
+              question: "Node HTTP Request thường dùng để:",
+              type: "single",
+              options: ["Gọi API (GET/POST) lấy/đẩy dữ liệu", "Chơi nhạc", "Tạo slide", "Chạy game 3D"],
+              correct: [0],
+              explain: "HTTP Request là nền tảng tích hợp API trong n8n.",
+              points: 120
+            },
+            {
+              label: "CREDENTIALS",
+              question: "Credentials trong n8n giúp ích gì?",
+              type: "single",
+              options: ["Lưu thông tin xác thực kết nối (token/key)", "Tăng FPS", "Tạo ảnh AI", "Xóa lịch sử"],
+              correct: [0],
+              explain: "Quản lý auth an toàn hơn hardcode trong node.",
+              points: 110
+            },
+            {
+              label: "IF",
+              question: "IF node dùng để làm gì?",
+              type: "single",
+              options: ["Rẽ nhánh True/False theo điều kiện", "Tạo file PDF", "Nén ảnh", "Tải driver"],
+              correct: [0],
+              explain: "IF chia luồng xử lý theo điều kiện.",
+              points: 100
+            },
+            {
+              label: "SET",
+              question: "SET node thường dùng để:",
+              type: "multi",
+              options: ["Tạo field mới", "Chỉnh sửa dữ liệu trước khi gửi", "Map/đổi tên cột", "Chạy cron theo giờ"],
+              correct: [0,1,2],
+              explain: "SET giúp biến đổi dữ liệu output (tạo/chỉnh/map field).",
+              points: 130
+            },
+            {
+              label: "MERGE",
+              question: "MERGE node dùng để:",
+              type: "single",
+              options: ["Gộp dữ liệu từ 2 nhánh", "Tạo user mới", "Bắt lỗi mạng", "Mã hóa dữ liệu"],
+              correct: [0],
+              explain: "Merge kết hợp dữ liệu theo nhiều chế độ (append/merge by key…).",
+              points: 110
+            },
+            {
+              label: "EXPRESSIONS",
+              question: "Expressions {{ }} giúp làm gì?",
+              type: "multi",
+              options: ["Tham chiếu dữ liệu node trước", "Tính toán giá trị động", "Map field linh hoạt", "Tăng tốc CPU"],
+              correct: [0,1,2],
+              explain: "Expressions là “keo dán” data động giữa các node.",
+              points: 140
+            },
+            {
+              label: "ITEMS",
+              question: "Trong n8n, “items” thường là:",
+              type: "single",
+              options: ["Danh sách record JSON (mỗi item là 1 record)", "File .exe", "Một loại database", "Một API gateway"],
+              correct: [0],
+              explain: "n8n xử lý mảng items, mỗi item đại diện 1 record.",
+              points: 120
+            },
+            {
+              label: "ERROR HANDLING",
+              question: "Khi workflow lỗi, cách làm đúng là:",
+              type: "multi",
+              options: ["Ghi log (Executions)", "Thiết lập error workflow/notify", "Retry/backoff khi gọi API", "Bỏ qua không cần xử lý"],
+              correct: [0,1,2],
+              explain: "Quan trọng: log + thông báo + retry hợp lý để ổn định.",
+              points: 150
+            },
+            {
+              label: "RATE LIMIT",
+              question: "Rate limit là gì?",
+              type: "single",
+              options: ["Giới hạn số request API trong 1 khoảng thời gian", "Tốc độ wifi", "Số lượng node tối đa", "Dung lượng RAM"],
+              correct: [0],
+              explain: "Gặp rate limit: delay/retry/batch.",
+              points: 110
+            },
+            {
+              label: "PAGINATION",
+              question: "Pagination cần khi:",
+              type: "single",
+              options: ["API trả dữ liệu theo từng trang (page)", "Bạn muốn đổi giao diện", "Bạn muốn đổi password", "Bạn muốn tăng score"],
+              correct: [0],
+              explain: "Xử lý pagination thường dùng loop / SplitInBatches.",
+              points: 120
+            },
+            {
+              label: "SPLIT IN BATCHES",
+              question: "Split in Batches hữu ích nhất khi:",
+              type: "multi",
+              options: ["Xử lý danh sách lớn từng phần", "Giảm rủi ro rate limit", "Làm pagination API", "Tạo biểu đồ"],
+              correct: [0,1,2],
+              explain: "Batching giúp ổn định và kiểm soát tốc độ xử lý.",
+              points: 140
+            },
+            {
+              label: "CHALLENGE",
+              question: "Thử thách: Hãy nêu 1 ví dụ workflow n8n bạn muốn áp dụng trong công việc (30 giây).",
+              type: "single",
+              options: ["OK — chia sẻ ví dụ", "Pass", "Chưa nghĩ ra", "Không liên quan"],
+              correct: [0],
+              explain: "Mục tiêu: liên hệ thực tế, không cần đúng/sai quá gắt.",
+              points: 100
+            }
+          ]
+        }
+      ],
+      assets: {
+        logoSvg:
+          '<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+          '<defs><linearGradient id="g" x1="2" y1="2" x2="26" y2="26" gradientUnits="userSpaceOnUse">' +
+          '<stop stop-color="#6D7DFF"/><stop offset="1" stop-color="#2BE7A4"/></linearGradient></defs>' +
+          '<rect x="3" y="3" width="22" height="22" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.16)"/>' +
+          '<path d="M9 16c2.2-5 7.8-5 10 0" stroke="url(#g)" stroke-width="2.6" stroke-linecap="round"/>' +
+          '<circle cx="11" cy="11" r="1.2" fill="rgba(255,255,255,0.85)"/>' +
+          '<circle cx="17" cy="11" r="1.2" fill="rgba(255,255,255,0.85)"/>' +
+          '</svg>'
+      },
+      ui: { toastMs: 1700 }
+    };
+
+    /* =========================
+       Helpers
+       ========================= */
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+    const clamp = (n,a,b)=>Math.max(a,Math.min(b,n));
+    const nowMs = ()=> (performance && performance.now) ? performance.now() : Date.now();
+
+    function csvEscape(v){
+      const s = String(v ?? "");
+      if(/[",\n]/.test(s)) return '"' + s.replace(/"/g,'""') + '"';
+      return s;
+    }
+
+    function escapeHtml(s){
+      const d = document.createElement("div");
+      d.textContent = String(s ?? "");
+      return d.innerHTML;
+    }
+
+    function shuffle(arr){
+      for(let i=arr.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [arr[i],arr[j]] = [arr[j],arr[i]];
+      }
+    }
+
+    /* =========================
+       State
+       ========================= */
+    const state = {
+      teacherUnlocked: false,
+      teacherCollapsed: false,
+      setId: CONFIG.questionSets[0]?.id || "",
+      items: [],
+      order: [],
+      idx: 0,
+      score: 0,
+      paused: false,
+      started: false,
+
+      // round
+      current: null,           // selected item
+      selectedIdxs: new Set(), // selected answers
+      revealed: false,
+      marked: null,            // "correct"|"wrong"|null
+
+      // wheel physics
+      spinning: false,
+      angle: 0,        // radians
+      targetAngle: 0,  // radians
+      spinStartMs: 0,
+      spinDurationMs: CONFIG.gameplay.spinDurationMs,
+
+      // timer
+      timer: { running:false, durationSec: CONFIG.gameplay.timePerRoundSec, endAtMs:0, raf:0 },
+
+      // history/results
+      history: [],
+      results: []
+    };
+
+    /* =========================
+       Elements
+       ========================= */
+    const els = {
+      brandLogo: $("#brandLogo"),
+      brandName: $("#brandName"),
+      brandTagline: $("#brandTagline"),
+
+      kpiTime: $("#kpiTime"),
+      kpiScore: $("#kpiScore"),
+      kpiProg: $("#kpiProg"),
+      progressBar: $("#progressBar"),
+      progressWrap: $(".progress"),
+
+      btnReset: $("#btnReset"),
+      btnTeacher: $("#btnTeacher"),
+      btnDownload: $("#btnDownload"),
+
+      teacherPanel: $("#teacherPanel"),
+      btnCollapseTeacher: $("#btnCollapseTeacher"),
+      teacherPill: $("#teacherPill"),
+      teacherStatus: $("#teacherStatus"),
+      teacherStatusText: $("#teacherStatusText"),
+      btnUnlock: $("#btnUnlock"),
+      btnLock: $("#btnLock"),
+      setSelect: $("#setSelect"),
+      timePerQ: $("#timePerQ"),
+      spinMin: $("#spinMin"),
+      btnStart: $("#btnStart"),
+      btnNext: $("#btnNext"),
+      btnReveal: $("#btnReveal"),
+      btnExport: $("#btnExport"),
+      jsonEditor: $("#jsonEditor"),
+      btnApplyJson: $("#btnApplyJson"),
+      btnExportJson: $("#btnExportJson"),
+      btnFullscreen: $("#btnFullscreen"),
+
+      btnSpin: $("#btnSpin"),
+      btnPause: $("#btnPause"),
+      btnMarkCorrect: $("#btnMarkCorrect"),
+      btnMarkWrong: $("#btnMarkWrong"),
+      roundTitle: $("#roundTitle"),
+      roundSub: $("#roundSub"),
+      roundBadge: $("#roundBadge"),
+
+      fbBadge: $("#fbBadge"),
+      fbIcon: $("#fbIcon"),
+      fbTitle: $("#fbTitle"),
+      fbSub: $("#fbSub"),
+      btnDownloadCsv: $("#btnDownloadCsv"),
+
+      setName: $("#setName"),
+      qTitle: $("#qTitle"),
+      qType: $("#qType"),
+      qPoints: $("#qPoints"),
+      qLabel: $("#qLabel"),
+      options: $("#options"),
+      explain: $("#explain"),
+      btnSubmit: $("#btnSubmit"),
+      btnRevealStudent: $("#btnRevealStudent"),
+      btnNextStudent: $("#btnNextStudent"),
+
+      historyList: $("#historyList"),
+      btnClearHistory: $("#btnClearHistory"),
+
+      pauseOverlay: $("#pauseOverlay"),
+      btnResume: $("#btnResume"),
+      btnReveal2: $("#btnReveal2"),
+
+      toast: $("#toast"),
+      toastIcon: $("#toastIcon"),
+      toastText: $("#toastText"),
+
+      wheel: $("#wheel")
+    };
+
+    /* =========================
+       Toast / Status
+       ========================= */
+    let toastT = 0;
+    function toast(msg, icon="ℹ️"){
+      els.toastIcon.textContent = icon;
+      els.toastText.textContent = msg;
+      els.toast.classList.add("show");
+      clearTimeout(toastT);
+      toastT = setTimeout(()=> els.toast.classList.remove("show"), CONFIG.ui.toastMs);
+    }
+
+    function setTeacherStatus(type, text, loading=false){
+      els.teacherStatus.classList.remove("ok","err","warn");
+      if(type) els.teacherStatus.classList.add(type);
+      const dot = els.teacherStatus.querySelector(".dot");
+      const oldSpinner = els.teacherStatus.querySelector(".spinner");
+      if(oldSpinner) oldSpinner.remove();
+      if(loading){
+        const sp = document.createElement("span");
+        sp.className = "spinner";
+        sp.setAttribute("aria-hidden","true");
+        dot.insertAdjacentElement("afterend", sp);
+      }
+      els.teacherStatusText.textContent = text;
+    }
+
+    function setRoundBadge(title, sub, icon="⚡"){
+      els.roundTitle.textContent = title;
+      els.roundSub.textContent = sub || "";
+      const iconSpan = els.roundBadge.querySelector("span[aria-hidden='true']");
+      if(iconSpan) iconSpan.textContent = icon;
+    }
+
+    function setFeedback(kind, title, sub, icon){
+      els.fbBadge.classList.remove("ok","bad","warn");
+      if(kind) els.fbBadge.classList.add(kind);
+      els.fbTitle.textContent = title;
+      els.fbSub.textContent = sub || "";
+      els.fbIcon.textContent = icon || "⚡";
+    }
+
+    /* =========================
+       Timer
+       ========================= */
+    function stopTimer(){
+      state.timer.running = false;
+      if(state.timer.raf) cancelAnimationFrame(state.timer.raf);
+      state.timer.raf = 0;
+    }
+
+    function setTimerUI(secLeft){
+      els.kpiTime.textContent = secLeft <= 0 ? "0s" : `${secLeft}s`;
+      const danger = secLeft <= Math.max(6, Math.floor(state.timer.durationSec * 0.22));
+      els.progressBar.classList.toggle("danger", danger && state.started && !state.revealed);
+    }
+
+    function startTimer(){
+      stopTimer();
+      state.timer.durationSec = clamp(Number(CONFIG.gameplay.timePerRoundSec), 20, 120);
+      state.timer.endAtMs = nowMs() + state.timer.durationSec * 1000;
+      state.timer.running = true;
+
+      const tick = ()=>{
+        if(!state.timer.running) return;
+        if(state.paused){ state.timer.raf = requestAnimationFrame(tick); return; }
+
+        const leftMs = state.timer.endAtMs - nowMs();
+        const leftSec = Math.ceil(leftMs / 1000);
+        setTimerUI(Math.max(0, leftSec));
+
+        if(leftMs <= 0){
+          stopTimer();
+          if(state.started && !state.revealed){
+            // timeout => auto reveal
+            revealAnswer("Hết giờ!");
+            setFeedback("warn","⏱️ Hết giờ", "Đã tự động Reveal. Space để Next.", "⏱️");
+          }
+          return;
+        }
+        state.timer.raf = requestAnimationFrame(tick);
+      };
+      state.timer.raf = requestAnimationFrame(tick);
+    }
+
+    function timeUsedSec(){
+      const leftMs = state.timer.endAtMs - nowMs();
+      const left = clamp(Math.ceil(leftMs / 1000), 0, state.timer.durationSec);
+      return clamp(state.timer.durationSec - left, 0, state.timer.durationSec);
+    }
+
+    function pauseToggle(force){
+      const want = typeof force === "boolean" ? force : !state.paused;
+      state.paused = want;
+      els.pauseOverlay.classList.toggle("show", state.paused);
+      if(state.paused){
+        toast("Paused", "⏸");
+        setRoundBadge("Paused", "Nhấn Esc hoặc Resume để tiếp tục", "⏸");
+      }else{
+        toast("Resumed", "▶️");
+        setRoundBadge("Đang chơi", "Quay vòng hoặc chọn đáp án", "⚡");
+      }
+    }
+
+    /* =========================
+       Sets / Progress
+       ========================= */
+    function applyBrand(){
+      els.brandLogo.innerHTML = CONFIG.assets.logoSvg;
+      els.brandName.textContent = CONFIG.brand.name;
+      els.brandTagline.textContent = CONFIG.brand.tagline;
+      document.title = CONFIG.brand.name + " — Offline";
+    }
+
+    function getSetById(id){
+      return CONFIG.questionSets.find(s => s.id === id) || CONFIG.questionSets[0];
+    }
+
+    function loadSet(id){
+      const set = getSetById(id);
+      state.setId = set.id;
+      state.items = (set.items || []).map(it => ({
+        label: String(it.label || "").trim() || "ITEM",
+        question: String(it.question || "").trim() || "—",
+        type: (it.type === "multi" ? "multi" : "single"),
+        options: Array.isArray(it.options) ? it.options.map(x=>String(x)) : [],
+        correct: Array.isArray(it.correct) ? it.correct.map(n=>Number(n)) : [],
+        explain: String(it.explain || ""),
+        points: Number(it.points || 100)
+      }));
+      state.order = state.items.map((_,i)=>i);
+      if(CONFIG.gameplay.shuffle) shuffle(state.order);
+      state.idx = 0;
+
+      state.current = null;
+      state.selectedIdxs = new Set();
+      state.revealed = false;
+      state.marked = null;
+      state.spinning = false;
+
+      els.setName.textContent = set.name || set.id;
+      els.jsonEditor.value = JSON.stringify(CONFIG.questionSets, null, 2);
+
+      updateHeader();
+      drawWheel();
+      clearQuestionUI();
+      setRoundBadge("Sẵn sàng", "Nhấn Start (Teacher) rồi bấm SPIN", "⚡");
+      setFeedback("warn","Chưa quay","Bấm SPIN để chọn câu hỏi","🎡");
+      setTimerUI(CONFIG.gameplay.timePerRoundSec);
+    }
+
+    function updateHeader(){
+      els.kpiScore.textContent = String(state.score);
+      const total = state.order.length || 0;
+      const current = total ? clamp(state.idx + (state.started ? 1 : 0), 0, total) : 0;
+      els.kpiProg.textContent = `${current}/${total}`;
+      const pct = total ? Math.round((state.started ? state.idx : 0) / total * 100) : 0;
+      els.progressWrap.setAttribute("aria-valuenow", String(pct));
+      els.progressBar.style.width = `${pct}%`;
+    }
+
+    /* =========================
+       Wheel drawing & spin
+       ========================= */
+    function getWheelPalette(n){
+      // deterministic neon-ish palette without hardcoding per segment
+      const out = [];
+      for(let i=0;i<n;i++){
+        const hue = (220 + i * (360 / Math.max(6,n))) % 360;
+        out.push({h: hue, s: 75, l: 55});
+      }
+      return out;
+    }
+
+    function drawWheel(){
+      const canvas = els.wheel;
+      const ctx = canvas.getContext("2d");
+      const W = canvas.width, H = canvas.height;
+      ctx.clearRect(0,0,W,H);
+
+      const items = state.items;
+      const n = items.length || 1;
+      const cx = W/2, cy = H/2;
+      const r = Math.min(W,H)*0.46;
+
+      // subtle bg ring
+      ctx.save();
+      ctx.translate(cx,cy);
+      ctx.beginPath();
+      ctx.arc(0,0,r*1.02,0,Math.PI*2);
+      ctx.strokeStyle = "rgba(255,255,255,0.12)";
+      ctx.lineWidth = r*0.04;
+      ctx.stroke();
+      ctx.restore();
+
+      const palette = getWheelPalette(n);
+      const slice = (Math.PI*2)/n;
+
+      // rotate by state.angle so pointer at top hits selected segment
+      const angle = state.angle;
+
+      ctx.save();
+      ctx.translate(cx,cy);
+      ctx.rotate(angle);
+
+      for(let i=0;i<n;i++){
+        const a0 = i*slice;
+        const a1 = a0 + slice;
+
+        // segment
+        ctx.beginPath();
+        ctx.moveTo(0,0);
+        ctx.arc(0,0,r,a0,a1);
+        ctx.closePath();
+
+        // gradient
+        const col = palette[i];
+        const g = ctx.createRadialGradient(-r*0.2,-r*0.2,r*0.2, 0,0,r);
+        g.addColorStop(0, `hsla(${col.h},${col.s}%,${col.l+8}%,0.95)`);
+        g.addColorStop(1, `hsla(${col.h},${col.s}%,${col.l-8}%,0.85)`);
+        ctx.fillStyle = g;
+        ctx.fill();
+
+        // divider line
+        ctx.strokeStyle = "rgba(255,255,255,0.14)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // label
+        const mid = (a0+a1)/2;
+        ctx.save();
+        ctx.rotate(mid);
+        ctx.translate(r*0.64, 0);
+        ctx.rotate(Math.PI/2);
+        ctx.fillStyle = "rgba(255,255,255,0.92)";
+        ctx.font = "900 30px ui-sans-serif, system-ui, -apple-system, Segoe UI";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        const text = items[i]?.label || ("ITEM " + (i+1));
+        ctx.fillText(trimText(ctx, text, 16), 0, 0);
+        ctx.restore();
+      }
+
+      // center cutout ring
+      ctx.beginPath();
+      ctx.arc(0,0,r*0.18,0,Math.PI*2);
+      ctx.fillStyle = "rgba(0,0,0,0.16)";
+      ctx.fill();
+      ctx.strokeStyle = "rgba(255,255,255,0.18)";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.restore();
+    }
+
+    function trimText(ctx, text, maxChars){
+      const s = String(text||"");
+      if(s.length <= maxChars) return s;
+      return s.slice(0, Math.max(0,maxChars-1)) + "…";
+    }
+
+    function pointerIndexFromAngle(){
+      // pointer at top ( -90deg ) in canvas coords
+      // we rotate wheel by state.angle, so segment at pointer is computed accordingly.
+      const n = state.items.length || 1;
+      const slice = (Math.PI*2)/n;
+
+      // pointer absolute angle in wheel-rotated space: at -90deg
+      // effective angle to map: (-pi/2 - state.angle) normalized to [0,2pi)
+      let a = (-Math.PI/2 - state.angle) % (Math.PI*2);
+      if(a < 0) a += Math.PI*2;
+      const idx = Math.floor(a / slice);
+      return clamp(idx, 0, n-1);
+    }
+
+    function spin(){
+      if(!state.started){
+        toast("Teacher: nhấn Start trước.", "🧑‍🏫");
+        return;
+      }
+      if(state.spinning) return;
+      if(state.paused) return;
+
+      // must finish current round first? allow re-spin only if no current or revealed/marked
+      if(state.current && !state.revealed){
+        toast("Hãy Submit/Reveal vòng hiện tại trước.", "⚠️");
+        return;
+      }
+
+      // choose target segment by selecting next unused (or cycle)
+      const n = state.items.length;
+      if(n === 0){
+        toast("Set rỗng.", "⚠️");
+        return;
+      }
+
+      // compute a random target index among remaining order
+      const remaining = state.order.slice(state.idx); // remaining in session
+      const pickIndex = remaining.length ? remaining[Math.floor(Math.random()*remaining.length)] : state.order[Math.floor(Math.random()*state.order.length)];
+      const targetSegment = pickIndex; // this is index in items
+
+      // compute target angle so that targetSegment lands at pointer (top)
+      // We want pointerIndexFromAngle() == targetSegment at end.
+      // pointerIndex uses (-pi/2 - angle). Solve:
+      // targetSegment * slice <= (-pi/2 - angle mod 2pi) < (targetSegment+1)*slice
+      // pick center of segment:
+      const slice = (Math.PI*2)/n;
+      const center = (targetSegment + 0.5) * slice;
+      // We need (-pi/2 - angle) mod 2pi = center
+      // => angle = -pi/2 - center (mod 2pi)
+      let desired = (-Math.PI/2 - center);
+      // normalize close to current with additional spins
+      const minTurns = clamp(Number(CONFIG.gameplay.spinMinTurns), 1, 12);
+      const maxTurns = clamp(Number(CONFIG.gameplay.spinMaxTurns), minTurns, 14);
+      const turns = Math.floor(Math.random() * (maxTurns - minTurns + 1)) + minTurns;
+      desired += turns * Math.PI*2;
+
+      state.spinning = true;
+      state.spinStartMs = nowMs();
+      state.spinDurationMs = clamp(Number(CONFIG.gameplay.spinDurationMs), 1800, 8000);
+      state.startAngle = state.angle;
+      state.targetAngle = desired;
+
+      // reset round UI
+      state.current = null;
+      state.selectedIdxs = new Set();
+      state.revealed = false;
+      state.marked = null;
+      clearQuestionUI();
+      setRoundBadge("Đang quay…", "Chờ vòng quay dừng", "🎡");
+      setFeedback("warn","🎡 Đang quay","Chuẩn bị câu hỏi…","🎡");
+
+      animateSpin();
+    }
+
+    function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+
+    function animateSpin(){
+      const tick = ()=>{
+        if(!state.spinning) return;
+        if(state.paused){ requestAnimationFrame(tick); return; }
+
+        const t = (nowMs() - state.spinStartMs) / state.spinDurationMs;
+        const p = clamp(t, 0, 1);
+        const e = easeOutCubic(p);
+        state.angle = lerp(state.startAngle, state.targetAngle, e);
+
+        drawWheel();
+
+        if(p >= 1){
+          state.spinning = false;
+          // settle angle (reduce huge value)
+          state.angle = state.angle % (Math.PI*2);
+          drawWheel();
+
+          // determine selected segment
+          const seg = pointerIndexFromAngle();
+          selectItem(seg);
+          toast("Đã chọn: " + state.items[seg].label, "🎯");
+          return;
+        }
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+
+    function lerp(a,b,t){ return a + (b-a)*t; }
+
+    /* =========================
+       Round / Question logic
+       ========================= */
+    function startGame(){
+      if(state.items.length === 0){
+        toast("Không có câu hỏi trong set.", "⚠️");
+        return;
+      }
+      state.started = true;
+      state.score = 0;
+      state.results = [];
+      state.history = [];
+      renderHistory();
+      state.idx = 0;
+      if(CONFIG.gameplay.shuffle) shuffle(state.order);
+
+      setRoundBadge("Đang chơi", "Bấm SPIN để chọn câu hỏi", "⚡");
+      setFeedback("warn","Chưa quay","Bấm SPIN để chọn câu hỏi","🎡");
+      updateHeader();
+      drawWheel();
+      setTimerUI(CONFIG.gameplay.timePerRoundSec);
+    }
+
+    function selectItem(itemIdx){
+      state.current = { ...state.items[itemIdx], itemIdx };
+      state.selectedIdxs = new Set();
+      state.revealed = false;
+      state.marked = null;
+
+      // progress: consume this question from remaining order if present
+      const posInRemaining = state.order.indexOf(itemIdx, state.idx);
+      if(posInRemaining >= state.idx){
+        // swap to current idx to mark consumed
+        const tmp = state.order[state.idx];
+        state.order[state.idx] = itemIdx;
+        state.order[posInRemaining] = tmp;
+      }
+
+      // show UI
+      renderQuestion();
+      startTimer();
+      setRoundBadge("Đã chọn", "Trả lời trong thời gian", "🎯");
+      setFeedback("warn","🎯 Đã chọn", "Chọn đáp án 1/2/3/4 rồi Submit", "🎯");
+    }
+
+    function clearQuestionUI(){
+      els.qTitle.textContent = "—";
+      els.qType.textContent = "—";
+      els.qPoints.textContent = "—";
+      els.qLabel.textContent = "—";
+      els.options.innerHTML = "";
+      els.explain.style.display = "none";
+      els.explain.textContent = "";
+      els.btnSubmit.disabled = true;
+      els.btnRevealStudent.disabled = true;
+      els.btnNextStudent.disabled = true;
+      disableMarkButtons(true);
+    }
+
+    function renderQuestion(){
+      const q = state.current;
+      if(!q){ clearQuestionUI(); return; }
+
+      els.qTitle.textContent = q.question || "—";
+      els.qType.textContent = q.type === "multi" ? "Multiple" : "Single";
+      els.qPoints.textContent = String(q.points || 0);
+      els.qLabel.textContent = q.label || "—";
+
+      els.options.innerHTML = "";
+      const letters = ["1","2","3","4","5","6"];
+      q.options.forEach((opt, i)=>{
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "opt";
+        btn.setAttribute("data-idx", String(i));
+        btn.setAttribute("aria-label", `Option ${i+1}`);
+        btn.innerHTML = `<div class="idx">${letters[i] || (i+1)}</div><div class="txt">${escapeHtml(opt)}</div>`;
+        btn.addEventListener("click", ()=> toggleOption(i));
+        els.options.appendChild(btn);
+      });
+
+      els.btnSubmit.disabled = false;
+      els.btnRevealStudent.disabled = false;
+      els.btnNextStudent.disabled = false;
+      disableMarkButtons(false);
+      state.revealed = false;
+      state.marked = null;
+
+      els.explain.style.display = "none";
+      els.explain.textContent = "";
+    }
+
+    function toggleOption(i){
+      if(!state.current) return;
+      if(state.paused) return;
+      if(state.revealed) return;
+
+      if(state.current.type === "single"){
+        state.selectedIdxs = new Set([i]);
+      }else{
+        if(state.selectedIdxs.has(i)) state.selectedIdxs.delete(i);
+        else state.selectedIdxs.add(i);
+      }
+      updateOptionUI();
+    }
+
+    function updateOptionUI(){
+      $$(".opt", els.options).forEach(el=>{
+        const i = Number(el.getAttribute("data-idx"));
+        el.classList.toggle("selected", state.selectedIdxs.has(i));
+      });
+    }
+
+    function arraysEqualAsSet(a, setB){
+      const setA = new Set(a);
+      if(setA.size !== setB.size) return false;
+      for(const x of setA) if(!setB.has(x)) return false;
+      return true;
+    }
+
+    function submitAnswer(){
+      if(!state.current) return;
+      if(state.revealed) return;
+      stopTimer();
+
+      const picked = state.selectedIdxs;
+      const correctSet = new Set(state.current.correct || []);
+      const ok = arraysEqualAsSet(state.current.correct || [], picked);
+
+      revealAnswer(ok ? "Đúng!" : "Sai!", ok);
+      if(ok){
+        const add = Number(state.current.points || CONFIG.gameplay.scoreCorrect || 100);
+        state.score += add;
+        setFeedback("ok","✅ Đúng", `+${add} điểm • Space để Next`, "✅");
+        setRoundBadge("✅ Correct", "Space/Next để tiếp tục", "✅");
+        state.marked = "correct";
+      }else{
+        state.score += Number(CONFIG.gameplay.scoreWrong || -20);
+        setFeedback("bad","❌ Sai", `${CONFIG.gameplay.scoreWrong} điểm • Space để Next`, "❌");
+        setRoundBadge("❌ Wrong", "Space/Next để tiếp tục", "❌");
+        state.marked = "wrong";
+      }
+
+      updateHeader();
+      recordResult(ok ? "correct" : "wrong");
+      addHistoryItem(ok ? "✅" : "❌", state.current.label, state.current.question);
+      state.idx = clamp(state.idx + 1, 0, state.order.length);
+      updateHeader();
+    }
+
+    function revealAnswer(reason="Reveal", ok=null){
+      if(!state.current) return;
+      state.revealed = true;
+
+      // mark correct/wrong options visually
+      const correctSet = new Set(state.current.correct || []);
+      $$(".opt", els.options).forEach(el=>{
+        const i = Number(el.getAttribute("data-idx"));
+        el.classList.remove("selected");
+        el.setAttribute("aria-disabled","true");
+        el.disabled = true;
+        if(correctSet.has(i)) el.classList.add("correct");
+        else if(state.selectedIdxs.has(i)) el.classList.add("wrong");
+      });
+
+      els.explain.style.display = "block";
+      const exp = state.current.explain ? state.current.explain : "Giải thích: (không có)";
+      const picked = Array.from(state.selectedIdxs).map(i=>i+1).join(", ") || "—";
+      const correct = (state.current.correct||[]).map(i=>i+1).join(", ") || "—";
+      const head = ok === true ? "✅ Đúng!" : ok === false ? "❌ Sai!" : "👁️ Reveal";
+      els.explain.innerHTML = `<b>${escapeHtml(head)}</b> • Bạn chọn: <b>${escapeHtml(picked)}</b> • Đáp án: <b>${escapeHtml(correct)}</b><br>${escapeHtml(exp)}`;
+
+      if(ok === null){
+        setFeedback("warn","👁️ Reveal", reason + " • Space để Next", "👁️");
+        setRoundBadge("👁️ Reveal", "Space/Next để tiếp tục", "👁️");
+        recordResult("reveal");
+        addHistoryItem("👁️", state.current.label, state.current.question);
+        state.idx = clamp(state.idx + 1, 0, state.order.length);
+        updateHeader();
+      }
+
+      disableMarkButtons(true);
+    }
+
+    function disableMarkButtons(disabled){
+      els.btnMarkCorrect.disabled = disabled;
+      els.btnMarkWrong.disabled = disabled;
+    }
+
+    function nextRound(){
+      if(!state.started){
+        toast("Teacher: nhấn Start trước.", "🧑‍🏫");
+        return;
+      }
+      if(state.spinning) return;
+
+      if(state.idx >= state.order.length){
+        stopTimer();
+        setRoundBadge("Kết thúc", "Đã hết câu hỏi. Export CSV để lưu.", "🏁");
+        setFeedback("ok","🏁 Kết thúc", "Export CSV để lưu kết quả", "🏁");
+        toast("Hết câu hỏi!", "🏁");
+        return;
+      }
+
+      // clear current to allow spin
+      state.current = null;
+      state.selectedIdxs = new Set();
+      state.revealed = false;
+      state.marked = null;
+
+      clearQuestionUI();
+      stopTimer();
+      setTimerUI(CONFIG.gameplay.timePerRoundSec);
+      setRoundBadge("Đang chơi", "Bấm SPIN để chọn câu hỏi tiếp theo", "⚡");
+      setFeedback("warn","Chưa quay","Bấm SPIN để chọn câu hỏi","🎡");
+    }
+
+    function markCorrectWrong(type){
+      // Manual override (teacher)
+      if(!state.current || state.revealed) return;
+      stopTimer();
+
+      if(type === "correct"){
+        const add = Number(state.current.points || CONFIG.gameplay.scoreCorrect || 100);
+        state.score += add;
+        state.marked = "correct";
+        setFeedback("ok","✅ Teacher marked Correct", `+${add} điểm • Space để Next`, "✅");
+        setRoundBadge("✅ Correct", "Space/Next để tiếp tục", "✅");
+        recordResult("correct_manual");
+        addHistoryItem("✅", state.current.label, state.current.question);
+      }else{
+        state.score += Number(CONFIG.gameplay.scoreWrong || -20);
+        state.marked = "wrong";
+        setFeedback("bad","❌ Teacher marked Wrong", `${CONFIG.gameplay.scoreWrong} điểm • Space để Next`, "❌");
+        setRoundBadge("❌ Wrong", "Space/Next để tiếp tục", "❌");
+        recordResult("wrong_manual");
+        addHistoryItem("❌", state.current.label, state.current.question);
+      }
+
+      revealAnswer("Teacher mark", type === "correct");
+      state.idx = clamp(state.idx + 1, 0, state.order.length);
+      updateHeader();
+    }
+
+    /* =========================
+       History & Results
+       ========================= */
+    function addHistoryItem(icon, label, question){
+      state.history.unshift({ icon, label, question, ts: new Date().toLocaleTimeString() });
+      if(state.history.length > 8) state.history.pop();
+      renderHistory();
+    }
+
+    function renderHistory(){
+      els.historyList.innerHTML = "";
+      if(state.history.length === 0){
+        const d = document.createElement("div");
+        d.className = "hintbox";
+        d.textContent = "Chưa có lịch sử. Bấm SPIN để bắt đầu.";
+        els.historyList.appendChild(d);
+        return;
+      }
+      state.history.forEach(h=>{
+        const div = document.createElement("div");
+        div.className = "hItem";
+        div.innerHTML = `
+          <div class="hIcon" aria-hidden="true">${escapeHtml(h.icon)}</div>
+          <div class="hText">
+            <b>${escapeHtml(h.label)} <span style="color:var(--muted); font-weight:700">• ${escapeHtml(h.ts)}</span></b>
+            <span>${escapeHtml(h.question)}</span>
+          </div>
+        `;
+        els.historyList.appendChild(div);
+      });
+    }
+
+    function recordResult(outcome){
+      if(!state.current) return;
+      const used = Math.round(timeUsedSec());
+      const picked = Array.from(state.selectedIdxs).sort((a,b)=>a-b).join("|");
+      const correct = (state.current.correct||[]).slice().sort((a,b)=>a-b).join("|");
+
+      state.results.push({
+        timestamp: new Date().toISOString(),
+        setId: state.setId,
+        label: state.current.label,
+        question: state.current.question,
+        type: state.current.type,
+        picked,
+        correct,
+        outcome,
+        timeUsedSec: used,
+        points: state.current.points,
+        scoreAfter: state.score
+      });
+    }
+
+    function exportCSV(){
+      if(state.results.length === 0){
+        toast("Chưa có kết quả để export.", "⚠️");
+        return;
+      }
+      const cols = [
+        "timestamp","setId","label","question","type",
+        "picked","correct","outcome","timeUsedSec","points","scoreAfter"
+      ];
+      const lines = [];
+      lines.push(cols.join(","));
+      state.results.forEach(r=>{
+        lines.push(cols.map(c=>csvEscape(r[c])).join(","));
+      });
+
+      const blob = new Blob([lines.join("\n")], {type:"text/csv;charset=utf-8"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = `spin_the_wheel_n8n_results_${Date.now()}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(()=>{
+        URL.revokeObjectURL(a.href);
+        a.remove();
+      }, 0);
+      toast("Đã xuất CSV.", "⬇️");
+    }
+
+    /* =========================
+       Teacher mode (lock/unlock)
+       ========================= */
+    function setTeacherUnlocked(on){
+      state.teacherUnlocked = !!on;
+      els.teacherPill.textContent = state.teacherUnlocked ? "Unlocked" : "Locked";
+
+      const enable = (el, ok)=>{ el.disabled = !ok; };
+      enable(els.btnLock, state.teacherUnlocked);
+      enable(els.btnUnlock, !state.teacherUnlocked);
+
+      const controls = [els.setSelect, els.timePerQ, els.spinMin, els.btnStart, els.btnNext, els.btnReveal, els.btnExport];
+      controls.forEach(c=> enable(c, state.teacherUnlocked));
+
+      const allowJson = state.teacherUnlocked && CONFIG.teacher.allowJsonEdit;
+      enable(els.jsonEditor, allowJson);
+      enable(els.btnApplyJson, allowJson);
+      enable(els.btnExportJson, allowJson);
+
+      if(state.teacherUnlocked){
+        setTeacherStatus("ok","✅ Teacher Mode đã mở. Bạn có thể Start/Next/Reveal và chỉnh timer.", false);
+        toast("Teacher unlocked", "🧑‍🏫");
+      }else{
+        setTeacherStatus("warn","🔒 Teacher Mode đang khóa.", false);
+        toast("Teacher locked", "🔐");
+      }
+    }
+
+    function unlockPrompt(){
+      const pw = prompt("Nhập mật khẩu Teacher Mode:");
+      if(pw === null) return;
+      if(String(pw).trim() === CONFIG.teacher.password){
+        setTeacherUnlocked(true);
+      }else{
+        setTeacherStatus("err","❌ Sai mật khẩu. Thử lại.", false);
+        toast("Sai mật khẩu", "❌");
+      }
+    }
+
+    function toggleTeacherPanel(){
+      state.teacherCollapsed = !state.teacherCollapsed;
+      els.teacherPanel.classList.toggle("collapsed", state.teacherCollapsed);
+      $("#btnCollapseTeacher span").textContent = state.teacherCollapsed ? "⟩⟩" : "⟨⟨";
+      toast(state.teacherCollapsed ? "Teacher collapsed" : "Teacher expanded", "🧑‍🏫");
+    }
+
+    async function toggleFullscreen(){
+      try{
+        if(!document.fullscreenElement){
+          await document.documentElement.requestFullscreen();
+          toast("Fullscreen ON", "⛶");
+        }else{
+          await document.exitFullscreen();
+          toast("Fullscreen OFF", "⛶");
+        }
+      }catch(e){
+        toast("Fullscreen bị chặn.", "⚠️");
+      }
+    }
+
+    function applyTeacherSettings(){
+      const t = clamp(Number(els.timePerQ.value), 20, 120);
+      const spinMin = clamp(Number(els.spinMin.value), 2, 12);
+      CONFIG.gameplay.timePerRoundSec = t;
+      CONFIG.gameplay.spinMinTurns = spinMin;
+      state.timer.durationSec = t;
+      toast(`Applied: ${t}s • min turns=${spinMin}`, "✅");
+      setTimerUI(t);
+    }
+
+    function applyJson(){
+      const txt = String(els.jsonEditor.value || "").trim();
+      if(!txt){ toast("JSON trống.", "⚠️"); return; }
+      setTeacherStatus("", "Đang parse JSON...", true);
+      setTimeout(()=>{
+        try{
+          const data = JSON.parse(txt);
+          if(!Array.isArray(data)) throw new Error("Root phải là array questionSets.");
+          data.forEach((s, i)=>{
+            if(!s || typeof s !== "object") throw new Error(`Set #${i} invalid`);
+            if(!Array.isArray(s.items)) throw new Error(`Set #${i} missing items`);
+          });
+          CONFIG.questionSets = data;
+          rebuildSetSelect();
+          loadSet(CONFIG.questionSets[0].id);
+          setTeacherStatus("ok","✅ Applied JSON sets.", false);
+          toast("Applied JSON", "✅");
+        }catch(e){
+          setTeacherStatus("err","❌ " + (e && e.message ? e.message : String(e)), false);
+          toast("JSON lỗi", "❌");
+        }
+      }, 120);
+    }
+
+    function exportJson(){
+      els.jsonEditor.value = JSON.stringify(CONFIG.questionSets, null, 2);
+      toast("Exported JSON vào ô editor.", "⬆️");
+    }
+
+    function rebuildSetSelect(){
+      els.setSelect.innerHTML = "";
+      CONFIG.questionSets.forEach(s=>{
+        const opt = document.createElement("option");
+        opt.value = s.id;
+        opt.textContent = s.name || s.id;
+        els.setSelect.appendChild(opt);
+      });
+      els.setSelect.value = state.setId || CONFIG.questionSets[0]?.id || "";
+    }
+
+    /* =========================
+       Download current HTML (offline)
+       ========================= */
+    function downloadThisHtml(){
+      try{
+        const html = "<!doctype html>\n" + document.documentElement.outerHTML;
+        const blob = new Blob([html], {type:"text/html;charset=utf-8"});
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "spin-the-wheel-n8n.html";
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(()=>{
+          URL.revokeObjectURL(a.href);
+          a.remove();
+        }, 0);
+        toast("Đã tải file HTML.", "⬇️");
+      }catch(e){
+        toast("Không thể tải HTML (trình duyệt chặn).", "⚠️");
+      }
+    }
+
+    /* =========================
+       Reveal / Next / Reset
+       ========================= */
+    function teacherReveal(){
+      if(!state.current){
+        toast("Chưa có câu hỏi. Hãy SPIN.", "⚠️");
+        return;
+      }
+      stopTimer();
+      revealAnswer("Teacher Reveal");
+      setFeedback("warn","👁️ Reveal","Space để Next","👁️");
+    }
+
+    function hardReset(){
+      stopTimer();
+      state.started = false;
+      state.score = 0;
+      state.results = [];
+      state.history = [];
+      renderHistory();
+      loadSet(state.setId);
+      toast("Reset toàn bộ.", "🔄");
+    }
+
+    /* =========================
+       Keyboard shortcuts
+       ========================= */
+    function onKeyDown(e){
+      const key = e.key;
+
+      if(key === "Escape"){
+        e.preventDefault();
+        pauseToggle();
+        return;
+      }
+
+      if(key === "r" || key === "R"){
+        e.preventDefault();
+        // Teacher reveals or student reveal
+        teacherReveal();
+        return;
+      }
+
+      if(key === " "){
+        e.preventDefault();
+        nextRound();
+        return;
+      }
+
+      if(key === "1" || key === "2" || key === "3" || key === "4"){
+        e.preventDefault();
+        const idx = Number(key) - 1;
+        if(state.current && idx < (state.current.options||[]).length){
+          toggleOption(idx);
+        }
+        return;
+      }
+    }
+
+    /* =========================
+       Init
+       ========================= */
+    function init(){
+      applyBrand();
+      rebuildSetSelect();
+      loadSet(state.setId);
+
+      // defaults
+      els.timePerQ.value = String(CONFIG.gameplay.timePerRoundSec);
+      els.spinMin.value = String(CONFIG.gameplay.spinMinTurns);
+
+      // teacher panel
+      els.btnTeacher.addEventListener("click", toggleTeacherPanel);
+      els.btnCollapseTeacher.addEventListener("click", toggleTeacherPanel);
+
+      els.btnUnlock.addEventListener("click", unlockPrompt);
+      els.btnLock.addEventListener("click", ()=> setTeacherUnlocked(false));
+
+      els.setSelect.addEventListener("change", ()=>{
+        loadSet(els.setSelect.value);
+        toast("Đã đổi set.", "📚");
+      });
+
+      [els.timePerQ, els.spinMin].forEach(inp=>{
+        inp.addEventListener("change", ()=>{
+          if(!state.teacherUnlocked) return;
+          applyTeacherSettings();
+          setTeacherStatus("ok","✅ Settings updated.", false);
+        });
+      });
+
+      els.btnStart.addEventListener("click", ()=>{
+        applyTeacherSettings();
+        startGame();
+      });
+      els.btnNext.addEventListener("click", nextRound);
+      els.btnReveal.addEventListener("click", teacherReveal);
+      els.btnReveal2.addEventListener("click", teacherReveal);
+      els.btnExport.addEventListener("click", exportCSV);
+
+      els.btnApplyJson.addEventListener("click", applyJson);
+      els.btnExportJson.addEventListener("click", exportJson);
+
+      els.btnFullscreen.addEventListener("click", toggleFullscreen);
+
+      // game actions
+      els.btnSpin.addEventListener("click", spin);
+      els.btnPause.addEventListener("click", ()=> pauseToggle());
+      els.btnResume.addEventListener("click", ()=> pauseToggle(false));
+
+      els.btnSubmit.addEventListener("click", submitAnswer);
+      els.btnRevealStudent.addEventListener("click", teacherReveal);
+      els.btnNextStudent.addEventListener("click", nextRound);
+
+      els.btnMarkCorrect.addEventListener("click", ()=> markCorrectWrong("correct"));
+      els.btnMarkWrong.addEventListener("click", ()=> markCorrectWrong("wrong"));
+
+      els.btnClearHistory.addEventListener("click", ()=>{
+        state.history = [];
+        renderHistory();
+        toast("Đã xóa lịch sử.", "🧹");
+      });
+
+      // header buttons
+      els.btnReset.addEventListener("click", hardReset);
+      els.btnDownload.addEventListener("click", downloadThisHtml);
+      els.btnDownloadCsv.addEventListener("click", exportCSV);
+
+      // keyboard
+      document.addEventListener("keydown", onKeyDown, {passive:false});
+
+      // start locked
+      setTeacherUnlocked(false);
+      renderHistory();
+      drawWheel();
+      clearQuestionUI();
+      setRoundBadge("Sẵn sàng", "Nhấn Start (Teacher) rồi bấm SPIN", "⚡");
+      setFeedback("warn","Chưa quay","Bấm SPIN để chọn câu hỏi","🎡");
+      setTeacherStatus("warn","Teacher Mode đang khóa. Nhấn Unlock để cấu hình.", false);
+    }
+
+    init();
+
+    /* =========================
+       Teacher-friendly: End-of-file quick guide
+       =========================
+       CÁCH ĐỔI DỮ LIỆU:
+       - Sửa CONFIG.questionSets[].items[]:
+         {
+           label:"TRIGGER",
+           question:"...",
+           type:"single"|"multi",
+           options:["A","B","C","D"],
+           correct:[0] hoặc [0,2],
+           explain:"...",
+           points:100
+         }
+
+       CÁCH CHƠI TRONG LỚP (5–15 phút):
+       1) Teacher Unlock → chọn set → chỉnh time → Start.
+       2) Bấm SPIN để chọn “ô” (label) + câu hỏi.
+       3) Học viên chọn đáp án (phím 1/2/3/4 hoặc click) → Submit.
+       4) Hiển thị đúng/sai + giải thích → Space/Next sang vòng tiếp theo.
+       5) Cuối buổi: Export CSV (điểm, thời gian, kết quả).
+
+       PHÍM TẮT:
+       - Space: Next
+       - R: Reveal
+       - Esc: Pause/Resume
+       - 1/2/3/4: chọn đáp án A/B/C/D
+    */
+  </script>
+</body>
+</html>

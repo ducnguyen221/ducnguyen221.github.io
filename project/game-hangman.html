@@ -1,0 +1,1998 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <title>Hangman — Ứng dụng n8n cơ bản (Offline)</title>
+  <style>
+    :root{
+      --bg0:#050b1f;
+      --bg1:#071232;
+      --card:#0b1d43;
+      --card2:#0e2657;
+      --fg:#eaf0ff;
+      --muted:#b7c5ff;
+      --muted2:#93a7f7;
+      --line:rgba(255,255,255,.12);
+      --line2:rgba(255,255,255,.18);
+      --shadow: 0 16px 42px rgba(0,0,0,.45);
+      --shadow2: 0 10px 28px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --space-1: 6px;
+      --space-2: 10px;
+      --space-3: 14px;
+      --space-4: 18px;
+      --space-5: 24px;
+      --tap: 44px;
+
+      --ok:#2be7a4;
+      --bad:#ff5b7b;
+      --warn:#ffd166;
+      --info:#7aa7ff;
+      --accent:#6d7dff;
+
+      --maxw: 1180px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(109,125,255,.26), transparent 55%),
+        radial-gradient(900px 520px at 70% 20%, rgba(43,231,164,.14), transparent 55%),
+        radial-gradient(900px 520px at 60% 90%, rgba(122,167,255,.12), transparent 50%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      color:var(--fg);
+      overflow:hidden;
+    }
+
+    /* Header fixed */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: var(--space-3);
+      padding: var(--space-4) var(--space-5);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.10));
+      backdrop-filter: blur(10px);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: var(--space-3);
+      min-width: 240px;
+      user-select:none;
+    }
+    .logo{
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 18px rgba(0,0,0,.35);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      flex: 0 0 auto;
+    }
+    .brand h1{
+      margin:0;
+      font-size: 14px;
+      line-height: 1.2;
+      letter-spacing:.2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .brand p{
+      margin:2px 0 0;
+      font-size: 11px;
+      color: var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      gap: var(--space-2);
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .chip{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 8px 18px rgba(0,0,0,.2);
+      min-height: var(--tap);
+      user-select:none;
+      font-size: 13px;
+    }
+    .chip .k{color: var(--muted)}
+    .chip .v{font-weight:900}
+    .chip .em{font-size: 15px}
+
+    .progress{
+      width: 180px;
+      height: 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      overflow:hidden;
+      position:relative;
+    }
+    .bar{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, rgba(109,125,255,.95), rgba(43,231,164,.9));
+      border-radius: 999px;
+      transition: width .22s ease;
+    }
+    .bar.danger{
+      background: linear-gradient(90deg, rgba(255,209,102,.95), rgba(255,91,123,.9));
+    }
+
+    .iconbtn{
+      width: var(--tap);
+      height: var(--tap);
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--fg);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .iconbtn:hover{background: rgba(255,255,255,.09); border-color: var(--line2)}
+    .iconbtn:active{transform: scale(.98)}
+    .iconbtn:focus-visible{
+      outline: 3px solid rgba(109,125,255,.55);
+      outline-offset: 2px;
+    }
+
+    .btn{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.08);
+      color: var(--fg);
+      border-radius: 14px;
+      padding: 12px 12px;
+      min-height: var(--tap);
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      font-weight: 800;
+      letter-spacing:.1px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+    }
+    .btn:hover{background: rgba(255,255,255,.10); border-color: var(--line2)}
+    .btn:active{transform: translateY(1px) scale(.99)}
+    .btn:focus-visible{
+      outline: 3px solid rgba(109,125,255,.55);
+      outline-offset: 2px;
+    }
+    .btn.primary{
+      border-color: rgba(109,125,255,.6);
+      background: linear-gradient(180deg, rgba(109,125,255,.25), rgba(109,125,255,.14));
+    }
+    .btn.good{
+      border-color: rgba(43,231,164,.55);
+      background: linear-gradient(180deg, rgba(43,231,164,.18), rgba(43,231,164,.10));
+    }
+    .btn.danger{
+      border-color: rgba(255,91,123,.55);
+      background: linear-gradient(180deg, rgba(255,91,123,.18), rgba(255,91,123,.10));
+    }
+    .btn.ghost{background: transparent}
+    .btn[disabled]{opacity:.55; cursor:not-allowed}
+
+    main{
+      height: calc(100% - 84px);
+      display:flex;
+      gap: var(--space-4);
+      padding: var(--space-4) var(--space-5);
+      width: 100%;
+      max-width: calc(var(--maxw) + 520px);
+      margin: 0 auto;
+      overflow:hidden;
+    }
+
+    /* Teacher panel */
+    .teacher{
+      width: 420px;
+      max-width: 420px;
+      flex: 0 0 420px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height:0;
+    }
+    .teacher.collapsed{width:56px; max-width:56px; flex-basis:56px}
+    .t-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 12px 12px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,0,0,.12);
+    }
+    .t-title{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width:0;
+    }
+    .t-title h2{
+      margin:0;
+      font-size: 13px;
+      letter-spacing:.2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .pill{
+      font-size: 11px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    .t-body{
+      padding: 12px;
+      overflow:auto;
+      min-height:0;
+    }
+    .t-body::-webkit-scrollbar{width:10px}
+    .t-body::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.12);
+      border-radius: 999px;
+      border: 2px solid rgba(0,0,0,.0);
+      background-clip: padding-box;
+    }
+    .teacher.collapsed .t-title,
+    .teacher.collapsed .t-body,
+    .teacher.collapsed .t-foot{display:none}
+    .teacher.collapsed .t-head{justify-content:center; padding:10px}
+
+    fieldset{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px;
+      margin: 0 0 12px;
+      background: rgba(0,0,0,.10);
+    }
+    legend{
+      padding: 0 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    label{
+      display:block;
+      font-size: 12px;
+      color: var(--muted);
+      margin: 10px 0 6px;
+    }
+    input[type="text"], input[type="number"], textarea, select{
+      width:100%;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--fg);
+      padding: 10px 12px;
+      outline:none;
+      font-size: 13px;
+    }
+    textarea{min-height: 120px; resize: vertical}
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(109,125,255,.7);
+      box-shadow: 0 0 0 3px rgba(109,125,255,.25);
+    }
+    .row2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .status{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.12);
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: rgba(122,167,255,.8);
+      box-shadow: 0 0 0 4px rgba(122,167,255,.18);
+      flex: 0 0 auto;
+    }
+    .status.ok .dot{background: rgba(43,231,164,.9); box-shadow: 0 0 0 4px rgba(43,231,164,.18)}
+    .status.err .dot{background: rgba(255,91,123,.95); box-shadow: 0 0 0 4px rgba(255,91,123,.18)}
+    .status.warn .dot{background: rgba(255,209,102,.95); box-shadow: 0 0 0 4px rgba(255,209,102,.18)}
+    .spinner{
+      width: 14px; height: 14px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,.25);
+      border-top-color: rgba(255,255,255,.9);
+      animation: spin .8s linear infinite;
+      flex: 0 0 auto;
+    }
+    @keyframes spin{to{transform: rotate(360deg)}}
+
+    /* Game panel */
+    .game{
+      flex: 1 1 auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height:0;
+    }
+    .g-body{
+      flex:1;
+      padding: 14px;
+      min-height:0;
+      overflow:hidden;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 12px;
+    }
+    .panel{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.12);
+      box-shadow: 0 8px 18px rgba(0,0,0,.25);
+      overflow:hidden;
+      min-height:0;
+      display:flex;
+      flex-direction:column;
+    }
+    .panel .p-head{
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,0,0,.10);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 10px;
+      flex-wrap:wrap;
+    }
+    .panel .p-head h3{
+      margin:0;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing:.2px;
+      display:flex;
+      align-items:center;
+      gap: 8px;
+    }
+    .panel .p-body{
+      padding: 14px;
+      overflow:auto;
+      min-height:0;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+    .panel .p-body::-webkit-scrollbar{width:10px}
+    .panel .p-body::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.12);
+      border-radius: 999px;
+      border: 2px solid rgba(0,0,0,.0);
+      background-clip: padding-box;
+    }
+
+    /* Word display */
+    .word-wrap{
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      align-items:stretch;
+    }
+    .clue{
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .clue b{color: var(--fg)}
+    .hintbox{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      padding: 10px 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .word{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      padding: 10px 12px;
+      border: 1px dashed rgba(255,255,255,.18);
+      border-radius: 14px;
+      background: rgba(0,0,0,.10);
+      align-items:center;
+      justify-content:center;
+      min-height: 74px;
+    }
+    .cell{
+      width: 34px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      display:grid;
+      place-items:center;
+      font-weight: 900;
+      letter-spacing:.5px;
+      box-shadow: 0 8px 18px rgba(0,0,0,.18);
+      transform: translateY(0);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
+      opacity: 1;
+    }
+    .cell.revealed{
+      background: rgba(43,231,164,.12);
+      border-color: rgba(43,231,164,.35);
+      transform: translateY(-1px);
+    }
+    .cell.space{
+      width: 14px; border:none; background: transparent; box-shadow:none;
+    }
+
+    /* Keyboard */
+    .kbd{
+      display:grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 8px;
+    }
+    .key{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--fg);
+      border-radius: 14px;
+      min-height: var(--tap);
+      cursor:pointer;
+      font-weight: 900;
+      letter-spacing:.4px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease, opacity .12s ease;
+      user-select:none;
+      display:grid;
+      place-items:center;
+      padding: 8px 6px;
+    }
+    .key:hover{background: rgba(255,255,255,.10); border-color: var(--line2)}
+    .key:active{transform: translateY(1px) scale(.99)}
+    .key:focus-visible{outline:3px solid rgba(109,125,255,.55); outline-offset:2px}
+    .key.used{opacity:.55; cursor:not-allowed}
+    .key.good{border-color: rgba(43,231,164,.55); background: rgba(43,231,164,.10)}
+    .key.bad{border-color: rgba(255,91,123,.55); background: rgba(255,91,123,.10)}
+
+    /* Hangman drawing */
+    .stage{
+      width: 100%;
+      max-width: 380px;
+      margin: 0 auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+      padding: 12px;
+    }
+    .stage svg{display:block; width:100%; height:auto}
+    .stroke{
+      stroke: rgba(255,255,255,.75);
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      opacity: .9;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,.2));
+    }
+    .part{
+      opacity: 0;
+      transform: translateY(2px);
+      transform-origin: center;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .part.on{opacity: 1; transform: translateY(0)}
+    .part.bad{stroke: rgba(255,91,123,.9)}
+    .part.ok{stroke: rgba(43,231,164,.9)}
+
+    /* Feedback */
+    .feedback{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(0,0,0,.12);
+      padding: 10px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap:wrap;
+      min-height: var(--tap);
+    }
+    .badge{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      user-select:none;
+      min-height: var(--tap);
+      font-size: 13px;
+    }
+    .badge.ok{border-color: rgba(43,231,164,.55)}
+    .badge.bad{border-color: rgba(255,91,123,.55)}
+    .badge.warn{border-color: rgba(255,209,102,.55)}
+    .badge .big{font-weight: 900}
+    .note{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    /* Overlay pause */
+    .overlay{
+      position: absolute;
+      inset: 0;
+      display:none;
+      place-items:center;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+      z-index: 20;
+      padding: 14px;
+    }
+    .overlay.show{display:grid}
+    .modal{
+      max-width: min(720px, 100%);
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.45);
+      box-shadow: var(--shadow2);
+      padding: 14px;
+    }
+    .modal h2{margin:0 0 6px; font-size: 18px}
+    .modal p{margin:0; color: var(--muted); line-height:1.45; font-size: 13px}
+    .modal .actions{margin-top: 12px; display:flex; gap: 10px; justify-content:flex-end; flex-wrap:wrap}
+
+    .toast{
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: rgba(0,0,0,.52);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      padding: 10px 12px;
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      box-shadow: var(--shadow2);
+      max-width: min(860px, calc(100vw - 24px));
+      z-index: 50;
+      opacity: 0;
+      pointer-events:none;
+      transition: opacity .18s ease, transform .18s ease;
+      color: var(--fg);
+      font-size: 13px;
+      backdrop-filter: blur(10px);
+    }
+    .toast.show{opacity:1; transform: translateX(-50%) translateY(0)}
+
+    .help{
+      border-top: 1px solid var(--line);
+      margin-top: 12px;
+      padding-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .help kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      padding: 3px 7px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--fg);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      header{padding: 12px}
+      main{
+        height: calc(100% - 74px);
+        flex-direction:column;
+        padding: 12px;
+        gap: 12px;
+      }
+      .teacher{width:100%; max-width:none; flex-basis:auto}
+      .teacher.collapsed{width:100%; max-width:none; flex-basis:auto}
+      .teacher.collapsed .t-title,
+      .teacher.collapsed .t-body,
+      .teacher.collapsed .t-foot{display:block}
+      .teacher.collapsed .t-head{justify-content:space-between}
+      .g-body{grid-template-columns: 1fr; }
+      .progress{width: 140px}
+      main{max-width: var(--maxw)}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{transition:none !important; animation:none !important; scroll-behavior:auto !important;}
+    }
+  </style>
+</head>
+
+<body>
+  <!--
+    HANGMAN — ỨNG DỤNG n8n CƠ BẢN (Offline Single HTML)
+    ==================================================
+    CÁCH CHẠY:
+    1) Lưu file thành: hangman-n8n.html
+    2) Mở trực tiếp trên trình duyệt (Chrome/Edge/Firefox) — không cần internet.
+
+    TEACHER MODE:
+    - Mặc định khóa. Nhấn "🔒 Unlock" và nhập mật khẩu trong CONFIG.teacher.password.
+    - Teacher có thể chọn bộ câu hỏi, chỉnh timer, Start/Next/Reveal, Export CSV.
+
+    PHÍM TẮT:
+    - Space: Next (khi thắng/thua hoặc đã reveal)
+    - R: Reveal (mở đáp án)
+    - Esc: Pause/Resume
+    - 1/2/3/4: (reserved nếu bạn thêm dạng đáp án; hiện dùng để quick hint level)
+      1=hint nhẹ, 2=hint vừa, 3=hint mạnh, 4=reveal keyword
+
+    CUỐI FILE có hướng dẫn nhanh cho lớp học & cách đổi dữ liệu.
+  -->
+
+  <header>
+    <div class="brand" aria-label="Game header">
+      <div class="logo" id="brandLogo" aria-hidden="true"></div>
+      <div style="min-width:0">
+        <h1 id="brandName">Hangman: Ứng dụng n8n cơ bản</h1>
+        <p id="brandTagline">Đoán keyword theo gợi ý — sai tăng “lives” — thắng/thua nhanh</p>
+      </div>
+    </div>
+
+    <div class="topbar" aria-label="Header stats and actions">
+      <div class="chip" aria-label="Timer">
+        <span class="em" aria-hidden="true">⏱️</span>
+        <span class="k">Time</span>
+        <span class="v" id="kpiTime">--</span>
+      </div>
+
+      <div class="chip" aria-label="Score">
+        <span class="em" aria-hidden="true">🏆</span>
+        <span class="k">Score</span>
+        <span class="v" id="kpiScore">0</span>
+      </div>
+
+      <div class="chip" aria-label="Progress">
+        <span class="em" aria-hidden="true">📌</span>
+        <span class="k">Q</span>
+        <span class="v" id="kpiProg">0/0</span>
+      </div>
+
+      <div class="progress" role="progressbar" aria-label="Progress bar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="bar" id="progressBar"></div>
+      </div>
+
+      <button class="iconbtn" id="btnReset" type="button" aria-label="Reset game" title="Reset (R) not used; use button">
+        <span aria-hidden="true">🔄</span>
+      </button>
+
+      <button class="iconbtn" id="btnTeacher" type="button" aria-label="Teacher mode" title="Teacher Mode">
+        <span aria-hidden="true">🧑‍🏫</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <aside class="teacher" id="teacherPanel" aria-label="Teacher panel">
+      <div class="t-head">
+        <div class="t-title">
+          <span aria-hidden="true">🧑‍🏫</span>
+          <h2>Teacher Mode</h2>
+          <span class="pill" id="teacherPill">Locked</span>
+        </div>
+        <button class="iconbtn" id="btnCollapseTeacher" type="button" aria-label="Collapse teacher panel">
+          <span aria-hidden="true">⟨⟨</span>
+        </button>
+      </div>
+
+      <div class="t-body">
+        <fieldset>
+          <legend>Access</legend>
+          <div class="row2">
+            <button class="btn" id="btnUnlock" type="button" aria-label="Unlock teacher mode">
+              🔒 Unlock
+            </button>
+            <button class="btn ghost" id="btnLock" type="button" aria-label="Lock teacher mode" disabled>
+              🔐 Lock
+            </button>
+          </div>
+          <div class="status warn" id="teacherStatus" role="status" aria-live="polite" style="margin-top:10px">
+            <span class="dot" aria-hidden="true"></span>
+            <span id="teacherStatusText">Teacher Mode đang khóa. Nhấn Unlock để cấu hình.</span>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Game Control</legend>
+          <label for="setSelect">Chọn bộ câu hỏi</label>
+          <select id="setSelect" aria-label="Question set select" disabled></select>
+
+          <div class="row2">
+            <div>
+              <label for="timePerQ">⏱️ Time / câu (giây)</label>
+              <input id="timePerQ" type="number" min="20" max="120" step="1" value="45" aria-label="Time per question seconds" disabled />
+            </div>
+            <div>
+              <label for="livesMax">❤️ Lives (sai tối đa)</label>
+              <input id="livesMax" type="number" min="4" max="10" step="1" value="7" aria-label="Max lives" disabled />
+            </div>
+          </div>
+
+          <div class="row2" style="margin-top:10px">
+            <button class="btn primary" id="btnStart" type="button" aria-label="Start game" disabled>▶️ Start</button>
+            <button class="btn" id="btnNext" type="button" aria-label="Next question" disabled>⏭️ Next</button>
+          </div>
+
+          <div class="row2" style="margin-top:10px">
+            <button class="btn danger" id="btnReveal" type="button" aria-label="Reveal keyword" disabled>👁️ Reveal</button>
+            <button class="btn" id="btnExport" type="button" aria-label="Export CSV" disabled>⬇️ Export CSV</button>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Edit Data (JSON)</legend>
+          <label for="jsonEditor">Dán/sửa CONFIG.questionSets (array)</label>
+          <textarea id="jsonEditor" spellcheck="false" aria-label="JSON editor" disabled></textarea>
+          <div class="row2" style="margin-top:10px">
+            <button class="btn good" id="btnApplyJson" type="button" aria-label="Apply JSON" disabled>✅ Apply</button>
+            <button class="btn" id="btnExportJson" type="button" aria-label="Export JSON" disabled>⬆️ Export</button>
+          </div>
+          <p style="margin:10px 0 0;color:var(--muted);font-size:12px;line-height:1.35">
+            Schema item: {"keyword":"...","hint":"...","explain":"...","difficulty":1}
+          </p>
+        </fieldset>
+
+        <div class="help">
+          <div><b>Phím tắt:</b> <kbd>Space</kbd> Next • <kbd>R</kbd> Reveal • <kbd>Esc</kbd> Pause/Resume • <kbd>1</kbd>/<kbd>2</kbd>/<kbd>3</kbd> Hint • <kbd>4</kbd> Reveal</div>
+        </div>
+      </div>
+
+      <div class="t-foot" style="padding:12px; border-top:1px solid var(--line); background:rgba(0,0,0,.10)">
+        <div style="display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap">
+          <div style="color:var(--muted); font-size:12px">
+            Tip: Teacher panel có thể collapse để tối ưu máy chiếu.
+          </div>
+          <button class="btn ghost" id="btnFullscreen" type="button" aria-label="Toggle browser fullscreen">⛶ Fullscreen</button>
+        </div>
+      </div>
+    </aside>
+
+    <section class="game" aria-label="Game play area" style="position:relative">
+      <div class="g-body">
+        <!-- Left: word + keyboard -->
+        <div class="panel" aria-label="Guess panel">
+          <div class="p-head">
+            <h3><span aria-hidden="true">🔤</span> Đoán keyword</h3>
+            <div class="badge" id="liveBadge" aria-label="Lives">
+              <span aria-hidden="true">❤️</span>
+              <span class="big" id="livesText">7</span>
+              <span style="color:var(--muted)">lives</span>
+            </div>
+          </div>
+          <div class="p-body">
+            <div class="word-wrap">
+              <div class="clue" id="clueLine">Gợi ý: <b>—</b></div>
+              <div class="word" id="wordDisplay" aria-label="Word display"></div>
+              <div class="hintbox" id="explainBox" aria-live="polite" style="display:none"></div>
+              <div class="feedback" id="feedback" aria-label="Feedback">
+                <div class="badge warn" id="fbBadge">
+                  <span aria-hidden="true" id="fbIcon">⚡</span>
+                  <span class="big" id="fbTitle">Sẵn sàng</span>
+                  <span id="fbSub" style="color:var(--muted)">Nhấn Start để bắt đầu</span>
+                </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap">
+                  <button class="btn" id="btnHint1" type="button" aria-label="Hint level 1">💡 Hint</button>
+                  <button class="btn" id="btnPause" type="button" aria-label="Pause game">⏸ Pause</button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap">
+                <div style="color:var(--muted); font-size:12px">Bàn phím: click hoặc gõ chữ cái</div>
+                <div style="color:var(--muted); font-size:12px">Không phân biệt hoa/thường</div>
+              </div>
+              <div class="kbd" id="keyboard" aria-label="On-screen keyboard"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: hangman + summary -->
+        <div class="panel" aria-label="Hangman panel">
+          <div class="p-head">
+            <h3><span aria-hidden="true">🧍</span> Hangman</h3>
+            <div class="badge" aria-label="Wrong letters">
+              <span aria-hidden="true">❌</span>
+              <span class="big" id="wrongCount">0</span>
+              <span style="color:var(--muted)">wrong</span>
+            </div>
+          </div>
+          <div class="p-body">
+            <div class="stage" aria-label="Hangman drawing">
+              <svg viewBox="0 0 360 260" role="img" aria-label="Hangman gallows">
+                <!-- gallows -->
+                <path class="stroke" d="M50 230 H300" />
+                <path class="stroke" d="M90 230 V40" />
+                <path class="stroke" d="M90 40 H230" />
+                <path class="stroke" d="M230 40 V70" />
+                <path class="stroke" d="M90 90 H140" opacity=".6" />
+
+                <!-- parts (appear with wrong guesses) -->
+                <circle class="stroke part" id="p1" cx="230" cy="92" r="22" />
+                <path class="stroke part" id="p2" d="M230 114 V165" />
+                <path class="stroke part" id="p3" d="M230 130 L205 150" />
+                <path class="stroke part" id="p4" d="M230 130 L255 150" />
+                <path class="stroke part" id="p5" d="M230 165 L208 195" />
+                <path class="stroke part" id="p6" d="M230 165 L252 195" />
+
+                <!-- extra "danger" detail for last life -->
+                <path class="stroke part bad" id="p7" d="M220 88 L226 96 M226 88 L220 96" />
+                <path class="stroke part bad" id="p8" d="M234 88 L240 96 M240 88 L234 96" />
+              </svg>
+            </div>
+
+            <div class="hintbox" aria-label="Session info">
+              <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap">
+                <div><span aria-hidden="true">📚</span> Set: <b id="setName">—</b></div>
+                <div><span aria-hidden="true">🧩</span> Difficulty: <b id="difficulty">—</b></div>
+              </div>
+              <div style="margin-top:8px; color:var(--muted); font-size:12px; line-height:1.35">
+                Mẹo giảng dạy: Cho 1 bạn đoán 1 chữ, cả lớp thảo luận nhanh “tại sao” (n8n concept) trước khi bấm.
+              </div>
+            </div>
+
+            <div class="hintbox" aria-label="Wrong letters list">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap">
+                <div><span aria-hidden="true">🔎</span> Wrong letters</div>
+                <div style="color:var(--muted); font-size:12px">Gợi ý phím: <b>R</b> Reveal • <b>Space</b> Next</div>
+              </div>
+              <div id="wrongLetters" style="margin-top:8px; font-weight:900; letter-spacing:.3px; word-break:break-word">—</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay" id="pauseOverlay" aria-label="Pause overlay">
+        <div class="modal" role="dialog" aria-modal="true" aria-label="Paused dialog">
+          <h2>⏸ Đang tạm dừng</h2>
+          <p>Nhấn <b>Esc</b> hoặc bấm Resume để tiếp tục. (Timer sẽ dừng lại.)</p>
+          <div class="actions">
+            <button class="btn" id="btnResume" type="button" aria-label="Resume">▶️ Resume</button>
+            <button class="btn danger" id="btnReveal2" type="button" aria-label="Reveal keyword">👁️ Reveal</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span aria-hidden="true" id="toastIcon">ℹ️</span>
+    <span id="toastText">...</span>
+  </div>
+
+  <script>
+    "use strict";
+
+    /* =========================
+       CONFIG (Teacher chỉnh nhanh)
+       ========================= */
+    const CONFIG = {
+      topic: "Ứng dụng n8n cơ bản",
+      brand: { name: "Hangman: Ứng dụng n8n cơ bản", tagline: "Đoán keyword theo gợi ý — sai tăng lives — thắng/thua nhanh" },
+      teacher: {
+        password: "n8n",  // mật khẩu đơn giản (demo lớp học)
+        allowJsonEdit: true
+      },
+      gameplay: {
+        timePerQuestionSec: 45, // 5–15 phút: ~30–60s/câu
+        maxLives: 7,            // số lần sai tối đa (tương ứng số part)
+        scoreWinBase: 100,
+        scoreWinTimeBonusMax: 40,
+        timeBonusWindowSec: 25,
+        scoreLosePenalty: -10,
+        autoNextAfterWinLoseSec: 0, // 0=off
+        shuffle: true
+      },
+      // 10–20 keyword mẫu theo chủ đề n8n cơ bản (có hint + explain)
+      questionSets: [
+        {
+          id: "basic",
+          name: "n8n Basics (Beginner)",
+          items: [
+            { keyword: "WORKFLOW", hint: "Chuỗi các bước tự động hóa trong n8n", explain: "Workflow là luồng công việc gồm nhiều node nối với nhau để tự động hóa.", difficulty: 1 },
+            { keyword: "NODE", hint: "Khối chức năng (kết nối, xử lý) trong workflow", explain: "Node là từng bước: Trigger, HTTP, Set, IF, Google Sheets…", difficulty: 1 },
+            { keyword: "TRIGGER", hint: "Điểm bắt đầu của workflow (sự kiện kích hoạt)", explain: "Trigger nhận sự kiện: Webhook, Cron, Manual, App events…", difficulty: 1 },
+            { keyword: "WEBHOOK", hint: "Nhận request từ hệ thống khác vào n8n", explain: "Webhook dùng để nhận HTTP request, thường để tích hợp form/chat/app.", difficulty: 2 },
+            { keyword: "CRON", hint: "Chạy theo lịch (mỗi giờ/mỗi ngày…)", explain: "Cron node giúp chạy workflow theo thời gian định kỳ.", difficulty: 1 },
+            { keyword: "HTTP REQUEST", hint: "Gọi API ra ngoài để lấy/đẩy dữ liệu", explain: "HTTP Request dùng gọi API REST (GET/POST), kèm headers/body.", difficulty: 2 },
+            { keyword: "CREDENTIALS", hint: "Nơi lưu thông tin xác thực kết nối (token, key…)", explain: "Credentials quản lý auth (OAuth2, API key) an toàn hơn hardcode.", difficulty: 2 },
+            { keyword: "IF", hint: "Rẽ nhánh điều kiện đúng/sai", explain: "IF node chia luồng: True/False dựa trên biểu thức.", difficulty: 1 },
+            { keyword: "SET", hint: "Tạo/biến đổi field dữ liệu trong luồng", explain: "Set node tạo mới hoặc chỉnh sửa dữ liệu output cho bước sau.", difficulty: 1 },
+            { keyword: "MERGE", hint: "Gộp dữ liệu từ 2 nhánh", explain: "Merge node kết hợp dữ liệu theo mode: append, merge by key…", difficulty: 2 },
+            { keyword: "ITEMS", hint: "Đơn vị dữ liệu mà n8n xử lý theo từng record", explain: "Mỗi node thường xử lý mảng items; mỗi item là 1 record JSON.", difficulty: 2 },
+            { keyword: "EXPRESSIONS", hint: "Cú pháp {{ }} để tham chiếu dữ liệu động", explain: "Expressions giúp map field, tính toán, dùng data từ node trước.", difficulty: 2 },
+            { keyword: "ERROR WORKFLOW", hint: "Luồng xử lý khi workflow thất bại", explain: "Có thể cấu hình Error Trigger/Workflow để log/notify khi lỗi.", difficulty: 3 },
+            { keyword: "RETRY", hint: "Thử lại khi API fail (timeout/rate limit)", explain: "Nên dùng retry/backoff để tăng ổn định tích hợp.", difficulty: 3 },
+            { keyword: "RATE LIMIT", hint: "Giới hạn số request của API trong 1 khoảng thời gian", explain: "Gặp rate limit cần delay/retry hoặc batch request.", difficulty: 3 },
+            { keyword: "PAGINATION", hint: "Lấy dữ liệu nhiều trang khi API trả về theo page", explain: "Thường cần loop (SplitInBatches) để fetch hết dữ liệu.", difficulty: 3 }
+          ]
+        },
+        {
+          id: "classroom",
+          name: "Classroom Quick Mix (5–10 phút)",
+          items: [
+            { keyword: "MANUAL TRIGGER", hint: "Chạy thử workflow bằng nút Execute", explain: "Manual Trigger giúp demo nhanh trong lớp trước khi triển khai thật.", difficulty: 1 },
+            { keyword: "SPLIT IN BATCHES", hint: "Chia dữ liệu thành từng lô để xử lý", explain: "Split in Batches hữu ích khi xử lý danh sách lớn hoặc pagination.", difficulty: 2 },
+            { keyword: "GOOGLE SHEETS", hint: "Đích lưu/đọc dữ liệu phổ biến cho demo", explain: "Google Sheets node đọc/append/update dữ liệu cho lớp học.", difficulty: 1 },
+            { keyword: "SLACK", hint: "Gửi thông báo kênh chat", explain: "Workflow thường kết thúc bằng notify (Slack/Email/Telegram).", difficulty: 1 },
+            { keyword: "FILTER", hint: "Lọc items theo điều kiện", explain: "Có thể lọc bằng IF hoặc Function/Code để giữ record phù hợp.", difficulty: 2 },
+            { keyword: "JSON", hint: "Dạng dữ liệu trao đổi phổ biến trong n8n", explain: "n8n xử lý data chủ yếu dưới dạng JSON items.", difficulty: 1 },
+            { keyword: "MAPPING", hint: "Ánh xạ field từ nguồn sang đích", explain: "Dùng Expressions/Set để map dữ liệu chính xác.", difficulty: 2 },
+            { keyword: "OAUTH", hint: "Cơ chế đăng nhập ủy quyền cho API", explain: "OAuth2 thường dùng với Google/Microsoft… thông qua Credentials.", difficulty: 3 },
+            { keyword: "ENV VARS", hint: "Biến môi trường để cấu hình không hardcode", explain: "Dùng env vars để đổi endpoint/token theo môi trường.", difficulty: 3 },
+            { keyword: "EXECUTIONS", hint: "Lịch sử chạy workflow (log)", explain: "Executions giúp debug: input/output từng node, thời gian, lỗi.", difficulty: 2 }
+          ]
+        }
+      ],
+      assets: {
+        logoSvg:
+          '<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+          '<defs><linearGradient id="g" x1="2" y1="2" x2="26" y2="26" gradientUnits="userSpaceOnUse">' +
+          '<stop stop-color="#6D7DFF"/><stop offset="1" stop-color="#2BE7A4"/></linearGradient></defs>' +
+          '<rect x="3" y="3" width="22" height="22" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.16)"/>' +
+          '<path d="M8.5 15.5c2-4.3 9-4.3 11 0" stroke="url(#g)" stroke-width="2.6" stroke-linecap="round"/>' +
+          '<circle cx="11" cy="11" r="1.2" fill="rgba(255,255,255,0.85)"/>' +
+          '<circle cx="17" cy="11" r="1.2" fill="rgba(255,255,255,0.85)"/>' +
+          '</svg>'
+      },
+      ui: { toastMs: 1700 }
+    };
+
+    /* =========================
+       Helpers
+       ========================= */
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+    const clamp = (n,a,b)=>Math.max(a,Math.min(b,n));
+    const nowMs = ()=> (performance && performance.now) ? performance.now() : Date.now();
+
+    function normalizeKeyword(s){
+      return String(s || "")
+        .toUpperCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g,"") // strip accents
+        .replace(/[^A-Z0-9 ]/g," ")                     // keep A-Z 0-9 space
+        .replace(/\s+/g," ")
+        .trim();
+    }
+
+    function csvEscape(v){
+      const s = String(v ?? "");
+      if(/[",\n]/.test(s)) return '"' + s.replace(/"/g,'""') + '"';
+      return s;
+    }
+
+    /* =========================
+       State
+       ========================= */
+    const state = {
+      teacherUnlocked: false,
+      teacherCollapsed: false,
+      setId: CONFIG.questionSets[0]?.id || "",
+      items: [],
+      order: [],
+      idx: 0,
+      score: 0,
+      paused: false,
+      started: false,
+
+      // per question
+      keyword: "",
+      rawKeyword: "",
+      hint: "",
+      explain: "",
+      difficulty: 1,
+      revealed: new Set(),
+      wrong: new Set(),
+      used: new Set(),
+      livesMax: CONFIG.gameplay.maxLives,
+      livesLeft: CONFIG.gameplay.maxLives,
+      status: "idle", // idle|playing|win|lose|reveal
+      startAtMs: 0,
+
+      // timer
+      timer: {
+        running: false,
+        durationSec: CONFIG.gameplay.timePerQuestionSec,
+        endAtMs: 0,
+        raf: 0
+      },
+
+      // results
+      results: []
+    };
+
+    /* =========================
+       Elements
+       ========================= */
+    const els = {
+      brandLogo: $("#brandLogo"),
+      brandName: $("#brandName"),
+      brandTagline: $("#brandTagline"),
+
+      kpiTime: $("#kpiTime"),
+      kpiScore: $("#kpiScore"),
+      kpiProg: $("#kpiProg"),
+      progressBar: $("#progressBar"),
+      progressWrap: $(".progress"),
+      btnReset: $("#btnReset"),
+      btnTeacher: $("#btnTeacher"),
+
+      teacherPanel: $("#teacherPanel"),
+      btnCollapseTeacher: $("#btnCollapseTeacher"),
+      teacherPill: $("#teacherPill"),
+      teacherStatus: $("#teacherStatus"),
+      teacherStatusText: $("#teacherStatusText"),
+      btnUnlock: $("#btnUnlock"),
+      btnLock: $("#btnLock"),
+      setSelect: $("#setSelect"),
+      timePerQ: $("#timePerQ"),
+      livesMax: $("#livesMax"),
+      btnStart: $("#btnStart"),
+      btnNext: $("#btnNext"),
+      btnReveal: $("#btnReveal"),
+      btnExport: $("#btnExport"),
+      jsonEditor: $("#jsonEditor"),
+      btnApplyJson: $("#btnApplyJson"),
+      btnExportJson: $("#btnExportJson"),
+      btnFullscreen: $("#btnFullscreen"),
+
+      clueLine: $("#clueLine"),
+      wordDisplay: $("#wordDisplay"),
+      keyboard: $("#keyboard"),
+      livesText: $("#livesText"),
+      wrongLetters: $("#wrongLetters"),
+      wrongCount: $("#wrongCount"),
+
+      feedback: $("#feedback"),
+      fbBadge: $("#fbBadge"),
+      fbIcon: $("#fbIcon"),
+      fbTitle: $("#fbTitle"),
+      fbSub: $("#fbSub"),
+
+      explainBox: $("#explainBox"),
+      setName: $("#setName"),
+      difficulty: $("#difficulty"),
+
+      btnHint1: $("#btnHint1"),
+      btnPause: $("#btnPause"),
+
+      pauseOverlay: $("#pauseOverlay"),
+      btnResume: $("#btnResume"),
+      btnReveal2: $("#btnReveal2"),
+
+      toast: $("#toast"),
+      toastIcon: $("#toastIcon"),
+      toastText: $("#toastText"),
+    };
+
+    /* =========================
+       Toast / Status
+       ========================= */
+    let toastT = 0;
+    function toast(msg, icon="ℹ️"){
+      els.toastIcon.textContent = icon;
+      els.toastText.textContent = msg;
+      els.toast.classList.add("show");
+      clearTimeout(toastT);
+      toastT = setTimeout(()=> els.toast.classList.remove("show"), CONFIG.ui.toastMs);
+    }
+
+    function setTeacherStatus(type, text, loading=false){
+      els.teacherStatus.classList.remove("ok","err","warn");
+      if(type) els.teacherStatus.classList.add(type);
+      const dot = els.teacherStatus.querySelector(".dot");
+      const oldSpinner = els.teacherStatus.querySelector(".spinner");
+      if(oldSpinner) oldSpinner.remove();
+      if(loading){
+        const sp = document.createElement("span");
+        sp.className = "spinner";
+        sp.setAttribute("aria-hidden","true");
+        dot.insertAdjacentElement("afterend", sp);
+      }
+      els.teacherStatusText.textContent = text;
+    }
+
+    function setFeedback(kind, title, sub, icon){
+      els.fbBadge.classList.remove("ok","bad","warn");
+      if(kind) els.fbBadge.classList.add(kind);
+      els.fbTitle.textContent = title;
+      els.fbSub.textContent = sub || "";
+      els.fbIcon.textContent = icon || "⚡";
+    }
+
+    /* =========================
+       Timer
+       ========================= */
+    function stopTimer(){
+      state.timer.running = false;
+      if(state.timer.raf) cancelAnimationFrame(state.timer.raf);
+      state.timer.raf = 0;
+    }
+
+    function setTimerUI(secLeft){
+      els.kpiTime.textContent = secLeft <= 0 ? "0s" : `${secLeft}s`;
+      const danger = secLeft <= Math.max(6, Math.floor(state.timer.durationSec * 0.22));
+      els.progressBar.classList.toggle("danger", danger && state.status === "playing");
+    }
+
+    function startTimer(){
+      stopTimer();
+      state.timer.durationSec = clamp(Number(CONFIG.gameplay.timePerQuestionSec), 20, 120);
+      state.timer.endAtMs = nowMs() + state.timer.durationSec * 1000;
+      state.timer.running = true;
+
+      const tick = ()=>{
+        if(!state.timer.running) return;
+        if(state.paused){ state.timer.raf = requestAnimationFrame(tick); return; }
+
+        const leftMs = state.timer.endAtMs - nowMs();
+        const leftSec = Math.ceil(leftMs / 1000);
+        setTimerUI(Math.max(0, leftSec));
+
+        if(leftMs <= 0){
+          stopTimer();
+          if(state.status === "playing"){
+            // timeout => lose (auto reveal)
+            onLose("Hết giờ!");
+          }
+          return;
+        }
+        state.timer.raf = requestAnimationFrame(tick);
+      };
+      state.timer.raf = requestAnimationFrame(tick);
+    }
+
+    function timeUsedSec(){
+      const leftMs = state.timer.endAtMs - nowMs();
+      const left = clamp(Math.ceil(leftMs / 1000), 0, state.timer.durationSec);
+      return clamp(state.timer.durationSec - left, 0, state.timer.durationSec);
+    }
+
+    function pauseToggle(force){
+      const want = typeof force === "boolean" ? force : !state.paused;
+      state.paused = want;
+      els.pauseOverlay.classList.toggle("show", state.paused);
+      if(state.paused){
+        setFeedback("warn","Đang tạm dừng","Nhấn Esc hoặc Resume để tiếp tục","⏸");
+        toast("Paused", "⏸");
+      }else{
+        if(state.status === "playing"){
+          setFeedback("warn","Đang chơi","Chọn chữ cái để đoán keyword","⚡");
+        }
+        toast("Resumed", "▶️");
+      }
+    }
+
+    /* =========================
+       Game: Load sets
+       ========================= */
+    function applyBrand(){
+      els.brandLogo.innerHTML = CONFIG.assets.logoSvg;
+      els.brandName.textContent = CONFIG.brand.name;
+      els.brandTagline.textContent = CONFIG.brand.tagline;
+      document.title = CONFIG.brand.name + " — Offline";
+    }
+
+    function getSetById(id){
+      return CONFIG.questionSets.find(s => s.id === id) || CONFIG.questionSets[0];
+    }
+
+    function loadSet(id){
+      const set = getSetById(id);
+      state.setId = set.id;
+      state.items = (set.items || []).map(it => ({
+        keyword: normalizeKeyword(it.keyword),
+        rawKeyword: String(it.keyword || ""),
+        hint: String(it.hint || ""),
+        explain: String(it.explain || ""),
+        difficulty: Number(it.difficulty || 1)
+      })).filter(it => it.keyword.length >= 2);
+      state.order = state.items.map((_,i)=>i);
+      if(CONFIG.gameplay.shuffle) shuffle(state.order);
+      state.idx = 0;
+      updateHeader();
+      els.setName.textContent = set.name || set.id;
+      els.jsonEditor.value = JSON.stringify(CONFIG.questionSets, null, 2);
+    }
+
+    function shuffle(arr){
+      for(let i=arr.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [arr[i],arr[j]] = [arr[j],arr[i]];
+      }
+    }
+
+    function updateHeader(){
+      els.kpiScore.textContent = String(state.score);
+      const total = state.order.length || 0;
+      const current = total ? clamp(state.idx + (state.started?1:0), 0, total) : 0;
+      els.kpiProg.textContent = `${current}/${total}`;
+      const pct = total ? Math.round((state.started ? state.idx : 0) / total * 100) : 0;
+      els.progressWrap.setAttribute("aria-valuenow", String(pct));
+      els.progressBar.style.width = `${pct}%`;
+    }
+
+    function setLivesUI(){
+      els.livesText.textContent = String(state.livesLeft);
+      els.wrongCount.textContent = String(state.wrong.size);
+      const wrongList = Array.from(state.wrong).sort().join(" ");
+      els.wrongLetters.textContent = wrongList || "—";
+      // show hangman parts by wrong count
+      const wrongN = state.wrong.size;
+      const max = state.livesMax;
+      const showN = clamp(wrongN, 0, max);
+
+      // parts mapping: 1..6 main, 7..8 eyes when last life used
+      const parts = ["p1","p2","p3","p4","p5","p6","p7","p8"].map(id=>$("#"+id));
+      parts.forEach(p=>p.classList.remove("on"));
+      for(let i=0;i<Math.min(showN, 6);i++){
+        parts[i].classList.add("on");
+      }
+      if(showN >= max){
+        // show eyes on lose
+        parts[6].classList.add("on");
+        parts[7].classList.add("on");
+      }
+    }
+
+    /* =========================
+       Game: Round lifecycle
+       ========================= */
+    function resetRound(){
+      stopTimer();
+      state.paused = false;
+      els.pauseOverlay.classList.remove("show");
+
+      state.revealed = new Set();
+      state.wrong = new Set();
+      state.used = new Set();
+      state.livesMax = clamp(Number(CONFIG.gameplay.maxLives), 4, 10);
+      state.livesLeft = state.livesMax;
+      state.status = "idle";
+      state.startAtMs = nowMs();
+
+      els.explainBox.style.display = "none";
+      els.explainBox.textContent = "";
+      setLivesUI();
+      buildKeyboard();
+      renderWord();
+      setFeedback("warn","Sẵn sàng","Nhấn Start để bắt đầu (Teacher) hoặc bấm 1 chữ cái nếu đã Start","⚡");
+      setTimerUI(CONFIG.gameplay.timePerQuestionSec);
+    }
+
+    function startGame(){
+      if(state.items.length === 0){
+        toast("Không có câu hỏi trong set.", "⚠️");
+        return;
+      }
+      state.started = true;
+      state.score = 0;
+      state.results = [];
+      state.idx = 0;
+      if(CONFIG.gameplay.shuffle) shuffle(state.order);
+      loadQuestionAt(state.idx);
+      toast("Bắt đầu!", "🚀");
+    }
+
+    function loadQuestionAt(idx){
+      stopTimer();
+      const total = state.order.length;
+      if(total === 0) return;
+
+      state.idx = clamp(idx, 0, total-1);
+      const q = state.items[state.order[state.idx]];
+      state.keyword = q.keyword;
+      state.rawKeyword = q.rawKeyword;
+      state.hint = q.hint;
+      state.explain = q.explain;
+      state.difficulty = clamp(q.difficulty || 1, 1, 5);
+
+      els.difficulty.textContent = String(state.difficulty);
+      els.clueLine.innerHTML = `Gợi ý: <b>${escapeHtml(state.hint || "—")}</b>`;
+      resetRound();
+
+      // set status to playing and start timer
+      state.status = "playing";
+      setFeedback("warn","Đang chơi","Chọn chữ cái để đoán keyword","⚡");
+      startTimer();
+      updateHeader();
+      animatePulseWord();
+    }
+
+    function nextQuestion(){
+      if(!state.started){
+        toast("Teacher: nhấn Start trước.", "🧑‍🏫");
+        return;
+      }
+      const total = state.order.length;
+      if(state.idx >= total - 1){
+        // end of session
+        stopTimer();
+        state.status = "idle";
+        setFeedback("ok","Kết thúc","Đã hết câu hỏi. Export CSV để lưu kết quả.","🏁");
+        toast("Hết câu hỏi!", "🏁");
+        return;
+      }
+      loadQuestionAt(state.idx + 1);
+    }
+
+    function revealKeyword(reason="Teacher reveal"){
+      if(state.status !== "playing" && state.status !== "win" && state.status !== "lose") return;
+      stopTimer();
+      state.status = "reveal";
+      // reveal all letters
+      for(let i=0;i<state.keyword.length;i++){
+        const ch = state.keyword[i];
+        if(ch !== " ") state.revealed.add(ch);
+      }
+      renderWord(true);
+      els.explainBox.style.display = "block";
+      els.explainBox.textContent = state.explain ? ("Giải thích: " + state.explain) : "Giải thích: (không có)";
+      setFeedback("warn","👁️ Reveal",`Đáp án: ${state.rawKeyword || state.keyword}`,"👁️");
+      toast(reason, "👁️");
+      recordResult("reveal");
+    }
+
+    function recordResult(outcome){
+      // avoid duplicate record for same question
+      const qIndex = state.order[state.idx];
+      const existed = state.results.find(r => r.qIndex === qIndex);
+      if(existed) return;
+
+      const used = Math.round(timeUsedSec());
+      const wrongLetters = Array.from(state.wrong).sort().join("");
+      const revealedLetters = Array.from(state.revealed).sort().join("");
+      const status = outcome; // win|lose|reveal|timeout
+
+      state.results.push({
+        qIndex,
+        setId: state.setId,
+        keyword: state.rawKeyword || state.keyword,
+        normalized: state.keyword,
+        hint: state.hint,
+        difficulty: state.difficulty,
+        outcome: status,
+        timeUsedSec: used,
+        wrongCount: state.wrong.size,
+        wrongLetters,
+        revealedLetters,
+        scoreAfter: state.score
+      });
+    }
+
+    function onWin(){
+      if(state.status !== "playing") return;
+      stopTimer();
+      state.status = "win";
+      const used = timeUsedSec();
+      const delta = calcWinScore(used);
+      state.score += delta;
+
+      els.explainBox.style.display = "block";
+      els.explainBox.textContent = state.explain ? ("✅ " + state.explain) : "✅ Đúng!";
+
+      setFeedback("ok","✅ Thắng!",`+${delta} điểm • Space để Next`,"✅");
+      toast(`✅ +${delta} điểm`, "✅");
+      updateHeader();
+      recordResult("win");
+
+      autoNextMaybe();
+    }
+
+    function onLose(reason){
+      if(state.status !== "playing") return;
+      stopTimer();
+      state.status = "lose";
+      state.score += CONFIG.gameplay.scoreLosePenalty;
+
+      // show full hangman
+      state.livesLeft = 0;
+      setLivesUI();
+      $("#p7").classList.add("on"); $("#p8").classList.add("on");
+
+      els.explainBox.style.display = "block";
+      els.explainBox.textContent = state.explain ? ("❌ " + state.explain) : "❌ Thua!";
+      setFeedback("bad","❌ Thua!",`${reason || "Sai quá nhiều"} • Đáp án: ${state.rawKeyword || state.keyword}`,"❌");
+      toast(`❌ ${reason || "Thua"}`, "❌");
+      updateHeader();
+      recordResult(reason === "Hết giờ!" ? "timeout" : "lose");
+
+      autoNextMaybe();
+    }
+
+    function autoNextMaybe(){
+      const s = clamp(Number(CONFIG.gameplay.autoNextAfterWinLoseSec), 0, 10);
+      if(!s) return;
+      let t = s;
+      const base = els.fbSub.textContent;
+      const id = setInterval(()=>{
+        if(state.status !== "win" && state.status !== "lose" && state.status !== "reveal"){
+          clearInterval(id);
+          return;
+        }
+        if(state.paused){
+          return;
+        }
+        t -= 1;
+        if(t <= 0){
+          clearInterval(id);
+          nextQuestion();
+        }else{
+          els.fbSub.textContent = base + ` • Next in ${t}s`;
+        }
+      }, 1000);
+    }
+
+    function calcWinScore(timeUsed){
+      const base = Number(CONFIG.gameplay.scoreWinBase) || 100;
+      const maxBonus = Number(CONFIG.gameplay.scoreWinTimeBonusMax) || 40;
+      const window = Math.max(1, Number(CONFIG.gameplay.timeBonusWindowSec) || 25);
+      const t = clamp(timeUsed, 0, window);
+      const bonus = Math.round((1 - (t / window)) * maxBonus);
+      // small bonus for fewer wrongs
+      const wrongPenalty = state.wrong.size * 4;
+      return Math.max(10, base + bonus - wrongPenalty);
+    }
+
+    /* =========================
+       Rendering: Word & keyboard
+       ========================= */
+    function escapeHtml(s){
+      const d = document.createElement("div");
+      d.textContent = String(s ?? "");
+      return d.innerHTML;
+    }
+
+    function renderWord(forceReveal=false){
+      const word = state.keyword;
+      els.wordDisplay.innerHTML = "";
+
+      const revealAll = forceReveal || state.status === "reveal" || state.status === "lose";
+      for(let i=0;i<word.length;i++){
+        const ch = word[i];
+        if(ch === " "){
+          const sp = document.createElement("div");
+          sp.className = "cell space";
+          sp.setAttribute("aria-hidden","true");
+          els.wordDisplay.appendChild(sp);
+          continue;
+        }
+        const cell = document.createElement("div");
+        const shown = revealAll || state.revealed.has(ch);
+        cell.className = "cell" + (shown ? " revealed" : "");
+        cell.textContent = shown ? ch : "•";
+        cell.setAttribute("aria-label", shown ? `Letter ${ch}` : "Hidden letter");
+        els.wordDisplay.appendChild(cell);
+      }
+    }
+
+    function buildKeyboard(){
+      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
+      els.keyboard.innerHTML = "";
+      letters.forEach((ch)=>{
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "key";
+        b.textContent = ch;
+        b.dataset.key = ch;
+        b.setAttribute("aria-label", `Key ${ch}`);
+        b.addEventListener("click", ()=> onGuess(ch));
+        els.keyboard.appendChild(b);
+      });
+    }
+
+    function markKey(ch, kind){
+      const el = els.keyboard.querySelector(`.key[data-key="${CSS.escape(ch)}"]`);
+      if(!el) return;
+      el.classList.add("used");
+      if(kind) el.classList.add(kind);
+      el.disabled = true;
+    }
+
+    function animatePulseWord(){
+      // subtle animation: fade/slide
+      const cells = $$(".cell", els.wordDisplay);
+      cells.forEach((c, i)=>{
+        c.style.opacity = "0";
+        c.style.transform = "translateY(4px)";
+        requestAnimationFrame(()=>{
+          c.style.transition = "opacity .18s ease, transform .18s ease";
+          setTimeout(()=>{
+            c.style.opacity = "1";
+            c.style.transform = "translateY(0)";
+          }, 20 + i*12);
+        });
+      });
+      setTimeout(()=>{
+        cells.forEach(c=>{ c.style.transition = ""; c.style.transform = ""; });
+      }, 420);
+    }
+
+    /* =========================
+       Guess logic (Hangman)
+       ========================= */
+    function onGuess(raw){
+      if(!state.started || state.status !== "playing") return;
+      if(state.paused) return;
+
+      const ch = normalizeKeyword(raw).replace(/ /g,"");
+      if(!ch) return;
+
+      // only one char (A-Z0-9)
+      const g = ch[0];
+      if(state.used.has(g)) return;
+      state.used.add(g);
+
+      const word = state.keyword;
+      if(word.includes(g)){
+        state.revealed.add(g);
+        markKey(g, "good");
+        renderWord();
+
+        // check win
+        if(isFullyRevealed()){
+          // reveal full (no dots)
+          renderWord(true);
+          onWin();
+        }else{
+          setFeedback("ok","✅ Đúng","Mở thêm chữ cái!","✅");
+        }
+      }else{
+        state.wrong.add(g);
+        state.livesLeft = clamp(state.livesMax - state.wrong.size, 0, state.livesMax);
+        markKey(g, "bad");
+        setLivesUI();
+
+        if(state.livesLeft <= 0){
+          onLose("Sai quá nhiều!");
+        }else{
+          setFeedback("bad","❌ Sai",`Còn ${state.livesLeft} lives`,"❌");
+        }
+      }
+    }
+
+    function isFullyRevealed(){
+      const word = state.keyword;
+      for(let i=0;i<word.length;i++){
+        const ch = word[i];
+        if(ch === " ") continue;
+        if(!state.revealed.has(ch)) return false;
+      }
+      return true;
+    }
+
+    /* =========================
+       Hint levels (1/2/3/4)
+       ========================= */
+    function hintLevel(level){
+      if(!state.started) { toast("Nhấn Start trước.", "🧑‍🏫"); return; }
+      if(state.status !== "playing" && state.status !== "win" && state.status !== "lose") return;
+      if(state.paused) return;
+
+      if(level === 4){
+        revealKeyword("Hint 4: Reveal keyword");
+        return;
+      }
+
+      const word = state.keyword;
+      const remaining = [];
+      for(let i=0;i<word.length;i++){
+        const ch = word[i];
+        if(ch === " " ) continue;
+        if(!state.revealed.has(ch)) remaining.push(ch);
+      }
+      if(remaining.length === 0){
+        toast("Không còn chữ để gợi ý.", "ℹ️");
+        return;
+      }
+
+      // level => reveal 1/2/3 unique letters
+      const n = clamp(level,1,3);
+      const uniq = Array.from(new Set(remaining));
+      shuffle(uniq);
+      const reveal = uniq.slice(0, Math.min(n, uniq.length));
+
+      reveal.forEach(ch=>{
+        state.revealed.add(ch);
+        state.used.add(ch);
+        markKey(ch, "good");
+      });
+
+      renderWord();
+      setFeedback("warn",`💡 Hint x${reveal.length}`,`Mở: ${reveal.join(", ")}`,"💡");
+      toast(`Hint: ${reveal.join(", ")}`, "💡");
+
+      if(isFullyRevealed()){
+        renderWord(true);
+        onWin();
+      }
+    }
+
+    /* =========================
+       Export CSV
+       ========================= */
+    function exportCSV(){
+      if(state.results.length === 0){
+        toast("Chưa có kết quả để export.", "⚠️");
+        return;
+      }
+      const cols = [
+        "timestamp",
+        "setId",
+        "qIndex",
+        "keyword",
+        "normalized",
+        "difficulty",
+        "outcome",
+        "timeUsedSec",
+        "wrongCount",
+        "wrongLetters",
+        "scoreAfter"
+      ];
+
+      const ts = new Date().toISOString();
+      const lines = [];
+      lines.push(cols.join(","));
+      state.results.forEach(r=>{
+        const row = {
+          timestamp: ts,
+          setId: r.setId,
+          qIndex: r.qIndex,
+          keyword: r.keyword,
+          normalized: r.normalized,
+          difficulty: r.difficulty,
+          outcome: r.outcome,
+          timeUsedSec: r.timeUsedSec,
+          wrongCount: r.wrongCount,
+          wrongLetters: r.wrongLetters,
+          scoreAfter: r.scoreAfter
+        };
+        lines.push(cols.map(c=>csvEscape(row[c])).join(","));
+      });
+
+      const blob = new Blob([lines.join("\n")], {type:"text/csv;charset=utf-8"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = `hangman_n8n_results_${Date.now()}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(()=>{
+        URL.revokeObjectURL(a.href);
+        a.remove();
+      }, 0);
+      toast("Đã xuất CSV.", "⬇️");
+    }
+
+    /* =========================
+       Teacher mode (lock/unlock)
+       ========================= */
+    function setTeacherUnlocked(on){
+      state.teacherUnlocked = !!on;
+      els.teacherPill.textContent = state.teacherUnlocked ? "Unlocked" : "Locked";
+      els.teacherPill.style.borderColor = state.teacherUnlocked ? "rgba(43,231,164,.55)" : "rgba(255,209,102,.55)";
+      els.teacherPill.style.color = state.teacherUnlocked ? "rgba(234,240,255,.95)" : "rgba(183,197,255,.95)";
+
+      const enable = (el, ok)=>{ el.disabled = !ok; };
+      enable(els.btnLock, state.teacherUnlocked);
+      enable(els.btnUnlock, !state.teacherUnlocked);
+
+      // enable controls
+      const controls = [els.setSelect, els.timePerQ, els.livesMax, els.btnStart, els.btnNext, els.btnReveal, els.btnExport];
+      controls.forEach(c=> enable(c, state.teacherUnlocked));
+
+      const allowJson = state.teacherUnlocked && CONFIG.teacher.allowJsonEdit;
+      enable(els.jsonEditor, allowJson);
+      enable(els.btnApplyJson, allowJson);
+      enable(els.btnExportJson, allowJson);
+
+      if(state.teacherUnlocked){
+        setTeacherStatus("ok","✅ Teacher Mode đã mở. Bạn có thể Start/Next/Reveal và chỉnh timer.", false);
+        toast("Teacher unlocked", "🧑‍🏫");
+      }else{
+        setTeacherStatus("warn","🔒 Teacher Mode đang khóa.", false);
+        toast("Teacher locked", "🔐");
+      }
+    }
+
+    function unlockPrompt(){
+      const pw = prompt("Nhập mật khẩu Teacher Mode:");
+      if(pw === null) return;
+      if(String(pw).trim() === CONFIG.teacher.password){
+        setTeacherUnlocked(true);
+      }else{
+        setTeacherStatus("err","❌ Sai mật khẩu. Thử lại.", false);
+        toast("Sai mật khẩu", "❌");
+      }
+    }
+
+    function toggleTeacherPanel(){
+      // quick open/close (not security)
+      state.teacherCollapsed = !state.teacherCollapsed;
+      els.teacherPanel.classList.toggle("collapsed", state.teacherCollapsed);
+      $("#btnCollapseTeacher span").textContent = state.teacherCollapsed ? "⟩⟩" : "⟨⟨";
+      toast(state.teacherCollapsed ? "Teacher collapsed" : "Teacher expanded", "🧑‍🏫");
+    }
+
+    async function toggleFullscreen(){
+      try{
+        if(!document.fullscreenElement){
+          await document.documentElement.requestFullscreen();
+          toast("Fullscreen ON", "⛶");
+        }else{
+          await document.exitFullscreen();
+          toast("Fullscreen OFF", "⛶");
+        }
+      }catch(e){
+        toast("Fullscreen bị chặn.", "⚠️");
+      }
+    }
+
+    function applyTeacherSettings(){
+      const t = clamp(Number(els.timePerQ.value), 20, 120);
+      const l = clamp(Number(els.livesMax.value), 4, 10);
+      CONFIG.gameplay.timePerQuestionSec = t;
+      CONFIG.gameplay.maxLives = l;
+      state.timer.durationSec = t;
+      state.livesMax = l;
+      toast(`Applied: ${t}s • lives=${l}`, "✅");
+
+      if(state.status === "playing"){
+        // restart timer with new duration keeping elapsed not needed in class demo; keep simple:
+        loadQuestionAt(state.idx);
+      }else{
+        resetRound();
+      }
+    }
+
+    function applyJson(){
+      const txt = String(els.jsonEditor.value || "").trim();
+      if(!txt){ toast("JSON trống.", "⚠️"); return; }
+      setTeacherStatus("", "Đang parse JSON...", true);
+      setTimeout(()=>{
+        try{
+          const data = JSON.parse(txt);
+          if(!Array.isArray(data)) throw new Error("Root phải là array questionSets.");
+          // minimal validation
+          data.forEach((s, i)=>{
+            if(!s || typeof s !== "object") throw new Error(`Set #${i} invalid`);
+            if(!Array.isArray(s.items)) throw new Error(`Set #${i} missing items`);
+          });
+          CONFIG.questionSets = data;
+          rebuildSetSelect();
+          loadSet(CONFIG.questionSets[0].id);
+          setTeacherStatus("ok","✅ Applied JSON sets.", false);
+          toast("Applied JSON", "✅");
+        }catch(e){
+          setTeacherStatus("err","❌ " + (e && e.message ? e.message : String(e)), false);
+          toast("JSON lỗi", "❌");
+        }
+      }, 120);
+    }
+
+    function exportJson(){
+      els.jsonEditor.value = JSON.stringify(CONFIG.questionSets, null, 2);
+      toast("Exported JSON vào ô editor.", "⬆️");
+    }
+
+    function rebuildSetSelect(){
+      els.setSelect.innerHTML = "";
+      CONFIG.questionSets.forEach(s=>{
+        const opt = document.createElement("option");
+        opt.value = s.id;
+        opt.textContent = s.name || s.id;
+        els.setSelect.appendChild(opt);
+      });
+      els.setSelect.value = state.setId || CONFIG.questionSets[0]?.id || "";
+    }
+
+    /* =========================
+       Keyboard shortcuts
+       ========================= */
+    function onKeyDown(e){
+      const key = e.key;
+
+      // pause
+      if(key === "Escape"){
+        e.preventDefault();
+        pauseToggle();
+        return;
+      }
+
+      // reveal
+      if(key === "r" || key === "R"){
+        e.preventDefault();
+        if(state.teacherUnlocked) revealKeyword("Reveal (R)");
+        else hintLevel(4);
+        return;
+      }
+
+      // next
+      if(key === " "){
+        e.preventDefault();
+        if(state.teacherUnlocked){
+          if(state.status === "win" || state.status === "lose" || state.status === "reveal") nextQuestion();
+          else toast("Space: Next chỉ dùng sau khi win/lose/reveal.", "ℹ️");
+        }else{
+          if(state.status === "win" || state.status === "lose" || state.status === "reveal") nextQuestion();
+        }
+        return;
+      }
+
+      // hint levels
+      if(key === "1" || key === "2" || key === "3" || key === "4"){
+        e.preventDefault();
+        hintLevel(Number(key));
+        return;
+      }
+
+      // letter guess
+      const ch = key.length === 1 ? normalizeKeyword(key) : "";
+      if(ch && /^[A-Z0-9]$/.test(ch)){
+        e.preventDefault();
+        onGuess(ch);
+        return;
+      }
+    }
+
+    /* =========================
+       Init & events
+       ========================= */
+    function init(){
+      applyBrand();
+      rebuildSetSelect();
+      loadSet(state.setId);
+
+      // teacher defaults
+      els.timePerQ.value = String(CONFIG.gameplay.timePerQuestionSec);
+      els.livesMax.value = String(CONFIG.gameplay.maxLives);
+
+      // set select
+      els.setSelect.addEventListener("change", ()=>{
+        loadSet(els.setSelect.value);
+        toast("Đã đổi set.", "📚");
+      });
+
+      // teacher panel actions
+      els.btnTeacher.addEventListener("click", ()=> {
+        // quick toggle open/collapse, keep security separate
+        if(state.teacherCollapsed) toggleTeacherPanel();
+        else toggleTeacherPanel();
+      });
+      els.btnCollapseTeacher.addEventListener("click", toggleTeacherPanel);
+
+      els.btnUnlock.addEventListener("click", unlockPrompt);
+      els.btnLock.addEventListener("click", ()=> setTeacherUnlocked(false));
+
+      els.btnStart.addEventListener("click", ()=>{
+        applyTeacherSettings();
+        startGame();
+      });
+      els.btnNext.addEventListener("click", nextQuestion);
+      els.btnReveal.addEventListener("click", ()=> revealKeyword("Teacher reveal"));
+      els.btnReveal2.addEventListener("click", ()=> revealKeyword("Teacher reveal (pause)"));
+      els.btnExport.addEventListener("click", exportCSV);
+
+      els.btnApplyJson.addEventListener("click", applyJson);
+      els.btnExportJson.addEventListener("click", exportJson);
+
+      els.btnFullscreen.addEventListener("click", toggleFullscreen);
+
+      // student controls
+      els.btnHint1.addEventListener("click", ()=> hintLevel(1));
+      els.btnPause.addEventListener("click", ()=> pauseToggle());
+      els.btnResume.addEventListener("click", ()=> pauseToggle(false));
+
+      // header reset
+      els.btnReset.addEventListener("click", ()=>{
+        stopTimer();
+        state.started = false;
+        state.score = 0;
+        state.results = [];
+        loadSet(state.setId);
+        resetRound();
+        updateHeader();
+        toast("Reset toàn bộ.", "🔄");
+      });
+
+      // apply settings on input (only when unlocked)
+      [els.timePerQ, els.livesMax].forEach(inp=>{
+        inp.addEventListener("change", ()=>{
+          if(!state.teacherUnlocked) return;
+          applyTeacherSettings();
+          setTeacherStatus("ok","✅ Settings updated.", false);
+        });
+      });
+
+      // keyboard
+      document.addEventListener("keydown", onKeyDown, {passive:false});
+
+      // start locked
+      setTeacherUnlocked(false);
+      resetRound();
+      updateHeader();
+      setTeacherStatus("warn","Teacher Mode đang khóa. Nhấn Unlock để cấu hình.", false);
+    }
+
+    init();
+
+    /* =========================
+       Teacher-friendly: End-of-file quick guide
+       =========================
+       CÁCH ĐỔI DỮ LIỆU:
+       - Sửa CONFIG.questionSets[].items[]:
+         { keyword:"HTTP REQUEST", hint:"...", explain:"...", difficulty:2 }
+       - keyword nên dùng A-Z/0-9/space (hệ thống tự normalize). Có thể chứa khoảng trắng.
+
+       CÁCH CHƠI TRONG LỚP (5–15 phút):
+       1) Teacher Unlock → chọn set → chỉnh time/lives → Start.
+       2) Mỗi lượt: học viên đoán 1 chữ (gõ bàn phím hoặc click).
+       3) Sai: tăng hangman parts, giảm lives. Đúng: mở chữ.
+       4) Win/Lose: xem explain ngắn → nhấn Space/Next sang câu.
+       5) Kết thúc: Teacher Export CSV (điểm, thời gian, đúng/sai).
+
+       PHÍM TẮT:
+       - Space: Next (sau win/lose/reveal)
+       - R: Reveal (Teacher) / hint mạnh (Student)
+       - Esc: Pause/Resume
+       - 1/2/3: Hint mở 1–3 chữ, 4: Reveal keyword
+    */
+  </script>
+</body>
+</html>

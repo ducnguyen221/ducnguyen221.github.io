@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="dark" lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Courses | Nguyen Quang Duc</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="./assets/css/subpage-shell.css" rel="stylesheet" />
+</head>
+
+<body data-page="courses">
+    <canvas id="bgCanvas" class="shell-canvas"></canvas>
+
+    <div class="site-shell">
+        <header class="site-header">
+            <a class="brand" href="./index.html">
+                <img alt="Nguyen Quang Duc" src="./assets/images/KPIM-Duc-Nguyen.png" />
+                <span class="brand-title t-lang" data-en="E-Profile" data-vi="Hồ sơ điện tử">E-Profile</span>
+            </a>
+
+            <nav class="top-nav">
+                <a class="nav-link" data-page-link="profile" href="./index.html"><span
+                        class="material-symbols-outlined">person</span><span class="t-lang" data-en="Profile"
+                        data-vi="Hồ sơ">Profile</span></a>
+                <a class="nav-link" data-page-link="experience" href="./experience.html"><span
+                        class="material-symbols-outlined">work_history</span><span class="t-lang" data-en="Experience"
+                        data-vi="Kinh nghiệm">Experience</span></a>
+                <a class="nav-link" data-page-link="projects" href="./projects.html"><span
+                        class="material-symbols-outlined">workspaces</span><span class="t-lang" data-en="Projects"
+                        data-vi="Dự án">Projects</span></a>
+                <a class="nav-link" data-page-link="courses" href="./courses.html"><span
+                        class="material-symbols-outlined">school</span><span class="t-lang" data-en="Courses"
+                        data-vi="Khóa học">Courses</span></a>
+                <a class="nav-link" data-page-link="socials" href="./socials.html"><span
+                        class="material-symbols-outlined">subscriptions</span><span class="t-lang" data-en="Socials"
+                        data-vi="Xã hội">Socials</span></a>
+                <a class="nav-link" data-page-link="solutions" href="./solutions.html"><span
+                        class="material-symbols-outlined">widgets</span><span class="t-lang" data-en="Solutions"
+                        data-vi="Giải pháp">Solutions</span></a>
+                <a class="nav-link" data-page-link="powerbi" href="./powerbi.html"><span
+                        class="material-symbols-outlined">bar_chart</span><span class="t-lang"
+                        data-en="PowerBI Demo" data-vi="PowerBI Demo">PowerBI Demo</span></a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="header-icon-btn" id="lang-toggle-btn" type="button">VI</button>
+                <button class="header-icon-btn material-symbols-outlined" id="theme-toggle-btn"
+                    type="button">dark_mode</button>
+            </div>
+        </header>
+
+        <main class="shell-main">
+            <section class="glass-panel hero-panel course-embed-shell">
+                <div class="section-head">
+                    <div>
+                        <h2 class="section-title"><span class="material-symbols-outlined">web</span><span class="t-lang"
+                                data-en="COMPA CLASS Discovery" data-vi="COMPA CLASS Discovery">COMPA CLASS
+                                Discovery</span></h2>
+                        <p class="section-subtitle" id="embedStatus"><span class="t-lang"
+                                data-en="Trying to load the discovery page directly inside this screen."
+                                data-vi="Đang thử tải trực tiếp trang discovery trong màn hình này.">Trying to load the
+                                discovery page directly inside this screen.</span></p>
+                    </div>
+                    <a class="button-link primary" href="https://compaclass.com/discovery" rel="noreferrer"
+                        target="_blank">
+                        <span class="material-symbols-outlined">open_in_new</span>
+                        <span class="t-lang" data-en="Open Discovery" data-vi="Mở Discovery">Open Discovery</span>
+                    </a>
+                </div>
+
+                <div class="embed-panel course-embed-panel">
+                    <iframe id="discoveryFrame" loading="lazy" src="https://compaclass.com/discovery"
+                        title="COMPA Discovery"></iframe>
+                </div>
+
+                <div class="embed-fallback" id="embedFallback" style="margin-top: 1rem;">
+                    <strong class="t-lang" data-en="Fallback route:" data-vi="Đường fallback:">Fallback route:</strong>
+                    <span class="t-lang"
+                        data-en="if the iframe cannot be used in your browser, continue through the Open Discovery button in this section. This page intentionally keeps both paths available."
+                        data-vi="nếu iframe không dùng được trong trình duyệt của bạn, hãy tiếp tục bằng nút Open Discovery trong chính khối này. Trang giữ sẵn cả hai đường đi.">
+                        if the iframe cannot be used in your browser, continue through the Open Discovery button in
+                        this section. This page intentionally keeps both paths available.
+                    </span>
+                </div>
+            </section>
+
+            <section class="glass-panel hero-panel">
+                <div class="section-head">
+                    <div>
+                        <h2 class="section-title"><span class="material-symbols-outlined">menu_book</span><span
+                                class="t-lang" data-en="Featured Learning Tracks" data-vi="Lộ trình nổi bật">Featured
+                                Learning Tracks</span></h2>
+                        <p class="section-subtitle t-lang"
+                            data-en="Preview content blocks that still make the page meaningful even before or without iframe success."
+                            data-vi="Các khối preview giúp trang vẫn có giá trị ngay cả khi iframe chưa hoặc không hiển thị được.">
+                            Preview content blocks that still make the page meaningful even before or without iframe
+                            success.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="channel-grid">
+                    <article class="social-card">
+                        <img alt="Power BI Basic" src="./assets/images/powerbi_coban_compaclass.jpg" />
+                        <h3>Power BI Basic</h3>
+                        <p class="muted t-lang"
+                            data-en="Structured onboarding track focused on modeling, visuals, and report thinking."
+                            data-vi="Lộ trình nhập môn có cấu trúc, tập trung vào mô hình dữ liệu, trực quan và tư duy báo cáo.">
+                            Structured onboarding track focused on modeling, visuals, and report thinking.
+                        </p>
+                    </article>
+                    <article class="social-card">
+                        <img alt="Data Analytics Fundamental" src="./assets/images/data-analytics-fundamental.webp" />
+                        <h3>Data Analytics Fundamental</h3>
+                        <p class="muted t-lang"
+                            data-en="Foundational path for analytics thinking, business questions, and data storytelling."
+                            data-vi="Lộ trình nền tảng cho tư duy phân tích, câu hỏi kinh doanh và kể chuyện bằng dữ liệu.">
+                            Foundational path for analytics thinking, business questions, and data storytelling.
+                        </p>
+                    </article>
+                    <article class="social-card">
+                        <img alt="AI in Data Analytics" src="./assets/images/ai-data-analytics.webp" />
+                        <h3>AI in Data Analytics</h3>
+                        <p class="muted t-lang"
+                            data-en="Applied AI layer for analysts who want faster workflows, synthesis, and insight generation."
+                            data-vi="Lớp ứng dụng AI cho analyst muốn tăng tốc workflow, tổng hợp và tạo insight.">
+                            Applied AI layer for analysts who want faster workflows, synthesis, and insight generation.
+                        </p>
+                    </article>
+                    <article class="social-card">
+                        <img alt="Microsoft Fabric" src="./assets/images/ms-fabric-basic.webp" />
+                        <h3>Microsoft Fabric Basic</h3>
+                        <p class="muted t-lang"
+                            data-en="Introductory program for unified analytics stacks and modern Microsoft data workflows."
+                            data-vi="Chương trình nhập môn cho unified analytics stack và workflow dữ liệu hiện đại trong hệ sinh thái Microsoft.">
+                            Introductory program for unified analytics stacks and modern Microsoft data workflows.
+                        </p>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <nav class="bottom-nav">
+            <a class="bottom-link" data-page-link="profile" href="./index.html"><span
+                    class="material-symbols-outlined">person</span><span class="t-lang" data-en="Profile"
+                    data-vi="Hồ sơ">Profile</span></a>
+            <a class="bottom-link" data-page-link="experience" href="./experience.html"><span
+                    class="material-symbols-outlined">work_history</span><span class="t-lang" data-en="Exp"
+                    data-vi="KN">Exp</span></a>
+            <a class="bottom-link" data-page-link="projects" href="./projects.html"><span
+                    class="material-symbols-outlined">workspaces</span><span class="t-lang" data-en="Projects"
+                    data-vi="Dự án">Projects</span></a>
+            <a class="bottom-link" data-page-link="courses" href="./courses.html"><span
+                    class="material-symbols-outlined">school</span><span class="t-lang" data-en="Courses"
+                    data-vi="Khóa học">Courses</span></a>
+            <a class="bottom-link" data-page-link="socials" href="./socials.html"><span
+                    class="material-symbols-outlined">subscriptions</span><span class="t-lang" data-en="Social"
+                    data-vi="XH">Social</span></a>
+            <a class="bottom-link" data-page-link="solutions" href="./solutions.html"><span
+                    class="material-symbols-outlined">widgets</span><span class="t-lang" data-en="Solutions"
+                    data-vi="Giải pháp">Solutions</span></a>
+            <a class="bottom-link" data-page-link="powerbi" href="./powerbi.html"><span
+                    class="material-symbols-outlined">bar_chart</span><span class="t-lang" data-en="PowerBI"
+                    data-vi="PowerBI">PowerBI</span></a>
+        </nav>
+    </div>
+
+    <script src="./assets/js/subpage-shell.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const frame = document.getElementById("discoveryFrame");
+            const status = document.getElementById("embedStatus");
+            let marked = false;
+
+            frame.addEventListener("load", () => {
+                marked = true;
+                status.textContent = "Discovery iframe loaded. If content is blocked by cross-site policy, use the Open Discovery button in this section.";
+            });
+
+            setTimeout(() => {
+                if (marked) return;
+                status.textContent = "Embed may be blocked in this browser or by remote page policy. Use the Open Discovery button in this section.";
+            }, 4500);
+        });
+    </script>
+</body>
+
+</html>

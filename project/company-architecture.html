@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DucNguyen Company — Architecture & Folder Design</title>
+<style>
+  :root {
+    --primary: #1e3a8a;
+    --primary-light: #3b82f6;
+    --primary-soft: #dbeafe;
+    --accent: #0ea5e9;
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --text: #0f172a;
+    --text-soft: #475569;
+    --border: #e2e8f0;
+    --code-bg: #1e293b;
+    --code-text: #e2e8f0;
+    --green: #16a34a;
+    --orange: #ea580c;
+    --red: #dc2626;
+    --purple: #9333ea;
+    --gray: #64748b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+  header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: white;
+    padding: 60px 40px 50px;
+    text-align: center;
+  }
+  header h1 { font-size: 2.6em; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.02em; }
+  header .subtitle { font-size: 1.15em; opacity: 0.92; max-width: 800px; margin: 0 auto; }
+  header .meta { margin-top: 24px; font-size: 0.9em; opacity: 0.8; }
+
+  nav.toc {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 40px;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+  nav.toc ul { list-style: none; display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
+  nav.toc a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95em;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  nav.toc a:hover { background: var(--primary-soft); }
+
+  main { max-width: 1280px; margin: 0 auto; padding: 50px 40px; }
+  section { margin-bottom: 80px; }
+  section h2 {
+    font-size: 2em; font-weight: 700; color: var(--primary);
+    margin-bottom: 24px; padding-bottom: 12px;
+    border-bottom: 3px solid var(--primary-light);
+  }
+  section h3 { font-size: 1.35em; font-weight: 700; color: var(--text); margin: 28px 0 14px; }
+  section h4 { font-size: 1.1em; font-weight: 700; color: var(--primary); margin: 20px 0 10px; }
+  section p { margin-bottom: 14px; color: var(--text-soft); }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .card-highlight { border-left: 4px solid var(--accent); }
+  .card-warning { border-left: 4px solid var(--orange); background: #fff7ed; }
+  .card-success { border-left: 4px solid var(--green); background: #f0fdf4; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    text-align: center;
+  }
+  .stat .num { font-size: 2em; font-weight: 800; color: var(--primary); display: block; }
+  .stat .label { font-size: 0.85em; color: var(--text-soft); margin-top: 4px; }
+
+  pre.tree {
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 24px 28px;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace;
+    font-size: 13px;
+    line-height: 1.55;
+    white-space: pre;
+  }
+  pre.tree .comment { color: #94a3b8; font-style: italic; }
+  pre.tree .new { color: #fbbf24; font-weight: 700; }
+  pre.tree .folder { color: #60a5fa; }
+  pre.tree .file { color: #a5f3fc; }
+  pre.tree .arrow { color: #6b7280; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    font-size: 0.92em;
+    margin: 16px 0;
+  }
+  table th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.95em;
+    position: sticky; top: 0;
+  }
+  table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  table tr:hover td { background: #f1f5f9; }
+  table tr:nth-child(even) td { background: #fafbfc; }
+  table tr:nth-child(even):hover td { background: #f1f5f9; }
+  table .stt { font-weight: 700; color: var(--primary); white-space: nowrap; }
+  table .folder-name { font-family: 'JetBrains Mono', monospace; font-size: 0.95em; font-weight: 600; }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 12px;
+    font-size: 0.78em;
+    font-weight: 700;
+    margin-right: 4px;
+  }
+  .badge-config  { background: #e0e7ff; color: #3730a3; }
+  .badge-knowledge { background: #dbeafe; color: #1e40af; }
+  .badge-leader { background: #fef3c7; color: #92400e; }
+  .badge-ops    { background: #d1fae5; color: #065f46; }
+  .badge-tech   { background: #f3e8ff; color: #6b21a8; }
+  .badge-data   { background: #fce7f3; color: #9f1239; }
+  .badge-new    { background: #fef9c3; color: #854d0e; border: 1px dashed #ca8a04; }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border-left: 3px solid var(--primary-light);
+    border-radius: 6px;
+  }
+  .step .num {
+    font-size: 1.5em; font-weight: 800; color: var(--primary);
+    min-width: 36px;
+  }
+  .step .content { flex: 1; }
+  .step .content strong { color: var(--text); }
+
+  ul.bullet { margin-left: 22px; margin-bottom: 14px; }
+  ul.bullet li { margin-bottom: 6px; color: var(--text-soft); }
+
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .compare-grid > div {
+    padding: 18px 22px;
+    border-radius: 10px;
+  }
+  .compare-good { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .compare-bad { background: #fef2f2; border: 1px solid #fecaca; }
+  .compare-grid h4 { margin-bottom: 8px; }
+
+  footer {
+    text-align: center;
+    padding: 40px 40px 60px;
+    color: var(--text-soft);
+    font-size: 0.9em;
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+  code.inline {
+    background: #f1f5f9;
+    color: var(--primary);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.92em;
+  }
+  .arrow-flow {
+    text-align: center;
+    color: var(--gray);
+    font-size: 1.4em;
+    margin: 8px 0;
+  }
+  @media print {
+    nav.toc { display: none; }
+    section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🏢 DucNguyen Company</h1>
+  <div class="subtitle">
+    Architecture &amp; Folder Design — Boutique 1-người + AI agents đa phòng ban<br>
+    Chuẩn cross-tool: Claude Cowork × Claude Code × Google Antigravity × Cursor
+  </div>
+  <div class="meta">v1.0 · 2026-05-07 · Owner: Đức (Tobi)</div>
+</header>
+
+<nav class="toc">
+  <ul>
+    <li><a href="#section1">1. Định nghĩa &amp; Giá trị</a></li>
+    <li><a href="#section2">2. Cách dùng &amp; Quy trình AI</a></li>
+    <li><a href="#section3">3. Cấu trúc folder</a></li>
+    <li><a href="#section4">4. Bảng mô tả chi tiết</a></li>
+    <li><a href="#section5">5. Folder cần bổ sung</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- ============ SECTION 1 ============ -->
+<section id="section1">
+  <h2>1. Định nghĩa, Ý nghĩa &amp; Giá trị</h2>
+
+  <div class="card card-highlight">
+    <h3>🎯 Company/ là gì?</h3>
+    <p><strong>DucNguyen Company OS</strong> — hệ điều hành công ty cho mô hình "1 founder + N AI agent" hoạt động như team 10 người. Đây là <strong>single source of truth</strong> cho mọi hoạt động kinh doanh: từ engagement với khách, cohort COMPA Class, deal pipeline, đến code product và brand voice.</p>
+  </div>
+
+  <h3>🧬 Triết lý thiết kế</h3>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">3</span><span class="label">Tier kiến trúc<br>(Config / Knowledge / Operational)</span></div>
+    <div class="stat"><span class="num">8</span><span class="label">Plugin nội bộ<br>(.company + 7 dept)</span></div>
+    <div class="stat"><span class="num">23</span><span class="label">AI agent persona</span></div>
+    <div class="stat"><span class="num">22</span><span class="label">Slash command<br>(4 root + 18 dept)</span></div>
+    <div class="stat"><span class="num">4</span><span class="label">Tool tương thích<br>(Cowork, CC, AG, Cursor)</span></div>
+  </div>
+
+  <h3>💎 Giá trị cốt lõi (4 trụ)</h3>
+
+  <div class="card">
+    <ol style="margin-left: 22px; line-height: 1.9;">
+      <li><strong>Single source of truth</strong> — mỗi knowledge có duy nhất 1 nơi sống. Tool khác chỉ là bridge import. Loại bỏ drift.</li>
+      <li><strong>Compound knowledge</strong> — mỗi engagement/cohort/campaign sinh asset reusable, lưu vào playbook. Năm sau tốc độ x2 mà không tăng cost.</li>
+      <li><strong>AI-augmented operator</strong> — 1 người + 23 AI agent persona = năng suất team 10 người. AI đóng vai SDR/Consultant/Course Designer/PM... khi Đức cần.</li>
+      <li><strong>Cross-tool resilient</strong> — đổi tool (Cowork → tool X năm sau) không cần rebuild. Knowledge sống ở Layer 1 độc lập.</li>
+    </ol>
+  </div>
+
+  <h3>🆚 Vì sao không dùng Notion / Google Drive thuần?</h3>
+
+  <div class="compare-grid">
+    <div class="compare-bad">
+      <h4>❌ Notion / GDrive</h4>
+      <ul class="bullet">
+        <li>Format proprietary — AI agent đọc qua MCP, mất 30-50% structure</li>
+        <li>Vendor lock — export sang đâu cũng pain</li>
+        <li>Không có hierarchical CLAUDE.md auto-load</li>
+        <li>Search yếu hơn grep filesystem</li>
+        <li>Không Git versioning ngon</li>
+      </ul>
+    </div>
+    <div class="compare-good">
+      <h4>✅ File system + Markdown</h4>
+      <ul class="bullet">
+        <li>AI đọc thẳng — Cowork/Claude Code/AG đều mount filesystem</li>
+        <li>Markdown plain = future-proof, không bao giờ chết</li>
+        <li>CLAUDE.md auto-load mọi level (Anthropic convention)</li>
+        <li>grep/glob nhanh — search bất kỳ keyword</li>
+        <li>Git version control + private repo</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 2 ============ -->
+<section id="section2">
+  <h2>2. Cách dùng &amp; Quy trình AI Agent</h2>
+
+  <h3>🔄 Working Loop chuẩn (mọi agent đều theo)</h3>
+  <pre class="tree">Read → Plan → Implement → Verify → Update-back → Report</pre>
+
+  <h3>🎬 Khi nào AI agent đọc Company/ ?</h3>
+
+  <div class="step">
+    <div class="num">1</div>
+    <div class="content">
+      <strong>Khởi tạo session Cowork/Claude Code:</strong> tool tự mount thư mục → đọc <code class="inline">CLAUDE.md</code> root → đọc <code class="inline">.claude/settings.json</code> → đọc <code class="inline">MEMORY.md</code> → load context.
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">2</div>
+    <div class="content">
+      <strong>Khi Đức gõ slash command</strong> (vd <code class="inline">/daily</code>): tool tìm <code class="inline">.claude/commands/daily.md</code> → execute theo workflow trong file đó.
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">3</div>
+    <div class="content">
+      <strong>Khi Đức nói "đóng vai SDR":</strong> Cowork match keyword → load <code class="inline">sales/.agent/agents/sdr.md</code> → agent persona kích hoạt.
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">4</div>
+    <div class="content">
+      <strong>Khi event nghiệp vụ xảy ra</strong> (tạo file meeting, save content marketing): hook trong <code class="inline">.claude/hooks/hooks.json</code> tự trigger script.
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">5</div>
+    <div class="content">
+      <strong>Khi user request chuyên sâu</strong> (vd "viết blog Power BI banking"): Cowork match skill description → trigger skill (vd <code class="inline">anthropic-skills:blog-writer</code>) → đọc <code class="inline">.claude/output-styles/compa-class-blog.md</code> để format.
+    </div>
+  </div>
+
+  <h3>🧭 Load order chuẩn</h3>
+  <pre class="tree">1. <span class="file">CLAUDE.md</span> (root)              <span class="comment">← entry point cho mọi tool</span>
+2. <span class="file">.claude/settings.json</span>          <span class="comment">← permissions, model, MCP allowlist</span>
+3. <span class="file">MEMORY.md</span> (root)              <span class="comment">← master memory index</span>
+4. <span class="folder">.company/CLAUDE.md</span>             <span class="comment">← rule cấp công ty (Tier 0)</span>
+5. <span class="folder">&lt;dept&gt;/CLAUDE.md</span>              <span class="comment">← rule cấp phòng ban (khi user vào dept đó)</span>
+6. <span class="file">&lt;file nghiệp vụ&gt;</span>               <span class="comment">← context cụ thể của task</span></pre>
+
+  <h3>🔍 Cơ chế discovery trong knowledge base lớn</h3>
+
+  <table>
+    <thead>
+      <tr><th>Tầng</th><th>Cơ chế</th><th>Khi nào dùng</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Tầng 1</strong></td><td>Hierarchical CLAUDE.md auto-load</td><td>Mỗi session, mặc định</td></tr>
+      <tr><td><strong>Tầng 2</strong></td><td>MEMORY.md index (≤200 dòng)</td><td>Mỗi session, mặc định</td></tr>
+      <tr><td><strong>Tầng 3</strong></td><td>Frontmatter YAML (title/category/last_updated/tags)</td><td>Khi rank file relevance</td></tr>
+      <tr><td><strong>Tầng 4</strong></td><td>Glob + Grep on demand</td><td>Khi user hỏi cụ thể</td></tr>
+      <tr><td><strong>Tầng 5</strong></td><td>Skill/Agent/Command auto-trigger qua frontmatter description</td><td>Khi user nói trigger keyword</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📋 Quy trình end-to-end (từ inbound đến closeout)</h3>
+
+  <div class="card card-highlight">
+    <pre class="tree">Inbound lead (Slack/Email)
+  ↓ <span class="folder">/sales:qualify</span>           <span class="arrow">→</span> sales/sdr agent
+  ↓ <span class="folder">/sales:discovery-call</span>   <span class="arrow">→</span> sales/account-executive
+  ↓ <span class="folder">/sales:propose</span>          <span class="arrow">→</span> sales/proposal-writer
+  ↓ <span class="folder">/consulting:kickoff</span>     <span class="arrow">→</span> consulting/engagement-pm
+  ↓ <span class="folder">/consulting:discovery</span>   <span class="arrow">→</span> consulting/senior-consultant
+  ↓ <span class="folder">/consulting:assessment</span>  <span class="arrow">→</span> consulting/solution-architect
+  ↓ (build phase, .dev workflows)
+  ↓ <span class="folder">/consulting:closeout</span>    <span class="arrow">→</span> consulting/engagement-pm
+  ↓ <span class="folder">/client:account-onboard</span> <span class="arrow">→</span> client/customer-success
+  ↓ <span class="folder">/client:health-check</span>    <span class="arrow">→</span> monthly recurring
+  ↓ <span class="folder">/client:qbr-prep</span>        <span class="arrow">→</span> quarterly</pre>
+  </div>
+</section>
+
+<!-- ============ SECTION 3 ============ -->
+<section id="section3">
+  <h2>3. Cấu trúc folder chi tiết</h2>
+
+  <div class="card card-warning">
+    <strong>📌 Note:</strong> Cấu trúc dưới đây là <strong>finalized version</strong> — đã thêm folder/file còn thiếu được phân tích ở Section 5. Các mục đánh dấu <span class="badge badge-new">NEW</span> là gợi ý bổ sung mà Company hiện tại chưa có.
+  </div>
+
+  <h3>🌳 Cây thư mục đầy đủ</h3>
+
+<pre class="tree">
+<span class="folder">Company/</span>
+├── 📄 CLAUDE.md                        <span class="comment">Entry point AI — load đầu tiên</span>
+├── 📄 README.md                        <span class="comment">For humans</span>
+├── 📄 TASKS.md                         <span class="comment">Shared task list cross-dept</span>
+├── 📄 MEMORY.md                        <span class="comment">Master memory index</span>
+├── 📄 RISK.md                          <span class="new">[NEW]</span> <span class="comment">Hard limits cấp công ty</span>
+├── 📄 RISK.local.md                    <span class="new">[NEW]</span> <span class="comment">Personal risk notes (gitignored)</span>
+├── 📄 CHANGELOG.md                     <span class="new">[NEW]</span> <span class="comment">Track major architecture changes</span>
+├── 📄 .gitignore
+├── 📄 .env.example
+│
+├── 🔧 <span class="folder">.claude/</span>                          <span class="comment">CONFIG TIER — Cowork/Claude Code bridge</span>
+│   ├── settings.json
+│   ├── settings.local.json
+│   ├── statusline.sh
+│   ├── <span class="folder">agents/INDEX.md</span>
+│   ├── <span class="folder">commands/</span>                        <span class="comment">/daily, /weekly, /quarterly, /triage</span>
+│   ├── <span class="folder">hooks/</span>                           <span class="comment">pre-meeting, post-meeting, end-of-day...</span>
+│   ├── <span class="folder">output-styles/</span>                   <span class="comment">terse, exec-summary, bilingual, compa-class-blog</span>
+│   └── <span class="folder">plugins/</span>                         <span class="comment">PLUGIN_REGISTRY.md, MCP_REGISTRY.md</span><span class="new">[NEW]</span>
+│
+├── 🏛️ <span class="folder">.company/</span>                         <span class="comment">KNOWLEDGE TIER 0 — single source of truth</span>
+│   ├── CLAUDE.md / README.md
+│   ├── <span class="folder">.agent/</span>
+│   │   ├── .claude-plugin/plugin.json
+│   │   ├── <span class="folder">rules/</span>                        <span class="comment">4 rules + 1 NEW filesystem_access</span>
+│   │   ├── <span class="folder">templates/</span>                    <span class="comment">Decision record, quarterly plan</span>
+│   │   └── <span class="folder">skills/</span>                       <span class="new">[NEW]</span> <span class="comment">Company-wide reusable skills</span>
+│   ├── <span class="folder">docs/</span>
+│   │   ├── <span class="folder">core/</span>                         <span class="comment">vision, OKR, ICP, value-prop, glossary</span>
+│   │   ├── <span class="folder">brand/</span>                        <span class="comment">brand-book, messaging-house</span>
+│   │   ├── <span class="folder">people/</span>                       <span class="comment">RACI master, org chart</span>
+│   │   ├── <span class="folder">policy/</span>                       <span class="comment">AI usage, IP, data retention</span><span class="new">[NEW]</span>
+│   │   ├── <span class="folder">process/</span>                      <span class="comment">canonical rules, meeting cadence</span>
+│   │   └── <span class="folder">registry/</span>                     <span class="comment">OKR/decision/risk/stakeholder/partner/vendor + skill+mcp</span><span class="new">[NEW]</span>
+│   ├── <span class="folder">identity_and_company_context/</span>    <span class="comment">CEO profile, identity, values, red lines</span>
+│   ├── <span class="folder">communication_style/</span>             <span class="comment">voice/tone/email/slack/banned/preferred</span>
+│   ├── <span class="folder">operating_model/</span>                 <span class="comment">hours/cadence/channel/RACI/tool stack</span>
+│   ├── <span class="folder">customer_and_market/</span>             <span class="comment">ICP detail, market analysis</span>
+│   ├── <span class="folder">examples_good_bad/</span>               <span class="comment">sample deliverable (good vs bad)</span>
+│   ├── <span class="folder">artifact_templates/</span>              <span class="comment">doc/email/report/prompt templates</span>
+│   ├── <span class="folder">workflows_and_sop/</span>
+│   ├── <span class="folder">lessons_learned/</span>                 <span class="comment">2024/, 2025/, 2026/ + _INDEX.md</span><span class="new">[NEW]</span>
+│   └── <span class="folder">calendar/</span>                        <span class="comment">quarterly plans</span>
+│
+├── 👑 <span class="folder">.leader/</span>                          <span class="comment">KNOWLEDGE TIER 0+ — executive context</span>
+│   ├── CLAUDE.md / INDEX.md / README.md
+│   ├── <span class="folder">strategy_and_priorities/</span>         <span class="comment">3-year vision, OKR, north star, bets</span>
+│   ├── <span class="folder">decision_playbook/</span>               <span class="comment">framework, approval, thresholds, crisis</span>
+│   ├── <span class="folder">data_and_kpi/</span>                    <span class="comment">KPI glossary/formula/threshold/dictionary</span>
+│   ├── <span class="folder">projects_and_meetings/</span>           <span class="comment">2026/Q1/Q2 — live meeting notes</span>
+│   ├── <span class="folder">inbox_unprocessed/</span>               <span class="comment">AG drag-drop area</span>
+│   ├── <span class="folder">private_and_sensitive/</span>           <span class="comment">gitignored — contracts/credentials/finance/HR</span>
+│   └── <span class="folder">system_rules/</span>                    <span class="comment">AG bridge — imports .company/.agent/rules/</span>
+│
+├── 🛠️ <span class="folder">.dev/</span>                             <span class="comment">Engineering dept</span>
+│   ├── CLAUDE.md / README.md / CONTRIBUTING.md / SECURITY.md
+│   ├── <span class="folder">.agent/</span>                          <span class="comment">7 agents, 14 commands, 16 skills, 11 workflows</span>
+│   ├── <span class="folder">.github/</span>                         <span class="comment">workflows, ISSUE_TEMPLATE</span>
+│   ├── <span class="folder">apps/ packages/ public/ scripts/</span>  <span class="comment">codebase</span>
+│   ├── <span class="folder">docs/</span>                            <span class="comment">ADR, requirements, security, test, UI</span>
+│   ├── <span class="folder">infra/</span>                           <span class="comment">docker, k8s, terraform, env (dev/staging/prod)</span>
+│   ├── <span class="folder">sprints/SP-2026-NN/</span>              <span class="comment">per sprint</span>
+│   └── <span class="folder">tests/</span>
+│
+├── 💾 <span class="folder">.data/</span>                            <span class="comment">Datasets (gitignored)</span>
+│   ├── <span class="folder">raw/</span>                             <span class="new">[NEW]</span> <span class="comment">raw imports</span>
+│   ├── <span class="folder">processed/</span>                       <span class="new">[NEW]</span>
+│   ├── <span class="folder">exports/</span>                         <span class="new">[NEW]</span> <span class="comment">for client delivery</span>
+│   └── <span class="folder">snapshots/</span>                       <span class="new">[NEW]</span>
+│
+├── 🐍 <span class="folder">.script/</span>                          <span class="comment">Reusable Python/Node scripts</span>
+│   ├── <span class="folder">image_generator/</span>
+│   ├── <span class="folder">web_crawler/</span>
+│   ├── <span class="folder">skill_content_creator/</span>
+│   ├── <span class="folder">skill_data_analyst/</span>
+│   ├── <span class="folder">skill_document_creator/</span>
+│   ├── <span class="folder">skill_email_drafter/</span>
+│   ├── <span class="folder">skill_meeting_summarizer/</span>
+│   ├── <span class="folder">skill_proposal_writer/</span>
+│   └── run_skill.py
+│
+├── 📥 <span class="folder">_INBOX/</span>                           <span class="new">[NEW]</span> <span class="comment">Quick drop zone — file mới triage</span>
+├── 📤 <span class="folder">_OUTPUTS/</span>                         <span class="new">[NEW]</span> <span class="comment">AI-generated artifacts staging</span>
+│
+├── 💼 <span class="folder">consulting/</span>                       <span class="comment">OPERATIONAL — engagements với khách</span>
+│   ├── CLAUDE.md / README.md
+│   ├── <span class="folder">.agent/</span>                          <span class="comment">3 agents, 4 commands, rules, workflows, templates</span>
+│   ├── <span class="folder">docs/core/playbooks/registry/</span>
+│   ├── <span class="folder">engagements/</span>
+│   │   ├── _TEMPLATE_ENGAGEMENT/
+│   │   └── ENG-2026-NNN/                <span class="comment">SOW, discovery, assessment, roadmap, decisions</span>
+│   └── <span class="folder">_archive/</span>                        <span class="new">[NEW]</span> <span class="comment">closed engagement ≥ 1 year</span>
+│
+├── 🎓 <span class="folder">academy/</span>                          <span class="comment">OPERATIONAL — COMPA Class</span>
+│   ├── CLAUDE.md / README.md
+│   ├── <span class="folder">.agent/</span>                          <span class="comment">3 agents, 3 commands</span>
+│   ├── <span class="folder">.tasks/</span>                          <span class="comment">cohort-specific tasks</span>
+│   ├── <span class="folder">docs/core/playbooks/registry/</span>
+│   ├── <span class="folder">cohorts/COH-YYYY-Q-NNN/</span>          <span class="comment">curriculum, sessions, students, NPS</span>
+│   ├── <span class="folder">workshops/WKS-YYYY-NNN/</span>
+│   └── <span class="folder">_archive/</span>                        <span class="new">[NEW]</span>
+│
+├── 🤝 <span class="folder">client/</span>                           <span class="comment">OPERATIONAL — account management</span>
+│   ├── CLAUDE.md / README.md
+│   ├── <span class="folder">.agent/</span>                          <span class="comment">2 agents, 3 commands</span>
+│   ├── <span class="folder">docs/core/playbooks/registry/</span>
+│   ├── <span class="folder">accounts/ACC-YYYY-NNN/</span>           <span class="comment">touchpoints, health, QBR</span>
+│   └── <span class="folder">_archive/</span>                        <span class="new">[NEW]</span>
+│
+├── 💰 <span class="folder">sales/</span>                            <span class="comment">OPERATIONAL — pipeline</span>
+│   ├── CLAUDE.md / README.md
+│   ├── <span class="folder">.agent/</span>                          <span class="comment">3 agents, 3 commands</span>
+│   ├── <span class="folder">docs/core/playbooks/registry/</span>
+│   ├── <span class="folder">deals/DEAL-YYYY-NNN/</span>             <span class="comment">qualification, discovery, propose</span>
+│   └── <span class="folder">_archive/</span>                        <span class="new">[NEW]</span>
+│
+├── 📣 <span class="folder">marketing/</span>                        <span class="comment">OPERATIONAL — campaigns</span>
+│   ├── CLAUDE.md / README.md
+│   ├── <span class="folder">.agent/</span>                          <span class="comment">3 agents, 3 commands</span>
+│   ├── <span class="folder">docs/core/playbooks/registry/</span>
+│   ├── <span class="folder">campaigns/CMP-YYYY-NN/</span>           <span class="comment">brief, calendar, content, experiments</span>
+│   └── <span class="folder">_archive/</span>                        <span class="new">[NEW]</span>
+│
+└── 🚀 <span class="folder">product/</span>                          <span class="comment">OPERATIONAL — COMPA Class platform + AI agent OS</span>
+    ├── CLAUDE.md / README.md
+    ├── <span class="folder">.agent/</span>                          <span class="comment">2 agents, 2 commands</span>
+    ├── <span class="folder">docs/core/registry/</span>
+    ├── <span class="folder">cycles/CYC-YYYY-Q/</span>               <span class="comment">specs, plan, retro</span>
+    └── <span class="folder">_archive/</span>                        <span class="new">[NEW]</span>
+</pre>
+</section>
+
+<!-- ============ SECTION 4 ============ -->
+<section id="section4">
+  <h2>4. Bảng mô tả chi tiết từng folder</h2>
+
+  <p><strong>Phân loại badge:</strong>
+    <span class="badge badge-config">CONFIG</span>
+    <span class="badge badge-knowledge">KNOWLEDGE T0</span>
+    <span class="badge badge-leader">EXEC/LEADER</span>
+    <span class="badge badge-ops">OPERATIONAL</span>
+    <span class="badge badge-tech">TECH/DEV</span>
+    <span class="badge badge-data">DATA/STORAGE</span>
+    <span class="badge badge-new">NEW</span>
+  </p>
+
+  <h3>📐 Lớp 1 — File &amp; Folder ở ROOT</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px">STT</th>
+        <th style="width:170px">Tên</th>
+        <th style="width:230px">Định nghĩa</th>
+        <th style="width:230px">Thông tin lưu trữ</th>
+        <th style="width:200px">Giá trị</th>
+        <th>Kích hoạt khi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="stt">1</td><td class="folder-name">CLAUDE.md</td><td>Entry point cho mọi AI agent (Cowork, CC, AG)</td><td>Bản đồ folder, ID convention, working loop, STOP conditions</td><td>Auto-discovery — không cần nhắc thủ công</td><td>Mỗi session bắt đầu</td></tr>
+      <tr><td class="stt">2</td><td class="folder-name">README.md</td><td>Mô tả cho người (con người)</td><td>Cấu trúc rút gọn, tools tương thích</td><td>Onboard người mới</td><td>Khi human mở folder lần đầu</td></tr>
+      <tr><td class="stt">3</td><td class="folder-name">TASKS.md</td><td>Shared task list cross-dept</td><td>Today / This week / Inbox / Blocked / Done / Archived</td><td>Single source cho mọi task</td><td>/daily, /weekly, mọi command tạo task</td></tr>
+      <tr><td class="stt">4</td><td class="folder-name">MEMORY.md</td><td>Master memory index</td><td>Pointer tới mọi knowledge file quan trọng</td><td>Discovery layer 2 — luôn load</td><td>Mỗi session</td></tr>
+      <tr><td class="stt">5</td><td class="folder-name">RISK.md <span class="badge badge-new">NEW</span></td><td>Hard limits cấp công ty</td><td>Tài chính/legal/operational red lines</td><td>Agent biết khi nào STOP</td><td>Trước action có rủi ro lớn</td></tr>
+      <tr><td class="stt">6</td><td class="folder-name">RISK.local.md <span class="badge badge-new">NEW</span></td><td>Personal risk notes (gitignored)</td><td>Burnout signal, family commitments, ngưỡng cá nhân</td><td>Đức tự xem, AI không công khai</td><td>Đức review hàng tuần</td></tr>
+      <tr><td class="stt">7</td><td class="folder-name">CHANGELOG.md <span class="badge badge-new">NEW</span></td><td>Track major architecture changes</td><td>Date / change / reason / impact</td><td>Audit trail khi restructure</td><td>Sau mỗi đợt restructure</td></tr>
+      <tr><td class="stt">8</td><td class="folder-name">.gitignore</td><td>Loại trừ file/folder khỏi git</td><td>Rules pattern cho secret, data, temp, private</td><td>Bảo mật — không lộ PII</td><td>Mọi git commit</td></tr>
+      <tr><td class="stt">9</td><td class="folder-name">.env.example</td><td>Template biến môi trường</td><td>API keys, OAuth tokens (placeholder)</td><td>Onboard tool/credential mới</td><td>Setup máy mới</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📐 Lớp 2 — Tier CONFIG (.claude/)</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px">STT</th>
+        <th style="width:200px">Folder/File</th>
+        <th style="width:230px">Định nghĩa</th>
+        <th style="width:230px">Thông tin lưu trữ</th>
+        <th style="width:180px">Giá trị</th>
+        <th>Kích hoạt khi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="stt">10</td><td class="folder-name">.claude/ <span class="badge badge-config">CFG</span></td><td>Bridge cho Cowork/Claude Code</td><td>Settings, hooks, commands, agents index, output styles</td><td>Tool tự auto-detect — không cần nhắc</td><td>Cowork mount Company/</td></tr>
+      <tr><td class="stt">11</td><td class="folder-name">.claude/settings.json</td><td>Cấu hình chính</td><td>Model, language, permissions, MCP allowlist, plugins, stopConditions</td><td>Centralized config</td><td>Mỗi session</td></tr>
+      <tr><td class="stt">12</td><td class="folder-name">.claude/settings.local.json</td><td>Personal overrides (gitignored)</td><td>User name, email, preferred model, override permissions</td><td>Cá nhân hoá không drift</td><td>Mỗi session sau settings.json</td></tr>
+      <tr><td class="stt">13</td><td class="folder-name">.claude/statusline.sh</td><td>Status line script</td><td>Shell script in date + OKR Q + sprint + tasks + risks</td><td>Đức nhìn 1 phát biết trạng thái</td><td>Cowork render status mỗi 5 phút</td></tr>
+      <tr><td class="stt">14</td><td class="folder-name">.claude/agents/INDEX.md</td><td>Bản đồ 23 agent persona</td><td>Link tới agent files, workflow cross-dept</td><td>Discovery agent</td><td>Khi user nói "đóng vai X"</td></tr>
+      <tr><td class="stt">15</td><td class="folder-name">.claude/commands/</td><td>Slash commands cấp company</td><td>daily.md, weekly.md, quarterly.md, triage.md</td><td>Tự động hóa cadence</td><td>User gõ /daily, /weekly...</td></tr>
+      <tr><td class="stt">16</td><td class="folder-name">.claude/hooks/</td><td>Business hooks (event-driven)</td><td>hooks.json + pre-meeting/post-meeting/pre-publish/end-of-day/end-of-week/post-cohort</td><td>Auto-trigger không cần nhắc</td><td>Event nghiệp vụ xảy ra</td></tr>
+      <tr><td class="stt">17</td><td class="folder-name">.claude/output-styles/</td><td>Output style options</td><td>terse / exec-summary / bilingual-vn-jp / compa-class-blog</td><td>Format đúng audience</td><td>Theo rule trong settings hoặc user pick</td></tr>
+      <tr><td class="stt">18</td><td class="folder-name">.claude/plugins/</td><td>Plugin registry</td><td>PLUGIN_REGISTRY.md (8 internal + Cowork marketplace), MCP_REGISTRY.md <span class="badge badge-new">NEW</span></td><td>Track active plugin + MCP</td><td>Khi audit hoặc add plugin mới</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📐 Lớp 3 — Tier KNOWLEDGE (.company/)</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px">STT</th>
+        <th style="width:230px">Folder</th>
+        <th style="width:220px">Định nghĩa</th>
+        <th style="width:220px">Thông tin lưu trữ</th>
+        <th style="width:180px">Giá trị</th>
+        <th>Kích hoạt khi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="stt">19</td><td class="folder-name">.company/ <span class="badge badge-knowledge">KNW T0</span></td><td>Single source of truth toàn công ty</td><td>Brand, OKR, ICP, rules, registry, identity</td><td>Mọi dept inherit từ đây</td><td>Mỗi session, sau CLAUDE.md root</td></tr>
+      <tr><td class="stt">20</td><td class="folder-name">.company/.agent/rules/</td><td>4 rules + filesystem_access</td><td>01_global / 02_brand_voice / 03_security_data / 04_language_policy / 05_filesystem_access <span class="badge badge-new">NEW</span></td><td>Quy tắc bất biến cho mọi agent</td><td>Mỗi session — đọc bắt buộc</td></tr>
+      <tr><td class="stt">21</td><td class="folder-name">.company/.agent/templates/</td><td>Template cấp công ty</td><td>DECISION_RECORD, QUARTERLY_PLAN</td><td>Standardize output</td><td>Khi tạo decision/plan</td></tr>
+      <tr><td class="stt">22</td><td class="folder-name">.company/.agent/skills/ <span class="badge badge-new">NEW</span></td><td>Skills reusable cấp company</td><td>Skills không thuộc dept cụ thể (vd brand-voice-checker, kpi-extractor)</td><td>Tránh trùng skill ở mỗi dept</td><td>Khi cần action cross-dept</td></tr>
+      <tr><td class="stt">23</td><td class="folder-name">.company/docs/core/</td><td>Vision &amp; OKR cấp cao</td><td>vision-mission, OKR, ICP, value-proposition, glossary, strategy-pillars</td><td>North star tham chiếu mọi quyết định</td><td>Khi quyết định chiến lược</td></tr>
+      <tr><td class="stt">24</td><td class="folder-name">.company/docs/brand/</td><td>Brand assets</td><td>Brand book, messaging house</td><td>Đảm bảo brand consistency</td><td>Trước mọi public output</td></tr>
+      <tr><td class="stt">25</td><td class="folder-name">.company/docs/people/</td><td>Tổ chức &amp; trách nhiệm</td><td>RACI master, org chart</td><td>Ai làm gì rõ ràng</td><td>Khi assign task lớn</td></tr>
+      <tr><td class="stt">26</td><td class="folder-name">.company/docs/policy/</td><td>Chính sách công ty</td><td>AI usage, IP, data retention <span class="badge badge-new">NEW</span></td><td>Compliance + legal protection</td><td>Trước action có legal risk</td></tr>
+      <tr><td class="stt">27</td><td class="folder-name">.company/docs/process/</td><td>Quy trình canonical</td><td>Rules, meeting cadence, escalation</td><td>Reference khi confused</td><td>Khi có conflict giữa 2 dept</td></tr>
+      <tr><td class="stt">28</td><td class="folder-name">.company/docs/registry/</td><td>Sổ đăng ký toàn công ty</td><td>OKR / decision / risk-issue / stakeholder / partner / vendor / skill <span class="badge badge-new">NEW</span> / mcp <span class="badge badge-new">NEW</span></td><td>Audit trail + accountability</td><td>Mỗi tuần update; mỗi event lớn</td></tr>
+      <tr><td class="stt">29</td><td class="folder-name">.company/identity_and_company_context/</td><td>Định danh công ty + CEO</td><td>CEO_PROFILE, company_identity, CORE_VALUES, LEADERSHIP_PRINCIPLES, PERSONALITY_AND_PREFERENCES, RED_LINES</td><td>AI hiểu Đức là ai</td><td>Mỗi session</td></tr>
+      <tr><td class="stt">30</td><td class="folder-name">.company/communication_style/</td><td>Văn phong chuẩn</td><td>VOICE_AND_TONE, EMAIL/SLACK/PRESENTATION/PUBLIC_WRITING_STYLE, BANNED/PREFERRED_WORDS</td><td>Output match giọng Đức</td><td>Trước mọi text output</td></tr>
+      <tr><td class="stt">31</td><td class="folder-name">.company/operating_model/</td><td>Cách vận hành công ty</td><td>WORKING_HOURS, MEETING_CADENCE, COMMUNICATION_CHANNELS, RACI_MATRIX, TOOL_STACK</td><td>AI biết khi nào contact ai</td><td>Khi schedule meeting/action</td></tr>
+      <tr><td class="stt">32</td><td class="folder-name">.company/customer_and_market/</td><td>Hiểu khách hàng + thị trường</td><td>ICP detail, market analysis, competitor</td><td>Discovery + sales prep</td><td>Trước discovery call, propose</td></tr>
+      <tr><td class="stt">33</td><td class="folder-name">.company/examples_good_bad/</td><td>Mẫu tốt vs xấu</td><td>emails / proposals / reports / meeting_notes / social_posts</td><td>Few-shot learning cho AI</td><td>Khi AI tạo output cùng loại</td></tr>
+      <tr><td class="stt">34</td><td class="folder-name">.company/artifact_templates/</td><td>Template artifact</td><td>DOCUMENT/EMAIL/REPORT/PROMPT TEMPLATES</td><td>Tạo output nhanh, đúng format</td><td>/triage, /weekly, mọi command</td></tr>
+      <tr><td class="stt">35</td><td class="folder-name">.company/workflows_and_sop/</td><td>Workflow chuẩn</td><td>SOP cho task lặp lại</td><td>Đức không phải nghĩ lại</td><td>Khi action recurring</td></tr>
+      <tr><td class="stt">36</td><td class="folder-name">.company/lessons_learned/</td><td>Bài học theo năm</td><td>2024/, 2025/, 2026/ + _INDEX.md <span class="badge badge-new">NEW</span></td><td>Compound knowledge — không lặp sai lầm</td><td>Mỗi tuần (WBR), mỗi quý retro</td></tr>
+      <tr><td class="stt">37</td><td class="folder-name">.company/calendar/</td><td>Quarterly plan</td><td>2026-Q2.md, _TEMPLATE_QUARTER.md</td><td>Visibility tuần/tháng/quý</td><td>Đầu mỗi quý + adhoc check</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📐 Lớp 4 — Tier EXEC/LEADER (.leader/)</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px">STT</th>
+        <th style="width:230px">Folder</th>
+        <th style="width:220px">Định nghĩa</th>
+        <th style="width:220px">Thông tin lưu trữ</th>
+        <th style="width:180px">Giá trị</th>
+        <th>Kích hoạt khi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="stt">38</td><td class="folder-name">.leader/ <span class="badge badge-leader">EXEC</span></td><td>Executive context — bộ não điều hành</td><td>Strategy, decision, KPI, exec meeting notes, AG bridge</td><td>Frame "Đức as CEO/founder"</td><td>Quyết định chiến lược, AG ingest</td></tr>
+      <tr><td class="stt">39</td><td class="folder-name">.leader/strategy_and_priorities/</td><td>Hướng đi 1-3 năm</td><td>3-year vision, annual OKR, north star, quarterly priorities, strategic bets, NOT_DOING_LIST</td><td>Anti-drift — luôn nhớ what we're NOT doing</td><td>Mỗi quý plan + adhoc check</td></tr>
+      <tr><td class="stt">40</td><td class="folder-name">.leader/decision_playbook/</td><td>Khung ra quyết định</td><td>DECISION_FRAMEWORK, APPROVAL_MATRIX, DECISION_THRESHOLDS, CRISIS_DECISIONS, HIRING/INVESTMENT/PARTNERSHIP_DECISIONS</td><td>AI biết khi nào tự quyết, khi nào hỏi</td><td>Trước decision có ngưỡng tài chính</td></tr>
+      <tr><td class="stt">41</td><td class="folder-name">.leader/data_and_kpi/</td><td>KPI &amp; data definitions</td><td>KPI_GLOSSARY, KPI_FORMULAS, KPI_THRESHOLDS, DATA_DICTIONARY, DASHBOARD_GUIDE</td><td>Báo cáo đúng số, đúng định nghĩa</td><td>Mỗi WBR, /weekly, dashboard build</td></tr>
+      <tr><td class="stt">42</td><td class="folder-name">.leader/projects_and_meetings/</td><td>Live exec project + meeting</td><td>2026/Q1, Q2 — meeting notes theo quarter; ARCHIVE/2024, 2025</td><td>Lịch sử quyết định cấp exec</td><td>Mỗi cuộc họp exec lớn</td></tr>
+      <tr><td class="stt">43</td><td class="folder-name">.leader/inbox_unprocessed/</td><td>AG drag-drop staging</td><td>File raw chưa phân loại</td><td>Triage flow đầu vào</td><td>Đức drop file mới vào</td></tr>
+      <tr><td class="stt">44</td><td class="folder-name">.leader/private_and_sensitive/</td><td>Tài liệu cực mật (gitignored)</td><td>contracts / credentials / financial / hr_confidential</td><td>Bảo vệ legal/financial</td><td>Adhoc — chỉ Đức access</td></tr>
+      <tr><td class="stt">45</td><td class="folder-name">.leader/system_rules/</td><td>AG ingestion bridge</td><td>INDEX.md, AGENT_INSTRUCTIONS.md, RULES_BRIDGE.md (import từ .company/.agent/rules/)</td><td>AG load knowledge không drift</td><td>AG session, khi setup AG mới</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📐 Lớp 5 — Tier OPERATIONAL (6 dept biz)</h3>
+
+  <p style="color: var(--text-soft); margin-bottom: 14px;"><em>Pattern chung cho cả 6 dept: <code class="inline">consulting/</code>, <code class="inline">academy/</code>, <code class="inline">client/</code>, <code class="inline">sales/</code>, <code class="inline">marketing/</code>, <code class="inline">product/</code>. Bảng dưới mô tả pattern, không lặp lại 6 lần.</em></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px">STT</th>
+        <th style="width:230px">Folder</th>
+        <th style="width:220px">Định nghĩa</th>
+        <th style="width:220px">Thông tin lưu trữ</th>
+        <th style="width:180px">Giá trị</th>
+        <th>Kích hoạt khi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="stt">46</td><td class="folder-name">&lt;dept&gt;/ <span class="badge badge-ops">OPS</span></td><td>Operational dept folder</td><td>CLAUDE.md, README, .agent/, docs/, &lt;unit&gt;/</td><td>Daily operational work</td><td>Khi có task thuộc dept đó</td></tr>
+      <tr><td class="stt">47</td><td class="folder-name">&lt;dept&gt;/CLAUDE.md</td><td>Entry point cấp dept</td><td>Dept context, override rule (nếu có), agent list</td><td>Specific context cho dept</td><td>Khi user vào dept đó</td></tr>
+      <tr><td class="stt">48</td><td class="folder-name">&lt;dept&gt;/.agent/agents/</td><td>Agent persona riêng dept</td><td>2-3 agent files (vd consulting: senior-consultant, solution-architect, engagement-pm)</td><td>AI đóng vai role-based</td><td>User nói "đóng vai X" hoặc command trigger</td></tr>
+      <tr><td class="stt">49</td><td class="folder-name">&lt;dept&gt;/.agent/commands/</td><td>Slash command riêng dept</td><td>2-4 command (vd /consulting:kickoff, /sales:qualify)</td><td>Workflow chuẩn hoá</td><td>User gõ /&lt;dept&gt;:&lt;cmd&gt;</td></tr>
+      <tr><td class="stt">50</td><td class="folder-name">&lt;dept&gt;/.agent/rules/</td><td>Rules cấp dept (override .company/)</td><td>01_global, 02_role_based</td><td>Customize cho dept cụ thể</td><td>Mỗi action trong dept</td></tr>
+      <tr><td class="stt">51</td><td class="folder-name">&lt;dept&gt;/.agent/templates/</td><td>Templates riêng dept</td><td>vd consulting: SOW, PROPOSAL, KICKOFF_DECK, CLOSEOUT_REPORT</td><td>Output đúng format</td><td>Khi tạo deliverable</td></tr>
+      <tr><td class="stt">52</td><td class="folder-name">&lt;dept&gt;/.agent/workflows/</td><td>Workflow doc</td><td>00_WORKFLOW_INDEX.md + step-by-step doc</td><td>Standardize quy trình</td><td>Khi follow quy trình lặp lại</td></tr>
+      <tr><td class="stt">53</td><td class="folder-name">&lt;dept&gt;/docs/core/</td><td>Mission &amp; OKR cấp dept</td><td>mission-okrs, service-catalog (consulting)</td><td>Strategic alignment dept</td><td>Quarterly plan dept</td></tr>
+      <tr><td class="stt">54</td><td class="folder-name">&lt;dept&gt;/docs/playbooks/</td><td>Playbook chuyên môn</td><td>delivery, pricing, asset-library (consulting); refund-policy (academy); battlecard (sales)</td><td>Battle-tested how-to</td><td>Khi gặp tình huống chuẩn</td></tr>
+      <tr><td class="stt">55</td><td class="folder-name">&lt;dept&gt;/docs/registry/</td><td>Sổ đăng ký dept</td><td>engagement/cohort/deal/campaign/account registry</td><td>Track mọi unit dept</td><td>Khi tạo/update unit</td></tr>
+      <tr><td class="stt">56</td><td class="folder-name">&lt;dept&gt;/&lt;unit&gt;/&lt;ID&gt;/</td><td>Folder per unit (engagement/cohort/deal...)</td><td>00_metadata, 01_..., 02_..., touchpoints, decisions, CLOSEOUT</td><td>Atomic work folder</td><td>Khi unit active</td></tr>
+      <tr><td class="stt">57</td><td class="folder-name">&lt;dept&gt;/_archive/ <span class="badge badge-new">NEW</span></td><td>Folder unit closed ≥ 1 năm</td><td>Engagement đã hoàn tất, không cần search hàng ngày</td><td>Giữ folder &lt;dept&gt;/ gọn</td><td>Quarterly archive review</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📐 Lớp 6 — Tier TECH/DEV (.dev/)</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px">STT</th>
+        <th style="width:230px">Folder</th>
+        <th style="width:220px">Định nghĩa</th>
+        <th style="width:220px">Thông tin lưu trữ</th>
+        <th style="width:180px">Giá trị</th>
+        <th>Kích hoạt khi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="stt">58</td><td class="folder-name">.dev/ <span class="badge badge-tech">TECH</span></td><td>Engineering dept (codebase + tooling)</td><td>Apps, packages, infra, sprints, tests, .agent/ enterprise-grade</td><td>Build COMPA Class platform + AI agent OS</td><td>Code + sprint hoạt động</td></tr>
+      <tr><td class="stt">59</td><td class="folder-name">.dev/.agent/agents/</td><td>7 dev agents</td><td>architect, ba, backend, frontend, qa, release, security</td><td>Multi-role coverage 1 dev</td><td>User chọn role</td></tr>
+      <tr><td class="stt">60</td><td class="folder-name">.dev/.agent/commands/</td><td>14 dev commands</td><td>adr-new, bug-triage, sprint-start, sprint-close, openspec-new, project-init...</td><td>Workflow dev chuẩn</td><td>User gõ /&lt;cmd&gt;</td></tr>
+      <tr><td class="stt">61</td><td class="folder-name">.dev/.agent/skills/</td><td>16 dev skills</td><td>code-reviewer, security-scanner, tdd-enforcer, sql-pbix-reviewer, openspec-proposer...</td><td>Specialized capability</td><td>Match keyword trigger</td></tr>
+      <tr><td class="stt">62</td><td class="folder-name">.dev/.agent/hooks/</td><td>Pre/post-tool hooks</td><td>pre-tool-use.sh, post-tool-use.sh + hooks.json</td><td>Validation trước/sau tool call</td><td>Mỗi tool call</td></tr>
+      <tr><td class="stt">63</td><td class="folder-name">.dev/.agent/workflows/</td><td>11 dev workflows</td><td>wf-00-triage, wf-01-ba-prd, wf-02-arch-rfc, ... wf-10-change-control</td><td>Idea → release traceable</td><td>Mỗi feature lifecycle</td></tr>
+      <tr><td class="stt">64</td><td class="folder-name">.dev/.agent/memory/</td><td>Dev memory system (4 type)</td><td>feedback/, local/, project/, reference/, user/, MEMORY.md</td><td>Cowork two-tier memory</td><td>Mỗi session dev</td></tr>
+      <tr><td class="stt">65</td><td class="folder-name">.dev/apps, packages, public</td><td>Codebase</td><td>Source code monorepo</td><td>Product code</td><td>Khi develop</td></tr>
+      <tr><td class="stt">66</td><td class="folder-name">.dev/docs/</td><td>Engineering docs</td><td>architecture/adr, requirements, security, test, ui-ux, workflows/openspec</td><td>Dev knowledge persistent</td><td>Khi viết spec/ADR</td></tr>
+      <tr><td class="stt">67</td><td class="folder-name">.dev/infra/</td><td>Infrastructure</td><td>docker, k8s, terraform, env (dev/staging/prod)</td><td>Reproducible deployment</td><td>Deploy + provisioning</td></tr>
+      <tr><td class="stt">68</td><td class="folder-name">.dev/sprints/SP-YYYY-NN/</td><td>Per sprint folder</td><td>Plan, retro, RTM</td><td>Sprint accountability</td><td>Sprint start/end</td></tr>
+      <tr><td class="stt">69</td><td class="folder-name">.dev/tests/</td><td>Test suite</td><td>Unit, integration, e2e</td><td>Quality gate</td><td>CI run, pre-deploy</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📐 Lớp 7 — Tier DATA/STORAGE</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px">STT</th>
+        <th style="width:230px">Folder</th>
+        <th style="width:220px">Định nghĩa</th>
+        <th style="width:220px">Thông tin lưu trữ</th>
+        <th style="width:180px">Giá trị</th>
+        <th>Kích hoạt khi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="stt">70</td><td class="folder-name">.data/ <span class="badge badge-data">DATA</span></td><td>Datasets (gitignored)</td><td>raw/, processed/, exports/, snapshots/</td><td>Dataset thực cho consulting/dev</td><td>Khi ad-hoc analysis</td></tr>
+      <tr><td class="stt">71</td><td class="folder-name">.data/raw/ <span class="badge badge-new">NEW</span></td><td>Raw imports</td><td>CSV, JSON, Parquet từ khách hoặc API</td><td>Source untouched</td><td>Khi nhận data mới</td></tr>
+      <tr><td class="stt">72</td><td class="folder-name">.data/processed/ <span class="badge badge-new">NEW</span></td><td>Data đã clean</td><td>File sau ETL</td><td>Reusable trong nhiều report</td><td>Sau pipeline run</td></tr>
+      <tr><td class="stt">73</td><td class="folder-name">.data/exports/ <span class="badge badge-new">NEW</span></td><td>Export gửi khách</td><td>Excel/CSV/PDF deliverable</td><td>Final output cho khách</td><td>Trước khi gửi khách</td></tr>
+      <tr><td class="stt">74</td><td class="folder-name">.data/snapshots/ <span class="badge badge-new">NEW</span></td><td>Snapshot theo thời điểm</td><td>State của data tại 1 ngày cụ thể</td><td>Audit trail data</td><td>Mỗi quý hoặc trước migration</td></tr>
+      <tr><td class="stt">75</td><td class="folder-name">.script/</td><td>Reusable Python/Node scripts</td><td>image_generator, web_crawler, skill_*</td><td>Tự động hóa lặp lại</td><td>Khi cần action programmatic</td></tr>
+      <tr><td class="stt">76</td><td class="folder-name">_INBOX/ <span class="badge badge-new">NEW</span></td><td>Quick drop zone cấp root</td><td>File mới đến chưa biết phân loại</td><td>Triage flow</td><td>Đức drop file vào, /triage</td></tr>
+      <tr><td class="stt">77</td><td class="folder-name">_OUTPUTS/ <span class="badge badge-new">NEW</span></td><td>AI-generated artifact staging</td><td>File AI tạo trước khi route đúng folder</td><td>Review trước khi commit</td><td>AI tạo deliverable mới</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ SECTION 5 ============ -->
+<section id="section5">
+  <h2>5. Folder/File còn cần bổ sung — Finalize</h2>
+
+  <div class="card card-warning">
+    <strong>📝 Phân tích kỹ:</strong> Sau khi review cấu trúc hiện tại + so sánh ảnh tham khảo + best practice tool stack hiện đại, tôi gợi ý <strong>11 folder/file mới</strong> cần thêm để Company hoàn chỉnh. Liệt kê dưới với mức độ ưu tiên.
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px">#</th>
+        <th style="width:280px">File/Folder mới</th>
+        <th style="width:280px">Lý do</th>
+        <th style="width:120px">Effort</th>
+        <th>Priority</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td class="folder-name">RISK.md (root)</td><td>Hard limits cấp công ty — AI biết khi nào STOP. Tương đương RISK.md trong ảnh trading system.</td><td>15 phút</td><td>⭐⭐⭐ HIGH</td></tr>
+      <tr><td>2</td><td class="folder-name">RISK.local.md (root, gitignored)</td><td>Personal risk note — burnout signal, family commitments không share AI auto.</td><td>15 phút</td><td>⭐⭐⭐ HIGH</td></tr>
+      <tr><td>3</td><td class="folder-name">CHANGELOG.md (root)</td><td>Track major architecture changes — audit trail khi restructure.</td><td>15 phút</td><td>⭐⭐ MED</td></tr>
+      <tr><td>4</td><td class="folder-name">.company/.agent/skills/</td><td>Skills reusable cấp company (vd brand-voice-checker, kpi-extractor) — tránh trùng skill ở mỗi dept.</td><td>2-3 giờ (12-15 skills)</td><td>⭐⭐⭐ HIGH</td></tr>
+      <tr><td>5</td><td class="folder-name">.company/.agent/rules/05_filesystem_access.md</td><td>Rule "đọc cả dot folder" — khỏi phải nhắc thủ công mỗi tool.</td><td>10 phút</td><td>⭐⭐⭐ HIGH</td></tr>
+      <tr><td>6</td><td class="folder-name">.company/docs/policy/AI_USAGE_POLICY.md, IP_POLICY.md, DATA_RETENTION.md</td><td>Compliance + legal protection. Đặc biệt cần cho engagement với khách enterprise/banking.</td><td>1-2 giờ</td><td>⭐⭐⭐ HIGH</td></tr>
+      <tr><td>7</td><td class="folder-name">.company/docs/registry/skill-registry.md, mcp-registry.md</td><td>Track skills nội bộ + MCP connectors — discovery layer.</td><td>30 phút</td><td>⭐⭐ MED</td></tr>
+      <tr><td>8</td><td class="folder-name">.company/lessons_learned/_INDEX.md</td><td>Index cho lessons folder — khi phình &gt;50 lessons.</td><td>15 phút</td><td>⭐⭐ MED</td></tr>
+      <tr><td>9</td><td class="folder-name">.claude/plugins/MCP_REGISTRY.md</td><td>Registry MCP connectors active (Slack, Gmail, GitHub, HubSpot...).</td><td>20 phút</td><td>⭐⭐ MED</td></tr>
+      <tr><td>10</td><td class="folder-name">_INBOX/ và _OUTPUTS/ (root)</td><td>Quick drop zone + AI artifact staging — triage flow.</td><td>10 phút (mkdir + README)</td><td>⭐⭐⭐ HIGH</td></tr>
+      <tr><td>11</td><td class="folder-name">&lt;dept&gt;/_archive/ (mỗi dept)</td><td>Folder unit closed ≥1 năm — giữ folder dept gọn.</td><td>10 phút × 6 dept</td><td>⭐⭐ MED</td></tr>
+    </tbody>
+  </table>
+
+  <h3>🎯 Roadmap finalize</h3>
+
+  <div class="card card-success">
+    <strong>Recommend làm theo thứ tự:</strong>
+    <ol style="margin: 12px 0 0 22px; line-height: 1.9;">
+      <li>HIGH priority items (#1, 2, 4, 5, 6, 10) → ~5 giờ</li>
+      <li>MED priority items (#3, 7, 8, 9, 11) → ~2 giờ</li>
+      <li>Sau đó test 1 agent + 1 command end-to-end với scenario thật</li>
+      <li>Pilot 2 tuần → review feedback → finalize v1.1</li>
+    </ol>
+  </div>
+
+  <h3>📊 Statistics sau khi finalize</h3>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">~85</span><span class="label">Folder &amp; sub-folder</span></div>
+    <div class="stat"><span class="num">~30</span><span class="label">File ở root + tier 1</span></div>
+    <div class="stat"><span class="num">23</span><span class="label">AI agent persona</span></div>
+    <div class="stat"><span class="num">22</span><span class="label">Slash commands</span></div>
+    <div class="stat"><span class="num">28+</span><span class="label">Skills (16 .dev + 12+ company)</span></div>
+    <div class="stat"><span class="num">6</span><span class="label">Hook scripts business event-driven</span></div>
+    <div class="stat"><span class="num">4</span><span class="label">Output styles</span></div>
+    <div class="stat"><span class="num">8</span><span class="label">Internal plugins</span></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p><strong>DucNguyen Company — Architecture v1.0</strong> · Owner: Đức (Tobi) · Last updated: 2026-05-07</p>
+  <p style="margin-top: 8px;">Cross-tool: Claude Cowork × Claude Code × Google Antigravity × Cursor</p>
+  <p style="margin-top: 8px;"><em>"Trust by craft. Reuse and compound. AI-augmented operator. Bilingual presence."</em></p>
+</footer>
+
+</body>
+</html>

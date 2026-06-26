@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Databricks GenAI Engineer · Study Tool</title>
+<meta name="description" content="Interactive study tool with glossary, flashcards, and evaluation framework for the Databricks Certified Generative AI Engineer Associate certification.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b1020;
+  --bg-elev:#0f1530;
+  --surface:#151b3d;
+  --surface-2:#1c244d;
+  --surface-3:#252e60;
+  --border:#2a3470;
+  --border-soft:#1f2654;
+  --accent:#7c83ff;
+  --accent-2:#a5acff;
+  --accent-soft:#3d3e9c;
+  --violet:#c4a8ff;
+  --green:#34d399;
+  --green-soft:#10532f;
+  --amber:#fbbf24;
+  --rose:#fb7185;
+  --sky:#38bdf8;
+  --text:#e8ecff;
+  --text-2:#a8b0d6;
+  --text-3:#6b75a8;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.2);
+  --shadow-lg:0 4px 8px rgba(0,0,0,.35), 0 24px 48px rgba(0,0,0,.3);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+h1,h2,h3,h4,h5,h6{font-family:'Outfit','Be Vietnam Pro',sans-serif}
+body{
+  font-family:'Be Vietnam Pro','Inter',system-ui,-apple-system,sans-serif;
+  background:radial-gradient(1200px 600px at 20% -10%, rgba(124,131,255,.12), transparent 60%),
+             radial-gradient(900px 500px at 90% 10%, rgba(196,168,255,.08), transparent 60%),
+             var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  font-feature-settings:"ss01","cv11";
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  overflow-wrap:break-word;
+}
+::selection{background:var(--accent);color:#fff}
+img,svg{max-width:100%}
+h1,h2,h3,h4,p,a,button{overflow-wrap:break-word}
+
+/* ======= TOP NAV ======= */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  background:rgba(11,16,32,.78);
+  border-bottom:1px solid var(--border-soft);
+}
+.topbar-inner{
+  max-width:1280px;margin:0 auto;
+  display:flex;align-items:center;gap:32px;
+  padding:14px 28px;
+  min-width:0;
+}
+.brand{
+  display:flex;align-items:center;gap:12px;flex-shrink:0;
+  text-decoration:none;color:inherit;
+  padding:4px 8px 4px 4px;border-radius:10px;
+  transition:background .15s;
+  min-width:0;
+}
+.brand:hover{background:var(--surface)}
+.brand:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.brand-mark{
+  width:40px;height:40px;border-radius:50%;
+  overflow:hidden;flex-shrink:0;
+  background:linear-gradient(135deg,#7c83ff,#c4a8ff);
+  border:2px solid rgba(124,131,255,.4);
+  box-shadow:0 4px 16px rgba(124,131,255,.35);
+}
+.brand-mark img{width:100%;height:100%;object-fit:cover;display:block}
+.brand-text h1{font-size:.92rem;font-weight:700;letter-spacing:0;line-height:1.2}
+.brand-text p{font-size:.72rem;color:var(--text-3);font-weight:500;margin-top:2px}
+.tabs{display:flex;gap:4px;margin-left:auto;min-width:0;flex-wrap:wrap;justify-content:flex-end}
+.tab{
+  padding:9px 18px;border-radius:8px;
+  font-size:.85rem;font-weight:600;
+  color:var(--text-2);cursor:pointer;
+  transition:all .15s;background:transparent;border:none;
+  font-family:inherit;
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:0;
+}
+.tab:hover{color:var(--text);background:var(--surface)}
+.tab.active{color:var(--accent-2);background:var(--surface)}
+.tab-icon{display:inline-block;width:14px;height:14px;margin-right:6px;vertical-align:-2px;opacity:.85}
+
+/* ======= LAYOUT ======= */
+.container{max-width:1280px;margin:0 auto;padding:32px 28px 80px}
+.tab-content{display:none;animation:fadeIn .25s ease}
+.tab-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+.page-header{margin-bottom:28px}
+.page-title{font-size:1.6rem;font-weight:800;letter-spacing:0;margin-bottom:6px}
+.page-sub{color:var(--text-2);font-size:.92rem}
+
+/* ======= STAT STRIP ======= */
+.stat-strip{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px;margin-bottom:24px;
+}
+.stat-tile{
+  background:var(--surface);border:1px solid var(--border-soft);
+  border-radius:12px;padding:14px 18px;
+  display:flex;align-items:center;gap:12px;
+}
+.stat-tile .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.stat-tile.m1 .dot{background:#a5acff}
+.stat-tile.m2 .dot{background:#7dd3fc}
+.stat-tile.m3 .dot{background:#fca5a5}
+.stat-tile.m4 .dot{background:#86efac}
+.stat-tile .num{font-size:1.4rem;font-weight:800;line-height:1;letter-spacing:0}
+.stat-tile .lbl{font-size:.72rem;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+
+/* ======= SEARCH ======= */
+.search-row{display:flex;gap:12px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
+.search-box{position:relative;flex:1;min-width:min(280px,100%)}
+.search-box input{
+  width:100%;padding:13px 56px 13px 46px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;color:var(--text);font-size:.92rem;
+  outline:none;transition:all .15s;font-family:inherit;
+}
+.search-box input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(124,131,255,.15)}
+.search-box svg.icon-search{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--text-3)}
+.kbd-hint{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--text-3);background:var(--bg-elev);border:1px solid var(--border-soft);padding:2px 6px;border-radius:4px}
+.clear-btn{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-3);cursor:pointer;display:none;padding:4px}
+.clear-btn:hover{color:var(--text)}
+
+/* ======= FILTER CHIPS ======= */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.chip{
+  padding:7px 14px;border-radius:999px;
+  font-size:.8rem;font-weight:600;cursor:pointer;
+  border:1px solid var(--border-soft);background:var(--surface);
+  color:var(--text-2);transition:all .15s;
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:inherit;
+}
+.chip:hover{color:var(--text);border-color:var(--border)}
+.chip.active{border-color:var(--accent);color:var(--text);background:var(--surface-2)}
+.chip .count{font-size:.7rem;color:var(--text-3);font-weight:700;background:var(--bg-elev);padding:1px 6px;border-radius:8px}
+.chip.active .count{background:var(--accent-soft);color:var(--accent-2)}
+
+/* ======= GLOSSARY ======= */
+.glossary-layout{display:grid;grid-template-columns:240px 1fr;gap:32px;align-items:start}
+@media(max-width:960px){.glossary-layout{grid-template-columns:1fr}}
+
+.toc{
+  position:sticky;top:84px;
+  background:var(--surface);border:1px solid var(--border-soft);
+  border-radius:14px;padding:16px;
+  max-height:calc(100vh - 110px);overflow-y:auto;
+}
+.toc h4{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-3);margin-bottom:10px;font-weight:700}
+.toc a{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:9px 10px;border-radius:8px;
+  color:var(--text-2);text-decoration:none;
+  font-size:.82rem;font-weight:500;line-height:1.35;
+  transition:all .12s;
+}
+.toc a:hover{background:var(--surface-2);color:var(--text)}
+.toc a.active{background:var(--surface-2);color:var(--accent-2)}
+.toc a .toc-num{
+  flex-shrink:0;font-size:.7rem;font-weight:700;
+  background:var(--bg-elev);width:22px;height:22px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:6px;margin-top:1px;
+}
+@media(max-width:960px){.toc{position:static;max-height:none;display:none}}
+
+.module-section{margin-bottom:36px;scroll-margin-top:80px}
+.module-header{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:18px;padding-bottom:14px;
+  border-bottom:1px solid var(--border-soft);
+}
+.module-num{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.95rem;
+  background:var(--surface-2);
+  border:1px solid var(--border);
+}
+.module-num.m1{background:linear-gradient(135deg,#312e81,#4338ca);color:#c7d2fe;border-color:#4338ca}
+.module-num.m2{background:linear-gradient(135deg,#0c4a6e,#0369a1);color:#7dd3fc;border-color:#0369a1}
+.module-num.m3{background:linear-gradient(135deg,#7f1d1d,#b91c1c);color:#fca5a5;border-color:#b91c1c}
+.module-num.m4{background:linear-gradient(135deg,#14532d,#15803d);color:#86efac;border-color:#15803d}
+.module-info{min-width:0}
+.module-info h2{font-size:1.15rem;font-weight:700;letter-spacing:0;margin-bottom:2px}
+.module-info p{font-size:.78rem;color:var(--text-3);font-weight:500}
+
+/* ======= TERM CARD ======= */
+.term-grid{display:grid;gap:10px}
+.term-card{
+  background:var(--surface);border:1px solid var(--border-soft);
+  border-radius:12px;padding:16px 18px;
+  transition:all .15s;
+}
+.term-card:hover{border-color:var(--border);background:var(--surface-2)}
+.term-card.concept{
+  background:linear-gradient(180deg,rgba(124,131,255,.06),transparent);
+  border-left:3px solid var(--accent);
+  border-radius:4px 12px 12px 4px;
+}
+.term-name{
+  font-weight:700;font-size:.96rem;
+  color:var(--accent-2);margin-bottom:6px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.term-card.concept .term-name{color:var(--violet);font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
+.term-def{color:var(--text-2);font-size:.88rem;line-height:1.65}
+.term-def code{
+  font-family:'JetBrains Mono',monospace;font-size:.82em;
+  background:var(--bg-elev);padding:1px 6px;border-radius:4px;
+  color:var(--violet);border:1px solid var(--border-soft);
+  white-space:normal;
+  word-break:break-word;
+}
+.sub-list{
+  margin-top:12px;padding:12px 14px;
+  background:var(--bg-elev);border-radius:8px;
+  border:1px solid var(--border-soft);
+}
+.sub-item{padding:6px 0;border-bottom:1px dashed var(--border-soft)}
+.sub-item:last-child{border-bottom:none}
+.sub-item .term-name{font-size:.82rem;color:var(--green);margin-bottom:3px}
+.sub-item .term-def{font-size:.8rem}
+
+mark.hl{background:rgba(124,131,255,.3);color:var(--accent-2);padding:0 3px;border-radius:3px;font-weight:600}
+
+.empty-state{
+  text-align:center;padding:60px 20px;color:var(--text-3);
+}
+.empty-state svg{width:48px;height:48px;margin-bottom:12px;opacity:.5}
+
+/* ======= FLASHCARDS ======= */
+.fc-wrap{max-width:760px;margin:0 auto}
+.fc-toolbar{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:24px;flex-wrap:wrap;
+}
+.fc-progress-wrap{flex:1;min-width:200px}
+.fc-progress-bar{
+  height:6px;background:var(--surface);border-radius:999px;overflow:hidden;
+  border:1px solid var(--border-soft);
+}
+.fc-progress-fill{
+  height:100%;background:linear-gradient(90deg,var(--accent),var(--violet));
+  border-radius:999px;transition:width .3s ease;
+}
+.fc-progress-text{
+  display:flex;justify-content:space-between;
+  font-size:.75rem;color:var(--text-3);margin-top:6px;font-weight:500;
+}
+.fc-controls{display:flex;gap:8px;flex-wrap:wrap}
+.btn{
+  padding:9px 16px;border-radius:9px;
+  background:var(--surface);border:1px solid var(--border-soft);
+  color:var(--text);font-size:.85rem;font-weight:600;
+  cursor:pointer;transition:all .12s;font-family:inherit;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.btn:hover{border-color:var(--border);background:var(--surface-2)}
+.btn.primary{background:linear-gradient(135deg,var(--accent),#6168ff);border-color:transparent;color:#fff}
+.btn.primary:hover{filter:brightness(1.1)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn svg{width:14px;height:14px}
+
+.fc-stage{perspective:1400px;margin-bottom:20px}
+.flashcard{
+  width:100%;min-height:360px;position:relative;
+  cursor:pointer;transform-style:preserve-3d;
+  transition:transform .55s cubic-bezier(.4,0,.2,1);
+}
+.flashcard.flipped{transform:rotateY(180deg)}
+.fc-face{
+  position:absolute;inset:0;backface-visibility:hidden;
+  border-radius:18px;padding:36px;
+  display:flex;flex-direction:column;
+  box-shadow:var(--shadow-lg);
+}
+.fc-front{
+  background:linear-gradient(135deg,#1e1b4b,#2d2a7a 50%,#3730a3);
+  border:1px solid var(--accent-soft);
+  align-items:center;justify-content:center;text-align:center;
+}
+.fc-front .module-tag{
+  font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent-2);background:rgba(124,131,255,.15);
+  padding:5px 12px;border-radius:999px;margin-bottom:24px;
+  border:1px solid var(--accent-soft);
+}
+.fc-front h2{
+  font-size:1.65rem;font-weight:700;letter-spacing:0;
+  color:#fff;line-height:1.3;max-width:90%;
+}
+.fc-front .reveal-hint{
+  position:absolute;bottom:24px;left:0;right:0;
+  text-align:center;color:rgba(255,255,255,.4);
+  font-size:.75rem;font-weight:500;
+}
+.fc-front .reveal-hint kbd{
+  font-family:'JetBrains Mono',monospace;
+  background:rgba(255,255,255,.08);padding:1px 6px;border-radius:4px;
+  border:1px solid rgba(255,255,255,.1);margin:0 2px;
+}
+.fc-back{
+  background:var(--surface);border:1px solid var(--green-soft);
+  transform:rotateY(180deg);overflow-y:auto;
+}
+.fc-back .back-header{
+  display:flex;align-items:center;gap:10px;margin-bottom:16px;
+  padding-bottom:14px;border-bottom:1px solid var(--border-soft);
+}
+.fc-back .back-header h3{font-size:1.05rem;color:var(--green);font-weight:700;flex:1}
+.fc-back p{color:var(--text);font-size:.92rem;line-height:1.7}
+.fc-back .sub-list{margin-top:14px}
+
+.fc-keys{
+  display:flex;justify-content:center;gap:18px;
+  color:var(--text-3);font-size:.75rem;font-weight:500;
+}
+.fc-keys span{display:inline-flex;align-items:center;gap:6px}
+.fc-keys kbd{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  background:var(--surface);border:1px solid var(--border-soft);
+  padding:2px 7px;border-radius:4px;color:var(--text-2);
+  box-shadow:0 1px 0 var(--border-soft);
+}
+
+/* ======= FRAMEWORK ======= */
+.fw-intro{
+  background:linear-gradient(135deg,rgba(124,131,255,.08),rgba(196,168,255,.04));
+  border:1px solid var(--border-soft);
+  border-radius:14px;padding:22px 24px;margin-bottom:32px;
+}
+.fw-intro p{color:var(--text-2);font-size:.92rem;line-height:1.7}
+
+.fw-flow{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  gap:10px;margin-bottom:32px;position:relative;
+}
+@media(max-width:780px){.fw-flow{grid-template-columns:1fr;gap:8px}}
+.fw-flow-node{
+  background:var(--surface);border:1px solid var(--border-soft);
+  border-radius:12px;padding:16px 14px;text-align:center;
+  position:relative;transition:all .15s;
+}
+.fw-flow-node:hover{border-color:var(--border);transform:translateY(-2px)}
+.fw-flow-node .step-num{
+  position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+  width:24px;height:24px;border-radius:50%;
+  background:var(--bg);border:2px solid;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:800;
+}
+.fw-flow-node.s1{border-color:rgba(124,131,255,.4)}
+.fw-flow-node.s1 .step-num{border-color:var(--accent);color:var(--accent-2)}
+.fw-flow-node.s2{border-color:rgba(52,211,153,.4)}
+.fw-flow-node.s2 .step-num{border-color:var(--green);color:var(--green)}
+.fw-flow-node.s3{border-color:rgba(251,113,133,.4)}
+.fw-flow-node.s3 .step-num{border-color:var(--rose);color:var(--rose)}
+.fw-flow-node.s4{border-color:rgba(56,189,248,.4)}
+.fw-flow-node.s4 .step-num{border-color:var(--sky);color:var(--sky)}
+.fw-flow-node.s5{border-color:rgba(251,191,36,.4)}
+.fw-flow-node.s5 .step-num{border-color:var(--amber);color:var(--amber)}
+.fw-flow-node .ico{
+  width:36px;height:36px;margin:6px auto 10px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:10px;background:var(--bg-elev);
+}
+.fw-flow-node .ico svg{width:18px;height:18px}
+.fw-flow-node h4{font-size:.85rem;font-weight:700;letter-spacing:0;line-height:1.25}
+.fw-flow-node p{font-size:.72rem;color:var(--text-3);margin-top:4px}
+
+.fw-card{
+  background:var(--surface);border:1px solid var(--border-soft);
+  border-radius:14px;padding:24px 28px;margin-bottom:16px;
+  position:relative;overflow:hidden;
+}
+.fw-card::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--accent);
+}
+.fw-card.s1::before{background:var(--accent)}
+.fw-card.s2::before{background:var(--green)}
+.fw-card.s3::before{background:var(--rose)}
+.fw-card.s4::before{background:var(--sky)}
+.fw-card.s5::before{background:var(--amber)}
+.fw-card h3{
+  font-size:1.1rem;font-weight:700;letter-spacing:0;
+  margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.fw-card h3 .step-badge{
+  font-size:.7rem;font-weight:700;padding:2px 10px;border-radius:999px;
+  background:var(--surface-2);color:var(--text-3);
+  letter-spacing:.05em;text-transform:uppercase;
+}
+.fw-item{
+  color:var(--text-2);font-size:.88rem;line-height:1.7;
+  padding:4px 0;
+}
+.fw-item.bullet{padding-left:16px;position:relative}
+.fw-item.bullet::before{
+  content:"";position:absolute;left:4px;top:14px;
+  width:4px;height:4px;border-radius:50%;background:var(--text-3);
+}
+.fw-item.sub-bullet{padding-left:32px;position:relative;font-size:.85rem;color:var(--text-3)}
+.fw-item.sub-bullet::before{
+  content:"";position:absolute;left:20px;top:14px;
+  width:5px;height:1px;background:var(--text-3);
+}
+.fw-item strong{color:var(--text);font-weight:600}
+.fw-item em{color:var(--violet);font-style:normal;font-weight:500}
+
+/* ======= AUTHOR FOOTER ======= */
+.author-card{
+  margin-top:48px;
+  background:linear-gradient(135deg,rgba(124,131,255,.06),rgba(196,168,255,.04));
+  border:1px solid var(--border-soft);
+  border-radius:18px;padding:28px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;
+}
+.author-avatar{
+  width:88px;height:88px;border-radius:50%;
+  overflow:hidden;flex-shrink:0;
+  border:3px solid var(--accent-soft);
+  box-shadow:0 8px 32px rgba(124,131,255,.3);
+}
+.author-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.author-info .kicker{
+  font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:6px;
+}
+.author-info h3{
+  font-size:1.3rem;font-weight:800;letter-spacing:0;margin-bottom:4px;
+  background:linear-gradient(90deg,var(--accent-2),var(--violet));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.author-info p{color:var(--text-2);font-size:.88rem;line-height:1.6;max-width:520px}
+.author-info p a{color:var(--accent-2);text-decoration:none;border-bottom:1px dashed var(--accent-soft)}
+.author-info p a:hover{border-bottom-style:solid}
+
+.social-grid{
+  display:grid;grid-template-columns:repeat(4,40px);gap:8px;
+}
+.social-btn{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid var(--border-soft);
+  color:var(--text-2);cursor:pointer;
+  transition:all .15s;text-decoration:none;
+}
+.social-btn svg{width:18px;height:18px}
+.social-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.3)}
+.social-btn[data-net="facebook"]:hover{background:#1877F2;color:#fff;border-color:#1877F2}
+.social-btn[data-net="linkedin"]:hover{background:#0A66C2;color:#fff;border-color:#0A66C2}
+.social-btn[data-net="github"]:hover{background:#24292e;color:#fff;border-color:#24292e}
+.social-btn[data-net="youtube"]:hover{background:#FF0000;color:#fff;border-color:#FF0000}
+.social-btn[data-net="email"]:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.social-btn[data-net="profile"]:hover{background:var(--violet);color:#0b1020;border-color:var(--violet)}
+.social-btn[data-net="web"]:hover{background:var(--sky);color:#0b1020;border-color:var(--sky)}
+.social-btn[data-net="phone"]:hover{background:var(--green);color:#0b1020;border-color:var(--green)}
+.social-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+@media(max-width:780px){
+  .author-card{grid-template-columns:1fr;text-align:center;gap:18px;padding:22px}
+  .author-avatar{margin:0 auto}
+  .author-info p{margin:0 auto}
+  .social-grid{justify-content:center;margin:0 auto}
+}
+
+/* ======= A11Y ======= */
+button, a, .term-card, .flashcard, .chip{cursor:pointer}
+.term-card, .fc-flow-node{cursor:default}
+*:focus-visible{outline:none}
+button:focus-visible, a:focus-visible, input:focus-visible{
+  outline:2px solid var(--accent);outline-offset:2px;border-radius:8px;
+}
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+  .flashcard.flipped{transform:rotateY(180deg)}
+}
+
+/* ======= SCROLLBAR ======= */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--surface-2);border-radius:5px;border:2px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:var(--surface-3)}
+
+/* ======= RESPONSIVE ======= */
+@media(max-width:820px){
+  .topbar-inner{flex-wrap:wrap;gap:10px;padding:12px 18px}
+  .tabs{
+    width:100%;
+    margin-left:0;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:6px;
+  }
+  .tab{width:100%;padding:9px 10px}
+}
+
+@media(max-width:640px){
+  .topbar-inner{padding:12px 16px;gap:10px}
+  .brand-text h1{font-size:.85rem}
+  .brand-text p{display:none}
+  .container{padding:24px 16px 60px}
+  .page-title{font-size:1.3rem}
+  .page-header{margin-bottom:22px}
+  .stat-strip{grid-template-columns:1fr;gap:10px;margin-bottom:18px}
+  .stat-tile{padding:12px 14px}
+  .search-row{display:block;margin-bottom:14px}
+  .search-box{width:100%;min-width:0}
+  .chips{gap:7px;margin-bottom:18px}
+  .chip{padding:7px 12px}
+  .module-section{margin-bottom:28px;scroll-margin-top:132px}
+  .module-header{align-items:flex-start;gap:12px;margin-bottom:14px}
+  .module-num{width:34px;height:34px;border-radius:9px;font-size:.82rem;flex:0 0 auto}
+  .module-info h2{font-size:1rem;line-height:1.3}
+  .term-card{padding:14px}
+  .term-def{font-size:.84rem;line-height:1.6}
+  .sub-list{padding:10px 12px}
+  .fc-toolbar{display:block;margin-bottom:18px}
+  .fc-progress-wrap{min-width:0;margin-bottom:14px}
+  .fc-controls{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:8px;
+  }
+  .btn{justify-content:center;padding:10px 8px}
+  .flashcard{min-height:400px}
+  .fc-face{padding:24px}
+  .fc-front h2{font-size:1.25rem}
+  .fc-back .back-header{align-items:flex-start}
+  .fc-back p{font-size:.86rem}
+  .fc-keys{flex-wrap:wrap;gap:8px 14px}
+  .fw-intro{padding:18px;margin-bottom:24px}
+  .fw-card{padding:20px 18px}
+  .fw-card h3{align-items:flex-start;font-size:1rem}
+  .fw-item{font-size:.84rem}
+  .fw-item.sub-bullet{padding-left:22px}
+  .fw-item.sub-bullet::before{left:10px}
+  .author-card{margin-top:36px;border-radius:14px}
+  .tab{padding:8px 12px;font-size:.78rem}
+  .tab-icon{display:none}
+}
+
+@media(max-width:420px){
+  .container{padding:22px 12px 52px}
+  .topbar-inner{padding:10px 12px}
+  .brand-mark{width:36px;height:36px}
+  .tab{font-size:.74rem;padding:8px 6px}
+  .kbd-hint{display:none}
+  .search-box input{padding-right:42px}
+  .clear-btn{right:10px}
+  .chips{justify-content:flex-start}
+  .chip{font-size:.76rem}
+  .term-name{font-size:.9rem}
+  .flashcard{min-height:430px}
+  .fc-face{padding:20px}
+  .fc-front h2{font-size:1.12rem;max-width:100%}
+  .fc-front .reveal-hint{bottom:18px;padding:0 14px}
+  .fc-controls{gap:6px}
+  .btn svg{display:none}
+  .fc-keys{display:none}
+  .fw-flow-node{padding:16px 12px}
+  .author-card{padding:20px 16px}
+  .author-avatar{width:76px;height:76px}
+  .social-grid{grid-template-columns:repeat(4,38px);gap:8px}
+  .social-btn{width:38px;height:38px}
+}
+
+@media(max-width:340px){
+  .brand-text h1{font-size:.78rem}
+  .tab{font-size:.7rem}
+  .btn{font-size:.76rem}
+  .fc-face{padding:18px}
+  .flashcard{min-height:450px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" aria-label="Author: Nguyễn Quang Đức · Open E-Profile">
+      <div class="brand-mark">
+        <img src="https://ducnguyen221.github.io/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức" loading="eager" width="40" height="40">
+      </div>
+      <div class="brand-text">
+        <h1>Databricks GenAI Engineer</h1>
+        <p>Study Tool · by Nguyễn Quang Đức</p>
+      </div>
+    </a>
+    <nav class="tabs">
+      <button type="button" class="tab active" data-tab="glossary">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Glossary
+      </button>
+      <button type="button" class="tab" data-tab="flashcards">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 8h10M7 12h6"/></svg>
+        Flashcards
+      </button>
+      <button type="button" class="tab" data-tab="framework">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        Framework
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ============ GLOSSARY ============ -->
+  <section id="glossary" class="tab-content active">
+    <div class="page-header">
+      <h1 class="page-title">Glossary</h1>
+      <p class="page-sub">Searchable reference of all key concepts across the 4 modules.</p>
+    </div>
+
+    <div class="stat-strip" id="statStrip"></div>
+
+    <div class="search-row">
+      <div class="search-box">
+        <svg class="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="gsearch" type="text" placeholder="Search terms, definitions, concepts..." autocomplete="off">
+        <button type="button" class="clear-btn" id="clearBtn" aria-label="Clear">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+        <span class="kbd-hint" id="kbdHint">/ to focus</span>
+      </div>
+    </div>
+
+    <div class="chips" id="moduleChips"></div>
+
+    <div class="glossary-layout">
+      <aside class="toc" id="toc"></aside>
+      <div id="glossaryContent"></div>
+    </div>
+  </section>
+
+  <!-- ============ FLASHCARDS ============ -->
+  <section id="flashcards" class="tab-content">
+    <div class="page-header">
+      <h1 class="page-title">Flashcards</h1>
+      <p class="page-sub">Active recall practice. Click the card or press <kbd style="font-family:'JetBrains Mono',monospace;background:var(--surface);padding:1px 6px;border-radius:4px;font-size:.8em;border:1px solid var(--border-soft)">Space</kbd> to flip.</p>
+    </div>
+
+    <div class="fc-wrap">
+      <div class="chips" id="fcChips"></div>
+
+      <div class="fc-toolbar">
+        <div class="fc-progress-wrap">
+          <div class="fc-progress-bar"><div class="fc-progress-fill" id="fcFill"></div></div>
+          <div class="fc-progress-text">
+            <span id="fcStatus">Card 1</span>
+            <span id="fcTotal">of 0</span>
+          </div>
+        </div>
+        <div class="fc-controls">
+          <button type="button" class="btn" id="fcPrev" title="Previous (←)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            Prev
+          </button>
+          <button type="button" class="btn" id="fcNext" title="Next (→)">
+            Next
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <button type="button" class="btn primary" id="fcShuffle" title="Shuffle (S)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+            Shuffle
+          </button>
+        </div>
+      </div>
+
+      <div class="fc-stage">
+        <div class="flashcard" id="fcCard"></div>
+      </div>
+
+      <div class="fc-keys">
+        <span><kbd>←</kbd><kbd>→</kbd> Navigate</span>
+        <span><kbd>Space</kbd> Flip</span>
+        <span><kbd>S</kbd> Shuffle</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FRAMEWORK ============ -->
+  <section id="framework" class="tab-content">
+    <div class="page-header">
+      <h1 class="page-title">Evaluation &amp; Governance Framework</h1>
+      <p class="page-sub">End-to-end lifecycle for production GenAI agents on Databricks.</p>
+    </div>
+
+    <div class="fw-intro">
+      <p>This framework outlines the principles and methodologies for evaluating, securing, and governing Generative AI and Agentic applications within the Databricks ecosystem. It addresses the critical need to move beyond <em>vibe checks</em> into rigorous, automatable, and governed deployment lifecycles.</p>
+    </div>
+
+    <div class="fw-flow" id="fwFlow"></div>
+
+    <div id="fwCards"></div>
+  </section>
+
+  <!-- ============ AUTHOR FOOTER ============ -->
+  <footer class="author-card" aria-labelledby="author-name">
+    <div class="author-avatar">
+      <img src="https://ducnguyen221.github.io/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức" loading="lazy" width="88" height="88">
+    </div>
+    <div class="author-info">
+      <div class="kicker">Author · Tác giả</div>
+      <h3 id="author-name">Nguyễn Quang Đức</h3>
+      <p>
+        Data &amp; AI Engineer · Trainer at KPIM Academy &amp; COMPA Class. Curated this study tool to learn the Databricks GenAI Engineer certification path. Full profile at
+        <a href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener">ducnguyen221.github.io/profile</a>.
+      </p>
+    </div>
+    <nav class="social-grid" aria-label="Author social links">
+      <a class="social-btn" data-net="profile" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" aria-label="E-Profile" title="E-Profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      </a>
+      <a class="social-btn" data-net="facebook" href="https://www.facebook.com/TobiNguyenData/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+      </a>
+      <a class="social-btn" data-net="linkedin" href="https://www.linkedin.com/in/tobi-nguyen/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
+      <a class="social-btn" data-net="github" href="https://github.com/ducnguyen221" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
+      </a>
+      <a class="social-btn" data-net="youtube" href="https://www.youtube.com/@PowerBIHeroVn" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a class="social-btn" data-net="email" href="mailto:duc.nguyen@kpim.vn" aria-label="Email duc.nguyen@kpim.vn" title="duc.nguyen@kpim.vn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+      </a>
+      <a class="social-btn" data-net="web" href="https://kpim.vn" target="_blank" rel="noopener" aria-label="kpim.vn" title="kpim.vn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+      </a>
+      <a class="social-btn" data-net="phone" href="tel:+84932215555" aria-label="Phone 0932 215 555" title="0932 215 555">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
+    </nav>
+  </footer>
+
+</main>
+
+<script>
+const MODULES = [{"title": "Module 1: Prompt Engineering, Data Processing & Vector Search", "terms": [{"term": "", "def": "Prompt Engineering is the practice of refining the input text (the prompt) to optimize the output generated by a Large Language Model (LLM). It's a tactical discipline focused on the instruction layer. We use techniques such as Few-Shot Prompting (providing examples) and Persona Adoption (assigning a role) to guide the model's behavior and formatting. Ideally, prompt engineering treats the model as a reasoning engine, guiding it to leverage its pretrained weights to solve problems effectively.", "subs": []}, {"term": "Non-Reasoning Models (e.g., Llama 3, GPT-4o)", "def": "These models predict the next token based on statistical likelihood. They require explicit guidance, such as Chain of Thought (CoT) prompting (\"Think step-by-step\"), to break down complex logic and avoid rushing to incorrect conclusions.", "subs": []}, {"term": "Reasoning Models (e.g., OpenAI o1)", "def": "These models are trained to generate their own internal chain of thought before producing a final answer. For these models, manual CoT prompting is often redundant or counterproductive. Context engineering for reasoning models focuses on defining the goal and constraints rather than the thinking process.", "subs": []}, {"term": "The Knowledge Cutoff", "def": "The model cannot answer questions about events that occurred after the cutoff date of its training data. Example Prompt: Who won the 2025 Nobel Prize in Physics?", "subs": []}, {"term": "Hallucination", "def": "When asked for specific facts without external references, models often prioritize plausibility over truth, fabricating citations or data points. Example Prompt: Find a scientific reference proving that avocado reduces blood sugar levels", "subs": []}, {"term": "Ambiguity", "def": "Without private context, models default to generic interpretations. Example Prompt: Explain how to secure a lakehouse. (This triggers advice on physical home security rather than Databricks Data Lakehouse governance.)", "subs": []}, {"term": "RAG vs. Retrieval Agent", "def": "RAG refers to the architectural pattern of coupling retrieval with generation, independent of any specific tooling or agent logic. Retrieval agents, by contrast, are concrete implementations that operationalize this pattern—handling query routing, retrieval orchestration, and context assembly within real systems.", "subs": []}, {"term": "Retrieval Augmented Generation (RAG)", "def": "injects proprietary or real-time data into the prompt, enabling the model to respond based on provided facts rather than its internal memory.", "subs": []}, {"term": "Retrieval", "def": "The system searches a knowledge base (indexed via Mosaic AI Vector Search) for relevant data chunks", "subs": []}, {"term": "Augmentation", "def": "The system injects these chunks into the context window", "subs": []}, {"term": "Generation", "def": "The model synthesizes an answer using only the injected data", "subs": []}, {"term": "Context Rot", "def": "Early RAG implementations often failed because developers would simply retrieve large volumes of documents and paste them into the prompt. This approach overwhelms the model, leading to:", "subs": []}, {"term": "Context Poisoning", "def": "The inclusion of irrelevant or conflicting information that confuses the model", "subs": []}, {"term": "Lost in the Middle", "def": "The tendency of models to ignore information buried in the middle of a long context window, prioritizing data at the very beginning or very end", "subs": []}, {"term": "", "def": "Context Engineering is the strategic design of the entire input window. It moves beyond writing a single instruction to managing the complete system state. We orchestrate the interplay between the System Instructions, Conversation History, Retrieved Data, and User Constraints to ensure the model has exactly the signal it needs to perform the task effectively.", "subs": []}, {"term": "System Prompt", "def": "In a Context Engineering paradigm, the System Prompt is not just a request—it's a behavioral program that defines how the model should operate. Key components of an effective system prompt include:", "subs": []}, {"term": "Role Definition", "def": "Explicitly define the persona (e.g., \"You are a Databricks Security Architect\")", "subs": []}, {"term": "Negative Constraints", "def": "Define what the model cannot do (e.g., \"Do not mention competitor products\" or \"Do not provide code unless explicitly requested\")", "subs": []}, {"term": "Output Formatting", "def": "Enforce structured outputs (e.g., JSON, YAML, or Markdown tables) to ensure downstream applications can parse the response deterministically", "subs": []}, {"term": "Strict Grounding and Chunking Stratgies", "def": "strategies to strictly govern Retrieval to prevent hallucination and ensure accuracy. Key strategies include:", "subs": []}, {"term": "Grounding Instructions", "def": "uses explicit instructions to bind the model to the retrieved context. For example: \"Answer using ONLY the provided context chunks. If the answer is not present, state 'I do not have that information.'\"", "subs": []}, {"term": "Metadata Filtering", "def": "utilizes Unity Catalog metadata to filter retrieval before it reaches the model. For example, if a user asks about \"2024 Revenue,\" the system should filter chunks where year=2024 to prevent the model from seeing outdated 2023 data.", "subs": []}, {"term": "Managing Multi-Turn State Strategies", "def": "For applications involving long conversations (such as Agents), the context window will eventually fill up. Context Engineering requires strategic approaches to manage this state:", "subs": []}, {"term": "Summarization", "def": "Periodically compress the conversation history into a summary of key decisions and facts", "subs": []}, {"term": "Moving Window", "def": "Discard the oldest messages to free up token space for new retrieval", "subs": []}, {"term": "Selective Persistence", "def": "Determine which pieces of information (e.g., user name, current project ID) must remain in the context permanently versus what can be discarded", "subs": []}, {"term": "Context Constraints", "def": "Token Budgets and Window Limits: Even the most elegantly engineered context is subject to the hard constraints of compute resources and model architecture. As we scale our applications, we must balance the desire for comprehensive context against the realities of token limits, latency, and operational costs.", "subs": []}, {"term": "Context Windows", "def": "Every model has a Context Window Limit (e.g., 8k, 32k, or 128k tokens). This represents the hard limit of working memory available to the model. The context window consists of:", "subs": []}, {"term": "Input Tokens", "def": "The text we send to the model (instructions + retrieved documents + history)", "subs": []}, {"term": "Output Tokens", "def": "The text the model generates", "subs": []}, {"term": "The Trade-off", "def": "As we fill the window with more retrieved data, the model's ability to reason degrades (the \"Lost in the Middle\" phenomenon), and latency increases significantly. Strategic context management is essential for maintaining performance.", "subs": []}, {"term": "Token Economics and Optimization", "def": "Context is not free. LLM API charge based on the volume of input and output tokens consumed. Key considerations:", "subs": []}, {"term": "Cost Management", "def": "A naive RAG system that retrieves 50 documents for every query will burn through token budgets rapidly", "subs": []}, {"term": "Optimization Strategy - Just-in-Time Retrieval", "def": "Instead of loading a full manual at the start of a chat, give the Agent a tool to retrieve specific sections only when the user asks a relevant questions", "subs": []}, {"term": "Optimization Strategy - Reranking", "def": "Use a reranker model to score the top 50 retrieved chunks and only inject the top 3-5 most relevant ones into the final context window", "subs": []}, {"term": "Retrieval Agent Architecture", "def": "Use retrieval components to bridge knowledge gaps, and apply Context Engineering to optimize retrieval agents for performance, reliability, and cost.", "subs": []}, {"term": "", "def": "Unity Catalog Volumes provide a governance layer for these non-tabular files. Volumes enable you to manage access to raw files using the same unified permission model applied to tables and models. By storing raw documents in Volumes and processed text in Delta Tables, you maintain complete lineage from the original file to the chunked text used for retrieval. Note: Volumes store the \"raw\" files (Bronze), while Delta Tables store the \"parsed and chunked\" text (Silver/Gold).", "subs": []}, {"term": "", "def": "Data ingestion and processing workflow includes 3 steps:", "subs": []}, {"term": "Data ingestion and pre-processing", "def": "Read files from a Unity Catalog Volume and parse them using an AI function.", "subs": []}, {"term": "Data storage", "def": "Store the parsed documents in Delta Lake and apply necessary governance controls. (Governance is not covered in detail in this module.)", "subs": []}, {"term": "Chunking", "def": "Split the data into chunks suitable for embedding generation.", "subs": []}, {"term": "Document Processing Challenges", "def": "", "subs": []}, {"term": "Hierarchical Information", "def": "Charts and diagrams often convey hierarchical relationships that must be preserved.", "subs": []}, {"term": "Order Preservation", "def": "In multi-column documents, reading order is critical; naive parsing can merge columns incorrectly.", "subs": []}, {"term": "Contextual Integrity", "def": "Images (like charts or product photos) must be kept associated with their relevant text descriptions.", "subs": []}, {"term": "", "def": "Large Language Models (LLMs) and OCR (Optical Character Recognition) models, can \"see\" the document layout. OCR models can identify text within images, while multimodal LLMs can interpret the spatial arrangement of elements, understanding that a caption belongs to the image above it or that a table spans multiple pages.", "subs": []}, {"term": "", "def": "AI Functions, which allow developers to apply these advanced AI models directly to their data using simple SQL or Python function calls. This eliminates the need to manage separate model inference infrastructure. These functions run serverless, scale automatically to handle millions of rows, and operate directly on governed data within Unity Catalog.", "subs": []}, {"term": "", "def": "The ai_parse_document function is the leading Databricks tool for this task. It invokes state-of-the-art generative AI models to extract structured content from unstructured documents (like PDFs and images) and returns the result as a structured JSON object (VARIANT type). Key Capabilities (Schema v2.0):", "subs": []}, {"term": "Layout Awareness", "def": "Separates document content from layout information.", "subs": []}, {"term": "Figure Descriptions", "def": "Can automatically generate text descriptions for charts and images found within PDFs, making visual data accessible to the LLM.", "subs": []}, {"term": "Bounding Boxes", "def": "Returns coordinates (bbox) for text elements, useful for highlighting sources in a UI.", "subs": []}, {"term": "Noise Reduction", "def": "Before text can be chunked, it requires cleaning to remove artifacts that degrade retrieval quality. Raw extraction often includes headers, footers, and page numbers that can interrupt the semantic flow of the text. Cleaning logic should be applied to the output of the parsing stage. For HTML data, while excessive formatting tags can confuse models, ai_parse_document can intelligently extract tables in HTML format, preserving their structure which is vital for parsing web pages and ensuring tabular data remains interpretable.", "subs": []}, {"term": "Metadata Injection", "def": "Effective RAG systems rely on metadata to filter search results before vector similarity search. During transformation, extracting and associating metadata—such as document titles, author names, or creation dates—is critical. If this metadata is not in the file properties, functions like ai_extract can be used to identify and pull structured fields (like \"Invoice Date\" or \"Contract Type\") from the unstructured text.", "subs": []}, {"term": "Chunking Strategies", "def": "Chunking is the process of dividing long documents into smaller, manageable segments. This step is essential because embedding models have context window limits, and retrieving precise information requires granular search results.  Another important consideration is the relationship between context size and language model performance: The \"Lost in the Middle\" phenomenon. Most effective approaches:", "subs": []}, {"term": "Fixed-Size Chunking (Legacy/Baseline)", "def": "Divides text based on a hard character or token count (e.g., 500 tokens). It is computationally cheap but often splits sentences or paragraphs in half, destroying context.", "subs": []}, {"term": "Semantic Chunking (Recommended Standard)", "def": "Unlike arbitrary character splitting, this approach divides text based on meaningful linguistic boundaries such as sentences, paragraphs, or document sections. By respecting the document's logical structure, it preserves the semantic integrity of the information. Furthermore, semantic chunking often involves injecting relevant metadata, tags, and titles directly into the chunk, ensuring that even small text segments retain their broader context during retrieval.", "subs": []}, {"term": "Chunk Overlap (Advanced)", "def": "This technique defines the amount of overlap between consecutive chunks (e.g., 10-20%). By repeating a small portion of text at the beginning of the next chunk, it ensures that no contextual information is lost between them, preventing sentences or ideas from being cut off abruptly.", "subs": []}, {"term": "Embedding-Based Semantic Chunking (Advanced)", "def": "This is a more advanced method that uses an embedding model to determine breakpoints. It calculates the semantic similarity between sequential sentences and only \"breaks\" a chunk when the topic significantly changes (i.e., when similarity drops below a threshold). This ensures that each chunk represents a distinct, coherent concept.", "subs": []}, {"term": "Windowed Summarization (Advanced)", "def": "This is a ‘context-enriching’ chunking method where each chunk includes a ‘windowed summary’ of the previous few chunks. Instead of just seeing the current text, the model receives a summary of what came before, providing broader context without the cost of embedding the entire history.", "subs": []}, {"term": "Embedding Model Considerations", "def": "embedding models have technical constraints for chunking:", "subs": []}, {"term": "Context Window Limits", "def": "Every embedding model has a maximum token limit (e.g., 512, 8192 tokens). If a text chunk exceeds this limit, the model will simply truncate the text, ignoring any content beyond the limit. This results in incomplete vector representations and lost data. Therefore, your maximum chunk size must always be safely below the embedding model's context window limit.", "subs": []}, {"term": "Granularity vs. Context", "def": "A larger context window allows for bigger chunks, capturing more context but potentially diluting specific details. Smaller windows force smaller chunks, which are more precise but may lack surrounding context. The choice of chunk size is a direct trade-off that must align with the capabilities of the specific embedding model you intend to use downstream.", "subs": []}, {"term": "Tools and Frameworks for Chunking", "def": "Document processing on Databricks combines native AI functions with leading open source libraries, such as LangChain, to create a robust multi-step pipeline. This workflow transforms raw files into embeddable text through sequential parsing and chunking.", "subs": []}, {"term": "Parsing (Extraction)", "def": "The initial step is to parse the raw file and extract clean text along with layout information.", "subs": []}, {"term": "ai_parse_document (Native)", "def": "This recommended tool efficiently processes standard documents (PDFs, images), performing OCR and layout analysis serverlessly. It returns structured text that is ready for downstream tasks.", "subs": []}, {"term": "Chunking (Splitting)", "def": "After extraction, the text must be divided into smaller, manageable chunks.", "subs": []}, {"term": "LangChain", "def": "Libraries like LangChain provide advanced splitting logic (e.g., RecursiveCharacterTextSplitter) for the parsed text. LangChain’s suite of text splitters supports diverse formats and strategies, making it the industry standard for chunking.", "subs": []}, {"term": "Custom Functions", "def": "Developers may also implement custom Python User Defined Functions (UDFs) to apply specialized splitting logic—such as dividing text by specific Markdown headers—on the output from ai_parse_document.", "subs": []}, {"term": "", "def": "An embedding is a numerical representation of content, typically generated by a deep learning model. These models convert high-dimensional unstructured data (like text) into lower-dimensional vectors—arrays of floating-point numbers that capture semantic meaning. The key characteristic that makes embeddings powerful is their ability to map similar concepts close together in vector space. Words or phrases with related meanings cluster near each other, enabling systems to identify conceptual relationships even when exact keywords don't match.", "subs": []}, {"term": "Multimodal Context", "def": "It's worth noting that embeddings extend far beyond words. Multimodal models like GPT-4o and Gemini 1.5 can process and embed images, audio, and text into a unified vector space. This capability unlocks cross-modal retrieval scenarios—imagine using a text query to find semantically relevant images, or searching audio content with written descriptions.", "subs": []}, {"term": "Embedding Models", "def": "An embedding model is a specialized machine learning model (typically a deep neural network) designed to convert high-dimensional unstructured data—such as text, images, or audio—into lower-dimensional numerical vectors. Think of it as a translator that converts human-readable content into machine-readable lists of floating-point numbers, ensuring that inputs with similar meanings produce vectors that are mathematically close to each other. Selecting the right embedding model is a critical architectural decision that impacts retrieval quality. Consider these key factors:", "subs": []}, {"term": "Vocabulary Size and Domain", "def": "Some models train on general web text, while others specialize in specific domains like finance, medicine, or legal documents. Domain-specific models often deliver superior results for specialized content.", "subs": []}, {"term": "Context Window", "def": "Every model has a maximum input token limit. Text exceeding this limit gets truncated or ignored, making effective chunking strategies essential for long documents.", "subs": []}, {"term": "Dimensions", "def": "Higher-dimensional vectors (larger arrays) capture more nuance and semantic detail but increase storage costs and retrieval latency. Balance precision needs with operational constraints.", "subs": []}, {"term": "Embedding Alignment", "def": "For retrieval to work effectively, your embedding model must represent both source documents and user queries in the same vector space. If the model trained primarily on long-form documents but your application uses short, informal queries, the vector representations may not align well—leading to poor retrieval results. The best practice is straightforward: use the same embedding model for both indexing documents and processing queries. This ensures they exist in the same mathematical space and can be meaningfully compared.", "subs": []}, {"term": "Vector Stores and Search Mechanics", "def": "Once we've converted unstructured data into embeddings, we need specialized storage that can handle high-dimensional vectors and perform efficient similarity queries.", "subs": []}, {"term": "The Role of Vector Databases", "def": "A vector database is purpose-built to store and retrieve high-dimensional vectors efficiently. Unlike traditional databases designed for exact matches (think SQL WHERE clauses), vector databases excel at similarity searches—finding items that are conceptually related rather than identical. They maintain standard database capabilities like Create-Read-Update-Delete (CRUD) operations while introducing specialized indexing structures optimized for vector operations.", "subs": []}, {"term": "Search Methods", "def": "Different search methods serve different retrieval needs:", "subs": []}, {"term": "Similarity Search", "def": "This method retrieves content based on semantic correlation rather than exact word matching. It enables natural language queries like \"how to deal with anxiety\" to surface relevant results that may use different terminology, such as \"coping with PTSD\" or \"managing stress.\"", "subs": []}, {"term": "Full-Text Search", "def": "This traditional approach relies on keyword matching. It excels at finding specific terms like part numbers, product codes, or proper nouns, but fails to capture semantic intent or recognize synonyms.", "subs": []}, {"term": "Hybrid Search", "def": "This powerful approach combines vector similarity search with keyword-based search. By leveraging both semantic understanding and exact keyword matching, hybrid search typically delivers higher retrieval accuracy than either method alone.", "subs": []}, {"term": "", "def": "Distance metrics are used when you want to quantify how far apart two vectors are in space—ideal for clustering, outlier detection, or when magnitude matters.", "subs": []}, {"term": "Euclidean Distance (L2)", "def": "Measures the straight-line distance between two points in vector space. A lower value means vectors are more similar. Use this when you care about the absolute difference in all dimensions, such as clustering or anomaly detection.", "subs": []}, {"term": "Manhattan Distance (L1)", "def": "Sums the absolute differences across all dimensions. A lower value means vectors are closer. This is useful when differences along each axis are equally important, such as in grid-based or sparse data.", "subs": []}, {"term": "", "def": "Similarity metrics are used when you want to know how closely aligned two vectors are in direction—ideal for semantic search, document retrieval, and most NLP applications where meaning is more important than scale.", "subs": []}, {"term": "Cosine Similarity", "def": "Measures the cosine of the angle between two vectors. A higher score means greater similarity. This is the most popular metric for text embeddings because it focuses on orientation (semantic meaning) rather than magnitude, making it robust to document length or scale differences.", "subs": []}, {"term": "Search Strategies", "def": "Two primary strategies balance accuracy and performance:", "subs": []}, {"term": "K-Nearest Neighbors (KNN)", "def": "An exact search method that calculates the distance between the query vector and every vector in the database. While highly accurate, it's computationally expensive and doesn't scale well to large datasets—imagine comparing your query against millions of documents one by one.", "subs": []}, {"term": "Approximate Nearest Neighbors (ANN)", "def": "A strategy that trades a small amount of accuracy for dramatic speed gains. ANN uses sophisticated indexing algorithms like HNSW (Hierarchical Navigable Small Worlds) or FAISS (Facebook AI Similarity Search) to navigate vector space efficiently, checking only a subset of vectors while still finding highly relevant results.", "subs": []}, {"term": "Embedding Quality and Limitations", "def": "Here's a crucial insight: similarity does not equal semantic relevance. A document might be mathematically close to your query in vector space yet remain factually irrelevant or contextually inappropriate. Embedding quality depends heavily on the model, its training data, and how well it aligns with your specific domain. Improperly prepared data or a mismatch between the model's training corpus and your application's content can lead to poor retrieval performance and \"lost\" information. Another common scenario involves selecting a subset of documents rather than using all results from a similarity search. When you need to limit the number of documents—perhaps due to token constraints or processing costs—you'll want to ensure the most relevant documents rise to the top. This is where reranking becomes essential.", "subs": []}, {"term": "The Reranking Process", "def": "To bridge the precision gap in initial retrieval, we add a reranker to the pipeline:", "subs": []}, {"term": "Initial Retrieval", "def": "The vector store retrieves a broad set of candidate documents (typically the top 20 to 50) using fast ANN algorithms.", "subs": []}, {"term": "Reranking", "def": "A specialized model (often a Cross-Encoder) evaluates the actual relevance of each candidate document against the specific query, considering their relationship in detail.", "subs": []}, {"term": "Reordering", "def": "Documents are re-sorted based on the reranker's relevance scores, placing the most pertinent information at the top for the language model to process.", "subs": []}, {"term": "Benefits and Trade-offs", "def": "Reranking introduces important considerations:", "subs": []}, {"term": "Benefits", "def": "Reranking significantly improves the accuracy of context provided to the language model, which directly reduces hallucinations and improves response quality. By refining the initial retrieval results, you ensure the most relevant information reaches the generation stage.", "subs": []}, {"term": "Trade-offs", "def": "Adding a reranker increases both latency and cost in your retrieval pipeline. The reranking model must process the query and candidate documents in real-time, adding computational overhead.", "subs": []}, {"term": "", "def": "Mosaic AI Vector Search is a vector database solution integrated directly into the Databricks Lakehouse. This scalable, low-latency service stores vector representations of your data alongside their metadata, enabling real-time similarity search through a REST API and Python client. It's purpose-built to optimize retrieval for RAG applications, eliminating the need to manage separate vector database infrastructure.", "subs": []}, {"term": "Delta Sync and Indexing", "def": "One of the most powerful features of Mosaic AI Vector Search is its tight integration with Delta Lake. Through the Delta Sync API, your vector index automatically syncs with a source Delta table. When you add, update, or delete data in the source table, the vector index updates automatically—ensuring your retrieval system always reflects the most current data without manual intervention. This eliminates the operational burden of keeping embeddings synchronized with your source data.", "subs": []}, {"term": "Management and Ingestion Modes", "def": "Mosaic AI Vector Search offers three flexible approaches for ingesting and managing embeddings, allowing you to choose the level of control that fits your needs:", "subs": []}, {"term": "Managed Embeddings (Delta Sync)", "def": "You provide a source Delta table containing raw text, and Databricks handles the rest. The system automatically computes embeddings using a configured Mosaic AI Model Serving endpoint (such as a Foundation Model API), processes new data, and updates the index—all without requiring you to manage the embedding pipeline.", "subs": []}, {"term": "Self-Managed Embeddings (Delta Sync)", "def": "You compute embeddings using your own custom pipelines and store them in a Delta table. The Vector Search index syncs with this table, indexing the pre-computed vectors you provide. This gives you full control over the embedding process while still benefiting from automatic synchronization.", "subs": []}, {"term": "Direct Access CRUD API", "def": "You can interact directly with the Vector Search index using the REST API or Python SDK. This allows you to insert, update, or delete vectors and metadata directly without relying on an underlying Delta table sync—ideal for real-time applications or custom workflows.", "subs": []}, {"term": "Governance and Access Control", "def": "Mosaic AI Vector Search is governed by Unity Catalog, providing a unified security model for both data and AI assets. Indexes created in Vector Search appear as securable objects within Unity Catalog, enabling administrators to enforce granular Access Control Lists (ACLs) at the index level. This ensures that only authorized users and applications can query or modify vector data, maintaining consistent security policies across your entire data platform.", "subs": []}]}, {"title": "Module 2: Single-Agent Applications, MLflow & Agent Architectures", "terms": [{"term": "Databricks Mosaic AI Agent Framework", "def": "A unified platform for authoring, deploying, and monitoring AI agents, supporting multiple libraries (LangChain, DSPy, LangGraph) while providing native integration with MLflow and Vector Search.", "subs": []}, {"term": "Databricks AI Bridge", "def": "Integration packages (e.g., `databricks-openai`, `databricks-langchain`) that connect custom python agents directly to Databricks AI features.", "subs": []}, {"term": "MLflow for Agents", "def": "Acts as the central system of record. It supports experiment tracking, model registry, and lifecycle management for dynamic multi-step reasoning agents.", "subs": []}, {"term": "MLflow Tracing", "def": "A dedicated observability feature capturing the hierarchical execution flow of an agent. It provides server-side transparency and latency/cost metrics per step.", "subs": []}, {"term": "Trace", "def": "Represents a collection of spans arranged in a DAG-like structure for the entire request lifecycle.", "subs": []}, {"term": "Span", "def": "An individual unit of work within a trace (follows OpenTelemetry standards).", "subs": []}, {"term": "Hierarchical Span Structure", "def": "Includes **Parent spans** (high-level operations), **Child spans** (detailed tool calls), and **Span types** (e.g., `TOOL`, `CHAT_MODEL`, `RETRIEVER`).", "subs": []}, {"term": "Custom Tracing and Tagging", "def": "", "subs": []}, {"term": "@mlflow.trace decorator", "def": "Lets developers turn any custom function into a traced span automatically capturing inputs, outputs, and exceptions.", "subs": []}, {"term": "Tags vs. Metadata", "def": "Tags are flexible, mutable key-value pairs applied during a trace's lifecycle; metadata is immutable and set once at creation.", "subs": []}, {"term": "Diagnosing Retrieval Failures via Tracing", "def": "", "subs": []}, {"term": "Empty or Irrelevant Retrieval", "def": "Indicates issues with embedding models or chunking, not the LLM.", "subs": []}, {"term": "Latency in Vector Search", "def": "Traces identify which specific span (e.g., SQL query) causes slowness.", "subs": []}, {"term": "Hallucination despite Context", "def": "Identifies reasoning failures if the LLM ignores correct retrieved context.", "subs": []}, {"term": "Model Flavors", "def": "Integrations enabling MLflow to save, load, and serve models.", "subs": []}, {"term": "Native GenAI Flavors", "def": "Support for LangChain and OpenAI.", "subs": []}, {"term": "PyFunc Flavor", "def": "Wraps arbitrary Python code as a model for custom routing logic.", "subs": []}, {"term": "Unity Catalog Model Registry", "def": "The centralized repository for governing agents. It tracks lineage back to source documents, manages Access Control Lists (ACLs), and ensures reproducible, immutable version deployments.", "subs": []}, {"term": "Agent Governance", "def": "Centralized control via Unity Catalog providing audit trails, cross-workspace sharing, and governed tags for robust enterprise data security.", "subs": []}, {"term": "Agent Bricks", "def": "A declarative, high-level framework to build production-ready agents, focusing on automated evaluation and optimization (ALHF) over low-level code wiring.", "subs": []}, {"term": "Agent Learning from Human Feedback (ALHF)", "def": "The core mechanism of Agent Bricks that collects feedback via a Review App and synthesizes it to automatically generate evaluation benchmarks and optimize configurations.", "subs": []}, {"term": "Agent Types in Agent Bricks", "def": "", "subs": []}, {"term": "Knowledge Assistant (KA)", "def": "Interactive RAG agents over knowledge bases. Tool calling is restricted to RAG.", "subs": []}, {"term": "Information Extraction (IE)", "def": "Automated extraction of structured data from unstructured sources (PDFs/emails).", "subs": []}, {"term": "Multi-Agent Supervisor (MAS)", "def": "Orchestrates multiple sub-agents and tools to solve complex multi-step tasks.", "subs": []}, {"term": "Custom LLM (CLLM)", "def": "Domain-specific models optimized and fine-tuned for particular tasks.", "subs": []}, {"term": "Genie Agent", "def": "Natural language queries over structured databases and tables.", "subs": []}, {"term": "Operational Categories", "def": "", "subs": []}, {"term": "Automated Bricks", "def": "High-scale, batch processing scenarios prioritizing throughput and cost optimization (IE, Custom LLM).", "subs": []}, {"term": "Interactive Bricks", "def": "Human-in-the-loop experiences for conversational interfaces (KA, MAS, Genie).", "subs": []}, {"term": "Declarative vs. Code-First Methods", "def": "", "subs": []}, {"term": "Code-First (Agent Framework)", "def": "Maximum control using python libraries. Developer owns the technical debt.", "subs": []}, {"term": "Declarative (Agent Bricks)", "def": "Outcome-oriented approach providing fastest time-to-value via auto-optimization.", "subs": []}, {"term": "Unity Catalog Functions as Agent Tools", "def": "UDFs designed for dynamic discovery. They require rich metadata, clear parameter names, explicit type hints, and comprehensive comments to help AI agents reason about their usage.", "subs": []}, {"term": "SQL Agent Tools", "def": "Optimized for data querying, executed via serverless compute.", "subs": []}, {"term": "Python Agent Tools", "def": "Execute custom logic or external APIs.", "subs": []}, {"term": "AI Playground", "def": "No-code interface to test and prototype these tools before writing agent code.", "subs": []}, {"term": "ResponsesAgent", "def": "Databricks' recommended MLflow production interface compatible with the OpenAI Responses schema.", "subs": []}, {"term": "Advanced Capabilities", "def": "Multi-agent support, tool-calling message history, long-running tool execution.", "subs": []}, {"term": "Streaming and Real-Time Responses", "def": "Emitting output in chunks (e.g., `output_text.delta` events) and finishing with `response.output_item.done` to improve user engagement.", "subs": []}, {"term": "Custom Inputs/Outputs", "def": "Support for additional fields (`custom_inputs`, `custom_outputs`) not included in standard chat history.", "subs": []}, {"term": "Custom Retriever Schema", "def": "Configuring `mlflow.models.set_retriever_schema` to ensure proper evaluation of unstructured retrieval.", "subs": []}, {"term": "Agent Authoring Frameworks", "def": "", "subs": []}, {"term": "DSPy", "def": "Programmatic framework replacing manual prompt engineering with modules, signatures, and compilers.", "subs": []}, {"term": "LangChain", "def": "Extensive integration with Vector Search, PySpark DataFrame loader, and Databricks SQL Agent.", "subs": []}, {"term": "LangGraph", "def": "Enables graph-based workflows and complex state management across agent interactions.", "subs": []}]}, {"title": "Module 3: Generative AI Application Evaluation and Governance", "terms": [{"term": "Safety and Guardrails", "def": "Crucial constraints placed before generation to ensure compliance and security.", "subs": []}, {"term": "Dataset Licensing", "def": "Tracking and ensuring the underlying training/retrieval data complies with enterprise and copyright licenses.", "subs": []}, {"term": "AI Gateway Guardrails", "def": "Built-in mechanisms configured at the Model Serving endpoint to secure LLMs.", "subs": []}, {"term": "Input Guardrails", "def": "Filtering out malicious prompts (Prompt Injections / Jailbreaks) and toxic queries before they reach the model.", "subs": []}, {"term": "PII Masking", "def": "Identifying and masking Personally Identifiable Information (PII) to prevent data leaks.", "subs": []}, {"term": "Custom Policies", "def": "Block lists or specific rules configured for the AI Gateway.", "subs": []}, {"term": "Benchmark Evaluation", "def": "Quantifying agent performance systematically, moving beyond subjective \"vibe checks.\"", "subs": []}, {"term": "Task-Specific Metrics", "def": "", "subs": []}, {"term": "Retrieval Metrics", "def": "Precision, Recall, and nDCG (Are the right documents being fetched?).", "subs": []}, {"term": "Generation Metrics", "def": "Faithfulness (Is the answer supported by context?), Answer Correctness, and Comprehensiveness.", "subs": []}, {"term": "LLM-as-a-Judge", "def": "Using specialized LLMs (via Mosaic AI Agent Evaluation) to automate the scoring of traces at scale, analyzing intermediate reasoning steps and tool usage patterns.", "subs": []}, {"term": "Golden Datasets", "def": "High-quality benchmark datasets containing user queries, expected context, and ground-truth responses used for automated baseline testing.", "subs": []}, {"term": "Labeling Sessions", "def": "Structured review workflows to gather feedback from domain experts (SMEs) via Review Apps to construct golden datasets.", "subs": []}]}, {"title": "Module 4: Generative AI Deployment and Monitoring", "terms": [{"term": "Mosaic AI Model Serving", "def": "Scalable deployment infrastructure for production agents, providing REST APIs, load balancing, automatic scaling, and built-in Unity Catalog authentication.", "subs": []}, {"term": "Batch Inference using SLM (Small Language Models)", "def": "Utilizing cost-effective, task-specific smaller models (e.g., Llama 3 8B) for high-throughput batch extraction or summarization where massive reasoning models aren't necessary.", "subs": []}, {"term": "Provisioned Throughput (PT)", "def": "Reserving guaranteed compute capacity for model serving endpoints to ensure consistent latency and prevent throttling during peak enterprise traffic.", "subs": []}, {"term": "A/B Testing", "def": "Deploying multiple versions of an agent (or prompt configuration) to production simultaneously, routing split traffic to measure performance against success metrics.", "subs": []}, {"term": "Online Monitoring an LLM RAG Chain", "def": "Continuously tracking live production inference traffic.", "subs": []}, {"term": "Inference Tables", "def": "Automatically enabled by the AI Gateway to capture granular logs, telemetry, token usage, and raw request/response payload data in Delta tables.", "subs": []}, {"term": "AI Gateway", "def": "A centralized proxy layer managing authentication, rate limiting, and governance for both external (OpenAI, Anthropic) and internal Databricks LLM API calls.", "subs": []}]}];
+
+const FRAMEWORK = [{"title": "Overview", "items": ["This framework outlines the principles and methodologies for evaluating, securing, and governing Generative AI and Agentic applications within the Databricks ecosystem. It addresses the critical need to move beyond \"vibe checks\" into rigorous, automatable, and governed deployment lifecycles."]}, {"title": "1. Safety and Guardrails (Pre-Generation)", "items": ["Before the agent generates or responds, strict guardrails must be placed.", "- **Dataset Licensing**: Ensure compliance and tracking of licenses for any data used in training, fine-tuning, or RAG.", "- **Unity Catalog Integration**: Use Unity Catalog ACLs to enforce row/column and volume-level security for retrieval tools. An agent should never be able to retrieve what the querying user is not authorized to see.", "- **Prompt Guardrails**: Implement specialized prompt-layer filtering to block:", "  - Prompt Injections / Jailbreaks", "  - Toxic or inappropriate queries", "  - PII (Personally Identifiable Information) leakage", "- **System Constraints**: System prompts must include negative constraints (e.g., \"Do not mention competitors\") and explicit grounding instructions (\"Use ONLY the retrieved context\")."]}, {"title": "2. Benchmark Evaluation (Development Phase)", "items": ["Testing must be quantified before an agent enters production.", "- **Golden Datasets**: Maintain a labeled evaluation dataset containing diverse user queries, expected context, and expected responses.", "- **Task-Specific Metrics**: Instead of evaluating general \"intelligence,\" measure against task goals:", "  - **Retrieval Metrics**: Precision, Recall, nDCG (Are the right documents being retrieved?).", "  - **Generation Metrics**: Faithfulness (No hallucinations relative to context), Answer Correctness, Comprehensiveness."]}, {"title": "3. Automated Evaluation: LLM-as-a-Judge", "items": ["Scaling evaluation requires utilizing models to score models.", "- **Mosaic AI Agent Evaluation**: Use Databricks’ automated pipelines to run \"LLM Judges\" across MLflow traces.", "- **Review App & ALHF**: Subject Matter Experts (SMEs) use the built-in Review App to give Thumbs Up/Down and corrected answers. The system leverages Agent Learning from Human Feedback (ALHF) to turn these corrections into automated evaluation benchmarks."]}, {"title": "4. Tracing and Observability (Runtime)", "items": ["The black-box nature of multi-step agents must be illuminated via granular tracing.", "- **MLflow Tracing**: Ensure every request is traced down to its individual `Spans` (e.g., `retrieval_tool`, `query_embedding`, `llm_generation`).", "- **Diagnosing Failures**:", "  - *Empty Retrieval*: Bug in embedding model or Vector Search.", "  - *High Latency*: Isolate the exact tool/API causing the bottleneck.", "  - *Hallucination Despite Context*: Prompt formatting failure or LLM reasoning limitation."]}, {"title": "5. Deployment Governance & Monitoring", "items": ["Moving to production involves strict registry and continuous checks.", "- **Unity Catalog Model Registry**: Agents must be registered as UC models (e.g., `catalog.schema.agent_name`), preserving lineage back to the raw unstructured data in UC Volumes.", "- **Model Serving & AI Gateway**: Deploy via Databricks Model Serving which integrates with the AI Gateway. Inference tables automatically capture logs, requests, and telemetry.", "- **Continuous Monitoring**: Track drift in embedding inputs, monitor token usage/cost economics, and constantly sample production queries to route back into the Golden Dataset for continuous ALHF optimization."]}];
+
+const MODULE_CLS = ['m1','m2','m3','m4'];
+const MODULE_SHORT = ['Prompting & RAG','Agents & MLflow','Evaluation','Deployment'];
+
+/* =========================== TAB SWITCHING =========================== */
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.setAttribute('role', 'tab');
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.tab;
+    document.querySelectorAll('.tab').forEach(t => {
+      const isActive = t === btn;
+      t.classList.toggle('active', isActive);
+      if (isActive) t.setAttribute('aria-current', 'page');
+      else t.removeAttribute('aria-current');
+    });
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id === id));
+    if (id === 'flashcards') initFlashcards();
+    history.replaceState(null, '', '#' + id);
+  });
+});
+document.querySelector('.tab.active')?.setAttribute('aria-current', 'page');
+const initialTab = location.hash.replace('#','');
+
+/* =========================== HELPERS =========================== */
+function escapeHTML(s) {
+  return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function formatDef(text, query) {
+  let out = escapeHTML(text);
+  // backtick → <code>
+  out = out.replace(/`([^`]+)`/g, '<code>$1</code>');
+  // **bold**
+  out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  // highlight query
+  if (query) {
+    const re = new RegExp('('+query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')', 'gi');
+    out = out.replace(re, '<mark class="hl">$1</mark>');
+  }
+  return out;
+}
+function matchesQuery(t, q) {
+  if (!q) return true;
+  const f = q.toLowerCase();
+  return (t.term && t.term.toLowerCase().includes(f))
+      || (t.def && t.def.toLowerCase().includes(f))
+      || (t.subs && t.subs.some(s => (s.term||'').toLowerCase().includes(f) || (s.def||'').toLowerCase().includes(f)));
+}
+
+/* =========================== GLOSSARY =========================== */
+let _query = '';
+let _moduleFilter = -1;
+
+function renderStatStrip() {
+  const totalTerms = MODULES.reduce((sum,m)=> sum + m.terms.filter(t=>t.term).length, 0);
+  const totalConcepts = MODULES.reduce((sum,m)=> sum + m.terms.filter(t=>!t.term).length, 0);
+  const el = document.getElementById('statStrip');
+  let html = `<div class="stat-tile"><div class="dot"></div><div><div class="num">${totalTerms}</div><div class="lbl">Terms</div></div></div>`;
+  html += `<div class="stat-tile"><div class="dot"></div><div><div class="num">${totalConcepts}</div><div class="lbl">Concepts</div></div></div>`;
+  MODULES.forEach((m,i) => {
+    const count = m.terms.filter(t=>t.term).length;
+    html += `<div class="stat-tile ${MODULE_CLS[i]}"><div class="dot"></div><div><div class="num">${count}</div><div class="lbl">Module ${i+1} · ${escapeHTML(MODULE_SHORT[i])}</div></div></div>`;
+  });
+  el.innerHTML = html;
+}
+
+function renderChips() {
+  const el = document.getElementById('moduleChips');
+  const allCount = MODULES.reduce((s,m)=>s+m.terms.length,0);
+  let html = `<button type="button" class="chip ${_moduleFilter===-1?'active':''}" onclick="setModuleFilter(-1)">All <span class="count">${allCount}</span></button>`;
+  MODULES.forEach((m,i) => {
+    html += `<button type="button" class="chip ${_moduleFilter===i?'active':''}" onclick="setModuleFilter(${i})">M${i+1} · ${escapeHTML(MODULE_SHORT[i])} <span class="count">${m.terms.length}</span></button>`;
+  });
+  el.innerHTML = html;
+}
+
+function renderTOC() {
+  const el = document.getElementById('toc');
+  let html = '<h4>Modules</h4>';
+  MODULES.forEach((m,i) => {
+    if (_moduleFilter !== -1 && _moduleFilter !== i) return;
+    html += `<a href="#mod-${i}" data-mod="${i}"><span class="toc-num">M${i+1}</span><span>${escapeHTML(m.title.replace(/^Module \d+:\s*/,''))}</span></a>`;
+  });
+  el.innerHTML = html;
+}
+
+function renderGlossary() {
+  const el = document.getElementById('glossaryContent');
+  let html = '';
+  let anyShown = false;
+
+  MODULES.forEach((m,i) => {
+    if (_moduleFilter !== -1 && _moduleFilter !== i) return;
+    const filtered = m.terms.filter(t => matchesQuery(t, _query));
+    if (!filtered.length) return;
+    anyShown = true;
+
+    html += `<section class="module-section" id="mod-${i}">`;
+    html += `<header class="module-header">
+      <div class="module-num ${MODULE_CLS[i]}">M${i+1}</div>
+      <div class="module-info">
+        <h2>${escapeHTML(m.title.replace(/^Module \d+:\s*/,''))}</h2>
+        <p>${filtered.length} ${filtered.length===1?'entry':'entries'} · Module ${i+1}</p>
+      </div>
+    </header>`;
+
+    html += '<div class="term-grid">';
+    filtered.forEach(t => {
+      const isConcept = !t.term;
+      html += `<article class="term-card ${isConcept?'concept':''}">`;
+      if (t.term) {
+        html += `<div class="term-name">${formatDef(t.term, _query)}</div>`;
+      } else {
+        html += `<div class="term-name">Concept</div>`;
+      }
+      html += `<div class="term-def">${formatDef(t.def, _query)}</div>`;
+      if (t.subs && t.subs.length) {
+        html += '<div class="sub-list">';
+        t.subs.forEach(s => {
+          html += `<div class="sub-item">
+            <div class="term-name">${formatDef(s.term, _query)}</div>
+            <div class="term-def">${formatDef(s.def, _query)}</div>
+          </div>`;
+        });
+        html += '</div>';
+      }
+      html += '</article>';
+    });
+    html += '</div></section>';
+  });
+
+  if (!anyShown) {
+    html = `<div class="empty-state">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <p>No terms match "<strong>${escapeHTML(_query)}</strong>".</p>
+    </div>`;
+  }
+
+  el.innerHTML = html;
+}
+
+window.setModuleFilter = function(i) {
+  _moduleFilter = i;
+  renderChips();
+  renderTOC();
+  renderGlossary();
+};
+
+document.getElementById('gsearch').addEventListener('input', e => {
+  _query = e.target.value.trim();
+  document.getElementById('clearBtn').style.display = _query ? 'block' : 'none';
+  document.getElementById('kbdHint').style.display = _query ? 'none' : 'block';
+  renderGlossary();
+});
+document.getElementById('clearBtn').addEventListener('click', () => {
+  const inp = document.getElementById('gsearch');
+  inp.value = '';
+  _query = '';
+  document.getElementById('clearBtn').style.display = 'none';
+  document.getElementById('kbdHint').style.display = 'block';
+  renderGlossary();
+  inp.focus();
+});
+
+renderStatStrip();
+renderChips();
+renderTOC();
+renderGlossary();
+
+/* TOC scroll spy */
+const tocObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.toc a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+id));
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+setTimeout(() => {
+  document.querySelectorAll('.module-section').forEach(s => tocObserver.observe(s));
+}, 100);
+
+/* =========================== FLASHCARDS =========================== */
+let fcCards = [];
+let fcFilter = -1;
+let fcIdx = 0;
+let fcInitialized = false;
+
+function buildCards() {
+  fcCards = [];
+  MODULES.forEach((m, mi) => {
+    if (fcFilter !== -1 && fcFilter !== mi) return;
+    m.terms.forEach(t => {
+      if (!t.term) return;
+      fcCards.push({ term: t.term, def: t.def, subs: t.subs, module: m.title, mi });
+    });
+  });
+  fcIdx = 0;
+}
+
+function renderFCChips() {
+  const el = document.getElementById('fcChips');
+  let html = `<button type="button" class="chip ${fcFilter===-1?'active':''}" onclick="setFCFilter(-1)">All Modules</button>`;
+  MODULES.forEach((m,i) => {
+    const count = m.terms.filter(t=>t.term).length;
+    html += `<button type="button" class="chip ${fcFilter===i?'active':''}" onclick="setFCFilter(${i})">M${i+1} <span class="count">${count}</span></button>`;
+  });
+  el.innerHTML = html;
+}
+
+window.setFCFilter = function(i) {
+  fcFilter = i;
+  buildCards();
+  renderFCChips();
+  renderFC();
+};
+
+function renderFC() {
+  const stage = document.getElementById('fcCard');
+  if (!fcCards.length) {
+    stage.innerHTML = '<div class="fc-face fc-front" style="position:relative"><h2>No cards in this filter</h2></div>';
+    document.getElementById('fcStatus').textContent = '—';
+    document.getElementById('fcTotal').textContent = 'of 0';
+    document.getElementById('fcFill').style.width = '0%';
+    return;
+  }
+  const c = fcCards[fcIdx];
+  let subsHtml = '';
+  if (c.subs && c.subs.length) {
+    subsHtml = '<div class="sub-list">';
+    c.subs.forEach(s => {
+      subsHtml += `<div class="sub-item">
+        <div class="term-name">${formatDef(s.term, '')}</div>
+        <div class="term-def">${formatDef(s.def, '')}</div>
+      </div>`;
+    });
+    subsHtml += '</div>';
+  }
+
+  stage.classList.remove('flipped');
+  stage.innerHTML = `
+    <div class="fc-face fc-front">
+      <span class="module-tag">${escapeHTML(c.module)}</span>
+      <h2>${escapeHTML(c.term)}</h2>
+      <div class="reveal-hint">Click card or press <kbd>Space</kbd> to reveal</div>
+    </div>
+    <div class="fc-face fc-back">
+      <div class="back-header">
+        <h3>${escapeHTML(c.term)}</h3>
+      </div>
+      <p>${formatDef(c.def, '')}</p>
+      ${subsHtml}
+    </div>`;
+  stage.onclick = () => stage.classList.toggle('flipped');
+
+  document.getElementById('fcStatus').textContent = `Card ${fcIdx+1}`;
+  document.getElementById('fcTotal').textContent = `of ${fcCards.length}`;
+  const pct = ((fcIdx+1) / fcCards.length) * 100;
+  document.getElementById('fcFill').style.width = pct + '%';
+}
+
+function nextCard() { if (!fcCards.length) return; fcIdx = (fcIdx+1) % fcCards.length; renderFC(); }
+function prevCard() { if (!fcCards.length) return; fcIdx = (fcIdx-1+fcCards.length) % fcCards.length; renderFC(); }
+function shuffleCards() {
+  for (let i = fcCards.length-1; i>0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [fcCards[i], fcCards[j]] = [fcCards[j], fcCards[i]];
+  }
+  fcIdx = 0;
+  renderFC();
+}
+
+document.getElementById('fcPrev').addEventListener('click', prevCard);
+document.getElementById('fcNext').addEventListener('click', nextCard);
+document.getElementById('fcShuffle').addEventListener('click', shuffleCards);
+
+function initFlashcards() {
+  if (fcInitialized) return;
+  fcInitialized = true;
+  buildCards();
+  renderFCChips();
+  renderFC();
+}
+
+/* =========================== KEYBOARD =========================== */
+document.addEventListener('keydown', e => {
+  const inField = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA';
+  if (e.key === '/' && !inField) {
+    e.preventDefault();
+    document.getElementById('gsearch').focus();
+    return;
+  }
+  if (e.key === 'Escape' && document.activeElement === document.getElementById('gsearch')) {
+    document.getElementById('gsearch').blur();
+  }
+  const fcTabActive = document.getElementById('flashcards').classList.contains('active');
+  if (fcTabActive && !inField) {
+    if (e.key === 'ArrowRight') { e.preventDefault(); nextCard(); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); prevCard(); }
+    else if (e.key === ' ') { e.preventDefault(); document.getElementById('fcCard').classList.toggle('flipped'); }
+    else if (e.key.toLowerCase() === 's') { e.preventDefault(); shuffleCards(); }
+  }
+});
+
+/* =========================== FRAMEWORK =========================== */
+(function renderFramework() {
+  const flowEl = document.getElementById('fwFlow');
+  const stages = [
+    { title: 'Safety & Guardrails', sub: 'Pre-Generation', cls: 's1', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' },
+    { title: 'Benchmark Eval', sub: 'Development', cls: 's2', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>' },
+    { title: 'LLM-as-Judge', sub: 'Automation', cls: 's3', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-4 4H5v4l5 4v6h7l1-7h4l-1-5-3-1-2-5h-2z"/></svg>' },
+    { title: 'Tracing', sub: 'Runtime', cls: 's4', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>' },
+    { title: 'Deploy & Monitor', sub: 'Production', cls: 's5', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/><path d="M12 7v5l3 2"/></svg>' }
+  ];
+  let html = '';
+  stages.forEach((s, i) => {
+    html += `<div class="fw-flow-node ${s.cls}">
+      <div class="step-num">${i+1}</div>
+      <div class="ico">${s.icon}</div>
+      <h4>${s.title}</h4>
+      <p>${s.sub}</p>
+    </div>`;
+  });
+  flowEl.innerHTML = html;
+
+  // cards
+  const cardsEl = document.getElementById('fwCards');
+  const stageCls = ['','s1','s2','s3','s4','s5'];
+  let cardsHtml = '';
+  // Skip the "Overview" entry (rendered as intro at top)
+  FRAMEWORK.slice(1).forEach((sec, idx) => {
+    const cls = stageCls[idx+1] || 's1';
+    const num = (idx+1);
+    cardsHtml += `<article class="fw-card ${cls}">
+      <h3>${escapeHTML(sec.title)} <span class="step-badge">Step ${num}</span></h3>`;
+    sec.items.forEach(item => {
+      let level = 'plain';
+      let txt = item;
+      if (txt.startsWith('  - ')) { level = 'sub-bullet'; txt = txt.substring(4); }
+      else if (txt.startsWith('- ')) { level = 'bullet'; txt = txt.substring(2); }
+      let formatted = escapeHTML(txt)
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+        .replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '<em>$1</em>');
+      cardsHtml += `<div class="fw-item ${level==='plain'?'':level}">${formatted}</div>`;
+    });
+    cardsHtml += '</article>';
+  });
+  cardsEl.innerHTML = cardsHtml;
+})();
+
+if (initialTab && document.getElementById(initialTab)) {
+  document.querySelector('.tab[data-tab="'+initialTab+'"]')?.click();
+}
+
+</script>
+</body>
+</html>

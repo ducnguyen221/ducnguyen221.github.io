@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brain — Bộ não thứ 2 của Đức (Architecture &amp; Folder Design)</title>
+<style>
+  :root {
+    --primary: #c2410c;
+    --primary-light: #f97316;
+    --primary-soft: #ffedd5;
+    --accent: #f59e0b;
+    --bg: #fefdfb;
+    --surface: #ffffff;
+    --text: #1c1917;
+    --text-soft: #57534e;
+    --border: #e7e5e4;
+    --code-bg: #292524;
+    --code-text: #fafaf9;
+    --green: #16a34a;
+    --orange: #ea580c;
+    --red: #dc2626;
+    --purple: #7c3aed;
+    --gray: #78716c;
+    --warm: #fef3c7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+  header {
+    background: linear-gradient(135deg, #c2410c 0%, #f59e0b 60%, #fbbf24 100%);
+    color: white;
+    padding: 60px 40px 50px;
+    text-align: center;
+  }
+  header h1 { font-size: 2.6em; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.02em; }
+  header .subtitle { font-size: 1.15em; opacity: 0.95; max-width: 800px; margin: 0 auto; }
+  header .meta { margin-top: 24px; font-size: 0.9em; opacity: 0.85; }
+
+  nav.toc {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 40px;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+  nav.toc ul { list-style: none; display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
+  nav.toc a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95em;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  nav.toc a:hover { background: var(--primary-soft); }
+
+  main { max-width: 1280px; margin: 0 auto; padding: 50px 40px; }
+  section { margin-bottom: 80px; }
+  section h2 {
+    font-size: 2em; font-weight: 700; color: var(--primary);
+    margin-bottom: 24px; padding-bottom: 12px;
+    border-bottom: 3px solid var(--primary-light);
+  }
+  section h3 { font-size: 1.35em; font-weight: 700; color: var(--text); margin: 28px 0 14px; }
+  section h4 { font-size: 1.1em; font-weight: 700; color: var(--primary); margin: 20px 0 10px; }
+  section p { margin-bottom: 14px; color: var(--text-soft); }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .card-highlight { border-left: 4px solid var(--accent); }
+  .card-warning { border-left: 4px solid var(--orange); background: #fff7ed; }
+  .card-success { border-left: 4px solid var(--green); background: #f0fdf4; }
+  .card-private { border-left: 4px solid var(--red); background: #fef2f2; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    text-align: center;
+  }
+  .stat .num { font-size: 2em; font-weight: 800; color: var(--primary); display: block; }
+  .stat .label { font-size: 0.85em; color: var(--text-soft); margin-top: 4px; }
+
+  pre.tree {
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 24px 28px;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace;
+    font-size: 13px;
+    line-height: 1.55;
+    white-space: pre;
+  }
+  pre.tree .comment { color: #a8a29e; font-style: italic; }
+  pre.tree .new { color: #fcd34d; font-weight: 700; }
+  pre.tree .folder { color: #fdba74; }
+  pre.tree .file { color: #fde68a; }
+  pre.tree .private { color: #fca5a5; font-weight: 600; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    font-size: 0.92em;
+    margin: 16px 0;
+  }
+  table th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.95em;
+  }
+  table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  table tr:hover td { background: #fef3c7; }
+  table tr:nth-child(even) td { background: #fafaf9; }
+  table tr:nth-child(even):hover td { background: #fef3c7; }
+  table .stt { font-weight: 700; color: var(--primary); white-space: nowrap; }
+  table .folder-name { font-family: 'JetBrains Mono', monospace; font-size: 0.95em; font-weight: 600; }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 12px;
+    font-size: 0.78em;
+    font-weight: 700;
+    margin-right: 4px;
+  }
+  .badge-config  { background: #e0e7ff; color: #3730a3; }
+  .badge-identity { background: #fef3c7; color: #92400e; }
+  .badge-journal { background: #ddd6fe; color: #5b21b6; }
+  .badge-learn   { background: #d1fae5; color: #065f46; }
+  .badge-energy  { background: #fce7f3; color: #9f1239; }
+  .badge-relate  { background: #fef9c3; color: #713f12; }
+  .badge-ideas   { background: #ffedd5; color: #9a3412; }
+  .badge-goal    { background: #dbeafe; color: #1e40af; }
+  .badge-finance { background: #fee2e2; color: #991b1b; }
+  .badge-health  { background: #fee2e2; color: #991b1b; }
+  .badge-archive { background: #f5f5f4; color: #57534e; }
+  .badge-new     { background: #fef9c3; color: #854d0e; border: 1px dashed #ca8a04; }
+  .badge-private { background: #fecaca; color: #7f1d1d; }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border-left: 3px solid var(--primary-light);
+    border-radius: 6px;
+  }
+  .step .num {
+    font-size: 1.5em; font-weight: 800; color: var(--primary);
+    min-width: 36px;
+  }
+  .step .content { flex: 1; }
+  .step .content strong { color: var(--text); }
+
+  ul.bullet { margin-left: 22px; margin-bottom: 14px; }
+  ul.bullet li { margin-bottom: 6px; color: var(--text-soft); }
+
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .compare-grid > div {
+    padding: 18px 22px;
+    border-radius: 10px;
+  }
+  .compare-good { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .compare-bad { background: #fef2f2; border: 1px solid #fecaca; }
+  .compare-grid h4 { margin-bottom: 8px; }
+
+  .principle-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .principle {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    border-top: 3px solid var(--primary-light);
+  }
+  .principle h4 { color: var(--primary); margin-bottom: 8px; }
+
+  footer {
+    text-align: center;
+    padding: 40px 40px 60px;
+    color: var(--text-soft);
+    font-size: 0.9em;
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+  code.inline {
+    background: #ffedd5;
+    color: var(--primary);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.92em;
+  }
+  .pipeline {
+    background: var(--warm);
+    border: 2px dashed var(--accent);
+    border-radius: 10px;
+    padding: 20px 28px;
+    margin: 20px 0;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95em;
+  }
+  @media print {
+    nav.toc { display: none; }
+    section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🧠 Brain — Bộ não thứ 2</h1>
+  <div class="subtitle">
+    Architecture &amp; Folder Design — Personal knowledge OS cho Đức (Tobi)<br>
+    Local-first · Privacy-first · Obsidian + Markdown + Git private repo
+  </div>
+  <div class="meta">v1.0 · 2026-05-07 · Owner: Đức (private)</div>
+</header>
+
+<nav class="toc">
+  <ul>
+    <li><a href="#section1">1. Định nghĩa &amp; Giá trị</a></li>
+    <li><a href="#section2">2. Cách dùng &amp; Quy trình AI</a></li>
+    <li><a href="#section3">3. Cấu trúc folder</a></li>
+    <li><a href="#section4">4. Bảng mô tả chi tiết</a></li>
+    <li><a href="#section5">5. Folder cần bổ sung</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- ============ SECTION 1 ============ -->
+<section id="section1">
+  <h2>1. Định nghĩa, Ý nghĩa &amp; Giá trị</h2>
+
+  <div class="card card-highlight">
+    <h3>🎯 Brain/ là gì?</h3>
+    <p><strong>Brain</strong> là <em>bộ não thứ 2</em> của Đức — không phải Đức as CEO, mà là <strong>Đức as a person</strong>. Nơi externalize mọi suy nghĩ, học hỏi, năng lượng, quan hệ, ý tưởng, mục tiêu cá nhân ở dạng <strong>raw, unfiltered, riêng tư</strong>.</p>
+    <p style="margin-top: 12px;">Brain <strong>tách biệt hoàn toàn</strong> với Company/. Không bao giờ share. Sống chung với Đức cả đời, archive offline khi cần.</p>
+  </div>
+
+  <h3>🧬 3 lớp ý nghĩa của "số hóa tri thức + bộ não thứ 2"</h3>
+
+  <div class="principle-grid">
+    <div class="principle">
+      <h4>1. Externalize Memory</h4>
+      <p>Bộ não con người chỉ giữ active ~7 thứ. Đức biết hàng nghìn thứ về Power BI/Fabric/AI nhưng đầu chỉ access được vài chục cùng lúc. Số hóa = đẩy ra ngoài, lúc cần search lại.</p>
+    </div>
+    <div class="principle">
+      <h4>2. Compound Knowledge</h4>
+      <p>Mỗi insight cá nhân được ghi → kết nối với insight cũ → tạo <strong>graph of ideas</strong>. Sau 5 năm, Brain trở thành "thư viện riêng" — competitive moat thật sự.</p>
+    </div>
+    <div class="principle">
+      <h4>3. AI-augmented Thinking</h4>
+      <p>AI agent đọc Brain → trả lời câu hỏi của Đức <strong>bằng giọng Đức, dùng framework Đức đã filter</strong>. Khác biệt giữa "ChatGPT trả lời chung chung" và "AI hiểu cách Đức nghĩ".</p>
+    </div>
+    <div class="principle">
+      <h4>4. Survivable Personal IP</h4>
+      <p>Đức quên / nghỉ vài tháng / chuyển công ty / pivot — tri thức vẫn còn. Brain = personal IP không thể bị mất khi context chuyển.</p>
+    </div>
+  </div>
+
+  <h3>💎 Giá trị cốt lõi (4 trụ)</h3>
+
+  <div class="card">
+    <ol style="margin-left: 22px; line-height: 1.9;">
+      <li><strong>Local-first</strong> — Markdown plain text, file system riêng. KHÔNG cloud bên thứ 3 scan nội dung.</li>
+      <li><strong>Privacy-first</strong> — gitignored mặc định cho folder sensitive (07_FINANCES, 08_HEALTH, 03_ENERGY/mood, RISK.local).</li>
+      <li><strong>AI-readable</strong> — Cowork/AG mount Brain folder → đọc trực tiếp như Company. Markdown = AI-native.</li>
+      <li><strong>Promotable</strong> — Insight chín ở Brain → rewrite (filter) → promote sang Company/.leader/. R&amp;D pipeline cá nhân.</li>
+    </ol>
+  </div>
+
+  <h3>🆚 Vì sao tách Brain khỏi Company/?</h3>
+
+  <div class="compare-grid">
+    <div class="compare-bad">
+      <h4>❌ Trộn lẫn (Brain trong Company/)</h4>
+      <ul class="bullet">
+        <li>Khi hire 1 nhân viên đầu tiên → lộ "bộ não" Đức</li>
+        <li>Investor/acquirer ask data room → phải scrub gấp</li>
+        <li>Self-censor khi viết journal → giết bộ não thứ 2</li>
+        <li>Personal energy log + biz OKR ở cùng folder = noise</li>
+        <li>Backup business cũng backup luôn personal</li>
+      </ul>
+    </div>
+    <div class="compare-good">
+      <h4>✅ Tách hẳn (Brain ngoài Company/)</h4>
+      <ul class="bullet">
+        <li>Share Company/ với người khác mà Brain vẫn private</li>
+        <li>Đức viết journal raw thoải mái — không tự kiểm duyệt</li>
+        <li>Backup riêng, encryption riêng</li>
+        <li>Frame rõ: "Đức as person" vs "Đức as CEO"</li>
+        <li>Khi exit/sell business — Brain không bị bán theo</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>📍 Vị trí khuyến nghị</h3>
+
+  <pre class="tree">C:\Users\DucNguyen\
+├── <span class="folder">Company\</span>     <span class="comment">← BUSINESS — share-able tương lai</span>
+└── <span class="folder">Brain\</span>       <span class="comment">← PERSONAL — KHÔNG BAO GIỜ share</span></pre>
+</section>
+
+<!-- ============ SECTION 2 ============ -->
+<section id="section2">
+  <h2>2. Cách dùng &amp; Quy trình AI Agent</h2>
+
+  <h3>🔄 Daily / Weekly / Quarterly cadence</h3>
+
+  <table>
+    <thead>
+      <tr><th>Cadence</th><th>Hành động</th><th>Folder chính</th><th>Thời gian</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Sáng (5-10 phút)</strong></td><td>Mở daily note → 3 priorities, energy 1-10, gratitude 1 dòng</td><td><code class="inline">01_JOURNAL/2026/daily/</code></td><td>~7:00</td></tr>
+      <tr><td><strong>Bất kỳ lúc</strong></td><td>Brain dump vào _INBOX (ý tưởng, lời nói nghe được, link)</td><td><code class="inline">_INBOX/</code></td><td>Adhoc</td></tr>
+      <tr><td><strong>Tối (10-15 phút)</strong></td><td>Reflection: hôm nay học gì, energy, mood, lesson</td><td><code class="inline">01_JOURNAL/daily/</code></td><td>~22:00</td></tr>
+      <tr><td><strong>Cuối tuần (30 phút)</strong></td><td>Weekly review: highlights, lessons, next week intention</td><td><code class="inline">01_JOURNAL/weekly/</code></td><td>Chủ nhật</td></tr>
+      <tr><td><strong>Cuối tháng (60 phút)</strong></td><td>Monthly retro: pattern energy/mood, books finished, ideas matured</td><td><code class="inline">01_JOURNAL/monthly/</code></td><td>Last day of month</td></tr>
+      <tr><td><strong>Cuối quý (2-3 giờ)</strong></td><td>Quarterly retro: goal review, promote pipeline (Brain → Company)</td><td><code class="inline">06_GOALS_PERSONAL/</code></td><td>End of quarter</td></tr>
+    </tbody>
+  </table>
+
+  <h3>🤖 AI Agent đọc Brain như thế nào?</h3>
+
+  <div class="step">
+    <div class="num">1</div>
+    <div class="content">
+      <strong>Mount Brain trong Cowork</strong> — Đức request_cowork_directory cho <code class="inline">C:\Users\DucNguyen\Brain</code>. AI tự đọc <code class="inline">CLAUDE.md</code> + <code class="inline">INDEX.md</code> + <code class="inline">.claude/settings.json</code>.
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">2</div>
+    <div class="content">
+      <strong>READ-MOSTLY mode</strong> — settings.json đặt permissions <code class="inline">read: ["./**"]</code> nhưng <code class="inline">write: ["!./**"]</code> mặc định. AI <strong>chỉ đọc</strong>.
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">3</div>
+    <div class="content">
+      <strong>Write chỉ khi explicit</strong> — Đức nói "save vào journal" hoặc "thêm vào _INBOX" → AI mới write vào folder cho phép (<code class="inline">01_JOURNAL/</code>, <code class="inline">_INBOX/</code>, <code class="inline">05_IDEAS_RAW/</code>).
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">4</div>
+    <div class="content">
+      <strong>Cross-folder query</strong> — Đức có thể hỏi: <em>"Dùng kiến thức Brain tôi có, viết outline cohort COMPA Class quý 3"</em>. AI READ Brain + Company → WRITE chỉ vào Company.
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">5</div>
+    <div class="content">
+      <strong>Sensitive folder PROTECTED</strong> — <code class="inline">03_ENERGY/mood</code>, <code class="inline">07_FINANCES_PERSONAL/</code>, <code class="inline">08_HEALTH/</code> — AI không tự load mặc định. Đức phải explicit "đọc folder X".
+    </div>
+  </div>
+
+  <h3>♻️ Promotion pipeline (Brain → Company)</h3>
+
+  <div class="pipeline">
+Brain/02_LEARNING/permanent_notes/&lt;idea&gt;.md (raw, có "tôi nghĩ")<br>
+↓<br>
+<strong>FILTER GATE</strong> — Đã chín? Apply ≥3 lần thực tế? Generalize được?<br>
+↓ (YES)<br>
+<strong>REWRITE</strong> — bỏ "tôi nghĩ", generalize, add framework<br>
+↓<br>
+Company/.leader/decision_playbook/&lt;principle&gt;.md (clean, share-able)
+  </div>
+
+  <p style="text-align: center; color: var(--text-soft); margin-top: 14px;"><em>Forced filtering = lợi ích lớn nhất. Đức buộc phải filter trước khi insight vào business knowledge.</em></p>
+
+  <h3>🛠️ Tool stack khuyến nghị</h3>
+
+  <table>
+    <thead>
+      <tr><th>Tool</th><th>Vai trò</th><th>Vì sao</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Obsidian</strong></td><td>Editor chính cho Brain</td><td>Markdown plain, backlink graph, Daily Notes, Templater, Dataview</td></tr>
+      <tr><td><strong>Git (private repo)</strong></td><td>Version control + sync</td><td>History, restore, branch cho exploration. KHÔNG public.</td></tr>
+      <tr><td><strong>Encrypted backup</strong></td><td>Backup external</td><td>Cryptomator → external drive hoặc encrypted cloud (Tresorit, Sync.com)</td></tr>
+      <tr><td><strong>Claude Cowork</strong></td><td>AI READ-MOSTLY</td><td>Mount khi cần query knowledge</td></tr>
+      <tr><td><strong>Mobile (Obsidian app)</strong></td><td>Quick capture</td><td>Brain dump _INBOX khi đi đường (nếu sync iCloud/private)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card card-private">
+    <strong>🚫 KHÔNG dùng cho Brain:</strong>
+    <ul class="bullet" style="margin-top: 10px;">
+      <li>Google Drive / Notion / Evernote — cloud bên thứ 3 scan nội dung</li>
+      <li>OneDrive cá nhân chính (account đã sync Company) — risk lộ khi account bị compromise</li>
+      <li>Cloud sync chính (iCloud Drive, Dropbox) — encryption không đủ cho thoughts riêng</li>
+      <li>Public Git repo — KHÔNG BAO GIỜ</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ SECTION 3 ============ -->
+<section id="section3">
+  <h2>3. Cấu trúc folder chi tiết</h2>
+
+  <div class="card card-warning">
+    <strong>📌 Note:</strong> Cấu trúc dưới là <strong>finalized version</strong>. Mục đánh dấu <span class="badge badge-new">NEW</span> là gợi ý bổ sung so với phác thảo ban đầu — đã review để Brain hoàn chỉnh.
+  </div>
+
+  <h3>🌳 Cây thư mục đầy đủ Brain/</h3>
+
+<pre class="tree">
+<span class="folder">Brain/</span>                                  <span class="comment">~/Brain/ hoặc C:\Users\DucNguyen\Brain\</span>
+├── 📄 CLAUDE.md                          <span class="comment">Entry cho AI khi mount Brain</span>
+├── 📄 README.md                          <span class="comment">For humans</span>
+├── 📄 INDEX.md                           <span class="comment">Map mọi folder cha</span>
+├── 📄 _DAILY_CAPTURE.md                  <span class="new">[NEW]</span> <span class="comment">Quick brain dump file (1 file/ngày)</span>
+├── 📄 .gitignore                         <span class="comment">Private repo riêng</span>
+├── 📄 .gitattributes                     <span class="new">[NEW]</span> <span class="comment">Line ending consistency (Windows)</span>
+│
+├── 🔧 <span class="folder">.obsidian/</span>                         <span class="comment">Obsidian config</span>
+│   ├── workspace.json
+│   ├── <span class="folder">community-plugins/</span>               <span class="comment">Templater, Dataview, Daily Notes, Calendar, Tasks</span>
+│   ├── <span class="folder">themes/</span>
+│   └── <span class="folder">templates/</span>                       <span class="new">[NEW]</span> <span class="comment">Obsidian Templater files</span>
+│
+├── 🔧 <span class="folder">.claude/</span>                           <span class="comment">Cowork bridge cho Brain (READ-MOSTLY)</span>
+│   ├── settings.json                    <span class="comment">permissions read-only default</span>
+│   └── settings.local.json
+│
+├── 📥 <span class="folder">_INBOX/</span>                            <span class="new">[NEW]</span> <span class="comment">Quick capture trước khi sort</span>
+│   ├── README.md                        <span class="comment">"Mọi thứ rớt vào đây — sort sau, không sort ngay"</span>
+│   ├── 2026-05-07-snippet-1.md
+│   └── ...                              <span class="comment">Triage hàng tuần → move sang folder phù hợp</span>
+│
+├── 📋 <span class="folder">templates/</span>                         <span class="new">[NEW]</span> <span class="comment">Đức tự define template</span>
+│   ├── _TEMPLATE_DAILY.md
+│   ├── _TEMPLATE_WEEKLY.md
+│   ├── _TEMPLATE_MONTHLY.md
+│   ├── _TEMPLATE_QUARTERLY.md
+│   ├── _TEMPLATE_BOOK_NOTE.md
+│   ├── _TEMPLATE_PERMANENT_NOTE.md
+│   ├── _TEMPLATE_PERSON.md
+│   └── _TEMPLATE_IDEA.md
+│
+├── 🪞 <span class="folder">00_IDENTITY/</span>                       <span class="comment">Đức LÀ AI — cốt lõi không đổi</span>
+│   ├── README.md
+│   ├── values.md                        <span class="comment">Giá trị cá nhân — KHÁC company core values</span>
+│   ├── manifesto.md                     <span class="comment">Tuyên ngôn cá nhân</span>
+│   ├── identity_tags.md                 <span class="comment">founder/instructor/husband/runner/learner...</span>
+│   ├── strengths_weaknesses.md          <span class="comment">SWOT thật, không filter</span>
+│   ├── purpose.md                       <span class="comment">Why — mục đích sống</span>
+│   └── decision_principles.md           <span class="new">[NEW]</span> <span class="comment">Nguyên tắc cá nhân ra quyết định</span>
+│
+├── 📔 <span class="folder">01_JOURNAL/</span>                        <span class="comment">Talk to self theo thời gian</span>
+│   ├── README.md
+│   ├── <span class="folder">2026/</span>
+│   │   ├── <span class="folder">daily/</span>
+│   │   │   ├── 2026-05-07.md
+│   │   │   └── ...
+│   │   ├── <span class="folder">weekly/</span>2026-W18.md ...
+│   │   ├── <span class="folder">monthly/</span>2026-05.md ...
+│   │   └── <span class="folder">quarterly/</span>2026-Q2.md ...
+│   ├── <span class="folder">reflections/</span>                     <span class="comment">Big retros — 6-month, 1-year, 5-year</span>
+│   └── <span class="folder">letters_to_self/</span>                 <span class="new">[NEW]</span> <span class="comment">Thư cho Đức tương lai/quá khứ</span>
+│
+├── 📚 <span class="folder">02_LEARNING/</span>                       <span class="comment">Mọi knowledge raw vào</span>
+│   ├── README.md
+│   ├── <span class="folder">books/</span>                            <span class="comment">1 folder/sách: highlights, notes, summary</span>
+│   │   ├── _TEMPLATE_BOOK_NOTE.md
+│   │   └── &lt;book-slug&gt;/
+│   │       ├── highlights.md
+│   │       ├── notes.md
+│   │       └── summary.md
+│   ├── <span class="folder">podcasts/</span>                        <span class="comment">Podcast notes</span>
+│   ├── <span class="folder">courses/</span>                         <span class="comment">Khoá Đức học (Coursera, MS Learn, ...)</span>
+│   ├── <span class="folder">articles/</span>                        <span class="comment">Article highlight + notes</span>
+│   ├── <span class="folder">conversations/</span>                   <span class="comment">Lessons từ chat người khác</span>
+│   ├── <span class="folder">videos/</span>                          <span class="new">[NEW]</span> <span class="comment">YouTube/talk notes (tách riêng từ podcast)</span>
+│   ├── <span class="folder">permanent_notes/</span>                 <span class="comment">⭐ TIM của Brain — Zettelkasten atomic notes</span>
+│   ├── <span class="folder">literature_notes/</span>                <span class="new">[NEW]</span> <span class="comment">Notes từ source — chưa atomic</span>
+│   └── insights_distilled.md            <span class="comment">Index lessons đã chín → ready promote</span>
+│
+├── 🔋 <span class="folder">03_ENERGY/</span>                         <span class="comment">Sức khoẻ + năng lượng</span>
+│   ├── README.md
+│   ├── sleep_log.md
+│   ├── exercise_log.md
+│   ├── nutrition_notes.md
+│   ├── <span class="private">mood_tracker.md</span>                       <span class="comment">⚠️ KHÔNG share AI auto</span>
+│   ├── <span class="private">triggers_log.md</span>                       <span class="comment">⚠️ Stress trigger pattern — sensitive</span>
+│   ├── recovery_protocols.md            <span class="comment">Khi xấu thì làm gì</span>
+│   └── habits_streak.md                 <span class="new">[NEW]</span> <span class="comment">Habit chain tracker</span>
+│
+├── 👥 <span class="folder">04_RELATIONSHIPS/</span>                  <span class="comment">Quan hệ cá nhân (KHÁC stakeholder biz)</span>
+│   ├── README.md
+│   ├── _TEMPLATE_PERSON.md
+│   ├── <span class="folder">family/</span>                          <span class="comment">Vợ, ba mẹ, con, anh em</span>
+│   ├── <span class="folder">mentors/</span>                         <span class="comment">Mentor Đức</span>
+│   ├── <span class="folder">peers/</span>                           <span class="comment">Founder peer group</span>
+│   ├── <span class="folder">network/</span>                         <span class="comment">Quan hệ rộng (KHÁC sales contact)</span>
+│   ├── <span class="folder">students_alumni/</span>                 <span class="comment">Quan hệ — KHÔNG phải LMS data</span>
+│   ├── <span class="folder">interactions_log/</span>                <span class="comment">Mỗi quý 1 file</span>
+│   └── <span class="folder">gift_ideas/</span>                      <span class="new">[NEW]</span> <span class="comment">Quà sinh nhật, kỷ niệm — theo người</span>
+│
+├── 💡 <span class="folder">05_IDEAS_RAW/</span>                      <span class="comment">Ý tưởng chưa filter</span>
+│   ├── README.md
+│   ├── <span class="folder">_INBOX/</span>                          <span class="comment">Brain dump nhanh, stream-of-consciousness</span>
+│   ├── <span class="folder">product_ideas/</span>                   <span class="comment">Ý tưởng sản phẩm — chưa scope</span>
+│   ├── <span class="folder">content_ideas/</span>                   <span class="comment">Ý blog/post chưa viết</span>
+│   ├── <span class="folder">pivot_thoughts/</span>                  <span class="comment">"Có nên đổi hướng?"</span>
+│   ├── <span class="folder">teaching_ideas/</span>                  <span class="comment">COMPA Class — chưa chín thành cohort</span>
+│   ├── <span class="folder">consulting_frameworks/</span>           <span class="comment">Framework thử nghiệm</span>
+│   └── <span class="folder">investment_ideas/</span>                <span class="new">[NEW]</span> <span class="comment">Cơ hội đầu tư cá nhân (chưa execute)</span>
+│
+├── 🎯 <span class="folder">06_GOALS_PERSONAL/</span>                 <span class="comment">Mục tiêu cá nhân (KHÁC OKR công ty)</span>
+│   ├── README.md
+│   ├── lifetime.md
+│   ├── 10_year.md
+│   ├── 5_year.md
+│   ├── 1_year.md
+│   ├── current_quarter.md
+│   ├── habits_tracker.md
+│   └── bucket_list.md                   <span class="new">[NEW]</span>
+│
+├── 💰 <span class="folder">07_FINANCES_PERSONAL/</span>              <span class="private">⚠️ gitignored</span>
+│   ├── README.md
+│   ├── networth_tracker.md              <span class="comment">Track, KHÔNG account number</span>
+│   ├── investment_thesis.md             <span class="comment">Triết lý đầu tư cá nhân</span>
+│   ├── runway_projection.md             <span class="comment">Cá nhân, không phải biz runway</span>
+│   ├── lifestyle_costs.md               <span class="comment">Cost of living theo tháng</span>
+│   └── tax_notes.md                     <span class="new">[NEW]</span> <span class="comment">Thuế cá nhân (notes only)</span>
+│
+├── 🏥 <span class="folder">08_HEALTH/</span>                         <span class="private">⚠️ gitignored — sensitive</span>
+│   ├── README.md
+│   ├── medical_history.md
+│   ├── annual_checkup.md
+│   ├── prescriptions.md
+│   ├── conditions.md
+│   └── family_health_history.md         <span class="new">[NEW]</span>
+│
+├── 📚 <span class="folder">09_REFERENCE_LIBRARY/</span>              <span class="new">[NEW]</span> <span class="comment">Sách scan, PDF, papers</span>
+│   ├── README.md
+│   ├── <span class="folder">books_scanned/</span>                   <span class="comment">PDF sách Đức đã mua</span>
+│   ├── <span class="folder">papers/</span>                          <span class="comment">Academic papers</span>
+│   ├── <span class="folder">cheatsheets/</span>                     <span class="comment">DAX, SQL, Python references</span>
+│   └── <span class="folder">archived_articles/</span>               <span class="comment">Bài hay save offline</span>
+│
+├── 🎨 <span class="folder">10_CREATIVE_OUTPUTS/</span>               <span class="new">[NEW]</span> <span class="comment">Bản nháp viết riêng (KHÔNG phải biz content)</span>
+│   ├── README.md
+│   ├── <span class="folder">essays/</span>                          <span class="comment">Essay cá nhân</span>
+│   ├── <span class="folder">poetry/</span>                          <span class="comment">Thơ</span>
+│   ├── <span class="folder">photos/</span>                          <span class="comment">Photo journaling</span>
+│   ├── <span class="folder">memoirs/</span>                         <span class="comment">Hồi ký</span>
+│   └── <span class="folder">unsent_letters/</span>                  <span class="comment">Thư không gửi</span>
+│
+├── 📅 <span class="folder">11_TIMELINE/</span>                       <span class="new">[NEW]</span> <span class="comment">Life events, milestones, transitions</span>
+│   ├── README.md
+│   ├── <span class="folder">milestones/</span>                      <span class="comment">Tốt nghiệp, lập gia đình, founder COMPA</span>
+│   ├── <span class="folder">transitions/</span>                     <span class="comment">Đổi việc, chuyển nhà, pivot</span>
+│   ├── <span class="folder">significant_events/</span>              <span class="comment">Mất người thân, gặp mentor lớn</span>
+│   └── life_chapters.md                 <span class="comment">Phân chia "chương" cuộc đời</span>
+│
+└── 🗄️ <span class="folder">99_ARCHIVE/</span>                        <span class="comment">Folder cũ giữ nhưng không dùng</span>
+    └── &lt;old-content-by-year&gt;/
+</pre>
+</section>
+
+<!-- ============ SECTION 4 ============ -->
+<section id="section4">
+  <h2>4. Bảng mô tả chi tiết từng folder</h2>
+
+  <p><strong>Phân loại badge:</strong>
+    <span class="badge badge-config">CONFIG</span>
+    <span class="badge badge-identity">IDENTITY</span>
+    <span class="badge badge-journal">JOURNAL</span>
+    <span class="badge badge-learn">LEARNING</span>
+    <span class="badge badge-energy">ENERGY</span>
+    <span class="badge badge-relate">RELATIONSHIP</span>
+    <span class="badge badge-ideas">IDEAS</span>
+    <span class="badge badge-goal">GOALS</span>
+    <span class="badge badge-private">PRIVATE</span>
+    <span class="badge badge-archive">ARCHIVE</span>
+    <span class="badge badge-new">NEW</span>
+  </p>
+
+  <h3>📐 Lớp 1 — File &amp; Config ở ROOT Brain/</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px">STT</th>
+        <th style="width:180px">Tên</th>
+        <th style="width:230px">Định nghĩa</th>
+        <th style="width:230px">Thông tin lưu trữ</th>
+        <th style="width:180px">Giá trị</th>
+        <th>Kích hoạt khi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="stt">1</td><td class="folder-name">CLAUDE.md</td><td>Entry point AI khi mount Brain</td><td>Brain identity, READ-MOSTLY mode declare, folder map</td><td>AI hiểu Brain khác Company</td><td>Cowork mount Brain/</td></tr>
+      <tr><td class="stt">2</td><td class="folder-name">README.md</td><td>Mô tả cho human (Đức)</td><td>Cấu trúc rút gọn, cách dùng Obsidian</td><td>Onboard chính Đức nếu lâu không dùng</td><td>Setup ban đầu, restore</td></tr>
+      <tr><td class="stt">3</td><td class="folder-name">INDEX.md</td><td>Master map mọi folder cha</td><td>Pointer + 1 dòng mô tả mỗi folder</td><td>Discovery layer 1</td><td>Mỗi session AI</td></tr>
+      <tr><td class="stt">4</td><td class="folder-name">_DAILY_CAPTURE.md <span class="badge badge-new">NEW</span></td><td>Quick brain dump file của ngày hiện tại</td><td>Ý tưởng/snippet/quote nghe được trong ngày</td><td>Frictionless capture</td><td>Bất kỳ lúc, không cần mở subfolder</td></tr>
+      <tr><td class="stt">5</td><td class="folder-name">.gitignore</td><td>Loại trừ folder/file private</td><td>07_FINANCES, 08_HEALTH, 03_ENERGY/mood, *.local</td><td>Bảo vệ sensitive content</td><td>Mọi git commit</td></tr>
+      <tr><td class="stt">6</td><td class="folder-name">.gitattributes <span class="badge badge-new">NEW</span></td><td>Line ending consistency</td><td><code class="inline">* text=auto eol=lf</code></td><td>Tránh CRLF/LF pain trên Windows</td><td>Git operations</td></tr>
+      <tr><td class="stt">7</td><td class="folder-name">.obsidian/ <span class="badge badge-config">CFG</span></td><td>Obsidian app config</td><td>workspace, community plugins, themes, templates</td><td>Obsidian UX</td><td>Mở Obsidian</td></tr>
+      <tr><td class="stt">8</td><td class="folder-name">.claude/ <span class="badge badge-config">CFG</span></td><td>Cowork bridge cho Brain</td><td>settings.json (READ-MOSTLY), settings.local.json</td><td>AI access Brain đúng cách</td><td>Cowork mount Brain/</td></tr>
+      <tr><td class="stt">9</td><td class="folder-name">_INBOX/ <span class="badge badge-new">NEW</span></td><td>Quick capture zone</td><td>File raw chưa sort vào folder phù hợp</td><td>Frictionless capture, sort sau</td><td>Có ý tưởng/snippet bất kỳ lúc nào</td></tr>
+      <tr><td class="stt">10</td><td class="folder-name">templates/ <span class="badge badge-new">NEW</span></td><td>Đức tự define template</td><td>_TEMPLATE_DAILY/WEEKLY/MONTHLY/QUARTERLY/BOOK_NOTE/PERMANENT_NOTE/PERSON/IDEA</td><td>Standardize input — đỡ phải nhớ format</td><td>Tạo file mới (Templater plugin)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📐 Lớp 2 — 12 Top-level Folders</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px">STT</th>
+        <th style="width:230px">Folder</th>
+        <th style="width:220px">Định nghĩa</th>
+        <th style="width:220px">Thông tin lưu trữ</th>
+        <th style="width:180px">Giá trị</th>
+        <th>Kích hoạt khi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="stt">11</td><td class="folder-name">00_IDENTITY/ <span class="badge badge-identity">IDT</span></td><td>Đức LÀ AI — cốt lõi không đổi</td><td>values, manifesto, identity_tags, SWOT, purpose, decision_principles</td><td>AI hiểu Đức as person</td><td>Hiếm — review hàng quý hoặc khi crisis</td></tr>
+      <tr><td class="stt">12</td><td class="folder-name">01_JOURNAL/ <span class="badge badge-journal">JNL</span></td><td>Talk to self theo thời gian</td><td>daily/weekly/monthly/quarterly notes, reflections, letters_to_self</td><td>Self-awareness, pattern recognition</td><td>Daily 5-15 phút</td></tr>
+      <tr><td class="stt">13</td><td class="folder-name">02_LEARNING/ <span class="badge badge-learn">LRN</span></td><td>Mọi knowledge raw vào</td><td>books, podcasts, courses, articles, conversations, videos, permanent_notes (⭐), literature_notes, insights_distilled</td><td>Compound knowledge — Đức's library</td><td>Khi học cái mới, weekly review insight</td></tr>
+      <tr><td class="stt">14</td><td class="folder-name">03_ENERGY/ <span class="badge badge-energy">ENG</span></td><td>Theo dõi cơ thể + mental</td><td>sleep, exercise, nutrition, mood (private), triggers (private), recovery_protocols, habits_streak</td><td>Pattern recognition về energy</td><td>Daily quick log</td></tr>
+      <tr><td class="stt">15</td><td class="folder-name">04_RELATIONSHIPS/ <span class="badge badge-relate">REL</span></td><td>Quan hệ cá nhân</td><td>family, mentors, peers, network, students_alumni, interactions_log, gift_ideas</td><td>CRM cá nhân — không phải biz CRM</td><td>Khi gặp/nghĩ về ai đó</td></tr>
+      <tr><td class="stt">16</td><td class="folder-name">05_IDEAS_RAW/ <span class="badge badge-ideas">IDE</span></td><td>Ý tưởng chưa filter</td><td>_INBOX, product/content/teaching/pivot/consulting/investment ideas</td><td>R&amp;D pipeline cá nhân — promote sang Company khi chín</td><td>Random — bất cứ khi nào</td></tr>
+      <tr><td class="stt">17</td><td class="folder-name">06_GOALS_PERSONAL/ <span class="badge badge-goal">GOL</span></td><td>Mục tiêu cá nhân</td><td>lifetime, 10y/5y/1y, current_quarter, habits_tracker, bucket_list</td><td>Định hướng — KHÁC OKR công ty</td><td>Quarterly review</td></tr>
+      <tr><td class="stt">18</td><td class="folder-name">07_FINANCES_PERSONAL/ <span class="badge badge-private">PVT</span></td><td>Tài chính cá nhân (gitignored)</td><td>networth, investment_thesis, runway, lifestyle_costs, tax_notes</td><td>Independence/runway awareness</td><td>Monthly</td></tr>
+      <tr><td class="stt">19</td><td class="folder-name">08_HEALTH/ <span class="badge badge-private">PVT</span></td><td>Sức khoẻ y khoa (gitignored)</td><td>medical_history, annual_checkup, prescriptions, conditions, family_health_history</td><td>Continuity care — đặc biệt khi đổi bác sĩ</td><td>Adhoc — khi đi khám</td></tr>
+      <tr><td class="stt">20</td><td class="folder-name">09_REFERENCE_LIBRARY/ <span class="badge badge-new">NEW</span></td><td>Sách scan, PDF, papers</td><td>books_scanned, papers, cheatsheets, archived_articles</td><td>Reference offline khi đi máy bay/no internet</td><td>Khi cần look up cụ thể</td></tr>
+      <tr><td class="stt">21</td><td class="folder-name">10_CREATIVE_OUTPUTS/ <span class="badge badge-new">NEW</span></td><td>Bản nháp viết riêng</td><td>essays, poetry, photos, memoirs, unsent_letters</td><td>Creative outlet riêng — KHÔNG biz content</td><td>Khi muốn viết thoải mái</td></tr>
+      <tr><td class="stt">22</td><td class="folder-name">11_TIMELINE/ <span class="badge badge-new">NEW</span></td><td>Life events, milestones</td><td>milestones, transitions, significant_events, life_chapters</td><td>Hiểu trajectory cuộc đời</td><td>Yearly review, lúc transition</td></tr>
+      <tr><td class="stt">23</td><td class="folder-name">99_ARCHIVE/ <span class="badge badge-archive">ARC</span></td><td>Folder cũ không dùng nữa</td><td>Content theo năm</td><td>Giữ Brain gọn, không xóa</td><td>Adhoc khi cleanup</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📐 Lớp 3 — Sub-folders quan trọng (top 20)</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px">STT</th>
+        <th style="width:260px">Folder</th>
+        <th style="width:220px">Định nghĩa</th>
+        <th style="width:220px">Thông tin lưu trữ</th>
+        <th style="width:180px">Giá trị</th>
+        <th>Kích hoạt khi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="stt">24</td><td class="folder-name">01_JOURNAL/2026/daily/</td><td>Daily journal entries</td><td>YYYY-MM-DD.md cho mỗi ngày</td><td>Granular self-tracking</td><td>Sáng + tối daily</td></tr>
+      <tr><td class="stt">25</td><td class="folder-name">01_JOURNAL/reflections/</td><td>Big retros</td><td>6-month, 1-year, 5-year reflection</td><td>Macro pattern recognition</td><td>Cuối quý/năm</td></tr>
+      <tr><td class="stt">26</td><td class="folder-name">01_JOURNAL/letters_to_self/ <span class="badge badge-new">NEW</span></td><td>Thư cho Đức tương lai/quá khứ</td><td>Letter format MD, có deadline open</td><td>Time capsule — perspective shift</td><td>Khi pivot lớn, anniversary</td></tr>
+      <tr><td class="stt">27</td><td class="folder-name">02_LEARNING/permanent_notes/</td><td>⭐ TIM của Brain — Zettelkasten</td><td>Atomic notes, 1 idea/file, có backlink</td><td>Compound — graph of ideas</td><td>Sau khi đọc xong sách/article</td></tr>
+      <tr><td class="stt">28</td><td class="folder-name">02_LEARNING/literature_notes/ <span class="badge badge-new">NEW</span></td><td>Notes từ source, chưa atomic</td><td>Notes raw từ 1 nguồn cụ thể</td><td>Bridge giữa raw highlight và permanent note</td><td>Đang đọc/nghe</td></tr>
+      <tr><td class="stt">29</td><td class="folder-name">02_LEARNING/insights_distilled.md</td><td>Index lessons đã chín</td><td>Bullet "Insight X — applied N times — promote-ready"</td><td>Promote pipeline tracker</td><td>Quarterly review</td></tr>
+      <tr><td class="stt">30</td><td class="folder-name">03_ENERGY/mood_tracker.md <span class="badge badge-private">PVT</span></td><td>Mental state log</td><td>Daily 1-10 + 1-2 dòng note</td><td>Pattern recognition — biết khi nào burnout coming</td><td>Daily — tối</td></tr>
+      <tr><td class="stt">31</td><td class="folder-name">03_ENERGY/triggers_log.md <span class="badge badge-private">PVT</span></td><td>Stress trigger pattern</td><td>What triggered, response, lesson</td><td>Self-awareness, prevent recurrence</td><td>Sau event stress</td></tr>
+      <tr><td class="stt">32</td><td class="folder-name">04_RELATIONSHIPS/family/</td><td>Vợ, ba mẹ, con, anh em</td><td>1 file/người: timeline, key dates, preferences</td><td>Không quên gì quan trọng</td><td>Birthday, anniversary, big news</td></tr>
+      <tr><td class="stt">33</td><td class="folder-name">04_RELATIONSHIPS/mentors/</td><td>Mentor profile</td><td>1 file/mentor: lessons learned, quotes, contacts</td><td>Compound mentor wisdom</td><td>Sau mỗi mentor session</td></tr>
+      <tr><td class="stt">34</td><td class="folder-name">04_RELATIONSHIPS/peers/</td><td>Founder peer group</td><td>Profile + interaction history</td><td>Track relationship depth</td><td>Quarterly review</td></tr>
+      <tr><td class="stt">35</td><td class="folder-name">04_RELATIONSHIPS/gift_ideas/ <span class="badge badge-new">NEW</span></td><td>Gift idea theo người</td><td>1 file/người: ideas mentioned, last gift, occasion</td><td>Không quên gift mùa</td><td>Trước birthday/holiday</td></tr>
+      <tr><td class="stt">36</td><td class="folder-name">05_IDEAS_RAW/_INBOX/</td><td>Brain dump nhanh nhất</td><td>Stream-of-consciousness, raw text</td><td>Frictionless idea capture</td><td>Bất kỳ lúc — qua mobile/desktop</td></tr>
+      <tr><td class="stt">37</td><td class="folder-name">05_IDEAS_RAW/teaching_ideas/</td><td>COMPA Class ideas chưa chín</td><td>Module ideas, format experiments</td><td>Pre-cohort R&amp;D</td><td>Sau khi giảng cohort hiện tại</td></tr>
+      <tr><td class="stt">38</td><td class="folder-name">05_IDEAS_RAW/pivot_thoughts/</td><td>Pivot thinking</td><td>"Có nên đổi hướng?" thoughts</td><td>Tránh sunk cost fallacy</td><td>Khi feel friction lớn</td></tr>
+      <tr><td class="stt">39</td><td class="folder-name">06_GOALS_PERSONAL/habits_tracker.md</td><td>Habit chain</td><td>Daily checkbox: đọc, tập, viết, sleep</td><td>Visibility chain → motivation</td><td>Daily evening</td></tr>
+      <tr><td class="stt">40</td><td class="folder-name">07_FINANCES_PERSONAL/runway_projection.md <span class="badge badge-private">PVT</span></td><td>Cá nhân runway</td><td>Net worth - lifestyle cost = months runway</td><td>Decision lever — risk tolerance</td><td>Trước decision business lớn</td></tr>
+      <tr><td class="stt">41</td><td class="folder-name">09_REFERENCE_LIBRARY/cheatsheets/ <span class="badge badge-new">NEW</span></td><td>Reference cards</td><td>DAX, SQL, Python, Power BI shortcut PDFs</td><td>Quick lookup — không cần internet</td><td>Khi code/build report</td></tr>
+      <tr><td class="stt">42</td><td class="folder-name">11_TIMELINE/life_chapters.md <span class="badge badge-new">NEW</span></td><td>Phân chia "chương" cuộc đời</td><td>2018-2020: pre-COMPA / 2021-2024: building / ...</td><td>Macro perspective</td><td>Yearly review</td></tr>
+      <tr><td class="stt">43</td><td class="folder-name">99_ARCHIVE/&lt;year&gt;/</td><td>Content cũ theo năm</td><td>Folder content đã không relevant</td><td>Giữ Brain gọn nhưng không xóa</td><td>Cleanup quarterly</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ SECTION 5 ============ -->
+<section id="section5">
+  <h2>5. Folder/File còn cần bổ sung — Finalize</h2>
+
+  <div class="card card-warning">
+    <strong>📝 Phân tích kỹ:</strong> Sau khi review phác thảo ban đầu + best practice Zettelkasten + tích hợp với Company workflow, tôi gợi ý <strong>13 folder/file mới</strong> cho Brain. Liệt kê dưới với mức độ ưu tiên.
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px">#</th>
+        <th style="width:280px">File/Folder mới</th>
+        <th style="width:280px">Lý do</th>
+        <th style="width:120px">Effort</th>
+        <th>Priority</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td class="folder-name">_DAILY_CAPTURE.md (root)</td><td>Quick brain dump, không cần mở subfolder. Frictionless = capture nhiều hơn.</td><td>5 phút (template)</td><td>⭐⭐⭐ HIGH</td></tr>
+      <tr><td>2</td><td class="folder-name">_INBOX/ (root)</td><td>Drop zone cho mọi snippet trước khi sort. Tránh forced categorization.</td><td>10 phút</td><td>⭐⭐⭐ HIGH</td></tr>
+      <tr><td>3</td><td class="folder-name">templates/ (root)</td><td>8 template chuẩn (DAILY, WEEKLY, BOOK_NOTE, PERMANENT_NOTE, PERSON, IDEA...). Obsidian Templater plugin sẽ dùng.</td><td>2 giờ</td><td>⭐⭐⭐ HIGH</td></tr>
+      <tr><td>4</td><td class="folder-name">.gitattributes</td><td>Line ending consistency. Bắt buộc nếu Đức làm việc trên cả Windows + macOS/Linux.</td><td>5 phút</td><td>⭐⭐ MED</td></tr>
+      <tr><td>5</td><td class="folder-name">00_IDENTITY/decision_principles.md</td><td>Nguyên tắc cá nhân ra quyết định — KHÁC company decision playbook.</td><td>30 phút (write thực)</td><td>⭐⭐⭐ HIGH</td></tr>
+      <tr><td>6</td><td class="folder-name">01_JOURNAL/letters_to_self/</td><td>Time capsule — thư cho Đức tương lai. Perspective shift mạnh.</td><td>10 phút (folder + 1 example)</td><td>⭐⭐ MED</td></tr>
+      <tr><td>7</td><td class="folder-name">02_LEARNING/literature_notes/</td><td>Bridge giữa raw highlights và permanent notes. Zettelkasten chuẩn 3 tầng.</td><td>10 phút</td><td>⭐⭐⭐ HIGH</td></tr>
+      <tr><td>8</td><td class="folder-name">02_LEARNING/videos/</td><td>YouTube/talk notes — tách riêng từ podcast.</td><td>5 phút</td><td>⭐⭐ MED</td></tr>
+      <tr><td>9</td><td class="folder-name">03_ENERGY/habits_streak.md</td><td>Habit chain tracker — visibility chain → motivation.</td><td>15 phút</td><td>⭐⭐ MED</td></tr>
+      <tr><td>10</td><td class="folder-name">04_RELATIONSHIPS/gift_ideas/</td><td>Track gift ideas mentioned trong conversations — không quên dịp lễ.</td><td>10 phút</td><td>⭐⭐ MED</td></tr>
+      <tr><td>11</td><td class="folder-name">05_IDEAS_RAW/investment_ideas/</td><td>Ý đầu tư cá nhân — tách khỏi business idea.</td><td>5 phút</td><td>⭐⭐ MED</td></tr>
+      <tr><td>12</td><td class="folder-name">09_REFERENCE_LIBRARY/</td><td>Sách scan, PDF, papers, cheatsheets. Reference offline khi không có internet.</td><td>30 phút (folder + organize existing)</td><td>⭐⭐⭐ HIGH</td></tr>
+      <tr><td>13</td><td class="folder-name">10_CREATIVE_OUTPUTS/ + 11_TIMELINE/</td><td>Creative outlet riêng + macro view cuộc đời. Whole-person view, không chỉ work.</td><td>30 phút</td><td>⭐⭐ MED</td></tr>
+    </tbody>
+  </table>
+
+  <h3>🎯 Roadmap finalize Brain</h3>
+
+  <div class="card card-success">
+    <strong>Recommend làm theo thứ tự:</strong>
+    <ol style="margin: 12px 0 0 22px; line-height: 1.9;">
+      <li><strong>Setup phase (1 lần, ~3 giờ):</strong> tạo skeleton 12 top-folder + 13 NEW item HIGH priority + .obsidian config + Cowork bridge</li>
+      <li><strong>Migration phase (varies):</strong> import nội dung Đức đã có (journal cũ, sách notes, ý tưởng) — không bắt buộc xong ngay</li>
+      <li><strong>Habit phase (90 ngày):</strong> daily journal đều — đến khi tự động hoá</li>
+      <li><strong>Promote phase (quarterly):</strong> review insights_distilled.md → promote sang Company/.leader/</li>
+      <li><strong>Refinement (sau 6 tháng):</strong> review structure, có thể merge folder ít dùng, split folder phình to</li>
+    </ol>
+  </div>
+
+  <h3>📊 Statistics sau khi finalize</h3>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">12</span><span class="label">Top-level folders</span></div>
+    <div class="stat"><span class="num">~50</span><span class="label">Sub-folders</span></div>
+    <div class="stat"><span class="num">8</span><span class="label">Templates chuẩn</span></div>
+    <div class="stat"><span class="num">3</span><span class="label">Folder gitignored<br>(07_FIN, 08_HEALTH, 03_ENG private)</span></div>
+    <div class="stat"><span class="num">365+</span><span class="label">File daily/năm<br>(daily journal)</span></div>
+    <div class="stat"><span class="num">∞</span><span class="label">Permanent notes (target)</span></div>
+  </div>
+
+  <h3>🔗 Cross-reference Brain ↔ Company</h3>
+
+  <table>
+    <thead>
+      <tr><th>Hành động</th><th>Direction</th><th>Cách làm</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>AI đọc Brain để viết content Company</td><td>Brain READ → Company WRITE</td><td>Mount cả 2; AI tự READ Brain khi user explicit "dùng kiến thức Brain"</td></tr>
+      <tr><td>Promote insight chín</td><td>Brain → Company/.leader/</td><td>Quarterly review: rewrite (filter) sang principle</td></tr>
+      <tr><td>Reverse promote — exec lesson sâu hơn</td><td>Company/.company/lessons_learned/ → Brain/01_JOURNAL/reflections/</td><td>Khi muốn ngẫm cá nhân hơn</td></tr>
+      <tr><td>Capture conversation với khách</td><td>Brain/04_RELATIONSHIPS/students_alumni/ + Company/client/accounts/touchpoints.md</td><td>2 chỗ — personal angle + business angle</td></tr>
+      <tr><td>Idea từ Brain → product spec</td><td>Brain/05_IDEAS_RAW/teaching_ideas/ → Company/product/cycles/.../specs/</td><td>Khi idea chín, build spec chính thức</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</main>
+
+<footer>
+  <p><strong>Brain — Personal Knowledge OS v1.0</strong> · Owner: Đức (private) · Last updated: 2026-05-07</p>
+  <p style="margin-top: 8px;">Local-first · Privacy-first · Markdown-native · AI-readable</p>
+  <p style="margin-top: 8px;"><em>"Externalize memory. Compound knowledge. Augment thinking. Survive forever."</em></p>
+</footer>
+
+</body>
+</html>

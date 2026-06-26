@@ -1,0 +1,1849 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>practice.html - Luyện tập trắc nghiệm</title>
+
+  <!-- =========================
+       STYLE START
+       Khu vực CSS giao diện
+       ========================= -->
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --card-2: #f9fbff;
+      --text: #172033;
+      --muted: #63708a;
+      --border: #dbe3f1;
+      --primary: #1a72ff;
+      --primary-2: #0047ab;
+      --primary-soft: rgba(26, 114, 255, 0.10);
+      --success: #0f9f6e;
+      --success-soft: rgba(15, 159, 110, 0.12);
+      --danger: #d64545;
+      --danger-soft: rgba(214, 69, 69, 0.12);
+      --warning: #c88400;
+      --warning-soft: rgba(200, 132, 0, 0.12);
+      --shadow: 0 10px 28px rgba(20, 34, 66, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(26,114,255,0.08), transparent 24%),
+        linear-gradient(180deg, #f8fbff 0%, #f4f7fb 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .app {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #0d1d3c 0%, #123b86 55%, #1a72ff 100%);
+      color: #fff;
+      padding: 28px;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::after {
+      content: "";
+      position: absolute;
+      inset: auto -60px -60px auto;
+      width: 220px;
+      height: 220px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      filter: blur(2px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.12);
+      border-radius: 999px;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(26px, 4vw, 40px);
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 920px;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0 22px;
+    }
+
+    .tab-btn,
+    .btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .tab-btn:hover,
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(23,32,51,0.07);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .btn-soft {
+      background: var(--primary-soft);
+      color: var(--primary-2);
+      border-color: rgba(26,114,255,0.14);
+    }
+
+    .btn-success-soft {
+      background: var(--success-soft);
+      color: var(--success);
+      border-color: rgba(15,159,110,0.15);
+    }
+
+    .btn-danger-soft {
+      background: var(--danger-soft);
+      color: var(--danger);
+      border-color: rgba(214,69,69,0.15);
+    }
+
+    .btn-warning-soft {
+      background: var(--warning-soft);
+      color: var(--warning);
+      border-color: rgba(200,132,0,0.15);
+    }
+
+    .btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      font-size: 20px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .progress-wrap {
+      margin-bottom: 18px;
+    }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: #e9eef7;
+      overflow: hidden;
+    }
+
+    .progress-bar > span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), #4aa1ff);
+      transition: width 0.25s ease;
+    }
+
+    .question-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .badge-primary {
+      color: var(--primary-2);
+      background: var(--primary-soft);
+      border-color: rgba(26,114,255,0.12);
+    }
+
+    .question-text {
+      font-size: 22px;
+      line-height: 1.55;
+      margin: 0 0 18px;
+      font-weight: 700;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 16px;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      text-align: left;
+      width: 100%;
+      color: var(--text);
+      font: inherit;
+    }
+
+    .option:hover {
+      border-color: rgba(26,114,255,0.36);
+      background: #fbfdff;
+      transform: translateY(-1px);
+    }
+
+    .option.selected {
+      border-color: var(--primary);
+      background: rgba(26,114,255,0.06);
+      box-shadow: inset 0 0 0 1px rgba(26,114,255,0.12);
+    }
+
+    .option.correct {
+      border-color: var(--success);
+      background: var(--success-soft);
+    }
+
+    .option.wrong {
+      border-color: var(--danger);
+      background: var(--danger-soft);
+    }
+
+    .option-index {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      flex-shrink: 0;
+      background: #eef3fb;
+      color: var(--primary-2);
+      margin-top: 1px;
+    }
+
+    .option.correct .option-index {
+      background: rgba(15,159,110,0.18);
+      color: var(--success);
+    }
+
+    .option.wrong .option-index {
+      background: rgba(214,69,69,0.18);
+      color: var(--danger);
+    }
+
+    .option-text {
+      line-height: 1.55;
+      white-space: pre-wrap;
+      flex: 1;
+    }
+
+    .helper-box,
+    .result-box,
+    .notice-box {
+      margin-top: 16px;
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      background: var(--card-2);
+    }
+
+    .helper-box.hidden,
+    .result-box.hidden,
+    .notice-box.hidden {
+      display: none;
+    }
+
+    .helper-title,
+    .result-title {
+      margin: 0 0 8px;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .helper-text,
+    .result-text {
+      margin: 0;
+      line-height: 1.6;
+      color: var(--text);
+      white-space: pre-wrap;
+    }
+
+    .result-box.success {
+      background: var(--success-soft);
+      border-color: rgba(15,159,110,0.18);
+    }
+
+    .result-box.error {
+      background: var(--danger-soft);
+      border-color: rgba(214,69,69,0.18);
+    }
+
+    .result-answer {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(23,32,51,0.15);
+    }
+
+    .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .side-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(46px, 1fr));
+      gap: 8px;
+    }
+
+    .palette button {
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 12px;
+      padding: 10px 8px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .palette button.current {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      color: var(--primary-2);
+    }
+
+    .palette button.done {
+      border-color: rgba(15,159,110,0.2);
+      background: var(--success-soft);
+      color: var(--success);
+    }
+
+    .palette button.correct-only {
+      box-shadow: inset 0 0 0 1px rgba(15,159,110,0.18);
+    }
+
+    .palette button.wrong-only {
+      box-shadow: inset 0 0 0 1px rgba(214,69,69,0.18);
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend i {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .i-current { background: rgba(26,114,255,0.35); }
+    .i-done { background: rgba(15,159,110,0.35); }
+    .i-wrong { background: rgba(214,69,69,0.35); }
+
+    .search-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .search-bar input {
+      flex: 1 1 340px;
+      min-width: 220px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font: inherit;
+      background: #fff;
+      color: var(--text);
+    }
+
+    .search-bar input:focus {
+      outline: 2px solid rgba(26,114,255,0.15);
+      border-color: rgba(26,114,255,0.35);
+    }
+
+    .search-meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .table-wrap {
+      overflow: auto;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1280px;
+    }
+
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #eef4ff;
+      color: var(--primary-2);
+      font-size: 13px;
+      text-align: left;
+      padding: 12px 12px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    tbody td {
+      padding: 12px;
+      border-bottom: 1px solid #edf1f7;
+      vertical-align: top;
+      font-size: 14px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    tbody tr:hover {
+      background: #fafcff;
+    }
+
+    .table-question {
+      min-width: 320px;
+      font-weight: 600;
+    }
+
+    .table-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .text-muted {
+      color: var(--muted);
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 999;
+      background: #11284f;
+      color: #fff;
+      padding: 14px 16px;
+      border-radius: 14px;
+      box-shadow: 0 18px 30px rgba(17,40,79,0.2);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: all 0.22s ease;
+      max-width: 360px;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .empty-state {
+      padding: 24px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 1080px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .app {
+        padding: 16px;
+      }
+
+      .header {
+        padding: 22px;
+        border-radius: 20px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .question-text {
+        font-size: 20px;
+      }
+
+      .action-group {
+        flex-direction: column;
+      }
+
+      .action-group .btn {
+        width: 100%;
+      }
+    }
+  </style>
+  <!-- =========================
+       STYLE END
+       ========================= -->
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="eyebrow">📘 Bộ luyện tập kiến thức • HTML + CSS + JavaScript • Chạy local</div>
+      <h1>Luyện tập trắc nghiệm n8n / AI Agent / Vibe Coding</h1>
+      <p class="subtitle">
+        Trang luyện tập được đóng gói trong một file <strong>practice.html</strong> duy nhất.
+        Bạn có thể làm từng câu hỏi, xem gợi ý, kiểm tra đáp án, đọc giải thích sau khi trả lời
+        và tra cứu toàn bộ ngân hàng câu hỏi bằng từ khóa.
+      </p>
+    </header>
+
+    <div class="tabs" role="tablist" aria-label="Chuyển chế độ">
+      <button class="tab-btn active" id="tabPracticeBtn" type="button" data-view="practiceView">🎯 Luyện tập</button>
+      <button class="tab-btn" id="tabBankBtn" type="button" data-view="bankView">📚 Ngân hàng câu hỏi</button>
+    </div>
+
+    <section id="practiceView" class="view active" aria-labelledby="tabPracticeBtn">
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-label">Tổng số câu</div>
+          <div class="stat-value" id="totalQuestionsStat">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Đã trả lời</div>
+          <div class="stat-value" id="answeredQuestionsStat">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Số câu đúng</div>
+          <div class="stat-value" id="correctQuestionsStat">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Tỷ lệ đúng</div>
+          <div class="stat-value" id="accuracyStat">0%</div>
+        </div>
+      </div>
+
+      <div class="progress-wrap card">
+        <div class="card-body">
+          <div class="progress-head">
+            <span id="progressText">Tiến độ: 0 / 0 câu</span>
+            <span id="progressSubText">Hoàn thành 0%</span>
+          </div>
+          <div class="progress-bar" aria-hidden="true">
+            <span id="progressFill"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-body">
+            <div class="question-meta">
+              <span class="badge badge-primary" id="questionCounterBadge">Câu 1 / 1</span>
+              <span class="badge" id="originalOrderBadge">STT gốc: 1</span>
+              <span class="badge" id="slideRefBadge">Chương - Slide</span>
+            </div>
+
+            <h2 class="question-text" id="questionText">Đang tải câu hỏi...</h2>
+
+            <div id="optionsContainer" class="options"></div>
+
+            <div class="action-group">
+              <button class="btn" id="prevBtn" type="button">⬅️ Câu trước</button>
+              <button class="btn" id="nextBtn" type="button">Câu tiếp theo ➡️</button>
+              <button class="btn btn-primary" id="checkAnswerBtn" type="button">✅ Kiểm tra đáp án</button>
+              <button class="btn btn-warning-soft" id="resetCurrentBtn" type="button">🔄 Làm lại câu hiện tại</button>
+            </div>
+
+            <div class="action-group">
+              <button class="btn btn-soft" id="toggleHintBtn" type="button">💡 Hiện gợi ý</button>
+              <button class="btn btn-soft" id="shuffleBtn" type="button">🔀 Tráo câu hỏi</button>
+              <button class="btn" id="restoreOrderBtn" type="button">↩️ Trở về thứ tự gốc</button>
+              <button class="btn btn-danger-soft" id="resetAllBtn" type="button">🧹 Reset toàn bộ</button>
+            </div>
+
+            <div class="helper-box hidden" id="hintBox">
+              <h3 class="helper-title">Gợi ý</h3>
+              <p class="helper-text" id="hintText"></p>
+            </div>
+
+            <div class="notice-box hidden" id="warningBox">
+              <p class="result-text" id="warningText"></p>
+            </div>
+
+            <div class="result-box hidden" id="resultBox">
+              <h3 class="result-title" id="resultTitle">Kết quả</h3>
+              <p class="result-text" id="resultMessage"></p>
+              <div class="result-answer">
+                <p class="result-text"><strong>Đáp án đúng:</strong> <span id="correctAnswerText"></span></p>
+                <p class="result-text"><strong>Giải thích:</strong> <span id="explanationText"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="side-stack">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="section-title">Đi nhanh tới câu hỏi</h3>
+              <div id="questionPalette" class="palette"></div>
+              <div class="legend">
+                <span><i class="i-current"></i> Câu hiện tại</span>
+                <span><i class="i-done"></i> Đã trả lời</span>
+                <span><i class="i-wrong"></i> Có câu sai</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h3 class="section-title">Hướng dẫn sử dụng</h3>
+              <p class="text-muted">
+                1) Chọn một đáp án. 2) Bấm <strong>Kiểm tra đáp án</strong>. 3) Xem kết quả, đáp án đúng và phần giải thích.
+                Bạn có thể bật <strong>Gợi ý</strong> trước khi trả lời, tráo lại toàn bộ thứ tự câu hỏi, hoặc mở tab
+                <strong>Ngân hàng câu hỏi</strong> để tra cứu nhanh theo từ khóa.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="bankView" class="view" aria-labelledby="tabBankBtn">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="section-title">Ngân hàng câu hỏi</h2>
+          <div class="search-bar">
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Tìm theo câu hỏi, đáp án, dẫn chứng slide, gợi ý, giải thích..."
+              autocomplete="off"
+            />
+            <button class="btn" id="clearSearchBtn" type="button">❌ Xóa bộ lọc</button>
+          </div>
+          <div class="search-meta" id="searchMetaText">Đang hiển thị 0 / 0 câu hỏi</div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Câu hỏi</th>
+                  <th>Đáp án 1</th>
+                  <th>Đáp án 2</th>
+                  <th>Đáp án 3</th>
+                  <th>Đáp án 4</th>
+                  <th>Đáp án đúng</th>
+                  <th>Dẫn chứng Slide</th>
+                  <th>Gợi ý</th>
+                  <th>Giải thích</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="questionTableBody">
+                <tr>
+                  <td colspan="11" class="empty-state">Đang tải dữ liệu...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="footer-note">
+            Tìm kiếm hỗ trợ không phân biệt hoa thường và có xử lý không dấu để tra cứu tiếng Việt thuận tiện hơn.
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- =========================
+       SCRIPT START
+       ========================= -->
+  <script>
+    /* =========================
+       QUESTION BANK DATA START
+       Thay thế / chỉnh sửa dữ liệu tại đây
+       ========================= */
+    const questionBank = [
+  {
+    "stt": 1,
+    "question": "Theo slide “Quy trình doanh nghiệp”, quy trình doanh nghiệp (Business Process) là gì?",
+    "options": [
+      "Một chuỗi các bước/hành động được sắp xếp logic để đạt mục tiêu cụ thể",
+      "Một bộ KPI dùng để đánh giá nhân viên",
+      "Một sơ đồ cơ cấu tổ chức của doanh nghiệp",
+      "Một công cụ AI để viết báo cáo"
+    ],
+    "correctRaw": "Đáp án 1 - Một chuỗi các bước/hành động được sắp xếp logic để đạt mục tiêu cụ thể",
+    "slideRef": "Chương 1 - Slide 9",
+    "hint": "Tập trung vào định nghĩa gồm chuỗi bước, trình tự logic và mục tiêu cụ thể.",
+    "explanation": "Slide 9 định nghĩa Business Process là chuỗi các bước hoặc hành động được sắp xếp theo trình tự logic, chặt chẽ nhằm đạt một mục tiêu cụ thể."
+  },
+  {
+    "stt": 2,
+    "question": "Nhóm quy trình nào tạo giá trị trực tiếp cho khách hàng theo slide “Các nhóm quy trình doanh nghiệp”?",
+    "options": [
+      "Quy trình hỗ trợ (Support Process)",
+      "Quy trình quản lý (Management Process)",
+      "Quy trình vận hành (Operational Process)",
+      "Quy trình tuân thủ (Compliance Process)"
+    ],
+    "correctRaw": "Đáp án 3 - Quy trình vận hành (Operational Process)",
+    "slideRef": "Chương 1 - Slide 10",
+    "hint": "Hãy chọn nhóm quy trình gắn với sản xuất, bán hàng, giao hàng.",
+    "explanation": "Slide 10 nêu rõ Operational Process là nhóm quy trình tạo giá trị trực tiếp cho khách hàng, ví dụ sản xuất, bán hàng và giao hàng."
+  },
+  {
+    "stt": 3,
+    "question": "Theo slide “Quy trình làm việc (Workflow)”, workflow mô tả điều gì?",
+    "options": [
+      "Chỉ mô tả chi phí của từng phòng ban",
+      "Mô tả cách công việc được luân chuyển: việc gì cần làm, ai làm và theo trình tự nào",
+      "Chỉ dùng để lưu trữ dữ liệu đầu ra",
+      "Là danh sách các phần mềm doanh nghiệp đang sử dụng"
+    ],
+    "correctRaw": "Đáp án 2 - Mô tả cách công việc được luân chuyển: việc gì cần làm, ai làm và theo trình tự nào",
+    "slideRef": "Chương 1 - Slide 11",
+    "hint": "Từ khóa là luân chuyển công việc, vai trò và trình tự.",
+    "explanation": "Slide 11 giải thích workflow mô tả cách công việc được luân chuyển, bao gồm những gì cần làm, ai làm và làm theo trình tự nào."
+  },
+  {
+    "stt": 4,
+    "question": "Trong slide “Tự động hóa quy trình doanh nghiệp”, thuật ngữ nào chỉ công cụ cho phép xây dựng automation mà không cần hoặc cần rất ít mã lập trình?",
+    "options": [
+      "RPA",
+      "Low-code / No-code",
+      "Bot",
+      "Exception Handling"
+    ],
+    "correctRaw": "Đáp án 2 - Low-code / No-code",
+    "slideRef": "Chương 1 - Slide 13",
+    "hint": "Đây là khái niệm nhấn mạnh việc giảm phụ thuộc vào code.",
+    "explanation": "Slide 13 mô tả Low-code/No-code là các công cụ cho phép xây dựng quy trình tự động mà không cần hoặc cần rất ít mã lập trình."
+  },
+  {
+    "stt": 5,
+    "question": "Trong Business Flow Chart, ký hiệu hình thoi có ý nghĩa gì?",
+    "options": [
+      "Hoạt động / bước xử lý",
+      "Điểm bắt đầu / kết thúc",
+      "Quyết định (Yes/No)",
+      "Luồng di chuyển giữa các bước"
+    ],
+    "correctRaw": "Đáp án 3 - Quyết định (Yes/No)",
+    "slideRef": "Chương 1 - Slide 14",
+    "hint": "Hình này thường gắn với câu hỏi rẽ nhánh.",
+    "explanation": "Slide 14 quy ước hình thoi là điểm ra quyết định, thường là nhánh Yes/No trong flow chart."
+  },
+  {
+    "stt": 6,
+    "question": "Đặc điểm nào KHÔNG nằm trong phần giới thiệu về n8n?",
+    "options": [
+      "Mã nguồn mở và có thể self-host",
+      "Có thể mở rộng bằng JavaScript/Python ngay trong workflow",
+      "Chỉ chạy được trên desktop offline, không kết nối dịch vụ ngoài",
+      "Xử lý dữ liệu theo lô (batch) và lặp lại (looping) hiệu quả"
+    ],
+    "correctRaw": "Đáp án 3 - Chỉ chạy được trên desktop offline, không kết nối dịch vụ ngoài",
+    "slideRef": "Chương 1 - Slide 17",
+    "hint": "Tìm đáp án trái với tinh thần tích hợp và mở rộng của n8n.",
+    "explanation": "Slide 17 nhấn mạnh n8n là công cụ mã nguồn mở, self-host, mở rộng bằng code và xử lý batch/looping; không có ý nào nói n8n chỉ chạy desktop offline."
+  },
+  {
+    "stt": 7,
+    "question": "Theo slide giới thiệu n8n, loại trigger nào sau đây được hỗ trợ?",
+    "options": [
+      "Scheduler",
+      "Chỉ Manual Trigger",
+      "Chỉ SQL Trigger",
+      "Chỉ OCR Trigger"
+    ],
+    "correctRaw": "Đáp án 1 - Scheduler",
+    "slideRef": "Chương 1 - Slide 17",
+    "hint": "Slide nêu 3 loại tiêu biểu: chạy theo lịch, kích hoạt tức thì, kiểm tra định kỳ.",
+    "explanation": "Slide 17 liệt kê Scheduler, Webhook và Polling là các dạng trigger tiêu biểu của n8n."
+  },
+  {
+    "stt": 8,
+    "question": "Trong ví dụ tạo workflow ở slide 18, danh sách video ban đầu được đọc từ đâu?",
+    "options": [
+      "Slack",
+      "Google Sheets",
+      "Jira",
+      "Supabase"
+    ],
+    "correctRaw": "Đáp án 2 - Google Sheets",
+    "slideRef": "Chương 1 - Slide 18",
+    "hint": "Ví dụ mô tả quy trình thu thập comment YouTube bắt đầu từ một bảng danh sách.",
+    "explanation": "Slide 18 ghi rõ bước đầu tiên là đọc danh sách video từ Google Sheets."
+  },
+  {
+    "stt": 9,
+    "question": "Trong tình huống “Quy trình phê duyệt (Approval Workflow)” ở slide 19, sau khi nhân viên submit Form thì n8n làm gì?",
+    "options": [
+      "Tự động xoá form để tránh trùng lặp",
+      "Xác định approver theo phòng ban/cấp bậc",
+      "Đẩy dữ liệu ngay vào Power BI mà không cần duyệt",
+      "Tạo chatbot nội bộ để thay thế quản lý"
+    ],
+    "correctRaw": "Đáp án 2 - Xác định approver theo phòng ban/cấp bậc",
+    "slideRef": "Chương 1 - Slide 19",
+    "hint": "Bước này xảy ra trước khi gửi Approve/Reject.",
+    "explanation": "Slide 19 mô tả sau khi nhân viên submit Form, n8n xác định approver theo phòng ban/cấp bậc rồi mới gửi Approve/Reject."
+  },
+  {
+    "stt": 10,
+    "question": "Theo slide “Các thành phần lõi trong Workflow”, công thức mô tả workflow là gì?",
+    "options": [
+      "Trigger + Memory + Tool + Prompt",
+      "Trigger + Connection + Action + Data",
+      "Input + Output + Budget + KPI",
+      "Schedule + Email + Slack + CRM"
+    ],
+    "correctRaw": "Đáp án 2 - Trigger + Connection + Action + Data",
+    "slideRef": "Chương 1 - Slide 23",
+    "hint": "Có 4 thành phần, trong đó có Trigger và Data.",
+    "explanation": "Slide 23 viết rõ: Workflow = Trigger + Connection + Action + Data."
+  },
+  {
+    "stt": 11,
+    "question": "Theo slide “Từ Generative AI đến Agentic AI”, Generative AI là loại AI có khả năng gì?",
+    "options": [
+      "Tự lắp ráp robot trong nhà máy",
+      "Tạo ra nội dung mới như văn bản, hình ảnh, video, mã code từ mô hình đã được huấn luyện",
+      "Chỉ thực hiện ETL và đồng bộ dữ liệu",
+      "Chỉ lưu bộ nhớ dài hạn cho chatbot"
+    ],
+    "correctRaw": "Đáp án 2 - Tạo ra nội dung mới như văn bản, hình ảnh, video, mã code từ mô hình đã được huấn luyện",
+    "slideRef": "Chương 2 - Slide 4",
+    "hint": "Trọng tâm nằm ở khả năng sinh nội dung mới.",
+    "explanation": "Slide 4 định nghĩa Generative AI là loại AI có khả năng tạo ra nội dung mới từ một mô hình đã được huấn luyện."
+  },
+  {
+    "stt": 12,
+    "question": "Điểm nâng cao của Agentic AI so với AI Agent theo slide 4 là gì?",
+    "options": [
+      "Chỉ trả lời một bước duy nhất",
+      "Chỉ xử lý dữ liệu có cấu trúc",
+      "Chủ động chia nhỏ mục tiêu, tạo sub-agent và tái sử dụng công cụ để xử lý tác vụ phức tạp",
+      "Chỉ chạy theo quy tắc cố định do con người mô tả sẵn"
+    ],
+    "correctRaw": "Đáp án 3 - Chủ động chia nhỏ mục tiêu, tạo sub-agent và tái sử dụng công cụ để xử lý tác vụ phức tạp",
+    "slideRef": "Chương 2 - Slide 4",
+    "hint": "Từ khóa là sub-agent, memory và tools.",
+    "explanation": "Slide 4 nêu Agentic AI là cấp độ nâng cao hơn, có thể chia nhỏ mục tiêu thành các bước, tạo sub-agent và tái sử dụng công cụ."
+  },
+  {
+    "stt": 13,
+    "question": "Sự khác biệt cốt lõi giữa AI Agent và RPA theo slide “AI Agent là gì?” là gì?",
+    "options": [
+      "RPA có khả năng học hỏi và tự điều chỉnh tốt hơn AI Agent",
+      "AI Agent có khả năng học hỏi và tự điều chỉnh hành vi theo mục tiêu",
+      "RPA sử dụng LLM còn AI Agent thì không",
+      "AI Agent chỉ làm các bước cố định do người dùng viết sẵn"
+    ],
+    "correctRaw": "Đáp án 2 - AI Agent có khả năng học hỏi và tự điều chỉnh hành vi theo mục tiêu",
+    "slideRef": "Chương 2 - Slide 5",
+    "hint": "Một bên xác định sẵn từng bước, một bên thích nghi theo mục tiêu.",
+    "explanation": "Slide 5 ghi rõ RPA cần xác định mọi bước từ trước, còn AI Agent có thể học hỏi và tự điều chỉnh hành vi theo mục tiêu."
+  },
+  {
+    "stt": 14,
+    "question": "Loại quy trình nào phù hợp để dùng AI Agent theo slide “Khi nào cần đến AI Agent?”",
+    "options": [
+      "Quy trình có nhiều biến số, ngoại lệ và tiêu chí quyết định khó đóng khung bằng quy tắc cứng",
+      "Quy trình lặp hoàn toàn cố định, không cần phán đoán",
+      "Quy trình chỉ nhập liệu một trường đơn giản",
+      "Quy trình không có dữ liệu đầu vào"
+    ],
+    "correctRaw": "Đáp án 1 - Quy trình có nhiều biến số, ngoại lệ và tiêu chí quyết định khó đóng khung bằng quy tắc cứng",
+    "slideRef": "Chương 2 - Slide 6",
+    "hint": "Tìm phương án mô tả độ phức tạp, biến động ngữ cảnh và edge cases.",
+    "explanation": "Slide 6 cho biết AI Agent phù hợp với các quy trình phức tạp, nhiều biến số, ngữ cảnh thay đổi và nhiều edge cases."
+  },
+  {
+    "stt": 15,
+    "question": "Theo slide 6, trường hợp nào nên tránh dùng AI Agent?",
+    "options": [
+      "Cần tổng hợp thông tin từ nhiều nguồn",
+      "Xử lý dữ liệu phi cấu trúc",
+      "Quyết định có rủi ro cao và yêu cầu minh bạch/giải thích rõ ràng",
+      "Tác vụ nghiên cứu sâu cần phân tích thị trường"
+    ],
+    "correctRaw": "Đáp án 3 - Quyết định có rủi ro cao và yêu cầu minh bạch/giải thích rõ ràng",
+    "slideRef": "Chương 2 - Slide 6",
+    "hint": "Slide có phần “Nên tránh”.",
+    "explanation": "Slide 6 khuyến nghị tránh dùng AI Agent cho các quyết định rủi ro cao hoặc nơi yêu cầu tính minh bạch và giải thích rõ ràng."
+  },
+  {
+    "stt": 16,
+    "question": "Trong các thành phần cốt lõi của AI Agent, thành phần nào được mô tả là “Đôi tay” của Agent?",
+    "options": [
+      "Model",
+      "Instructions",
+      "Tools",
+      "Memory"
+    ],
+    "correctRaw": "Đáp án 3 - Tools",
+    "slideRef": "Chương 2 - Slide 7",
+    "hint": "Đây là phần kết nối agent với hệ thống và dữ liệu bên ngoài.",
+    "explanation": "Slide 7 mô tả Tools là “Đôi tay”, giúp Agent kết nối với hệ thống bên ngoài và thực hiện hành động."
+  },
+  {
+    "stt": 17,
+    "question": "Theo slide “Các công nghệ triển khai AI Agent (Visual First)”, N8N phù hợp nhất với đối tượng nào?",
+    "options": [
+      "Chuyên gia tự động hóa, quản lý vận hành cần tích hợp AI vào quy trình và API hiện có",
+      "Học sinh tiểu học chỉ mới làm quen máy tính",
+      "Chỉ các nhà thiết kế đồ họa",
+      "Chỉ các game developer"
+    ],
+    "correctRaw": "Đáp án 1 - Chuyên gia tự động hóa, quản lý vận hành cần tích hợp AI vào quy trình và API hiện có",
+    "slideRef": "Chương 2 - Slide 9",
+    "hint": "Đối tượng được mô tả gắn với automation và vận hành doanh nghiệp.",
+    "explanation": "Slide 9 nêu N8N phù hợp cho chuyên gia tự động hóa và quản lý vận hành khi cần tích hợp AI vào quy trình kinh doanh và API sẵn có."
+  },
+  {
+    "stt": 18,
+    "question": "Theo slide “Tìm hiểu về Node AI Agent trong N8N”, node AI Agent có thể sử dụng công cụ bên ngoài nào?",
+    "options": [
+      "HTTP Request, Google Sheets, Gmail",
+      "Photoshop, AutoCAD, Blender",
+      "Chỉ Word và PowerPoint",
+      "Chỉ OCR offline"
+    ],
+    "correctRaw": "Đáp án 1 - HTTP Request, Google Sheets, Gmail",
+    "slideRef": "Chương 2 - Slide 12",
+    "hint": "Các ví dụ đều là tool tích hợp phổ biến trong automation.",
+    "explanation": "Slide 12 nêu rõ Node AI Agent có thể dùng các công cụ bên ngoài như HTTP Request, Google Sheets và Gmail."
+  },
+  {
+    "stt": 19,
+    "question": "Trong bài toán “Xây dựng trợ lý truy vấn dữ liệu”, node nào nhận yêu cầu bằng ngôn ngữ tự nhiên từ người dùng?",
+    "options": [
+      "Execute SQL Query",
+      "AI Agent",
+      "When chat message received",
+      "Get Table Definition"
+    ],
+    "correctRaw": "Đáp án 3 - When chat message received",
+    "slideRef": "Chương 2 - Slide 13",
+    "hint": "Đây là node trigger ở đầu luồng.",
+    "explanation": "Slide 13 nói rõ Trigger là node “When chat message received” để nhận yêu cầu bằng ngôn ngữ tự nhiên từ người dùng."
+  },
+  {
+    "stt": 20,
+    "question": "Nếu muốn AI trả lời theo JSON để lưu vào Google Sheet hoặc Database, nên cấu hình thành phần nào trong Node AI Agent?",
+    "options": [
+      "User Message",
+      "System Message",
+      "Require Specific Output Format",
+      "Memory"
+    ],
+    "correctRaw": "Đáp án 3 - Require Specific Output Format",
+    "slideRef": "Chương 2 - Slide 15",
+    "hint": "Đây là thành phần quy định cấu trúc đầu ra.",
+    "explanation": "Slide 15 ghi rõ “Require Specific Output Format” dùng để yêu cầu AI trả lời theo cấu trúc nhất định, ví dụ JSON."
+  },
+  {
+    "stt": 21,
+    "question": "Ngôn ngữ nào sau đây KHÔNG xuất hiện trong danh sách “Các ngôn ngữ lập trình thông dụng” ở slide 4?",
+    "options": [
+      "Python",
+      "Java",
+      "Rust",
+      "PHP"
+    ],
+    "correctRaw": "Đáp án 4 - PHP",
+    "slideRef": "Chương 3 - Slide 4",
+    "hint": "Slide liệt kê 8 ngôn ngữ, trong đó có Python, Java và Rust.",
+    "explanation": "Slide 4 nêu HTML, CSS, JavaScript, Python, C#, Java, Go và Rust; PHP không xuất hiện trong danh sách."
+  },
+  {
+    "stt": 22,
+    "question": "Theo slide “Excel: phần mềm đa chức năng”, ngôn ngữ lập trình macro của Excel là gì?",
+    "options": [
+      "DAX",
+      "VBA",
+      "M Query",
+      "JavaScript"
+    ],
+    "correctRaw": "Đáp án 2 - VBA",
+    "slideRef": "Chương 3 - Slide 5",
+    "hint": "Viết tắt của Visual Basic for Applications.",
+    "explanation": "Slide 5 nêu rõ Excel có ngôn ngữ lập trình macro gọi là Visual Basic for Applications (VBA)."
+  },
+  {
+    "stt": 23,
+    "question": "Power Query trong Excel cho phép làm gì?",
+    "options": [
+      "Chỉ vẽ dashboard",
+      "Trích xuất và chuyển đổi dữ liệu từ nhiều nguồn rồi tải vào Power Pivot",
+      "Chỉ gửi email tự động",
+      "Quản lý version code như Git"
+    ],
+    "correctRaw": "Đáp án 2 - Trích xuất và chuyển đổi dữ liệu từ nhiều nguồn rồi tải vào Power Pivot",
+    "slideRef": "Chương 3 - Slide 6",
+    "hint": "Tập trung vào việc lấy và biến đổi dữ liệu.",
+    "explanation": "Slide 6 mô tả Power Query là tính năng cho phép trích xuất và chuyển đổi dữ liệu từ nhiều nguồn, sau đó tải vào Power Pivot."
+  },
+  {
+    "stt": 24,
+    "question": "Solver trong Excel là gì theo slide 7?",
+    "options": [
+      "Một Excel Add-in giúp giải bài toán tối ưu hóa bằng thay đổi giá trị đầu vào để đáp ứng điều kiện và tối ưu chỉ tiêu",
+      "Một công cụ tạo Pivot Table",
+      "Một hàm thống kê mặc định của Excel",
+      "Một trình duyệt web tích hợp trong Excel"
+    ],
+    "correctRaw": "Đáp án 1 - Một Excel Add-in giúp giải bài toán tối ưu hóa bằng thay đổi giá trị đầu vào để đáp ứng điều kiện và tối ưu chỉ tiêu",
+    "slideRef": "Chương 3 - Slide 7",
+    "hint": "Từ khóa là tối ưu hóa và thay đổi giá trị đầu vào.",
+    "explanation": "Slide 7 nêu Solver là Excel Add-in dùng để giải bài toán tối ưu hóa bằng cách thay đổi giá trị đầu vào nhằm thỏa điều kiện và tối ưu mục tiêu."
+  },
+  {
+    "stt": 25,
+    "question": "Theo slide 8, Vibe Coding là quá trình gì?",
+    "options": [
+      "Viết từng dòng code thủ công mà không dùng AI",
+      "Mô tả bằng ngôn ngữ tự nhiên để AI hiểu và hiện thực hóa ý tưởng",
+      "Chỉ kéo thả dashboard trong Excel",
+      "Chỉ học thuộc cú pháp lập trình"
+    ],
+    "correctRaw": "Đáp án 2 - Mô tả bằng ngôn ngữ tự nhiên để AI hiểu và hiện thực hóa ý tưởng",
+    "slideRef": "Chương 3 - Slide 8",
+    "hint": "Khái niệm này gắn với “ý định” thay vì “câu lệnh”.",
+    "explanation": "Slide 8 giải thích Vibe Coding là quá trình mô tả bằng ngôn ngữ tự nhiên để AI hiểu và hiện thực hóa ý tưởng."
+  },
+  {
+    "stt": 26,
+    "question": "Trong slide 8, “Prompt” được gọi là gì?",
+    "options": [
+      "Đơn vị lưu trữ dữ liệu",
+      "Đơn vị tư duy để mô tả ý định",
+      "Hàm kiểm tra lỗi cú pháp",
+      "Mô hình học sâu chuyên tạo code"
+    ],
+    "correctRaw": "Đáp án 2 - Đơn vị tư duy để mô tả ý định",
+    "slideRef": "Chương 3 - Slide 8",
+    "hint": "Slide nhấn mạnh prompt là cách đóng gói ý định của người dùng.",
+    "explanation": "Slide 8 viết: Prompt là “đơn vị tư duy” để mô tả ý định; viết prompt tốt tương đương viết mô tả kỹ thuật tốt."
+  },
+  {
+    "stt": 27,
+    "question": "Theo slide “Vibe-Coding Là Gì?”, điều cần tránh là gì?",
+    "options": [
+      "Gõ prompt như đang giao tiếp thật",
+      "Chấp nhận sai - sửa - học",
+      "Dán code rồi chạy mà không đọc",
+      "Biết dừng lại khi cần kiểm chứng"
+    ],
+    "correctRaw": "Đáp án 3 - Dán code rồi chạy mà không đọc",
+    "slideRef": "Chương 3 - Slide 10",
+    "hint": "Đây là một trong các cảnh báo ở cột “Điều cần tránh”.",
+    "explanation": "Slide 10 liệt kê “Dán code rồi chạy mà không đọc” là một điều cần tránh khi học và làm Vibe Coding."
+  },
+  {
+    "stt": 28,
+    "question": "Theo slide “Các công cụ hiện thực hóa Vibe Coding”, đâu là nhóm IDE được nhắc tới?",
+    "options": [
+      "Tableau, Power BI, Looker",
+      "VS Code, Cursor, Windsurf, Replit",
+      "Figma, Canva, Miro",
+      "Notepad, Paint, WinRAR"
+    ],
+    "correctRaw": "Đáp án 2 - VS Code, Cursor, Windsurf, Replit",
+    "slideRef": "Chương 3 - Slide 11",
+    "hint": "Đây là các môi trường làm việc gắn với GitHub Copilot/Codex.",
+    "explanation": "Slide 11 nêu các IDE/công cụ như Visual Studio Code, Cursor, Windsurf và Replit để hiện thực hóa Vibe Coding."
+  },
+  {
+    "stt": 29,
+    "question": "Tác động tích cực nào của Vibe Coding được nêu ở slide 13?",
+    "options": [
+      "Code chạy được luôn đồng nghĩa với code chất lượng",
+      "Rút ngắn thời gian xây dựng tính năng và prototype cực nhanh",
+      "Loại bỏ hoàn toàn nhu cầu kiểm thử",
+      "Khiến mọi đoạn code đều tự động tối ưu"
+    ],
+    "correctRaw": "Đáp án 2 - Rút ngắn thời gian xây dựng tính năng và prototype cực nhanh",
+    "slideRef": "Chương 3 - Slide 13",
+    "hint": "Chọn lợi ích thực tế về tốc độ và prototyping.",
+    "explanation": "Slide 13 nêu tác động tích cực là rút ngắn thời gian xây dựng tính năng và tạo prototype rất nhanh."
+  },
+  {
+    "stt": 30,
+    "question": "Theo slide “Giới thiệu về Google Colab”, Colab là gì?",
+    "options": [
+      "Một IDE desktop bắt buộc cài trên máy",
+      "Một hệ quản trị cơ sở dữ liệu",
+      "Một plugin mở rộng của Excel",
+      "Dịch vụ Jupyter notebook được lưu trữ, cho phép chạy Python trên trình duyệt và cung cấp quyền truy cập miễn phí vào tài nguyên như GPU"
+    ],
+    "correctRaw": "Đáp án 4 - Dịch vụ Jupyter notebook được lưu trữ, cho phép chạy Python trên trình duyệt và cung cấp quyền truy cập miễn phí vào tài nguyên như GPU",
+    "slideRef": "Chương 3 - Slide 17",
+    "hint": "Từ khóa là Google Research, trình duyệt và GPU miễn phí.",
+    "explanation": "Slide 17 mô tả Colab là dịch vụ máy tính xách tay Jupyter được lưu trữ, chạy Python qua trình duyệt và cho phép truy cập miễn phí vào tài nguyên như GPU."
+  }
+];
+    /* =========================
+       QUESTION BANK DATA END
+       ========================= */
+
+    /* =========================
+       APP STATE START
+       Khu vực lưu trạng thái ứng dụng
+       ========================= */
+    const STORAGE_KEY = "practice_quiz_n8n_ai_agent_vibecoding_v1";
+    let originalQuestionList = [];
+    let currentQuestionList = [];
+    let currentQuestionIndex = 0;
+    let responses = {};
+    let currentSearchKeyword = "";
+    /* =========================
+       APP STATE END
+       ========================= */
+
+    /* =========================
+       HELPER FUNCTIONS START
+       Các hàm dùng chung
+       ========================= */
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function normalizeText(value) {
+      return String(value ?? "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d")
+        .replace(/Đ/g, "D")
+        .toLowerCase()
+        .trim();
+    }
+
+    function deepClone(value) {
+      return JSON.parse(JSON.stringify(value));
+    }
+
+    /* =========================
+       PARSE ĐÁP ÁN ĐÚNG START
+       Hàm parse trường "Đáp án đúng"
+       ========================= */
+    function parseCorrectIndex(question) {
+      const raw = String(question.correctRaw ?? "");
+      const match = raw.match(/đáp\s*án\s*(\d+)/i);
+      if (match) {
+        const index = Number(match[1]) - 1;
+        if (!Number.isNaN(index) && index >= 0 && index < question.options.length) {
+          return index;
+        }
+      }
+
+      const normalizedRaw = normalizeText(raw);
+      const fallbackIndex = question.options.findIndex(option => {
+        return normalizedRaw.includes(normalizeText(option));
+      });
+      return fallbackIndex >= 0 ? fallbackIndex : 0;
+    }
+    /* =========================
+       PARSE ĐÁP ÁN ĐÚNG END
+       ========================= */
+
+    /* =========================
+       SHUFFLE START
+       Hàm xáo trộn mảng câu hỏi
+       ========================= */
+    function shuffleArray(array) {
+      const cloned = [...array];
+      for (let i = cloned.length - 1; i > 0; i--) {
+        const randomIndex = Math.floor(Math.random() * (i + 1));
+        [cloned[i], cloned[randomIndex]] = [cloned[randomIndex], cloned[i]];
+      }
+      return cloned;
+    }
+    /* =========================
+       SHUFFLE END
+       ========================= */
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2200);
+    }
+
+    function getCurrentQuestion() {
+      return currentQuestionList[currentQuestionIndex];
+    }
+
+    function getResponse(questionId) {
+      return responses[questionId] || {
+        selectedIndex: null,
+        checked: false,
+        isCorrect: false,
+        hintVisible: false
+      };
+    }
+
+    function saveStateToLocalStorage() {
+      const payload = {
+        currentOrderIds: currentQuestionList.map(item => item.id),
+        currentQuestionIndex,
+        responses
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    }
+
+    function loadStateFromLocalStorage() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return false;
+
+        const parsed = JSON.parse(raw);
+        if (!parsed || !Array.isArray(parsed.currentOrderIds)) return false;
+
+        const questionMap = new Map(originalQuestionList.map(item => [item.id, item]));
+        const restoredList = parsed.currentOrderIds
+          .map(id => questionMap.get(id))
+          .filter(Boolean);
+
+        if (!restoredList.length) return false;
+
+        currentQuestionList = restoredList;
+        responses = parsed.responses || {};
+        currentQuestionIndex = Math.min(
+          Math.max(Number(parsed.currentQuestionIndex) || 0, 0),
+          currentQuestionList.length - 1
+        );
+        return true;
+      } catch (error) {
+        console.error("Không thể khôi phục trạng thái:", error);
+        return false;
+      }
+    }
+
+    function clearWarning() {
+      const warningBox = document.getElementById("warningBox");
+      const warningText = document.getElementById("warningText");
+      warningText.textContent = "";
+      warningBox.classList.add("hidden");
+    }
+
+    function showWarning(message) {
+      const warningBox = document.getElementById("warningBox");
+      const warningText = document.getElementById("warningText");
+      warningText.textContent = message;
+      warningBox.classList.remove("hidden");
+    }
+
+    function switchView(viewId) {
+      document.querySelectorAll(".view").forEach(view => {
+        view.classList.toggle("active", view.id === viewId);
+      });
+      document.querySelectorAll(".tab-btn").forEach(button => {
+        button.classList.toggle("active", button.dataset.view === viewId);
+      });
+    }
+
+    function getAnsweredCount() {
+      return Object.values(responses).filter(item => item.checked).length;
+    }
+
+    function getCorrectCount() {
+      return Object.values(responses).filter(item => item.checked && item.isCorrect).length;
+    }
+
+    function resetCurrentQuestion() {
+      const question = getCurrentQuestion();
+      if (!question) return;
+      responses[question.id] = {
+        selectedIndex: null,
+        checked: false,
+        isCorrect: false,
+        hintVisible: false
+      };
+      saveStateToLocalStorage();
+      renderPracticeView();
+      renderQuestionPalette();
+      showToast("Đã làm lại câu hiện tại.");
+    }
+
+    function resetAllQuestions() {
+      const confirmed = window.confirm("Bạn có chắc muốn reset toàn bộ tiến độ luyện tập?");
+      if (!confirmed) return;
+
+      responses = {};
+      currentQuestionList = deepClone(originalQuestionList);
+      currentQuestionIndex = 0;
+      saveStateToLocalStorage();
+      renderAll();
+      showToast("Đã reset toàn bộ bài luyện tập.");
+    }
+
+    function shuffleQuestions() {
+      currentQuestionList = shuffleArray(currentQuestionList);
+      currentQuestionIndex = 0;
+      saveStateToLocalStorage();
+      renderAll();
+      showToast("Đã tráo thứ tự câu hỏi.");
+    }
+
+    function restoreOriginalOrder() {
+      currentQuestionList = deepClone(originalQuestionList);
+      currentQuestionIndex = 0;
+      saveStateToLocalStorage();
+      renderAll();
+      showToast("Đã trở về thứ tự gốc.");
+    }
+
+    function navigateQuestion(step) {
+      const nextIndex = currentQuestionIndex + step;
+      if (nextIndex < 0 || nextIndex >= currentQuestionList.length) return;
+      currentQuestionIndex = nextIndex;
+      saveStateToLocalStorage();
+      renderPracticeView();
+      renderQuestionPalette();
+    }
+
+    function jumpToQuestion(index) {
+      if (index < 0 || index >= currentQuestionList.length) return;
+      currentQuestionIndex = index;
+      saveStateToLocalStorage();
+      renderPracticeView();
+      renderQuestionPalette();
+      switchView("practiceView");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function jumpToQuestionById(questionId) {
+      const targetIndex = currentQuestionList.findIndex(item => item.id === questionId);
+      if (targetIndex >= 0) {
+        jumpToQuestion(targetIndex);
+        return;
+      }
+
+      const originalIndex = originalQuestionList.findIndex(item => item.id === questionId);
+      if (originalIndex >= 0) {
+        currentQuestionList = deepClone(originalQuestionList);
+        currentQuestionIndex = originalIndex;
+        saveStateToLocalStorage();
+        renderAll();
+        switchView("practiceView");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+
+    function selectOption(optionIndex) {
+      const question = getCurrentQuestion();
+      if (!question) return;
+
+      const previous = getResponse(question.id);
+      responses[question.id] = {
+        ...previous,
+        selectedIndex: optionIndex
+      };
+      clearWarning();
+      saveStateToLocalStorage();
+      renderPracticeView();
+      renderQuestionPalette();
+    }
+
+    function toggleHint() {
+      const question = getCurrentQuestion();
+      if (!question) return;
+
+      const previous = getResponse(question.id);
+      responses[question.id] = {
+        ...previous,
+        hintVisible: !previous.hintVisible
+      };
+      saveStateToLocalStorage();
+      renderPracticeView();
+    }
+
+    function checkAnswer() {
+      const question = getCurrentQuestion();
+      if (!question) return;
+
+      const previous = getResponse(question.id);
+
+      if (previous.selectedIndex === null || previous.selectedIndex === undefined) {
+        showWarning("Bạn chưa chọn đáp án. Hãy chọn một phương án trước khi kiểm tra.");
+        return;
+      }
+
+      clearWarning();
+      const correctIndex = question.correctIndex;
+      const isCorrect = Number(previous.selectedIndex) === Number(correctIndex);
+
+      responses[question.id] = {
+        ...previous,
+        checked: true,
+        isCorrect
+      };
+
+      saveStateToLocalStorage();
+      renderPracticeView();
+      renderQuestionPalette();
+      showToast(isCorrect ? "Chính xác! 🎉" : "Chưa đúng, hãy đọc phần giải thích.");
+    }
+
+    function getOptionLabel(index) {
+      return `Đáp án ${index + 1}`;
+    }
+
+    /* =========================
+       RENDER EXPLANATION / HINT START
+       Khu vực render gợi ý và giải thích
+       ========================= */
+    function renderHint(question, response) {
+      const hintBox = document.getElementById("hintBox");
+      const hintText = document.getElementById("hintText");
+      const toggleHintBtn = document.getElementById("toggleHintBtn");
+
+      if (response.hintVisible) {
+        hintBox.classList.remove("hidden");
+        hintText.textContent = question.hint || "Không có gợi ý cho câu hỏi này.";
+        toggleHintBtn.textContent = "🙈 Ẩn gợi ý";
+      } else {
+        hintBox.classList.add("hidden");
+        hintText.textContent = "";
+        toggleHintBtn.textContent = "💡 Hiện gợi ý";
+      }
+    }
+
+    function renderResult(question, response) {
+      const resultBox = document.getElementById("resultBox");
+      const resultTitle = document.getElementById("resultTitle");
+      const resultMessage = document.getElementById("resultMessage");
+      const correctAnswerText = document.getElementById("correctAnswerText");
+      const explanationText = document.getElementById("explanationText");
+
+      if (!response.checked) {
+        resultBox.classList.add("hidden");
+        resultBox.classList.remove("success", "error");
+        resultTitle.textContent = "Kết quả";
+        resultMessage.textContent = "";
+        correctAnswerText.textContent = "";
+        explanationText.textContent = "";
+        return;
+      }
+
+      const correctIndex = question.correctIndex;
+      const correctOptionText = question.options[correctIndex] || "";
+
+      resultBox.classList.remove("hidden");
+      resultBox.classList.toggle("success", response.isCorrect);
+      resultBox.classList.toggle("error", !response.isCorrect);
+
+      resultTitle.textContent = response.isCorrect ? "Bạn đã trả lời đúng" : "Bạn đã trả lời sai";
+      resultMessage.textContent = response.isCorrect
+        ? "Tốt lắm. Bạn đã chọn đúng phương án của câu hỏi này."
+        : "Đừng lo, đây là lúc tốt nhất để học lại bằng phần giải thích bên dưới.";
+
+      correctAnswerText.textContent = `${getOptionLabel(correctIndex)} – ${correctOptionText}`;
+      explanationText.textContent = question.explanation || "Chưa có giải thích cho câu hỏi này.";
+    }
+    /* =========================
+       RENDER EXPLANATION / HINT END
+       ========================= */
+
+    /* =========================
+       RENDER QUIZ START
+       Khu vực render giao diện luyện tập
+       ========================= */
+    function renderPracticeView() {
+      const question = getCurrentQuestion();
+      if (!question) return;
+
+      const response = getResponse(question.id);
+
+      document.getElementById("totalQuestionsStat").textContent = currentQuestionList.length;
+      document.getElementById("answeredQuestionsStat").textContent = getAnsweredCount();
+      document.getElementById("correctQuestionsStat").textContent = getCorrectCount();
+
+      const answeredCount = getAnsweredCount();
+      const correctCount = getCorrectCount();
+      const totalCount = currentQuestionList.length;
+      const accuracy = answeredCount ? Math.round((correctCount / answeredCount) * 100) : 0;
+      const progress = totalCount ? Math.round((answeredCount / totalCount) * 100) : 0;
+
+      document.getElementById("accuracyStat").textContent = `${accuracy}%`;
+      document.getElementById("progressText").textContent = `Tiến độ: ${answeredCount} / ${totalCount} câu`;
+      document.getElementById("progressSubText").textContent = `Hoàn thành ${progress}%`;
+      document.getElementById("progressFill").style.width = `${progress}%`;
+
+      document.getElementById("questionCounterBadge").textContent = `Câu ${currentQuestionIndex + 1} / ${totalCount}`;
+      document.getElementById("originalOrderBadge").textContent = `STT gốc: ${question.stt}`;
+      document.getElementById("slideRefBadge").textContent = question.slideRef || "Chưa có dẫn chứng slide";
+      document.getElementById("questionText").textContent = question.question || "Không có nội dung câu hỏi";
+
+      const optionsContainer = document.getElementById("optionsContainer");
+      optionsContainer.innerHTML = "";
+
+      question.options.forEach((optionText, optionIndex) => {
+        const optionButton = document.createElement("button");
+        optionButton.type = "button";
+        optionButton.className = "option";
+
+        const isSelected = response.selectedIndex === optionIndex;
+        const isChecked = response.checked;
+        const isCorrectOption = question.correctIndex === optionIndex;
+        const isWrongSelected = isChecked && isSelected && !response.isCorrect;
+
+        if (isSelected) optionButton.classList.add("selected");
+        if (isChecked && isCorrectOption) optionButton.classList.add("correct");
+        if (isWrongSelected) optionButton.classList.add("wrong");
+
+        optionButton.innerHTML = `
+          <span class="option-index">${optionIndex + 1}</span>
+          <span class="option-text">${escapeHtml(optionText)}</span>
+        `;
+        optionButton.addEventListener("click", () => selectOption(optionIndex));
+        optionsContainer.appendChild(optionButton);
+      });
+
+      renderHint(question, response);
+      renderResult(question, response);
+      clearWarning();
+
+      document.getElementById("prevBtn").disabled = currentQuestionIndex === 0;
+      document.getElementById("nextBtn").disabled = currentQuestionIndex === currentQuestionList.length - 1;
+    }
+
+    function renderQuestionPalette() {
+      const palette = document.getElementById("questionPalette");
+      palette.innerHTML = "";
+
+      currentQuestionList.forEach((question, index) => {
+        const response = getResponse(question.id);
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = index + 1;
+        button.title = `Mở câu ${index + 1} - STT gốc ${question.stt}`;
+        if (index === currentQuestionIndex) button.classList.add("current");
+        if (response.checked) {
+          button.classList.add("done");
+          if (response.isCorrect) {
+            button.classList.add("correct-only");
+          } else {
+            button.classList.add("wrong-only");
+          }
+        }
+        button.addEventListener("click", () => jumpToQuestion(index));
+        palette.appendChild(button);
+      });
+    }
+    /* =========================
+       RENDER QUIZ END
+       ========================= */
+
+    /* =========================
+       SEARCH / FILTER START
+       Khu vực logic tìm kiếm bảng câu hỏi
+       ========================= */
+    function getSearchableText(question) {
+      return normalizeText([
+        question.stt,
+        question.question,
+        ...question.options,
+        question.correctRaw,
+        question.slideRef,
+        question.hint,
+        question.explanation
+      ].join(" | "));
+    }
+
+    function getFilteredQuestions() {
+      if (!currentSearchKeyword) return originalQuestionList;
+      return originalQuestionList.filter(question =>
+        getSearchableText(question).includes(normalizeText(currentSearchKeyword))
+      );
+    }
+
+    function renderQuestionTable() {
+      const tbody = document.getElementById("questionTableBody");
+      const searchMetaText = document.getElementById("searchMetaText");
+      const filteredQuestions = getFilteredQuestions();
+
+      searchMetaText.textContent = `Đang hiển thị ${filteredQuestions.length} / ${originalQuestionList.length} câu hỏi`;
+
+      if (!filteredQuestions.length) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="11" class="empty-state">Không tìm thấy câu hỏi phù hợp với từ khóa bạn nhập.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = filteredQuestions.map(question => {
+        return `
+          <tr>
+            <td>${escapeHtml(question.stt)}</td>
+            <td class="table-question">${escapeHtml(question.question)}</td>
+            <td>${escapeHtml(question.options[0] || "")}</td>
+            <td>${escapeHtml(question.options[1] || "")}</td>
+            <td>${escapeHtml(question.options[2] || "")}</td>
+            <td>${escapeHtml(question.options[3] || "")}</td>
+            <td>${escapeHtml(question.correctRaw || "")}</td>
+            <td>${escapeHtml(question.slideRef || "")}</td>
+            <td>${escapeHtml(question.hint || "")}</td>
+            <td>${escapeHtml(question.explanation || "")}</td>
+            <td>
+              <div class="table-actions">
+                <button class="btn btn-soft" type="button" data-open-practice="${escapeHtml(question.id)}">Mở</button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      tbody.querySelectorAll("[data-open-practice]").forEach(button => {
+        button.addEventListener("click", () => {
+          const questionId = button.getAttribute("data-open-practice");
+          jumpToQuestionById(questionId);
+        });
+      });
+    }
+    /* =========================
+       SEARCH / FILTER END
+       ========================= */
+
+    function renderAll() {
+      renderPracticeView();
+      renderQuestionPalette();
+      renderQuestionTable();
+    }
+
+    function bindEvents() {
+      document.querySelectorAll(".tab-btn").forEach(button => {
+        button.addEventListener("click", () => switchView(button.dataset.view));
+      });
+
+      document.getElementById("prevBtn").addEventListener("click", () => navigateQuestion(-1));
+      document.getElementById("nextBtn").addEventListener("click", () => navigateQuestion(1));
+      document.getElementById("checkAnswerBtn").addEventListener("click", checkAnswer);
+      document.getElementById("resetCurrentBtn").addEventListener("click", resetCurrentQuestion);
+      document.getElementById("toggleHintBtn").addEventListener("click", toggleHint);
+      document.getElementById("shuffleBtn").addEventListener("click", shuffleQuestions);
+      document.getElementById("restoreOrderBtn").addEventListener("click", restoreOriginalOrder);
+      document.getElementById("resetAllBtn").addEventListener("click", resetAllQuestions);
+
+      document.getElementById("searchInput").addEventListener("input", event => {
+        currentSearchKeyword = event.target.value || "";
+        renderQuestionTable();
+      });
+
+      document.getElementById("clearSearchBtn").addEventListener("click", () => {
+        currentSearchKeyword = "";
+        document.getElementById("searchInput").value = "";
+        renderQuestionTable();
+      });
+    }
+
+    function initializeQuestions() {
+      originalQuestionList = questionBank.map((item, index) => {
+        const question = {
+          ...item,
+          id: `question-${item.stt ?? index + 1}-${index + 1}`,
+          correctIndex: 0
+        };
+        question.correctIndex = parseCorrectIndex(question);
+        return question;
+      });
+
+      const restored = loadStateFromLocalStorage();
+      if (!restored) {
+        currentQuestionList = deepClone(originalQuestionList);
+        currentQuestionIndex = 0;
+        responses = {};
+      }
+    }
+
+    function init() {
+      initializeQuestions();
+      bindEvents();
+      renderAll();
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+  </script>
+  <!-- =========================
+       SCRIPT END
+       ========================= -->
+</body>
+</html>

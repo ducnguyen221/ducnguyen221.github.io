@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BDSMO Master Plan v2 — Beta Roadmap + Graph Map</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/cytoscape@3.28.1/dist/cytoscape.min.js"></script>
+<script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
+<script src="https://unpkg.com/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "SF Pro", Roboto, sans-serif; }
+  .graph-container { width: 100%; height: 700px; background: #0f172a; border-radius: 12px; }
+  .feature-card { transition: all 0.2s; }
+  .feature-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+  .gradient-text { background: linear-gradient(135deg, #4f46e5, #ec4899); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .glass { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); }
+  .beta-glow { box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3); }
+  .cy-tooltip {
+    position: absolute; background: rgba(15,23,42,0.95); color: white; padding: 8px 12px;
+    border-radius: 6px; font-size: 12px; pointer-events: none; max-width: 280px;
+    z-index: 1000; display: none; box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  }
+  details > summary { cursor: pointer; list-style: none; }
+  details > summary::after { content: '▼'; float: right; transition: transform 0.2s; font-size: 0.75rem; }
+  details[open] > summary::after { transform: rotate(180deg); }
+  @media print { .no-print { display: none; } }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 4px; vertical-align: middle; }
+</style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 min-h-screen">
+
+<!-- HEADER -->
+<header class="bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 text-white py-8 px-6 shadow-2xl">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-center justify-between flex-wrap gap-4">
+      <div>
+        <div class="flex items-center gap-3 mb-2">
+          <span class="bg-white/20 px-2 py-1 rounded text-xs font-bold">v2.0</span>
+          <h1 class="text-4xl font-bold">BDSMO / OpenProp</h1>
+        </div>
+        <p class="text-indigo-200 text-lg">Master Plan tới Beta — 14 features × 85 UCs × 20 sprints + Cytoscape Graph Map</p>
+      </div>
+      <div class="text-right">
+        <div class="text-xs uppercase tracking-wider text-indigo-300">Generated</div>
+        <div class="text-2xl font-bold">2026-05-11</div>
+        <div class="text-sm text-indigo-200 mt-1">Owner: Duc Nguyen · Solo + AI agents · Open Beta · Freemium</div>
+      </div>
+    </div>
+    <div class="mt-6 grid grid-cols-2 md:grid-cols-6 gap-3">
+      <div class="bg-emerald-500/30 rounded-lg p-3 border border-emerald-400/40">
+        <div class="text-3xl font-bold">5</div>
+        <div class="text-xs uppercase tracking-wide text-emerald-200">🟢 Live</div>
+      </div>
+      <div class="bg-yellow-500/30 rounded-lg p-3 border border-yellow-400/40">
+        <div class="text-3xl font-bold">2</div>
+        <div class="text-xs uppercase tracking-wide text-yellow-200">🟡 Merged</div>
+      </div>
+      <div class="bg-orange-500/30 rounded-lg p-3 border border-orange-400/40">
+        <div class="text-3xl font-bold">4</div>
+        <div class="text-xs uppercase tracking-wide text-orange-200">🟠 Approved</div>
+      </div>
+      <div class="bg-blue-500/30 rounded-lg p-3 border border-blue-400/40">
+        <div class="text-3xl font-bold">3</div>
+        <div class="text-xs uppercase tracking-wide text-blue-200">🔵 Partial</div>
+      </div>
+      <div class="bg-red-500/30 rounded-lg p-3 border border-red-400/40">
+        <div class="text-3xl font-bold">3</div>
+        <div class="text-xs uppercase tracking-wide text-red-200">🔴 Skeleton</div>
+      </div>
+      <div class="bg-purple-500/30 rounded-lg p-3 border border-purple-400/40">
+        <div class="text-3xl font-bold">85</div>
+        <div class="text-xs uppercase tracking-wide text-purple-200">📋 UCs total</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-8 space-y-12">
+
+<!-- DECISIONS -->
+<section class="bg-amber-50 border-2 border-amber-300 rounded-xl p-6">
+  <h2 class="text-xl font-bold text-amber-900 mb-3">✅ Owner Decisions Confirmed (2026-05-11)</h2>
+  <div class="grid md:grid-cols-2 gap-3 text-sm">
+    <div><strong>Beta deadline:</strong> Không cứng — focus quality</div>
+    <div><strong>Team:</strong> Solo + AI agents (~15-20 sp/sprint)</div>
+    <div><strong>Pricing:</strong> Freemium ngay (Free/Broker/Investor/Enterprise)</div>
+    <div><strong>Cohort:</strong> Open Public Beta</div>
+    <div><strong>Language:</strong> Vietnamese + English tech terms</div>
+    <div><strong>UC depth:</strong> Heavy (full spec + ASCII wireframe + Mermaid)</div>
+    <div><strong>Personas:</strong> 6 (Buyer / Renter / Owner-DIY / Investor / Solo Broker / Brokerage)</div>
+    <div><strong>Output:</strong> v2 files (giữ v1 để compare)</div>
+  </div>
+</section>
+
+<!-- BETA TIER OVERVIEW -->
+<section>
+  <h2 class="text-2xl font-bold mb-4 gradient-text">📦 Beta Release Strategy (3 Tiers)</h2>
+  <div class="grid md:grid-cols-3 gap-4">
+    <div class="bg-white rounded-xl p-6 border-2 border-indigo-500 shadow-xl beta-glow">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-xs font-bold uppercase text-indigo-600 bg-indigo-100 px-2 py-1 rounded">🎯 Beta MVP</span>
+        <span class="text-xs text-slate-500">Phase 0-2</span>
+      </div>
+      <div class="text-3xl font-bold text-indigo-900 mb-1">SP-24 → SP-30</div>
+      <div class="text-sm text-slate-600 mb-3">7 sprints · ~14 tuần</div>
+      <ul class="text-sm space-y-1 text-slate-700">
+        <li>✅ #1 Property/Unit polish</li>
+        <li>✅ #2 Listing + Featured UI</li>
+        <li>✅ #3 Community Hub deploy</li>
+        <li>✅ #6 Booking</li>
+        <li>✅ #7 CRM + AI suggest</li>
+        <li>✅ #8 Affiliate go-live</li>
+        <li>✅ #14 AI homepage</li>
+        <li>✅ F1 Multi-tenant org</li>
+        <li>✅ F2 Geocoding</li>
+      </ul>
+    </div>
+    <div class="bg-white rounded-xl p-6 border-2 border-purple-400 shadow-lg">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-xs font-bold uppercase text-purple-600 bg-purple-100 px-2 py-1 rounded">⚡ Beta v1.x</span>
+        <span class="text-xs text-slate-500">Phase 3-4</span>
+      </div>
+      <div class="text-3xl font-bold text-purple-900 mb-1">SP-31 → SP-35</div>
+      <div class="text-sm text-slate-600 mb-3">5 sprints · ~10 tuần</div>
+      <ul class="text-sm space-y-1 text-slate-700">
+        <li>+ #10 Maintenance v2</li>
+        <li>+ #12 Finance per property</li>
+        <li>+ #9 SEO + Marketing suite</li>
+        <li>+ #4 Tenant sites (route+theme)</li>
+        <li>+ Custom domain SSL (Enterprise)</li>
+      </ul>
+    </div>
+    <div class="bg-white rounded-xl p-6 border-2 border-pink-400 shadow-lg">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-xs font-bold uppercase text-pink-600 bg-pink-100 px-2 py-1 rounded">🚀 v2.0</span>
+        <span class="text-xs text-slate-500">Phase 5-6</span>
+      </div>
+      <div class="text-3xl font-bold text-pink-900 mb-1">SP-36 → SP-43</div>
+      <div class="text-sm text-slate-600 mb-3">8 sprints · ~16 tuần</div>
+      <ul class="text-sm space-y-1 text-slate-700">
+        <li>+ #5 Omnichannel (Zalo→FB→TikTok)</li>
+        <li>+ #14 AI advanced (phong thủy, voice)</li>
+        <li>+ #11/#13 Crawler + AI</li>
+        <li>+ Tenant booking + AI integration</li>
+        <li>+ Beta launch full prep</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE GRAPH MAP -->
+<section>
+  <h2 class="text-2xl font-bold mb-2 gradient-text">🕸 Graph Map: Feature → Use Case → Sprint</h2>
+  <p class="text-slate-600 mb-4 text-sm">Click vào node để xem details. Drag để reposition. Scroll để zoom. Edges đi từ Features (yellow) → UCs (blue) → Sprints (green).</p>
+
+  <div class="bg-white rounded-xl p-4 shadow-md">
+    <div class="flex items-center gap-4 mb-3 text-xs flex-wrap">
+      <div><span class="legend-dot" style="background:#fbbf24"></span> Features</div>
+      <div><span class="legend-dot" style="background:#60a5fa"></span> Use Cases</div>
+      <div><span class="legend-dot" style="background:#34d399"></span> Sprints</div>
+      <div class="ml-auto flex gap-2">
+        <button id="layout-dagre" class="bg-slate-700 hover:bg-slate-800 text-white px-3 py-1 rounded text-xs">Dagre Layout</button>
+        <button id="layout-cose" class="bg-slate-600 hover:bg-slate-700 text-white px-3 py-1 rounded text-xs">Force Layout</button>
+        <button id="filter-beta" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded text-xs">Beta MVP only</button>
+        <button id="filter-all" class="bg-slate-500 hover:bg-slate-600 text-white px-3 py-1 rounded text-xs">Show All</button>
+      </div>
+    </div>
+    <div id="cy-graph" class="graph-container"></div>
+    <div id="cy-tooltip" class="cy-tooltip"></div>
+    <div id="node-info" class="mt-4 p-4 bg-slate-50 rounded-lg text-sm hidden">
+      <h3 class="font-bold text-base mb-2" id="info-title"></h3>
+      <div id="info-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAS -->
+<section>
+  <h2 class="text-2xl font-bold mb-4 gradient-text">👥 6 Personas</h2>
+  <div class="grid md:grid-cols-3 gap-3">
+    <div class="bg-white rounded-lg p-4 border-l-4 border-blue-400 shadow-sm">
+      <div class="font-bold">BU — Buyer</div>
+      <div class="text-xs text-slate-500 mb-2">Người mua BĐS</div>
+      <div class="text-sm">Tìm BĐS để mua, so sánh giá, hỏi AI về phong thủy/giá. Top: #14 AI, #2 Listing, #6 Booking.</div>
+    </div>
+    <div class="bg-white rounded-lg p-4 border-l-4 border-cyan-400 shadow-sm">
+      <div class="font-bold">RE — Renter</div>
+      <div class="text-xs text-slate-500 mb-2">Người thuê</div>
+      <div class="text-sm">Tìm BĐS thuê, book viewing, chat owner. Top: #14, #2, #6, #10 maintenance.</div>
+    </div>
+    <div class="bg-white rounded-lg p-4 border-l-4 border-emerald-400 shadow-sm">
+      <div class="font-bold">OW — Owner-DIY</div>
+      <div class="text-xs text-slate-500 mb-2">Chủ tự cho thuê</div>
+      <div class="text-sm">1-3 căn, tự quản lý booking + finance basic. Top: #1, #2, #6, #10.</div>
+    </div>
+    <div class="bg-white rounded-lg p-4 border-l-4 border-amber-400 shadow-sm">
+      <div class="font-bold">IN — Investor</div>
+      <div class="text-xs text-slate-500 mb-2">Nhà đầu tư BĐS</div>
+      <div class="text-sm">5-30 căn, multi-team org, finance per property. Top: F1, #1, #6, #7, #10, #12.</div>
+    </div>
+    <div class="bg-white rounded-lg p-4 border-l-4 border-rose-400 shadow-sm">
+      <div class="font-bold">BK — Solo Broker</div>
+      <div class="text-xs text-slate-500 mb-2">Môi giới cá nhân</div>
+      <div class="text-sm">Post listings, lead capture, CRM, affiliate. Top: #2, #3, #7, #8, #5.</div>
+    </div>
+    <div class="bg-white rounded-lg p-4 border-l-4 border-purple-400 shadow-sm">
+      <div class="font-bold">BG — Brokerage</div>
+      <div class="text-xs text-slate-500 mb-2">Sàn môi giới</div>
+      <div class="text-sm">Multi-broker, custom site, omnichannel. Top: F1, #4, #5, #7, #12 (13/14 features!).</div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 FEATURE CARDS -->
+<section>
+  <h2 class="text-2xl font-bold mb-4 gradient-text">🎛 Feature Status Matrix</h2>
+  <div id="feature-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+</section>
+
+<!-- 20 SPRINT TIMELINE -->
+<section>
+  <h2 class="text-2xl font-bold mb-4 gradient-text">🗓 Sprint Roadmap (6 phases · 20 sprints)</h2>
+  <div id="sprint-timeline" class="space-y-3"></div>
+</section>
+
+<!-- RISKS -->
+<section>
+  <h2 class="text-2xl font-bold mb-4 gradient-text">🛡 Risk Register</h2>
+  <div class="grid md:grid-cols-2 gap-3" id="risk-grid"></div>
+</section>
+
+<!-- DECISIONS NEEDED -->
+<section>
+  <div class="bg-amber-50 border-2 border-amber-300 rounded-xl p-6">
+    <h2 class="text-xl font-bold text-amber-900 mb-3">✋ Decisions Needed Before SP-26</h2>
+    <ol class="space-y-2 text-sm text-amber-900 list-decimal pl-5">
+      <li>Approve openspec <code class="bg-amber-200 px-1 rounded">add-multi-tenant-org-creation</code> (block 5 downstream sprints)</li>
+      <li>Confirm scope cut omnichannel: chỉ Zalo OA cho Beta v1?</li>
+      <li>Confirm scope cut custom domain SSL: chỉ Enterprise tier?</li>
+      <li>Pricing tier limits finalize (Free/Broker/Investor/Enterprise quotas + prices)</li>
+      <li>Open Beta launch playbook (PR plan, paid acquisition budget, monitoring SLA)</li>
+    </ol>
+  </div>
+</section>
+
+<!-- COMPANIONS -->
+<section>
+  <h2 class="text-2xl font-bold mb-4 gradient-text">📂 Companion Files</h2>
+  <div class="bg-white rounded-xl p-5 shadow-md text-sm">
+    <ul class="space-y-2">
+      <li>📄 <code>bdsmo-master-plan-beta-v2.md</code> — This plan in markdown (~17KB)</li>
+      <li>📄 <code>bdsmo-features-v2.md</code> — 14 feature definitions với personas, business value, gaps (~15KB)</li>
+      <li>📄 <code>bdsmo-use-cases-v2.md</code> — 85 use cases heavy spec với ASCII wireframes + Mermaid (~50KB)</li>
+      <li>📄 <code>bdsmo-features-v2.html</code> — Visual feature cards (planned)</li>
+      <li>📄 <code>bdsmo-use-cases-v2.html</code> — UC explorer searchable (planned)</li>
+      <li>📂 <code>proposed-openspecs/</code> — 6 OpenSpec proposal drafts tiếng Việt (planned)</li>
+      <li>📋 <code>are-you-ready-cryptic-kazoo.md</code> — SP-2026-24 sprint detailed plan</li>
+    </ul>
+  </div>
+</section>
+
+<footer class="text-center text-xs text-slate-500 pt-8 pb-4">
+  <p>Generated 2026-05-11 by Claude Code with PM + 3 BA parallel agents</p>
+  <p>Re-baseline cuối mỗi 2 sprints</p>
+</footer>
+
+</main>
+
+<script>
+// ============================================================
+// DATA: 14 features + 2 foundations + 20 sprints + 85 UCs
+// ============================================================
+
+const FEATURES_DATA = [
+  { id: 'F1', code: '#1', name: 'Property/Unit CRUD', status: 'live', sprints: ['SP-24','SP-25'], ucCount: 7, desc: 'Hierarchy 4-tier Project→Property→Unit→Room. Address dedup, suggested-edits.', personas: ['OW','IN','BK','BG'] },
+  { id: 'F2', code: '#2', name: 'Listing + Featured + Verified', status: 'live', sprints: ['SP-30','SP-33'], ucCount: 7, desc: 'Post listing rao bán/cho thuê. Featured (paid boost). Verified-owner badge. Multi-broker.', personas: ['OW','IN','BK','BG','BU','RE'] },
+  { id: 'F3', code: '#3', name: 'Community Hub', status: 'merged', sprints: ['SP-25','SP-28'], ucCount: 7, desc: 'Facebook/Zalo-style groups, posts, lead inbox.', personas: ['BK','BG','BU','RE','OW'] },
+  { id: 'F4', code: '#4', name: 'Custom Tenant Sites', status: 'approved', sprints: ['SP-34','SP-35','SP-36'], ucCount: 7, desc: '/{org_slug} routing + theme + custom domain SSL.', personas: ['BG','BK'] },
+  { id: 'F5', code: '#5', name: 'Omnichannel Inbox', status: 'skeleton', sprints: ['SP-37','SP-38','SP-39'], ucCount: 5, desc: 'Pancake-clone: FB/Zalo/TikTok/Web unified inbox.', personas: ['BG','BK'] },
+  { id: 'F6', code: '#6', name: 'Booking Management', status: 'live', sprints: ['SP-36'], ucCount: 6, desc: 'Calendar grid, viewing booking, short-term rental, status pipeline.', personas: ['RE','OW','BK','BG','IN'] },
+  { id: 'F7', code: '#7', name: 'CRM + AI Agent', status: 'partial', sprints: ['SP-29'], ucCount: 5, desc: 'Pipeline (LEAD→QUALIFIED→...→WON), AI suggest next action, Customer 360.', personas: ['BK','BG','IN'] },
+  { id: 'F8', code: '#8', name: 'Affiliate / Referral', status: 'merged', sprints: ['SP-25','SP-30'], ucCount: 5, desc: 'Referral codes, bonus tiers, payout flow.', personas: ['BK','BG','OW','IN'] },
+  { id: 'F9', code: '#9', name: 'SEO + Marketing', status: 'partial', sprints: ['SP-30','SP-33'], ucCount: 5, desc: 'Auto meta tags, Schema.org, sitemap, area guides, featured-listing UI.', personas: ['BK','BG','OW'] },
+  { id: 'F10', code: '#10', name: 'Maintenance Ticketing', status: 'partial', sprints: ['SP-31'], ucCount: 7, desc: 'Tenant raise → contractor route → rating → SLA.', personas: ['OW','IN','RE','BG'] },
+  { id: 'F11', code: '#11+#13', name: 'Crawler + AI Crawler', status: 'skeleton', sprints: ['SP-41','SP-42'], ucCount: 7, desc: 'Crawl Batdongsan/Nhatot, Gemini confidence, admin approval.', personas: ['SUPER_ADMIN'] },
+  { id: 'F12', code: '#12', name: 'Financial Accounting', status: 'partial', sprints: ['SP-32'], ucCount: 6, desc: 'Income/expense per property, P&L, owner statement, cashflow.', personas: ['IN','BG','OW'] },
+  { id: 'F14', code: '#14', name: 'AI Homepage Assistant', status: 'live', sprints: ['SP-27','SP-40'], ucCount: 6, desc: 'NL search, price analysis, phong thủy, streaming.', personas: ['BU','RE','OW','IN'] },
+  { id: 'FOUND1', code: 'F1', name: 'Multi-tenant Org Creation', status: 'approved', sprints: ['SP-26'], ucCount: 5, desc: 'Investor+ creates org, invites members, role mgmt, OrgSwitcher.', personas: ['IN','BG','BK','OW'] },
+  { id: 'FOUND2', code: 'F2', name: 'Geocoding + Map Filters', status: 'approved', sprints: ['SP-27'], ucCount: 3, desc: 'Nominatim worker, lat/lng, bbox/district/area filters.', personas: ['BU','RE','BG'] },
+];
+
+const STATUS_INFO = {
+  live: { color: 'emerald', label: '🟢 LIVE', bg: '#10b981' },
+  merged: { color: 'yellow', label: '🟡 MERGED', bg: '#eab308' },
+  approved: { color: 'orange', label: '🟠 APPROVED', bg: '#f97316' },
+  partial: { color: 'blue', label: '🔵 PARTIAL', bg: '#3b82f6' },
+  skeleton: { color: 'red', label: '🔴 SKELETON', bg: '#ef4444' }
+};
+
+const SPRINTS_DATA = [
+  { id: 'SP-24', name: 'Property/Unit Wizard Completion + Signup Auto-Org', phase: 0, beta: 'mvp', desc: '11 stories: dedupe picker, Project FK, master-data Projects admin, suggested-edits, signup auto-org, R-23-4 dedup, UAT closure' },
+  { id: 'SP-25', name: 'Cutover + Community + Affiliate Deploy', phase: 0, beta: 'mvp', desc: 'Drop community_posts.listing_*, deploy Community Hub UAT, deploy Affiliate, FK backfill' },
+  { id: 'SP-26', name: 'Multi-tenant Org Creation', phase: 1, beta: 'mvp', desc: 'CRITICAL: blocks 5 downstream. 4 tables, 3 endpoints, OrgSwitcher, invite flow.' },
+  { id: 'SP-27', name: 'Geocoding + Map Filters + AI Touch-up', phase: 1, beta: 'mvp', desc: 'Nominatim worker, quality scoring, bbox filters, AI area-scoped queries.' },
+  { id: 'SP-28', name: 'Community Hub v2 + Lead Capture', phase: 2, beta: 'mvp', desc: 'NLP classifier for lead inbox, group recommendations, notifications, broker badges.' },
+  { id: 'SP-29', name: 'CRM Pipeline + AI Suggestions Phase 1', phase: 2, beta: 'mvp', desc: 'pipeline_stage, lead_score, CustomerActivity, Gemini suggest, kanban view.' },
+  { id: 'SP-30', name: 'Affiliate v2 + Featured-Listing UI', phase: 2, beta: 'mvp', desc: 'Bonus tiers, /r/{code} redirect, payout flow, dashboard. + Featured-listing UI toggle. 🎯 Beta MVP READY' },
+  { id: 'SP-31', name: 'Maintenance Ticketing v2', phase: 3, beta: 'v1x', desc: 'Contractor table, routing rules, rating, SLA, partner portal.' },
+  { id: 'SP-32', name: 'Financial Accounting per Property', phase: 3, beta: 'v1x', desc: 'Add Transaction.property_id, P&L builder, owner statement PDF, cashflow forecast, bank reconciliation.' },
+  { id: 'SP-33', name: 'SEO + Marketing Suite', phase: 3, beta: 'v1x', desc: 'Auto meta tags, Schema.org JSON-LD, sitemap automation, area guides, keyword targeting.' },
+  { id: 'SP-34', name: 'Tenant Site Routing + Theme', phase: 4, beta: 'v1x', desc: '/{org_slug}/* routing, theme system (logo, color, hero), org-scoped listings grid, SEO.' },
+  { id: 'SP-35', name: 'Custom Domain via Cloudflare', phase: 4, beta: 'v1x', desc: 'DNS verification, SSL provisioning, GCLB URL map, setup guide.' },
+  { id: 'SP-36', name: 'Tenant Site Booking + AI', phase: 4, beta: 'v1x', desc: 'Embed booking widget, AI chat scoped, CRM lead routing, analytics.' },
+  { id: 'SP-37', name: 'Inbox Foundation + Zalo OA', phase: 5, beta: 'v2', desc: 'Webhook receiver, vault, outbound Send API, conversation grouping, unified UI.' },
+  { id: 'SP-38', name: 'FB Messenger Integration', phase: 5, beta: 'v2', desc: 'FB Graph API, OAuth2, token refresh, message normalization.' },
+  { id: 'SP-39', name: 'TikTok + Web Chat + Funnel State', phase: 5, beta: 'v2', desc: 'TikTok webhook, web chat widget, ConversationFunnel, macros, AI handoff.' },
+  { id: 'SP-40', name: 'AI Homepage Advanced', phase: 5, beta: 'v2', desc: 'Streaming SSE, phong thủy mode, price analysis, compare, voice input.' },
+  { id: 'SP-41', name: 'Crawler Infrastructure', phase: 6, beta: 'v2', desc: '3 tables, scheduler, admin config UI, Source 1 (Batdongsan), match engine, dedup.' },
+  { id: 'SP-42', name: 'AI-enriched Crawler + Source 2', phase: 6, beta: 'v2', desc: 'Gemini confidence, suggested_edits auto-create, Source 2 (Nhatot), proxy rotation.' },
+  { id: 'SP-43', name: 'Beta Launch Prep', phase: 6, beta: 'v2', desc: 'Onboarding tour, /help, status page, monitoring, marketing landing, T&C, support, pricing finalization.' },
+];
+
+const PHASE_COLORS = ['#94a3b8', '#3b82f6', '#6366f1', '#a855f7', '#c084fc', '#ec4899', '#f472b6'];
+const BETA_COLORS = { mvp: 'border-indigo-500', v1x: 'border-purple-400', v2: 'border-pink-400' };
+
+// 85 UCs sample (for graph nodes — abbreviated)
+const UCS_DATA = [];
+[
+  ['PROP', 7, 'F1', ['SP-24','SP-25','SP-31']],
+  ['LIST', 7, 'F2', ['SP-21','SP-24','SP-30','SP-33','SP-41']],
+  ['BOOK', 6, 'F6', ['SP-9','SP-36']],
+  ['AI', 6, 'F14', ['SP-19','SP-27','SP-40']],
+  ['COM', 7, 'F3', ['SP-25','SP-28']],
+  ['CRM', 5, 'F7', ['SP-29','SP-31']],
+  ['AFF', 5, 'F8', ['SP-25','SP-30']],
+  ['INB', 5, 'F5', ['SP-37','SP-39']],
+  ['SEO', 5, 'F9', ['SP-30','SP-33']],
+  ['SITE', 7, 'F4', ['SP-34','SP-35','SP-36']],
+  ['MNT', 7, 'F10', ['SP-31']],
+  ['CRAWL', 7, 'F11', ['SP-41','SP-42']],
+  ['FIN', 6, 'F12', ['SP-32']],
+  ['ORG', 5, 'FOUND1', ['SP-26']]
+].forEach(([prefix, count, featureId, sprints]) => {
+  for (let i = 1; i <= count; i++) {
+    const idx = i - 1;
+    const sprint = sprints[idx % sprints.length];
+    UCS_DATA.push({ id: `UC-${prefix}-${String(i).padStart(3,'0')}`, feature: featureId, sprint });
+  }
+});
+
+const RISKS_DATA = [
+  { id: 'R-MP-1', sev: 'HIGH', name: 'Omnichannel scope creep', desc: 'Ship Zalo OA first → release. FB/TikTok v2.1.' },
+  { id: 'R-MP-2', sev: 'MED', name: 'Custom domain SSL hên xui', desc: 'Subdomain <slug>.bdsmo.vn luôn có sẵn; custom domain opt-in Enterprise.' },
+  { id: 'R-MP-3', sev: 'MED', name: 'Crawler proxy cost spike', desc: 'Cap monthly quota; alert >$100/tháng.' },
+  { id: 'R-MP-4', sev: 'MED', name: 'CRM AI sai recommendations', desc: 'Phase 1 chỉ generate "draft"; user phải confirm.' },
+  { id: 'R-MP-5', sev: 'HIGH', name: 'Open Beta thiếu pilot users', desc: 'SP-30→SP-32 chạy paid acquisition $500/tháng.' },
+  { id: 'R-MP-6', sev: 'HIGH', name: 'Vendor block (eSMS, FB)', desc: 'Apply sớm; có fallback (email auth, web chat).' },
+  { id: 'R-MP-7', sev: 'MED', name: 'DB migration drift', desc: 'Mỗi sprint smoke-test alembic upgrade trên copy of prod.' },
+  { id: 'R-MP-8', sev: 'HIGH', name: 'Multi-tenant data leak', desc: 'Security review trước SP-34; pen-test trước SP-43.' },
+  { id: 'R-MP-9', sev: 'HIGH', name: 'Open Beta load spike', desc: 'Cloud Run min-instances=2; load test 100 concurrent.' },
+  { id: 'R-MP-10', sev: 'MED', name: 'Freemium conversion thấp (≤2%)', desc: 'A/B test paywall placement; survey churned users.' }
+];
+
+// ============================================================
+// RENDER FEATURE CARDS
+// ============================================================
+const featGrid = document.getElementById('feature-grid');
+FEATURES_DATA.forEach(f => {
+  const s = STATUS_INFO[f.status];
+  const personasStr = f.personas.slice(0, 4).join(', ') + (f.personas.length > 4 ? '...' : '');
+  const card = `<div class="feature-card bg-white rounded-xl p-5 border-l-4 border-${s.color}-500 shadow-md">
+    <div class="flex items-center justify-between mb-2">
+      <span class="text-xs font-bold uppercase text-${s.color}-700 bg-${s.color}-100 px-2 py-1 rounded">${s.label}</span>
+      <span class="text-xs text-slate-400 font-mono">${f.code}</span>
+    </div>
+    <h3 class="font-bold text-lg">${f.name}</h3>
+    <p class="text-sm text-slate-700 mt-2">${f.desc}</p>
+    <div class="mt-3 text-xs text-slate-500 space-y-1">
+      <div><strong>Sprints:</strong> ${f.sprints.join(', ')}</div>
+      <div><strong>UCs:</strong> ${f.ucCount}</div>
+      <div><strong>Personas:</strong> ${personasStr}</div>
+    </div>
+  </div>`;
+  featGrid.insertAdjacentHTML('beforeend', card);
+});
+
+// ============================================================
+// RENDER SPRINT TIMELINE
+// ============================================================
+const sprintCont = document.getElementById('sprint-timeline');
+const phaseGroups = {};
+SPRINTS_DATA.forEach(sp => {
+  if (!phaseGroups[sp.phase]) phaseGroups[sp.phase] = [];
+  phaseGroups[sp.phase].push(sp);
+});
+const phaseNames = ['Phase 0 — Stabilize', 'Phase 1 — Foundation', 'Phase 2 — Engagement (🎯 Beta MVP END)', 'Phase 3 — Power Features', 'Phase 4 — Custom Sites (⚡ v1.x END)', 'Phase 5 — Omnichannel + AI', 'Phase 6 — Crawler + Launch (🚀 v2.0 END)'];
+Object.keys(phaseGroups).forEach(p => {
+  const phase = parseInt(p);
+  const sprints = phaseGroups[p];
+  const html = `<div class="bg-white rounded-xl p-4 shadow-sm border-t-4" style="border-color:${PHASE_COLORS[phase]}">
+    <div class="flex items-center justify-between mb-2">
+      <div class="font-bold text-sm" style="color:${PHASE_COLORS[phase]}">${phaseNames[phase]}</div>
+      <span class="text-xs text-slate-500">${sprints.length} sprints</span>
+    </div>
+    <div class="grid gap-2" style="grid-template-columns: repeat(${sprints.length}, 1fr)">
+      ${sprints.map(sp => `
+        <div class="p-2 rounded-lg ${BETA_COLORS[sp.beta] || 'border-slate-300'} border-l-4 bg-slate-50 text-xs">
+          <div class="font-bold">${sp.id}</div>
+          <div class="text-slate-700 font-semibold mt-1">${sp.name}</div>
+          <div class="text-slate-500 text-[10px] mt-1">${sp.desc}</div>
+        </div>`).join('')}
+    </div>
+  </div>`;
+  sprintCont.insertAdjacentHTML('beforeend', html);
+});
+
+// ============================================================
+// RENDER RISKS
+// ============================================================
+const riskGrid = document.getElementById('risk-grid');
+RISKS_DATA.forEach(r => {
+  const sevColor = r.sev === 'HIGH' ? 'red' : 'amber';
+  const html = `<div class="bg-white rounded-lg p-4 border-l-4 border-${sevColor}-500 shadow-sm">
+    <div class="flex items-center justify-between mb-1">
+      <div class="font-bold text-sm">${r.id} · ${r.name}</div>
+      <span class="text-xs bg-${sevColor}-100 text-${sevColor}-700 px-2 py-0.5 rounded font-bold">${r.sev}</span>
+    </div>
+    <div class="text-sm text-slate-700">${r.desc}</div>
+  </div>`;
+  riskGrid.insertAdjacentHTML('beforeend', html);
+});
+
+// ============================================================
+// CYTOSCAPE GRAPH
+// ============================================================
+const elements = [];
+// Feature nodes
+FEATURES_DATA.forEach(f => {
+  elements.push({
+    data: { id: f.id, label: `${f.code}\n${f.name}`, type: 'feature', status: f.status, color: STATUS_INFO[f.status].bg, _data: f }
+  });
+});
+// Sprint nodes
+SPRINTS_DATA.forEach(sp => {
+  elements.push({
+    data: { id: sp.id, label: sp.id, type: 'sprint', beta: sp.beta, color: '#34d399', _data: sp }
+  });
+});
+// UC nodes (sample — show only first 2 UCs per feature to avoid overload)
+const visibleUCs = UCS_DATA.filter((uc, i, arr) => {
+  const sameFeature = arr.filter(x => x.feature === uc.feature);
+  return sameFeature.indexOf(uc) < 3; // show only top 3 UCs per feature
+});
+visibleUCs.forEach(uc => {
+  elements.push({
+    data: { id: uc.id, label: uc.id, type: 'uc', color: '#60a5fa', _data: uc }
+  });
+});
+// Edges feature -> uc
+visibleUCs.forEach(uc => {
+  elements.push({
+    data: { id: `e-${uc.feature}-${uc.id}`, source: uc.feature, target: uc.id, type: 'has_uc' }
+  });
+});
+// Edges uc -> sprint
+visibleUCs.forEach(uc => {
+  elements.push({
+    data: { id: `e-${uc.id}-${uc.sprint}`, source: uc.id, target: uc.sprint, type: 'in_sprint' }
+  });
+});
+
+const cy = cytoscape({
+  container: document.getElementById('cy-graph'),
+  elements: elements,
+  style: [
+    { selector: 'node[type="feature"]', style: { 'background-color': 'data(color)', 'label': 'data(label)', 'color': 'white', 'text-valign': 'center', 'text-halign': 'center', 'font-size': 10, 'font-weight': 'bold', 'width': 80, 'height': 80, 'shape': 'round-rectangle', 'text-wrap': 'wrap', 'text-max-width': 70, 'border-width': 2, 'border-color': '#334155' }},
+    { selector: 'node[type="uc"]', style: { 'background-color': '#60a5fa', 'label': 'data(label)', 'color': 'white', 'text-valign': 'center', 'text-halign': 'center', 'font-size': 8, 'width': 50, 'height': 50, 'shape': 'ellipse' }},
+    { selector: 'node[type="sprint"]', style: { 'background-color': '#34d399', 'label': 'data(label)', 'color': '#064e3b', 'text-valign': 'center', 'text-halign': 'center', 'font-size': 10, 'font-weight': 'bold', 'width': 60, 'height': 60, 'shape': 'diamond' }},
+    { selector: 'edge[type="has_uc"]', style: { 'width': 1, 'line-color': '#cbd5e1', 'curve-style': 'bezier', 'target-arrow-shape': 'triangle', 'target-arrow-color': '#cbd5e1', 'arrow-scale': 0.7 }},
+    { selector: 'edge[type="in_sprint"]', style: { 'width': 1, 'line-color': '#a7f3d0', 'curve-style': 'bezier', 'target-arrow-shape': 'triangle', 'target-arrow-color': '#a7f3d0', 'arrow-scale': 0.7, 'line-style': 'dashed' }},
+    { selector: 'node:selected', style: { 'border-width': 4, 'border-color': '#fbbf24' }},
+    { selector: '.faded', style: { 'opacity': 0.15 }}
+  ],
+  layout: { name: 'dagre', rankDir: 'LR', spacingFactor: 1.5 }
+});
+
+// Tooltip
+const tooltip = document.getElementById('cy-tooltip');
+cy.on('mouseover', 'node', (e) => {
+  const d = e.target.data('_data');
+  if (!d) return;
+  let html = `<strong>${d.id || d.code || ''}</strong>`;
+  if (d.name) html += `<br>${d.name}`;
+  if (d.desc) html += `<br><span style="opacity:0.7">${d.desc}</span>`;
+  tooltip.innerHTML = html;
+  tooltip.style.display = 'block';
+  const pos = e.renderedPosition;
+  const containerOffset = e.cy.container().getBoundingClientRect();
+  tooltip.style.left = (containerOffset.left + pos.x + 20) + 'px';
+  tooltip.style.top = (containerOffset.top + pos.y - 10 + window.scrollY) + 'px';
+});
+cy.on('mouseout', 'node', () => { tooltip.style.display = 'none'; });
+
+// Click for details
+const infoPanel = document.getElementById('node-info');
+const infoTitle = document.getElementById('info-title');
+const infoBody = document.getElementById('info-body');
+cy.on('tap', 'node', (e) => {
+  const d = e.target.data('_data');
+  const type = e.target.data('type');
+  if (!d) return;
+  infoPanel.classList.remove('hidden');
+  infoTitle.textContent = d.id || d.code || '';
+  let body = '';
+  if (type === 'feature') {
+    body = `<p class="mb-2"><strong>${d.name}</strong></p>
+      <p class="mb-2">${d.desc}</p>
+      <p><strong>Status:</strong> ${STATUS_INFO[d.status].label} · <strong>UCs:</strong> ${d.ucCount} · <strong>Sprints:</strong> ${d.sprints.join(', ')}</p>
+      <p><strong>Personas:</strong> ${d.personas.join(', ')}</p>`;
+  } else if (type === 'sprint') {
+    body = `<p class="mb-2"><strong>${d.name}</strong></p>
+      <p>${d.desc}</p>
+      <p class="mt-2"><strong>Phase:</strong> ${d.phase} · <strong>Beta:</strong> ${d.beta}</p>`;
+  } else if (type === 'uc') {
+    body = `<p>Use Case <strong>${d.id}</strong></p>
+      <p><strong>Feature:</strong> ${d.feature} · <strong>Sprint:</strong> ${d.sprint}</p>
+      <p class="mt-2 text-slate-500">Full UC spec trong file <code>bdsmo-use-cases-v2.md</code></p>`;
+  }
+  infoBody.innerHTML = body;
+
+  // Highlight neighbors
+  cy.elements().addClass('faded');
+  e.target.removeClass('faded');
+  e.target.neighborhood().removeClass('faded');
+});
+cy.on('tap', (e) => {
+  if (e.target === cy) {
+    cy.elements().removeClass('faded');
+    infoPanel.classList.add('hidden');
+  }
+});
+
+// Layout buttons
+document.getElementById('layout-dagre').onclick = () => cy.layout({ name: 'dagre', rankDir: 'LR', spacingFactor: 1.5 }).run();
+document.getElementById('layout-cose').onclick = () => cy.layout({ name: 'cose', idealEdgeLength: 100, nodeOverlap: 20, animate: true }).run();
+document.getElementById('filter-beta').onclick = () => {
+  cy.elements().removeClass('faded');
+  cy.nodes('[type="sprint"]').forEach(n => {
+    if (n.data('_data').beta !== 'mvp') n.addClass('faded');
+  });
+  cy.edges().forEach(e => {
+    if (e.target().hasClass('faded') || e.source().hasClass('faded')) e.addClass('faded');
+  });
+};
+document.getElementById('filter-all').onclick = () => cy.elements().removeClass('faded');
+
+// Print button
+const btn = document.createElement('button');
+btn.className = 'no-print fixed bottom-6 right-6 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-3 rounded-full shadow-2xl text-sm font-semibold z-50';
+btn.innerHTML = '🖨️ Print / Save PDF';
+btn.onclick = () => window.print();
+document.body.appendChild(btn);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Power BI Glossary & Domain Knowledge · Atlas</title>
+  <meta name="description" content="Interactive Power BI glossary and PL-300 domain knowledge reference with searchable terms, flashcards, lifecycle framework, and exam areas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#0b1020;
+      --bg-elev:#0f1530;
+      --surface:#151b3d;
+      --surface-2:#1c244d;
+      --surface-3:#252e60;
+      --border:#2a3470;
+      --border-soft:#1f2654;
+      --accent:#f2c811;
+      --accent-2:#ffe27a;
+      --accent-soft:rgba(242,200,17,.14);
+      --blue:#38bdf8;
+      --violet:#c4a8ff;
+      --green:#34d399;
+      --rose:#fb7185;
+      --text:#e8ecff;
+      --text-2:#a8b0d6;
+      --text-3:#6b75a8;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.2);
+      --shadow-lg:0 4px 8px rgba(0,0,0,.35),0 24px 48px rgba(0,0,0,.3);
+    }
+    html{scroll-behavior:smooth;overflow-x:hidden}
+    h1,h2,h3,h4,h5,h6{font-family:'Outfit','Be Vietnam Pro',sans-serif}
+    body{
+      font-family:'Be Vietnam Pro','Inter',system-ui,-apple-system,sans-serif;
+      background:radial-gradient(1200px 600px at 16% -10%,rgba(242,200,17,.12),transparent 60%),
+                 radial-gradient(900px 520px at 88% 4%,rgba(56,189,248,.09),transparent 62%),
+                 var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+      font-feature-settings:"ss01","cv11";
+      overflow-x:hidden;
+      overflow-wrap:break-word;
+    }
+    ::selection{background:var(--accent);color:#111827}
+    img,svg{max-width:100%;display:block}
+    h1,h2,h3,h4,p,a,button,select{overflow-wrap:break-word}
+    button,select,input{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit;text-decoration:none}
+    .topbar{
+      position:sticky;top:0;z-index:100;
+      -webkit-backdrop-filter:blur(14px);
+      backdrop-filter:blur(14px);
+      background:rgba(11,16,32,.78);
+      border-bottom:1px solid var(--border-soft);
+    }
+    .topbar-inner{
+      max-width:1280px;margin:0 auto;
+      display:flex;align-items:center;gap:28px;
+      padding:14px 28px;min-width:0;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;flex-shrink:0;
+      padding:4px 8px 4px 4px;border-radius:10px;
+      transition:background .15s;min-width:0;
+    }
+    .brand:hover{background:var(--surface)}
+    .brand-mark{
+      width:40px;height:40px;border-radius:50%;
+      overflow:hidden;flex-shrink:0;
+      background:linear-gradient(135deg,var(--accent),#d99b00);
+      border:2px solid rgba(242,200,17,.45);
+      box-shadow:0 4px 16px rgba(242,200,17,.28);
+    }
+    .brand-mark img{width:100%;height:100%;object-fit:cover}
+    .brand-text h1{font-size:.92rem;font-weight:700;letter-spacing:0;line-height:1.2}
+    .brand-text p{font-size:.72rem;color:var(--text-3);font-weight:500;margin-top:2px}
+    .tabs{display:flex;gap:4px;margin-left:auto;min-width:0;flex-wrap:wrap;justify-content:flex-end}
+    .tab{
+      padding:9px 16px;border-radius:8px;border:0;background:transparent;
+      color:var(--text-2);font-size:.85rem;font-weight:600;
+      display:inline-flex;align-items:center;justify-content:center;gap:7px;
+      transition:all .15s;min-width:0;
+    }
+    .tab:hover{color:var(--text);background:var(--surface)}
+    .tab.active{color:var(--accent-2);background:var(--surface)}
+    .tab svg{width:15px;height:15px;flex:0 0 auto}
+    .container{max-width:1280px;margin:0 auto;padding:32px 28px 80px}
+    .hero{
+      display:grid;grid-template-columns:minmax(0,1.22fr) minmax(320px,.78fr);
+      gap:18px;align-items:stretch;margin-bottom:24px;
+    }
+    .panel{
+      background:linear-gradient(180deg,rgba(21,27,61,.96),rgba(15,21,48,.96));
+      border:1px solid var(--border-soft);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+    }
+    .intro{padding:28px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--accent-2);background:var(--accent-soft);
+      border:1px solid rgba(242,200,17,.22);
+      border-radius:999px;padding:5px 12px;margin-bottom:18px;
+    }
+    .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+    .intro h2{font-size:2rem;font-weight:850;line-height:1.12;letter-spacing:0;margin-bottom:12px}
+    .intro p{color:var(--text-2);font-size:.95rem;line-height:1.7;max-width:760px}
+    .stat-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:22px}
+    .stat-tile{
+      background:var(--surface);border:1px solid var(--border-soft);
+      border-radius:12px;padding:14px 16px;
+      display:flex;align-items:center;gap:12px;min-width:0;
+    }
+    .stat-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:0 0 auto}
+    .stat-tile:nth-child(2) .stat-dot{background:var(--blue)}
+    .stat-tile:nth-child(3) .stat-dot{background:var(--green)}
+    .stat-tile:nth-child(4) .stat-dot{background:var(--violet)}
+    .stat-num{font-size:1.35rem;font-weight:850;line-height:1}
+    .stat-label{font-size:.7rem;color:var(--text-3);font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+    .flow{padding:20px;display:grid;gap:12px}
+    .flow h3{font-size:.95rem;font-weight:800}
+    .flow-step{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start}
+    .num{
+      width:28px;height:28px;border-radius:9px;display:grid;place-items:center;
+      color:#111827;font-size:.78rem;font-weight:850;background:var(--accent);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .num.b{background:var(--blue);color:#04111d}
+    .num.c{background:var(--green);color:#04120b}
+    .num.d{background:var(--violet);color:#140b24}
+    .num.e{background:var(--rose);color:#21050a}
+    .flow-step strong{display:block;font-size:.9rem;color:var(--text);margin-bottom:1px}
+    .flow-step small{color:var(--text-3);line-height:1.45}
+    .search-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+    .search-box{position:relative;flex:1;min-width:min(320px,100%)}
+    .search-box svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--text-3)}
+    .search-box input{
+      width:100%;padding:13px 46px;
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:12px;color:var(--text);font-size:.92rem;outline:none;
+      transition:all .15s;
+    }
+    .search-box input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(242,200,17,.14)}
+    .kbd-hint{
+      position:absolute;right:14px;top:50%;transform:translateY(-50%);
+      font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--text-3);
+      background:var(--bg-elev);border:1px solid var(--border-soft);
+      padding:2px 6px;border-radius:4px;pointer-events:none;
+    }
+    .filter-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:24px}
+    select,.action-btn,.result-pill{
+      height:38px;border-radius:10px;border:1px solid var(--border-soft);
+      background:var(--surface);color:var(--text-2);
+      padding:0 12px;font-size:.84rem;font-weight:650;
+    }
+    select{outline:none;min-width:150px}
+    select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(242,200,17,.14)}
+    .action-btn{display:inline-flex;align-items:center;gap:7px;color:var(--text);transition:all .15s}
+    .action-btn:hover{background:var(--surface-2);border-color:var(--border)}
+    .action-btn svg{width:15px;height:15px}
+    .result-pill{display:inline-flex;align-items:center;color:var(--accent-2);background:var(--accent-soft);border-color:rgba(242,200,17,.24)}
+    .tab-content{display:none;animation:fadeIn .22s ease}
+    .tab-content.active{display:block}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:12px}
+    .card{
+      background:var(--surface);border:1px solid var(--border-soft);
+      border-radius:12px;padding:16px 18px;min-height:210px;
+      display:flex;flex-direction:column;gap:10px;transition:all .15s;
+    }
+    .card:hover{background:var(--surface-2);border-color:var(--border)}
+    .card h3{font-size:1rem;font-weight:750;color:var(--accent-2);line-height:1.3}
+    .card p{color:var(--text-2);font-size:.88rem;line-height:1.65}
+    .card p strong{color:var(--text)}
+    .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+    .pill{
+      display:inline-flex;align-items:center;min-height:24px;
+      border-radius:999px;padding:3px 9px;font-size:.72rem;font-weight:800;
+      border:1px solid var(--border-soft);background:var(--bg-elev);color:var(--text-3);
+      text-transform:uppercase;letter-spacing:.04em;
+    }
+    .pill.Basic{color:var(--green)}
+    .pill.Intermediate{color:var(--blue)}
+    .pill.Advanced{color:var(--rose)}
+    .empty-state{
+      grid-column:1/-1;text-align:center;color:var(--text-3);
+      padding:56px 20px;border:1px dashed var(--border);border-radius:14px;
+    }
+    .framework{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:20px}
+    .stage{
+      background:var(--surface);border:1px solid var(--border-soft);
+      border-radius:12px;padding:16px 14px;min-height:150px;
+      position:relative;text-align:center;
+    }
+    .stage .step-num{
+      width:24px;height:24px;border-radius:50%;margin:0 auto 10px;
+      display:grid;place-items:center;background:var(--bg);border:2px solid var(--accent);
+      color:var(--accent-2);font-size:.72rem;font-weight:850;
+    }
+    .stage strong{display:block;font-size:.88rem;margin-bottom:6px}
+    .stage small{color:var(--text-3);font-size:.75rem;line-height:1.45}
+    .exam{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .exam .card{min-height:160px}
+    .flashcards{max-width:860px;margin:0 auto}
+    .fc-intro{
+      display:flex;justify-content:space-between;gap:16px;align-items:flex-end;
+      margin-bottom:16px;flex-wrap:wrap;
+    }
+    .fc-intro h3{font-size:1.15rem;font-weight:850;color:var(--text);line-height:1.25}
+    .fc-intro p{color:var(--text-3);font-size:.86rem;line-height:1.55;max-width:560px;margin-top:4px}
+    .fc-pool{
+      display:inline-flex;align-items:center;height:34px;padding:0 12px;
+      border-radius:999px;background:var(--accent-soft);border:1px solid rgba(242,200,17,.24);
+      color:var(--accent-2);font-size:.78rem;font-weight:850;text-transform:uppercase;letter-spacing:.04em;
+      white-space:nowrap;
+    }
+    .fc-toolbar{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+    .fc-progress-wrap{flex:1;min-width:220px}
+    .fc-progress-bar{
+      height:7px;border-radius:999px;overflow:hidden;
+      background:var(--surface);border:1px solid var(--border-soft);
+    }
+    .fc-progress-fill{
+      height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--blue));
+      border-radius:999px;transition:width .22s ease;
+    }
+    .fc-progress-text{
+      display:flex;justify-content:space-between;gap:10px;margin-top:7px;
+      color:var(--text-3);font-size:.76rem;font-weight:700;
+    }
+    .fc-controls{display:flex;gap:8px;flex-wrap:wrap}
+    .fc-stage{perspective:1400px;margin-bottom:16px}
+    .flashcard{
+      position:relative;width:100%;min-height:360px;
+      transform-style:preserve-3d;transition:transform .45s cubic-bezier(.4,0,.2,1);
+      cursor:pointer;
+    }
+    .flashcard.flipped{transform:rotateY(180deg)}
+    .fc-face{
+      position:absolute;inset:0;backface-visibility:hidden;
+      border-radius:18px;padding:32px;
+      display:flex;flex-direction:column;
+      box-shadow:var(--shadow-lg);overflow:hidden;
+    }
+    .fc-front{
+      justify-content:center;align-items:center;text-align:center;
+      background:linear-gradient(135deg,rgba(242,200,17,.14),rgba(56,189,248,.08) 50%,rgba(21,27,61,.96));
+      border:1px solid rgba(242,200,17,.26);
+    }
+    .fc-tag{
+      display:inline-flex;align-items:center;gap:7px;
+      color:var(--accent-2);background:rgba(242,200,17,.12);
+      border:1px solid rgba(242,200,17,.22);
+      border-radius:999px;padding:5px 12px;
+      font-size:.72rem;font-weight:850;text-transform:uppercase;letter-spacing:.08em;margin-bottom:24px;
+    }
+    .fc-front h3{font-size:1.75rem;font-weight:850;line-height:1.25;max-width:92%;color:#fff}
+    .fc-hint{
+      position:absolute;left:24px;right:24px;bottom:22px;text-align:center;
+      color:var(--text-3);font-size:.76rem;font-weight:650;
+    }
+    .fc-hint kbd,.fc-keys kbd{
+      font-family:'JetBrains Mono',monospace;font-size:.7rem;
+      background:rgba(255,255,255,.08);border:1px solid var(--border-soft);
+      padding:2px 7px;border-radius:5px;color:var(--text-2);
+    }
+    .fc-back{
+      transform:rotateY(180deg);background:var(--surface);
+      border:1px solid rgba(52,211,153,.28);overflow-y:auto;
+    }
+    .fc-back h3{font-size:1.05rem;color:var(--green);font-weight:850;margin-bottom:14px}
+    .fc-answer{
+      display:grid;gap:14px;color:var(--text-2);font-size:.92rem;line-height:1.7;
+    }
+    .fc-answer strong{color:var(--text);font-weight:800}
+    .fc-back .meta{margin-top:18px}
+    .fc-keys{
+      display:flex;justify-content:center;gap:18px;flex-wrap:wrap;
+      color:var(--text-3);font-size:.76rem;font-weight:650;
+    }
+    .fc-keys span{display:inline-flex;align-items:center;gap:6px}
+    .author-card{
+      margin-top:48px;
+      background:linear-gradient(135deg,rgba(242,200,17,.07),rgba(56,189,248,.04));
+      border:1px solid var(--border-soft);
+      border-radius:18px;padding:28px;
+      display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;
+    }
+    .author-avatar{
+      width:88px;height:88px;border-radius:50%;overflow:hidden;flex-shrink:0;
+      border:3px solid rgba(242,200,17,.28);
+      box-shadow:0 8px 32px rgba(242,200,17,.16);
+    }
+    .author-avatar img{width:100%;height:100%;object-fit:cover}
+    .author-info .kicker{
+      font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--text-3);margin-bottom:6px;
+    }
+    .author-info h3{
+      font-size:1.3rem;font-weight:850;letter-spacing:0;margin-bottom:4px;
+      background:linear-gradient(90deg,var(--accent-2),var(--blue));
+      -webkit-background-clip:text;background-clip:text;
+      -webkit-text-fill-color:transparent;color:transparent;
+    }
+    .author-info p{color:var(--text-2);font-size:.88rem;line-height:1.6;max-width:560px}
+    .author-info a{color:var(--accent-2);border-bottom:1px dashed rgba(242,200,17,.35)}
+    .social-grid{display:grid;grid-template-columns:repeat(4,40px);gap:8px}
+    .social-btn{
+      width:40px;height:40px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--surface);border:1px solid var(--border-soft);
+      color:var(--text-2);transition:all .15s;
+    }
+    .social-btn svg{width:18px;height:18px}
+    .social-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.3)}
+    .social-btn[data-net="facebook"]:hover{background:#1877F2;color:#fff;border-color:#1877F2}
+    .social-btn[data-net="linkedin"]:hover{background:#0A66C2;color:#fff;border-color:#0A66C2}
+    .social-btn[data-net="github"]:hover{background:#24292e;color:#fff;border-color:#24292e}
+    .social-btn[data-net="youtube"]:hover{background:#FF0000;color:#fff;border-color:#FF0000}
+    .social-btn[data-net="email"]:hover{background:var(--accent);color:#111827;border-color:var(--accent)}
+    .social-btn[data-net="profile"]:hover{background:var(--blue);color:#04111d;border-color:var(--blue)}
+    .social-btn[data-net="web"]:hover{background:var(--green);color:#04120b;border-color:var(--green)}
+    .social-btn[data-net="phone"]:hover{background:var(--violet);color:#140b24;border-color:var(--violet)}
+    .site-footer{max-width:1280px;margin:0 auto;color:var(--text-3);border-top:1px solid var(--border-soft);padding:24px 28px 42px;font-size:.82rem}
+    mark{background:rgba(242,200,17,.28);color:var(--accent-2);padding:0 3px;border-radius:3px;font-weight:650}
+    .hidden{display:none!important}
+    button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,.flashcard:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+    }
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .stat-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .framework{grid-template-columns:1fr}
+      .stage{min-height:auto;text-align:left;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start}
+      .stage .step-num{margin:0}
+    }
+    @media(max-width:820px){
+      .topbar-inner{flex-wrap:wrap;gap:10px;padding:12px 18px}
+      .tabs{width:100%;margin-left:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+      .tab{width:100%;padding:9px 10px}
+      .exam{grid-template-columns:1fr}
+      .author-card{grid-template-columns:1fr;text-align:center;gap:18px;padding:22px}
+      .author-avatar,.social-grid{margin:0 auto}
+      .author-info p{margin:0 auto}
+    }
+    @media(max-width:640px){
+      .container{padding:24px 16px 60px}
+      .intro{padding:22px}
+      .intro h2{font-size:1.45rem}
+      .stat-strip{grid-template-columns:1fr;gap:10px}
+      .search-row{display:block;margin-bottom:14px}
+      .search-box{min-width:0;width:100%}
+      .filter-row{gap:8px}
+      select,.action-btn,.result-pill{width:100%;justify-content:center}
+      .card{min-height:0;padding:15px}
+      .fc-intro{display:block}
+      .fc-pool{margin-top:12px}
+      .fc-toolbar{display:block}
+      .fc-progress-wrap{min-width:0;margin-bottom:14px}
+      .fc-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+      .fc-controls .action-btn{width:100%;padding:0 8px}
+      .flashcard{min-height:410px}
+      .fc-face{padding:24px}
+      .fc-front h3{font-size:1.28rem;max-width:100%}
+      .fc-keys{display:none}
+      .brand-text p{display:none}
+    }
+    @media(max-width:420px){
+      .container{padding:22px 12px 52px}
+      .topbar-inner{padding:10px 12px}
+      .brand-mark{width:36px;height:36px}
+      .tab{font-size:.68rem;padding:8px 4px}
+      .tab svg{display:none}
+      .kbd-hint{display:none}
+      .search-box input{padding-right:16px}
+      .fc-controls .action-btn{font-size:.72rem}
+      .fc-controls .action-btn svg{display:none}
+      .flashcard{min-height:440px}
+      .fc-face{padding:20px}
+      .author-avatar{width:76px;height:76px}
+      .social-grid{grid-template-columns:repeat(4,38px);gap:8px}
+      .social-btn{width:38px;height:38px}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" aria-label="Author: Nguyễn Quang Đức">
+        <div class="brand-mark">
+          <img src="https://ducnguyen221.github.io/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức" loading="eager" width="40" height="40">
+        </div>
+        <div class="brand-text">
+          <h1>Power BI Glossary</h1>
+          <p>Domain Knowledge · PL-300</p>
+        </div>
+      </a>
+      <nav class="tabs" aria-label="Power BI glossary views">
+        <button type="button" class="tab active" data-view="glossary" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"/></svg>
+          Glossary
+        </button>
+        <button type="button" class="tab" data-view="flashcards">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h10"/><path d="M7 13h6"/></svg>
+          Flashcards
+        </button>
+        <button type="button" class="tab" data-view="framework">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="9" y="15" width="6" height="6" rx="1"/><path d="M9 6h6M12 9v6"/></svg>
+          Framework
+        </button>
+        <button type="button" class="tab" data-view="exam">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M5 5H3v2a4 4 0 0 0 4 4"/><path d="M19 5h2v2a4 4 0 0 1-4 4"/></svg>
+          PL-300
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="panel intro">
+        <div class="eyebrow">Power BI · Business Intelligence</div>
+        <h2 id="page-title">Tra nhanh Power BI glossary từ nền tảng đến enterprise BI</h2>
+        <p>Glossary này gom domain knowledge, lifecycle framework và PL-300 revision notes để dạy học, review capstone, tư vấn project và ôn chứng chỉ theo một chuẩn tra cứu thống nhất.</p>
+        <div class="stat-strip" aria-label="Glossary statistics">
+          <div class="stat-tile"><div class="stat-dot"></div><div><div class="stat-num" id="termCount">0</div><div class="stat-label">Terms</div></div></div>
+          <div class="stat-tile"><div class="stat-dot"></div><div><div class="stat-num" id="domainCount">0</div><div class="stat-label">Domains</div></div></div>
+          <div class="stat-tile"><div class="stat-dot"></div><div><div class="stat-num">4</div><div class="stat-label">PL-300 Areas</div></div></div>
+          <div class="stat-tile"><div class="stat-dot"></div><div><div class="stat-num" id="shownCount">0</div><div class="stat-label">Shown</div></div></div>
+        </div>
+      </div>
+      <div class="panel flow" aria-label="Power BI lifecycle">
+        <h3>Lifecycle mental model</h3>
+        <div class="flow-step"><div class="num">1</div><div><strong>Source → Power Query</strong><small>Connect, profile, clean, reshape.</small></div></div>
+        <div class="flow-step"><div class="num b">2</div><div><strong>Model → DAX</strong><small>Star schema, context, reusable measures.</small></div></div>
+        <div class="flow-step"><div class="num c">3</div><div><strong>Report UX</strong><small>Visual choice, interaction, insight flow.</small></div></div>
+        <div class="flow-step"><div class="num d">4</div><div><strong>Service</strong><small>Publish, refresh, app, workspace.</small></div></div>
+        <div class="flow-step"><div class="num e">5</div><div><strong>Governance</strong><small>RLS, labels, endorsement, lifecycle.</small></div></div>
+      </div>
+    </section>
+
+    <section class="search-row" aria-label="Search glossary">
+      <label class="search-box" for="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="search" type="search" placeholder="Search: CALCULATE, star schema, RLS, query folding..." autocomplete="off">
+        <span class="kbd-hint" id="kbdHint">/</span>
+      </label>
+    </section>
+
+    <section class="filter-row" aria-label="Filters">
+      <select id="domain" aria-label="Filter by domain"><option value="">All domains</option></select>
+      <select id="level" aria-label="Filter by level"><option value="">All levels</option><option>Basic</option><option>Intermediate</option><option>Advanced</option></select>
+      <button id="shuffle" class="action-btn" type="button" title="Shuffle glossary card order">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="m15 15 6 6"/><path d="m4 4 5 5"/></svg>
+        Shuffle
+      </button>
+      <span id="result" class="result-pill" aria-live="polite">0 shown</span>
+    </section>
+
+    <section id="glossaryView" class="tab-content active grid" aria-live="polite"></section>
+
+    <section id="flashcardsView" class="tab-content flashcards hidden" aria-label="Power BI flashcards">
+      <div class="fc-intro">
+        <div>
+          <h3>Flashcards ôn tập khái niệm</h3>
+          <p>Dùng bộ lọc hiện tại để luyện active recall theo domain, level hoặc từ khóa. Click vào thẻ hoặc dùng phím tắt để lật và chuyển thẻ.</p>
+        </div>
+        <span class="fc-pool" id="fcPool">0 cards</span>
+      </div>
+      <div class="fc-toolbar">
+        <div class="fc-progress-wrap" aria-label="Flashcard progress">
+          <div class="fc-progress-bar"><div class="fc-progress-fill" id="fcFill"></div></div>
+          <div class="fc-progress-text">
+            <span id="fcStatus">Card 1</span>
+            <span id="fcTotal">of 0</span>
+          </div>
+        </div>
+        <div class="fc-controls">
+          <button type="button" class="action-btn" id="fcPrev" title="Previous card">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+            Prev
+          </button>
+          <button type="button" class="action-btn" id="fcFlip" title="Reveal answer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            <span id="fcFlipText">Reveal</span>
+          </button>
+          <button type="button" class="action-btn" id="fcNext" title="Next card">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+            Next
+          </button>
+          <button type="button" class="action-btn" id="fcShuffle" title="Shuffle flashcards">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="m15 15 6 6"/><path d="m4 4 5 5"/></svg>
+            Shuffle
+          </button>
+        </div>
+      </div>
+      <div class="fc-stage">
+        <div class="flashcard" id="fcCard" role="button" tabindex="0" aria-label="Flip flashcard"></div>
+      </div>
+      <div class="fc-keys" aria-label="Flashcard keyboard shortcuts">
+        <span><kbd>←</kbd><kbd>→</kbd> Navigate</span>
+        <span><kbd>Space</kbd> Flip</span>
+        <span><kbd>S</kbd> Shuffle</span>
+      </div>
+    </section>
+
+    <section id="frameworkView" class="tab-content hidden" aria-label="Power BI delivery framework">
+      <div class="framework">
+        <div class="stage"><span class="step-num">1</span><div><strong>Source</strong><small>Dữ liệu ở đâu, owner là ai, refresh ra sao, SLA và privacy level thế nào?</small></div></div>
+        <div class="stage"><span class="step-num">2</span><div><strong>Power Query</strong><small>Clean, type, reshape, merge, append, unpivot và giữ query folding khi có thể.</small></div></div>
+        <div class="stage"><span class="step-num">3</span><div><strong>Model</strong><small>Fact, dimension, grain, date table, relationship và semantic layer dùng lại.</small></div></div>
+        <div class="stage"><span class="step-num">4</span><div><strong>DAX</strong><small>Explicit measures, filter context, CALCULATE, time intelligence và performance.</small></div></div>
+        <div class="stage"><span class="step-num">5</span><div><strong>Report UX</strong><small>Business question, chart choice, slicer strategy, drill path và accessibility.</small></div></div>
+        <div class="stage"><span class="step-num">6</span><div><strong>Service</strong><small>Workspace, app, deployment pipeline, refresh, gateway và subscription.</small></div></div>
+        <div class="stage"><span class="step-num">7</span><div><strong>Governance</strong><small>RLS, Build permission, sensitivity labels, endorsement, audit và lifecycle ownership.</small></div></div>
+      </div>
+    </section>
+
+    <section id="examView" class="tab-content exam hidden" aria-label="PL-300 exam areas">
+      <div class="card"><h3>Prepare the data</h3><p>25-30%. Connect, credentials, privacy, Import/DirectQuery/DirectLake, profile, clean, transform, fact/dimension, keys and load settings.</p><div class="meta"><span class="pill">PL-300</span><span class="pill Basic">Prepare</span></div></div>
+      <div class="card"><h3>Model the data</h3><p>25-30%. Relationships, role-playing dimensions, date table, calculated columns/tables, CALCULATE, time intelligence, semi-additive logic and performance.</p><div class="meta"><span class="pill">PL-300</span><span class="pill Intermediate">Model</span></div></div>
+      <div class="card"><h3>Visualize and analyze</h3><p>25-30%. Visual choice, formatting, conditional formatting, slicers, paginated reports, visual calculations, bookmarks, tooltips, drill-through and AI visuals.</p><div class="meta"><span class="pill">PL-300</span><span class="pill Intermediate">Visualize</span></div></div>
+      <div class="card"><h3>Manage and secure</h3><p>15-20%. Workspace, app, dashboard, distribution, subscriptions, alerts, gateway, refresh, roles, item-level access, RLS and sensitivity labels.</p><div class="meta"><span class="pill">PL-300</span><span class="pill Advanced">Manage</span></div></div>
+    </section>
+
+    <footer class="author-card" aria-labelledby="author-name">
+      <div class="author-avatar">
+        <img src="https://ducnguyen221.github.io/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức" loading="lazy" width="88" height="88">
+      </div>
+      <div class="author-info">
+        <div class="kicker">Curated by</div>
+        <h3 id="author-name">Nguyễn Quang Đức</h3>
+        <p>Data & AI Engineer · Trainer at <a href="https://kpim.vn" target="_blank" rel="noopener">KPIM Academy</a> & COMPA Class. Tài liệu này được biên soạn để học viên và đội dự án tra nhanh Power BI glossary, BI domain knowledge và PL-300 mental model.</p>
+      </div>
+      <div class="social-grid" aria-label="Author links">
+        <a class="social-btn" data-net="profile" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" aria-label="E-Profile"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20c1.2-2.2 2.9-3 5-3s3.8.8 5 3"/></svg></a>
+        <a class="social-btn" data-net="facebook" href="https://www.facebook.com/TobiNguyenData/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.84c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2V8.6H15.2c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.44 2.91h-2.34V22C18.34 21.24 22 17.08 22 12.06z"/></svg></a>
+        <a class="social-btn" data-net="linkedin" href="https://www.linkedin.com/in/tobi-nguyen/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.32 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.1 20.45H3.54V9H7.1v11.45z"/></svg></a>
+        <a class="social-btn" data-net="github" href="https://github.com/ducnguyen221" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 8.36 22.9c.58.1.79-.25.79-.56v-2.18c-3.22.7-3.9-1.38-3.9-1.38-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.73-1.56-2.57-.29-5.27-1.29-5.27-5.73 0-1.27.45-2.3 1.2-3.11-.12-.29-.52-1.47.11-3.07 0 0 .98-.31 3.2 1.19a11.1 11.1 0 0 1 5.82 0c2.22-1.5 3.2-1.19 3.2-1.19.63 1.6.23 2.78.11 3.07.75.81 1.2 1.84 1.2 3.11 0 4.46-2.71 5.43-5.3 5.72.42.36.79 1.08.79 2.18v3.23c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg></a>
+        <a class="social-btn" data-net="youtube" href="https://www.youtube.com/@PowerBIHeroVn" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg></a>
+        <a class="social-btn" data-net="email" href="mailto:duc.nguyen@kpim.vn" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+        <a class="social-btn" data-net="web" href="https://kpim.vn" target="_blank" rel="noopener" aria-label="KPIM"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 0 20"/><path d="M12 2a15.3 15.3 0 0 0 0 20"/></svg></a>
+        <a class="social-btn" data-net="phone" href="tel:+84932215555" aria-label="Phone"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.62 2.61a2 2 0 0 1-.45 2.11L8 9.72a16 16 0 0 0 6.28 6.28l1.28-1.28a2 2 0 0 1 2.11-.45c.84.29 1.71.5 2.61.62A2 2 0 0 1 22 16.92z"/></svg></a>
+      </div>
+    </footer>
+  </main>
+
+  <footer class="site-footer">
+    Generated from Brain Power BI extraction batch · 2026-05-18 · Atlas Power BI glossary.
+  </footer>
+
+  <script>
+    const terms = [{"term": "Power BI Desktop", "domain": "Foundation", "level": "Basic", "definition": "Ứng dụng authoring để kết nối dữ liệu, transform, model, viết DAX và thiết kế report.", "principle": "Dùng để xây report trước khi publish lên Service.", "exam": "Prepare/Visualize"}, {"term": "Power BI Service", "domain": "Foundation", "level": "Basic", "definition": "Nền tảng cloud để publish, share, refresh, bảo mật và quản trị Power BI assets.", "principle": "Report production sống ở Service, không chỉ trong PBIX.", "exam": "Manage"}, {"term": "Power BI Report Server", "domain": "Foundation", "level": "Basic", "definition": "Môi trường on-premises để host Power BI report khi doanh nghiệp chưa dùng cloud.", "principle": "Chọn khi policy không cho publish cloud.", "exam": "Manage"}, {"term": "PBIX", "domain": "Foundation", "level": "Basic", "definition": "File Power BI Desktop chứa query, model, measures, report pages và metadata.", "principle": "Không coi PBIX là source of truth duy nhất khi có deployment pipeline.", "exam": "Manage"}, {"term": "Report", "domain": "Foundation", "level": "Basic", "definition": "Tập hợp report pages và visuals để phân tích dữ liệu tương tác.", "principle": "Report trả lời câu hỏi phân tích, không chỉ trang trí KPI.", "exam": "Visualize"}, {"term": "Dashboard", "domain": "Foundation", "level": "Basic", "definition": "Canvas một trang trên Service, pin visuals từ nhiều reports/datasets.", "principle": "Dashboard phù hợp executive monitoring, không thay report detail.", "exam": "Manage"}, {"term": "Semantic model", "domain": "Foundation", "level": "Basic", "definition": "Tên mới của dataset: model dữ liệu, measures, relationships dùng chung cho reports.", "principle": "Tách semantic model tốt giúp self-service BI bền vững.", "exam": "Model/Manage"}, {"term": "Workspace", "domain": "Foundation", "level": "Basic", "definition": "Không gian cộng tác trên Service để chứa reports, semantic models, dataflows, dashboards, apps.", "principle": "Quản trị workspace theo DEV/UAT/PROD hoặc theo domain.", "exam": "Manage"}, {"term": "App", "domain": "Foundation", "level": "Basic", "definition": "Gói phân phối nội dung Power BI từ workspace tới người dùng cuối.", "principle": "User thường nên xem qua App thay vì vào workspace edit.", "exam": "Manage"}, {"term": "Power Query", "domain": "Prepare", "level": "Basic", "definition": "Engine transform dữ liệu trước khi load vào model, dựa trên Applied Steps và M.", "principle": "Làm sạch dữ liệu càng sớm càng tốt trước model/DAX.", "exam": "Prepare"}, {"term": "M Language", "domain": "Prepare", "level": "Intermediate", "definition": "Ngôn ngữ functional đứng sau Power Query.", "principle": "Đọc M để debug và automate transform phức tạp.", "exam": "Prepare"}, {"term": "Applied Steps", "domain": "Prepare", "level": "Basic", "definition": "Chuỗi bước transform trong Power Query được replay khi refresh.", "principle": "Đặt tên bước rõ để pipeline dễ bảo trì.", "exam": "Prepare"}, {"term": "Get Data", "domain": "Prepare", "level": "Basic", "definition": "Chức năng kết nối tới Excel, CSV, SQL, Web, SharePoint, semantic model và nguồn khác.", "principle": "Chọn connector chuẩn để tránh lỗi refresh/credential.", "exam": "Prepare"}, {"term": "Import mode", "domain": "Prepare", "level": "Basic", "definition": "Dữ liệu được nạp vào VertiPaq in-memory của Power BI.", "principle": "Ưu tiên Import khi cần performance và dữ liệu vừa đủ.", "exam": "Prepare/Model"}, {"term": "DirectQuery", "domain": "Prepare", "level": "Intermediate", "definition": "Power BI gửi query trực tiếp về nguồn khi người dùng tương tác report.", "principle": "Chọn khi dữ liệu quá lớn/near real-time, nhưng phải kiểm soát performance nguồn.", "exam": "Prepare"}, {"term": "Direct Lake", "domain": "Prepare", "level": "Advanced", "definition": "Mode đọc dữ liệu Fabric Lakehouse/Warehouse gần trực tiếp từ OneLake.", "principle": "Phù hợp Fabric khi muốn giảm bước import và giữ performance.", "exam": "Prepare"}, {"term": "Live connection", "domain": "Prepare", "level": "Intermediate", "definition": "Report kết nối tới semantic model/Analysis Services đã có thay vì tạo model mới.", "principle": "Dùng để tái sử dụng governed model.", "exam": "Manage/Model"}, {"term": "Credential", "domain": "Prepare", "level": "Basic", "definition": "Thông tin xác thực nguồn dữ liệu dùng khi connect/refresh.", "principle": "Credential sai là nguyên nhân refresh fail phổ biến.", "exam": "Prepare/Manage"}, {"term": "Privacy level", "domain": "Prepare", "level": "Intermediate", "definition": "Thiết lập kiểm soát cách Power Query kết hợp dữ liệu giữa nguồn khác nhau.", "principle": "Cần đúng để tránh leak dữ liệu và lỗi formula firewall.", "exam": "Prepare"}, {"term": "Parameter", "domain": "Prepare", "level": "Intermediate", "definition": "Biến cấu hình trong Power Query hoặc report để thay đổi source/filter/top N linh hoạt.", "principle": "Dùng parameter cho environment, path, Top X thay vì hardcode.", "exam": "Prepare/Visualize"}, {"term": "Query folding", "domain": "Prepare", "level": "Advanced", "definition": "Khả năng Power Query đẩy transform về source như SQL để xử lý nhanh hơn.", "principle": "Giữ folding càng lâu càng tốt cho dữ liệu lớn.", "exam": "Prepare/Optimize"}, {"term": "Reference query", "domain": "Prepare", "level": "Intermediate", "definition": "Query mới phụ thuộc kết quả query gốc.", "principle": "Dùng Reference để tái sử dụng pipeline và giảm duplicate logic.", "exam": "Prepare"}, {"term": "Duplicate query", "domain": "Prepare", "level": "Intermediate", "definition": "Sao chép query và steps thành pipeline độc lập.", "principle": "Dùng khi cần tách logic độc lập; tránh duplicate vô thức.", "exam": "Prepare"}, {"term": "Merge Queries", "domain": "Prepare", "level": "Basic", "definition": "Join bảng theo key trong Power Query.", "principle": "Merge để bổ sung thuộc tính trước model khi hợp lý.", "exam": "Prepare"}, {"term": "Append Queries", "domain": "Prepare", "level": "Basic", "definition": "Gộp nhiều bảng cùng cấu trúc thành một bảng dài.", "principle": "Dùng cho dữ liệu nhiều file/tháng/vùng có schema giống nhau.", "exam": "Prepare"}, {"term": "Unpivot", "domain": "Prepare", "level": "Basic", "definition": "Biến cột ngang thành cặp attribute-value để dữ liệu phân tích được.", "principle": "Unpivot là kỹ năng sống còn khi nhận file Excel dạng báo cáo.", "exam": "Prepare"}, {"term": "Pivot", "domain": "Prepare", "level": "Basic", "definition": "Biến dòng thành cột tổng hợp.", "principle": "Chỉ pivot khi output cần dạng rộng; model thường thích dạng dài.", "exam": "Prepare"}, {"term": "Transpose", "domain": "Prepare", "level": "Basic", "definition": "Đảo dòng và cột trong Power Query.", "principle": "Hữu ích với file có header nhiều dòng nhưng cần kiểm soát data type sau đó.", "exam": "Prepare"}, {"term": "Group By", "domain": "Prepare", "level": "Basic", "definition": "Aggregate rows trong Power Query theo nhóm.", "principle": "Dùng để tạo summary/staging, nhưng đừng làm mất grain cần phân tích.", "exam": "Prepare"}, {"term": "Data profiling", "domain": "Prepare", "level": "Basic", "definition": "Kiểm tra quality, distribution, null, distinct, error của cột.", "principle": "Profile trước khi model để bắt lỗi sớm.", "exam": "Prepare"}, {"term": "Data type", "domain": "Prepare", "level": "Basic", "definition": "Kiểu dữ liệu cột như Text, Whole Number, Decimal, Date, DateTime.", "principle": "Sai data type làm DAX, sort, relationship và refresh lỗi.", "exam": "Prepare"}, {"term": "Custom column", "domain": "Prepare", "level": "Basic", "definition": "Cột tính trong Power Query bằng M expression.", "principle": "Dùng cho logic chuẩn hóa trước load.", "exam": "Prepare"}, {"term": "Conditional column", "domain": "Prepare", "level": "Basic", "definition": "Cột điều kiện tạo bằng UI if/then/else.", "principle": "Phù hợp phân nhóm age/income/status đơn giản.", "exam": "Prepare"}, {"term": "Fill Down", "domain": "Prepare", "level": "Basic", "definition": "Điền giá trị trống bằng giá trị phía trên.", "principle": "Hữu ích với Excel export có merged cells/multi-row headers.", "exam": "Prepare"}, {"term": "Promote Headers", "domain": "Prepare", "level": "Basic", "definition": "Đẩy dòng đầu tiên thành tên cột.", "principle": "Kiểm tra lại khi file có nhiều dòng tiêu đề.", "exam": "Prepare"}, {"term": "Enable Load", "domain": "Prepare", "level": "Intermediate", "definition": "Quyết định query có load vào model hay chỉ là staging.", "principle": "Tắt cho staging queries để model sạch và nhẹ.", "exam": "Prepare/Optimize"}, {"term": "Fact table", "domain": "Model", "level": "Basic", "definition": "Bảng sự kiện/giao dịch chứa numeric measures và foreign keys.", "principle": "Fact phải có grain rõ: một dòng nghĩa là gì.", "exam": "Model"}, {"term": "Dimension table", "domain": "Model", "level": "Basic", "definition": "Bảng mô tả chứa thuộc tính để lọc/nhóm fact.", "principle": "Dimension đi từ business language, không chỉ technical lookup.", "exam": "Model"}, {"term": "Star schema", "domain": "Model", "level": "Basic", "definition": "Mô hình fact trung tâm nối 1-n với các dimension xung quanh.", "principle": "Đây là default tốt nhất cho Power BI model.", "exam": "Model"}, {"term": "Snowflake schema", "domain": "Model", "level": "Intermediate", "definition": "Dimension tiếp tục normalize thành nhiều bảng con.", "principle": "Có thể dùng nhưng thường flatten dimension để report đơn giản hơn.", "exam": "Model"}, {"term": "Galaxy schema", "domain": "Model", "level": "Intermediate", "definition": "Mô hình có nhiều fact tables chia sẻ dimensions.", "principle": "Dùng khi có thực hiện/kế hoạch/order/shipment cùng phân tích.", "exam": "Model"}, {"term": "Grain", "domain": "Model", "level": "Intermediate", "definition": "Mức chi tiết của một dòng trong fact table.", "principle": "Không biết grain thì DAX dễ sai tổng.", "exam": "Model"}, {"term": "Primary key", "domain": "Model", "level": "Basic", "definition": "Cột định danh duy nhất của dimension.", "principle": "Key ổn định giúp relationship đúng.", "exam": "Model"}, {"term": "Foreign key", "domain": "Model", "level": "Basic", "definition": "Cột trong fact trỏ tới dimension key.", "principle": "Fact nối dimension qua foreign key.", "exam": "Model"}, {"term": "Cardinality", "domain": "Model", "level": "Basic", "definition": "Kiểu quan hệ như one-to-many, one-to-one, many-to-many.", "principle": "1-n từ dimension sang fact là pattern chính.", "exam": "Model"}, {"term": "Cross-filter direction", "domain": "Model", "level": "Intermediate", "definition": "Hướng filter chảy qua relationship.", "principle": "Single direction mặc định; Both chỉ dùng khi có lý do rõ.", "exam": "Model"}, {"term": "Active relationship", "domain": "Model", "level": "Basic", "definition": "Relationship mặc định được dùng khi filter chạy trong model.", "principle": "Một cặp bảng chỉ có một active path giữa hai role giống nhau.", "exam": "Model"}, {"term": "Inactive relationship", "domain": "Model", "level": "Intermediate", "definition": "Relationship tồn tại nhưng không tự kích hoạt.", "principle": "Dùng USERELATIONSHIP trong measure cho role-playing dates.", "exam": "Model/DAX"}, {"term": "Many-to-many", "domain": "Model", "level": "Advanced", "definition": "Quan hệ nhiều-nhiều giữa hai bảng hoặc key không unique.", "principle": "Tránh nối trực tiếp; ưu tiên bridge table và grain rõ.", "exam": "Model"}, {"term": "Bridge table", "domain": "Model", "level": "Advanced", "definition": "Bảng trung gian phân giải many-to-many.", "principle": "Bridge giữ model minh bạch hơn Both filter lạm dụng.", "exam": "Model"}, {"term": "Role-playing dimension", "domain": "Model", "level": "Advanced", "definition": "Một dimension như Date đóng nhiều vai: order date, ship date, paid date.", "principle": "Dùng inactive relationship + USERELATIONSHIP hoặc duplicate dim khi cần UX rõ.", "exam": "Model/DAX"}, {"term": "Slowly Changing Dimension", "domain": "Model", "level": "Advanced", "definition": "Dimension thay đổi theo thời gian, cần giữ lịch sử hoặc current view.", "principle": "Xác định business muốn historical hay current attribution.", "exam": "Model"}, {"term": "Factless fact", "domain": "Model", "level": "Advanced", "definition": "Fact table chỉ ghi nhận sự kiện/quan hệ, không có measure numeric rõ.", "principle": "Dùng cho attendance, eligibility, event occurrence.", "exam": "Model"}, {"term": "Degenerate dimension", "domain": "Model", "level": "Advanced", "definition": "Thuộc tính định danh giao dịch nằm trong fact như order number.", "principle": "Giữ trong fact khi không có dimension riêng có ích.", "exam": "Model"}, {"term": "Junk dimension", "domain": "Model", "level": "Advanced", "definition": "Dimension gom các cờ/trạng thái nhỏ để giảm clutter fact.", "principle": "Tốt cho slicer status dễ dùng.", "exam": "Model"}, {"term": "Date table", "domain": "Model", "level": "Basic", "definition": "Dimension ngày liên tục, dùng cho time intelligence và sort thời gian.", "principle": "Luôn tạo/mark date table trong model nghiêm túc.", "exam": "Model/DAX"}, {"term": "Hierarchy", "domain": "Model", "level": "Basic", "definition": "Cấu trúc cấp bậc như Year > Quarter > Month > Day hoặc Region > Store.", "principle": "Hierarchy giúp drill-down tự nhiên.", "exam": "Model/Visualize"}, {"term": "Measure", "domain": "DAX", "level": "Basic", "definition": "Biểu thức DAX tính động theo filter context.", "principle": "Metrics phân tích nên là measure, không phải calculated column.", "exam": "DAX"}, {"term": "Implicit measure", "domain": "DAX", "level": "Basic", "definition": "Aggregation tự sinh khi kéo numeric column vào visual.", "principle": "Tránh trong model chuyên nghiệp vì khó kiểm soát và document.", "exam": "DAX"}, {"term": "Explicit measure", "domain": "DAX", "level": "Basic", "definition": "Measure được viết và đặt tên rõ trong model.", "principle": "Dùng explicit measure cho KPI quan trọng.", "exam": "DAX"}, {"term": "Calculated column", "domain": "DAX", "level": "Basic", "definition": "Cột tính khi refresh, lưu vào model.", "principle": "Dùng cho phân loại/relationship/sort, không dùng cho metric động.", "exam": "DAX/Model"}, {"term": "Calculated table", "domain": "DAX", "level": "Intermediate", "definition": "Bảng sinh bằng DAX khi refresh.", "principle": "Dùng cho helper table, summary table hoặc disconnected parameter khi phù hợp.", "exam": "DAX"}, {"term": "Row context", "domain": "DAX", "level": "Intermediate", "definition": "Ngữ cảnh dòng hiện tại khi tính calculated column hoặc iterator.", "principle": "Row context không tự filter bảng khác nếu chưa context transition.", "exam": "DAX"}, {"term": "Filter context", "domain": "DAX", "level": "Intermediate", "definition": "Tập filter từ slicer, visual, relationship và DAX đang áp dụng lên measure.", "principle": "Muốn debug measure, chọn một ô và liệt kê filter context.", "exam": "DAX"}, {"term": "Context transition", "domain": "DAX", "level": "Advanced", "definition": "CALCULATE chuyển row context thành filter context.", "principle": "Hiểu context transition là cửa vào DAX nâng cao.", "exam": "DAX"}, {"term": "CALCULATE", "domain": "DAX", "level": "Intermediate", "definition": "Hàm thay đổi filter context rồi tính expression.", "principle": "CALCULATE là trung tâm của DAX; mọi filter argument cần được đọc kỹ.", "exam": "DAX"}, {"term": "CALCULATETABLE", "domain": "DAX", "level": "Advanced", "definition": "Phiên bản trả về table sau khi thay đổi filter context.", "principle": "Dùng cho cohort, retention, set logic.", "exam": "DAX"}, {"term": "FILTER", "domain": "DAX", "level": "Intermediate", "definition": "Trả về bảng đã lọc theo biểu thức từng dòng.", "principle": "Mạnh nhưng có thể chậm nếu dùng trên bảng lớn không cần thiết.", "exam": "DAX"}, {"term": "ALL", "domain": "DAX", "level": "Intermediate", "definition": "Loại bỏ filter khỏi bảng/cột và có thể trả về bảng.", "principle": "Dùng cho denominator hoặc reset context, nhưng cần hiểu scope.", "exam": "DAX"}, {"term": "REMOVEFILTERS", "domain": "DAX", "level": "Intermediate", "definition": "Xóa filter với intent rõ hơn ALL trong CALCULATE.", "principle": "Ưu tiên khi chỉ muốn remove filter.", "exam": "DAX"}, {"term": "ALLSELECTED", "domain": "DAX", "level": "Advanced", "definition": "Giữ context ngoài visual và bỏ filter bên trong visual.", "principle": "Hữu ích cho % of selected total, dễ sai nếu không test.", "exam": "DAX"}, {"term": "ALLEXCEPT", "domain": "DAX", "level": "Intermediate", "definition": "Bỏ tất cả filter trừ các cột chỉ định.", "principle": "Dùng cẩn trọng, thường explicit REMOVEFILTERS + VALUES dễ đọc hơn.", "exam": "DAX"}, {"term": "KEEPFILTERS", "domain": "DAX", "level": "Advanced", "definition": "Thêm filter mà không overwrite filter hiện có cùng cột.", "principle": "Dùng khi muốn giao điều kiện thay vì thay thế.", "exam": "DAX"}, {"term": "VALUES", "domain": "DAX", "level": "Intermediate", "definition": "Trả về distinct values trong context và có thể chứa blank row.", "principle": "Dùng để lấy tập giá trị hiện tại hoặc build table filter.", "exam": "DAX"}, {"term": "DISTINCT", "domain": "DAX", "level": "Intermediate", "definition": "Trả về giá trị distinct không có blank row đặc biệt giống VALUES.", "principle": "So sánh VALUES/DISTINCT khi có relationship invalid.", "exam": "DAX"}, {"term": "VAR/RETURN", "domain": "DAX", "level": "Basic", "definition": "Khai báo biến và trả kết quả trong DAX.", "principle": "Dùng VAR để measure dễ đọc, debug và tránh tính lại.", "exam": "DAX"}, {"term": "DIVIDE", "domain": "DAX", "level": "Basic", "definition": "Hàm chia an toàn, xử lý denominator bằng 0/blank.", "principle": "Dùng thay `/` cho KPI ratio.", "exam": "DAX"}, {"term": "SWITCH", "domain": "DAX", "level": "Basic", "definition": "Hàm chọn kết quả theo nhiều điều kiện.", "principle": "Tốt cho dynamic labels, segmentation, selected measure.", "exam": "DAX"}, {"term": "SELECTEDVALUE", "domain": "DAX", "level": "Basic", "definition": "Trả về một giá trị nếu context chỉ có một value, ngược lại alternate result.", "principle": "Dùng cho title động và parameter label.", "exam": "DAX"}, {"term": "ISFILTERED", "domain": "DAX", "level": "Intermediate", "definition": "Kiểm tra cột/bảng đang bị filter trực tiếp.", "principle": "Hữu ích cho dynamic text và UX.", "exam": "DAX"}, {"term": "ISBLANK", "domain": "DAX", "level": "Basic", "definition": "Kiểm tra blank.", "principle": "Dùng để hide result hoặc xử lý TopN/ratio.", "exam": "DAX"}, {"term": "Iterator", "domain": "DAX", "level": "Intermediate", "definition": "Nhóm hàm duyệt từng dòng table expression như SUMX, AVERAGEX, RANKX.", "principle": "Cần khi phép tính phụ thuộc từng dòng, không chỉ aggregate cột.", "exam": "DAX"}, {"term": "SUMX", "domain": "DAX", "level": "Intermediate", "definition": "Iterator tính expression từng dòng rồi cộng.", "principle": "Dùng cho doanh thu = quantity * price khi chưa có column amount.", "exam": "DAX"}, {"term": "AVERAGEX", "domain": "DAX", "level": "Intermediate", "definition": "Iterator tính expression từng dòng rồi lấy trung bình.", "principle": "Dùng cho moving average hoặc average theo entity.", "exam": "DAX"}, {"term": "RANKX", "domain": "DAX", "level": "Advanced", "definition": "Xếp hạng table expression theo measure/expression.", "principle": "Luôn kiểm soát table scope bằng ALL/ALLSELECTED.", "exam": "DAX"}, {"term": "TOPN", "domain": "DAX", "level": "Advanced", "definition": "Trả về top N rows theo order expression.", "principle": "Kết hợp parameter để Top X động.", "exam": "DAX"}, {"term": "RELATED", "domain": "DAX", "level": "Intermediate", "definition": "Lấy giá trị từ bảng một phía qua relationship.", "principle": "Dùng trong calculated column khi model đúng.", "exam": "DAX/Model"}, {"term": "CROSSFILTER", "domain": "DAX", "level": "Advanced", "definition": "Thay đổi filter direction của relationship trong một calculation.", "principle": "Dùng hiếm và cần document rõ.", "exam": "DAX/Model"}, {"term": "USERELATIONSHIP", "domain": "DAX", "level": "Advanced", "definition": "Kích hoạt inactive relationship trong CALCULATE.", "principle": "Pattern chính cho role-playing date.", "exam": "DAX/Model"}, {"term": "LOOKUPVALUE", "domain": "DAX", "level": "Intermediate", "definition": "Tìm giá trị theo điều kiện key.", "principle": "Chỉ dùng khi relationship/RELATED không phù hợp.", "exam": "DAX"}, {"term": "EARLIER", "domain": "DAX", "level": "Advanced", "definition": "Hàm tham chiếu row context bên ngoài trong calculated column.", "principle": "Nên thay bằng VAR hoặc pattern hiện đại khi có thể.", "exam": "DAX"}, {"term": "Time intelligence", "domain": "DAX", "level": "Intermediate", "definition": "Nhóm pattern tính theo thời gian như YTD, MTD, cùng kỳ.", "principle": "Cần date table liên tục và relationship đúng.", "exam": "DAX"}, {"term": "TOTALYTD", "domain": "DAX", "level": "Intermediate", "definition": "Tính lũy kế năm đến ngày hiện tại.", "principle": "Dùng cho KPI YTD nếu fiscal calendar phù hợp.", "exam": "DAX"}, {"term": "SAMEPERIODLASTYEAR", "domain": "DAX", "level": "Intermediate", "definition": "Trả về cùng kỳ năm trước theo date context.", "principle": "Dùng cho YoY nhưng cần date context chuẩn.", "exam": "DAX"}, {"term": "DATEADD", "domain": "DAX", "level": "Intermediate", "definition": "Dịch date context theo interval.", "principle": "Linh hoạt hơn cho prior period nhưng cần calendar liên tục.", "exam": "DAX"}, {"term": "DATESINPERIOD", "domain": "DAX", "level": "Advanced", "definition": "Trả về dải ngày tương đối quanh mốc ngày.", "principle": "Dùng cho rolling 30/60/90 ngày.", "exam": "DAX"}, {"term": "DATESBETWEEN", "domain": "DAX", "level": "Advanced", "definition": "Trả về dải ngày giữa start và end.", "principle": "Dùng khi business định nghĩa period tùy biến.", "exam": "DAX"}, {"term": "CLOSINGBALANCEYEAR", "domain": "DAX", "level": "Advanced", "definition": "Tính balance tại ngày cuối năm trong context.", "principle": "Dùng cho semi-additive snapshot, không cộng dồn bừa.", "exam": "DAX"}, {"term": "Semi-additive measure", "domain": "DAX", "level": "Advanced", "definition": "Measure cộng được theo một số chiều nhưng không cộng được theo thời gian.", "principle": "Balance/tồn kho lấy cuối kỳ thay vì sum qua ngày.", "exam": "DAX"}, {"term": "Card visual", "domain": "Visual", "level": "Basic", "definition": "Visual hiển thị một KPI hoặc số chính.", "principle": "Dùng cho executive metric, không nhồi quá nhiều card.", "exam": "Visualize"}, {"term": "Matrix", "domain": "Visual", "level": "Basic", "definition": "Bảng pivot có row/column/value, hierarchy và conditional formatting.", "principle": "Tốt cho detail/comparison, không thay dashboard narrative.", "exam": "Visualize"}, {"term": "Slicer", "domain": "Visual", "level": "Basic", "definition": "Bộ lọc trên report page.", "principle": "Slicer cần đặt ở vị trí logic và sync nếu dùng nhiều page.", "exam": "Visualize"}, {"term": "Conditional formatting", "domain": "Visual", "level": "Basic", "definition": "Định dạng theo rule/measure như màu, icon, data bar.", "principle": "Dùng để nhấn trạng thái, tránh rainbow.", "exam": "Visualize"}, {"term": "Tooltip page", "domain": "Visual", "level": "Intermediate", "definition": "Trang report nhỏ hiện khi hover visual.", "principle": "Tooltip phải bổ sung context chứ không lặp lại số đã thấy.", "exam": "Visualize"}, {"term": "Drill-through", "domain": "Visual", "level": "Intermediate", "definition": "Đi từ summary sang detail page theo context được chọn.", "principle": "Cần kiểm tra field trong drill-through well.", "exam": "Visualize"}, {"term": "Drill-down", "domain": "Visual", "level": "Basic", "definition": "Đi xuống cấp hierarchy trong cùng visual.", "principle": "Dùng khi hierarchy được thiết kế rõ.", "exam": "Visualize"}, {"term": "Bookmark", "domain": "Visual", "level": "Intermediate", "definition": "Lưu trạng thái page, visibility, selection, filters để tạo navigation/scenario.", "principle": "Cần kiểm soát data/display/current page khi update.", "exam": "Visualize"}, {"term": "Field parameter", "domain": "Visual", "level": "Intermediate", "definition": "Cho user đổi measure/dimension hiển thị trong visual.", "principle": "Tốt cho report gọn nhưng vẫn linh hoạt.", "exam": "Visualize"}, {"term": "Numeric parameter", "domain": "Visual", "level": "Intermediate", "definition": "Parameter số để user thay đổi threshold/top N/scenario.", "principle": "Kết hợp DAX để tạo phân tích tương tác.", "exam": "Visualize"}, {"term": "Selection pane", "domain": "Visual", "level": "Intermediate", "definition": "Pane quản lý layer và visibility của visuals.", "principle": "Quan trọng khi làm bookmark/navigation.", "exam": "Visualize"}, {"term": "Sync slicers", "domain": "Visual", "level": "Intermediate", "definition": "Đồng bộ slicer qua nhiều pages.", "principle": "Giúp UX nhất quán nhưng cần tránh filter ẩn gây nhầm.", "exam": "Visualize"}, {"term": "Mobile layout", "domain": "Visual", "level": "Basic", "definition": "Layout riêng cho xem report trên điện thoại.", "principle": "Luôn kiểm tra với executive dashboard.", "exam": "Visualize"}, {"term": "Paginated report", "domain": "Visual", "level": "Intermediate", "definition": "Report pixel-perfect cho in/export nhiều trang.", "principle": "Chọn khi nhu cầu là invoice/statement/list dài.", "exam": "Visualize"}, {"term": "Waterfall chart", "domain": "Visual", "level": "Intermediate", "definition": "Biểu đồ giải thích tăng/giảm từ điểm đầu tới điểm cuối.", "principle": "Dùng cho variance decomposition.", "exam": "Visualize"}, {"term": "Scatter plot", "domain": "Visual", "level": "Intermediate", "definition": "Biểu đồ quan hệ giữa hai metric theo đối tượng.", "principle": "Dùng để tìm cluster/outlier, cần size/color có ý nghĩa.", "exam": "Visualize"}, {"term": "Decomposition tree", "domain": "Visual", "level": "Advanced", "definition": "AI visual drill-down một metric qua nhiều dimensions.", "principle": "Hữu ích cho root-cause exploration.", "exam": "Visualize"}, {"term": "Key influencers", "domain": "Visual", "level": "Advanced", "definition": "AI visual phân tích yếu tố ảnh hưởng tới outcome.", "principle": "Cần hiểu dữ liệu và tránh diễn giải như causal proof.", "exam": "Visualize"}, {"term": "Smart Narrative", "domain": "Visual", "level": "Intermediate", "definition": "Visual tạo mô tả động từ report data.", "principle": "Dùng để hỗ trợ storytelling, cần kiểm tra câu chữ.", "exam": "Visualize"}, {"term": "Copilot in Power BI", "domain": "Visual", "level": "Advanced", "definition": "Tính năng AI hỗ trợ tạo page, narrative hoặc summarize semantic model.", "principle": "Dùng như assistant, vẫn cần kiểm chứng model/insight.", "exam": "Visualize"}, {"term": "Gateway", "domain": "Service", "level": "Intermediate", "definition": "Cầu nối giúp Service refresh dữ liệu on-premises.", "principle": "Cần khi source nằm trong network nội bộ.", "exam": "Manage"}, {"term": "Scheduled refresh", "domain": "Service", "level": "Basic", "definition": "Lịch cập nhật semantic model trên Service.", "principle": "Kiểm tra credential, gateway, timeout và incremental refresh.", "exam": "Manage"}, {"term": "Incremental refresh", "domain": "Service", "level": "Advanced", "definition": "Chỉ refresh phân vùng dữ liệu mới/thay đổi thay vì toàn bộ.", "principle": "Dùng cho fact lớn theo thời gian.", "exam": "Manage/Optimize"}, {"term": "Dataflow", "domain": "Service", "level": "Intermediate", "definition": "ETL reusable trên Service/Fabric, dùng Power Query online.", "principle": "Dùng để chuẩn hóa transform dùng chung nhiều semantic models.", "exam": "Prepare/Manage"}, {"term": "Datamart", "domain": "Service", "level": "Intermediate", "definition": "Self-service relational store trên Power BI/Fabric cho SQL/model/report.", "principle": "Phù hợp prototype governed mart cho business team.", "exam": "Prepare/Manage"}, {"term": "OneLake", "domain": "Service", "level": "Advanced", "definition": "Data lake thống nhất của Microsoft Fabric.", "principle": "Nguồn nền cho Direct Lake và Fabric workloads.", "exam": "Manage"}, {"term": "RLS", "domain": "Security", "level": "Intermediate", "definition": "Row-Level Security lọc dòng dữ liệu theo role/user.", "principle": "Bảo mật dữ liệu bằng role, không chỉ ẩn visual.", "exam": "Manage/Security"}, {"term": "OLS", "domain": "Security", "level": "Advanced", "definition": "Object-Level Security ẩn bảng/cột trong semantic model.", "principle": "Dùng khi cần che cột nhạy cảm khỏi metadata.", "exam": "Manage/Security"}, {"term": "Workspace role", "domain": "Security", "level": "Basic", "definition": "Admin/Member/Contributor/Viewer trong workspace.", "principle": "Cấp quyền tối thiểu cần thiết.", "exam": "Manage/Security"}, {"term": "Item-level access", "domain": "Security", "level": "Intermediate", "definition": "Quyền truy cập theo từng item/report/app/semantic model.", "principle": "Quan trọng khi workspace chứa nhiều asset.", "exam": "Manage/Security"}, {"term": "Sensitivity label", "domain": "Security", "level": "Intermediate", "definition": "Nhãn bảo mật Microsoft Purview áp dụng cho Power BI content.", "principle": "Dùng cho compliance và data protection.", "exam": "Manage/Security"}, {"term": "Endorsement", "domain": "Service", "level": "Intermediate", "definition": "Promoted/Certified label cho semantic model/report đáng tin cậy.", "principle": "Giúp self-service BI biết nguồn nào nên dùng.", "exam": "Manage"}, {"term": "Deployment pipeline", "domain": "Service", "level": "Advanced", "definition": "Quy trình Dev/Test/Prod cho Power BI content.", "principle": "Tách môi trường để giảm rủi ro deploy.", "exam": "Manage"}, {"term": "Performance Analyzer", "domain": "Optimize", "level": "Intermediate", "definition": "Công cụ đo thời gian render/query của visuals trong Desktop.", "principle": "Dùng để tìm visual/measure chậm trước khi tối ưu.", "exam": "Optimize"}, {"term": "DAX query view", "domain": "Optimize", "level": "Intermediate", "definition": "View hỗ trợ viết/chạy DAX queries trong Power BI Desktop.", "principle": "Hữu ích để inspect measure và performance theo PL-300 mới.", "exam": "Optimize/DAX"}, {"term": "VertiPaq", "domain": "Optimize", "level": "Advanced", "definition": "Columnar in-memory engine nén và tính dữ liệu Import mode.", "principle": "Giảm cardinality và bỏ cột thừa để model nhanh/nhẹ.", "exam": "Optimize"}, {"term": "Cardinality reduction", "domain": "Optimize", "level": "Advanced", "definition": "Giảm số giá trị distinct trong cột để tăng compression/performance.", "principle": "Tránh high-cardinality text trong fact.", "exam": "Optimize"}, {"term": "Composite model", "domain": "Optimize", "level": "Advanced", "definition": "Model kết hợp Import, DirectQuery hoặc remote semantic model.", "principle": "Mạnh nhưng cần quản trị complexity/performance.", "exam": "Optimize/Model"}, {"term": "Aggregation table", "domain": "Optimize", "level": "Advanced", "definition": "Bảng tổng hợp trước để tăng tốc truy vấn lớn.", "principle": "Dùng với fact lớn và query pattern rõ.", "exam": "Optimize"}, {"term": "Power BI license", "domain": "Foundation", "level": "Basic", "definition": "Cấp quyền quyết định người dùng có thể tạo, chia sẻ, xem hoặc dùng tính năng Premium/Fabric nào.", "principle": "Luôn kiểm tra license trước khi debug lỗi share/app/refresh.", "exam": "Manage"}, {"term": "Free license", "domain": "Foundation", "level": "Basic", "definition": "License cho người dùng cá nhân hoặc xem nội dung trong capacity phù hợp.", "principle": "Không mặc định Free user có thể xem mọi report được share.", "exam": "Manage"}, {"term": "Power BI Pro", "domain": "Foundation", "level": "Basic", "definition": "License phổ biến để publish, share và cộng tác trong workspace Power BI.", "principle": "Cần cho hầu hết kịch bản self-service BI theo team.", "exam": "Manage"}, {"term": "Power BI Premium Per User", "domain": "Foundation", "level": "Intermediate", "definition": "License cá nhân mở các tính năng Premium cho user cụ thể.", "principle": "Phù hợp pilot tính năng Premium khi chưa mua capacity.", "exam": "Manage"}, {"term": "Premium capacity", "domain": "Foundation", "level": "Intermediate", "definition": "Tài nguyên dedicated cho workspace để tăng scale, performance và distribution.", "principle": "Capacity là ranh giới tài nguyên, không phải chỉ là license.", "exam": "Manage/Optimize"}, {"term": "Fabric capacity", "domain": "Foundation", "level": "Intermediate", "definition": "Capacity dùng chung cho Microsoft Fabric workloads như Power BI, Data Factory, Lakehouse và Warehouse.", "principle": "Khi dùng Fabric/Direct Lake phải nghĩ cả BI và data engineering workload.", "exam": "Manage"}, {"term": "Tenant", "domain": "Foundation", "level": "Basic", "definition": "Không gian Microsoft Entra của tổ chức nơi Power BI users, settings và governance được quản lý.", "principle": "Nhiều lỗi share/governance nằm ở tenant setting, không nằm trong report.", "exam": "Manage/Security"}, {"term": "Admin portal", "domain": "Foundation", "level": "Intermediate", "definition": "Khu vực quản trị tenant settings, capacity, audit, embed, export và feature controls.", "principle": "Admin portal quyết định biên an toàn cho self-service BI.", "exam": "Manage/Security"}, {"term": "Capacity", "domain": "Foundation", "level": "Intermediate", "definition": "Pool tài nguyên compute/memory dùng để xử lý Power BI/Fabric workload.", "principle": "Report chậm có thể do model, visual hoặc capacity saturation.", "exam": "Optimize/Manage"}, {"term": "Data source", "domain": "Foundation", "level": "Basic", "definition": "Nguồn dữ liệu gốc như Excel, CSV, SQL Server, SharePoint, Web API hoặc Lakehouse.", "principle": "Luôn document owner, refresh method và credential của nguồn.", "exam": "Prepare"}, {"term": "Connector", "domain": "Foundation", "level": "Basic", "definition": "Bộ kết nối Power BI/Power Query tới từng loại nguồn dữ liệu.", "principle": "Chọn connector native giúp refresh và folding ổn định hơn.", "exam": "Prepare"}, {"term": "Shared semantic model", "domain": "Foundation", "level": "Intermediate", "definition": "Semantic model được nhiều report/thin report dùng chung.", "principle": "Dùng để chuẩn hóa KPI và giảm model trùng lặp.", "exam": "Model/Manage"}, {"term": "Thin report", "domain": "Foundation", "level": "Intermediate", "definition": "Report chỉ chứa report pages và kết nối tới semantic model đã có.", "principle": "Tách UX khỏi governed model để scale self-service.", "exam": "Manage/Visualize"}, {"term": "PBIP", "domain": "Foundation", "level": "Advanced", "definition": "Power BI Project format tách PBIX thành cấu trúc file thân thiện với source control.", "principle": "Dùng khi cần version control, CI/CD và review thay đổi.", "exam": "Manage"}, {"term": "PBIR", "domain": "Foundation", "level": "Advanced", "definition": "Power BI enhanced report format trong project, giúp report metadata dễ diff hơn.", "principle": "Hữu ích cho developer workflow và source control.", "exam": "Manage"}, {"term": "TMDL", "domain": "Foundation", "level": "Advanced", "definition": "Tabular Model Definition Language mô tả semantic model bằng file text.", "principle": "TMDL giúp quản trị model bằng source control và automation.", "exam": "Model/Manage"}, {"term": "Power BI Desktop Developer Mode", "domain": "Foundation", "level": "Advanced", "definition": "Chế độ làm việc với Power BI Project, metadata và source control.", "principle": "Bật khi team cần quy trình BI engineering nghiêm túc.", "exam": "Manage"}, {"term": "Lakehouse", "domain": "Foundation", "level": "Intermediate", "definition": "Fabric item lưu dữ liệu dạng lake và hỗ trợ phân tích bằng Spark/SQL/Power BI.", "principle": "Lakehouse là upstream data product cho semantic model.", "exam": "Prepare/Manage"}, {"term": "Warehouse", "domain": "Foundation", "level": "Intermediate", "definition": "Fabric relational warehouse cho SQL analytics và downstream semantic model.", "principle": "Dùng khi business cần SQL mart có quản trị.", "exam": "Prepare/Manage"}, {"term": "OneLake Data Hub", "domain": "Foundation", "level": "Intermediate", "definition": "Nơi khám phá, reuse và quản lý data items trong Power BI/Fabric.", "principle": "Dùng data hub để tránh tạo model/source trùng lặp.", "exam": "Manage"}, {"term": "Data source settings", "domain": "Prepare", "level": "Basic", "definition": "Nơi quản lý credential, privacy và connection của nguồn trong Desktop.", "principle": "Refresh fail thường bắt đầu từ credential hoặc privacy level.", "exam": "Prepare"}, {"term": "Native query", "domain": "Prepare", "level": "Intermediate", "definition": "Câu SQL hoặc query gốc gửi trực tiếp tới source qua connector.", "principle": "Native query mạnh nhưng cần kiểm soát folding, parameter và security.", "exam": "Prepare"}, {"term": "Formula firewall", "domain": "Prepare", "level": "Advanced", "definition": "Cơ chế Power Query chặn kết hợp nguồn dữ liệu có privacy risk.", "principle": "Đừng tắt privacy bừa; hiểu nguồn nào được phép kết hợp.", "exam": "Prepare/Security"}, {"term": "Query diagnostics", "domain": "Prepare", "level": "Advanced", "definition": "Công cụ phân tích thời gian, bước và nguồn gây chậm trong Power Query.", "principle": "Dùng khi refresh hoặc preview query chậm khó giải thích.", "exam": "Optimize/Prepare"}, {"term": "Query dependencies", "domain": "Prepare", "level": "Intermediate", "definition": "View hiển thị quan hệ phụ thuộc giữa các queries.", "principle": "Hữu ích khi refactor staging/reference queries.", "exam": "Prepare"}, {"term": "Advanced Editor", "domain": "Prepare", "level": "Intermediate", "definition": "Editor để xem và sửa toàn bộ M script của query.", "principle": "Dùng khi UI không đủ hoặc cần review logic chính xác.", "exam": "Prepare"}, {"term": "Formula bar", "domain": "Prepare", "level": "Basic", "definition": "Thanh hiển thị M expression của step hiện tại.", "principle": "Bật formula bar để học M và debug từng step.", "exam": "Prepare"}, {"term": "Column quality", "domain": "Prepare", "level": "Basic", "definition": "Data profiling hiển thị tỷ lệ valid, error và empty values.", "principle": "Kiểm tra trước khi đổi type, merge hoặc tạo relationship.", "exam": "Prepare"}, {"term": "Column distribution", "domain": "Prepare", "level": "Basic", "definition": "Profile cho biết distinct, unique và phân bố giá trị trong cột.", "principle": "Giúp phát hiện key trùng, outlier hoặc category bẩn.", "exam": "Prepare"}, {"term": "Column profile", "domain": "Prepare", "level": "Basic", "definition": "Hồ sơ thống kê chi tiết của cột như count, null, min, max và distribution.", "principle": "Dùng để kiểm định chất lượng dữ liệu trước model.", "exam": "Prepare"}, {"term": "Remove errors", "domain": "Prepare", "level": "Basic", "definition": "Bước loại bỏ dòng có lỗi trong Power Query.", "principle": "Chỉ remove khi hiểu nguyên nhân; nếu không sẽ mất dữ liệu âm thầm.", "exam": "Prepare"}, {"term": "Replace values", "domain": "Prepare", "level": "Basic", "definition": "Bước thay thế giá trị text/number/date trong Power Query.", "principle": "Chuẩn hóa category trước khi group hoặc tạo slicer.", "exam": "Prepare"}, {"term": "Keep rows", "domain": "Prepare", "level": "Basic", "definition": "Nhóm thao tác giữ top/bottom/range/duplicate rows trong Power Query.", "principle": "Dùng cho sampling hoặc lọc file bẩn nhưng cần document rõ.", "exam": "Prepare"}, {"term": "Remove rows", "domain": "Prepare", "level": "Basic", "definition": "Nhóm thao tác bỏ top/bottom/blank/error/duplicate rows.", "principle": "Tránh xóa header/footer bằng số dòng hardcode nếu file thay đổi.", "exam": "Prepare"}, {"term": "Choose columns", "domain": "Prepare", "level": "Basic", "definition": "Chọn các cột cần giữ trong query.", "principle": "Giữ ít cột hơn giúp model nhẹ và refresh nhanh hơn.", "exam": "Prepare/Optimize"}, {"term": "Remove columns", "domain": "Prepare", "level": "Basic", "definition": "Loại bỏ cột không cần dùng.", "principle": "Bỏ cột thừa sớm, đặc biệt là text high-cardinality.", "exam": "Prepare/Optimize"}, {"term": "Split column", "domain": "Prepare", "level": "Basic", "definition": "Tách một cột thành nhiều cột theo delimiter, position hoặc pattern.", "principle": "Dùng khi source gộp nhiều thuộc tính vào một field.", "exam": "Prepare"}, {"term": "Extract", "domain": "Prepare", "level": "Basic", "definition": "Nhóm thao tác lấy phần text/date/number từ một cột.", "principle": "Hữu ích với mã sản phẩm, chuỗi ngày hoặc file name.", "exam": "Prepare"}, {"term": "Parse JSON", "domain": "Prepare", "level": "Intermediate", "definition": "Bước mở rộng dữ liệu JSON thành record/list/table trong Power Query.", "principle": "Cần cho Web/API connector và log dữ liệu bán cấu trúc.", "exam": "Prepare"}, {"term": "Fuzzy merge", "domain": "Prepare", "level": "Advanced", "definition": "Merge gần đúng giữa các text values không khớp tuyệt đối.", "principle": "Dùng cho dữ liệu tên khách hàng/sản phẩm bẩn nhưng phải kiểm soát threshold.", "exam": "Prepare"}, {"term": "Combine files", "domain": "Prepare", "level": "Intermediate", "definition": "Pattern kết hợp nhiều file cùng schema từ folder/SharePoint.", "principle": "Chuẩn cho bài toán monthly files và folder ingestion.", "exam": "Prepare"}, {"term": "Folder connector", "domain": "Prepare", "level": "Intermediate", "definition": "Connector đọc danh sách file trong thư mục local/network.", "principle": "Dùng với Combine Files khi cấu trúc file lặp lại.", "exam": "Prepare"}, {"term": "SharePoint Folder connector", "domain": "Prepare", "level": "Intermediate", "definition": "Connector đọc file từ SharePoint document library.", "principle": "Tốt hơn hardcode path local khi cần refresh trên Service.", "exam": "Prepare/Manage"}, {"term": "Web connector", "domain": "Prepare", "level": "Intermediate", "definition": "Connector lấy dữ liệu từ URL, web page hoặc API.", "principle": "Cần xử lý credential, pagination và RelativePath cẩn thận.", "exam": "Prepare"}, {"term": "SQL Server connector", "domain": "Prepare", "level": "Basic", "definition": "Connector native tới SQL Server database.", "principle": "Ưu tiên query/view rõ ràng và giữ query folding khi có thể.", "exam": "Prepare"}, {"term": "RelativePath", "domain": "Prepare", "level": "Advanced", "definition": "Option Web.Contents giúp tách base URL và path động trong M.", "principle": "Hữu ích để tránh lỗi scheduled refresh với dynamic data source.", "exam": "Prepare/Manage"}, {"term": "Staging query", "domain": "Prepare", "level": "Intermediate", "definition": "Query trung gian để clean/reuse trước khi tạo fact/dimension cuối.", "principle": "Tắt Enable Load cho staging để model gọn.", "exam": "Prepare"}, {"term": "Change type using locale", "domain": "Prepare", "level": "Intermediate", "definition": "Đổi kiểu dữ liệu có xét locale như decimal separator hoặc date format.", "principle": "Giảm lỗi ngày/tháng và dấu thập phân khi dữ liệu đa vùng.", "exam": "Prepare"}, {"term": "RangeStart", "domain": "Prepare", "level": "Advanced", "definition": "Parameter bắt đầu range dùng cho incremental refresh.", "principle": "Tên và kiểu dữ liệu phải đúng để policy hoạt động.", "exam": "Manage/Optimize"}, {"term": "RangeEnd", "domain": "Prepare", "level": "Advanced", "definition": "Parameter kết thúc range dùng cho incremental refresh.", "principle": "Luôn dùng cùng RangeStart trong filter theo cột ngày.", "exam": "Manage/Optimize"}, {"term": "Dataflow Gen2", "domain": "Prepare", "level": "Intermediate", "definition": "Fabric dataflow thế hệ mới để ingest/transform dữ liệu với Power Query online.", "principle": "Dùng khi ETL cần reuse và đưa dữ liệu vào Fabric destinations.", "exam": "Prepare/Manage"}, {"term": "Storage mode", "domain": "Model", "level": "Intermediate", "definition": "Chế độ lưu bảng như Import, DirectQuery, Dual hoặc Direct Lake.", "principle": "Storage mode quyết định performance, freshness và giới hạn modeling.", "exam": "Model/Optimize"}, {"term": "Dual storage mode", "domain": "Model", "level": "Advanced", "definition": "Bảng có thể hoạt động như Import hoặc DirectQuery tùy query path.", "principle": "Dùng cho dimension trong composite model để tối ưu performance.", "exam": "Model/Optimize"}, {"term": "DirectLake", "domain": "Model", "level": "Advanced", "definition": "Tên biến thể thường thấy của Direct Lake trong exam/materials.", "principle": "Hiểu DirectLake và Direct Lake là cùng nhóm khái niệm Fabric semantic model.", "exam": "Model/Prepare"}, {"term": "Composite model over semantic model", "domain": "Model", "level": "Advanced", "definition": "Model local mở rộng hoặc kết hợp semantic model đã publish.", "principle": "Mạnh cho self-service nhưng cần kiểm soát ownership và performance.", "exam": "Model/Manage"}, {"term": "Remote model", "domain": "Model", "level": "Advanced", "definition": "Semantic model nằm ngoài PBIX hiện tại nhưng được report/model kết nối tới.", "principle": "Cần hiểu quyền Build và lineage khi dùng remote model.", "exam": "Model/Manage"}, {"term": "Relationship path ambiguity", "domain": "Model", "level": "Advanced", "definition": "Tình huống nhiều đường filter có thể đi giữa các bảng.", "principle": "Ambiguity làm kết quả khó đoán; thiết kế lại relationship trước khi sửa DAX.", "exam": "Model"}, {"term": "Bidirectional filtering", "domain": "Model", "level": "Advanced", "definition": "Cross-filter direction Both cho relationship.", "principle": "Chỉ dùng khi có lý do rõ như security/bridge, vì dễ tạo ambiguity.", "exam": "Model"}, {"term": "Limited relationship", "domain": "Model", "level": "Advanced", "definition": "Relationship không thể đảm bảo đầy đủ behavior như regular relationship do source/storage/cardinality.", "principle": "Cần chú ý trong composite model và many-to-many.", "exam": "Model"}, {"term": "Referential integrity", "domain": "Model", "level": "Intermediate", "definition": "Đảm bảo foreign key trong fact có match với key trong dimension.", "principle": "Thiếu integrity tạo blank row và sai phân tích.", "exam": "Model"}, {"term": "Assume referential integrity", "domain": "Model", "level": "Advanced", "definition": "Tùy chọn DirectQuery cho phép Power BI dùng inner join khi tin rằng key luôn match.", "principle": "Chỉ bật khi dữ liệu thật sự thỏa điều kiện.", "exam": "Model/Optimize"}, {"term": "Auto date/time", "domain": "Model", "level": "Basic", "definition": "Tính năng tự tạo hidden date table cho mỗi date column.", "principle": "Tắt trong model nghiêm túc và dùng date table chuẩn.", "exam": "Model/Optimize"}, {"term": "Mark as date table", "domain": "Model", "level": "Basic", "definition": "Đánh dấu bảng ngày chính thức cho time intelligence.", "principle": "Date table phải liên tục, unique và không thiếu ngày.", "exam": "Model/DAX"}, {"term": "Sort by column", "domain": "Model", "level": "Basic", "definition": "Thiết lập một cột dùng để sắp xếp cột khác.", "principle": "Dùng cho Month Name, Weekday Name hoặc custom category order.", "exam": "Model/Visualize"}, {"term": "Data category", "domain": "Model", "level": "Basic", "definition": "Metadata cho biết cột là URL, image URL, latitude, longitude, city, country...", "principle": "Giúp visual map/link/image hiểu đúng ý nghĩa cột.", "exam": "Model/Visualize"}, {"term": "Format string", "domain": "Model", "level": "Basic", "definition": "Định dạng số/ngày/tiền tệ/phần trăm của measure hoặc column.", "principle": "Format là một phần của semantic model, không chỉ là trang trí visual.", "exam": "Model/DAX"}, {"term": "Dynamic format string", "domain": "Model", "level": "Advanced", "definition": "Format string thay đổi theo measure hoặc calculation item.", "principle": "Dùng cho selected measure, currency hoặc time calculation group.", "exam": "Model/DAX"}, {"term": "Display folder", "domain": "Model", "level": "Basic", "definition": "Folder logic để sắp xếp measures/fields trong model.", "principle": "Model dễ dùng hơn khi measure được nhóm theo business process.", "exam": "Model"}, {"term": "Measure table", "domain": "Model", "level": "Basic", "definition": "Bảng trống hoặc helper dùng để chứa measures.", "principle": "Giúp người dùng tìm KPI thay vì lục trong fact table.", "exam": "Model/DAX"}, {"term": "Calculation group", "domain": "Model", "level": "Advanced", "definition": "Nhóm calculation items áp dụng logic dùng chung như YTD, YoY, MTD cho nhiều measures.", "principle": "Dùng để giảm lặp measure nhưng cần quản trị precedence.", "exam": "Model/DAX"}, {"term": "Calculation item", "domain": "Model", "level": "Advanced", "definition": "Một biến thể logic trong calculation group.", "principle": "Mỗi item nên có tên business rõ như YTD, YoY %, Rolling 12M.", "exam": "Model/DAX"}, {"term": "SELECTEDMEASURE", "domain": "Model", "level": "Advanced", "definition": "Hàm dùng trong calculation item để tham chiếu measure đang được áp dụng.", "principle": "Là lõi của calculation groups.", "exam": "DAX/Model"}, {"term": "Precedence", "domain": "Model", "level": "Advanced", "definition": "Thứ tự áp dụng khi nhiều calculation groups cùng tác động.", "principle": "Sai precedence làm format hoặc kết quả tính sai.", "exam": "Model/DAX"}, {"term": "Field parameter table", "domain": "Model", "level": "Intermediate", "definition": "Calculated table hỗ trợ field parameter trong report.", "principle": "Không sửa bừa nếu chưa hiểu mapping field/ordinal/name.", "exam": "Model/Visualize"}, {"term": "Surrogate key", "domain": "Model", "level": "Intermediate", "definition": "Key kỹ thuật ổn định dùng để nối fact và dimension.", "principle": "Giảm phụ thuộc vào business key thay đổi theo thời gian.", "exam": "Model"}, {"term": "Composite key", "domain": "Model", "level": "Intermediate", "definition": "Key ghép từ nhiều cột để định danh dòng.", "principle": "Có thể cần tạo key chuẩn trong Power Query để relationship đơn giản hơn.", "exam": "Model/Prepare"}, {"term": "Model view", "domain": "Model", "level": "Basic", "definition": "View trong Desktop để quản lý bảng, relationship và metadata.", "principle": "Dùng để kiểm tra schema trước khi viết DAX phức tạp.", "exam": "Model"}, {"term": "Model Explorer", "domain": "Model", "level": "Advanced", "definition": "Pane giúp duyệt semantic model objects trong Desktop developer workflow.", "principle": "Hữu ích với model lớn và PBIP/TMDL.", "exam": "Model/Manage"}, {"term": "EVALUATE", "domain": "DAX", "level": "Advanced", "definition": "DAX query statement trả về table expression.", "principle": "Dùng trong DAX query view hoặc DAX Studio để inspect kết quả.", "exam": "DAX"}, {"term": "DEFINE", "domain": "DAX", "level": "Advanced", "definition": "DAX query statement khai báo measure, variable hoặc table tạm cho query.", "principle": "Dùng để test measure mà chưa cần lưu vào model.", "exam": "DAX"}, {"term": "SUMMARIZE", "domain": "DAX", "level": "Advanced", "definition": "Hàm tạo bảng group-by và có thể thêm expressions.", "principle": "Cẩn trọng với behavior phức tạp; SUMMARIZECOLUMNS thường phù hợp query hơn.", "exam": "DAX"}, {"term": "SUMMARIZECOLUMNS", "domain": "DAX", "level": "Advanced", "definition": "Hàm tạo bảng tổng hợp theo group-by columns và filters.", "principle": "Rất quan trọng trong DAX query và cách visual sinh truy vấn.", "exam": "DAX/Optimize"}, {"term": "ADDCOLUMNS", "domain": "DAX", "level": "Intermediate", "definition": "Thêm calculated columns vào table expression.", "principle": "Dùng để enrich bảng tạm trong query hoặc measure table logic.", "exam": "DAX"}, {"term": "SELECTCOLUMNS", "domain": "DAX", "level": "Intermediate", "definition": "Tạo bảng mới chỉ gồm các cột/expression được chọn.", "principle": "Hữu ích khi reshape table expression rõ ràng.", "exam": "DAX"}, {"term": "TREATAS", "domain": "DAX", "level": "Advanced", "definition": "Áp một table expression như filter lên cột không có relationship trực tiếp.", "principle": "Dùng cho disconnected slicer hoặc virtual relationship.", "exam": "DAX/Model"}, {"term": "HASONEVALUE", "domain": "DAX", "level": "Intermediate", "definition": "Kiểm tra context hiện tại có đúng một giá trị distinct.", "principle": "Dùng trước khi hiển thị KPI/detail phụ thuộc một lựa chọn.", "exam": "DAX"}, {"term": "HASONEFILTER", "domain": "DAX", "level": "Intermediate", "definition": "Kiểm tra cột có đúng một filter trực tiếp.", "principle": "Khác HASONEVALUE khi filter gián tiếp qua relationship.", "exam": "DAX"}, {"term": "ISINSCOPE", "domain": "DAX", "level": "Intermediate", "definition": "Kiểm tra cột đang ở level hiện tại trong hierarchy visual.", "principle": "Dùng cho measure thay đổi behavior theo drill level.", "exam": "DAX/Visualize"}, {"term": "COALESCE", "domain": "DAX", "level": "Basic", "definition": "Trả về giá trị đầu tiên không blank.", "principle": "Dùng để thay blank bằng 0 hoặc label fallback khi phù hợp.", "exam": "DAX"}, {"term": "BLANK", "domain": "DAX", "level": "Basic", "definition": "Giá trị rỗng đặc biệt trong DAX.", "principle": "BLANK thường tốt hơn 0 khi muốn visual tự ẩn điểm không có dữ liệu.", "exam": "DAX"}, {"term": "IF", "domain": "DAX", "level": "Basic", "definition": "Hàm điều kiện trả kết quả theo true/false.", "principle": "Giữ IF đơn giản; logic nhiều nhánh nên cân nhắc SWITCH.", "exam": "DAX"}, {"term": "CONCATENATEX", "domain": "DAX", "level": "Intermediate", "definition": "Iterator nối chuỗi từ table expression.", "principle": "Dùng cho dynamic subtitle, selected filters hoặc list labels.", "exam": "DAX/Visualize"}, {"term": "COUNTROWS", "domain": "DAX", "level": "Basic", "definition": "Đếm số dòng của table expression.", "principle": "Ưu tiên cho count dựa trên filter context rõ ràng.", "exam": "DAX"}, {"term": "DISTINCTCOUNT", "domain": "DAX", "level": "Basic", "definition": "Đếm số giá trị distinct trong cột.", "principle": "Cần chú ý blank và cardinality cao.", "exam": "DAX"}, {"term": "MINX", "domain": "DAX", "level": "Intermediate", "definition": "Iterator trả min của expression qua từng dòng table.", "principle": "Dùng khi min không phải chỉ là min của một cột vật lý.", "exam": "DAX"}, {"term": "MAXX", "domain": "DAX", "level": "Intermediate", "definition": "Iterator trả max của expression qua từng dòng table.", "principle": "Dùng cho latest value hoặc max của expression động.", "exam": "DAX"}, {"term": "Boolean filter expression", "domain": "DAX", "level": "Intermediate", "definition": "Filter argument trong CALCULATE dạng điều kiện true/false trên cột.", "principle": "Đơn giản và thường nhanh hơn FILTER khi đủ dùng.", "exam": "DAX"}, {"term": "Table filter expression", "domain": "DAX", "level": "Advanced", "definition": "Filter argument trong CALCULATE trả về một bảng.", "principle": "Dùng khi điều kiện cần row-by-row logic hoặc nhiều cột.", "exam": "DAX"}, {"term": "Filter modifier function", "domain": "DAX", "level": "Intermediate", "definition": "Nhóm ALL, REMOVEFILTERS, ALLEXCEPT, ALLSELECTED, KEEPFILTERS thay đổi filter context.", "principle": "Đọc filter modifier trước khi đọc expression.", "exam": "DAX"}, {"term": "LASTDATE", "domain": "DAX", "level": "Intermediate", "definition": "Trả về ngày cuối cùng trong date context hiện tại.", "principle": "Dùng cẩn thận với semi-additive measure và visual context.", "exam": "DAX"}, {"term": "TOTALMTD", "domain": "DAX", "level": "Intermediate", "definition": "Tính month-to-date trên date table.", "principle": "Cần calendar chuẩn và filter context tháng đúng.", "exam": "DAX"}, {"term": "TOTALQTD", "domain": "DAX", "level": "Intermediate", "definition": "Tính quarter-to-date trên date table.", "principle": "Dùng cho KPI lũy kế quý.", "exam": "DAX"}, {"term": "PREVIOUSMONTH", "domain": "DAX", "level": "Intermediate", "definition": "Trả về tập ngày của tháng trước context hiện tại.", "principle": "Dùng khi business so sánh MoM theo tháng calendar.", "exam": "DAX"}, {"term": "PARALLELPERIOD", "domain": "DAX", "level": "Advanced", "definition": "Dịch một period song song theo số interval.", "principle": "Hữu ích cho so sánh period cùng cấu trúc.", "exam": "DAX"}, {"term": "Running total", "domain": "DAX", "level": "Intermediate", "definition": "Pattern tính lũy kế đến mốc hiện tại.", "principle": "Cần xác định mốc hiện tại bằng MAX Date và reset theo đúng dimension.", "exam": "DAX/Visualize"}, {"term": "Rolling average", "domain": "DAX", "level": "Advanced", "definition": "Pattern tính trung bình trượt trong một cửa sổ thời gian.", "principle": "Dùng cho trend smoothing, cần chọn window rõ.", "exam": "DAX/Visualize"}, {"term": "Percent of total", "domain": "DAX", "level": "Intermediate", "definition": "Pattern tính tỷ trọng trên tổng theo selected context.", "principle": "Xác định mẫu số bằng ALL, ALLSELECTED hoặc REMOVEFILTERS đúng scope.", "exam": "DAX/Visualize"}, {"term": "Dynamic title", "domain": "DAX", "level": "Basic", "definition": "Tiêu đề visual/report thay đổi theo filter hoặc selected value.", "principle": "Giúp người xem hiểu context hiện tại.", "exam": "DAX/Visualize"}, {"term": "Quick measure", "domain": "DAX", "level": "Basic", "definition": "Measure tạo qua UI template của Power BI.", "principle": "Dùng để học pattern, nhưng production measure nên review lại DAX.", "exam": "DAX"}, {"term": "Visual calculation", "domain": "Visual", "level": "Intermediate", "definition": "DAX calculation được định nghĩa trực tiếp trên visual, dựa trên visual shape.", "principle": "Dùng cho running sum, moving average hoặc percent of parent khi logic chỉ phục vụ visual đó.", "exam": "Visualize/DAX"}, {"term": "RUNNINGSUM", "domain": "Visual", "level": "Intermediate", "definition": "Visual calculation function tính tổng lũy kế trong visual.", "principle": "Không thay thế measure reusable trong semantic model.", "exam": "Visualize/DAX"}, {"term": "MOVINGAVERAGE", "domain": "Visual", "level": "Intermediate", "definition": "Visual calculation function tính trung bình trượt trong visual.", "principle": "Phù hợp khám phá trend nhanh ở tầng report.", "exam": "Visualize/DAX"}, {"term": "Small multiples", "domain": "Visual", "level": "Intermediate", "definition": "Chia một visual thành nhiều ô nhỏ theo category.", "principle": "Dùng để so sánh pattern giữa segments mà không tạo nhiều charts thủ công.", "exam": "Visualize"}, {"term": "Bar chart", "domain": "Visual", "level": "Basic", "definition": "Biểu đồ thanh ngang so sánh giá trị giữa categories.", "principle": "Mặc định tốt cho ranking và category labels dài.", "exam": "Visualize"}, {"term": "Column chart", "domain": "Visual", "level": "Basic", "definition": "Biểu đồ cột dọc so sánh giá trị theo category hoặc thời gian rời rạc.", "principle": "Dùng khi số category vừa phải và label ngắn.", "exam": "Visualize"}, {"term": "Line chart", "domain": "Visual", "level": "Basic", "definition": "Biểu đồ đường thể hiện xu hướng theo thời gian hoặc trục liên tục.", "principle": "Không dùng line chart cho category không có thứ tự.", "exam": "Visualize"}, {"term": "Area chart", "domain": "Visual", "level": "Basic", "definition": "Line chart có vùng tô dưới đường.", "principle": "Dùng khi muốn nhấn mạnh volume theo thời gian.", "exam": "Visualize"}, {"term": "Combo chart", "domain": "Visual", "level": "Intermediate", "definition": "Kết hợp column và line trong cùng visual.", "principle": "Chỉ dùng khi hai metric có quan hệ rõ, tránh dual-axis gây hiểu nhầm.", "exam": "Visualize"}, {"term": "Ribbon chart", "domain": "Visual", "level": "Intermediate", "definition": "Biểu đồ thể hiện thay đổi thứ hạng qua thời gian.", "principle": "Dùng cho ranking movement của product/region.", "exam": "Visualize"}, {"term": "Treemap", "domain": "Visual", "level": "Intermediate", "definition": "Biểu đồ diện tích theo phần đóng góp của categories.", "principle": "Tốt cho overview, kém chính xác hơn bar chart khi so sánh gần nhau.", "exam": "Visualize"}, {"term": "Map visual", "domain": "Visual", "level": "Intermediate", "definition": "Visual hiển thị dữ liệu địa lý.", "principle": "Cần data category và privacy/security phù hợp.", "exam": "Visualize"}, {"term": "Azure Maps visual", "domain": "Visual", "level": "Intermediate", "definition": "Map visual dùng Azure Maps để phân tích geospatial nâng cao.", "principle": "Dùng cho layer, bubble, choropleth hoặc location analytics.", "exam": "Visualize"}, {"term": "Filled map", "domain": "Visual", "level": "Intermediate", "definition": "Map tô vùng theo giá trị.", "principle": "Chỉ dùng khi boundary địa lý rõ và dữ liệu được normalize nếu cần.", "exam": "Visualize"}, {"term": "Gauge", "domain": "Visual", "level": "Basic", "definition": "Visual thể hiện giá trị hiện tại so với target/range.", "principle": "Dùng ít và chỉ khi target có ý nghĩa.", "exam": "Visualize"}, {"term": "KPI visual", "domain": "Visual", "level": "Basic", "definition": "Visual hiển thị indicator, trend axis và target.", "principle": "Phù hợp theo dõi KPI theo thời gian.", "exam": "Visualize"}, {"term": "Table visual", "domain": "Visual", "level": "Basic", "definition": "Visual dạng bảng chi tiết.", "principle": "Dùng cho lookup/detail, không phải nơi thay thế data export vô hạn.", "exam": "Visualize"}, {"term": "Q&A visual", "domain": "Visual", "level": "Intermediate", "definition": "Visual cho phép hỏi đáp bằng natural language trên semantic model.", "principle": "Model cần field names, synonyms và measures rõ.", "exam": "Visualize"}, {"term": "Power Apps visual", "domain": "Visual", "level": "Advanced", "definition": "Visual nhúng Power Apps để nhập liệu hoặc action ngay trong report.", "principle": "Cần kiểm soát permission và write-back process.", "exam": "Visualize/Manage"}, {"term": "Power Automate visual", "domain": "Visual", "level": "Advanced", "definition": "Visual kích hoạt flow từ report context.", "principle": "Dùng cho approval/notification/action, cần bảo mật context.", "exam": "Visualize/Manage"}, {"term": "Python visual", "domain": "Visual", "level": "Advanced", "definition": "Visual chạy Python script để tạo biểu đồ tùy biến.", "principle": "Chỉ dùng khi native/custom visual không đáp ứng và environment hỗ trợ.", "exam": "Visualize"}, {"term": "R visual", "domain": "Visual", "level": "Advanced", "definition": "Visual chạy R script để tạo biểu đồ tùy biến.", "principle": "Cân nhắc maintainability và refresh constraints.", "exam": "Visualize"}, {"term": "Custom visual", "domain": "Visual", "level": "Intermediate", "definition": "Visual từ marketplace hoặc file pbiviz ngoài bộ visual mặc định.", "principle": "Kiểm tra certification, security và export behavior trước production.", "exam": "Visualize/Manage"}, {"term": "Certified visual", "domain": "Visual", "level": "Intermediate", "definition": "Custom visual đã qua quy trình certification của Microsoft.", "principle": "Ưu tiên khi report dùng dữ liệu nhạy cảm hoặc cần export.", "exam": "Visualize/Manage"}, {"term": "Theme", "domain": "Visual", "level": "Basic", "definition": "Bộ quy định màu, font và visual defaults của report.", "principle": "Theme giúp consistency và giảm format thủ công.", "exam": "Visualize"}, {"term": "Report page", "domain": "Visual", "level": "Basic", "definition": "Một trang canvas trong report.", "principle": "Mỗi page nên trả lời một nhóm câu hỏi business rõ.", "exam": "Visualize"}, {"term": "Page navigation", "domain": "Visual", "level": "Basic", "definition": "Cách người dùng chuyển giữa các pages bằng tab, button hoặc navigator.", "principle": "Navigation phải phản ánh flow phân tích overview to detail.", "exam": "Visualize"}, {"term": "Button", "domain": "Visual", "level": "Basic", "definition": "Element tương tác để navigate, bookmark hoặc trigger action.", "principle": "Dùng icon/text rõ và test trạng thái hover/disabled.", "exam": "Visualize"}, {"term": "Visual interaction", "domain": "Visual", "level": "Basic", "definition": "Cách visual này filter/highlight visual khác.", "principle": "Kiểm tra interaction để tránh cross-filter gây sai câu chuyện.", "exam": "Visualize"}, {"term": "Edit interactions", "domain": "Visual", "level": "Intermediate", "definition": "Tính năng cấu hình filter/highlight/none giữa visuals.", "principle": "Dùng để kiểm soát UX và tránh visual bị ảnh hưởng ngoài ý muốn.", "exam": "Visualize"}, {"term": "Report filter", "domain": "Visual", "level": "Basic", "definition": "Filter áp dụng toàn bộ report.", "principle": "Dùng cho phạm vi toàn cục như business unit hoặc date range chung.", "exam": "Visualize"}, {"term": "Page filter", "domain": "Visual", "level": "Basic", "definition": "Filter áp dụng một report page.", "principle": "Document filter ẩn để user không hiểu sai số liệu.", "exam": "Visualize"}, {"term": "Visual-level filter", "domain": "Visual", "level": "Basic", "definition": "Filter chỉ áp dụng cho một visual.", "principle": "Hữu ích cho TopN/detail nhưng dễ làm KPI lệch nếu không ghi rõ.", "exam": "Visualize"}, {"term": "Top N filter", "domain": "Visual", "level": "Intermediate", "definition": "Filter giữ top/bottom N categories theo measure.", "principle": "Luôn chỉ rõ measure dùng để xếp hạng.", "exam": "Visualize"}, {"term": "Relative date slicer", "domain": "Visual", "level": "Basic", "definition": "Slicer lọc khoảng thời gian tương đối như last 30 days.", "principle": "Phù hợp dashboard vận hành và scheduled refresh.", "exam": "Visualize"}, {"term": "Filter pane", "domain": "Visual", "level": "Basic", "definition": "Pane chứa report/page/visual filters.", "principle": "Cần đặt tên field dễ hiểu và ẩn filter kỹ thuật nếu không cần.", "exam": "Visualize"}, {"term": "Personalize visuals", "domain": "Visual", "level": "Intermediate", "definition": "Tính năng cho end user thay đổi fields hoặc visual type khi xem report.", "principle": "Bật khi self-service được phép, tắt khi cần layout cố định.", "exam": "Visualize/Manage"}, {"term": "Analyze feature", "domain": "Visual", "level": "Intermediate", "definition": "Nhóm tính năng tự phân tích như explain increase/decrease hoặc distribution difference.", "principle": "Dùng để gợi ý giả thuyết, không coi là kết luận nhân quả.", "exam": "Visualize"}, {"term": "Explain the increase", "domain": "Visual", "level": "Intermediate", "definition": "Tính năng Analyze giúp tìm yếu tố liên quan đến tăng/giảm một data point.", "principle": "Kiểm tra lại bằng domain knowledge trước khi trình bày.", "exam": "Visualize"}, {"term": "Find where distribution differs", "domain": "Visual", "level": "Intermediate", "definition": "Tính năng tìm segment có phân phối khác biệt.", "principle": "Hữu ích để phát hiện nhóm cần điều tra sâu.", "exam": "Visualize"}, {"term": "Forecast", "domain": "Visual", "level": "Intermediate", "definition": "Tính năng dự báo trên line chart.", "principle": "Chỉ dùng khi dữ liệu thời gian đủ đều và business hiểu uncertainty.", "exam": "Visualize"}, {"term": "Anomaly detection", "domain": "Visual", "level": "Intermediate", "definition": "Tính năng phát hiện điểm bất thường trong time series.", "principle": "Dùng như cảnh báo để điều tra, không thay root-cause analysis.", "exam": "Visualize"}, {"term": "Error bars", "domain": "Visual", "level": "Intermediate", "definition": "Hiển thị uncertainty hoặc range quanh data point.", "principle": "Dùng khi cần nói về độ tin cậy, không chỉ point estimate.", "exam": "Visualize"}, {"term": "Reference line", "domain": "Visual", "level": "Basic", "definition": "Đường tham chiếu như target, average hoặc constant line.", "principle": "Giúp người xem so sánh nhanh với ngưỡng.", "exam": "Visualize"}, {"term": "Trend line", "domain": "Visual", "level": "Intermediate", "definition": "Đường thể hiện xu hướng tổng quát trên scatter/line chart.", "principle": "Không diễn giải trend line là quan hệ nhân quả.", "exam": "Visualize"}, {"term": "Grouping", "domain": "Visual", "level": "Basic", "definition": "Gom nhiều values thành nhóm trong report.", "principle": "Dùng cho category nhỏ nhưng nên đưa logic ổn định về model nếu dùng nhiều.", "exam": "Visualize"}, {"term": "Binning", "domain": "Visual", "level": "Basic", "definition": "Chia numeric/date values thành các khoảng.", "principle": "Dùng cho histogram hoặc phân bố độ tuổi/doanh thu.", "exam": "Visualize"}, {"term": "Clustering", "domain": "Visual", "level": "Advanced", "definition": "Tự phân nhóm data points trong scatter plot.", "principle": "Dùng để khám phá segments, cần giải thích business sau đó.", "exam": "Visualize"}, {"term": "Accessibility", "domain": "Visual", "level": "Basic", "definition": "Khả năng report dùng được với nhiều đối tượng, thiết bị và assistive technology.", "principle": "Thiết kế report phải xét keyboard, screen reader, contrast và alt text.", "exam": "Visualize"}, {"term": "Alt text", "domain": "Visual", "level": "Basic", "definition": "Mô tả text cho visual để screen reader hiểu nội dung.", "principle": "Alt text nên nói insight hoặc mục đích visual.", "exam": "Visualize"}, {"term": "Tab order", "domain": "Visual", "level": "Intermediate", "definition": "Thứ tự focus khi dùng keyboard trong report.", "principle": "Cần cấu hình khi page có nhiều visual/button.", "exam": "Visualize"}, {"term": "Color contrast", "domain": "Visual", "level": "Basic", "definition": "Độ tương phản giữa chữ, nền và visual elements.", "principle": "Không dùng màu là tín hiệu duy nhất cho trạng thái.", "exam": "Visualize"}, {"term": "Focus mode", "domain": "Visual", "level": "Basic", "definition": "Chế độ xem phóng to một visual.", "principle": "Hữu ích khi user cần xem chi tiết mà không rời report.", "exam": "Visualize"}, {"term": "Full screen", "domain": "Visual", "level": "Basic", "definition": "Chế độ trình chiếu report/dashboard toàn màn hình.", "principle": "Dùng cho meeting hoặc monitor, vẫn cần kiểm tra responsive.", "exam": "Visualize"}, {"term": "Publish", "domain": "Service", "level": "Basic", "definition": "Đưa PBIX/report/semantic model từ Desktop lên Power BI Service.", "principle": "Publish là bắt đầu vận hành, không phải kết thúc dự án.", "exam": "Manage"}, {"term": "Share", "domain": "Service", "level": "Basic", "definition": "Cấp quyền trực tiếp cho người khác xem report/dashboard.", "principle": "Ưu tiên App cho distribution rộng; share trực tiếp cho trường hợp nhỏ.", "exam": "Manage/Security"}, {"term": "Build permission", "domain": "Service", "level": "Intermediate", "definition": "Quyền cho phép user tạo report mới hoặc Analyze in Excel trên semantic model.", "principle": "Cấp Build cẩn thận vì user có thể truy vấn model ngoài report.", "exam": "Manage/Security"}, {"term": "Reshare permission", "domain": "Service", "level": "Intermediate", "definition": "Quyền cho phép người nhận chia sẻ tiếp nội dung.", "principle": "Tắt nếu dữ liệu nhạy cảm hoặc distribution cần kiểm soát.", "exam": "Manage/Security"}, {"term": "Semantic model permission", "domain": "Service", "level": "Intermediate", "definition": "Quyền Read, Build, Reshare, Write trên semantic model.", "principle": "Tách quyền xem report với quyền dùng model để tạo nội dung mới.", "exam": "Manage/Security"}, {"term": "App audience", "domain": "Service", "level": "Intermediate", "definition": "Nhóm người xem khác nhau trong một Power BI App.", "principle": "Dùng audience để phân phối nội dung đúng nhóm mà không nhân bản workspace.", "exam": "Manage"}, {"term": "Deployment pipeline rule", "domain": "Service", "level": "Advanced", "definition": "Rule thay đổi parameter/data source giữa Dev, Test và Prod.", "principle": "Giảm lỗi deploy nhầm nguồn dữ liệu.", "exam": "Manage"}, {"term": "Data source credential", "domain": "Service", "level": "Basic", "definition": "Credential cấu hình trên Service cho scheduled refresh.", "principle": "Credential trong Desktop không tự đảm bảo refresh trên Service.", "exam": "Manage"}, {"term": "Gateway cluster", "domain": "Service", "level": "Advanced", "definition": "Nhóm nhiều gateway nodes để tăng availability và load balancing.", "principle": "Dùng cho môi trường production on-premises.", "exam": "Manage"}, {"term": "Standard gateway", "domain": "Service", "level": "Intermediate", "definition": "On-premises data gateway dùng chung cho nhiều users và sources.", "principle": "Chọn cho production và centralized governance.", "exam": "Manage"}, {"term": "Personal gateway", "domain": "Service", "level": "Basic", "definition": "Gateway cá nhân cho một user và workload nhỏ.", "principle": "Không dùng cho production team-critical reports.", "exam": "Manage"}, {"term": "Refresh history", "domain": "Service", "level": "Basic", "definition": "Log trạng thái, thời gian và lỗi của semantic model refresh.", "principle": "Đọc refresh history trước khi sửa query hoặc gateway.", "exam": "Manage"}, {"term": "Refresh failure", "domain": "Service", "level": "Basic", "definition": "Lỗi khi Service không cập nhật được semantic model.", "principle": "Debug theo thứ tự credential, gateway, source, timeout, schema change.", "exam": "Manage"}, {"term": "Automatic page refresh", "domain": "Service", "level": "Advanced", "definition": "Tự refresh visuals theo khoảng thời gian hoặc change detection với DirectQuery.", "principle": "Dùng cho near real-time nhưng phải cân nhắc capacity/source load.", "exam": "Visualize/Manage"}, {"term": "Change detection", "domain": "Service", "level": "Advanced", "definition": "Measure hoặc logic quyết định khi nào automatic page refresh cần cập nhật.", "principle": "Giảm query thừa so với refresh theo interval cố định.", "exam": "Visualize/Manage"}, {"term": "XMLA endpoint", "domain": "Service", "level": "Advanced", "definition": "Endpoint cho phép tools kết nối tới semantic model theo XMLA.", "principle": "Dùng cho enterprise modeling, deployment và external tools.", "exam": "Manage/Optimize"}, {"term": "Power BI REST API", "domain": "Service", "level": "Advanced", "definition": "API quản lý workspace, reports, datasets, refresh và admin tasks.", "principle": "Dùng cho automation và governance at scale.", "exam": "Manage"}, {"term": "Embed for your organization", "domain": "Service", "level": "Advanced", "definition": "Nhúng Power BI cho người dùng nội bộ có identity/license phù hợp.", "principle": "Phù hợp intranet/portal doanh nghiệp.", "exam": "Manage"}, {"term": "Embed for your customers", "domain": "Service", "level": "Advanced", "definition": "Nhúng Power BI cho external users với app owns data pattern.", "principle": "Cần thiết kế authentication, capacity và row-level security kỹ.", "exam": "Manage/Security"}, {"term": "Power BI Embedded", "domain": "Service", "level": "Advanced", "definition": "Azure service/capacity để nhúng Power BI vào ứng dụng.", "principle": "Đánh giá chi phí capacity và security model trước khi triển khai.", "exam": "Manage"}, {"term": "Scorecard", "domain": "Service", "level": "Intermediate", "definition": "Power BI artifact theo dõi goals/metrics theo owner và status.", "principle": "Dùng cho performance management, không thay analytic report.", "exam": "Manage"}, {"term": "Metric", "domain": "Service", "level": "Basic", "definition": "Chỉ số theo dõi trong scorecard hoặc KPI management.", "principle": "Metric cần owner, target, cadence và source rõ.", "exam": "Manage"}, {"term": "Data lineage", "domain": "Service", "level": "Intermediate", "definition": "View cho thấy quan hệ giữa data source, dataflow, semantic model, report và dashboard.", "principle": "Dùng để hiểu impact trước khi thay đổi source/model.", "exam": "Manage"}, {"term": "Impact analysis", "domain": "Service", "level": "Intermediate", "definition": "Phân tích artifact nào bị ảnh hưởng khi semantic model/source thay đổi.", "principle": "Bắt buộc trước khi sửa model production.", "exam": "Manage"}, {"term": "Certified content", "domain": "Service", "level": "Intermediate", "definition": "Nội dung được tổ chức xác nhận là đáng tin cậy.", "principle": "Chỉ certify asset có owner, refresh và definition rõ.", "exam": "Manage"}, {"term": "Promoted content", "domain": "Service", "level": "Basic", "definition": "Nội dung được tác giả quảng bá là hữu ích.", "principle": "Promoted thấp hơn Certified về mức độ governance.", "exam": "Manage"}, {"term": "Template app", "domain": "Service", "level": "Intermediate", "definition": "App đóng gói để phân phối cho nhiều khách hàng/tổ chức với cấu hình riêng.", "principle": "Dùng cho solution repeatable, không chỉ một report đơn lẻ.", "exam": "Manage"}, {"term": "Organizational app", "domain": "Service", "level": "Basic", "definition": "Power BI App phân phối nội dung nội bộ từ workspace.", "principle": "Kênh delivery chuẩn cho end users.", "exam": "Manage"}, {"term": "Subscription", "domain": "Service", "level": "Basic", "definition": "Gửi snapshot report/dashboard định kỳ qua email hoặc notification.", "principle": "Dùng cho monitoring nhưng không thay alert/action workflow.", "exam": "Manage"}, {"term": "Data alert", "domain": "Service", "level": "Basic", "definition": "Cảnh báo khi tile/metric vượt ngưỡng trong Service.", "principle": "Phù hợp KPI operational với threshold rõ.", "exam": "Manage"}, {"term": "Export data", "domain": "Service", "level": "Basic", "definition": "Xuất dữ liệu từ visual theo quyền và tenant setting.", "principle": "Export là risk governance; kiểm tra Build/export permission.", "exam": "Manage/Security"}, {"term": "Export to PDF", "domain": "Service", "level": "Basic", "definition": "Xuất report sang PDF để chia sẻ tĩnh.", "principle": "Kiểm tra filter state, hidden pages và sensitivity label trước khi gửi.", "exam": "Manage"}, {"term": "Analyze in Excel", "domain": "Service", "level": "Intermediate", "definition": "Dùng Excel PivotTable kết nối tới semantic model.", "principle": "Yêu cầu quyền Build và model được thiết kế self-service tốt.", "exam": "Manage/Security"}, {"term": "Static RLS", "domain": "Security", "level": "Intermediate", "definition": "RLS dùng filter cố định theo role.", "principle": "Phù hợp khi số role ít và ít thay đổi.", "exam": "Manage/Security"}, {"term": "Dynamic RLS", "domain": "Security", "level": "Advanced", "definition": "RLS lọc dữ liệu theo user đăng nhập qua mapping table hoặc hàm user.", "principle": "Chuẩn cho security theo nhân viên/vùng/đơn vị lớn.", "exam": "Manage/Security"}, {"term": "Role membership", "domain": "Security", "level": "Basic", "definition": "Danh sách users/groups được gán vào role RLS trên Service.", "principle": "Tạo role trong Desktop chưa đủ; phải gán member trên Service.", "exam": "Manage/Security"}, {"term": "Test as role", "domain": "Security", "level": "Basic", "definition": "Chức năng kiểm thử report dưới role RLS.", "principle": "Luôn test trước khi publish production.", "exam": "Manage/Security"}, {"term": "USERPRINCIPALNAME", "domain": "Security", "level": "Advanced", "definition": "DAX function trả về user principal name của người đang xem.", "principle": "Dùng cho dynamic RLS với email/UPN mapping.", "exam": "DAX/Security"}, {"term": "USERNAME", "domain": "Security", "level": "Intermediate", "definition": "DAX function trả về tên user theo môi trường.", "principle": "Hiểu khác biệt Desktop/Service trước khi dùng cho security.", "exam": "DAX/Security"}, {"term": "CUSTOMDATA", "domain": "Security", "level": "Advanced", "definition": "DAX function dùng custom data trong embedded scenario.", "principle": "Hữu ích cho embedded security nâng cao.", "exam": "Security"}, {"term": "Security group", "domain": "Security", "level": "Basic", "definition": "Nhóm Microsoft Entra dùng để cấp quyền hàng loạt.", "principle": "Cấp quyền qua group giúp audit và offboarding tốt hơn.", "exam": "Manage/Security"}, {"term": "Microsoft Entra ID", "domain": "Security", "level": "Basic", "definition": "Identity provider của Microsoft dùng cho users, groups và access control.", "principle": "Power BI security dựa nhiều vào Entra identity.", "exam": "Manage/Security"}, {"term": "B2B guest user", "domain": "Security", "level": "Intermediate", "definition": "External user được mời vào tenant để truy cập Power BI content.", "principle": "Cần kiểm tra tenant setting, sharing policy và license.", "exam": "Manage/Security"}, {"term": "Item permissions", "domain": "Security", "level": "Intermediate", "definition": "Quyền trên từng report, dashboard, app hoặc semantic model.", "principle": "Không nhầm item permission với data-level security.", "exam": "Manage/Security"}, {"term": "Object permissions", "domain": "Security", "level": "Advanced", "definition": "Quyền ở cấp object như bảng/cột qua OLS hoặc tabular security.", "principle": "Dùng cho metadata/data nhạy cảm trong semantic model.", "exam": "Manage/Security"}, {"term": "Tenant setting", "domain": "Security", "level": "Intermediate", "definition": "Cấu hình cấp tenant bật/tắt export, publish to web, sharing, custom visual, Copilot và nhiều tính năng khác.", "principle": "Tenant setting là guardrail cho toàn bộ tổ chức.", "exam": "Manage/Security"}, {"term": "Audit log", "domain": "Security", "level": "Intermediate", "definition": "Log hoạt động users/admins trong Power BI/Microsoft Purview.", "principle": "Dùng để điều tra sharing, export, access và governance incidents.", "exam": "Manage/Security"}, {"term": "Usage metrics", "domain": "Security", "level": "Basic", "definition": "Báo cáo theo dõi lượt xem, người dùng và usage của content.", "principle": "Dùng để biết report nào thật sự được dùng trước khi tối ưu.", "exam": "Manage"}, {"term": "Sensitivity label inheritance", "domain": "Security", "level": "Advanced", "definition": "Nhãn nhạy cảm có thể truyền từ source/semantic model sang downstream artifact hoặc export.", "principle": "Hiểu inheritance để tránh mất nhãn khi xuất dữ liệu.", "exam": "Manage/Security"}, {"term": "Data loss prevention", "domain": "Security", "level": "Advanced", "definition": "Chính sách DLP giúp phát hiện và giảm rủi ro lộ dữ liệu nhạy cảm.", "principle": "Kết hợp labels, tenant settings và audit.", "exam": "Manage/Security"}, {"term": "Information protection", "domain": "Security", "level": "Intermediate", "definition": "Nhóm tính năng bảo vệ dữ liệu bằng labels, encryption, policy và audit.", "principle": "Không chỉ bảo mật trong report mà cả file/export downstream.", "exam": "Manage/Security"}, {"term": "Private link", "domain": "Security", "level": "Advanced", "definition": "Cấu hình network để truy cập Power BI qua private endpoint.", "principle": "Dùng khi tổ chức yêu cầu network isolation cao.", "exam": "Manage/Security"}, {"term": "DAX Studio", "domain": "Optimize", "level": "Advanced", "definition": "External tool để chạy DAX query, xem server timings và tối ưu measure.", "principle": "Dùng khi Performance Analyzer chưa đủ chi tiết.", "exam": "Optimize/DAX"}, {"term": "Server Timings", "domain": "Optimize", "level": "Advanced", "definition": "Thông tin thời gian Formula Engine và Storage Engine khi chạy DAX.", "principle": "Xác định bottleneck nằm ở engine nào trước khi tối ưu.", "exam": "Optimize/DAX"}, {"term": "Query plan", "domain": "Optimize", "level": "Advanced", "definition": "Kế hoạch thực thi truy vấn DAX/VertiPaq.", "principle": "Hữu ích cho tối ưu DAX nâng cao.", "exam": "Optimize/DAX"}, {"term": "Storage Engine", "domain": "Optimize", "level": "Advanced", "definition": "Engine xử lý scan/aggregation dữ liệu columnar trong VertiPaq.", "principle": "Tối ưu model, relationships và filters để giảm work của engine.", "exam": "Optimize"}, {"term": "Formula Engine", "domain": "Optimize", "level": "Advanced", "definition": "Engine xử lý logic DAX, context và phần không đẩy được xuống Storage Engine.", "principle": "DAX phức tạp thường tạo bottleneck ở Formula Engine.", "exam": "Optimize/DAX"}, {"term": "VertiPaq Analyzer", "domain": "Optimize", "level": "Advanced", "definition": "Tool phân tích size, cardinality và compression của model.", "principle": "Dùng để tìm cột/bảng làm model nặng.", "exam": "Optimize"}, {"term": "Model size", "domain": "Optimize", "level": "Intermediate", "definition": "Dung lượng semantic model trong memory/storage.", "principle": "Giảm bằng cách bỏ cột thừa, giảm cardinality và chọn data type đúng.", "exam": "Optimize"}, {"term": "Column cardinality", "domain": "Optimize", "level": "Intermediate", "definition": "Số lượng giá trị distinct trong một cột.", "principle": "Cardinality cao làm nén kém và model nặng.", "exam": "Optimize"}, {"term": "Encoding", "domain": "Optimize", "level": "Advanced", "definition": "Cách VertiPaq mã hóa dữ liệu cột để nén và truy vấn.", "principle": "Data type và cardinality ảnh hưởng trực tiếp tới encoding.", "exam": "Optimize"}, {"term": "Reduce columns", "domain": "Optimize", "level": "Basic", "definition": "Loại bỏ cột không dùng khỏi model.", "principle": "Đây là tối ưu đơn giản và hiệu quả nhất.", "exam": "Optimize"}, {"term": "Disable auto date/time", "domain": "Optimize", "level": "Basic", "definition": "Tắt hidden date tables tự sinh.", "principle": "Giảm model size và tránh date logic không kiểm soát.", "exam": "Optimize/Model"}, {"term": "Aggregations", "domain": "Optimize", "level": "Advanced", "definition": "Tính năng map bảng tổng hợp với bảng detail để tăng tốc query.", "principle": "Cần hiểu query pattern và granularity trước khi thiết kế.", "exam": "Optimize"}, {"term": "Hybrid table", "domain": "Optimize", "level": "Advanced", "definition": "Bảng kết hợp import historical partitions và DirectQuery latest partition.", "principle": "Dùng khi cần vừa nhanh vừa gần real-time.", "exam": "Optimize/Manage"}, {"term": "Large semantic model storage format", "domain": "Optimize", "level": "Advanced", "definition": "Định dạng storage cho semantic model lớn trong Premium/Fabric capacity.", "principle": "Bật khi model vượt giới hạn hoặc cần scale enterprise.", "exam": "Optimize/Manage"}, {"term": "Query reduction", "domain": "Optimize", "level": "Basic", "definition": "Tùy chọn giảm số truy vấn gửi đi khi user tương tác slicer/filter.", "principle": "Dùng Apply button cho slicer/filter trên report nặng.", "exam": "Optimize/Visualize"}, {"term": "Apply all slicers", "domain": "Optimize", "level": "Basic", "definition": "Button cho phép user chọn nhiều slicers rồi áp dụng một lần.", "principle": "Giảm query thừa với DirectQuery hoặc report nhiều visuals.", "exam": "Optimize/Visualize"}, {"term": "Optimize ribbon", "domain": "Optimize", "level": "Intermediate", "definition": "Ribbon trong Desktop tập trung tính năng performance như pause visuals và optimization presets.", "principle": "Dùng khi chỉnh report nặng hoặc DirectQuery.", "exam": "Optimize"}, {"term": "DirectQuery limitations", "domain": "Optimize", "level": "Intermediate", "definition": "Giới hạn về performance, transformations, DAX và visual behavior khi dùng DirectQuery.", "principle": "Chọn DirectQuery vì requirement, không vì cảm giác real-time.", "exam": "Optimize/Prepare"}, {"term": "Cache", "domain": "Optimize", "level": "Intermediate", "definition": "Lớp lưu kết quả/query để giảm thời gian phản hồi.", "principle": "Cache giúp nhưng không sửa được model hoặc DAX thiết kế sai.", "exam": "Optimize"}, {"term": "Capacity metrics app", "domain": "Optimize", "level": "Advanced", "definition": "App theo dõi CPU, memory, refresh, query và throttling của capacity.", "principle": "Dùng để phân biệt report issue với capacity saturation.", "exam": "Optimize/Manage"}, {"term": "Fabric capacity metrics", "domain": "Optimize", "level": "Advanced", "definition": "Metrics cho Fabric capacity across workloads.", "principle": "Quan trọng khi Power BI cạnh tranh tài nguyên với Lakehouse/Warehouse/Data Factory.", "exam": "Optimize/Manage"}, {"term": "XMLA read/write", "domain": "Optimize", "level": "Advanced", "definition": "Khả năng đọc/ghi semantic model qua XMLA endpoint.", "principle": "Dùng cho deployment, external tools và enterprise model management.", "exam": "Manage/Optimize"}, {"term": "Measure branching", "domain": "Optimize", "level": "Intermediate", "definition": "Pattern xây measure phức tạp từ các measure nền nhỏ.", "principle": "Giúp DAX dễ đọc, test và tái sử dụng hơn.", "exam": "DAX/Optimize"}];
+    const state = { view: 'glossary', q: '', domain: '', level: '', deck: [], cardIndex: 0, cardFlipped: false };
+    const search = document.getElementById('search');
+    const domain = document.getElementById('domain');
+    const level = document.getElementById('level');
+    const result = document.getElementById('result');
+    const glossaryView = document.getElementById('glossaryView');
+    const flashcardsView = document.getElementById('flashcardsView');
+    const frameworkView = document.getElementById('frameworkView');
+    const examView = document.getElementById('examView');
+    const termCount = document.getElementById('termCount');
+    const domainCount = document.getElementById('domainCount');
+    const shownCount = document.getElementById('shownCount');
+    const kbdHint = document.getElementById('kbdHint');
+    const tabs = [...document.querySelectorAll('[data-view]')];
+    const domains = [...new Set(terms.map(t => t.domain))].sort();
+    const fcCard = document.getElementById('fcCard');
+    const fcFill = document.getElementById('fcFill');
+    const fcStatus = document.getElementById('fcStatus');
+    const fcTotal = document.getElementById('fcTotal');
+    const fcPool = document.getElementById('fcPool');
+    const fcFlipText = document.getElementById('fcFlipText');
+
+    termCount.textContent = terms.length.toLocaleString('en-US');
+    domainCount.textContent = domains.length.toLocaleString('en-US');
+    if (navigator.maxTouchPoints > 0) kbdHint.hidden = true;
+
+    for (const d of domains) {
+      const opt = document.createElement('option');
+      opt.value = d;
+      opt.textContent = d;
+      domain.appendChild(opt);
+    }
+
+    function esc(s) {
+      return String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
+
+    function escapeRegExp(s) {
+      return String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    function highlight(raw, q) {
+      const text = esc(raw);
+      const query = q.trim();
+      if (!query) return text;
+      return text.replace(new RegExp(`(${escapeRegExp(query)})`, 'gi'), '<mark>$1</mark>');
+    }
+
+    function hit(t) {
+      const q = state.q.trim().toLowerCase();
+      if (state.domain && t.domain !== state.domain) return false;
+      if (state.level && t.level !== state.level) return false;
+      if (!q) return true;
+      return [t.term, t.domain, t.level, t.definition, t.principle, t.exam].join(' ').toLowerCase().includes(q);
+    }
+
+    function views() {
+      return { glossary: glossaryView, flashcards: flashcardsView, framework: frameworkView, exam: examView };
+    }
+
+    function setView(view, updateHash = true) {
+      if (!views()[view]) return;
+      state.view = view;
+      tabs.forEach(btn => {
+        const active = btn.dataset.view === view;
+        btn.classList.toggle('active', active);
+        if (active) btn.setAttribute('aria-current', 'page');
+        else btn.removeAttribute('aria-current');
+      });
+      Object.entries(views()).forEach(([key, el]) => {
+        const active = key === view;
+        el.classList.toggle('active', active);
+        el.classList.toggle('hidden', !active);
+      });
+      if (view === 'flashcards') renderFlashcard();
+      if (updateHash) history.replaceState(null, '', `#${view}`);
+    }
+
+    function render() {
+      const filtered = terms.filter(hit);
+      result.textContent = `${filtered.length.toLocaleString('en-US')} shown`;
+      shownCount.textContent = filtered.length.toLocaleString('en-US');
+      state.deck = filtered.slice();
+      if (state.cardIndex >= state.deck.length) state.cardIndex = Math.max(0, state.deck.length - 1);
+      state.cardFlipped = false;
+      renderFlashcard();
+
+      if (!filtered.length) {
+        glossaryView.innerHTML = `
+          <div class="empty-state">
+            <strong>No matching terms</strong>
+            <p>Clear search or choose another domain/level filter.</p>
+          </div>`;
+        return;
+      }
+
+      glossaryView.innerHTML = filtered.map(t => `
+        <article class="card">
+          <h3>${highlight(t.term, state.q)}</h3>
+          <p>${highlight(t.definition, state.q)}</p>
+          <p><strong>Principle:</strong> ${highlight(t.principle, state.q)}</p>
+          <div class="meta">
+            <span class="pill">${esc(t.domain)}</span>
+            <span class="pill ${esc(t.level)}">${esc(t.level)}</span>
+            <span class="pill">${esc(t.exam)}</span>
+          </div>
+        </article>`).join('');
+    }
+
+    function renderFlashcard() {
+      if (!fcCard) return;
+      const deck = state.deck;
+      fcPool.textContent = `${deck.length.toLocaleString('en-US')} cards`;
+
+      if (!deck.length) {
+        fcCard.classList.remove('flipped');
+        fcCard.innerHTML = `
+          <div class="fc-face fc-front">
+            <span class="fc-tag">No cards</span>
+            <h3>No matching terms</h3>
+            <div class="fc-hint">Clear search or choose another domain/level filter.</div>
+          </div>`;
+        fcStatus.textContent = 'Card 0';
+        fcTotal.textContent = 'of 0';
+        fcFill.style.width = '0%';
+        fcFlipText.textContent = 'Reveal';
+        return;
+      }
+
+      state.cardIndex = Math.max(0, Math.min(state.cardIndex, deck.length - 1));
+      const c = deck[state.cardIndex];
+      const pct = ((state.cardIndex + 1) / deck.length) * 100;
+      fcStatus.textContent = `Card ${state.cardIndex + 1}`;
+      fcTotal.textContent = `of ${deck.length.toLocaleString('en-US')}`;
+      fcFill.style.width = `${pct}%`;
+      fcFlipText.textContent = state.cardFlipped ? 'Hide' : 'Reveal';
+      fcCard.classList.toggle('flipped', state.cardFlipped);
+      fcCard.setAttribute('aria-label', `${state.cardFlipped ? 'Hide answer' : 'Reveal answer'} for ${c.term}`);
+      fcCard.innerHTML = `
+        <div class="fc-face fc-front">
+          <span class="fc-tag">${esc(c.domain)} · ${esc(c.level)}</span>
+          <h3>${esc(c.term)}</h3>
+          <div class="fc-hint">Click card or press <kbd>Space</kbd> to reveal</div>
+        </div>
+        <div class="fc-face fc-back">
+          <h3>${esc(c.term)}</h3>
+          <div class="fc-answer">
+            <p><strong>Definition:</strong> ${esc(c.definition)}</p>
+            <p><strong>Principle:</strong> ${esc(c.principle)}</p>
+          </div>
+          <div class="meta">
+            <span class="pill">${esc(c.domain)}</span>
+            <span class="pill ${esc(c.level)}">${esc(c.level)}</span>
+            <span class="pill">${esc(c.exam)}</span>
+          </div>
+        </div>`;
+    }
+
+    function flipCard() {
+      if (!state.deck.length) return;
+      state.cardFlipped = !state.cardFlipped;
+      renderFlashcard();
+    }
+
+    function moveCard(delta) {
+      if (!state.deck.length) return;
+      state.cardIndex = (state.cardIndex + delta + state.deck.length) % state.deck.length;
+      state.cardFlipped = false;
+      renderFlashcard();
+    }
+
+    function shuffleFlashcards() {
+      if (!state.deck.length) return;
+      for (let i = state.deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [state.deck[i], state.deck[j]] = [state.deck[j], state.deck[i]];
+      }
+      state.cardIndex = 0;
+      state.cardFlipped = false;
+      setView('flashcards');
+      renderFlashcard();
+    }
+
+    search.addEventListener('input', e => {
+      state.q = e.target.value;
+      state.cardIndex = 0;
+      render();
+    });
+
+    domain.addEventListener('change', e => {
+      state.domain = e.target.value;
+      state.cardIndex = 0;
+      render();
+    });
+
+    level.addEventListener('change', e => {
+      state.level = e.target.value;
+      state.cardIndex = 0;
+      render();
+    });
+
+    tabs.forEach(btn => btn.addEventListener('click', () => setView(btn.dataset.view)));
+
+    document.getElementById('fcPrev').addEventListener('click', () => moveCard(-1));
+    document.getElementById('fcNext').addEventListener('click', () => moveCard(1));
+    document.getElementById('fcFlip').addEventListener('click', flipCard);
+    document.getElementById('fcShuffle').addEventListener('click', shuffleFlashcards);
+    fcCard.addEventListener('click', flipCard);
+    fcCard.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.code === 'Space') {
+        event.preventDefault();
+        event.stopPropagation();
+        flipCard();
+      }
+    });
+
+    document.getElementById('shuffle').addEventListener('click', () => {
+      for (let i = terms.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [terms[i], terms[j]] = [terms[j], terms[i]];
+      }
+      render();
+      setView('glossary');
+    });
+
+    window.addEventListener('keydown', event => {
+      const tag = event.target.tagName;
+      const isTyping = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
+      const flashcardsActive = state.view === 'flashcards';
+      if (event.key === '/' && !isTyping && !event.ctrlKey && !event.metaKey && !event.altKey) {
+        event.preventDefault();
+        setView('glossary');
+        search.focus();
+      }
+      if (event.key === 'Escape' && document.activeElement === search && search.value) {
+        search.value = '';
+        state.q = '';
+        render();
+      }
+      if (flashcardsActive && !isTyping && !event.ctrlKey && !event.metaKey && !event.altKey) {
+        if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          moveCard(1);
+        } else if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          moveCard(-1);
+        } else if (event.code === 'Space') {
+          event.preventDefault();
+          flipCard();
+        } else if (event.key.toLowerCase() === 's') {
+          event.preventDefault();
+          shuffleFlashcards();
+        }
+      }
+    });
+
+    const initialView = location.hash.replace('#', '');
+    const hasInitialView = Boolean(views()[initialView]);
+    setView(hasInitialView ? initialView : 'glossary', false);
+    render();
+  </script>
+</body>
+</html>

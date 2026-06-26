@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>E-Portfolio | Professional Identity</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#0f172a",
+                        "card-bg": "rgba(255, 255, 255, 0.04)",
+                        "card-hover-bg": "rgba(255, 255, 255, 0.08)",
+                        "primary": "#4C6B4B",
+                        "primary-light": "#6D916B",
+                        "accent-gold": "#C69749",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --bg-start: #f8fafc;
+            --bg-end: #e2e8f0;
+            --primary-color: #4C6B4B;
+            --primary-hover-color: #6D916B;
+            --accent-color: #C69749;
+            --accent-hover-color: #A37A3B;
+            --text-color: #334155;
+            --soft-text-color: #64748b;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --card-bg: rgba(255, 255, 255, 0.6);
+            --card-hover-bg: rgba(255, 255, 255, 0.9);
+            --shadow-color: rgba(76, 107, 75, 0.12);
+        }
+
+        .dark {
+            --bg-start: #0f172a;
+            --bg-end: #1e293b;
+            --primary-color: #4C6B4B;
+            --primary-hover-color: #6D916B;
+            --accent-color: #C69749;
+            --accent-hover-color: #A37A3B;
+            --text-color: #E0E0E0;
+            --soft-text-color: #B0B0B0;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --card-hover-bg: rgba(255, 255, 255, 0.08);
+            --shadow-color: rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            background: linear-gradient(to bottom right, var(--bg-start), var(--bg-end));
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        @media (min-width: 768px) {
+
+            html,
+            body {
+                height: 100dvh;
+                overflow: hidden !important;
+            }
+
+            body.desktop-fit-mode #dashboard-stage {
+                overflow: hidden !important;
+            }
+
+            body.desktop-fit-mode #dashboard-frame {
+                height: auto !important;
+                overflow: visible !important;
+                transform-origin: top center;
+                will-change: transform;
+                margin-inline: auto;
+            }
+
+            body.desktop-fit-mode .dashboard-column {
+                height: auto !important;
+                overflow: visible !important;
+            }
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
+
+        .glass-panel {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px 0 var(--shadow-color);
+            border-radius: 1.25rem;
+        }
+
+        #more-menu {
+            background: rgba(248, 250, 252, 0.97);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .dark #more-menu {
+            background: rgba(30, 41, 59, 0.97);
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: var(--card-hover-bg);
+            transition: all 0.3s ease;
+        }
+
+        .core-tool-link {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding-left: 0.35rem;
+            border: none;
+            background: transparent;
+            color: var(--soft-text-color);
+            line-height: 1.2;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .core-tool-link:hover {
+            color: var(--accent-color);
+            transform: translateX(2px);
+        }
+
+        .core-tool-logo {
+            width: 1rem;
+            height: 1rem;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="w-full flex flex-col relative bg-[var(--bg-start)] text-[var(--text-color)]">
+    <canvas id="bgCanvas" class="fixed inset-0 w-full h-full z-0 pointer-events-none opacity-80"></canvas>
+
+    <!-- TopAppBar -->
+    <header
+        class="h-[72px] flex-shrink-0 w-full border-b border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl sticky top-0 z-50 flex justify-between items-center pl-5 pr-4 md:px-[25px]">
+        <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover border border-[var(--primary-color)] p-0.5 bg-[var(--bg-start)]"
+                src="./assets/images/KPIM-Duc-Nguyen.png" />
+            <span
+                class="text-xl font-bold tracking-tight text-[var(--text-color)] hidden xl:flex items-center gap-2 font-['Inter'] t-lang"
+                data-en="E-Profile" data-vi="Hồ sơ Điện tử">
+                E-Profile
+            </span>
+        </div>
+
+        <!-- Desktop Top Navigation Buttons -->
+        <nav class="hidden md:flex items-center gap-5 lg:gap-8 absolute left-1/2 transform -translate-x-1/2 h-full">
+            <a href="#"
+                class="flex items-center gap-1.5 text-[var(--accent-color)] font-bold transition-all border-b-2 border-[var(--accent-color)] h-full">
+                <span class="material-symbols-outlined text-[1.2rem]">person</span>
+                <span class="text-sm t-lang" data-en="My Profile" data-vi="Hồ sơ">My Profile</span>
+            </a>
+            <a href="/profile/experience"
+                class="flex items-center gap-1.5 text-[var(--soft-text-color)] hover:text-[var(--primary-light)] font-medium transition-all h-full border-b-2 border-transparent">
+                <span class="material-symbols-outlined text-[1.2rem]">work</span>
+                <span class="text-sm t-lang" data-en="Experience" data-vi="Kinh nghiệm">Experience</span>
+            </a>
+            <a href="/profile/projects"
+                class="flex items-center gap-1.5 text-[var(--soft-text-color)] hover:text-[var(--primary-light)] font-medium transition-all h-full border-b-2 border-transparent">
+                <span class="material-symbols-outlined text-[1.2rem]">workspaces</span>
+                <span class="text-sm t-lang" data-en="Projects" data-vi="D&#7921; &#225;n">Projects</span>
+            </a>
+            <a href="/profile/courses"
+                class="flex items-center gap-1.5 text-[var(--soft-text-color)] hover:text-[var(--primary-light)] font-medium transition-all h-full border-b-2 border-transparent">
+                <span class="material-symbols-outlined text-[1.2rem]">school</span>
+                <span class="text-sm t-lang" data-en="LMS" data-vi="Học tập">LMS</span>
+            </a>
+            <a href="/profile/socials"
+                class="flex items-center gap-1.5 text-[var(--soft-text-color)] hover:text-[var(--primary-light)] font-medium transition-all h-full border-b-2 border-transparent">
+                <span class="material-symbols-outlined text-[1.2rem]">subscriptions</span>
+                <span class="text-sm t-lang" data-en="Social" data-vi="Xã hội">Social</span>
+            </a>
+            <a href="/profile/solutions"
+                class="flex items-center gap-1.5 text-[var(--soft-text-color)] hover:text-[var(--primary-light)] font-medium transition-all h-full border-b-2 border-transparent">
+                <span class="material-symbols-outlined text-[1.2rem]">widgets</span>
+                <span class="text-sm t-lang" data-en="Solutions" data-vi="Gi&#7843;i ph&#225;p">Solutions</span>
+            </a>
+            <a href="/profile/powerbi"
+                class="flex items-center gap-1.5 text-[var(--soft-text-color)] hover:text-[var(--primary-light)] font-medium transition-all h-full border-b-2 border-transparent">
+                <span class="material-symbols-outlined text-[1.2rem]">bar_chart</span>
+                <span class="text-sm t-lang" data-en="Actions" data-vi="Tương tác">Actions</span>
+            </a>
+        </nav>
+
+        <div class="flex items-center gap-4">
+            <button id="lang-toggle-btn"
+                class="font-bold text-sm text-[var(--soft-text-color)] hover:text-[var(--accent-color)] transition-colors cursor-pointer w-6 text-center">VI</button>
+            <span id="theme-toggle-btn"
+                class="material-symbols-outlined text-[var(--soft-text-color)] hover:text-[var(--accent-color)] transition-colors cursor-pointer">dark_mode</span>
+            <div class="relative" id="more-menu-container">
+                <span id="more-menu-btn"
+                    class="material-symbols-outlined text-[var(--soft-text-color)] hover:text-[var(--accent-color)] transition-colors cursor-pointer block">more_vert</span>
+                <div id="more-menu"
+                    class="absolute right-0 top-full mt-4 w-56 glass-panel !rounded-none shadow-2xl border border-[var(--border-color)] hidden flex-col overflow-hidden z-[100] transform origin-top-right transition-all">
+                    <button id="share-btn"
+                        class="flex items-center gap-3 px-4 py-3 hover:bg-[var(--card-hover-bg)] transition-colors text-left text-sm border-b border-[var(--border-color)]">
+                        <span class="material-symbols-outlined text-[var(--accent-color)] text-[1.1rem]">share</span>
+                        <span class="text-[var(--text-color)] font-medium t-lang" data-en="Share Profile"
+                            data-vi="Chia sẻ Hồ sơ">Share Profile</span>
+                    </button>
+                    <button id="qr-btn"
+                        class="flex items-center gap-3 px-4 py-3 hover:bg-[var(--card-hover-bg)] transition-colors text-left text-sm border-b border-[var(--border-color)]">
+                        <span
+                            class="material-symbols-outlined text-[var(--primary-color)] text-[1.1rem]">qr_code_2</span>
+                        <span class="text-[var(--text-color)] font-medium t-lang" data-en="QR Code" data-vi="Mã QR">QR
+                            Code</span>
+                    </button>
+                    <button id="bcard-btn"
+                        class="flex items-center gap-3 px-4 py-3 hover:bg-[var(--card-hover-bg)] transition-colors text-left text-sm">
+                        <span class="material-symbols-outlined text-[#1877F2] text-[1.1rem]">badge</span>
+                        <span class="text-[var(--text-color)] font-medium t-lang" data-en="Business Card"
+                            data-vi="Danh thiếp">Business Card</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="dashboard-stage"
+        class="md:flex-grow w-full pl-5 pr-4 md:px-[25px] pt-4 md:pt-[20px] pb-24 md:pb-[20px] md:overflow-hidden flex flex-col items-center min-h-0">
+        <div id="dashboard-frame"
+            class="grid grid-cols-1 md:grid-cols-12 gap-5 w-full max-w-[1600px] md:h-full md:flex-grow md:overflow-hidden min-h-0">
+
+            <!-- Left Column: Identity & CTAs -->
+            <div
+                class="dashboard-column md:col-span-4 flex flex-col gap-5 md:overflow-y-auto md:pr-2 custom-scrollbar md:h-full min-h-0">
+
+                <!-- Hero Section -->
+                <section
+                    class="glass-panel p-5 flex flex-col items-center text-center gap-3 justify-start relative group flex-shrink-0">
+                    <div
+                        class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[var(--accent-color)] to-transparent">
+                    </div>
+                    <div class="relative w-full flex justify-center mt-2 mb-1">
+                        <div
+                            class="w-24 h-24 rounded-full border-2 border-[var(--primary-color)] p-1 relative z-10 bg-[var(--bg-start)]">
+                            <img class="w-full h-full rounded-full object-cover"
+                                src="./assets/images/KPIM-Duc-Nguyen.png" />
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-[var(--primary-color)]/20 blur-2xl rounded-full transform scale-110 m-auto w-24 h-24">
+                        </div>
+                    </div>
+                    <div class="space-y-0.5">
+                        <h1 class="text-2xl font-bold text-[var(--text-color)] tracking-tight">Nguyễn Quang Đức</h1>
+                        <p class="text-[var(--accent-color)] font-medium text-sm t-lang" data-en="Data Analytics Expert"
+                            data-vi="Chuyên gia Phân tích Dữ liệu">Data Analytics Expert</p>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-1.5 w-full mt-1">
+                        <span
+                            class="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] text-[10px] sm:text-[11px] font-medium text-[var(--soft-text-color)] flex items-center gap-1">
+                            <span
+                                class="material-symbols-outlined text-[13px] text-[var(--accent-color)]">corporate_fare</span>
+                            <span class="t-lang" data-en="Founder COMPA" data-vi="Sáng lập COMPA">Founder COMPA</span>
+                        </span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] text-[10px] sm:text-[11px] font-medium text-[var(--soft-text-color)] flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[13px] text-[var(--accent-color)]">groups</span>
+                            <span class="t-lang" data-en="Co-founder KPIM" data-vi="Đồng sáng lập KPIM">Co-founder
+                                KPIM</span>
+                        </span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] text-[10px] sm:text-[11px] font-medium text-[var(--soft-text-color)] flex items-center gap-1">
+                            <span
+                                class="material-symbols-outlined text-[13px] text-[var(--accent-color)]">person_apron</span>
+                            <span class="t-lang" data-en="Corporate Trainer" data-vi="Giảng viên Doanh nghiệp">Corporate
+                                Trainer</span>
+                        </span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] text-[10px] sm:text-[11px] font-medium text-[var(--soft-text-color)] flex items-center gap-1">
+                            <span
+                                class="material-symbols-outlined text-[13px] text-[var(--accent-color)]">psychology</span>
+                            <span class="t-lang" data-en="Data &amp; AI Mentor" data-vi="Cố vấn Dữ liệu & AI">Data &amp;
+                                AI Mentor</span>
+                        </span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] text-[10px] sm:text-[11px] font-medium text-[var(--soft-text-color)] flex items-center gap-1">
+                            <span
+                                class="material-symbols-outlined text-[13px] text-[var(--accent-color)]">account_tree</span>
+                            <span class="t-lang" data-en="Project Manager" data-vi="Quản Lý Dự Án (PM)">Quản Lý Dự Án
+                                (PM)</span>
+                        </span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] text-[10px] sm:text-[11px] font-medium text-[var(--soft-text-color)] flex items-center gap-1">
+                            <span
+                                class="material-symbols-outlined text-[13px] text-[var(--accent-color)]">record_voice_over</span>
+                            <span class="t-lang" data-en="Public Speaker" data-vi="Diễn Giả">Diễn Giả</span>
+                        </span>
+                    </div>
+
+                    <p class="text-[var(--soft-text-color)] text-[11px] leading-relaxed mt-1 px-2 t-lang"
+                        data-en="Transforming data into actionable insights. Passionate about building data cultures and empowering businesses through Data Platform &amp; AI solutions."
+                        data-vi="Khơi dậy giá trị dữ liệu thành lợi thế hành động. Đam mê xây dựng văn hóa dữ liệu và trao quyền cho doanh nghiệp bằng giải pháp Nền tảng Dữ liệu & AI.">
+                        Transforming data into actionable insights. Passionate about building data cultures and
+                        empowering businesses through Data Platform &amp; AI solutions.
+                    </p>
+
+                    <!-- Detailed Contact Match from Old Version -->
+                    <div
+                        class="grid grid-cols-2 gap-x-2 gap-y-1 w-full text-xs mt-1 text-left bg-[var(--card-bg)] p-2.5 border border-[var(--border-color)] rounded-lg">
+
+                        <div class="flex flex-col gap-1">
+                            <a class="flex items-center gap-1.5 p-1.5 rounded hover:bg-[var(--card-hover-bg)] transition-colors group"
+                                href="mailto:duc.nguyen@kpim.vn">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-transparent flex items-center justify-center shrink-0">
+                                    <span
+                                        class="material-symbols-outlined text-[var(--soft-text-color)] group-hover:text-[var(--accent-color)] text-[1rem]">mail</span>
+                                </div>
+                                <span
+                                    class="text-[var(--text-color)] group-hover:text-[var(--primary-light)] transition-colors font-medium truncate">duc.nguyen@kpim.vn</span>
+                            </a>
+                            <a class="flex items-center gap-1.5 p-1.5 rounded hover:bg-[var(--card-hover-bg)] transition-colors group"
+                                href="tel:0932215555">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-transparent flex items-center justify-center shrink-0">
+                                    <span
+                                        class="material-symbols-outlined text-[var(--soft-text-color)] group-hover:text-[var(--accent-color)] text-[1rem]">call</span>
+                                </div>
+                                <span
+                                    class="text-[var(--text-color)] group-hover:text-[var(--primary-light)] transition-colors font-medium">0932215555</span>
+                            </a>
+                            <a class="flex items-center gap-1.5 p-1.5 rounded hover:bg-[var(--card-hover-bg)] transition-colors group"
+                                href="https://kpim.vn" target="_blank">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-transparent flex items-center justify-center shrink-0">
+                                    <span
+                                        class="material-symbols-outlined text-[var(--soft-text-color)] group-hover:text-[var(--accent-color)] text-[1rem]">language</span>
+                                </div>
+                                <span
+                                    class="text-[var(--text-color)] group-hover:text-[var(--primary-light)] transition-colors font-medium">kpim.vn</span>
+                            </a>
+                        </div>
+
+                        <div class="flex flex-col gap-1 border-l border-white/5 pl-1.5 overflow-hidden">
+                            <a class="flex items-center gap-1.5 p-1.5 rounded hover:bg-[var(--card-hover-bg)] transition-colors group"
+                                href="https://compaclass.com/" target="_blank">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-transparent flex items-center justify-center shrink-0">
+                                    <span
+                                        class="material-symbols-outlined text-[var(--soft-text-color)] group-hover:text-[var(--accent-color)] text-[1rem]">school</span>
+                                </div>
+                                <span
+                                    class="text-[var(--text-color)] group-hover:text-[var(--primary-light)] transition-colors font-medium truncate">compaclass.com</span>
+                            </a>
+                            <a class="flex items-center gap-1.5 p-1.5 rounded hover:bg-[var(--card-hover-bg)] transition-colors group"
+                                href="#" target="_blank">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-transparent flex items-center justify-center shrink-0">
+                                    <span
+                                        class="material-symbols-outlined text-[var(--soft-text-color)] group-hover:text-[var(--accent-color)] text-[1rem]">language</span>
+                                </div>
+                                <span
+                                    class="text-[var(--text-color)] group-hover:text-[var(--primary-light)] transition-colors font-medium truncate">compaacademy.com</span>
+                            </a>
+                            <a class="flex items-center gap-1.5 p-1.5 rounded hover:bg-[var(--card-hover-bg)] transition-colors group"
+                                href="https://github.com/ducnguyen221" target="_blank">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-transparent flex items-center justify-center shrink-0">
+                                    <svg class="w-[1.2rem] h-[1.2rem] text-[var(--soft-text-color)] group-hover:text-[var(--accent-color)] transition-colors"
+                                        aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd"
+                                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <span
+                                    class="text-[var(--text-color)] group-hover:text-[var(--primary-light)] transition-colors font-medium truncate">ducnguyen221</span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="flex justify-center items-center gap-4 w-full mt-1 pt-3 border-t border-[var(--border-color)]">
+                        <a class="text-[var(--soft-text-color)] hover:text-[#1877F2] transition-colors"
+                            href="https://www.facebook.com/TobiNguyenData/" target="_blank" title="Facebook">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path clip-rule="evenodd"
+                                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                    fill-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a class="text-[var(--soft-text-color)] hover:text-[#0A66C2] transition-colors"
+                            href="https://www.linkedin.com/in/tobi-nguyen/" target="_blank" title="LinkedIn">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path clip-rule="evenodd"
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                                    fill-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a class="text-[var(--soft-text-color)] hover:text-[#FF0000] transition-colors"
+                            href="https://www.youtube.com/@PowerBIHeroVn" target="_blank" title="YouTube">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path clip-rule="evenodd"
+                                    d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.254.418-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 12 5 12 5s6.256 0 7.812.418zM9.75 15.02l5.75-3.02-5.75-3.02v6.04z"
+                                    fill-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Smart CTAs swapped from right column to here -->
+                <section class="grid grid-cols-2 gap-3 flex-shrink-0 md:flex-grow">
+                    <a href="https://forms.office.com/r/UfYJgH2f2W" target="_blank"
+                        class="order-1 w-full min-h-[92px] py-4 glass-panel flex items-center px-4 lg:px-5 gap-3 hover:bg-[var(--card-hover-bg)] transition-all border-l-4 border-l-[var(--accent-color)] text-left group cursor-pointer block">
+                        <span
+                            class="material-symbols-outlined text-[var(--accent-color)] group-hover:scale-110 transition-transform">edit_document</span>
+                        <div class="min-w-0">
+                            <p class="text-[10px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase t-lang"
+                                data-en="Contact" data-vi="Liên Hệ">Contact</p>
+                            <p class="text-xs font-bold text-[var(--text-color)] truncate t-lang"
+                                data-en="Fill Contact Form" data-vi="Điền Form Liên Hệ">Fill Contact Form</p>
+                        </div>
+                    </a>
+                    <a href="https://app.powerbi.com/view?r=eyJrIjoiNTE5NTQyNzUtM2ZjMy00N2MwLTgyOGEtYTc1NzMwYTAzNzVlIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D"
+                        target="_blank"
+                        class="order-5 w-full min-h-[92px] py-4 glass-panel flex items-center px-4 lg:px-5 gap-3 hover:bg-[var(--card-hover-bg)] transition-all border-l-4 border-l-[#F2C811] text-left group cursor-pointer block">
+                        <img src="./assets/images/powerbi-logo.svg" alt="Power BI Profile"
+                            class="w-6 h-6 object-contain flex-shrink-0 group-hover:scale-110 transition-transform" />
+                        <div class="min-w-0">
+                            <p class="text-[10px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase t-lang"
+                                data-en="Power BI" data-vi="Power BI">Power BI</p>
+                            <p class="text-xs font-bold text-[var(--text-color)] truncate t-lang"
+                                data-en="PowerBI Profile" data-vi="PowerBI Profile">PowerBI Profile</p>
+                        </div>
+                    </a>
+                    <a href="https://chatgpt.com/g/g-68c3c734d148819184c20b1e658ac81d-kpim-data-coach" target="_blank"
+                        class="order-3 w-full min-h-[92px] py-4 glass-panel flex items-center px-4 lg:px-5 gap-3 hover:bg-[var(--card-hover-bg)] transition-all border-l-4 border-l-[var(--primary-color)] text-left group cursor-pointer block">
+                        <span
+                            class="material-symbols-outlined text-[var(--primary-color)] group-hover:scale-110 transition-transform">smart_toy</span>
+                        <div class="min-w-0">
+                            <p class="text-[10px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase t-lang"
+                                data-en="AI Assistant" data-vi="Trợ lý AI">AI Assistant</p>
+                            <p class="text-xs font-bold text-[var(--text-color)] truncate t-lang"
+                                data-en="Talk with Data Coach" data-vi="Trò chuyện với Cố vấn">Talk with Data Coach</p>
+                        </div>
+                    </a>
+                    <a href="https://compaclass.com/blog" target="_blank"
+                        class="order-4 w-full min-h-[92px] py-4 glass-panel flex items-center px-4 lg:px-5 gap-3 hover:bg-[var(--card-hover-bg)] transition-all border-l-4 border-l-[var(--accent-color)] text-left group cursor-pointer block">
+                        <span
+                            class="material-symbols-outlined text-[var(--accent-color)] group-hover:scale-110 transition-transform">article</span>
+                        <div class="min-w-0">
+                            <p class="text-[10px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase t-lang"
+                                data-en="Reading Corner" data-vi="Góc Đọc Sách">Reading Corner</p>
+                            <p class="text-xs font-bold text-[var(--text-color)] truncate t-lang"
+                                data-en="Visit my Blog" data-vi="Đọc Blog của tôi">Visit my Blog</p>
+                        </div>
+                    </a>
+                    <a href="https://www.facebook.com/groups/powerbivietnam" target="_blank"
+                        class="order-2 w-full min-h-[92px] py-4 glass-panel flex items-center px-4 lg:px-5 gap-3 hover:bg-[var(--card-hover-bg)] transition-all border-l-4 border-l-[var(--primary-color)] text-left group cursor-pointer block">
+                        <span
+                            class="material-symbols-outlined text-[var(--primary-color)] group-hover:scale-110 transition-transform">groups</span>
+                        <div class="min-w-0">
+                            <p class="text-[10px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase t-lang"
+                                data-en="Professional Network" data-vi="Mạng lưới Chuyên gia">Professional Network</p>
+                            <p class="text-xs font-bold text-[var(--text-color)] truncate t-lang"
+                                data-en="Join Community" data-vi="Tham gia Cộng đồng">Join Community</p>
+                        </div>
+                    </a>
+                    <a href="https://app.powerbi.com/view?r=eyJrIjoiYmY4ODMyOWMtOTRkNC00MDEwLWEyYzItYzEzYmI5NWM4ZmVkIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D"
+                        target="_blank"
+                        class="order-6 w-full min-h-[92px] py-4 glass-panel flex items-center px-4 lg:px-5 gap-3 hover:bg-[var(--card-hover-bg)] transition-all border-l-4 border-l-[#F2C811] text-left group cursor-pointer block">
+                        <img src="./assets/images/powerbi-logo.svg" alt="Power BI Portfolio"
+                            class="w-6 h-6 object-contain flex-shrink-0 group-hover:scale-110 transition-transform" />
+                        <div class="min-w-0">
+                            <p class="text-[10px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase t-lang"
+                                data-en="Power BI" data-vi="Power BI">Power BI</p>
+                            <p class="text-xs font-bold text-[var(--text-color)] truncate t-lang"
+                                data-en="PowerBI Portfolio" data-vi="PowerBI Portfolio">PowerBI Portfolio</p>
+                        </div>
+                    </a>
+                </section>
+
+            </div>
+
+            <!-- Middle Column: LMS & Content -->
+            <div
+                class="dashboard-column md:col-span-4 lg:col-span-5 flex flex-col gap-5 md:overflow-y-auto md:pr-2 custom-scrollbar md:h-full min-h-0">
+
+                <!-- Experience & Achievements -->
+                <section class="glass-panel p-5 rounded-[1.25rem] relative flex-shrink-0">
+                    <div class="flex items-center justify-between gap-3 mb-4">
+                    <h3 class="text-[15px] font-semibold text-[var(--accent-color)] flex items-center gap-2 mb-0 t-lang"
+                        data-en="Experience &amp; Achievements" data-vi="Kinh nghiệm &amp; Thành tích">
+                        <span class="material-symbols-outlined text-[var(--accent-color)]"
+                            style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+                        Experience &amp; Achievements
+                    </h3>
+                    <a href="/profile/experience"
+                        class="text-[9px] text-[var(--accent-color)] font-bold tracking-widest uppercase hover:text-[var(--accent-hover-color)] transition-colors cursor-pointer whitespace-nowrap t-lang"
+                        data-en="View All" data-vi="Xem t&#7845;t c&#7843;">View All</a>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2.5">
+                        <div
+                            class="bg-[var(--card-bg)] border border-[var(--border-color)] rounded py-2 pr-2 pl-7 hover:border-[var(--accent-color)]/40 hover:-translate-y-0.5 transition-all">
+                            <div class="flex items-center gap-1.5 mb-1">
+                                <span
+                                    class="material-symbols-outlined text-[18px] text-[var(--primary-color)]">database</span>
+                                <span
+                                    class="text-[20px] font-bold text-[var(--accent-color)] leading-none">12</span>
+                            </div>
+                            <p class="text-[9px] text-[var(--soft-text-color)] leading-tight t-lang"
+                                data-en="Years of experience in data"
+                                data-vi="Năm kinh nghiệm ngành dữ liệu">Năm kinh nghiệm ngành dữ liệu</p>
+                        </div>
+                        <div
+                            class="bg-[var(--card-bg)] border border-[var(--border-color)] rounded py-2 pr-2 pl-7 hover:border-[var(--accent-color)]/40 hover:-translate-y-0.5 transition-all">
+                            <div class="flex items-center gap-1.5 mb-1">
+                                <span
+                                    class="material-symbols-outlined text-[18px] text-[var(--primary-color)]">school</span>
+                                <span
+                                    class="text-[20px] font-bold text-[var(--accent-color)] leading-none">8</span>
+                            </div>
+                            <p class="text-[9px] text-[var(--soft-text-color)] leading-tight t-lang"
+                                data-en="Years of training experience"
+                                data-vi="Năm kinh nghiệm đào tạo">Năm kinh nghiệm đào tạo</p>
+                        </div>
+                        <div
+                            class="bg-[var(--card-bg)] border border-[var(--border-color)] rounded py-2 pr-2 pl-7 hover:border-[var(--accent-color)]/40 hover:-translate-y-0.5 transition-all">
+                            <div class="flex items-center gap-1.5 mb-1">
+                                <span
+                                    class="material-symbols-outlined text-[18px] text-[var(--primary-color)]">account_tree</span>
+                                <span
+                                    class="text-[20px] font-bold text-[var(--accent-color)] leading-none">6</span>
+                            </div>
+                            <p class="text-[9px] text-[var(--soft-text-color)] leading-tight t-lang"
+                                data-en="Years of project management experience"
+                                data-vi="Năm kinh nghiệm quản lý dự án">Năm kinh nghiệm quản lý dự án</p>
+                        </div>
+                        <div
+                            class="bg-[var(--card-bg)] border border-[var(--border-color)] rounded py-2 pr-2 pl-7 hover:border-[var(--accent-color)]/40 hover:-translate-y-0.5 transition-all">
+                            <div class="flex items-center gap-1.5 mb-1">
+                                <span
+                                    class="material-symbols-outlined text-[18px] text-[var(--primary-color)]">groups</span>
+                                <span
+                                    class="text-[20px] font-bold text-[var(--accent-color)] leading-none t-lang"
+                                    data-en="2,332" data-vi="2.332">2.332</span>
+                            </div>
+                            <p class="text-[9px] text-[var(--soft-text-color)] leading-tight t-lang"
+                                data-en="Learners trained" data-vi="Học viên đào tạo">Học viên đào tạo</p>
+                        </div>
+                        <div
+                            class="bg-[var(--card-bg)] border border-[var(--border-color)] rounded py-2 pr-2 pl-7 hover:border-[var(--accent-color)]/40 hover:-translate-y-0.5 transition-all">
+                            <div class="flex items-center gap-1.5 mb-1">
+                                <span
+                                    class="material-symbols-outlined text-[18px] text-[var(--primary-color)]">menu_book</span>
+                                <span
+                                    class="text-[20px] font-bold text-[var(--accent-color)] leading-none">111</span>
+                            </div>
+                            <p class="text-[9px] text-[var(--soft-text-color)] leading-tight t-lang"
+                                data-en="Courses delivered" data-vi="Khóa học triển khai">Khóa học triển khai</p>
+                        </div>
+                        <div
+                            class="bg-[var(--card-bg)] border border-[var(--border-color)] rounded py-2 pr-2 pl-7 hover:border-[var(--accent-color)]/40 hover:-translate-y-0.5 transition-all">
+                            <div class="flex items-center gap-1.5 mb-1">
+                                <span
+                                    class="material-symbols-outlined text-[18px] text-[var(--primary-color)]">workspaces</span>
+                                <span
+                                    class="text-[20px] font-bold text-[var(--accent-color)] leading-none">70</span>
+                            </div>
+                            <p class="text-[9px] text-[var(--soft-text-color)] leading-tight t-lang"
+                                data-en="Projects delivered" data-vi="Dự án triển khai">Dự án triển khai</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Skills Box (Always Open) -->
+                <section class="glass-panel w-full rounded-[1.25rem] group flex-shrink-0 overflow-hidden">
+                    <div
+                        class="px-5 py-3 font-semibold text-[var(--accent-color)] flex justify-between items-center border-b border-[var(--border-color)]">
+                        <div class="flex items-center gap-2 text-[15px]">
+                            <span class="material-symbols-outlined text-[var(--accent-color)]">military_tech</span>
+                            <span class="t-lang" data-en="Core Competencies" data-vi="Năng lực Cốt lõi">Core
+                                Competencies</span>
+                        </div>
+                        <a href="/profile/projects"
+                            class="text-[9px] text-[var(--accent-color)] font-bold tracking-widest uppercase hover:text-[var(--accent-hover-color)] transition-colors cursor-pointer whitespace-nowrap t-lang"
+                            data-en="View Projects" data-vi="Xem d&#7921; &#225;n">View Projects</a>
+                    </div>
+                    <div class="px-4 py-4">
+                        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-3 text-[10px] leading-tight">
+                            <div class="flex flex-col gap-2">
+                                <p class="font-bold text-[var(--accent-color)] mb-1 uppercase tracking-wider text-[9px] t-lang"
+                                    data-en="Domain" data-vi="Tư duy Chuyên môn">Domain</p>
+                                <div class="flex items-center gap-1.5 text-[var(--soft-text-color)]"><span
+                                        class="material-symbols-outlined text-[16px]">architecture</span><span
+                                        class="truncate">Data Architecture</span></div>
+                                <div class="flex items-center gap-1.5 text-[var(--soft-text-color)]"><span
+                                        class="material-symbols-outlined text-[16px]">query_stats</span><span
+                                        class="truncate">Data Analytics</span></div>
+                                <div class="flex items-center gap-1.5 text-[var(--soft-text-color)]"><span
+                                        class="material-symbols-outlined text-[16px]">memory</span><span
+                                        class="truncate">AI Application</span></div>
+                                <div class="flex items-center gap-1.5 text-[var(--soft-text-color)]"><span
+                                        class="material-symbols-outlined text-[16px]">account_tree</span><span
+                                        class="truncate">Project Management</span></div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <p class="font-bold text-[var(--accent-color)] mb-1 uppercase tracking-wider text-[9px] t-lang"
+                                    data-en="Data Tools" data-vi="Công cụ Phân tích">Data Tools</p>
+                                <a href="https://www.microsoft.com/en-us/microsoft-365/excel" target="_blank"
+                                    class="core-tool-link">
+                                    <img src="./assets/images/excel-logo.svg" alt="Excel logo" class="core-tool-logo" />
+                                    <span class="truncate">Excel</span>
+                                </a>
+                                <a href="https://www.mysql.com/" target="_blank" class="core-tool-link">
+                                    <img src="./assets/images/mysql-logo.svg" alt="MySQL logo"
+                                        class="core-tool-logo" />
+                                    <span class="truncate">SQL</span>
+                                </a>
+                                <a href="https://powerbi.microsoft.com/" target="_blank" class="core-tool-link">
+                                    <img src="./assets/images/powerbi-logo.svg" alt="Power BI logo"
+                                        class="core-tool-logo" />
+                                    <span class="truncate">Power BI</span>
+                                </a>
+                                <a href="https://www.python.org/" target="_blank" class="core-tool-link">
+                                    <img src="./assets/images/python-logo.svg" alt="Python logo"
+                                        class="core-tool-logo" />
+                                    <span class="truncate">Python</span>
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <p class="font-bold text-[var(--accent-color)] mb-1 uppercase tracking-wider text-[9px] t-lang"
+                                    data-en="Automation" data-vi="Trục Tự động hóa">Automation</p>
+                                <a href="https://powerplatform.microsoft.com/" target="_blank" class="core-tool-link">
+                                    <img src="./assets/images/power-platform-logo.svg" alt="Power Platform logo"
+                                        class="core-tool-logo" />
+                                    <span class="truncate">Power Platform</span>
+                                </a>
+                                <a href="https://n8n.io/" target="_blank" class="core-tool-link">
+                                    <img src="./assets/images/n8n-logo.svg" alt="n8n logo"
+                                        class="core-tool-logo" />
+                                    <span class="truncate">n8n</span>
+                                </a>
+                                <a href="https://www.make.com/" target="_blank" class="core-tool-link">
+                                    <img src="./assets/images/make-logo.svg" alt="Make logo"
+                                        class="core-tool-logo" />
+                                    <span class="truncate">Make</span>
+                                </a>
+                                <a href="https://www.microsoft.com/en-us/microsoft-fabric" target="_blank"
+                                    class="core-tool-link">
+                                    <img src="./assets/images/fabric.png" alt="Microsoft Fabric logo"
+                                        class="core-tool-logo" />
+                                    <span class="truncate">Fabric</span>
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <p class="font-bold text-[var(--accent-color)] mb-1 uppercase tracking-wider text-[9px] t-lang"
+                                    data-en="GenAI" data-vi="Trí tuệ nhân tạo">GenAI</p>
+                                <a href="https://chatgpt.com/" target="_blank" class="core-tool-link">
+                                    <img src="./assets/images/chatgpt-logo.svg" alt="ChatGPT logo"
+                                        class="core-tool-logo" />
+                                    <span class="truncate">ChatGPT</span>
+                                </a>
+                                <a href="https://gemini.google.com/" target="_blank" class="core-tool-link">
+                                    <img src="./assets/images/gemini-logo.svg" alt="Gemini logo"
+                                        class="core-tool-logo" />
+                                    <span class="truncate">Gemini</span>
+                                </a>
+                                <a href="https://notebooklm.google.com/" target="_blank" class="core-tool-link">
+                                    <img src="./assets/images/notebooklm-logo.png" alt="NotebookLM logo"
+                                        class="core-tool-logo" />
+                                    <span class="truncate">NotebookLM</span>
+                                </a>
+                                <a href="https://aistudio.google.com/" target="_blank" class="core-tool-link">
+                                    <img src="./assets/images/google-ai-studio-logo.svg" alt="Google AI Studio logo"
+                                        class="core-tool-logo" />
+                                    <span class="truncate">AI Studio</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Social Media Highlights -->
+                <section class="glass-panel p-5 rounded-[1.25rem] relative overflow-hidden group flex-shrink-0">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h3 class="text-[15px] font-semibold text-[var(--accent-color)] flex items-center gap-2 t-lang"
+                                data-en="Social Media Highlights" data-vi="Tiêu điểm mạng xã hội">
+                                <span class="material-symbols-outlined text-[var(--accent-color)]" style="font-variation-settings: 'FILL' 1;">smart_display</span>
+                                Social Media Highlights
+                            </h3>
+                            <p class="text-[10px] text-[var(--soft-text-color)] mt-0.5 t-lang"
+                                data-en="Curated videos from my social channels"
+                                data-vi="Video nổi bật từ các kênh của tôi">Curated videos from my social channels</p>
+                        </div>
+                        <a href="/profile/socials"
+                            class="text-[9px] text-[var(--accent-color)] font-bold tracking-widest uppercase hover:text-[var(--accent-hover-color)] transition-colors cursor-pointer whitespace-nowrap mt-0.5 t-lang"
+                            data-en="View All" data-vi="Xem t&#7845;t c&#7843;">View All</a>
+                    </div>
+                    <div id="spotlight-gallery"
+                        class="aspect-video rounded-lg overflow-hidden bg-black mb-1 border border-[var(--border-color)] relative">
+                        <iframe id="spotlight-iframe" class="w-full h-full"
+                            src="https://www.youtube-nocookie.com/embed/Xb43L_vJsHw?rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+                            title="Social Media Highlights"
+                            frameborder="0"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                        <button type="button" id="spotlight-prev" aria-label="Previous video"
+                            class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center z-10 transition-all backdrop-blur-sm">
+                            <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+                        </button>
+                        <button type="button" id="spotlight-next" aria-label="Next video"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center z-10 transition-all backdrop-blur-sm">
+                            <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                        </button>
+                        <div id="spotlight-dots"
+                            class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10"></div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Right Column: Navigation Timeline & Social Spotlight -->
+            <div
+                class="dashboard-column md:col-span-4 lg:col-span-3 flex flex-col gap-5 md:overflow-y-auto md:pr-2 custom-scrollbar md:h-full min-h-0">
+
+                <!-- Career Timeline swapped to right column -->
+                <section class="glass-panel p-5 rounded-[1.25rem] flex flex-col gap-5 relative flex-shrink-0">
+                    <div class="flex items-center justify-between gap-3">
+                    <h3 class="text-[15px] font-semibold text-[var(--accent-color)] flex items-center gap-2 mb-0">
+                        <span class="material-symbols-outlined text-[var(--accent-color)]">work_history</span>
+                        <span class="t-lang" data-en="Career Timeline" data-vi="Hành trình Sự nghiệp">Career
+                            Timeline</span>
+                    </h3>
+                    <a href="/profile/experience"
+                        class="text-[9px] text-[var(--accent-color)] font-bold tracking-widest uppercase hover:text-[var(--accent-hover-color)] transition-colors cursor-pointer whitespace-nowrap t-lang"
+                        data-en="View All" data-vi="Xem t&#7845;t c&#7843;">View All</a>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- First column (existing 4) -->
+                        <div class="relative border-l-2 border-[var(--border-color)] ml-3 pb-1 space-y-6 group">
+                            <a href="https://www.facebook.com/compaclass" target="_blank" class="relative pl-5 block">
+                                <div
+                                    class="absolute -left-[14px] -top-1 flex h-[26px] w-[26px] items-center justify-center rounded-full bg-white border border-[var(--border-color)] shadow z-10 overflow-hidden">
+                                    <img alt="COMPA Logo" class="w-full h-full object-cover"
+                                        src="./assets/images/COMPA-CLASS.jpg" />
+                                </div>
+                                <div class="flex flex-col items-start text-left mt-[-4px]">
+                                    <span
+                                        class="text-[9px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5 t-lang"
+                                        data-en="Present (VN)" data-vi="Hiện Tại (VN)">Present (VN)</span>
+                                    <h4
+                                        class="text-[12px] xl:text-[13px] font-bold text-[var(--text-color)] hover:text-[var(--primary-light)] transition-colors leading-tight truncate w-full">
+                                        COMPA, JSC</h4>
+                                    <p class="text-[9px] xl:text-[10px] text-[var(--accent-color)] font-medium italic mt-0.5 t-lang truncate w-full"
+                                        data-en="Co-founder & CEO" data-vi="Đồng sáng lập & Điều hành">Co-founder & CEO
+                                    </p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.facebook.com/kpim.vn" target="_blank" class="relative pl-5 block">
+                                <div
+                                    class="absolute -left-[14px] -top-1 flex h-[26px] w-[26px] items-center justify-center rounded-full bg-white border border-[var(--border-color)] shadow z-10 overflow-hidden">
+                                    <img alt="KPIM Logo" class="w-full h-full object-cover"
+                                        src="./assets/images/Picture3.png" />
+                                </div>
+                                <div class="flex flex-col items-start text-left mt-[-4px]">
+                                    <span
+                                        class="text-[9px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5 t-lang"
+                                        data-en="Present (VN)" data-vi="Hiện Tại (VN)">Present (VN)</span>
+                                    <h4
+                                        class="text-[12px] xl:text-[13px] font-bold text-[var(--text-color)] hover:text-[var(--primary-light)] transition-colors leading-tight truncate w-full">
+                                        KPIM, JSC</h4>
+                                    <p class="text-[9px] xl:text-[10px] text-[var(--accent-color)] font-medium italic mt-0.5 t-lang truncate w-full"
+                                        data-en="Co-founder & CEO" data-vi="Đồng sáng lập & Điều hành">Co-founder & CEO
+                                    </p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.yptc.com/" target="_blank" class="relative pl-5 block">
+                                <div
+                                    class="absolute -left-[14px] -top-1 flex h-[26px] w-[26px] items-center justify-center rounded-full bg-white border border-[var(--border-color)] shadow z-10 overflow-hidden">
+                                    <img alt="YPTC Logo" class="w-full h-full object-cover"
+                                        src="./assets/images/YPTC-Logo.png" />
+                                </div>
+                                <div class="flex flex-col items-start text-left mt-[-4px]">
+                                    <span
+                                        class="text-[9px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5">2016-2020
+                                        (USA)</span>
+                                    <h4
+                                        class="text-[12px] xl:text-[13px] font-bold text-[var(--text-color)] hover:text-[var(--primary-light)] transition-colors leading-tight truncate w-full">
+                                        YPTC, LLC</h4>
+                                    <p class="text-[9px] xl:text-[10px] text-[var(--accent-color)] font-medium italic mt-0.5 t-lang truncate w-full"
+                                        data-en="DVG Manager" data-vi="Quản lý Phân tích Dữ liệu">DVG Manager</p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.lazada.vn/" target="_blank" class="relative pl-5 block">
+                                <div
+                                    class="absolute -left-[14px] -top-1 flex h-[26px] w-[26px] items-center justify-center rounded-full bg-white border border-[var(--border-color)] shadow z-10 overflow-hidden">
+                                    <img alt="Lazada Logo" class="w-full h-full object-cover"
+                                        src="./assets/images/logo-lazada.png" />
+                                </div>
+                                <div class="flex flex-col items-start text-left mt-[-4px]">
+                                    <span
+                                        class="text-[9px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5">2015
+                                        (SG, VN)</span>
+                                    <h4
+                                        class="text-[12px] xl:text-[13px] font-bold text-[var(--text-color)] hover:text-[var(--primary-light)] transition-colors leading-tight truncate w-full">
+                                        LAZADA</h4>
+                                    <p class="text-[9px] xl:text-[10px] text-[var(--accent-color)] font-medium italic mt-0.5 t-lang truncate w-full"
+                                        data-en="Analyst" data-vi="Chuyên viên Số liệu">Analyst</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Second column (NRG, Drexel, Ams) -->
+                        <div class="relative border-l-2 border-[var(--border-color)] ml-3 pb-1 space-y-6 group">
+                            <a href="https://www.nrg.com/" target="_blank" class="relative pl-5 block">
+                                <div
+                                    class="absolute -left-[14px] -top-1 flex h-[26px] w-[26px] items-center justify-center rounded-full bg-white border border-[var(--border-color)] shadow z-10 overflow-hidden">
+                                    <img alt="NRG Logo" class="w-full h-full object-cover"
+                                        src="./assets/images/NRG-logo.png" />
+                                </div>
+                                <div class="flex flex-col items-start text-left mt-[-4px]">
+                                    <span
+                                        class="text-[9px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5">2014
+                                        (USA)</span>
+                                    <h4
+                                        class="text-[12px] xl:text-[13px] font-bold text-[var(--text-color)] hover:text-[var(--primary-light)] transition-colors leading-tight truncate w-full">
+                                        NRG Energy</h4>
+                                    <p class="text-[9px] xl:text-[10px] text-[var(--accent-color)] font-medium italic mt-0.5 t-lang truncate w-full"
+                                        data-en="Data Analyst" data-vi="Phân tích Dữ liệu">Data Analyst</p>
+                                </div>
+                            </a>
+
+                            <a href="https://drexel.edu/" target="_blank" class="relative pl-5 block">
+                                <div
+                                    class="absolute -left-[14px] -top-1 flex h-[26px] w-[26px] items-center justify-center rounded-full bg-white border border-[var(--border-color)] shadow z-10 overflow-hidden">
+                                    <img alt="Drexel Logo" class="w-full h-full object-cover"
+                                        src="./assets/images/drexel-logo.jpg" />
+                                </div>
+                                <div class="flex flex-col items-start text-left mt-[-4px]">
+                                    <span
+                                        class="text-[9px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5">2012-2016
+                                        (USA)</span>
+                                    <h4
+                                        class="text-[12px] xl:text-[13px] font-bold text-[var(--text-color)] hover:text-[var(--primary-light)] transition-colors leading-tight truncate w-full">
+                                        Drexel Univ.</h4>
+                                    <p class="text-[9px] xl:text-[10px] text-[var(--accent-color)] font-medium italic mt-0.5 t-lang leading-tight w-full"
+                                        data-en="Honor School / Bachelor" data-vi="Tốt nghiệp Danh dự / Cử nhân">Honor
+                                        School / Bachelor</p>
+                                </div>
+                            </a>
+
+                            <a href="https://hn-ams.edu.vn/" target="_blank" class="relative pl-5 block">
+                                <div
+                                    class="absolute -left-[14px] -top-1 flex h-[26px] w-[26px] items-center justify-center rounded-full bg-white border border-[var(--border-color)] shadow z-10 overflow-hidden">
+                                    <img alt="Hanoi Amsterdam Logo" class="w-full h-full object-cover"
+                                        src="./assets/images/hnamsterdam-logo.jpg" />
+                                </div>
+                                <div class="flex flex-col items-start text-left mt-[-4px]">
+                                    <span
+                                        class="text-[9px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5">2007-2012</span>
+                                    <h4
+                                        class="text-[12px] xl:text-[13px] font-bold text-[var(--text-color)] hover:text-[var(--primary-light)] transition-colors leading-tight truncate w-full">
+                                        Hanoi Amsterdam</h4>
+                                    <p class="text-[9px] xl:text-[10px] text-[var(--accent-color)] font-medium italic mt-0.5 t-lang leading-tight w-full"
+                                        data-en="Amser" data-vi="Cựu học sinh Ams">Amser</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- LMS & Courses -->
+                <section class="glass-panel p-5 rounded-[1.25rem] flex flex-col gap-3 md:flex-grow">
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="text-[15px] font-semibold text-[var(--accent-color)] flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[var(--accent-color)]">model_training</span>
+                            <span class="t-lang" data-en="My Training Program" data-vi="Chương trình Đào tạo">My
+                                Training Program</span>
+                        </h3>
+                        <a href="/profile/courses"
+                            class="text-[9px] text-[var(--accent-color)] font-bold tracking-widest uppercase hover:text-[var(--accent-hover-color)] transition-colors cursor-pointer whitespace-nowrap t-lang"
+                            data-en="View All" data-vi="Xem t&#7845;t c&#7843;">View All</a>
+                        <span
+                            class="hidden text-[9px] text-[var(--accent-color)] font-bold tracking-widest uppercase hover:text-[var(--accent-hover-color)] transition-colors cursor-pointer t-lang"
+                            data-en="View All" data-vi="Xem tất cả">View All</span>
+                    </div>
+                    <div class="flex flex-col gap-2 mt-2">
+                        <a href="https://compaclass.com/course/37c90656-6ef4-45f6-a767-bb00e1ee5342" target="_blank"
+                            class="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group cursor-pointer border border-transparent hover:border-[var(--border-color)] flex-shrink-0">
+                            <div class="w-14 h-9 overflow-hidden bg-[var(--bg-end)] flex-shrink-0 rounded-sm">
+                                <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                    src="./assets/images/powerbi_coban_compaclass.jpg" />
+                            </div>
+                            <div class="flex flex-col flex-grow min-w-0">
+                                <span
+                                    class="text-[11px] font-bold text-[var(--text-color)] truncate group-hover:text-[var(--primary-light)] transition-colors">Power
+                                    BI Cơ Bản</span>
+                                <div class="flex items-center gap-3 mt-0.5 text-[var(--soft-text-color)]">
+                                    <span class="text-[9px] flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-[10px]">schedule</span> 18h &bull;
+                                        <span class="t-lang" data-en="Basic" data-vi="Cơ bản">Cơ bản</span></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://compaclass.com/learn/course/data-analytics-fundamental-v2/overview"
+                            target="_blank"
+                            class="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group cursor-pointer border border-transparent hover:border-[var(--border-color)] flex-shrink-0">
+                            <div class="w-14 h-9 overflow-hidden bg-[var(--bg-end)] flex-shrink-0 rounded-sm">
+                                <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                    src="./assets/images/data-analytics-fundamental.webp" />
+                            </div>
+                            <div class="flex flex-col flex-grow min-w-0">
+                                <span
+                                    class="text-[11px] font-bold text-[var(--text-color)] truncate group-hover:text-[var(--primary-light)] transition-colors">Data
+                                    Analytics Fundamental</span>
+                                <div class="flex items-center gap-3 mt-0.5 text-[var(--soft-text-color)]">
+                                    <span class="text-[9px] flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-[10px]">schedule</span> 24h &bull;
+                                        <span class="t-lang" data-en="Beginner" data-vi="Nhập môn">Nhập
+                                            môn</span></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://compaclass.com/vn/learn/course/ung-dung-ai-trong-cong-viec-va-phan-tich-du-lieu-1/overview"
+                            target="_blank"
+                            class="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group cursor-pointer border border-transparent hover:border-[var(--border-color)] flex-shrink-0">
+                            <div class="w-14 h-9 overflow-hidden bg-[var(--bg-end)] flex-shrink-0 rounded-sm">
+                                <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                    src="./assets/images/ai-data-analytics.webp" />
+                            </div>
+                            <div class="flex flex-col flex-grow min-w-0">
+                                <span
+                                    class="text-[11px] font-bold text-[var(--text-color)] truncate group-hover:text-[var(--primary-light)] transition-colors">Ứng
+                                    dụng AI trong Phân tích Dữ liệu</span>
+                                <div class="flex items-center gap-3 mt-0.5 text-[var(--soft-text-color)]">
+                                    <span class="text-[9px] flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-[10px]">schedule</span> 24h &bull;
+                                        <span class="t-lang" data-en="Intermediate" data-vi="Trung cấp">Trung
+                                            cấp</span></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://compaclass.com/vn/learn/course/hr-analytics-3/overview" target="_blank"
+                            class="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group cursor-pointer border border-transparent hover:border-[var(--border-color)] flex-shrink-0">
+                            <div class="w-14 h-9 overflow-hidden bg-[var(--bg-end)] flex-shrink-0 rounded-sm">
+                                <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                    src="./assets/images/hr-analytics.webp" />
+                            </div>
+                            <div class="flex flex-col flex-grow min-w-0">
+                                <span
+                                    class="text-[11px] font-bold text-[var(--text-color)] truncate group-hover:text-[var(--primary-light)] transition-colors">Phân
+                                    tích dữ liệu nhân sự (HR Analytics)</span>
+                                <div class="flex items-center gap-3 mt-0.5 text-[var(--soft-text-color)]">
+                                    <span class="text-[9px] flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-[10px]">schedule</span> 24h &bull;
+                                        <span class="t-lang" data-en="Advanced" data-vi="Chuyên sâu">Chuyên
+                                            sâu</span></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://compaclass.com/vn/learn/course/ai-automation-trong-hr-2/overview"
+                            target="_blank"
+                            class="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group cursor-pointer border border-transparent hover:border-[var(--border-color)] flex-shrink-0">
+                            <div class="w-14 h-9 overflow-hidden bg-[var(--bg-end)] flex-shrink-0 rounded-sm">
+                                <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                    src="./assets/images/ai-hr-automation.webp" />
+                            </div>
+                            <div class="flex flex-col flex-grow min-w-0">
+                                <span
+                                    class="text-[11px] font-bold text-[var(--text-color)] truncate group-hover:text-[var(--primary-light)] transition-colors">Ứng
+                                    dụng AI & Automation HR</span>
+                                <div class="flex items-center gap-3 mt-0.5 text-[var(--soft-text-color)]">
+                                    <span class="text-[9px] flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-[10px]">schedule</span> 12h &bull;
+                                        <span class="t-lang" data-en="Advanced" data-vi="Chuyên sâu">Chuyên
+                                            sâu</span></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://compaclass.com/vn/learn/course/khoa-hoc-microsoft-fabric-co-ban-1/overview"
+                            target="_blank"
+                            class="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group cursor-pointer border border-transparent hover:border-[var(--border-color)] flex-shrink-0">
+                            <div class="w-14 h-9 overflow-hidden bg-[var(--bg-end)] flex-shrink-0 rounded-sm">
+                                <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                    src="./assets/images/ms-fabric-basic.webp" />
+                            </div>
+                            <div class="flex flex-col flex-grow min-w-0">
+                                <span
+                                    class="text-[11px] font-bold text-[var(--text-color)] truncate group-hover:text-[var(--primary-light)] transition-colors">Microsoft
+                                    Fabric Cơ Bản</span>
+                                <div class="flex items-center gap-3 mt-0.5 text-[var(--soft-text-color)]">
+                                    <span class="text-[9px] flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-[10px]">schedule</span> 24h &bull;
+                                        <span class="t-lang" data-en="Intermediate" data-vi="Trung cấp">Trung
+                                            cấp</span></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://compaclass.com/vn/learn/course/phan-tich-du-lieu-voi-excel-v1/overview"
+                            target="_blank"
+                            class="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group cursor-pointer border border-transparent hover:border-[var(--border-color)] flex-shrink-0">
+                            <div class="w-14 h-9 overflow-hidden bg-[var(--bg-end)] flex-shrink-0 rounded-sm">
+                                <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                    src="./assets/images/excel-data-analytics.webp" />
+                            </div>
+                            <div class="flex flex-col flex-grow min-w-0">
+                                <span
+                                    class="text-[11px] font-bold text-[var(--text-color)] truncate group-hover:text-[var(--primary-light)] transition-colors">Phân
+                                    tích dữ liệu với Excel</span>
+                                <div class="flex items-center gap-3 mt-0.5 text-[var(--soft-text-color)]">
+                                    <span class="text-[9px] flex items-center gap-1"><span
+                                            class="material-symbols-outlined text-[10px]">schedule</span> 18h &bull;
+                                        <span class="t-lang" data-en="Basic" data-vi="Cơ bản">Cơ bản</span></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- BottomNavBar for Mobile -->
+    <nav
+        class="md:hidden fixed bottom-0 left-0 w-full z-100 bg-[var(--card-bg)] backdrop-blur-xl border-t border-[var(--border-color)] flex justify-around items-center px-4 pb-6 pt-3 shadow-[0_-8px_32px_var(--shadow-color)]">
+        <a class="flex flex-col items-center justify-center text-[var(--soft-text-color)] hover:text-[var(--primary-color)] transition-all"
+            href="/profile/experience">
+            <span class="material-symbols-outlined">work</span>
+            <span class="text-[10px] font-semibold uppercase tracking-widest font-['Inter'] mt-1 t-lang"
+                data-en="Experience" data-vi="Kinh nghiệm">Experience</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-[var(--soft-text-color)] hover:text-[var(--primary-color)] transition-all"
+            href="/profile/courses">
+            <span class="material-symbols-outlined">school</span>
+            <span class="text-[10px] font-semibold uppercase tracking-widest font-['Inter'] mt-1 t-lang" data-en="LMS"
+                data-vi="Học tập">LMS</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-[var(--accent-color)] drop-shadow-[0_0_8px_rgba(198,151,73,0.3)]"
+            href="#">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-[10px] font-semibold uppercase tracking-widest font-['Inter'] mt-1 t-lang"
+                data-en="Profile" data-vi="Hồ sơ">Profile</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-[var(--soft-text-color)] hover:text-[var(--primary-color)] transition-all"
+            href="/profile/socials">
+            <span class="material-symbols-outlined">subscriptions</span>
+            <span class="text-[10px] font-semibold uppercase tracking-widest font-['Inter'] mt-1 t-lang"
+                data-en="Social" data-vi="Mạng XH">Social</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-[var(--soft-text-color)] hover:text-[var(--primary-color)] transition-all"
+            href="/profile/solutions">
+            <span class="material-symbols-outlined">widgets</span>
+            <span class="text-[10px] font-semibold uppercase tracking-widest font-['Inter'] mt-1 t-lang"
+                data-en="Solutions" data-vi="Gi&#7843;i ph&#225;p">Solutions</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-[var(--soft-text-color)] hover:text-[var(--primary-color)] transition-all"
+            href="/profile/powerbi">
+            <span class="material-symbols-outlined">bar_chart</span>
+            <span class="text-[10px] font-semibold uppercase tracking-widest font-['Inter'] mt-1 t-lang"
+                data-en="Actions" data-vi="Tương tác">Actions</span>
+        </a>
+    </nav>
+
+    <!-- Generic App Modal -->
+    <div id="app-modal"
+        class="fixed inset-0 z-[999] bg-black/60 backdrop-blur-sm hidden justify-center items-center opacity-0 transition-opacity duration-300">
+        <div class="glass-panel w-[90%] max-w-4xl max-h-[90vh] flex flex-col rounded-2xl overflow-hidden transform scale-95 transition-transform duration-300"
+            id="modal-content-container">
+            <!-- Header -->
+            <div class="flex justify-between items-center p-4 border-b border-[var(--border-color)]">
+                <h3 id="modal-title" class="font-bold text-[var(--accent-color)] text-lg">Title</h3>
+                <button id="close-modal-btn"
+                    class="text-[var(--soft-text-color)] hover:text-[var(--text-color)] transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <!-- Body -->
+            <div id="modal-body" class="p-5 flex flex-col items-center justify-center overflow-y-auto custom-scrollbar">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dashboardStage = document.getElementById('dashboard-stage');
+        const dashboardFrame = document.getElementById('dashboard-frame');
+        const dashboardColumns = Array.from(document.querySelectorAll('.dashboard-column'));
+        let dashboardFitFrameId = null;
+
+        function resetDashboardFit() {
+            document.body.classList.remove('desktop-fit-mode');
+            if (!dashboardFrame) return;
+            dashboardFrame.style.transform = '';
+        }
+
+        function fitDashboardLayout() {
+            if (!dashboardStage || !dashboardFrame) return;
+
+            const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+            if (!isDesktop) {
+                resetDashboardFit();
+                return;
+            }
+
+            document.body.classList.add('desktop-fit-mode');
+            dashboardFrame.style.transform = 'scale(1)';
+
+            const stageWidth = dashboardStage.clientWidth;
+            const stageHeight = dashboardStage.clientHeight;
+            if (!stageWidth || !stageHeight) return;
+
+            const contentWidth = dashboardFrame.scrollWidth;
+            const columnHeights = dashboardColumns.map((column) => column.scrollHeight);
+            const contentHeight = Math.max(dashboardFrame.scrollHeight, ...columnHeights);
+
+            const widthScale = stageWidth / contentWidth;
+            const heightScale = stageHeight / contentHeight;
+            const scale = Math.min(1, widthScale, heightScale);
+
+            dashboardFrame.style.transform = `scale(${scale})`;
+        }
+
+        function scheduleDashboardFit() {
+            if (dashboardFitFrameId) {
+                cancelAnimationFrame(dashboardFitFrameId);
+            }
+
+            dashboardFitFrameId = requestAnimationFrame(() => {
+                dashboardFitFrameId = null;
+                fitDashboardLayout();
+            });
+        }
+
+        // i18n Translation Logic
+        const langToggleBtn = document.getElementById('lang-toggle-btn');
+        let currentLang = 'vi'; // Default language
+
+        function normalizeNavigationLabels() {
+            document.querySelectorAll('.t-lang[data-en="LMS"]').forEach(el => {
+                el.setAttribute('data-en', 'Courses');
+                el.setAttribute('data-vi', 'Kh&#243;a h&#7885;c');
+                el.innerHTML = 'Courses';
+            });
+
+            document.querySelectorAll('.t-lang[data-en="Actions"]').forEach(el => {
+                el.setAttribute('data-en', 'PowerBI Demo');
+                el.setAttribute('data-vi', 'PowerBI Demo');
+                el.innerHTML = 'PowerBI Demo';
+            });
+        }
+
+        function applyTranslation(lang) {
+            document.querySelectorAll('.t-lang').forEach(el => {
+                const translation = el.getAttribute(`data-${lang}`);
+                if (!translation) return;
+
+                const preservedIcons = Array.from(el.children)
+                    .filter(child => child.matches('.material-symbols-outlined, img, svg'))
+                    .map(child => child.outerHTML)
+                    .join('');
+
+                el.innerHTML = preservedIcons ? `${preservedIcons} ${translation}` : translation;
+            });
+            scheduleDashboardFit();
+        }
+
+        // Apply default language immediately on load
+        normalizeNavigationLabels();
+        applyTranslation(currentLang);
+
+        langToggleBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'vi' : 'en';
+            langToggleBtn.innerText = currentLang === 'en' ? 'EN' : 'VI';
+            applyTranslation(currentLang);
+        });
+
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const htmlEl = document.documentElement;
+
+        themeToggleBtn.addEventListener('click', () => {
+            htmlEl.classList.toggle('dark');
+            const isDark = htmlEl.classList.contains('dark');
+            themeToggleBtn.innerText = isDark ? 'dark_mode' : 'light_mode';
+            scheduleDashboardFit();
+        });
+
+        window.addEventListener('load', scheduleDashboardFit);
+        window.addEventListener('resize', scheduleDashboardFit);
+
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', scheduleDashboardFit);
+        }
+
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(scheduleDashboardFit);
+        }
+
+        if (window.ResizeObserver) {
+            const dashboardResizeObserver = new ResizeObserver(() => {
+                scheduleDashboardFit();
+            });
+
+            if (dashboardStage) dashboardResizeObserver.observe(dashboardStage);
+            if (dashboardFrame) dashboardResizeObserver.observe(dashboardFrame);
+        }
+
+        // --- Canvas Animated Background (Neural Network) ---
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        // Get RGB color dynamically based on theme
+        function getParticleRGB() {
+            return document.documentElement.classList.contains('dark') ? '198, 151, 73' : '76, 107, 75'; // Gold for dark, Green for light
+        }
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initParticles();
+        }
+
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.min(width * height / 9000, 150); // Increased density
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 2 + 0.8, // Bigger particles
+                    opacity: Math.random() * 0.5 + 0.3 // Brighter
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            const rgbColor = getParticleRGB();
+            const connectOpacity = document.documentElement.classList.contains('dark') ? '0.2' : '0.15';
+
+            // Draw particles
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Bounce off edges
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${rgbColor}, ${p.opacity})`;
+                ctx.fill();
+            });
+
+            // Draw connections (subtle neural net effect)
+            ctx.strokeStyle = `rgba(${rgbColor}, ${connectOpacity})`;
+            ctx.lineWidth = 0.6;
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 130) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+
+        // --- More Menu & Modal Logic ---
+        const moreMenuBtn = document.getElementById('more-menu-btn');
+        const moreMenuContainer = document.getElementById('more-menu-container');
+        const moreMenu = document.getElementById('more-menu');
+
+        moreMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            moreMenu.classList.toggle('hidden');
+            moreMenu.classList.toggle('flex');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!moreMenuContainer.contains(e.target)) {
+                moreMenu.classList.add('hidden');
+                moreMenu.classList.remove('flex');
+            }
+        });
+
+        // Modal Logic
+        const appModal = document.getElementById('app-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modalContentContainer = document.getElementById('modal-content-container');
+
+        function openModal(title, contentHtml) {
+            modalTitle.innerHTML = title;
+            modalBody.innerHTML = contentHtml;
+            appModal.classList.remove('hidden');
+            appModal.classList.add('flex');
+
+            // Trigger animation
+            setTimeout(() => {
+                appModal.classList.remove('opacity-0');
+                modalContentContainer.classList.remove('scale-95');
+            }, 10);
+
+            // Close menu if open
+            moreMenu.classList.add('hidden');
+            moreMenu.classList.remove('flex');
+        }
+
+        function closeModal() {
+            appModal.classList.add('opacity-0');
+            modalContentContainer.classList.add('scale-95');
+            setTimeout(() => {
+                appModal.classList.add('hidden');
+                appModal.classList.remove('flex');
+                modalBody.innerHTML = '';
+            }, 300);
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        appModal.addEventListener('click', (e) => {
+            if (e.target === appModal) closeModal();
+        });
+
+        function fallbackCopyText(text) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            tempInput.setAttribute('readonly', '');
+            tempInput.style.position = 'fixed';
+            tempInput.style.opacity = '0';
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, tempInput.value.length);
+            const copied = document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            return copied;
+        }
+
+        function copyToClipboard(text, successMessage) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text)
+                    .then(() => alert(successMessage))
+                    .catch(() => {
+                        if (fallbackCopyText(text)) {
+                            alert(successMessage);
+                        }
+                    });
+                return;
+            }
+
+            if (fallbackCopyText(text)) {
+                alert(successMessage);
+            }
+        }
+
+        function shareWithNative(title, url) {
+            if (!navigator.share) return;
+            navigator.share({ title, url }).catch(() => { });
+        }
+
+        // 1. Share Feature
+        document.getElementById('share-btn').addEventListener('click', () => {
+            const url = window.location.href;
+            const pageTitle = document.title;
+            const title = currentLang === 'vi' ? 'Chia sẻ Hồ sơ' : 'Share Profile';
+            const descText = currentLang === 'vi'
+                ? 'Chia sẻ hồ sơ của bạn với bạn bè và đồng nghiệp.'
+                : 'Share this profile with friends and colleagues.';
+            const copyText = currentLang === 'vi' ? 'Sao chép Link' : 'Copy Link';
+            const shareText = currentLang === 'vi' ? 'Chia sẻ' : 'Share';
+            const copiedAlert = currentLang === 'vi' ? 'Đã sao chép!' : 'Copied!';
+            const nativeShareBtn = navigator.share ? `
+                <button onclick="navigator.share({ title: ${JSON.stringify(pageTitle)}, url: ${JSON.stringify(url)} }).catch(() => {})" class="px-5 py-2.5 rounded-lg bg-[var(--accent-color)] hover:bg-[var(--accent-hover-color)] text-white text-sm font-bold shadow-lg transition-all flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[1.1rem]">share</span>
+                    <span>${shareText}</span>
+                </button>` : '';
+            const content = `
+            <div class="flex flex-col items-center gap-4 w-full">
+                <span class="material-symbols-outlined text-[64px] text-[var(--accent-color)]" style="font-variation-settings: 'FILL' 1;">share</span>
+                <p class="text-sm text-[var(--text-color)] text-center">${descText}</p>
+                <div class="w-full max-w-xl p-3 rounded-lg bg-[var(--bg-end)] border border-[var(--border-color)] flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[var(--soft-text-color)] text-[18px] flex-shrink-0">link</span>
+                    <span class="text-xs text-[var(--soft-text-color)] break-all">${url}</span>
+                </div>
+                <div class="flex gap-3 flex-wrap justify-center">
+                    <button onclick="navigator.clipboard.writeText(${JSON.stringify(url)}).then(() => alert(${JSON.stringify(copiedAlert)}))" class="px-5 py-2.5 rounded-lg bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white text-sm font-bold shadow-lg transition-all flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[1.1rem]">content_copy</span>
+                        <span>${copyText}</span>
+                    </button>
+                    ${nativeShareBtn}
+                </div>
+            </div>
+            `;
+            openModal(title, content);
+        });
+
+        const shareBtn = document.getElementById('share-btn');
+        const shareBtnClone = shareBtn.cloneNode(true);
+        shareBtn.parentNode.replaceChild(shareBtnClone, shareBtn);
+
+        shareBtnClone.addEventListener('click', () => {
+            const url = window.location.href;
+            const pageTitle = document.title;
+            const encodedUrl = encodeURIComponent(url);
+            const encodedTitle = encodeURIComponent(pageTitle);
+            const title = currentLang === 'vi' ? 'Chia s\u1ebb H\u1ed3 s\u01a1' : 'Share Profile';
+            const descText = currentLang === 'vi'
+                ? 'Chia s\u1ebb h\u1ed3 s\u01a1 c\u1ee7a b\u1ea1n v\u1edbi b\u1ea1n b\u00e8 v\u00e0 \u0111\u1ed3ng nghi\u1ec7p.'
+                : 'Share this profile with friends and colleagues.';
+            const copyText = currentLang === 'vi' ? 'Sao ch\u00e9p link' : 'Copy link';
+            const shareText = currentLang === 'vi' ? 'Chia s\u1ebb nhanh' : 'Quick share';
+            const copiedAlert = currentLang === 'vi' ? '\u0110\u00e3 sao ch\u00e9p!' : 'Copied!';
+            const socialTitle = currentLang === 'vi' ? 'Chia s\u1ebb qua m\u1ea1ng x\u00e3 h\u1ed9i' : 'Share on social media';
+            const socialTargets = [
+                {
+                    label: 'Facebook',
+                    icon: 'f',
+                    color: '#1877F2',
+                    href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`
+                },
+                {
+                    label: 'LinkedIn',
+                    icon: 'in',
+                    color: '#0A66C2',
+                    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`
+                },
+                {
+                    label: 'X',
+                    icon: 'X',
+                    color: '#111827',
+                    href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`
+                },
+                {
+                    label: 'WhatsApp',
+                    icon: 'WA',
+                    color: '#25D366',
+                    href: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`
+                },
+                {
+                    label: 'Telegram',
+                    icon: 'TG',
+                    color: '#229ED9',
+                    href: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`
+                }
+            ];
+            const socialButtons = socialTargets.map(({ label, icon, color, href }) => `
+                <a href="${href}" target="_blank" rel="noopener noreferrer"
+                    class="flex items-center gap-3 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] px-4 py-3 hover:bg-[var(--card-hover-bg)] transition-all">
+                    <span class="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0" style="background:${color};">${icon}</span>
+                    <span class="text-sm font-semibold text-[var(--text-color)]">${label}</span>
+                </a>
+            `).join('');
+            const nativeShareBtn = navigator.share ? `
+                <button type="button" onclick="shareWithNative(${JSON.stringify(pageTitle)}, ${JSON.stringify(url)})" class="px-5 py-2.5 rounded-lg bg-[var(--accent-color)] hover:bg-[var(--accent-hover-color)] text-white text-sm font-bold shadow-lg transition-all flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[1.1rem]">share</span>
+                    <span>${shareText}</span>
+                </button>` : '';
+            const content = `
+            <div class="flex flex-col items-center gap-5 w-full">
+                <span class="material-symbols-outlined text-[64px] text-[var(--accent-color)]" style="font-variation-settings: 'FILL' 1;">share</span>
+                <p class="text-sm text-[var(--text-color)] text-center max-w-lg">${descText}</p>
+                <div class="w-full max-w-xl p-3 rounded-xl bg-[var(--bg-end)] border border-[var(--border-color)] flex flex-col sm:flex-row sm:items-center gap-3">
+                    <div class="flex items-center gap-2 flex-1 min-w-0">
+                        <span class="material-symbols-outlined text-[var(--soft-text-color)] text-[18px] flex-shrink-0">link</span>
+                        <span class="text-xs text-[var(--soft-text-color)] break-all">${url}</span>
+                    </div>
+                    <button type="button" onclick="copyToClipboard(${JSON.stringify(url)}, ${JSON.stringify(copiedAlert)})" class="px-4 py-2 rounded-lg bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white text-sm font-bold shadow-lg transition-all flex items-center justify-center gap-2 w-full sm:w-auto flex-shrink-0">
+                        <span class="material-symbols-outlined text-[1.1rem]">content_copy</span>
+                        <span>${copyText}</span>
+                    </button>
+                </div>
+                <div class="flex gap-3 flex-wrap justify-center">
+                    ${nativeShareBtn}
+                </div>
+                <div class="w-full max-w-xl flex flex-col gap-3">
+                    <p class="text-xs font-bold uppercase tracking-[0.24em] text-[var(--soft-text-color)] text-center">${socialTitle}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        ${socialButtons}
+                    </div>
+                </div>
+            </div>
+            `;
+            openModal(title, content);
+        });
+
+        // 2. QR Code Feature
+        document.getElementById('qr-btn').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${url}&margin=10`;
+            const title = currentLang === 'vi' ? 'Mã QR Hồ sơ' : 'Profile QR Code';
+            const content = `
+            <img src="${qrUrl}" alt="QR Code" class="w-[400px] h-[400px] max-w-full object-contain mb-4 shadow-lg" />
+            <p class="text-xs text-[var(--soft-text-color)] mb-4 text-center break-all px-2">${window.location.href}</p>
+            <button onclick="navigator.clipboard.writeText(window.location.href).then(() => alert(currentLang === 'vi' ? 'Đã sao chép!' : 'Copied!'))" class="px-5 py-2.5 rounded-lg bg-[var(--primary-color)] hover:bg-[var(--primary-hover-color)] text-white text-sm font-bold shadow-lg transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined text-[1.1rem]">content_copy</span>
+                <span class="t-lang" data-en="Copy Link" data-vi="Sao chép Link">${currentLang === 'vi' ? 'Sao chép Link' : 'Copy Link'}</span>
+            </button>
+        `;
+            openModal(title, content);
+        });
+
+        // 3. Business Card Feature
+        document.getElementById('bcard-btn').addEventListener('click', () => {
+            const title = currentLang === 'vi' ? 'Danh thiếp' : 'Business Card';
+            const content = `
+            <div class="w-full flex flex-col gap-4">
+                <div class="w-full rounded-xl overflow-hidden border border-[var(--border-color)] shadow-xl relative bg-[var(--bg-end)]">
+                    <img src="./assets/images/Business Card.png" alt="Business Card" class="w-full h-auto object-contain" onerror="this.src='./assets/images/KPIM-Duc-Nguyen.png'">
+                </div>
+            </div>
+            <a href="./assets/images/Business Card.png" download class="mt-5 px-5 py-2.5 rounded-lg bg-[var(--accent-color)] hover:bg-[var(--accent-hover-color)] text-white text-sm font-bold shadow-lg transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined text-[1.1rem]">download</span>
+                <span class="t-lang" data-en="Download Card" data-vi="Tải Danh thiếp">${currentLang === 'vi' ? 'Tải Danh thiếp' : 'Download Card'}</span>
+            </a>
+        `;
+            openModal(title, content);
+        });
+
+        // 4. Social Media Highlights video gallery
+        (() => {
+            const videos = ['Xb43L_vJsHw', 'HDqlADdszy4', 'Km4Q66WcbeE', 'PQE8KuVhg20', 'BaUNKOE7_Lk'];
+            const iframe = document.getElementById('spotlight-iframe');
+            const dotsContainer = document.getElementById('spotlight-dots');
+            const prevBtn = document.getElementById('spotlight-prev');
+            const nextBtn = document.getElementById('spotlight-next');
+            if (!iframe || !dotsContainer || !prevBtn || !nextBtn) return;
+
+            let idx = 0;
+            let timer = null;
+            let player = null;
+            let playerReady = false;
+            let viewerLocked = false;
+            const INTERVAL = 10000;
+            const buildUrl = (id) => `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
+
+            const loadYouTubeApi = () => new Promise((resolve, reject) => {
+                if (window.YT && typeof window.YT.Player === 'function') {
+                    resolve(window.YT);
+                    return;
+                }
+
+                const previousReady = window.onYouTubeIframeAPIReady;
+                window.onYouTubeIframeAPIReady = () => {
+                    if (typeof previousReady === 'function') previousReady();
+                    resolve(window.YT);
+                };
+
+                if (!document.querySelector('script[data-youtube-iframe-api]')) {
+                    const script = document.createElement('script');
+                    script.src = 'https://www.youtube.com/iframe_api';
+                    script.async = true;
+                    script.dataset.youtubeIframeApi = 'true';
+                    script.onerror = reject;
+                    document.head.appendChild(script);
+                }
+            });
+
+            const updateDots = () => {
+                dotsContainer.querySelectorAll('button').forEach((d, i) => {
+                    const active = i === idx;
+                    d.className = `rounded-full transition-all ${active ? 'w-4 h-2 bg-white' : 'w-2 h-2 bg-white/50 hover:bg-white/80'}`;
+                });
+            };
+
+            const stop = () => {
+                if (timer) {
+                    clearInterval(timer);
+                    timer = null;
+                }
+            };
+
+            const start = () => {
+                if (viewerLocked) return;
+                stop();
+                timer = setInterval(() => goTo((idx + 1) % videos.length), INTERVAL);
+            };
+
+            const goTo = (newIdx, options = {}) => {
+                const { restartTimer = false } = options;
+                if (newIdx === idx) return;
+                idx = newIdx;
+                if (playerReady && player && typeof player.cueVideoById === 'function') {
+                    player.cueVideoById(videos[idx]);
+                } else {
+                    iframe.src = buildUrl(videos[idx]);
+                }
+                updateDots();
+                if (restartTimer) start();
+            };
+
+            videos.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.setAttribute('aria-label', `Go to video ${i + 1}`);
+                dot.addEventListener('click', () => {
+                    viewerLocked = false;
+                    goTo(i, { restartTimer: true });
+                });
+                dotsContainer.appendChild(dot);
+            });
+
+            prevBtn.addEventListener('click', () => {
+                viewerLocked = false;
+                goTo((idx - 1 + videos.length) % videos.length, { restartTimer: true });
+            });
+            nextBtn.addEventListener('click', () => {
+                viewerLocked = false;
+                goTo((idx + 1) % videos.length, { restartTimer: true });
+            });
+
+            updateDots();
+            start();
+
+            loadYouTubeApi()
+                .then((YT) => {
+                    if (!YT || typeof YT.Player !== 'function') return;
+
+                    player = new YT.Player('spotlight-iframe', {
+                        events: {
+                            onReady: () => {
+                                playerReady = true;
+                            },
+                            onStateChange: (event) => {
+                                if (!YT.PlayerState) return;
+
+                                if (event.data === YT.PlayerState.PLAYING || event.data === YT.PlayerState.BUFFERING || event.data === YT.PlayerState.PAUSED) {
+                                    viewerLocked = true;
+                                    stop();
+                                    return;
+                                }
+
+                                if (event.data === YT.PlayerState.ENDED) {
+                                    viewerLocked = false;
+                                    goTo((idx + 1) % videos.length, { restartTimer: true });
+                                    return;
+                                }
+
+                                if ((event.data === YT.PlayerState.CUED || event.data === YT.PlayerState.UNSTARTED) && !viewerLocked && !timer) {
+                                    start();
+                                }
+                            }
+                        }
+                    });
+                })
+                .catch(() => {
+                    // Keep fallback rotation based on iframe source changes if the YouTube API is unavailable.
+                });
+        })();
+    </script>
+</body>
+
+</html>

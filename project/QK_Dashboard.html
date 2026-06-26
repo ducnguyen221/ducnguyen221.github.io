@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GAME QUỶ TƯỚNG 3Q - BANG QUỶ KIẾM</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1a33;
+      --card2:#0c1630;
+      --text:#e7ecff;
+      --muted:#a7b1d6;
+      --line:rgba(231,236,255,.12);
+      --blue:#1a72ff;
+      --blue2:#0047ab;
+      --soft:#f4f6fb;
+      --good:#21c07a;
+      --warn:#f6c343;
+      --bad:#ff5a6a;
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --radius:18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(26,114,255,.35), transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, rgba(0,71,171,.35), transparent 55%),
+        radial-gradient(900px 500px at 20% 120%, rgba(33,192,122,.18), transparent 55%),
+        var(--bg);
+      min-height:100vh;
+    }
+    header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(to bottom, rgba(11,18,32,.92), rgba(11,18,32,.65));
+      border-bottom:1px solid var(--line);
+    }
+    .wrap{max-width:1200px;margin:0 auto;padding:18px 18px 10px}
+    .titleRow{display:flex;align-items:center;gap:14px;justify-content:space-between;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:14px}
+    .icon{
+      width:42px;height:42px;border-radius:14px;
+      background: linear-gradient(135deg, rgba(26,114,255,.95), rgba(0,71,171,.95));
+      box-shadow: 0 12px 28px rgba(26,114,255,.22);
+      display:grid;place-items:center;
+      border:1px solid rgba(231,236,255,.18);
+    }
+    .icon svg{filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));}
+    h1{margin:0;font-size:18px;letter-spacing:.3px}
+    .subtitle{margin:3px 0 0;color:var(--muted);font-size:13px}
+
+    .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .chip{
+      border:1px solid rgba(231,236,255,.18);
+      background: rgba(15,26,51,.55);
+      color:var(--text);
+      border-radius:999px;
+      padding:10px 12px;
+      font-size:13px;
+      display:flex;align-items:center;gap:8px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.25);
+    }
+    .chip input, .chip select{
+      color:var(--text);
+      background: transparent;
+      border:none;
+      outline:none;
+      font-size:13px;
+      min-width:170px;
+    }
+    .chip select{min-width:150px;appearance:none;cursor:pointer}
+    .btn{
+      cursor:pointer;
+      border:1px solid rgba(231,236,255,.18);
+      background: linear-gradient(135deg, rgba(26,114,255,.92), rgba(0,71,171,.92));
+      color:white;
+      border-radius:999px;
+      padding:10px 14px;
+      font-weight:600;
+      font-size:13px;
+      box-shadow: 0 14px 28px rgba(26,114,255,.18);
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .btn:active{transform: translateY(1px) scale(.99)}
+
+    main{max-width:1200px;margin:0 auto;padding:18px}
+    .cards{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px;margin-bottom:14px}
+    .card{
+      background: linear-gradient(180deg, rgba(15,26,51,.85), rgba(12,22,48,.78));
+      border:1px solid rgba(231,236,255,.14);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:14px 14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:before{
+      content:"";
+      position:absolute;inset:-2px;
+      background: radial-gradient(800px 100px at 10% 0%, rgba(26,114,255,.22), transparent 60%);
+      pointer-events:none;
+    }
+    .metricLabel{color:var(--muted);font-size:12px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+    .metricValue{font-size:22px;font-weight:800;letter-spacing:.3px}
+    .metricHint{margin-top:6px;color:var(--muted);font-size:12px}
+
+    .panel{
+      background: linear-gradient(180deg, rgba(15,26,51,.80), rgba(12,22,48,.72));
+      border:1px solid rgba(231,236,255,.14);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .panelHeader{padding:14px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .panelHeader .left{display:flex;flex-direction:column;gap:4px}
+    .panelTitle{margin:0;font-size:14px}
+    .panelDesc{color:var(--muted);font-size:12px}
+    .legend{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .pill{font-size:12px;color:var(--muted);border:1px solid rgba(231,236,255,.14);padding:6px 10px;border-radius:999px;background:rgba(11,18,32,.35)}
+
+    .chartWrap{padding:14px}
+    .chartViewport{max-height: 72vh; overflow:auto; padding-right:6px}
+    .row{
+      display:grid;
+      grid-template-columns: 46px minmax(210px, 1.2fr) minmax(240px, 3fr) minmax(140px, .9fr);
+      gap:10px;
+      align-items:center;
+      padding:10px 10px;
+      border-bottom:1px dashed rgba(231,236,255,.12);
+    }
+    .row:last-child{border-bottom:none}
+    .stt{color:var(--muted);font-variant-numeric: tabular-nums; font-size:12px}
+    .name{
+      display:flex;flex-direction:column;gap:4px;
+    }
+    .name .game{font-weight:700;line-height:1.1}
+    .name .zalo{color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    .barCell{position:relative}
+    .barBg{
+      height:16px;
+      background: rgba(231,236,255,.10);
+      border:1px solid rgba(231,236,255,.12);
+      border-radius:999px;
+      overflow:hidden;
+    }
+    .bar{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, rgba(26,114,255,.95), rgba(0,71,171,.95));
+      border-radius:999px;
+      box-shadow: 0 10px 20px rgba(26,114,255,.25);
+      transition: width 900ms cubic-bezier(.18,.86,.2,1);
+    }
+    .barMeta{
+      margin-top:6px;
+      display:flex;justify-content:space-between;gap:10px;
+      font-size:12px;
+      color:var(--muted);
+      font-family: var(--mono);
+    }
+    .power{font-family: var(--mono); font-size:12px; color: var(--text); text-align:right;}
+    .power .v{display:block;font-weight:800;font-size:13px}
+    .power .s{display:block;color:var(--muted);margin-top:2px}
+
+    .row:hover{background: rgba(26,114,255,.08)}
+    .row:hover .bar{filter: brightness(1.08)}
+
+    .tip{
+      margin-top:14px;
+      border-radius: var(--radius);
+      border:1px solid rgba(231,236,255,.14);
+      background: rgba(244,246,251,.07);
+      padding:12px 14px;
+      color: var(--muted);
+      font-size:12px;
+    }
+    .tip strong{color:var(--text)}
+    .tip code{font-family: var(--mono); background: rgba(244,246,251,.10); padding:2px 6px; border-radius:8px; border:1px solid rgba(231,236,255,.12)}
+
+    footer{
+      max-width:1200px;
+      margin: 16px auto 22px;
+      padding: 0 18px;
+      color: var(--muted);
+      font-size:12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .footBtn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color:white;
+      background: linear-gradient(135deg, rgba(26,114,255,.95), rgba(0,71,171,.95));
+      border:1px solid rgba(231,236,255,.18);
+      padding:10px 14px;
+      border-radius:999px;
+      font-weight:700;
+      box-shadow: 0 14px 28px rgba(26,114,255,.18);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .cards{grid-template-columns:1fr;}
+      .row{grid-template-columns: 38px minmax(190px, 1.2fr) minmax(200px, 2.5fr) minmax(120px, .9fr)}
+    }
+    @media (max-width: 720px){
+      .titleRow{gap:10px}
+      .controls{width:100%}
+      .chip{flex:1}
+      .chip input{min-width:120px}
+      .row{grid-template-columns: 34px minmax(160px, 1.1fr) minmax(170px, 2.3fr) minmax(110px, .9fr)}
+      .power .s{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="titleRow">
+        <div class="brand">
+          <div class="icon" aria-hidden="true" title="Quỷ Kiếm">
+            <!-- sword icon -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 3l-1.4 1.4-6.6 6.6-1.4-1.4L18.2 3.0 21 3Z" fill="rgba(255,255,255,.92)"/>
+              <path d="M11.3 10.7l2 2-6.9 6.9c-.6.6-1.4 1-2.2 1H3v-1.2c0-.8.3-1.6.9-2.2l7.4-7.5Z" fill="rgba(255,255,255,.92)"/>
+              <path d="M10 14l-3 3" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <h1>GAME QUỶ TƯỚNG 3Q - BANG QUỶ KIẾM</h1>
+            <div class="subtitle">So sánh lực chiến theo thành viên (trục tên Zalo dễ đọc) • Có lọc, sắp xếp, highlight</div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="chip" title="Tìm theo tên game hoặc Zalo">
+            <span style="opacity:.9">🔎</span>
+            <input id="search" type="text" placeholder="Tìm: Tên game / Zalo…" />
+          </div>
+          <div class="chip" title="Sắp xếp">
+            <span style="opacity:.9">↕️</span>
+            <select id="sort">
+              <option value="power_desc" selected>Lực chiến: cao → thấp</option>
+              <option value="power_asc">Lực chiến: thấp → cao</option>
+              <option value="name_asc">Tên game: A → Z</option>
+              <option value="zalo_asc">Zalo: A → Z</option>
+              <option value="stt_asc">STT: tăng dần</option>
+            </select>
+          </div>
+          <button class="btn" id="reset" type="button">Reset</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="cards" aria-label="KPI cards">
+      <div class="card">
+        <div class="metricLabel">👥 Số lượng thành viên</div>
+        <div class="metricValue" id="kpiMembers">—</div>
+        <div class="metricHint">Đếm theo cột <b>STT</b> (sau khi lọc)</div>
+      </div>
+      <div class="card">
+        <div class="metricLabel">⚔️ Tổng lực chiến</div>
+        <div class="metricValue" id="kpiTotal">—</div>
+        <div class="metricHint">Tổng cột <b>Lực chiến</b> (sau khi lọc)</div>
+      </div>
+      <div class="card">
+        <div class="metricLabel">📈 Trung bình lực chiến</div>
+        <div class="metricValue" id="kpiAvg">—</div>
+        <div class="metricHint">Trung bình lực chiến / thành viên (sau khi lọc)</div>
+      </div>
+    </section>
+
+    <section class="panel" aria-label="Bar chart">
+      <div class="panelHeader">
+        <div class="left">
+          <h2 class="panelTitle">Biểu đồ Bar Chart — Lực chiến theo thành viên</h2>
+          <div class="panelDesc">Bar chart hiển thị theo % so với người cao nhất trong danh sách lọc. Hover để xem chi tiết.</div>
+        </div>
+        <div class="legend">
+          <span class="pill" id="pillCount">— dòng</span>
+          <span class="pill" id="pillMax">Max: —</span>
+          <span class="pill">Mẹo: cuộn để xem hết</span>
+        </div>
+      </div>
+
+      <div class="chartWrap">
+        <div class="chartViewport" id="viewport">
+          <div id="rows"></div>
+        </div>
+        <div class="tip">
+          <strong>Tip:</strong> Bạn có thể gõ nhanh theo <code>Zalo</code> để tìm đúng người (ví dụ: <code>Tuân</code>, <code>Đức</code>). Dùng bộ <b>Sắp xếp</b> để xem top/bottom hoặc theo tên.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© Dashboard mini • Dữ liệu: Bang Quỷ Kiếm • Render thuần HTML/CSS/JS (không cần thư viện ngoài)</div>
+    <a class="footBtn" href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
+      ⬆️ Lên đầu trang
+    </a>
+  </footer>
+
+  <script>
+    // -------------------- Data --------------------
+    const DATA = [
+      {stt:1, game:"Kiếm Tà", power:13200000000, zalo:"Tuân It"},
+      {stt:2, game:"Mr.Kim", power:12500000000, zalo:"Đáng Kim Lê"},
+      {stt:3, game:"HuyBeoKKKK", power:10900000000, zalo:"Phamquanghuy"},
+      {stt:4, game:"BốBắp", power:8800000000, zalo:"Trần Thịnh"},
+      {stt:5, game:"LaoLao", power:8600000000, zalo:"Nguyễn Chí Hiếu"},
+      {stt:6, game:"NhạcLong", power:8100000000, zalo:"Dt"},
+      {stt:7, game:"Rookie", power:5200000000, zalo:"Duy Trần"},
+      {stt:8, game:"PhongKa", power:4900000000, zalo:""},
+      {stt:9, game:"Tần Mục", power:4500000000, zalo:"Lê Lai"},
+      {stt:10, game:"ĐàLôi", power:4400000000, zalo:"Toản Công Nguyễn"},
+      {stt:11, game:"TranHieu", power:4400000000, zalo:"Tranhieu"},
+      {stt:12, game:"TuTiên", power:4300000000, zalo:"Nmk"},
+      {stt:13, game:"Hoa Đà", power:4200000000, zalo:"Nguyễn Văn Lành"},
+      {stt:14, game:"Át Bích", power:4200000000, zalo:"Huỳnh Nguyễn"},
+      {stt:15, game:"Gió", power:4200000000, zalo:"Khanh"},
+      {stt:16, game:"TKienNo1", power:3900000000, zalo:"Việt Nguyễn"},
+      {stt:17, game:"Bé Kem", power:3600000000, zalo:"Nguyễn Thị Phương Thùy"},
+      {stt:18, game:"Onehit", power:3400000000, zalo:"Xuân Thọ"},
+      {stt:19, game:"CCQQNN", power:3200000000, zalo:"Cường Đào"},
+      {stt:20, game:"vyn19", power:3200000000, zalo:""},
+      {stt:21, game:"AcerKing", power:3100000000, zalo:"Tài Decor"},
+      {stt:22, game:"Tobi", power:3000000000, zalo:"Đức Nguyễn"},
+      {stt:23, game:"TLinh", power:3000000000, zalo:""},
+      {stt:24, game:"KiMoChiiii", power:3000000000, zalo:""},
+      {stt:25, game:"Không Nạp", power:2900000000, zalo:"Hoàng Tiến"},
+      {stt:26, game:"Guan Yu", power:2900000000, zalo:"Giang"},
+      {stt:27, game:"Mary", power:2900000000, zalo:""},
+      {stt:28, game:"Butasal", power:2700000000, zalo:"Shop Sinh Lý"},
+      {stt:29, game:"Luna", power:2700000000, zalo:""},
+      {stt:30, game:"YêuCơ", power:2700000000, zalo:"Tùng Dương"},
+      {stt:31, game:"OmaChi", power:2700000000, zalo:"Nguyễn Minh Đức"},
+      {stt:32, game:"Lý Thùy", power:2700000000, zalo:"Thiều Thị Nữ"},
+      {stt:33, game:"1000đ", power:2700000000, zalo:"Chung"},
+      {stt:34, game:"Tinh", power:2500000000, zalo:""},
+      {stt:35, game:"TinTin", power:0, zalo:""},
+      {stt:36, game:"Sầu", power:2300000000, zalo:"DarkLord"},
+      {stt:37, game:"bạch y", power:2300000000, zalo:"Phạm Vinh"},
+      {stt:38, game:"QuỳnhNga", power:2200000000, zalo:"Quang Lễ"},
+      {stt:39, game:"phólăng", power:2200000000, zalo:"Minh Phung"},
+      {stt:40, game:"MBS", power:2200000000, zalo:"Nam Huỳnh"},
+      {stt:41, game:"Ken2021", power:2000000000, zalo:"PhuSon"},
+      {stt:42, game:"QuỷVương", power:2000000000, zalo:"Quốc Trí"},
+      {stt:43, game:"tamphong", power:2000000000, zalo:""},
+      {stt:44, game:"KhoaiTungBay", power:2000000000, zalo:"Đỗ Văn Hệ"},
+      {stt:45, game:"QuỷCốcTử", power:2000000000, zalo:""},
+      {stt:46, game:"ProStreet", power:1900000000, zalo:""},
+      {stt:47, game:"Alibaba", power:1800000000, zalo:""},
+      {stt:48, game:"SMZONE00", power:1800000000, zalo:"Lê Tấn Hào"},
+      {stt:49, game:"Poke", power:1700000000, zalo:"Nguyễn Công Thắng"},
+      {stt:50, game:"Plas", power:1700000000, zalo:"Hoàng Phong"},
+      {stt:51, game:"HoanVan", power:1700000000, zalo:"Tùng Ptc"},
+      {stt:52, game:"Thịnh", power:1700000000, zalo:"Phạm Đức Thịnh"},
+      {stt:53, game:"Master K", power:1600000000, zalo:"Khanh Quốc"},
+      {stt:54, game:"THANH", power:1600000000, zalo:""},
+      {stt:55, game:"KiềuPhong", power:1600000000, zalo:"Nguyễn Văn Học"},
+      {stt:56, game:"20Cm", power:1500000000, zalo:"Viethacamera"},
+      {stt:57, game:"TrìBăng", power:1500000000, zalo:"Đỗ Hữu Hải"},
+      {stt:58, game:"LIAR", power:1400000000, zalo:""},
+      {stt:59, game:"BOB", power:1400000000, zalo:"Việt Anh"},
+      {stt:60, game:"SAM68", power:1300000000, zalo:"Trắng Oạc"},
+      {stt:61, game:"HPBô", power:1300000000, zalo:"Tới boo"},
+      {stt:62, game:"KQ LONG", power:1300000000, zalo:"Long"},
+      {stt:63, game:"vương lâm", power:1200000000, zalo:"Cry Love"},
+      {stt:64, game:"Apollo", power:1200000000, zalo:""},
+      {stt:65, game:"Tố Uyên", power:1200000000, zalo:"Nguyễn Tuấn"},
+      {stt:66, game:"Tư Mã", power:1100000000, zalo:"Nguyễn Đình Đồng"},
+      {stt:67, game:"AmBessa", power:1100000000, zalo:"Trương Tín"},
+      {stt:68, game:"Vệ Trọng", power:1100000000, zalo:""},
+      {stt:69, game:"Duy", power:1100000000, zalo:""},
+      {stt:70, game:"Lão Tứ", power:1000000000, zalo:"Nguyễn Đô"},
+      {stt:71, game:"Winnie", power:1000000000, zalo:"Gia Phong"},
+      {stt:72, game:"Cris", power:1000000000, zalo:"Hoàng"},
+      {stt:73, game:"Ares", power:1000000000, zalo:""},
+      {stt:74, game:"Thùy", power:900000000, zalo:""},
+      {stt:75, game:"Kìnhthiên", power:700000000, zalo:""},
+      {stt:76, game:"An Còi", power:700000000, zalo:"An Còi"},
+      {stt:77, game:"Sở Phàm", power:600000000, zalo:""},
+      {stt:78, game:"Nik", power:600000000, zalo:""},
+      {stt:79, game:"Horus", power:600000000, zalo:"Tuấn"},
+      {stt:80, game:"Cảnh Đông", power:500000000, zalo:"Trưởng"},
+      {stt:81, game:"RainBow", power:500000000, zalo:""},
+      {stt:82, game:"LýCưBụ", power:500000000, zalo:"Mẫn Hoàng Neway"},
+      {stt:83, game:"Thanhhiem", power:500000000, zalo:""},
+      {stt:84, game:"ChípHến", power:500000000, zalo:"Phạm Vũ"},
+      {stt:85, game:"ThanhÂn", power:400000000, zalo:"Đức Linh"},
+      {stt:86, game:"TuNha", power:400000000, zalo:"Phương"},
+      {stt:87, game:"TuệNghi", power:400000000, zalo:"Nguyễn Tuệ Nghi"},
+      {stt:88, game:"TiểuAkha", power:400000000, zalo:"Jack"},
+      {stt:89, game:"Bố Đời", power:100000000, zalo:"KenBi"},
+    ];
+
+    // -------------------- Helpers --------------------
+    const nf = new Intl.NumberFormat('vi-VN');
+    function fmt(n){
+      if (!Number.isFinite(n)) return '0';
+      return nf.format(Math.round(n));
+    }
+    function fmtShort(n){
+      // Short format for large numbers (tỷ / triệu)
+      if (!Number.isFinite(n)) return '0';
+      const abs = Math.abs(n);
+      if (abs >= 1e12) return (n/1e12).toFixed(abs>=1e13?1:2).replace(/\.0+$/,'') + 'T'; // nghìn tỷ
+      if (abs >= 1e9) return (n/1e9).toFixed(abs>=1e10?1:2).replace(/\.0+$/,'') + 'B'; // tỷ
+      if (abs >= 1e6) return (n/1e6).toFixed(1).replace(/\.0+$/,'') + 'M';
+      if (abs >= 1e3) return (n/1e3).toFixed(1).replace(/\.0+$/,'') + 'K';
+      return String(n);
+    }
+    function normalize(s){
+      return (s||'')
+        .toString()
+        .trim()
+        .toLowerCase();
+    }
+
+    // -------------------- State --------------------
+    const els = {
+      rows: document.getElementById('rows'),
+      search: document.getElementById('search'),
+      sort: document.getElementById('sort'),
+      reset: document.getElementById('reset'),
+      kpiMembers: document.getElementById('kpiMembers'),
+      kpiTotal: document.getElementById('kpiTotal'),
+      kpiAvg: document.getElementById('kpiAvg'),
+      pillCount: document.getElementById('pillCount'),
+      pillMax: document.getElementById('pillMax'),
+      viewport: document.getElementById('viewport'),
+    };
+
+    let filtered = [...DATA];
+
+    // -------------------- Render --------------------
+    function computeKPIs(list){
+      const members = list.length;
+      const total = list.reduce((a,b)=>a+(b.power||0), 0);
+      const avg = members ? total / members : 0;
+      return {members, total, avg};
+    }
+
+    function sortList(list, mode){
+      const a = [...list];
+      switch(mode){
+        case 'power_desc':
+          a.sort((x,y)=>(y.power||0)-(x.power||0));
+          break;
+        case 'power_asc':
+          a.sort((x,y)=>(x.power||0)-(y.power||0));
+          break;
+        case 'name_asc':
+          a.sort((x,y)=>normalize(x.game).localeCompare(normalize(y.game), 'vi'));
+          break;
+        case 'zalo_asc':
+          a.sort((x,y)=>normalize(x.zalo).localeCompare(normalize(y.zalo), 'vi'));
+          break;
+        case 'stt_asc':
+        default:
+          a.sort((x,y)=>(x.stt||0)-(y.stt||0));
+      }
+      return a;
+    }
+
+    function render(list){
+      const max = Math.max(0, ...list.map(d=>d.power||0));
+      const {members, total, avg} = computeKPIs(list);
+
+      els.kpiMembers.textContent = fmt(members);
+      els.kpiTotal.textContent = fmt(total);
+      els.kpiAvg.textContent = fmt(avg);
+      els.pillCount.textContent = `${fmt(members)} dòng`;
+      els.pillMax.textContent = `Max: ${fmt(max)}`;
+
+      // Build rows
+      els.rows.innerHTML = '';
+      const frag = document.createDocumentFragment();
+
+      list.forEach((d, idx)=>{
+        const pct = max > 0 ? Math.max(0, Math.min(100, (d.power||0) * 100 / max)) : 0;
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.title = `${d.game} (${d.zalo || '—'})\nLực chiến: ${fmt(d.power||0)}\nTỷ lệ so với max: ${pct.toFixed(2)}%`;
+
+        const stt = document.createElement('div');
+        stt.className = 'stt';
+        // show ranked index if sorted by power, else show STT
+        const isRank = (els.sort.value === 'power_desc' || els.sort.value === 'power_asc');
+        stt.textContent = isRank ? `#${idx+1}` : String(d.stt);
+
+        const name = document.createElement('div');
+        name.className = 'name';
+        name.innerHTML = `
+          <div class="game">${escapeHtml(d.game)}</div>
+          <div class="zalo">${escapeHtml(d.zalo || '—')}</div>
+        `;
+
+        const barCell = document.createElement('div');
+        barCell.className = 'barCell';
+        barCell.innerHTML = `
+          <div class="barBg"><div class="bar" data-target="${pct.toFixed(4)}"></div></div>
+          <div class="barMeta">
+            <span>${pct.toFixed(1)}%</span>
+            <span>${fmtShort(d.power||0)}</span>
+          </div>
+        `;
+
+        const power = document.createElement('div');
+        power.className = 'power';
+        power.innerHTML = `
+          <span class="v">${fmt(d.power||0)}</span>
+          <span class="s">lực chiến</span>
+        `;
+
+        row.appendChild(stt);
+        row.appendChild(name);
+        row.appendChild(barCell);
+        row.appendChild(power);
+
+        frag.appendChild(row);
+      });
+
+      els.rows.appendChild(frag);
+
+      // Animate bars (on mount + after filter/sort)
+      requestAnimationFrame(()=>{
+        const bars = els.rows.querySelectorAll('.bar');
+        // reset to 0 first for reflow
+        bars.forEach(b=>b.style.width = '0%');
+        // staggered animation
+        bars.forEach((b, i)=>{
+          const tgt = Number(b.getAttribute('data-target')) || 0;
+          setTimeout(()=>{ b.style.width = tgt + '%'; }, Math.min(900, i*14));
+        });
+      });
+    }
+
+    function apply(){
+      const q = normalize(els.search.value);
+      const base = DATA.filter(d=>{
+        if (!q) return true;
+        const g = normalize(d.game);
+        const z = normalize(d.zalo);
+        return g.includes(q) || z.includes(q);
+      });
+      filtered = sortList(base, els.sort.value);
+      render(filtered);
+    }
+
+    function reset(){
+      els.search.value = '';
+      els.sort.value = 'power_desc';
+      filtered = [...DATA];
+      render(sortList(filtered, 'power_desc'));
+      els.viewport.scrollTop = 0;
+    }
+
+    function escapeHtml(str){
+      return (str ?? '').toString()
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
+    }
+
+    // -------------------- Events --------------------
+    let t;
+    els.search.addEventListener('input', ()=>{
+      clearTimeout(t);
+      t = setTimeout(apply, 80);
+    });
+    els.sort.addEventListener('change', apply);
+    els.reset.addEventListener('click', reset);
+
+    // Init
+    reset();
+  </script>
+</body>
+</html>

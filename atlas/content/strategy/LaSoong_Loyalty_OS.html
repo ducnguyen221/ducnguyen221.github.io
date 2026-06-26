@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaSoong Loyalty OS V1.1 — Interactive Overview</title>
+<style>
+  :root{
+    --navy:#1F3864; --accent:#2E75B6; --light:#D9E2F3; --bg:#F7F9FC;
+    --red:#C0392B; --amber:#B7791F; --green:#1E7E34; --ink:#1a1a2e;
+    --card:#ffffff; --border:#E2E8F0;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Segoe UI',Arial,sans-serif; background:var(--bg); color:var(--ink); line-height:1.6;}
+  nav{position:sticky; top:0; z-index:50; background:var(--navy); padding:10px 24px; display:flex; gap:6px; flex-wrap:wrap; box-shadow:0 2px 8px rgba(0,0,0,.25);}
+  nav a{color:#cdd9ee; text-decoration:none; font-size:13px; padding:6px 12px; border-radius:20px; transition:.2s;}
+  nav a:hover, nav a.active{background:var(--accent); color:#fff;}
+  header{background:linear-gradient(135deg,var(--navy) 0%, #2a4d8f 60%, var(--accent) 100%); color:#fff; padding:56px 24px 40px; text-align:center;}
+  header h1{font-size:34px; letter-spacing:1px;}
+  header .sub{font-size:17px; color:#cdd9ee; margin-top:8px;}
+  .badge{display:inline-block; padding:4px 14px; border-radius:20px; font-size:12px; font-weight:700; margin:4px;}
+  .badge.v{background:#fff; color:var(--navy);}
+  .badge.rt{background:var(--red); color:#fff;}
+  .badge.ok{background:var(--green); color:#fff;}
+  .dl{margin-top:22px;}
+  .dl a{display:inline-block; background:#fff; color:var(--navy); font-weight:700; text-decoration:none; padding:11px 22px; border-radius:8px; margin:6px; font-size:14px; box-shadow:0 3px 10px rgba(0,0,0,.25); transition:.2s;}
+  .dl a:hover{transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,.3);}
+  .dl a span{display:block; font-size:11px; font-weight:400; color:#666;}
+  main{max-width:1100px; margin:0 auto; padding:32px 20px 80px;}
+  section{margin-top:48px;}
+  h2{color:var(--navy); font-size:26px; border-bottom:3px solid var(--accent); padding-bottom:8px; margin-bottom:18px;}
+  h3{color:var(--accent); font-size:18px; margin:18px 0 10px;}
+  p{margin-bottom:10px;}
+  .grid{display:grid; gap:16px;}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr));}
+  .g4{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+  .card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; box-shadow:0 2px 6px rgba(31,56,100,.07);}
+  .card h4{font-size:16px; margin-bottom:8px;}
+  .card .tag{font-size:11px; font-weight:700; padding:2px 10px; border-radius:12px; display:inline-block; margin-bottom:8px;}
+  .persona-points .tag{background:#E8F0FE; color:var(--accent);}
+  .persona-partner .tag{background:#FEF3E2; color:var(--amber);}
+  .persona-merchant .tag{background:#E6F4EA; color:var(--green);}
+  .persona-viewer .tag{background:#F3E8FD; color:#7B2CBF;}
+  .card ul{padding-left:18px; font-size:14px;}
+  .card li{margin-bottom:5px;}
+  .kpi{font-size:12px; color:#555; border-top:1px dashed var(--border); margin-top:10px; padding-top:8px;}
+  table{width:100%; border-collapse:collapse; background:#fff; font-size:13.5px; margin:12px 0; border-radius:8px; overflow:hidden; box-shadow:0 2px 6px rgba(31,56,100,.07);}
+  th{background:var(--light); color:var(--navy); padding:10px 12px; text-align:left;}
+  td{padding:9px 12px; border-top:1px solid var(--border); vertical-align:top;}
+  tr:nth-child(even) td{background:#FAFBFD;}
+  .neg{color:var(--red); font-weight:700;}
+  .pos{color:var(--green); font-weight:700;}
+  .warn{color:var(--amber); font-weight:700;}
+  .flywheel{display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:20px 0;}
+  .fly-step{background:#fff; border:2px solid var(--accent); border-radius:10px; padding:12px 16px; font-size:13px; max-width:210px; text-align:center; position:relative;}
+  .fly-step b{color:var(--navy); display:block; margin-bottom:4px;}
+  .fly-arrow{align-self:center; color:var(--accent); font-size:22px; font-weight:700;}
+  .redteam{background:#FDF2F2; border-left:6px solid var(--red); border-radius:0 12px 12px 0; padding:18px 20px; margin:14px 0;}
+  .redteam h4{color:var(--red); margin-bottom:6px;}
+  .accordion .acc-item{border:1px solid var(--border); border-radius:10px; margin-bottom:8px; background:#fff; overflow:hidden;}
+  .acc-head{cursor:pointer; padding:13px 18px; font-weight:600; color:var(--navy); display:flex; justify-content:space-between; align-items:center; user-select:none;}
+  .acc-head:hover{background:var(--light);}
+  .acc-head .chev{transition:.25s; color:var(--accent);}
+  .acc-item.open .chev{transform:rotate(90deg);}
+  .acc-body{display:none; padding:0 18px 14px; font-size:14px; color:#333;}
+  .acc-item.open .acc-body{display:block;}
+  .timeline{position:relative; margin:24px 0; padding-left:30px; border-left:3px solid var(--accent);}
+  .tl-item{position:relative; margin-bottom:22px; background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px 18px;}
+  .tl-item::before{content:''; position:absolute; left:-39px; top:18px; width:15px; height:15px; border-radius:50%; background:var(--accent); border:3px solid #fff; box-shadow:0 0 0 2px var(--accent);}
+  .tl-item.new::before{background:var(--red); box-shadow:0 0 0 2px var(--red);}
+  .tl-item h4{color:var(--navy);}
+  .tl-item .when{font-size:12px; color:var(--accent); font-weight:700;}
+  .tl-item .gate{font-size:12.5px; background:#FFF8E1; border-radius:6px; padding:6px 10px; margin-top:8px;}
+  .heat td{text-align:center; font-weight:600;}
+  .links a{color:var(--accent);}
+  footer{background:var(--navy); color:#cdd9ee; text-align:center; padding:24px; font-size:13px; margin-top:60px;}
+  .pill{font-size:11px; background:var(--light); color:var(--navy); border-radius:10px; padding:2px 8px; font-weight:700;}
+  @media print{nav{display:none;}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#overview">Tổng quan</a>
+  <a href="#redteam">Red Team V1.1</a>
+  <a href="#programs">4 Programs</a>
+  <a href="#flywheel">Flywheel</a>
+  <a href="#economics">Economics</a>
+  <a href="#system">System Design</a>
+  <a href="#roadmap">Roadmap</a>
+  <a href="#killq">Kill Questions</a>
+  <a href="#files">Tài liệu</a>
+</nav>
+
+<header>
+  <h1>LASOONG LOYALTY OS</h1>
+  <div class="sub">Multi-Sided Loyalty Framework & System Design — bản tương tác</div>
+  <div style="margin-top:14px;">
+    <span class="badge v">Phiên bản 1.1 — 06/2026</span>
+    <span class="badge rt">Đã qua 2 vòng Red Team độc lập (Claude + Codex)</span>
+    <span class="badge ok">Reframe: Pilot-first</span>
+  </div>
+  <div class="dl">
+    <a href="./37.01_LaSoong_Loyalty_OS_Framework.docx" download>📄 Word Framework V1.1<span>37.01 — tài liệu tư vấn đầy đủ</span></a>
+    <a href="./37.02_LaSoong_Loyalty_Financial_Model.xlsx" download>📊 Excel Financial Model V1.1<span>37.02 — 8 sheets, 280 formulas, 0 lỗi</span></a>
+  </div>
+</header>
+
+<main>
+
+<section id="overview">
+  <h2>1. Tổng quan — Vì sao không thể dùng 1 chương trình điểm chung</h2>
+  <p><b>LaSoong là nền tảng đa phía:</b> người mua vé/vote, organizer host sự kiện, merchant cung cấp hàng hóa, và lượng lớn viewer chưa giao dịch. Bốn nhóm có động cơ hoàn toàn khác nhau — một công thức điểm chung sẽ khiến viewer farm liability rác, còn organizer/merchant bỏ đi vì điểm user không phải thứ họ cần.</p>
+  <p><b>Định vị V1.1:</b> Loyalty OS (1 ledger + 4 programs) là <b>kiến trúc đích</b>. Thứ triển khai giai đoạn này là <b>Pilot Loyalty Architecture</b> — L-Points Lite + Fan Journey Lite trên một event anchor, funding cam kết trước, guardrails đầy đủ, go/no-go gates định lượng.</p>
+  <div class="grid g4" style="margin-top:16px;">
+    <div class="card"><h4>🎫 Mass Customer</h4><p style="font-size:13px;">"Tại sao tôi quay lại LaSoong cho sự kiện tiếp theo?"</p></div>
+    <div class="card"><h4>🏟️ Client / Organizer</h4><p style="font-size:13px;">"Tại sao tổ chức event tiếp theo trên LaSoong thay vì tự làm/đối thủ?"</p></div>
+    <div class="card"><h4>🏪 Vendor / Merchant</h4><p style="font-size:13px;">"Tại sao tôi tiếp tục bỏ tiền fund ưu đãi trên LaSoong?"</p></div>
+    <div class="card"><h4>👀 Viewer</h4><p style="font-size:13px;">"Điều gì biến tôi từ người xem thành người mua?"</p></div>
+  </div>
+</section>
+
+<section id="redteam">
+  <h2>2. Red Team Review — 5 phán quyết đã thay đổi V1.1</h2>
+  <p>Framework V1.0 qua 2 vòng phản biện độc lập theo prompt 31.03. Cả hai panel cùng verdict <b style="color:var(--red);">REWORK</b>. Các sửa đổi trọng yếu:</p>
+
+  <div class="redteam"><h4>① PFC — nguồn thu nuôi chương trình — chưa ai cam kết trả</h4>
+  <p style="font-size:14px;">Roadmap V1.0 đặt người trả tiền (organizer) ở phase cuối — flywheel đứt tại nguồn funding. PFC 0.6% thay vì 1.15% → margin âm.<br>
+  <b>Sửa:</b> thêm Phase P-1 Commercial Validation; PFC tách <b>committed vs assumed</b> — margin chỉ claim trên phần đã ký. Model V1.1: ở committed 40%, margin Conservative đã <span class="neg">−0.55tr/tháng</span>.</p></div>
+
+  <div class="redteam"><h4>② Liability model mâu thuẫn toán học (provisioning understate ×1.8)</h4>
+  <p style="font-size:14px;">Flow redeem /6 không expiry hội tụ redemption hiệu dụng 100%, nhưng provisioning lại haircut ×55%×70%. Exposure đúng T12 = <b>92.6tr</b>, không phải 50.9tr. Gate cũ so nghĩa vụ với <i>doanh thu đã tiêu</i>.<br>
+  <b>Sửa:</b> exposure = outstanding × cost ratio; gate mới: <b>restricted cash ≥ 1.2× exposure</b> (T12 cần 111.2tr trong khi PFC committed lũy kế chỉ 97.9tr → gate FAIL ở mức committed 60% — phải đàm phán thêm funding).</p></div>
+
+  <div class="redteam"><h4>③ Scope vượt maturity — 24 tuần build full OS là fiction</h4>
+  <p style="font-size:14px;">Không một dòng budget nào trong cả 3 tài liệu V1.0; team chưa xác định.<br>
+  <b>Sửa:</b> SaaS-first (Open Loyalty/Voucherify + ledger mỏng tự viết); B2B tier chạy spreadsheet trong pilot; budget 12 tháng là điều kiện go; tắt earn review (chưa có moderation owner).</p></div>
+
+  <div class="redteam"><h4>④ Viewer economics ảo</h4>
+  <p style="font-size:14px;">MAU 50k "Conservative" mâu thuẫn app ~100+ downloads; voucher 3.333đ/khách không thể gây chuyển đổi; "ROI 3.6x" so average vs incremental.<br>
+  <b>Sửa:</b> sheet Viewer_Stress (MAU 3k–20k): incremental cost/conversion = <span class="warn">705k – 7.5tr VND</span> — TỆ HƠN CAC ads 100k. Kết luận thật: ở MAU hiện tại, viewer program có giá trị habit/data, KHÔNG phải kênh CAC rẻ. Bắt buộc holdout group.</p></div>
+
+  <div class="redteam"><h4>⑤ Vote & contest integrity — rủi ro danh tiếng lớn nhất</h4>
+  <p style="font-size:14px;">Người chi tiền vote nhiều nhất được tiếp cận thí sinh (backstage) giữa mùa thi = kênh ảnh hưởng phi tiền tệ + khủng hoảng truyền thông chực chờ.<br>
+  <b>Sửa:</b> tuyệt đối không burn điểm vào vote; gỡ backstage/meet-and-greet khỏi tier theo chi tiêu trong mùa thi — chỉ mở sau chung kết; Platinum không mở trong pilot.</p></div>
+
+  <h3>5 abuse vector đã vá</h3>
+  <div class="accordion">
+    <div class="acc-item"><div class="acc-head">1. Merchant referral wash — máy in giảm commission <span class="chev">▶</span></div>
+      <div class="acc-body">Merchant phát mã referral cho khách walk-in vốn có → chuyển kênh khách cũ thành "khách mới", ăn giảm commission vĩnh viễn trên GMV không incremental. <b>Vá:</b> "khách mới" = new-to-platform ≥30 ngày; giao dịch đầu KHÔNG tại merchant giới thiệu; cap referee/tháng; graph detection referral chéo.</div></div>
+    <div class="acc-item"><div class="acc-head">2. EP→multiplier arbitrage trên vote whale <span class="chev">▶</span></div>
+      <div class="acc-body">Farm EP free 2 tuần → đổi multiplier → nhân điểm trên vote package 50tr → burn vào merch thanh khoản. "EP 0 liability" bơm liability thật qua cửa sau. <b>Vá:</b> multiplier không áp stream vote; cap TP tuyệt đối/tháng; chỉ cho account verified có giao dịch thật.</div></div>
+    <div class="acc-item"><div class="acc-head">3. First-Purchase Unlock farm <span class="chev">▶</span></div>
+      <div class="acc-body">200 account SIM rác + script hành vi Supporter (toàn telemetry) → nhận voucher → mua đơn min-value → âm tiền platform từng đơn. <b>Vá:</b> voucher %-based; min order > face value; chỉ áp category ticket có check-in thật; device/payment binding.</div></div>
+    <div class="acc-item"><div class="acc-head">4. Organizer wash-trading Partner Score <span class="chev">▶</span></div>
+      <div class="acc-body">Organizer mua 300 vé event của chính mình qua account vệ tinh (chi ~3% platform fee) → bơm GMV → lên tier → ăn rebate + credits rẻ hơn giá niêm yết. V1.0 chỉ chặn merchant, bỏ sót organizer. <b>Vá:</b> PS chỉ tính GMV từ unique verified buyers CÓ check-in; no-show cao → trừ PS.</div></div>
+    <div class="acc-item"><div class="acc-head">5. Sponsor mission farm → voucher chợ đen <span class="chev">▶</span></div>
+      <div class="acc-body">Bot hoàn thành mission → TP thật → đổi voucher F&B bán lại 70% mệnh giá. Sponsor đo "ROI đẹp" toàn bot → niềm tin sập → nguồn funding sponsor chết. <b>Vá:</b> TP sponsor chỉ active sau ≥1 giao dịch tiền thật; voucher định danh.</div></div>
+  </div>
+</section>
+
+<section id="programs">
+  <h2>3. Bốn chương trình — 1 Ledger, 4 luật chơi</h2>
+  <div class="grid g2">
+    <div class="card persona-points">
+      <span class="tag">PROGRAM 1</span><h4>L-POINTS — Mass Customer</h4>
+      <ul>
+        <li><b>TP</b> (1–2% net paid, pending tới sau event + refund window) + <b>EP</b> (check-in, quest telemetry — review TẮT trong pilot).</li>
+        <li>Burn cap 20–25%/đơn; không cash-out; không mua vote.</li>
+        <li>Tier V1.1: Silver = 2 paid events/300k · Gold = 5/1.5tr (multiplier có cap, không áp vote) · Platinum KHÔNG mở trong pilot.</li>
+        <li>Vertical pageant: expiry/tier theo <b>season</b> thay vì 12 tháng lịch.</li>
+      </ul>
+      <div class="kpi">North star: Repeat purchase rate cross-event</div>
+    </div>
+    <div class="card persona-partner">
+      <span class="tag">PROGRAM 2</span><h4>L-PARTNER CLUB — Organizer</h4>
+      <ul>
+        <li>Không phải điểm — <b>Partner Score</b> (GMV 40% / tần suất 20% / chất lượng 20% / hệ sinh thái 20%) → 4 tier.</li>
+        <li>Quyền lợi: fee rebate 0.3–1%, Marketing Credits (kèm Promotion Compliance Checklist), settlement T+7→T+3, media slot.</li>
+        <li>V1.1: PS chỉ tính unique verified buyers có check-in; pilot chạy tier bằng spreadsheet.</li>
+        <li>Lock-in: CRM data tích lũy → chi phí rời nền tảng tăng dần.</li>
+      </ul>
+      <div class="kpi">North star: Net revenue retention per organizer (NGOÀI hệ TPI)</div>
+    </div>
+    <div class="card persona-merchant">
+      <span class="tag">PROGRAM 3</span><h4>L-MERCHANT NETWORK — Vendor</h4>
+      <ul>
+        <li>Merchant Score (GMV 35% / chất lượng 30% / đóng góp reward 25% / vận hành 10%) → Listed → Trusted → Preferred → Strategic.</li>
+        <li>Vai kép: người bán + reward provider. Funding: <b>prepaid mặc định</b>.</li>
+        <li>V1.1 pilot: 3–5 merchant, voucher in sẵn QR single-use, settlement cuối campaign (không weekly), +1 FTE ops đối soát vào budget.</li>
+        <li>Referral merchant có định nghĩa "khách mới" chặt (chống wash).</li>
+      </ul>
+      <div class="kpi">North star: Merchant budget renewal rate ≥60%</div>
+    </div>
+    <div class="card persona-viewer">
+      <span class="tag">PROGRAM 4</span><h4>L-FAN JOURNEY — Viewer</h4>
+      <ul>
+        <li>Engagement Ladder 4 nấc: Visitor → Follower → Supporter → Converted.</li>
+        <li>EP từ streak/quiz/poll/share (cap ngày); <b>không bao giờ</b> đổi trực tiếp ra TP.</li>
+        <li>First-Purchase Unlock = CAC, không phải liability. V1.1: voucher ≥10% AOV, %-based, holdout group bắt buộc.</li>
+        <li>Sự thật từ Viewer_Stress: ở MAU thực, giá trị là <b>habit + data</b>, không phải kênh CAC rẻ.</li>
+      </ul>
+      <div class="kpi">North star: Incremental Supporter→First Purchase (số tuyệt đối)</div>
+    </div>
+  </div>
+</section>
+
+<section id="flywheel">
+  <h2>4. Flywheel đa phía</h2>
+  <div class="flywheel">
+    <div class="fly-step"><b>👀 Viewer</b>xem · vote free · follow → ladder</div><div class="fly-arrow">→</div>
+    <div class="fly-step"><b>🎫 Customer</b>mua vé/vote/merch → GMV + data</div><div class="fly-arrow">→</div>
+    <div class="fly-step"><b>🏟️ Organizer</b>thấy repeat + CRM → host thêm, lên tier</div><div class="fly-arrow">→</div>
+    <div class="fly-step"><b>📈 Nhiều event</b>→ nhiều traffic</div><div class="fly-arrow">→</div>
+    <div class="fly-step"><b>🏪 Merchant/Sponsor</b>thấy ROI đo được → fund reward</div><div class="fly-arrow">→</div>
+    <div class="fly-step"><b>🎁 Catalog phong phú</b>→ điểm hấp dẫn hơn → quay lại đầu vòng</div>
+  </div>
+  <p class="redteam" style="font-size:14px;"><b>Cảnh báo V1.1:</b> flywheel chỉ quay khi nguồn funding (organizer trả PFC) vào TRƯỚC — vì vậy P-1 Commercial Validation đứng trước mọi dòng code. Và moat của LaSoong không phải điểm: là first-party data + organizer CRM + media ecosystem + content exclusivity (HHVN). Loyalty là amplifier của moat, không phải moat.</p>
+</section>
+
+<section id="economics">
+  <h2>5. Point Economics — số liệu đã verify (Excel V1.1)</h2>
+  <h3>5.1 Ba kịch bản / tháng trên 1 tỷ VND eligible GMV</h3>
+  <table>
+    <tr><th>Chỉ tiêu</th><th>Conservative</th><th>Base</th><th>Growth</th></tr>
+    <tr><td>Blended earn (theo GMV mix)</td><td>0.95%</td><td>1.45%</td><td>2.03%</td></tr>
+    <tr><td>Net program margin (PFC full)</td><td class="pos">+3.05tr</td><td class="pos">+5.08tr</td><td class="pos">+6.57tr</td></tr>
+    <tr><td><b>Net margin trên PFC committed</b> (40/60/80%)</td><td class="neg">−0.55tr</td><td class="warn">+0.48tr</td><td class="pos">+2.57tr</td></tr>
+    <tr><td>Exposure T12 (đã sửa B-1)</td><td colspan="3"><b>92.6tr</b> — restricted cash yêu cầu (1.2×) = <b>111.2tr</b> &gt; PFC committed lũy kế 97.9tr → <span class="neg">GATE FAIL ở committed 60%</span> — phải tăng funding committed trước khi scale</td></tr>
+  </table>
+  <h3>5.2 Sensitivity — Net margin Base (triệu/tháng) theo Redemption × Cost ratio</h3>
+  <table class="heat">
+    <tr><th>Redemption \ Cost ratio</th><th>60%</th><th>70%</th><th>85%</th><th>100%</th></tr>
+    <tr><td><b>45%</b></td><td class="pos">7.00</td><td class="pos">6.25</td><td class="pos">5.12</td><td class="pos">4.00</td></tr>
+    <tr><td><b>55%</b></td><td class="pos">6.00</td><td class="pos">5.08</td><td class="pos">3.70</td><td class="warn">2.33</td></tr>
+    <tr><td><b>70%</b></td><td class="pos">4.50</td><td class="warn">3.33</td><td class="warn">1.58</td><td class="neg">−0.17</td></tr>
+    <tr><td><b>85%</b></td><td class="warn">3.00</td><td class="warn">1.58</td><td class="neg">−0.55</td><td class="neg">−2.67</td></tr>
+  </table>
+  <p style="font-size:13.5px;"><b>Break-even redemption @ cost 70% ≈ 98.5%.</b> Redemption cao = chương trình thành công — vì vậy phải có <b>circuit breaker</b>: redeemed FV tháng vượt ngưỡng % PFC tháng → tự siết catalog trong ≤30 ngày.</p>
+  <h3>5.3 Viewer Stress (V1.1) — sự thật cần nói với đối tác</h3>
+  <table>
+    <tr><th>Kịch bản</th><th>MAU</th><th>Incremental converted/tháng</th><th>Incremental cost/conversion</th><th>So với CAC ads ~100k</th></tr>
+    <tr><td>Stress-Low</td><td>3,000</td><td>0.1</td><td class="neg">7.5tr VND</td><td class="neg">Tệ hơn 75×</td></tr>
+    <tr><td>Stress-Mid</td><td>10,000</td><td>0.8</td><td class="neg">2.6tr VND</td><td class="neg">Tệ hơn 26×</td></tr>
+    <tr><td>Stress-High</td><td>20,000</td><td>4.8</td><td class="warn">705k VND</td><td class="warn">Tệ hơn 7×</td></tr>
+  </table>
+  <p style="font-size:13.5px;">→ Ở MAU thực tế, viewer program <b>không phải kênh acquisition rẻ</b> — giá trị của nó là habit, push opt-in và first-party data. Sheet Viewer gốc (600 converted, ROI 3.6x) chỉ là upside case khi MAU ≥100k.</p>
+</section>
+
+<section id="system">
+  <h2>6. System Design — lõi kỹ thuật</h2>
+  <div class="grid g2">
+    <div class="card"><h4>🧾 Unified Ledger (append-only)</h4>
+      <ul><li>Mọi entry có <b>point_class</b> (TP/EP/CREDIT), <b>funding_source</b> + <b>funding_ref</b>, <b>cost_basis</b>.</li>
+      <li>Rollback = reversal entry; negative balance cho phép, có policy write-off.</li>
+      <li>Idempotency theo (source_event, reference_id); burn 2-phase reserve→confirm.</li></ul></div>
+    <div class="card"><h4>⚙️ Rules Engine (event-driven)</h4>
+      <ul><li>Domain events: ticket.purchased, vote.completed, event.checked_in, points.*, partner.*, settlement.*</li>
+      <li>Pending → activation job (event completed + refund window + fraud pass).</li>
+      <li>Circuit breaker tự siết catalog theo ngưỡng redemption (V1.1).</li></ul></div>
+    <div class="card"><h4>🛡️ Anti-fraud 7 lớp</h4>
+      <ul><li>Identity (device fingerprint, 1 SĐT = 1 account earn) · Velocity caps · Viewer farm · Referral graph · Merchant self-dealing · <b>Organizer wash-trading (V1.1)</b> · Sponsor mission (V1.1).</li></ul></div>
+    <div class="card"><h4>🏗️ Buy-vs-Build (V1.1)</h4>
+      <ul><li>P0–P1: SaaS loyalty engine (Open Loyalty self-hosted / Voucherify) + ledger mỏng tự viết cho funding_source/cost_basis.</li>
+      <li>Tự build full chỉ sau khi pilot chứng minh kinh tế (P4).</li>
+      <li>Monthly closing chuẩn IFRS 15: issued/redeemed/expired/outstanding/exposure/provisioning.</li></ul></div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <h2>7. Roadmap V1.1 — funding & pháp lý đi trước</h2>
+  <div class="timeline">
+    <div class="tl-item new"><span class="when">TUẦN 0–3 · MỚI TRONG V1.1</span><h4>P-1 — Commercial & Legal Validation</h4>
+      <p style="font-size:13.5px;">5 design-partner interview organizer NGOÀI hệ TPI + LOI mức PFC · ký hợp đồng PFC tối giản với organizer pilot · chốt entity + restricted cash account · audit consent HHVN 2024 · opinion direction stored-value · buy-vs-build + budget 12 tháng.</p>
+      <div class="gate">🚧 Gate: ≥1 hợp đồng funding ký + entity chốt + budget duyệt. <b>Không pass = không viết code.</b></div></div>
+    <div class="tl-item"><span class="when">TUẦN 1–6</span><h4>P0 — Foundation (Lite)</h4>
+      <p style="font-size:13.5px;">SaaS engine + ledger mỏng · ví user · L-Points Lite (earn vé/vote/merch pending; burn 3–5 reward OWNED) · expiry/rollback · admin + export reconciliation. B2B tier = spreadsheet.</p>
+      <div class="gate">🚧 Ledger reconcile 100% · fraud rules chạy · sunset clause trong T&C</div></div>
+    <div class="tl-item"><span class="when">TUẦN 7–12</span><h4>P1 — Pilot Mass + Viewer Lite</h4>
+      <p style="font-size:13.5px;">1–2 event (1 chặng HHVN 2026) · streak + quest telemetry-only (KHÔNG review earn) · First-Purchase Unlock với holdout group.</p>
+      <div class="gate">🚧 ≥N converted tuyệt đối · incremental cost &lt; CAC ads · fraud &lt;1% · kill criteria</div></div>
+    <div class="tl-item"><span class="when">TUẦN 13–18</span><h4>P2 — Merchant Lite</h4>
+      <p style="font-size:13.5px;">3–5 merchant quanh venue/di sản (mô hình Huế) · voucher prepaid QR single-use · settlement cuối campaign · counsel clear stored-value trước khi mở.</p>
+      <div class="gate">🚧 ≥60% merchant gia hạn budget sau campaign đầu</div></div>
+    <div class="tl-item"><span class="when">TUẦN 19–26</span><h4>P3 — Partner Club</h4>
+      <p style="font-size:13.5px;">Tier organizer + Marketing Credits (Promotion Compliance Checklist) · subscription packaging · sponsor package.</p>
+      <div class="gate">🚧 ≥2 organizer NGOÀI hệ TPI ký multi-event/subscription</div></div>
+    <div class="tl-item"><span class="when">SAU P3</span><h4>P4 — Coalition mở rộng</h4>
+      <p style="font-size:13.5px;">Cross-event points · tourism trail liên tỉnh · point pooling (đánh giá lại rủi ro) · cân nhắc tự build engine.</p>
+      <div class="gate">🚧 Exposure ổn định 2 quý · restricted cash ≥1.2× duy trì</div></div>
+  </div>
+</section>
+
+<section id="killq">
+  <h2>8. Mười Kill Questions — đối tác không trả lời được thì không ký</h2>
+  <div class="accordion" id="kq">
+    <div class="acc-item"><div class="acc-head">1. Entity nào phát hành điểm, giữ liability, đứng tên thương nhân khuyến mại? <span class="chev">▶</span></div><div class="acc-body">TPI / CTCP Công nghệ LASOONG / MediaOne — ba thực thể xuất hiện không đồng nhất trên nguồn công khai. Không có chủ thể pháp lý = mọi thứ phía sau vô nghĩa.</div></div>
+    <div class="acc-item"><div class="acc-head">2. Organizer nào NGOÀI hệ TPI cam kết trả PFC ≥1% GMV bằng văn bản? <span class="chev">▶</span></div><div class="acc-body">Nếu chỉ có HHVN (thuộc hệ TPI): toàn bộ revenue model là self-dealing, không validate được thị trường.</div></div>
+    <div class="acc-item"><div class="acc-head">3. MAU thật là bao nhiêu, đo bằng gì? <span class="chev">▶</span></div><div class="acc-body">App store hiển thị ~100+ downloads. Nếu MAU &lt;10k: dùng Viewer_Stress làm planning case, gate P1 phải là số tuyệt đối.</div></div>
+    <div class="acc-item"><div class="acc-head">4. PFC có được ring-fence (restricted cash/escrow) không? <span class="chev">▶</span></div><div class="acc-body">Nhập chung dòng tiền vận hành = lặp lại kịch bản loyalty phá sản kinh điển: PFC ghi nhận doanh thu, margin chia về P&L, 18 tháng sau redemption wave đến và không có tiền.</div></div>
+    <div class="acc-item"><div class="acc-head">5. Redemption chạm 80%+ thì cơ chế nào siết phát hành trong ≤30 ngày? <span class="chev">▶</span></div><div class="acc-body">Break-even redemption Base ≈ 98.5% @ cost 70%, nhưng ở cost 85% thì 85% redemption đã âm. Không có circuit breaker = chương trình thành công sẽ tự giết mình.</div></div>
+    <div class="acc-item"><div class="acc-head">6. Budget build + vận hành 12 tháng? Buy-vs-build? SLA khi event live? <span class="chev">▶</span></div><div class="acc-body">Net margin 5.08tr/tháng Base sẽ bị nuốt bởi chỉ một kỹ sư backend. Fully-loaded P&L là điều kiện go/no-go.</div></div>
+    <div class="acc-item"><div class="acc-head">7. Pilot fail thì outstanding TP đi đâu — sunset wording có từ ngày 1? <span class="chev">▶</span></div><div class="acc-body">Liability là nghĩa vụ với user. T&C phải có quyền dừng chương trình, expiry/compensation, burn-down period, communication plan.</div></div>
+    <div class="acc-item"><div class="acc-head">8. Consent HHVN 2024 có tái sử dụng hợp pháp dưới Luật 91/2025? <span class="chev">▶</span></div><div class="acc-body">Tập user 2024 là tài sản khởi động lớn nhất — consent thu dưới NĐ 13/2023 cần audit + re-consent. Quyết định cold-start.</div></div>
+    <div class="acc-item"><div class="acc-head">9. Quyền lợi tiếp cận thí sinh theo chi tiêu có vi phạm thể lệ HHVN 2026? <span class="chev">▶</span></div><div class="acc-body">BTC phải ký xác nhận. V1.1 đã gỡ khỏi tier trong mùa thi — chỉ mở sau chung kết.</div></div>
+    <div class="acc-item"><div class="acc-head">10. Reward/event calendar 90 ngày sau event anchor là gì? <span class="chev">▶</span></div><div class="acc-body">HHVN chu kỳ 2 năm — điểm tồn không có chỗ burn là điểm chết; expiry 12T sẽ trừng phạt fan trung thành nhất. V1.1: season-based expiry cho vertical pageant.</div></div>
+  </div>
+</section>
+
+<section id="files">
+  <h2>9. Bộ tài liệu dự án</h2>
+  <table class="links">
+    <tr><th>File</th><th>Nội dung</th><th>Vị trí</th></tr>
+    <tr><td><a href="./37.01_LaSoong_Loyalty_OS_Framework.docx" download>📄 37.01 Word Framework V1.1</a></td><td>Tài liệu tư vấn đầy đủ cho đối tác — 17 chương, kèm Red Team Review 1B, roadmap P-1→P4</td><td>37_DELIVERABLES</td></tr>
+    <tr><td><a href="./37.02_LaSoong_Loyalty_Financial_Model.xlsx" download>📊 37.02 Excel Model V1.1</a></td><td>8 sheets: Assumptions · Mass_Customer · Viewer · Partner_Merchant · Liability_12M (exposure đã sửa) · Sensitivity · Viewer_Stress · Summary — 280 formulas, 0 lỗi</td><td>37_DELIVERABLES</td></tr>
+    <tr><td>📝 31.02 Framework (Markdown V1.1)</td><td>Bản master trong Brain — đầy đủ system design, data model, API spec, các comment 🔴 V1.1</td><td>31_ACTIVE</td></tr>
+    <tr><td>🎯 31.03 Critique Prompt</td><td>Red team prompt 4 vai, 8 trục, dùng lại được cho mọi tài liệu chiến lược</td><td>31_ACTIVE</td></tr>
+    <tr><td>🔍 31.04 Codex Critique · 31.05 Claude Critique</td><td>Hai báo cáo phản biện độc lập — cùng verdict REWORK, hội tụ 5 phán quyết lớn</td><td>31_ACTIVE</td></tr>
+  </table>
+  <p style="font-size:12.5px; color:#666;">Lưu ý: link Word/Excel hoạt động khi mở file HTML này từ đúng thư mục <code>30_PROJECTS/37_DELIVERABLES</code>.</p>
+</section>
+
+</main>
+
+<footer>
+  LaSoong Loyalty OS V1.1 · Đức Nguyễn (Tobi) — Loyalty & Point Economics Advisor · 06/2026<br>
+  Tài liệu tư vấn — bảo mật, chỉ dùng cho trao đổi với LaSoong/TPI. Mọi con số là giả định chờ calibrate bằng dữ liệu thật.
+</footer>
+
+<script>
+  document.querySelectorAll('.acc-head').forEach(h => {
+    h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+  });
+  const secs = document.querySelectorAll('section');
+  const links = document.querySelectorAll('#nav a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    secs.forEach(s => { if (scrollY >= s.offsetTop - 90) cur = s.id; });
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt không chỉ là câu hỏi: viết prompt như một bản yêu cầu · Học cùng Tobi</title>
+<meta name="description" content="Prompt mơ hồ ra sản phẩm mơ hồ, không phải lỗi AI">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b1020;--bg-elev:#0f1530;--surface:#151b3d;--surface-2:#1c244d;
+  --border:#2a3470;--border-soft:#1f2654;
+  --accent:#7c83ff;--accent-2:#a5acff;--accent-soft:#3d3e9c;--violet:#c4a8ff;
+  --green:#34d399;--amber:#fbbf24;--sky:#38bdf8;
+  --text:#e8ecff;--text-2:#a8b0d6;--text-3:#6b75a8;
+  --shadow-lg:0 4px 8px rgba(0,0,0,.35),0 24px 48px rgba(0,0,0,.3);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Outfit','Be Vietnam Pro',sans-serif}
+body{font-family:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;
+  background:radial-gradient(1200px 600px at 20% -10%,rgba(124,131,255,.12),transparent 60%),
+             radial-gradient(900px 500px at 90% 10%,rgba(196,168,255,.08),transparent 60%),var(--bg);
+  color:var(--text);min-height:100vh;line-height:1.7;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;overflow-wrap:break-word}
+::selection{background:var(--accent);color:#fff}
+img{max-width:100%}
+a{color:var(--accent-2);text-decoration:none;border-bottom:1px dashed var(--accent-soft)}
+a:hover{border-bottom-style:solid}
+
+.topbar{position:sticky;top:0;z-index:100;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  background:rgba(11,16,32,.78);border-bottom:1px solid var(--border-soft)}
+.topbar-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:14px 28px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;border:none}
+.brand-mark{width:40px;height:40px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,#7c83ff,#c4a8ff);box-shadow:0 4px 16px rgba(124,131,255,.35);
+  display:flex;align-items:center;justify-content:center}
+.brand-mark svg{width:22px;height:22px}
+.brand-text h1{font-size:.95rem;font-weight:800;line-height:1.2}
+.brand-text h1 span{color:var(--accent-2)}
+.brand-text p{font-size:.72rem;color:var(--text-3);font-weight:500;margin-top:1px}
+.topbar .pill{margin-left:auto;font-size:.74rem;font-weight:700;color:var(--accent-2);
+  background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);border-radius:999px;padding:6px 16px}
+
+.container{max-width:920px;margin:0 auto;padding:40px 28px 80px}
+
+.hero{display:grid;grid-template-columns:1fr;gap:28px;margin-bottom:44px;align-items:center}
+.hero.has-art{grid-template-columns:1.1fr .9fr}
+.hero .kick{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--accent-2);background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);
+  border-radius:999px;padding:7px 18px;margin-bottom:18px}
+.hero h1.title{font-size:2.5rem;font-weight:900;letter-spacing:-1px;line-height:1.12;margin-bottom:14px}
+.hero .angle{color:var(--text-2);font-size:1.05rem;line-height:1.6}
+.hero-art{border-radius:20px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg)}
+.hero-art img{display:block;width:100%;height:auto}
+
+.article h2{font-size:1.5rem;font-weight:800;margin:42px 0 14px;padding-bottom:10px;
+  border-bottom:1px solid var(--border-soft);color:var(--text)}
+.article h3{font-size:1.18rem;font-weight:700;margin:30px 0 10px;color:var(--accent-2)}
+.article h4{font-size:1.02rem;font-weight:700;margin:22px 0 8px;color:var(--violet)}
+.article p{color:var(--text-2);margin:14px 0;font-size:1.02rem}
+.article strong{color:var(--text);font-weight:700}
+.article code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--bg-elev);
+  padding:2px 7px;border-radius:5px;color:var(--violet);border:1px solid var(--border-soft)}
+.article ul,.article ol{margin:14px 0 14px 8px;padding-left:22px;color:var(--text-2)}
+.article li{margin:8px 0;font-size:1.02rem}
+.article ul li::marker{color:var(--accent)}
+.callout{background:linear-gradient(180deg,rgba(124,131,255,.08),transparent);
+  border:1px solid var(--border-soft);border-left:4px solid var(--accent);
+  border-radius:4px 14px 14px 4px;padding:16px 20px;margin:22px 0;color:var(--text);font-size:1.02rem}
+.tbl-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--border-soft);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--border-soft)}
+thead th{background:var(--surface);color:var(--text);font-weight:700}
+tbody tr:hover{background:var(--surface)}
+td{color:var(--text-2)}
+
+.author-card{margin-top:54px;background:linear-gradient(135deg,rgba(124,131,255,.06),rgba(196,168,255,.04));
+  border:1px solid var(--border-soft);border-radius:18px;padding:28px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center}
+.author-avatar{width:84px;height:84px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:3px solid var(--accent-soft);box-shadow:0 8px 32px rgba(124,131,255,.3)}
+.author-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.author-info .kicker{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:6px}
+.author-info h3{font-size:1.3rem;font-weight:800;margin-bottom:4px;
+  background:linear-gradient(90deg,var(--accent-2),var(--violet));-webkit-background-clip:text;
+  background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.author-info p{color:var(--text-2);font-size:.88rem;line-height:1.6;max-width:520px}
+.social-grid{display:grid;grid-template-columns:repeat(4,40px);gap:8px}
+.social-btn{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid var(--border-soft);color:var(--text-2);transition:all .15s}
+.social-btn svg{width:18px;height:18px}
+.social-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.3)}
+
+@media(max-width:780px){
+  .hero.has-art{grid-template-columns:1fr}
+  .hero h1.title{font-size:1.9rem}
+}
+.media{margin:0 0 44px}
+.media .media-label{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin:0 0 12px}
+.video-embed{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;
+  border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px;background:#000}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.media.cover{margin:0 0 40px}
+.cover-art{border-radius:18px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px}
+.cover-art img{display:block;width:100%;height:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.audio-embed{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;
+  border:1px solid var(--border-soft);background:var(--surface)}
+.audio-embed .ic{font-size:1.3rem}
+.audio-embed audio{flex:1;width:100%}
+@media (max-width:720px){
+  .hero.has-art{grid-template-columns:1fr}
+  .author-card{grid-template-columns:1fr;text-align:center;gap:18px;padding:22px}
+  .author-avatar{margin:0 auto}.author-info p{margin:0 auto}.social-grid{justify-content:center;margin:0 auto}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="https://ducnguyen.vn/atlas/" target="_blank" rel="noopener">
+      <div class="brand-mark"><svg viewBox="0 0 576 512" fill="#fff"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"/></svg></div>
+      <div class="brand-text"><h1>Học cùng <span>Tobi</span></h1><p>COMPA Class · KPIM Academy</p></div>
+    </a>
+    <span class="pill">AI Agent</span>
+  </div>
+</header>
+
+<main class="container">
+  <section class="media cover"><h1 class="sr-only">Prompt không chỉ là câu hỏi: viết prompt như một bản yêu cầu</h1><div class="video-embed"><iframe src="https://www.youtube.com/embed/XG0CSvQUgaA" title="Prompt không chỉ là câu hỏi: viết prompt như một bản yêu cầu" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="audio-embed"><span class="ic">🎧</span><audio controls preload="none" src="prompt-nhu-mot-ban-yeu-cau.mp3"></audio></div></section>
+  <article class="article">
+    <p><strong>&quot;Mình gõ y như người ta chỉ mà AI vẫn làm sai, chắc tại AI dở.&quot; Nếu bạn từng nói câu này, mình muốn rủ bạn xem lại một khả năng khác, hơi phũ nhưng giải phóng: phần lớn lần &quot;AI làm sai&quot; thực ra là *đề bài chưa đủ rõ*, chứ không phải thợ kém.</strong></p>
+<p>Khoan đã — mình không bênh AI. Có những việc AI làm dở thật. Nhưng với chuyện *build sản phẩm nhỏ*, sai số lớn nhất nằm ở chỗ ít ai ngờ: cái prompt. Và tin tốt là cái đó nằm trong tay bạn, sửa được ngay hôm nay.</p>
+<p>Ở <a href="https://ducnguyen.vn/atlas/content/ai/tu-duy-nguoi-ra-de.html" target="_blank" rel="noopener">bài trước</a>, mình có hẹn sẽ nói về cách *chia nhỏ một yêu cầu lớn*. Mình giữ lời — nhưng trước khi học cách CHIA, ta cần nhìn cho kỹ: rốt cuộc *một yêu cầu* trông như thế nào cho ra hồn? Vì nếu bản thân cái prompt còn chưa ra dáng một bản yêu cầu, thì chia nhỏ nó cũng chỉ là chia nhỏ sự mơ hồ.</p>
+<h2>&quot;AI làm sai rồi!&quot; — khoan, lỗi ở đề bài hay ở thợ?</h2>
+<p>Hãy bắt đầu bằng một cảnh quen thuộc. Bạn gõ: *&quot;Làm cho mình một trang đặt lịch hẹn.&quot;* AI làm ra một cái trang. Bạn nhìn: thiếu ô số điện thoại, không chọn được giờ, màu thì xanh lè, mở trên điện thoại thì vỡ. Bạn thở dài: &quot;AI này chả hiểu gì.&quot;</p>
+<p>Nhưng thử đặt mình vào vai AI một giây. Nó nhận đúng tám chữ &quot;làm cho mình một trang đặt lịch hẹn&quot;. Trang đó cho phòng khám hay cho tiệm tóc? Khách chọn giờ kiểu lịch hay gõ tay? Cần lưu lại để bạn xem không, hay chỉ gửi mail? Tiếng Việt hay tiếng Anh? Dùng trên máy tính hay điện thoại? *Bạn không nói gì cả.* Vậy AI lấy đâu ra mấy thông tin đó? Nó <strong>tự đoán</strong>. Và đoán thì hên xui.</p>
+<p>Đây là điểm mấu chốt của cả bài: <strong>prompt mơ hồ thì sản phẩm mơ hồ — và đó không phải lỗi của AI, đó là hệ quả của một bản đề bài thiếu.</strong> Ở VC-002 mình đã nói vai của bạn là &quot;người ra đề&quot;: mô tả – đánh giá – phản hồi. Hôm nay mình soi vào chính cái *đề bài* đó. Vì một người ra đề giỏi mà viết đề lỏng lẻo thì vẫn ra kết quả lỏng lẻo.</p>
+<div class="callout">💡 Nguyên tắc vàng: Trước khi trách AI làm sai, hãy đọc lại prompt của mình và tự hỏi: &quot;Nếu mình đưa đúng dòng này cho một người lạ chưa từng gặp, liệu họ có làm ra đúng thứ mình muốn không?&quot; Nếu câu trả lời là &quot;chắc không&quot;, thì lỗi không nằm ở thợ.</div>
+<h2>Hai kiểu dùng AI: &quot;hỏi&quot; và &quot;yêu cầu&quot;</h2>
+<p>Ở <a href="https://ducnguyen.vn/atlas/content/ai/vibe-coding-thuc-ra-la-gi.html" target="_blank" rel="noopener">bài đầu series</a>, mình phân biệt *dùng AI để HỎI* và *dùng AI để XÂY*. Bài này mình kéo dài đúng ranh giới đó xuống tận cái prompt, vì nó đẻ ra hai *kiểu viết* hoàn toàn khác nhau.</p>
+<p>Khi bạn <strong>hỏi</strong>, prompt là một câu hỏi: &quot;Thủ đô Nhật là gì?&quot;, &quot;Viết hộ mình email xin nghỉ.&quot; Bạn cần một câu trả lời, đọc xong là xong. Mơ hồ một chút cũng chẳng sao, sai thì hỏi lại.</p>
+<p>Khi bạn <strong>yêu cầu</strong> (để xây ra một sản phẩm chạy được), prompt không còn là câu hỏi nữa — nó là một <strong>bản yêu cầu (requirement)</strong>: một mô tả về *thứ cần được tạo ra*. Nó phải đủ để người/máy khác dựa vào đó mà làm ra đúng vật. Thiếu một chi tiết là sản phẩm lệch một chỗ.</p>
+<p>Hầu hết người mới mắc kẹt vì mang *thói quen hỏi* vào *việc yêu cầu*. Họ gõ prompt xây sản phẩm cụt lủn y như khi tra cứu — rồi ngạc nhiên sao kết quả không ra hồn.</p>
+<div class="tbl-wrap"><table><thead><tr><th></th><th>Dùng AI để <strong>HỎI</strong></th><th>Dùng AI để <strong>YÊU CẦU</strong> (xây sản phẩm)</th></tr></thead><tbody><tr><td>Prompt là</td><td>một câu hỏi</td><td>một <strong>bản yêu cầu / đặc tả</strong></td></tr><tr><td>Bạn mong nhận về</td><td>một câu trả lời để đọc</td><td>một <strong>vật chạy được</strong> đúng ý</td></tr><tr><td>Mơ hồ thì sao</td><td>hỏi lại là xong</td><td>sản phẩm lệch, sửa nhiều vòng</td></tr><tr><td>Độ dài hợp lý</td><td>ngắn gọn được</td><td>thường phải đủ chi tiết</td></tr><tr><td>Ví dụ</td><td>&quot;Power BI là gì?&quot;</td><td>&quot;Làm trang cho khách đặt lịch, gồm…, chạy trên điện thoại, tiếng Việt…&quot;</td></tr></tbody></table></div>
+<p>Nhìn bảng này, bạn sẽ thấy vì sao &quot;gõ y như khi hỏi ChatGPT&quot; lại hỏng việc khi build: bạn đang dùng văn phong của cột trái cho công việc của cột phải.</p>
+<div class="callout">🧠 Điều cần nhớ: Hỏi và yêu cầu là hai chế độ khác nhau. Khi mục tiêu là *tạo ra một thứ chạy được*, hãy tự nhắc: &quot;Mình đang viết một bản yêu cầu, không phải đặt một câu hỏi.&quot;</div>
+<h2>Vì sao mơ hồ vào thì mơ hồ ra: AI lấp khoảng trống bằng giả định ngầm</h2>
+<p>Để chữa tận gốc, phải hiểu *cơ chế* vì sao thiếu thông tin lại ra sản phẩm lệch. Nó nằm ở một thói quen của mọi mô hình AI tạo sinh mà người mới hiếm khi để ý.</p>
+<p>Khi bản yêu cầu của bạn <strong>thiếu đặc tả</strong> (tiếng ngành: *under-specification* — tức có những chỗ quan trọng bạn không nói rõ), AI <strong>không dừng lại hỏi cho đủ</strong>, và cũng <strong>không để trống</strong>. Nó <strong>tự điền vào bằng giá trị mặc định và phỏng đoán</strong> — cái này gọi là <strong>giả định ngầm</strong> (*implicit assumptions / defaults*). Nó đoán dựa trên &quot;đa số trường hợp người ta thường muốn&quot;, chứ không phải dựa trên cái *bạn* muốn — vì cái bạn muốn thì bạn có viết ra đâu.</p>
+<p>Mình hay ví thế này. Bạn nhờ người nhà: *&quot;Đi chợ mua ít rau.&quot;* Họ mua rau muống. Bạn bực: &quot;Trời, mình đang muốn xà lách trộn cơ mà!&quot; Nhưng công bằng mà nói, *bạn có nói xà lách đâu*. Cái khoảng trống &quot;rau gì&quot; bạn để lại, người ta lấp bằng phỏng đoán hợp lý nhất với họ. AI cũng y hệt: <strong>mọi chỗ bạn không nói rõ, nó tự quyết thay bạn.</strong> Và mỗi quyết-định-thay đó là một chỗ sản phẩm có thể chệch khỏi hình dung của bạn.</p>
+<p>Hiểu điều này rồi, bạn sẽ thấy nó lật ngược cách bắt lỗi. Lần sau sản phẩm ra sai, đừng hỏi &quot;AI bị gì vậy?&quot;. Hãy hỏi: <strong>&quot;Mình đã để trống chỗ nào để nó phải tự đoán?&quot;</strong> Chín trên mười lần, bạn sẽ tìm thấy một khoảng trống trong đề bài của chính mình.</p>
+<div class="callout">⚠️ Sai lầm thường gặp: nghĩ rằng &quot;nói ngắn cho AI tự hiểu, nó thông minh mà&quot;. AI thông minh thật, nhưng nó không đọc được cái trong đầu bạn — nó chỉ có đúng những gì bạn viết ra. Chỗ bạn tiết kiệm lời, nó trả lại bằng phỏng đoán. Tiết kiệm sai chỗ thì trả giá bằng hàng chục vòng sửa.</div>
+<h2>Prompt như một bản yêu cầu: &quot;spec&quot; là gì cho người không kỹ thuật</h2>
+<p>Đến đây mình giới thiệu một chữ bạn sẽ gặp nhiều: <strong>specification</strong>, gọi tắt là <strong>spec</strong> (tiếng Việt: *đặc tả*). Nghe rất kỹ thuật, nhưng bản chất cực đời thường: <strong>spec là bản mô tả đầy đủ về thứ cần được làm ra — đủ rõ để người khác dựa vào đó mà làm đúng, không cần đoán.</strong></p>
+<p>Hình dung khác biệt giữa hai cách giao việc cho thợ xây:</p>
+<ul><li>*Cách &quot;câu hỏi/lời nhờ&quot;:* &quot;Xây cho tôi một cái nhà đẹp.&quot; → Thợ tự hiểu &quot;đẹp&quot; theo gu của thợ. Bạn nhận về một cái nhà — có thể đẹp, nhưng đẹp *kiểu của họ*, ba phòng trong khi bạn cần bốn, cửa quay hướng tây bạn ghét.</li><li>*Cách &quot;bản yêu cầu/spec&quot;:* bạn đưa <strong>bản vẽ thi công</strong> — bốn phòng ngủ, hướng nam, bếp thông phòng khách, cửa sổ lớn ở đây. Thợ làm trúng ngay, và lúc nghiệm thu hai bên chiếu theo bản vẽ mà soi.</li></ul>
+<p><strong>Viết prompt để xây sản phẩm chính là vẽ cái bản vẽ thi công đó cho AI.</strong> Cùng tài thợ, bản vẽ rõ thì ra nhà đúng ý; chỉ tay nói miệng thì ra nhà hên xui. Cái prompt-như-spec còn một công dụng nữa, dân chuyên gọi là <strong>source of truth</strong> (*bản gốc tham chiếu* — chỗ duy nhất nói &quot;đúng nghĩa là gì&quot;): khi bạn và AI bất đồng &quot;thế này đã đúng chưa&quot;, thì giở bản yêu cầu ra đối chiếu, thay vì cãi nhau theo cảm tính.</p>
+<p>Bạn để ý: đây chính là phiên bản &quot;lên đời&quot; của tư duy người-ra-đề ở VC-002. Bài 2 nói *bạn cần ra đề*; bài 3 nói *cái đề đó phải có hình hài của một bản đặc tả*.</p>
+<h2>Giải phẫu một bản yêu cầu: 5 phần biến câu hỏi thành đặc tả</h2>
+<p>Vậy một bản yêu cầu &quot;đủ&quot; gồm gì? Ở VC-002 mình đưa khung bốn phần *Bối cảnh – Mục tiêu – Ràng buộc – Tiêu chí đúng*. Bài này mình <strong>nâng cấp</strong> nó thành năm phần, thêm đúng hai ba thứ mà người mới hay quên nhất. Bạn không cần thuộc lòng — cứ coi đây là một *danh sách kiểm tra* để rà trước khi nhấn Enter.</p>
+<ol><li><strong>Bối cảnh &amp; đầu vào (Context &amp; Input).</strong> Bạn là ai, sản phẩm để giải quyết việc gì, và AI có sẵn *nguyên liệu* gì để làm. *&quot;Mình mở phòng khám nhỏ; cần trang để khách tự đặt lịch hẹn thay vì gọi điện.&quot;* Nếu có dữ liệu (danh sách bác sĩ, khung giờ), nói luôn — đó là đầu vào.</li></ol>
+<ol><li><strong>Kết quả mong muốn — yêu cầu chức năng (Functional requirement).</strong> Sản phẩm phải *làm được gì*. Đây là phần &quot;động từ&quot;: khách <strong>chọn</strong> ngày giờ, <strong>điền</strong> tên và số điện thoại, <strong>bấm</strong> gửi; mình <strong>xem</strong> được danh sách đã đặt. *Yêu cầu chức năng = hệ thống phải làm những việc gì.*</li></ol>
+<ol><li><strong>Yêu cầu phi chức năng (Non-functional requirement).</strong> Đây là phần người mới quên gần như 100%. Nó không nói &quot;làm gì&quot; mà nói &quot;làm *tốt tới mức nào*, trong điều kiện nào&quot;: chạy mượt trên <strong>điện thoại</strong>, giao diện <strong>tiếng Việt</strong>, tải nhanh, dễ bấm cho người lớn tuổi, không để lộ số điện thoại khách cho người ngoài. *Yêu cầu chức năng quyết sản phẩm có làm đúng việc không; yêu cầu phi chức năng quyết nó có dùng được trong đời thật không.* Thiếu phần này là lý do số một khiến sản phẩm &quot;chạy được mà không xài được&quot;.</li></ol>
+<ol><li><strong>Ràng buộc &amp; điều KHÔNG được làm (Constraints &amp; exclusions).</strong> Ngoài giới hạn bắt buộc (&quot;không bắt khách đăng nhập&quot;, &quot;miễn phí, không dùng dịch vụ tốn tiền&quot;), hãy nói rõ cả những thứ bạn *không* muốn — dân chuyên gọi là <strong>ràng buộc loại trừ</strong> (*negative constraints*). *&quot;Đừng thêm quảng cáo&quot;, &quot;đừng yêu cầu email&quot;, &quot;đừng dùng màu đỏ&quot;.* Nghe nhỏ nhặt, nhưng nói trước một câu &quot;đừng&quot; tiết kiệm cho bạn vài vòng sửa. AI không tự biết ranh giới của bạn nếu bạn không vạch.</li></ol>
+<ol><li><strong>Ví dụ mẫu &amp; tiêu chí đúng (Examples + Acceptance criteria).</strong> Cách rõ nhất để mô tả cái mình muốn nhiều khi không phải tả bằng lời, mà là <strong>đưa một ví dụ cụ thể</strong>. Ngành phần mềm gọi đây là <strong>đặc tả bằng ví dụ</strong> (*specification by example*); dân làm prompt gọi việc đưa AI vài mẫu là <strong>few-shot</strong> (đưa &quot;vài phát&quot; ví dụ để AI bắt chước). *&quot;Một dòng trong danh sách trông như: Nguyễn Văn A – 0901xxx – 9h00 ngày 25/6.&quot;* Một ví dụ như vậy nói rõ hơn cả đoạn văn. Còn <strong>tiêu chí đúng</strong> (*acceptance criteria* — dấu hiệu để coi là &quot;xong và đúng&quot;) thì mình đã đào kỹ ở VC-002, nên ở đây chỉ nhắc: nó là phần khóa sổ của bản yêu cầu, đừng bỏ.</li></ol>
+<p>Năm phần này không phải để bạn viết một bản dài lê thê mỗi lần. Nó là cái rây: rà nhanh xem mình đang để trống phần nào để AI khỏi phải đoán phần đó.</p>
+<div class="callout">🎯 Mục tiêu thực hành: Lần tới trước khi gửi một prompt &quot;xây&quot;, dừng 30 giây soi 5 phần. Thường bạn sẽ phát hiện mình quên phần 3 (phi chức năng) và phần 5 (ví dụ) — hai chỗ &quot;đắt&quot; nhất.</div>
+<h2>Before / after: cùng một ý, hai cách viết</h2>
+<p>Lý thuyết vậy đủ. Xem nó sống thế nào với đúng cái ví dụ đầu bài — trang đặt lịch hẹn cho một phòng khám nhỏ.</p>
+<p><strong>❌ Cách viết như một câu hỏi (under-specified):</strong></p>
+<div class="callout">&quot;Làm cho mình một trang đặt lịch hẹn.&quot;</div>
+<p>AI buộc phải đoán: cho ngành gì, trường thông tin nào, chọn giờ ra sao, lưu ở đâu, ngôn ngữ gì, thiết bị nào. Tám chữ, mười chỗ trống. Kết quả: hên xui.</p>
+<p><strong>✅ Cách viết như một bản yêu cầu (theo 5 phần):</strong></p>
+<div class="callout">*Bối cảnh:* Mình có một phòng khám nhỏ, muốn khách tự đặt lịch online thay vì gọi điện. *Chức năng:* Một trang để khách (1) chọn ngày và khung giờ còn trống, (2) điền họ tên và số điện thoại, (3) bấm &quot;Đặt lịch&quot;. Mình cần một trang riêng xem được danh sách lịch đã đặt theo ngày. *Phi chức năng:* Dùng tốt trên điện thoại, giao diện tiếng Việt, chữ rõ dễ đọc cho người lớn tuổi, tông màu xanh dương nhẹ nhàng. *Ràng buộc &amp; đừng:* Không bắt khách đăng nhập. Đừng thêm quảng cáo. Đừng hỏi email. *Ví dụ &amp; tiêu chí đúng:* Một dòng trong danh sách trông như &quot;Nguyễn Văn A – 0901234567 – 9h00, 25/6&quot;. Bỏ trống số điện thoại thì không bấm gửi được. Gửi xong hiện chữ &quot;Đã nhận đặt lịch, phòng khám sẽ liên hệ xác nhận&quot;.</div>
+<p>Cùng một mong muốn trong đầu. Cách dưới không &quot;giỏi kỹ thuật&quot; hơn cách trên một chữ nào — nó chỉ *nói ra hết* những gì cách trên để cho AI tự đoán. Và đó đúng là toàn bộ khác biệt giữa &quot;AI làm sai hoài&quot; với &quot;ô, trúng ngay gần hết&quot;.</p>
+<p>Một lưu ý thật lòng: bạn vẫn sẽ phải xoay vòng *mô tả → xem → chỉnh* như VC-002 đã nói — không bản yêu cầu nào đúng tuyệt đối ngay lần đầu. Nhưng viết như bản dưới, bạn bắt đầu vòng lặp ở vạch xuất phát gần đích hơn rất nhiều, thay vì sửa từ con số không.</p>
+<h2>Không chỉ bạn: cả giới chuyên nghiệp đang viết &quot;spec&quot; thay vì gõ code</h2>
+<p>Nếu bạn vẫn ngờ &quot;viết yêu cầu kỹ thế, có phải vẽ chuyện không?&quot;, thì đây là phần làm mình thấy chủ đề này *đúng thời* nhất. Năm 2025–2026, chính giới lập trình chuyên nghiệp đang công khai dịch chuyển sang đúng tư duy này — họ đặt cho nó cái tên <strong>spec-driven development</strong> (*phát triển theo đặc tả*): viết bản đặc tả cho rõ trước, rồi để AI dựa vào đó sinh code.</p>
+<ul><li>*Theo The GitHub Blog:* tháng 9/2025, GitHub mở mã nguồn một bộ công cụ tên <strong>Spec Kit</strong>, với quy trình bốn bước *Spec → Plan → Tasks → Implement*. Họ nói thẳng: bản spec là <strong>&quot;hợp đồng (contract)&quot;</strong> mô tả phần mềm nên hành xử ra sao, và là <strong>&quot;nguồn chân lý (source of truth)&quot;</strong> mà các công cụ AI dựa vào để sinh, kiểm thử và xác thực code — kết quả là *&quot;ít phải đoán, ít bất ngờ, chất lượng cao hơn&quot;*. (<a href="https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/" target="_blank" rel="noopener">github.blog</a>)</li><li>*Theo InfoQ và trang chính chủ kiro.dev:* năm 2025, AWS giới thiệu <strong>Kiro</strong> — một môi trường lập trình &quot;spec-driven&quot;, biến prompt thành *&quot;đặc tả thực thi được&quot;* và tự xuất ra user story kèm <strong>tiêu chí nghiệm thu</strong>, tài liệu thiết kế và danh sách việc cần làm. Tiêu đề một bài của InfoQ nói thẳng tinh thần: *&quot;Beyond Vibe Coding&quot;* — tức bước qua khỏi kiểu gõ tùy hứng, hướng tới làm việc có đặc tả. (<a href="https://www.infoq.com/news/2025/08/aws-kiro-spec-driven-agent/" target="_blank" rel="noopener">infoq.com</a>)</li><li>*Theo talk &quot;The New Code&quot; của Sean Grove (OpenAI):* anh lập luận rằng code bạn viết chỉ chiếm khoảng <strong>10–20% giá trị</strong> bạn tạo ra; 80–90% còn lại nằm ở *&quot;structured communication&quot;* — hiểu vấn đề của người dùng, chắt lọc yêu cầu, lập kế hoạch và nghiệm thu. Nói cách khác: <strong>biết viết yêu cầu rõ mới là kỹ năng lõi, code chỉ là phần ngọn.</strong> Chính OpenAI cũng công bố bộ &quot;Model Spec&quot; của họ dưới dạng các file văn bản dễ đọc, ai cũng đọc và góp ý được. (<a href="https://www.classcentral.com/course/youtube-the-new-code-sean-grove-openai-467279" target="_blank" rel="noopener">classcentral.com</a>)</li></ul>
+<p>Mình đưa mấy ví dụ này không phải để bạn đi cài Spec Kit hay Kiro — chúng là công cụ cho dân chuyên. Mình đưa ra vì một lý do tiếp sức: <strong>cái tư duy mình đang dạy bạn — coi prompt như một bản yêu cầu — chính là cái mà những đội kỹ thuật giỏi nhất thế giới đang chuyển sang.</strong> Bạn không đi sau. Bạn đang học đúng thứ thời thượng nhất, chỉ bằng một phiên bản đời thường hơn.</p>
+<div class="callout">💡 Nguyên tắc vàng: Có một chữ đáng nhớ từ cả ba ví dụ — *spec là source of truth*. Bản yêu cầu rõ ràng không chỉ giúp AI làm trúng, nó còn là chỗ để bạn (và sau này là cả nhóm bạn) quay về đối chiếu &quot;thế nào mới là đúng&quot;. Sản phẩm có thể đập đi xây lại; bản yêu cầu rõ thì còn giá trị mãi.</div>
+<h2>Góc nhìn thẳng: bản yêu cầu rõ không giết sáng tạo, nó giải phóng</h2>
+<p>Nói thật một chút, vì mình không thích kiểu &quot;cứ viết dài là thắng&quot;. Soi qua ba lớp cho cân.</p>
+<p><strong>Lớp kỹ thuật.</strong> Viết yêu cầu rõ giúp AI làm trúng hơn hẳn — điều này thì chắc. Nhưng có một cái bẫy ngược: <strong>over-specification</strong> (đặc tả quá tay). Nếu bạn ngồi tả từng chi tiết pixel, từng dòng chữ, thì vừa mệt vừa trói tay AI ở những chỗ đáng ra để nó lo (phần *cách làm* — implementation, như VC-002 đã nói). Cân bằng nằm ở đây: <strong>nói rõ cái BẠN quan tâm (kết quả, ràng buộc, ví dụ), buông phần kỹ thuật cho AI.</strong> Tả cái &quot;muốn gì&quot;, đừng tả cái &quot;code thế nào&quot;.</p>
+<p><strong>Lớp giá trị công việc.</strong> Theo mình, kỹ năng viết-yêu-cầu-rõ là loại &quot;lãi kép&quot; — y như mình nói ở bài 2. Nó không chỉ dùng cho vibe coding. Một cái email giao việc, một cái brief thuê ngoài, một yêu cầu gửi phòng IT — tất cả đều là *bản yêu cầu*. Học viết spec cho AI, bạn vô tình sắc luôn kỹ năng diễn đạt yêu cầu cho người. Mà cái talk của OpenAI ở trên nói đúng điều đó: phần lớn giá trị của người làm việc trí óc nằm ở *structured communication*, không phải ở thao tác tay.</p>
+<p><strong>Lớp con người.</strong> Và đây là chỗ mình hay phải trấn an: nhiều người sợ &quot;viết yêu cầu chi li thế thì còn gì sáng tạo&quot;. Theo mình thì ngược lại. Một bản yêu cầu rõ ràng *giải phóng* sáng tạo, vì nó dọn sạch những lần sửa tới sửa lui vì hiểu lầm, để bạn dồn năng lượng cho việc đáng: nghĩ xem sản phẩm *nên là gì*. Mơ hồ không phải là tự do — mơ hồ là cái thuế bạn trả bằng hàng chục vòng làm lại.</p>
+<p>Cho nên khuyến nghị của mình rất gọn: <strong>đừng cố viết prompt cho &quot;kêu&quot;, hãy viết prompt cho &quot;đủ&quot;.</strong> Đủ bối cảnh, đủ kết quả mong muốn, đủ ràng buộc, đủ một ví dụ. Một bản yêu cầu đủ luôn thắng một câu hỏi bóng bẩy mà rỗng.</p>
+<h2>Kết luận</h2>
+<p>Cái prompt bạn gõ mỗi ngày, lúc để hỏi thì cứ là câu hỏi. Nhưng khi bạn muốn AI *xây ra một thứ chạy được*, hãy đổi cả tư thế ngồi: bạn không đang hỏi, bạn đang viết một bản yêu cầu. Nói rõ bối cảnh và đầu vào. Nói rõ nó phải làm được gì, và làm tốt tới mức nào. Vạch ràng buộc và cả những điều &quot;đừng&quot;. Kèm một ví dụ. Mỗi chỗ bạn nói rõ là một chỗ AI khỏi phải đoán — và mỗi chỗ nó khỏi đoán là một bước sản phẩm gần hơn cái trong đầu bạn.</p>
+<p><strong>Một prompt tốt không phải là một câu hỏi hay, mà là một bản yêu cầu đủ rõ để AI không cần đoán.</strong></p>
+<p>Ở bài tiếp theo, mình sẽ giữ trọn lời hứa cũ: <strong>cách chia một yêu cầu lớn thành những đề nhỏ vừa miếng</strong> — vì khi bản yêu cầu phình to (cả một cái app, không chỉ một cái form), ném nguyên cục cho AI sẽ loạn, mà bạn thì ngợp. Biết viết một yêu cầu cho ra hồn là bước một; biết bẻ nó thành từng phần làm trúng lần lượt là bước hai. Đó cũng là tinh thần tụi mình theo ở COMPA Class: biến mỗi bức tường tưởng khó thành một cái dốc dễ leo. Hẹn bạn ở bài kế nhé.</p>
+<p>---</p>
+  </article>
+
+  <footer class="author-card" aria-labelledby="author-name">
+    <div class="author-avatar">
+      <img src="https://ducnguyen221.github.io/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức" loading="lazy" width="84" height="84">
+    </div>
+    <div class="author-info">
+      <div class="kicker">Tác giả · Author</div>
+      <h3 id="author-name">Nguyễn Quang Đức (Tobi)</h3>
+      <p>Data &amp; AI Engineer · Trainer tại KPIM Academy &amp; COMPA Class. Trang cá nhân tại
+        <a href="https://ducnguyen.vn" target="_blank" rel="noopener">ducnguyen.vn</a>.</p>
+    </div>
+    <nav class="social-grid" aria-label="Liên kết tác giả">
+      <a class="social-btn" href="https://ducnguyen.vn" target="_blank" rel="noopener" aria-label="Website" title="ducnguyen.vn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.facebook.com/TobiNguyenData/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.youtube.com/@PowerBIHeroVn" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a class="social-btn" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" aria-label="E-Profile" title="E-Profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      </a>
+    </nav>
+  </footer>
+</main>
+</body>
+</html>

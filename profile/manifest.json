@@ -1,0 +1,23 @@
+﻿{
+  "name": "E-Portfolio Nguyen Quang Duc",
+  "short_name": "QuangDuc",
+  "description": "Lecturer e-portfolio for Nguyen Quang Duc",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f0e5",
+  "theme_color": "#24463c",
+  "icons": [
+    {
+      "src": "assets/images/KPIM-Duc-Nguyen.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/KPIM-Duc-Nguyen.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+

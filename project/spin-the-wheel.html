@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KPIM Academy Lucky Spin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2bd4bd",
+              "background-light": "#f6f8f8",
+              "background-dark": "#0B1B3A", 
+              "surface-dark": "#162a4d",
+              "navy-deep": "#0B1B3A",
+              "accent-teal": "#2bd4bd",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+            backdropBlur: {
+              xs: '2px',
+            },
+            animation: {
+                'spin-slow': 'spin 3s linear infinite',
+                'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+                float: {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-10px)' },
+                }
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(43, 212, 189, 0.3);
+            border-radius: 10px;
+        }
+        .tech-bg {
+            background-color: #0B1B3A;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(43, 212, 189, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(43, 212, 189, 0.08) 0%, transparent 25%),
+                linear-gradient(to bottom, #0B1B3A, #081226);
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .glass-panel {
+            background: rgba(22, 42, 77, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+        .glass-card-accent {
+            background: linear-gradient(135deg, rgba(43, 212, 189, 0.15) 0%, rgba(43, 212, 189, 0.05) 100%);
+            border: 1px solid rgba(43, 212, 189, 0.3);
+            box-shadow: 0 0 15px rgba(43, 212, 189, 0.1);
+        }
+        .wheel-container {
+            position: relative;
+            width: 90vw;
+            max-width: 380px;
+            aspect-ratio: 1/1;
+            margin: 0 auto;
+            border-radius: 50%;
+            box-shadow: 0 0 50px rgba(43, 212, 189, 0.2);
+        }
+        .wheel-rotate-wrapper {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            transition: transform 4s cubic-bezier(0.1, 0.7, 0.1, 1);
+        }
+        .wheel-graphic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            border: 8px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+            background: #0B1B3A;
+        }
+        .wheel-base {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;position: absolute;
+            inset: 0;
+        }
+        .label-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .wheel-separator {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;height: 50%;
+            background: rgba(255, 255, 255, 0.2);transform-origin: bottom center;
+            z-index: 5;
+            pointer-events: none;
+        }
+        .label {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-origin: center;
+            width: 0; 
+            height: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+        }
+        .label-content {
+            position: absolute;
+            bottom: 60px;left: -50px;width: 100px;height: 120px;
+            transform-origin: bottom center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .wheel-pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 50px;
+            z-index: 30;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+        }
+        .spin-btn-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 40;}
+        .spin-btn {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #2bd4bd 0%, #1a8f81 100%);
+            border: 4px solid #162a4d;
+            box-shadow: 0 0 25px rgba(43, 212, 189, 0.6), inset 0 0 10px rgba(255,255,255,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #0B1B3A;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .spin-btn::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid rgba(43, 212, 189, 0.3);
+            animation: pulse-fast 2s infinite;
+        }
+        .spin-btn:active {
+            transform: scale(0.95);
+        }
+        .setup-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 60;
+            background: rgba(11, 27, 58, 0.95);
+            backdrop-filter: blur(20px);
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .setup-overlay.open {
+            transform: translateY(0);
+        }
+        .bg-tech-grid {
+             background-image: none;
+             background-size: 20px 20px;
+        }
+        .wheel-text-truncate {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            display: block;
+        }
+        .prizes-left-badge {
+            transition: all 0.3s ease;
+        }.color-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .color-dot.selected {
+            border-color: white;
+            box-shadow: 0 0 0 2px #2bd4bd;
+            transform: scale(1.1);
+        }.icon-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+        .icon-option {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.05);
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #9ca3af;
+        }
+        .icon-option:hover, .icon-option.selected {
+            background: rgba(43, 212, 189, 0.2);
+            color: #2bd4bd;
+            border: 1px solid rgba(43, 212, 189, 0.5);
+        }.popover-panel {
+            display: none;
+            position: absolute;
+            background: #162a4d;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            z-index: 70;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            width: 220px;
+        }
+        .popover-panel.show {
+            display: block;
+        }
+        .color-indicator-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .color-indicator-btn:hover {
+            transform: scale(1.05);
+            border-color: rgba(255,255,255,0.5);
+        }
+        .color-popover {
+            display: none;
+            position: absolute;
+            background: #162a4d;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            z-index: 70;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            width: 150px;
+        }
+        .color-popover.show {
+            display: block;
+        }
+        .hidden-elm {
+            display: none !important;
+        }.btn-main-action {
+             background: linear-gradient(135deg, #2bd4bd 0%, #1a8f81 100%);
+             color: #0B1B3A;
+             border: none;
+             box-shadow: 0 0 15px rgba(43, 212, 189, 0.3);
+        }
+        .btn-main-action:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(43, 212, 189, 0.4);
+        }
+    </style>
+<style>
+        body {
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark text-gray-100 font-display tech-bg overflow-x-hidden w-full flex flex-col selection:bg-primary selection:text-navy-deep">
+<header class="h-16 shrink-0 glass-panel border-b border-white/5 flex items-center justify-between px-4 z-40 sticky top-0">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-primary/20 flex items-center justify-center border border-primary/30 shadow-[0_0_15px_rgba(43,212,189,0.2)]">
+<img alt="KPIM Logo" class="w-5 h-5 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWOSCiP2CDRwBFpLTexJxsvwdaE-2-UsvkcX1rus8oOppJfVsPX51tvsBgb6trsbNcVwy8ggRVhpcoM2B0QK4clkT5JTZVuwo3Wz6yZcslUjA8DHpGMAu6QnQdZY2hz-uYfz6FCldumGoYak-s2WKs400RhQKTkIGT23ISfLtjrMMwaOQtZbE0RH3Irfl059ZHbq1tukxikt_DTZ8gFsblCDXETkPVAiKecLL5liI4WRjGyaIhihNKZKwOSbHX6qGc7jiZNNVkD5RV"/>
+</div>
+<div>
+<h1 class="text-sm font-bold tracking-tight text-white leading-tight">KPIM Academy</h1>
+<p class="text-[10px] text-primary font-medium tracking-widest uppercase opacity-90">Lucky Spin Event</p>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-dark border border-white/10 hover:bg-white/10 text-primary transition shadow-lg" id="setupToggleBtn" title="Prize Setup">
+<span class="material-symbols-outlined text-xl">settings</span>
+</button>
+</header>
+<main class="flex-1 flex flex-col items-center w-full max-w-md mx-auto relative pb-24 md:pb-8">
+<div class="absolute top-20 right-0 w-[300px] h-[300px] bg-primary/10 rounded-full blur-[80px] pointer-events-none translate-x-1/2"></div>
+<div class="absolute top-[40%] left-0 w-[200px] h-[200px] bg-purple-600/10 rounded-full blur-[60px] pointer-events-none -translate-x-1/2"></div>
+<section class="w-full flex flex-col items-center justify-center pt-8 pb-6 px-4 relative z-10">
+<div class="wheel-container">
+<div class="wheel-pointer">
+<svg fill="none" viewBox="0 0 40 50" xmlns="http://www.w3.org/2000/svg">
+<filter id="shadow">
+<fedropshadow dx="0" dy="2" flood-color="rgba(0,0,0,0.5)" stdDeviation="2"></fedropshadow>
+</filter>
+<path d="M20 50L0 0H40L20 50Z" fill="#FACC15" filter="url(#shadow)"></path>
+<path d="M20 50L0 0H20V50Z" fill="#EAB308"></path>
+<circle cx="20" cy="5" fill="#FFFFFF" fill-opacity="0.8" r="4"></circle>
+</svg>
+</div>
+<div class="wheel-rotate-wrapper" id="wheelRotate">
+<div class="wheel-graphic shadow-inner" id="spinWheel">
+<div class="wheel-base" id="wheelBase"></div>
+<div class="label-container" id="wheelLabels">
+</div>
+</div>
+</div>
+<div class="spin-btn-container">
+<button class="spin-btn group" id="spinBtn">
+<span class="text-sm font-black tracking-widest group-hover:scale-110 transition-transform z-10">SPIN</span>
+</button>
+</div>
+</div>
+</section>
+<section class="w-full px-4 mb-6 z-10">
+<div class="flex gap-3">
+<button class="flex-1 py-3 rounded-xl bg-surface-dark border border-white/10 text-gray-400 hover:text-white hover:bg-white/5 transition font-medium uppercase tracking-wide text-xs shadow-lg flex items-center justify-center gap-2" id="resetBtn">
+<span class="material-symbols-outlined text-lg">restart_alt</span> Reset
+                </button>
+<button class="flex-[2] py-3 rounded-xl bg-gray-700/50 text-gray-500 cursor-not-allowed border border-white/5 font-bold uppercase tracking-wide text-sm shadow-lg transition-all duration-300 flex items-center justify-center gap-2" disabled="" id="continueBtn">
+                    Spin <span class="material-symbols-outlined text-lg">play_circle</span>
+</button>
+</div>
+</section>
+<section class="w-full px-4 mb-4 z-10 hidden-elm" id="latestWinnerSection">
+<div class="glass-card-accent rounded-xl p-0.5 relative overflow-hidden group">
+<div class="bg-surface-dark/60 backdrop-blur-md rounded-[10px] p-4 relative z-10 flex items-center gap-4">
+<div class="shrink-0 w-14 h-14 rounded-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center border border-white/10 shadow-[0_0_10px_rgba(168,85,247,0.3)]">
+<i class="fa-solid fa-gift text-xl text-purple-300" id="latestWinnerIcon"></i>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center mb-1">
+<h3 class="text-[10px] font-bold text-primary uppercase tracking-widest">Latest Winner</h3>
+<span class="text-[10px] text-gray-400 flex items-center gap-1" id="latestWinnerTime"><i class="fa-regular fa-clock"></i> Just now</span>
+</div>
+<h2 class="text-lg font-bold text-white truncate leading-tight" id="latestWinnerName">Prize Name</h2>
+<p class="text-xs text-gray-400 mt-0.5" id="latestWinnerValue">Value: 0đ</p>
+<p class="text-xs text-primary mt-0.5 font-bold" id="latestWinnerUser">Winner: User</p>
+</div>
+</div>
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-purple-500/10 opacity-50"></div>
+</div>
+</section>
+<section class="w-full px-4 pb-8 z-10 flex-1">
+<div class="glass-panel rounded-xl overflow-hidden flex flex-col h-full min-h-[200px]">
+<div class="p-3 border-b border-white/5 flex justify-between items-center bg-surface-dark/40">
+<h3 class="text-xs font-bold text-white flex items-center gap-2">
+<i class="fa-solid fa-clock-rotate-left text-gray-400 text-xs"></i> Spin History
+                    </h3>
+<div class="px-2 py-0.5 bg-primary/10 rounded border border-primary/20 text-[10px] font-bold text-primary prizes-left-badge" id="prizesLeftCounter">
+                        0/0 Prizes Left
+                    </div>
+</div>
+<div class="p-2 space-y-2 max-h-[250px] overflow-y-auto" id="historyContainer">
+<div class="flex flex-col items-center justify-center py-8 text-gray-500" id="emptyHistoryState">
+<span class="material-symbols-outlined text-3xl mb-2 opacity-50">history_toggle_off</span>
+<p class="text-xs">Chưa có lịch sử</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<div class="setup-overlay flex flex-col h-[100dvh] w-full" id="setupOverlay">
+<div class="h-16 shrink-0 flex items-center justify-between px-4 border-b border-white/10 bg-navy-deep/80">
+<h2 class="text-base font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">tune</span> Prize Setup
+            </h2>
+<button class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white" id="closeSetupBtn">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4 bg-tech-grid" id="setupScrollContainer">
+<div class="space-y-3" id="prizeListContainer">
+</div>
+<button class="w-full py-3 bg-white/5 border border-white/10 border-dashed rounded-xl text-gray-400 hover:text-white hover:border-primary/50 transition flex items-center justify-center gap-2 text-sm font-medium" id="addPrizeBtn">
+<span class="material-symbols-outlined">add_circle</span> Add New Prize
+            </button>
+</div>
+<div class="p-4 border-t border-white/10 bg-surface-dark pb-8">
+<button class="w-full py-3.5 bg-primary text-navy-deep rounded-xl font-bold text-sm uppercase tracking-wide shadow-lg shadow-primary/20 active:scale-[0.98] transition" id="applySetupBtn">
+                Apply Changes
+            </button>
+</div>
+</div>
+<div class="popover-panel shadow-2xl shadow-black/50" id="iconPickerPopover">
+<div class="text-[10px] uppercase text-gray-400 font-bold mb-2">Select Icon</div>
+<div class="icon-grid" id="iconGrid">
+</div>
+</div>
+<div class="color-popover shadow-2xl shadow-black/50" id="colorPickerPopover">
+<div class="text-[10px] uppercase text-gray-400 font-bold mb-2">Select Color</div>
+<div class="grid grid-cols-3 gap-2" id="colorGrid">
+</div>
+</div>
+<div class="fixed inset-0 z-50 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-500 px-4" id="resultModal">
+<div class="absolute inset-0 bg-navy-deep/95 backdrop-blur-xl"></div>
+<div class="absolute inset-0 overflow-hidden" id="confettiContainer"></div>
+<div class="relative z-10 w-full max-w-sm transform scale-90 transition-transform duration-500" id="resultCard">
+<div class="bg-surface-dark border border-white/10 rounded-2xl overflow-hidden shadow-2xl shadow-primary/20">
+<div class="h-40 relative">
+<img alt="Prize Category" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1znVMuu3uUs-JNm9yxRZxpCwLgmySRhKTUeUZfrRekfkonWvOqjaMJGnDTPrDxgkrZmIKQMKHl9QLcNbGL2fbK9NWWK-v3GNw3tzxDkzCPuHdopTxhyD7Uu0mzDBEhnrfFvGopdRXwUngNcgkgT1AioTekeifWS-7XJy0Z-cM0WnbFgbqkA7f-suGMac2Zvy-JFiAR9KE9X74apGj10bYTZoTFQ7CI84Sc7qQt1TLQFfCRLaWRA7C1qfSF0_00sGZo1o_5CkAwrqC"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark via-transparent to-transparent"></div>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur text-white px-2 py-0.5 rounded text-[10px] font-bold border border-white/10 uppercase tracking-widest">
+                        Winner!
+                    </div>
+</div>
+<div class="px-6 pb-6 pt-2 text-center relative -mt-10">
+<div class="w-20 h-20 mx-auto bg-gradient-to-br from-primary to-blue-500 rounded-full p-0.5 shadow-lg shadow-primary/40 mb-4 animate-float">
+<div class="w-full h-full bg-surface-dark rounded-full flex items-center justify-center border-4 border-surface-dark">
+<i class="fa-solid fa-gift text-3xl text-white" id="resultIcon"></i>
+</div>
+</div>
+<h2 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-primary to-white mb-1 drop-shadow-sm">
+                        CONGRATS!
+                    </h2>
+<p class="text-gray-400 text-xs uppercase tracking-widest mb-4">You just won</p>
+<div class="py-3 px-4 bg-white/5 rounded-xl border border-white/10 mb-5">
+<h3 class="text-xl font-bold text-white leading-tight" id="resultPrizeName">Prize Name</h3>
+<p class="text-primary font-medium text-xs mt-1" id="resultPrizeValue">Value: 0đ</p>
+</div>
+<div class="mb-5 text-left">
+<label class="text-[10px] uppercase text-gray-500 font-bold mb-1.5 block ml-1">Winner Name</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-400 text-lg">person</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 bg-black/20 border border-white/10 rounded-lg text-sm text-white placeholder-gray-600 focus:ring-1 focus:ring-primary focus:border-primary" id="winnerNameInput" placeholder="Enter winner's name" type="text"/>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 py-3 rounded-lg bg-surface-dark border border-white/10 text-gray-300 font-bold text-xs uppercase hover:bg-white/5" id="shareBtn">
+                            Share
+                        </button>
+<button class="flex-[2] py-3 rounded-lg bg-gradient-to-r from-primary to-emerald-500 text-navy-deep font-bold text-xs uppercase tracking-wide shadow-lg pointer-events-auto" id="saveWinnerBtn">
+                            Save Winner <i class="fa-solid fa-check ml-1"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // -- Elements --
+            const wheelRotate = document.getElementById('wheelRotate');
+            const spinBtn = document.getElementById('spinBtn');
+            const continueBtn = document.getElementById('continueBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const resultModal = document.getElementById('resultModal');
+            const resultCard = document.getElementById('resultCard');
+            const closeModalBtn = document.getElementById('closeModalBtn'); // This doesn't exist anymore in the markup below, replaced by saveWinnerBtn
+            const saveWinnerBtn = document.getElementById('saveWinnerBtn');
+            const winnerNameInput = document.getElementById('winnerNameInput');
+            const confettiContainer = document.getElementById('confettiContainer');
+            const resultPrizeName = document.getElementById('resultPrizeName');
+            const resultPrizeValue = document.getElementById('resultPrizeValue');
+            const resultIcon = document.getElementById('resultIcon');
+            const wheelBase = document.getElementById('wheelBase');
+            const wheelLabels = document.getElementById('wheelLabels');
+            const prizesLeftCounter = document.getElementById('prizesLeftCounter');
+            // Latest Winner & History Elements
+            const latestWinnerSection = document.getElementById('latestWinnerSection');
+            const latestWinnerName = document.getElementById('latestWinnerName');
+            const latestWinnerValue = document.getElementById('latestWinnerValue');
+            const latestWinnerIcon = document.getElementById('latestWinnerIcon');
+            const latestWinnerTime = document.getElementById('latestWinnerTime');
+            const latestWinnerUser = document.getElementById('latestWinnerUser');
+            const historyContainer = document.getElementById('historyContainer');
+            const emptyHistoryState = document.getElementById('emptyHistoryState');
+            // Setup Elements
+            const setupOverlay = document.getElementById('setupOverlay');
+            const setupToggleBtn = document.getElementById('setupToggleBtn');
+            const closeSetupBtn = document.getElementById('closeSetupBtn');
+            const applySetupBtn = document.getElementById('applySetupBtn');
+            const prizeListContainer = document.getElementById('prizeListContainer');
+            const addPrizeBtn = document.getElementById('addPrizeBtn');
+            // Icon Picker Elements
+            const iconPickerPopover = document.getElementById('iconPickerPopover');
+            const iconGrid = document.getElementById('iconGrid');
+            // Color Picker Elements
+            const colorPickerPopover = document.getElementById('colorPickerPopover');
+            const colorGrid = document.getElementById('colorGrid');
+            // -- Data State --
+            let isSpinning = false;
+            let currentRotation = 0;
+            let activeIconPickerIndex = null;
+            let activeColorPickerIndex = null;
+            let pendingWinner = null;
+            let spinHistory = [];
+            // Palette Definitions
+            const PALETTE = {
+                teal: "#2bd4bd",
+                blue: "#3b82f6",
+                purple: "#a855f7",
+                indigo: "#6366f1",
+                pink: "#ec4899",
+                cyan: "#06b6d4"
+            };
+            const PALETTE_KEYS = Object.keys(PALETTE);
+            // Icon Library
+            const ICON_LIBRARY = [
+                'fa-gift', 'fa-ticket', 'fa-headphones', 'fa-money-bill-wave', 
+                'fa-mug-hot', 'fa-star', 'fa-face-smile', 'fa-gamepad', 
+                'fa-mobile-screen', 'fa-laptop', 'fa-car', 'fa-plane',
+                'fa-bag-shopping', 'fa-camera', 'fa-pizza-slice'
+            ];
+            // Initial Data Set
+            let originalPrizes = [
+                { id: 1, name: "Voucher", value: "50.000đ", icon: "fa-gift", color: PALETTE.teal, weight: 20 },
+                { id: 2, name: "CGV Ticket", value: "150.000đ", icon: "fa-ticket", color: PALETTE.blue, weight: 15 },
+                { id: 3, name: "Sony XM5", value: "8.500k", icon: "fa-headphones", color: PALETTE.purple, weight: 2 },
+                { id: 4, name: "Cash", value: "200.000đ", icon: "fa-money-bill-wave", color: PALETTE.indigo, weight: 10 },
+                { id: 5, name: "Tumbler", value: "350.000đ", icon: "fa-mug-hot", color: PALETTE.pink, weight: 15 },
+                { id: 6, name: "Special", value: "Mystery", icon: "fa-star", color: PALETTE.cyan, weight: 5 },
+                { id: 7, name: "Keyboard Keychron", value: "2.500k", icon: "fa-keyboard", color: PALETTE.teal, weight: 5 },
+                { id: 8, name: "Good Luck", value: "Next Time", icon: "fa-face-smile", color: PALETTE.blue, weight: 28 }
+            ];
+            // Current Active Prizes (Working set for the wheel)
+            let activePrizes = JSON.parse(JSON.stringify(originalPrizes));
+            // Temporary State for Edit Mode
+            let tempPrizes = [];
+            // -- Initialization --
+            function init() {
+                renderWheel();
+                updatePrizesLeft();
+                setupToggleBtn.addEventListener('click', openSetup);
+                closeSetupBtn.addEventListener('click', closeSetup);
+                applySetupBtn.addEventListener('click', applyChanges);
+                addPrizeBtn.addEventListener('click', addNewPrizeItem);
+                // Save Logic
+                saveWinnerBtn.addEventListener('click', saveWinnerAndContinue);
+                // Add event listener for the "Spin" button (previously "Continue")
+                continueBtn.addEventListener('click', triggerSpin);
+                // Initialize Icon Grid in Popover
+                renderIconGrid();
+                renderColorGrid();
+                // Close popover when clicking outside
+                document.addEventListener('click', (e) => {
+                    // Icon Picker close
+                    if (!e.target.closest('.icon-picker-trigger') && !e.target.closest('#iconPickerPopover')) {
+                        iconPickerPopover.classList.remove('show');
+                    }
+                    // Color Picker close
+                    if (!e.target.closest('.color-picker-trigger') && !e.target.closest('#colorPickerPopover')) {
+                        colorPickerPopover.classList.remove('show');
+                    }
+                });
+            }
+            // -- Helper: Get Next Color --
+            function getNextColor(currentListLength) {
+                // Ensure variety by cycling through palette based on index
+                const colorKey = PALETTE_KEYS[currentListLength % PALETTE_KEYS.length];
+                return PALETTE[colorKey];
+            }
+            // -- Wheel Rendering Logic --
+            function renderWheel() {
+                const count = activePrizes.length;
+                // Clear previous contents including separators
+                wheelLabels.innerHTML = '';
+                if (count === 0) {
+                     wheelBase.style.background = '#0B1B3A';
+                     wheelLabels.innerHTML = '<div class="absolute inset-0 flex items-center justify-center text-gray-500 text-xs font-bold uppercase tracking-widest">No Prizes</div>';
+                     return;
+                }
+                const segmentAngle = 360 / count;
+                // 1. Generate Gradient
+                let gradientString = 'conic-gradient(';
+                let currentAngle = 0;
+                activePrizes.forEach((prize, index) => {
+                    const color = prize.color;
+                    const start = currentAngle;
+                    const end = currentAngle + segmentAngle;
+                    gradientString += `${color} ${start}deg ${end}deg`;
+                    if (index < count - 1) gradientString += ', ';
+                    currentAngle += segmentAngle;
+                });
+                gradientString += ')';
+                wheelBase.style.background = gradientString;
+                // 2. Generate Labels & Separators
+                activePrizes.forEach((prize, index) => {
+                    const rotation = (index * segmentAngle) + (segmentAngle / 2);
+                    // Separator line (at the start of the segment)
+                    const separatorDiv = document.createElement('div');
+                    separatorDiv.className = 'wheel-separator';
+                    separatorDiv.style.transform = `rotate(${index * segmentAngle}deg)`;
+                    wheelLabels.appendChild(separatorDiv);
+                    // Label content
+                    const labelDiv = document.createElement('div');
+                    labelDiv.className = 'label';
+                    labelDiv.style.transform = `rotate(${rotation}deg)`;
+                    labelDiv.innerHTML = `
+                        <div class="label-content">
+                            <i class="fa-solid ${prize.icon} text-white text-lg mb-1 drop-shadow-md"></i>
+                            <span class="text-[10px] font-bold text-white uppercase tracking-wider drop-shadow-md w-full wheel-text-truncate px-1">${prize.name}</span>
+                            <span class="text-[8px] font-medium text-white/80 drop-shadow-md">${prize.value}</span>
+                        </div>
+                    `;
+                    wheelLabels.appendChild(labelDiv);
+                });
+            }
+            function updatePrizesLeft() {
+                const totalItems = originalPrizes.length; 
+                const currentItems = activePrizes.length;
+                prizesLeftCounter.textContent = `${currentItems}/${totalItems} Prizes Left`;
+            }
+            // -- Setup Drawer Logic --
+            function openSetup() {
+                // When opening setup, we edit the ORIGINAL complete list of prizes
+                // If user changes config mid-game, it might reset progress or we treat it as reconfiguration
+                // For simplicity, editing prizes resets the game state in this implementation logic
+                tempPrizes = JSON.parse(JSON.stringify(originalPrizes));
+                renderSetupList();
+                setupOverlay.classList.add('open');
+            }
+            function closeSetup() {
+                setupOverlay.classList.remove('open');
+                iconPickerPopover.classList.remove('show');
+                colorPickerPopover.classList.remove('show');
+            }
+            function applyChanges() {
+                if (tempPrizes.length < 2) {
+                    alert("Please add at least 2 prizes to the wheel.");
+                    return;
+                }
+                if (confirm("Applying changes will reset the current game history. Continue?")) {
+                    originalPrizes = JSON.parse(JSON.stringify(tempPrizes));
+                    resetGame();
+                    closeSetup();
+                }
+            }
+            function renderSetupList() {
+                prizeListContainer.innerHTML = '';
+                tempPrizes.forEach((prize, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'group bg-surface-dark rounded-xl p-3 border border-white/10 relative shadow-md transition hover:border-white/20';
+                    item.dataset.index = index;
+                    item.innerHTML = `
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="flex items-center gap-2 w-full">
+                                <div class="w-8 h-8 rounded-lg shrink-0 cursor-pointer border border-white/20 shadow-sm color-picker-trigger flex items-center justify-center transition hover:scale-105"
+                                     style="background-color: ${prize.color}"
+                                     onclick="toggleColorPicker(event, ${index})">
+                                     <div class="w-2 h-2 rounded-full bg-white/40"></div>
+                                </div>
+                                <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-gray-300 shrink-0 cursor-pointer hover:bg-white/10 hover:text-white transition border border-white/10 icon-picker-trigger"
+                                     onclick="toggleIconPicker(event, ${index})">
+                                    <i class="fa-solid ${prize.icon}"></i>
+                                </div>
+                                <div class="w-full">
+                                    <input class="bg-transparent text-sm font-semibold text-white border-0 border-b border-white/10 focus:border-primary focus:ring-0 px-0 py-1 placeholder-gray-500 w-full" 
+                                        placeholder="Prize Name" type="text" value="${prize.name}" onchange="updateTempPrize(${index}, 'name', this.value)"/>
+                                </div>
+                                <button class="text-gray-600 hover:text-red-400 transition p-2 bg-white/5 rounded-lg w-8 h-8 flex items-center justify-center shrink-0" onclick="removeTempPrize(${index})">
+                                    <span class="material-symbols-outlined text-sm">delete</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="flex-1 bg-black/20 rounded px-2 py-1.5 border border-white/5">
+                                <label class="text-[8px] text-gray-500 uppercase block font-bold mb-0.5">Value</label>
+                                <input class="bg-transparent border-none p-0 text-xs text-white w-full focus:ring-0" 
+                                    type="text" value="${prize.value}" onchange="updateTempPrize(${index}, 'value', this.value)"/>
+                            </div>
+                            <div class="w-20 bg-black/20 rounded px-2 py-1.5 border border-white/5">
+                                <label class="text-[8px] text-gray-500 uppercase block font-bold mb-0.5">Weight</label>
+                                <input class="bg-transparent border-none p-0 text-xs text-white w-full focus:ring-0" 
+                                    type="number" value="${prize.weight}" onchange="updateTempPrize(${index}, 'weight', this.value)"/>
+                            </div>
+                        </div>
+                    `;
+                    prizeListContainer.appendChild(item);
+                });
+            }
+            // -- Icon Picker Logic --
+            function renderIconGrid() {
+                iconGrid.innerHTML = '';
+                ICON_LIBRARY.forEach(iconClass => {
+                    const iconEl = document.createElement('div');
+                    iconEl.className = 'icon-option';
+                    iconEl.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
+                    iconEl.onclick = () => selectIcon(iconClass);
+                    iconGrid.appendChild(iconEl);
+                });
+            }
+            window.toggleIconPicker = (event, index) => {
+                event.stopPropagation();
+                // Close other popovers
+                colorPickerPopover.classList.remove('show');
+                activeIconPickerIndex = index;
+                const rect = event.currentTarget.getBoundingClientRect();
+                const popoverHeight = 200; 
+                let top = rect.bottom + 5;
+                if (top + popoverHeight > window.innerHeight) {
+                    top = rect.top - popoverHeight - 5;
+                }
+                // Adjust left if too far right
+                let left = rect.left;
+                if(left + 220 > window.innerWidth) {
+                    left = window.innerWidth - 230;
+                }
+                iconPickerPopover.style.top = `${top}px`;
+                iconPickerPopover.style.left = `${left}px`;
+                iconPickerPopover.classList.add('show');
+                // Highlight current icon
+                const currentIcon = tempPrizes[index].icon;
+                const options = iconGrid.querySelectorAll('.icon-option');
+                options.forEach(opt => {
+                    if(opt.innerHTML.includes(currentIcon)) opt.classList.add('selected');
+                    else opt.classList.remove('selected');
+                });
+            };
+            function selectIcon(iconClass) {
+                if (activeIconPickerIndex !== null) {
+                    updateTempPrize(activeIconPickerIndex, 'icon', iconClass);
+                    iconPickerPopover.classList.remove('show');
+                    renderSetupList(); // Re-render to show new icon
+                }
+            }
+            // -- Color Picker Logic --
+            function renderColorGrid() {
+                colorGrid.innerHTML = '';
+                PALETTE_KEYS.forEach(key => {
+                    const colorHex = PALETTE[key];
+                    const colorEl = document.createElement('div');
+                    colorEl.className = 'color-dot w-full h-8 rounded-md cursor-pointer border-2 border-transparent hover:scale-105 transition';
+                    colorEl.style.backgroundColor = colorHex;
+                    colorEl.onclick = () => selectColor(colorHex);
+                    colorGrid.appendChild(colorEl);
+                });
+            }
+            window.toggleColorPicker = (event, index) => {
+                event.stopPropagation();
+                // Close other popovers
+                iconPickerPopover.classList.remove('show');
+                activeColorPickerIndex = index;
+                const rect = event.currentTarget.getBoundingClientRect();
+                const popoverHeight = 100; 
+                let top = rect.bottom + 5;
+                if (top + popoverHeight > window.innerHeight) {
+                    top = rect.top - popoverHeight - 5;
+                }
+                iconPickerPopover.classList.remove('show');
+                colorPickerPopover.style.top = `${top}px`;
+                colorPickerPopover.style.left = `${rect.left}px`;
+                colorPickerPopover.classList.add('show');
+                // Highlight current color
+                const currentColor = tempPrizes[index].color;
+                const options = colorGrid.querySelectorAll('.color-dot');
+                options.forEach(opt => {
+                    // Simple logic for highlight
+                     if(opt.style.backgroundColor === currentColor) { 
+                         opt.style.borderColor = 'white';
+                         opt.style.boxShadow = '0 0 0 2px #2bd4bd';
+                     } else {
+                         opt.style.borderColor = 'transparent';
+                         opt.style.boxShadow = 'none';
+                     }
+                });
+            };
+            function selectColor(colorHex) {
+                if (activeColorPickerIndex !== null) {
+                    updateTempPrize(activeColorPickerIndex, 'color', colorHex);
+                    colorPickerPopover.classList.remove('show');
+                    renderSetupList(); 
+                }
+            }
+            // Global Functions for inline handlers
+            window.updateTempPrize = (index, field, val) => {
+                if (field === 'weight') val = parseInt(val) || 1;
+                tempPrizes[index][field] = val;
+                // No need to re-render whole list on text input for performance, only on complex changes
+                // But icon/color changes trigger renderSetupList in their select functions
+            };
+            window.removeTempPrize = (index) => {
+                tempPrizes.splice(index, 1);
+                renderSetupList();
+            };
+            function addNewPrizeItem() {
+                // Auto-assign next color in sequence based on current length
+                const nextColor = getNextColor(tempPrizes.length);
+                tempPrizes.push({
+                    id: Date.now(),
+                    name: "New Prize",
+                    value: "0đ",
+                    icon: "fa-gift",
+                    color: nextColor,
+                    weight: 10
+                });
+                renderSetupList();
+                // Scroll to bottom
+                setTimeout(() => {
+                    const lastChild = prizeListContainer.lastElementChild;
+                    if(lastChild) lastChild.scrollIntoView({behavior: "smooth"});
+                }, 100);
+            }
+            // -- Spinning Logic --
+            // Refactored to separate trigger function for reuse
+            function triggerSpin() {
+                if (isSpinning) return;
+                if (activePrizes.length === 0) {
+                    alert("No more prizes left! Please reset.");
+                    return;
+                }
+                isSpinning = true;
+                winnerNameInput.value = ""; // Clear input
+                // Disable controls & Update Styles
+                spinBtn.style.pointerEvents = 'none';
+                spinBtn.classList.add('scale-90', 'opacity-50');
+                continueBtn.disabled = true;
+                continueBtn.className = "flex-[2] py-3 rounded-xl bg-gray-700/50 text-gray-500 cursor-not-allowed border border-white/5 font-bold uppercase tracking-wide text-sm shadow-lg transition-all duration-300 flex items-center justify-center gap-2";
+                // Determine Winner based on weights
+                const totalWeight = activePrizes.reduce((sum, p) => sum + p.weight, 0);
+                let randomVal = Math.random() * totalWeight;
+                let winningIndex = 0;
+                for (let i = 0; i < activePrizes.length; i++) {
+                    randomVal -= activePrizes[i].weight;
+                    if (randomVal <= 0) {
+                        winningIndex = i;
+                        break;
+                    }
+                }
+                pendingWinner = activePrizes[winningIndex];
+                // Calculate Rotation
+                const count = activePrizes.length;
+                const segmentAngle = 360 / count;
+                const winningItemCenterAngle = (winningIndex * segmentAngle) + (segmentAngle / 2);
+                // Ensure sufficient spin (at least 5 rotations)
+                const minSpinDeg = 5 * 360;
+                let targetRotation = currentRotation + minSpinDeg;
+                // Calculate precise landing angle
+                // We want: (targetRotation + winningItemCenterAngle) % 360 == 0
+                const remainder = (targetRotation + winningItemCenterAngle) % 360;
+                targetRotation += (360 - remainder);
+                currentRotation = targetRotation;
+                // Apply rotation
+                wheelRotate.style.transform = `rotate(-${currentRotation}deg)`;
+                setTimeout(() => {
+                    showResult(pendingWinner);
+                    isSpinning = false;
+                }, 4000);
+            }
+            spinBtn.addEventListener('click', triggerSpin);
+            function showResult(winner) {
+                if(winner) {
+                    resultPrizeName.textContent = winner.name;
+                    resultPrizeValue.textContent = "Value: " + winner.value;
+                    resultIcon.className = `fa-solid ${winner.icon} text-3xl text-white`;
+                }
+                resultModal.classList.remove('opacity-0', 'pointer-events-none');
+                resultModal.classList.add('pointer-events-auto');
+                resultCard.classList.remove('scale-90');
+                resultCard.classList.add('scale-100');
+                createConfetti();
+                // Focus on input
+                setTimeout(() => winnerNameInput.focus(), 500);
+            }
+            function saveWinnerAndContinue() {
+                const name = winnerNameInput.value.trim();
+                if (!name) {
+                    alert("Please enter the winner's name!");
+                    return;
+                }
+                // 1. Add to History
+                addToHistory(pendingWinner, name);
+                // 2. Update UI for Latest Winner
+                updateLatestWinner(pendingWinner, name);
+                // 3. Remove Prize from Active List (Pool Management)
+                activePrizes = activePrizes.filter(p => p.id !== pendingWinner.id);
+                renderWheel();
+                updatePrizesLeft();
+                // Close Modal
+                resultModal.classList.add('opacity-0', 'pointer-events-none');
+                resultModal.classList.remove('pointer-events-auto');
+                resultCard.classList.add('scale-90');
+                resultCard.classList.remove('scale-100');
+                confettiContainer.innerHTML = ''; 
+                // Reset Wheel Position visually (optional, but good for UX)
+                // We keep rotation increasing so it doesn't spin back, but logic needs to handle fewer items
+                // Actually, since segments changed, the currentRotation is now invalid for alignment.
+                // Best practice: Reset rotation to 0 immediately (without transition) then user spins again.
+                wheelRotate.style.transition = 'none';
+                wheelRotate.style.transform = 'rotate(0deg)';
+                currentRotation = 0;
+                setTimeout(() => {
+                     wheelRotate.style.transition = 'transform 4s cubic-bezier(0.1, 0.7, 0.1, 1)';
+                }, 50);
+                // Re-enable spin button
+                spinBtn.style.pointerEvents = 'auto';
+                spinBtn.classList.remove('scale-90', 'opacity-50');
+                // Enable continue btn as a SPIN button for next round
+                continueBtn.disabled = false;
+                continueBtn.className = "flex-[2] py-3 rounded-xl btn-main-action font-bold uppercase tracking-wide text-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer";
+                // Note: The event listener for continueBtn now triggers spin directly
+            }
+            function addToHistory(prize, winnerName) {
+                // Remove empty state if present
+                if (spinHistory.length === 0) {
+                    emptyHistoryState.style.display = 'none';
+                }
+                spinHistory.unshift({
+                    prize: prize,
+                    winner: winnerName,
+                    timestamp: new Date()
+                });
+                renderHistory();
+            }
+            function renderHistory() {
+                // Clear container except empty state (which we toggle visibility)
+                // Actually easier to rebuild
+                historyContainer.innerHTML = '';
+                if (spinHistory.length === 0) {
+                    historyContainer.appendChild(emptyHistoryState);
+                    emptyHistoryState.style.display = 'flex';
+                    return;
+                }
+                // Keep empty state in memory/DOM or re-create
+                // Let's just re-create items
+                spinHistory.forEach((item, index) => {
+                    const historyItem = document.createElement('div');
+                    historyItem.className = 'flex items-center gap-3 p-2.5 rounded-lg bg-white/5 border border-white/5 animate-pulse-fast';
+                    // Remove animation after load
+                    setTimeout(() => historyItem.classList.remove('animate-pulse-fast'), 1000);
+                    // Format time
+                    const timeStr = item.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    historyItem.innerHTML = `
+                        <div class="w-6 h-6 rounded bg-surface-dark flex items-center justify-center text-gray-400 text-[10px] font-bold border border-white/5">${spinHistory.length - index}</div>
+                        <div class="w-8 h-8 rounded-full bg-surface-dark flex items-center justify-center border border-white/10 shrink-0">
+                             <i class="fa-solid ${item.prize.icon} text-primary text-xs"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-xs font-medium text-gray-200 truncate">${item.prize.name}</h4>
+                            <div class="flex justify-between items-center mt-0.5">
+                                <p class="text-[9px] text-primary font-bold">Winner: ${item.winner}</p>
+                                <span class="text-[8px] text-gray-500">${timeStr}</span>
+                            </div>
+                        </div>
+                    `;
+                    historyContainer.appendChild(historyItem);
+                });
+            }
+            function updateLatestWinner(prize, winnerName) {
+                latestWinnerSection.classList.remove('hidden-elm');
+                latestWinnerName.textContent = prize.name;
+                latestWinnerValue.textContent = "Value: " + prize.value;
+                latestWinnerIcon.className = `fa-solid ${prize.icon} text-xl text-purple-300`;
+                latestWinnerUser.textContent = "Winner: " + winnerName;
+                latestWinnerTime.innerHTML = '<i class="fa-regular fa-clock"></i> Just now';
+            }
+            function resetGame() {
+                if(isSpinning) return;
+                // Confirm reset
+                if (!confirm("Are you sure you want to RESET the game? This will clear all history and restore prizes.")) return;
+                // 1. Restore Prizes
+                activePrizes = JSON.parse(JSON.stringify(originalPrizes));
+                renderWheel();
+                updatePrizesLeft();
+                // 2. Clear History
+                spinHistory = [];
+                renderHistory();
+                emptyHistoryState.style.display = 'flex'; // Ensure empty state visible
+                // 3. Hide Latest Winner
+                latestWinnerSection.classList.add('hidden-elm');
+                // 4. Reset Wheel Position
+                wheelRotate.style.transition = 'none';
+                currentRotation = 0;
+                wheelRotate.style.transform = 'rotate(0deg)';
+                setTimeout(() => {
+                    wheelRotate.style.transition = 'transform 4s cubic-bezier(0.1, 0.7, 0.1, 1)';
+                }, 10);
+                // 5. Reset Controls
+                spinBtn.style.pointerEvents = 'auto';
+                spinBtn.classList.remove('scale-90', 'opacity-50');
+                continueBtn.disabled = true;
+                continueBtn.className = "flex-[2] py-3 rounded-xl bg-gray-700/50 text-gray-500 cursor-not-allowed border border-white/5 font-bold uppercase tracking-wide text-sm shadow-lg transition-all duration-300 flex items-center justify-center gap-2";
+            }
+            resetBtn.addEventListener('click', resetGame);
+            function createConfetti() {
+                const colors = ['#2bd4bd', '#a855f7', '#3b82f6', '#facc15', '#ffffff'];
+                for (let i = 0; i < 50; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.style.position = 'absolute';
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animation = `fall ${Math.random() * 2 + 2}s linear forwards`;
+                    confetti.style.opacity = Math.random();
+                    confettiContainer.appendChild(confetti);
+                }
+            }
+            // Simple Keyframe animation for confetti injected via JS
+            const styleSheet = document.createElement("style");
+            styleSheet.innerText = `
+                @keyframes fall {
+                    to { transform: translateY(100vh) rotate(720deg); }
+                }
+            `;
+            document.head.appendChild(styleSheet);
+            // Initialize app
+            init();
+        });
+    </script>
+</body></html>

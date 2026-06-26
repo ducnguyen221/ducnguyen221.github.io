@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BDSMO Features v2 — Visual Catalog + Dependency Graph</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/cytoscape@3.28.1/dist/cytoscape.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .graph-container { width: 100%; height: 500px; background: #0f172a; border-radius: 12px; }
+  .feature-card { transition: all 0.2s; }
+  .feature-card:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+  .gradient-text { background: linear-gradient(135deg, #4f46e5, #ec4899); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .heat-cell { transition: all 0.15s; cursor: pointer; }
+  .heat-cell:hover { transform: scale(1.15); }
+  .legend-dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: middle; }
+  details > summary { cursor: pointer; list-style: none; }
+  details > summary::after { content: '▼'; float: right; transition: transform 0.2s; font-size: 0.75rem; }
+  details[open] > summary::after { transform: rotate(180deg); }
+</style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 min-h-screen">
+
+<header class="bg-gradient-to-r from-purple-900 via-pink-900 to-rose-900 text-white py-6 px-6 shadow-2xl">
+  <div class="max-w-7xl mx-auto">
+    <h1 class="text-3xl font-bold mb-1">📚 BDSMO Features v2</h1>
+    <p class="text-purple-200">14 features + 2 foundations · 6 personas · status matrix · dependency graph · persona heat map</p>
+    <div class="text-xs text-purple-300 mt-2">Generated 2026-05-11 · See <code>bdsmo-master-plan-beta-v2.html</code> for sprints + roadmap</div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-8 space-y-12">
+
+<!-- STATUS LEGEND -->
+<section>
+  <h2 class="text-xl font-bold mb-3 gradient-text">Status Legend</h2>
+  <div class="bg-white rounded-xl p-4 shadow-sm grid grid-cols-2 md:grid-cols-5 gap-3 text-sm">
+    <div><span class="legend-dot" style="background:#10b981"></span><strong>🟢 LIVE</strong><div class="text-xs text-slate-500">Đã deployed prod</div></div>
+    <div><span class="legend-dot" style="background:#eab308"></span><strong>🟡 MERGED</strong><div class="text-xs text-slate-500">Code merged main, chưa deploy</div></div>
+    <div><span class="legend-dot" style="background:#f97316"></span><strong>🟠 APPROVED</strong><div class="text-xs text-slate-500">OpenSpec approved, code chưa build</div></div>
+    <div><span class="legend-dot" style="background:#3b82f6"></span><strong>🔵 PARTIAL</strong><div class="text-xs text-slate-500">Schema có, UX/logic thiếu</div></div>
+    <div><span class="legend-dot" style="background:#ef4444"></span><strong>🔴 SKELETON</strong><div class="text-xs text-slate-500">Chỉ class/enum, chưa integration</div></div>
+  </div>
+</section>
+
+<!-- FEATURE CARDS -->
+<section>
+  <h2 class="text-2xl font-bold mb-4 gradient-text">🎛 Feature Catalog (14 + 2 foundations)</h2>
+  <div id="feature-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+</section>
+
+<!-- DEPENDENCY GRAPH -->
+<section>
+  <h2 class="text-2xl font-bold mb-2 gradient-text">🔗 Feature Dependency Graph</h2>
+  <p class="text-slate-600 text-sm mb-4">Hard dependencies (solid arrow) = upstream must ship first. Soft (dashed) = nice-to-have ordering.</p>
+  <div class="bg-white rounded-xl p-4 shadow-md">
+    <div id="cy-deps" class="graph-container"></div>
+    <div class="text-xs text-slate-500 mt-2">Click node để zoom + xem details. Drag để reposition.</div>
+  </div>
+</section>
+
+<!-- PERSONA HEAT MAP -->
+<section>
+  <h2 class="text-2xl font-bold mb-2 gradient-text">🌡 Persona × Feature Heat Map</h2>
+  <p class="text-slate-600 text-sm mb-4">Đậm = use intensity cao. Insight: BG (Brokerage) dùng 13/14 features → power user, monetization target. BU/RE (Buyer/Renter) là free-tier passive consumers.</p>
+  <div class="bg-white rounded-xl p-4 shadow-md overflow-x-auto">
+    <table class="text-xs w-full">
+      <thead>
+        <tr class="border-b">
+          <th class="text-left p-2 sticky left-0 bg-white">Feature</th>
+          <th class="p-2">BU<div class="text-[9px] text-slate-400 font-normal">Buyer</div></th>
+          <th class="p-2">RE<div class="text-[9px] text-slate-400 font-normal">Renter</div></th>
+          <th class="p-2">OW<div class="text-[9px] text-slate-400 font-normal">Owner</div></th>
+          <th class="p-2">IN<div class="text-[9px] text-slate-400 font-normal">Investor</div></th>
+          <th class="p-2">BK<div class="text-[9px] text-slate-400 font-normal">Solo Broker</div></th>
+          <th class="p-2">BG<div class="text-[9px] text-slate-400 font-normal">Brokerage</div></th>
+        </tr>
+      </thead>
+      <tbody id="heat-table" class="divide-y"></tbody>
+    </table>
+  </div>
+  <div class="mt-3 text-xs flex gap-4">
+    <span><span class="legend-dot" style="background:#1e3a8a"></span>VH (Very High)</span>
+    <span><span class="legend-dot" style="background:#3b82f6"></span>H (High)</span>
+    <span><span class="legend-dot" style="background:#93c5fd"></span>M (Med)</span>
+    <span><span class="legend-dot" style="background:#dbeafe"></span>L (Low)</span>
+    <span><span class="legend-dot" style="background:#f1f5f9"></span>– (N/A)</span>
+  </div>
+</section>
+
+<!-- BETA TIER MAP -->
+<section>
+  <h2 class="text-2xl font-bold mb-4 gradient-text">📦 Features × Beta Tier</h2>
+  <div class="grid md:grid-cols-3 gap-4">
+    <div class="bg-white rounded-xl p-5 border-2 border-indigo-500 shadow">
+      <div class="text-xs font-bold uppercase text-indigo-600 mb-2">🎯 Beta MVP</div>
+      <div class="text-sm space-y-1 text-slate-700">
+        <div>#1 Property/Unit · #2 Listing · #3 Community · #6 Booking</div>
+        <div>#7 CRM (basic) · #8 Affiliate · #14 AI Homepage</div>
+        <div>F1 Multi-tenant · F2 Geocoding</div>
+      </div>
+      <div class="mt-3 text-xs text-indigo-600 font-bold">9 features active</div>
+    </div>
+    <div class="bg-white rounded-xl p-5 border-2 border-purple-400 shadow">
+      <div class="text-xs font-bold uppercase text-purple-600 mb-2">⚡ Beta v1.x</div>
+      <div class="text-sm space-y-1 text-slate-700">
+        <div>+ #10 Maintenance v2</div>
+        <div>+ #12 Finance per property</div>
+        <div>+ #9 SEO + Marketing suite</div>
+        <div>+ #4 Custom tenant sites + custom domain</div>
+      </div>
+      <div class="mt-3 text-xs text-purple-600 font-bold">+4 features = 13 total</div>
+    </div>
+    <div class="bg-white rounded-xl p-5 border-2 border-pink-400 shadow">
+      <div class="text-xs font-bold uppercase text-pink-600 mb-2">🚀 v2.0</div>
+      <div class="text-sm space-y-1 text-slate-700">
+        <div>+ #5 Omnichannel (Zalo→FB→TikTok)</div>
+        <div>+ #14 AI advanced (phong thủy, voice)</div>
+        <div>+ #11/#13 Crawler + AI</div>
+      </div>
+      <div class="mt-3 text-xs text-pink-600 font-bold">+2 = 14 + 2 foundations all active</div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILED FEATURE EXPANDABLES -->
+<section>
+  <h2 class="text-2xl font-bold mb-4 gradient-text">📖 Feature Deep Dive</h2>
+  <div id="feature-details" class="space-y-3"></div>
+</section>
+
+<footer class="text-center text-xs text-slate-500 pt-8 pb-4">
+  Generated 2026-05-11 by Claude Code with PM + 3 BA parallel agents
+</footer>
+
+</main>
+
+<script>
+const FEATURES = [
+  { id:'F1', code:'#1', name:'Property/Unit CRUD', status:'live', desc:'Hierarchy 4-tier Project→Property→Unit→Room. Address dedup, suggested-edits, multi-org master Project data.', business:'Foundation cho mọi listing+booking+finance. Data quality trực tiếp ảnh hưởng search+AI.', personas:{BU:'-',RE:'-',OW:'H',IN:'VH',BK:'H',BG:'H'}, sprints:['SP-24','SP-25'], ucs:7, gap:'SP-24 Theme A: Step 1 dedupe picker, Project FK wire, master Projects admin, suggested-edits queue', code:'properties.py, PropertyCreatePage.tsx, models.py' },
+  { id:'F2', code:'#2', name:'Listing + Featured + Verified', status:'live', desc:'User post listing rao bán/cho thuê. Free quota + featured (boost) + verified-owner badge. Multi-broker.', business:'Revenue (featured credits), growth (organic), retention (trust).', personas:{BU:'H',RE:'H',OW:'H',IN:'M',BK:'VH',BG:'VH'}, sprints:['SP-30','SP-33'], ucs:7, gap:'Featured-listing UI toggle (carry-over SP-22→SP-30), VerificationBadge live (SP-24)', code:'listings_v2.py, ListingCreatePage.tsx' },
+  { id:'F3', code:'#3', name:'Community Hub', status:'merged', desc:'Facebook/Zalo-style groups: posts, comments, group chat, lead inbox. Networking + lead capture.', business:'Lead capture chính (#1 channel cho Beta). Foundation cho referral chain.', personas:{BU:'H',RE:'H',OW:'M',IN:'M',BK:'VH',BG:'H'}, sprints:['SP-25','SP-28'], ucs:7, gap:'SP-25 deploy + UAT, SP-28 lead inbox v2 (NLP classifier)', code:'community_*.py, Community*Page.tsx' },
+  { id:'F4', code:'#4', name:'Custom Tenant Sites', status:'approved', desc:'Mỗi org có website riêng /{org_slug} + theme custom. Optional custom domain qua Cloudflare DNS+SSL.', business:'Brand presence, monetization Enterprise tier, differentiation.', personas:{BU:'M',RE:'M',OW:'-',IN:'M',BK:'H',BG:'VH'}, sprints:['SP-34','SP-35','SP-36'], ucs:7, gap:'Build entire feature; depends on F1 multi-tenant', code:'TBD — chưa có routes /{org_slug}/*' },
+  { id:'F5', code:'#5', name:'Omnichannel Inbox', status:'skeleton', desc:'Pancake-clone: FB/Zalo/TikTok/Web/Community DM unified. Funnel state per conversation. AI auto-suggest reply.', business:'Time-saver power broker. Conversion lift via AI + funnel tracking.', personas:{BU:'-',RE:'-',OW:'-',IN:'-',BK:'H',BG:'VH'}, sprints:['SP-37','SP-38','SP-39'], ucs:5, gap:'Build 100% từ đầu — webhook receivers, SDK, funnel state, unified UI', code:'inbox.py + ChannelType enum (skeleton only)' },
+  { id:'F6', code:'#6', name:'Booking Management', status:'live', desc:'Booking xem nhà + short-term rental. Calendar grid, status pipeline, auto-expire 24h.', business:'Direct conversion mechanism (lead→booking→contract).', personas:{BU:'H',RE:'H',OW:'H',IN:'M',BK:'H',BG:'H'}, sprints:['SP-36'], ucs:6, gap:'SP-36 polish — short-term rental availability calendar Q-2', code:'bookings.py, BookingPage.tsx, CalendarPage.tsx' },
+  { id:'F7', code:'#7', name:'CRM + AI Agent', status:'partial', desc:'Pipeline (LEAD→QUALIFIED→NEGOTIATING→WON/LOST), activity timeline, Gemini AI suggest, lead source attribution.', business:'Conversion lift, efficiency, ROI per channel measurement.', personas:{BU:'-',RE:'-',OW:'L',IN:'M',BK:'VH',BG:'VH'}, sprints:['SP-29'], ucs:5, gap:'SP-29 add columns, CustomerActivity log, Gemini suggest, kanban view', code:'crm.py, Customer model, /360 endpoint' },
+  { id:'F8', code:'#8', name:'Affiliate / Referral', status:'merged', desc:'Referral codes per user. Share link /r/{code}. Bonus tier theo số refer (1-5: 50K, 6-20: 100K, 21+: 150K).', business:'Growth lever (organic acquisition), retention (incentivize loyalty).', personas:{BU:'L',RE:'L',OW:'M',IN:'M',BK:'VH',BG:'H'}, sprints:['SP-25','SP-30'], ucs:5, gap:'SP-25 deploy, SP-30 v2 (bonus tiers, payout flow)', code:'affiliates.py, AffiliateProfile/Policy/Commission, AffiliatePage.tsx' },
+  { id:'F9', code:'#9', name:'SEO + Marketing', status:'partial', desc:'Auto meta tags, OG, Schema.org RealEstateListing JSON-LD, sitemap, area guides, keyword targeting, featured-listing UI.', business:'Organic traffic = 40-50% real estate searches. Cost-efficient vs paid ads.', personas:{BU:'H*',RE:'H*',OW:'M',IN:'-',BK:'VH',BG:'VH'}, sprints:['SP-30','SP-33'], ucs:5, gap:'SP-30 featured UI toggle, SP-33 full SEO suite', code:'Featured-listing schema (SP-22) only' },
+  { id:'F10', code:'#10', name:'Maintenance Ticketing', status:'partial', desc:'Tenant raise → contractor route → lifecycle (open→assigned→in-progress→done) → tenant rate. SLA timer + escalation.', business:'Operational efficiency, tenant satisfaction, vendor network value.', personas:{BU:'-',RE:'H',OW:'VH',IN:'VH',BK:'M',BG:'H'}, sprints:['SP-31'], ucs:7, gap:'SP-31 Contractor table, routing, rating, SLA, partner portal', code:'operations.py, MaintenanceTicket, WorkOrder' },
+  { id:'F11', code:'#11+#13', name:'Crawler + AI Crawler', status:'skeleton', desc:'Admin crawl rules cho Batdongsan/Nhatot. Cron job → ingest data_source=referral_crawl. Gemini confidence + admin approval queue.', business:'Catalog growth, market intel for power brokers.', personas:{BU:'-',RE:'-',OW:'-',IN:'-',BK:'-',BG:'-'}, sprints:['SP-41','SP-42'], ucs:7, gap:'Build infra: tables + scheduler + admin UI + sources + AI scoring', code:'services/crawler.py SimpleCrawler (skeleton)' },
+  { id:'F12', code:'#12', name:'Financial Accounting', status:'partial', desc:'Income/expense per property+unit. P&L, cashflow forecast, owner statement PDF, bank reconciliation.', business:'Profitability tracking, owner statements (compliance + payment), tax reporting.', personas:{BU:'-',RE:'-',OW:'M',IN:'VH',BK:'M',BG:'VH'}, sprints:['SP-32'], ucs:6, gap:'CRITICAL: add Transaction.property_id+unit_id. Then P&L builder, statement PDF, forecast, reconciliation', code:'finance.py, Transaction, Invoice, Payment' },
+  { id:'F14', code:'#14', name:'AI Homepage Assistant', status:'live', desc:'Public AI agent /home. Modes: search, price-estimate, market-watch. Credit metering. Streaming + phong thủy + voice = SP-40.', business:'Differentiation, conversion (AI guide buyer journey), credit purchase revenue.', personas:{BU:'VH',RE:'VH',OW:'M',IN:'M',BK:'L',BG:'L'}, sprints:['SP-27','SP-40'], ucs:6, gap:'SP-27 geocoding for area queries, SP-40 streaming + phong thủy + price + compare + voice', code:'ai_portal.py, HomePage.tsx, AIChatBubble.tsx' },
+  { id:'FOUND1', code:'F1', name:'Multi-tenant Org Creation', status:'approved', desc:'Investor+ tạo org, mời members (up to 4 Investor, ∞ Enterprise), manage roles per-org, switch active org.', business:'SaaS scaling (license tier seat caps), team collaboration, foundation cho #4.', personas:{BU:'-',RE:'-',OW:'L',IN:'VH',BK:'H',BG:'VH'}, sprints:['SP-26'], ucs:5, gap:'SP-26 build entire — 4 tables, 3 endpoints, OrgSwitcher, invite flow. CRITICAL block 5 sprints', code:'TBD' },
+  { id:'FOUND2', code:'F2', name:'Geocoding + Map Filters', status:'approved', desc:'Nominatim worker populate Unit lat/lng. Quality scoring 0-100. Bbox/district/area filters trên public endpoints.', business:'Map clustering UI, AI homepage area-scoped queries, dedup quality.', personas:{BU:'M',RE:'M',OW:'-',IN:'-',BK:'-',BG:'M'}, sprints:['SP-27'], ucs:3, gap:'SP-27 — Nominatim worker + filters + dedup proximity', code:'TBD' }
+];
+
+const STATUS = { live:{c:'emerald',l:'🟢 LIVE'}, merged:{c:'yellow',l:'🟡 MERGED'}, approved:{c:'orange',l:'🟠 APPROVED'}, partial:{c:'blue',l:'🔵 PARTIAL'}, skeleton:{c:'red',l:'🔴 SKELETON'} };
+const HEAT_COLORS = { 'VH':'#1e3a8a','H':'#3b82f6','H*':'#3b82f6','M':'#93c5fd','L':'#dbeafe','-':'#f1f5f9' };
+const HEAT_TEXT_LIGHT = { 'VH':true,'H':true,'H*':true,'M':false,'L':false,'-':false };
+
+// Render feature cards
+const grid = document.getElementById('feature-grid');
+FEATURES.forEach(f => {
+  const s = STATUS[f.status];
+  grid.insertAdjacentHTML('beforeend', `
+    <div class="feature-card bg-white rounded-xl p-5 border-l-4 border-${s.c}-500 shadow-md">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-xs font-bold uppercase text-${s.c}-700 bg-${s.c}-100 px-2 py-1 rounded">${s.l}</span>
+        <span class="text-xs text-slate-400 font-mono">${f.code}</span>
+      </div>
+      <h3 class="font-bold text-base mb-1">${f.name}</h3>
+      <p class="text-sm text-slate-700 mb-3">${f.desc}</p>
+      <div class="text-xs space-y-1 text-slate-500">
+        <div>📂 ${f.code === f.id ? '' : f.code + ' · '}<strong>${f.ucs} UCs</strong> · Sprints: ${f.sprints.join(', ')}</div>
+        <div>💼 ${f.business.substring(0, 80)}${f.business.length > 80 ? '...' : ''}</div>
+      </div>
+    </div>
+  `);
+});
+
+// Render heat map
+const heatBody = document.getElementById('heat-table');
+FEATURES.forEach(f => {
+  const cells = ['BU','RE','OW','IN','BK','BG'].map(p => {
+    const v = f.personas[p] || '-';
+    const bg = HEAT_COLORS[v];
+    const text = HEAT_TEXT_LIGHT[v] ? 'white' : '#475569';
+    return `<td class="p-1 text-center"><div class="heat-cell rounded px-2 py-1 font-bold" style="background:${bg};color:${text}">${v}</div></td>`;
+  }).join('');
+  heatBody.insertAdjacentHTML('beforeend', `<tr><td class="p-2 sticky left-0 bg-white text-xs font-semibold whitespace-nowrap">${f.code} ${f.name}</td>${cells}</tr>`);
+});
+
+// Render details (collapsible)
+const details = document.getElementById('feature-details');
+FEATURES.forEach(f => {
+  const s = STATUS[f.status];
+  details.insertAdjacentHTML('beforeend', `
+    <details class="bg-white rounded-xl shadow-sm">
+      <summary class="px-5 py-3 font-bold flex items-center gap-3">
+        <span class="text-${s.c}-700">${s.l}</span>
+        <span class="text-slate-400 text-sm font-mono">${f.code}</span>
+        <span>${f.name}</span>
+        <span class="text-xs text-slate-500 ml-auto mr-6">${f.ucs} UCs · ${f.sprints.join(', ')}</span>
+      </summary>
+      <div class="px-5 pb-4 text-sm space-y-3 border-t pt-3">
+        <div><strong>Definition:</strong> ${f.desc}</div>
+        <div><strong>Business value:</strong> ${f.business}</div>
+        <div><strong>Code paths:</strong> <code class="bg-slate-100 px-1 rounded">${f.code}</code></div>
+        <div><strong>Gap to Beta/v2:</strong> ${f.gap}</div>
+        <div><strong>Personas:</strong> ${Object.entries(f.personas).map(([p,v])=>`${p}=${v}`).join(' · ')}</div>
+      </div>
+    </details>
+  `);
+});
+
+// Cytoscape dependency graph
+const depElements = [];
+FEATURES.forEach(f => {
+  depElements.push({ data: { id: f.id, label: `${f.code}\n${f.name.substring(0,18)}`, color: STATUS[f.status].l.split(' ')[0] === '🟢' ? '#10b981' : STATUS[f.status].l.split(' ')[0] === '🟡' ? '#eab308' : STATUS[f.status].l.split(' ')[0] === '🟠' ? '#f97316' : STATUS[f.status].l.split(' ')[0] === '🔵' ? '#3b82f6' : '#ef4444' }});
+});
+
+// Hard dependencies
+const hardDeps = [
+  ['FOUND1', 'F4'],   // Multi-tenant → Custom sites
+  ['FOUND2', 'F14'],  // Geocoding → AI advanced
+  ['F1', 'F2'],       // Property → Listing
+  ['F1', 'F6'],       // Property → Booking
+  ['F1', 'F10'],      // Property → Maintenance
+  ['F1', 'F12'],      // Property → Finance
+  ['F9', 'F2']        // SEO → Listing featured UI
+];
+// Soft dependencies
+const softDeps = [
+  ['FOUND1', 'F5'], ['FOUND1', 'F7'], ['FOUND1', 'F10'], ['FOUND1', 'F12'],
+  ['FOUND2', 'F2'], ['FOUND2', 'F9'],
+  ['F3', 'F7'], ['F8', 'F7'], ['F5', 'F7'],
+  ['F11', 'F1']
+];
+hardDeps.forEach(([s,t]) => depElements.push({ data: { id:`hd-${s}-${t}`, source:s, target:t, type:'hard' }}));
+softDeps.forEach(([s,t]) => depElements.push({ data: { id:`sd-${s}-${t}`, source:s, target:t, type:'soft' }}));
+
+const cy = cytoscape({
+  container: document.getElementById('cy-deps'),
+  elements: depElements,
+  style: [
+    { selector: 'node', style: { 'background-color':'data(color)', 'label':'data(label)', 'color':'white', 'text-valign':'center', 'text-halign':'center', 'font-size':9, 'font-weight':'bold', 'width':80, 'height':80, 'shape':'round-rectangle', 'text-wrap':'wrap', 'text-max-width':70, 'border-width':2, 'border-color':'#1e293b' }},
+    { selector: 'edge[type="hard"]', style: { 'width':2.5, 'line-color':'#dc2626', 'curve-style':'bezier', 'target-arrow-shape':'triangle', 'target-arrow-color':'#dc2626' }},
+    { selector: 'edge[type="soft"]', style: { 'width':1, 'line-color':'#94a3b8', 'curve-style':'bezier', 'target-arrow-shape':'triangle', 'target-arrow-color':'#94a3b8', 'line-style':'dashed', 'opacity':0.6 }}
+  ],
+  layout: { name: 'cose', idealEdgeLength: 120, nodeOverlap: 30, animate: true, refresh: 20, fit: true, padding: 30, randomize: false }
+});
+
+cy.on('tap', 'node', (e) => {
+  cy.elements().style('opacity', 0.2);
+  e.target.style('opacity', 1);
+  e.target.neighborhood().style('opacity', 1);
+  e.target.connectedEdges().style('opacity', 1);
+});
+cy.on('tap', (e) => { if (e.target === cy) cy.elements().style('opacity', 1); });
+</script>
+
+</body>
+</html>

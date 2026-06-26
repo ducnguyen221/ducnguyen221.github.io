@@ -1,0 +1,551 @@
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Marketing Workspace V3 - Campaign &amp; Attribution</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0ea5e9", // Sky 500
+                        secondary: "#0f172a", // Slate 900
+                        "background-light": "#f1f5f9", // Slate 100
+                        "background-dark": "#0f172a",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                        "border-light": "#e2e8f0",
+                        "border-dark": "#334155",
+                        "text-main-light": "#1e293b",
+                        "text-main-dark": "#f1f5f9",
+                        "text-sub-light": "#64748b",
+                        "text-sub-dark": "#94a3b8",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'lg': '0.75rem',
+                        'xl': '1rem',
+                        '2xl': '1.25rem',
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-body text-text-main-light dark:text-text-main-dark h-screen flex overflow-hidden selection:bg-primary selection:text-white">
+<aside class="w-20 lg:w-24 flex-shrink-0 bg-secondary flex flex-col items-center py-6 z-20 shadow-xl border-r border-slate-800">
+<div class="flex flex-col items-center justify-center mb-6">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white mb-2 shadow-lg shadow-sky-500/20">
+<span class="font-bold text-xl font-display">C</span>
+</div>
+<div class="flex flex-col items-center leading-none">
+<span class="text-[10px] font-bold text-white tracking-wider">COMPA</span>
+<span class="text-[8px] font-semibold text-sky-400 tracking-widest mt-0.5">CRM</span>
+</div>
+</div>
+<nav class="flex-1 w-full space-y-2 px-2 overflow-y-auto no-scrollbar">
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="/dashboard">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">dashboard</span>
+<span class="text-[9px] font-medium tracking-wide">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="/chat">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">chat</span>
+<span class="text-[9px] font-medium tracking-wide">Hội thoại</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="/calls">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">call</span>
+<span class="text-[9px] font-medium tracking-wide">Cuộc gọi</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="/emails">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">email</span>
+<span class="text-[9px] font-medium tracking-wide">Email</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="/contacts">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">contacts</span>
+<span class="text-[9px] font-medium tracking-wide">Liên hệ</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="/pipeline">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">monetization_on</span>
+<span class="text-[9px] font-medium tracking-wide">Pipeline</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="/customers">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">people</span>
+<span class="text-[9px] font-medium tracking-wide">Khách hàng</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-primary bg-slate-800 transition-all duration-200 shadow-lg shadow-sky-900/20" href="/marketing">
+<span class="material-icons-outlined text-2xl mb-1">campaign</span>
+<span class="text-[9px] font-medium tracking-wide">Marketing</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="/affiliate">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">handshake</span>
+<span class="text-[9px] font-medium tracking-wide">Affiliate</span>
+</a>
+</nav>
+<div class="w-full px-2 mt-2 pt-4 border-t border-slate-800/50">
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="/settings">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">settings</span>
+<span class="text-[9px] font-medium tracking-wide">Cài đặt</span>
+</a>
+</div>
+</aside>
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden relative bg-background-light dark:bg-background-dark">
+<header class="bg-surface-light dark:bg-surface-dark h-16 border-b border-border-light dark:border-border-dark flex items-center justify-between px-6 z-10 shadow-sm shrink-0">
+<div class="flex items-center gap-3">
+<div class="font-display font-bold text-lg tracking-tight text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-primary">campaign</span>
+                    Marketing Workspace
+                </div>
+<div class="hidden md:flex relative group ml-4">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+<span class="material-icons-outlined text-slate-400 text-lg">search</span>
+</div>
+<input class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-80 pl-10 p-2" placeholder="Tìm kiếm chiến dịch, UTM..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-transparent">
+<span class="text-xs font-bold text-primary">KPIM</span>
+<span class="text-text-main-light dark:text-text-main-dark">Học viện KPIM</span>
+<span class="material-icons-outlined text-base">expand_more</span>
+</button>
+<div class="flex items-center gap-2">
+<button class="h-9 px-3 flex items-center justify-center gap-1.5 border border-primary bg-primary text-white rounded text-xs font-bold hover:bg-sky-600 transition-colors">
+<span class="material-icons-outlined text-sm">workspace_premium</span>
+                        Premium
+                    </button>
+<button class="w-9 h-9 flex items-center justify-center border border-border-light dark:border-border-dark rounded text-text-sub-light hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-icons-outlined text-xl">dark_mode</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center border border-border-light dark:border-border-dark rounded text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors relative">
+<span class="material-icons-outlined text-xl text-text-sub-light">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-surface-dark"></span>
+</button>
+<button class="w-9 h-9 rounded-full overflow-hidden border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzul7yPV6V9pSxsCXWH65xnycjRYO_3piuXvieSZpnm0KuuNQcRm1B5WnnsE2KeJxOk4rby6RKGEATn-xdLru73fGHuSvyADKWSimFDY0hiLS8cnoowwH9U03hLS5pc-EmWe64H7ofm5uemKqIFbl0avrK7CGfN-IivADty3rjUxlvY0gP_Y8prCbXYRyILoYhBsv7X-2e4aMYR4oWhMIgS3dPX1JVuQ0zK172NQhvDr5rwzFTlGVNwfbF2TveNIx48-iGjFXLusU"/>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto custom-scrollbar p-6">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400">
+<span class="material-icons-outlined text-2xl">facebook</span>
+</div>
+<span class="flex items-center text-green-600 text-xs font-bold bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded-full border border-green-100 dark:border-green-800">
+<span class="material-icons text-sm mr-0.5">trending_up</span> 12.5%
+                        </span>
+</div>
+<div class="text-text-sub-light dark:text-text-sub-dark text-xs font-medium uppercase tracking-wide mb-1">Facebook Spend</div>
+<div class="text-2xl font-bold text-text-main-light dark:text-text-main-dark">₫ 45,230,000</div>
+<div class="text-xs text-text-sub-light mt-1">125,000 Impressions</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-lg bg-red-50 dark:bg-red-900/20 flex items-center justify-center text-red-600 dark:text-red-400">
+<span class="material-icons-outlined text-2xl">ads_click</span>
+</div>
+<span class="flex items-center text-red-600 text-xs font-bold bg-red-50 dark:bg-red-900/20 px-2 py-1 rounded-full border border-red-100 dark:border-red-800">
+<span class="material-icons text-sm mr-0.5">trending_down</span> 2.1%
+                        </span>
+</div>
+<div class="text-text-sub-light dark:text-text-sub-dark text-xs font-medium uppercase tracking-wide mb-1">Google Spend</div>
+<div class="text-2xl font-bold text-text-main-light dark:text-text-main-dark">₫ 28,150,000</div>
+<div class="text-xs text-text-sub-light mt-1">3,420 Clicks</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-lg bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center text-purple-600 dark:text-purple-400">
+<span class="material-icons-outlined text-2xl">category</span>
+</div>
+<span class="flex items-center text-green-600 text-xs font-bold bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded-full border border-green-100 dark:border-green-800">
+<span class="material-icons text-sm mr-0.5">trending_up</span> 4.2%
+                        </span>
+</div>
+<div class="text-text-sub-light dark:text-text-sub-dark text-xs font-medium uppercase tracking-wide mb-1">Other Campaign</div>
+<div class="text-2xl font-bold text-text-main-light dark:text-text-main-dark">₫ 8,450,000</div>
+<div class="text-xs text-text-sub-light mt-1">Other Sources</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+<span class="material-icons-outlined text-2xl">group_add</span>
+</div>
+<span class="flex items-center text-green-600 text-xs font-bold bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded-full border border-green-100 dark:border-green-800">
+<span class="material-icons text-sm mr-0.5">arrow_downward</span> 5.4%
+                        </span>
+</div>
+<div class="text-text-sub-light dark:text-text-sub-dark text-xs font-medium uppercase tracking-wide mb-1">Cost Per Lead (CPL)</div>
+<div class="text-2xl font-bold text-text-main-light dark:text-text-main-dark">₫ 155,000</div>
+<div class="text-xs text-text-sub-light mt-1">Target: ₫ 160,000</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm mb-6 flex flex-col">
+<div class="px-6 py-4 border-b border-border-light dark:border-border-dark flex justify-between items-center bg-slate-50/50 dark:bg-slate-800/20 rounded-t-xl">
+<div class="flex items-center gap-2">
+<span class="material-icons-outlined text-primary text-xl">view_list</span>
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark">Chiến dịch quảng bá</h3>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg px-3 py-1.5 shadow-sm">
+<span class="material-icons-outlined text-slate-400 text-sm mr-2">date_range</span>
+<span class="text-xs font-medium text-text-main-light dark:text-text-main-dark">Tháng này (Nov 2023)</span>
+<span class="material-icons-outlined text-slate-400 text-sm ml-2">expand_more</span>
+</div>
+<button class="bg-primary hover:bg-sky-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 shadow-md shadow-sky-500/20 transition-all">
+<span class="material-icons text-sm">add</span> Tạo mới
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-border-light dark:border-border-dark text-xs text-text-sub-light font-semibold uppercase">
+<th class="px-6 py-3">Tên chiến dịch</th>
+<th class="px-6 py-3">Trạng thái</th>
+<th class="px-6 py-3 text-right">Ngân sách</th>
+<th class="px-6 py-3 text-right">Đã chi tiêu</th>
+<th class="px-6 py-3 text-right">Leads</th>
+<th class="px-6 py-3 text-right">CPL</th>
+<th class="px-6 py-3 text-center">Hiệu quả</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<tr class="border-b border-border-light dark:border-border-dark hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+<span class="material-icons text-base">facebook</span>
+</div>
+<div>
+<div class="font-bold text-text-main-light dark:text-text-main-dark group-hover:text-primary transition-colors cursor-pointer">Q4 User Acquisition</div>
+<div class="text-[10px] text-text-sub-light">ID: CAM-2309-001</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> Running
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right font-medium text-text-sub-light">₫ 50,000,000</td>
+<td class="px-6 py-4 text-right font-bold text-text-main-light dark:text-text-main-dark">₫ 32,450,000</td>
+<td class="px-6 py-4 text-right">
+<span class="font-bold text-text-main-light dark:text-text-main-dark">342</span>
+</td>
+<td class="px-6 py-4 text-right font-medium text-text-sub-light">₫ 94,800</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-center">
+<div class="w-24 bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-green-500 h-full rounded-full" style="width: 78%"></div>
+</div>
+<span class="ml-2 text-xs font-medium text-green-600">High</span>
+</div>
+</td>
+</tr>
+<tr class="border-b border-border-light dark:border-border-dark hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-red-600 dark:text-red-400">
+<span class="material-icons text-base">ads_click</span>
+</div>
+<div>
+<div class="font-bold text-text-main-light dark:text-text-main-dark group-hover:text-primary transition-colors cursor-pointer">Search - Brand KW</div>
+<div class="text-[10px] text-text-sub-light">ID: CAM-2311-045</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> Running
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right font-medium text-text-sub-light">₫ 20,000,000</td>
+<td class="px-6 py-4 text-right font-bold text-text-main-light dark:text-text-main-dark">₫ 15,120,000</td>
+<td class="px-6 py-4 text-right">
+<span class="font-bold text-text-main-light dark:text-text-main-dark">128</span>
+</td>
+<td class="px-6 py-4 text-right font-medium text-text-sub-light">₫ 118,000</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-center">
+<div class="w-24 bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-blue-500 h-full rounded-full" style="width: 65%"></div>
+</div>
+<span class="ml-2 text-xs font-medium text-blue-600">Good</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center text-sky-600 dark:text-sky-400">
+<span class="material-icons text-base">work_outline</span>
+</div>
+<div>
+<div class="font-bold text-text-main-light dark:text-text-main-dark group-hover:text-primary transition-colors cursor-pointer">LinkedIn - B2B Outreach</div>
+<div class="text-[10px] text-text-sub-light">ID: CAM-2310-102</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> Paused
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right font-medium text-text-sub-light">₫ 15,000,000</td>
+<td class="px-6 py-4 text-right font-bold text-text-main-light dark:text-text-main-dark">₫ 4,500,000</td>
+<td class="px-6 py-4 text-right">
+<span class="font-bold text-text-main-light dark:text-text-main-dark">12</span>
+</td>
+<td class="px-6 py-4 text-right font-medium text-text-sub-light">₫ 375,000</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-center">
+<div class="w-24 bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-orange-400 h-full rounded-full" style="width: 30%"></div>
+</div>
+<span class="ml-2 text-xs font-medium text-orange-500">Avg</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-6 h-[400px]">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm flex flex-col h-full overflow-hidden">
+<div class="px-6 py-4 border-b border-border-light dark:border-border-dark flex justify-between items-center bg-slate-50/50 dark:bg-slate-800/20 shrink-0">
+<div class="flex items-center gap-2">
+<span class="material-icons-outlined text-primary text-xl">history</span>
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark">Nhật ký tương tác (Interaction Log)</h3>
+</div>
+<button class="text-text-sub-light hover:text-primary transition-colors">
+<span class="material-icons-outlined text-xl">filter_list</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-0">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-light dark:bg-surface-dark z-10 shadow-sm">
+<tr class="text-[10px] text-text-sub-light font-semibold uppercase border-b border-border-light dark:border-border-dark">
+<th class="px-6 py-2">Thời gian</th>
+<th class="px-6 py-2">Người dùng (User)</th>
+<th class="px-6 py-2">Nguồn (Source)</th>
+<th class="px-6 py-2">Hành động</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-border-light dark:divide-border-dark">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-3 text-xs text-text-sub-light whitespace-nowrap">10:42 AM</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-2">
+<img alt="User" class="w-6 h-6 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASeWAHxCPHYbmawnAlAD3z45VOKUWnDzzYp1QPOFli0fU8iYhw_NCUBKvKN8WOXD-lZ_s7EtEE9GG-45w2hf6VMA_UOXXG7lLbaWUJnQsbvHkjR9vR9vOH1LwDKMwKvu2O8jlLuNhMGG40BavpY0YyEptrJHij3CiHlY6XJ7zAcQpKe781R31aWkYJmZ_8V9BbfzMVcWd-NxecBF8K4d3G-9MVqf2MOziHUovoXx7A29zapFdkY35EnitU8dhbfFVR1JKMsytuJL8"/>
+<span class="font-medium text-text-main-light dark:text-text-main-dark text-xs truncate max-w-[100px]">Nguyễn Văn An</span>
+</div>
+</td>
+<td class="px-6 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">Facebook</span>
+</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-1.5 text-xs text-text-main-light dark:text-text-main-dark">
+<span class="material-icons-outlined text-sm text-purple-500">description</span> Form Fill
+                                        </div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-3 text-xs text-text-sub-light whitespace-nowrap">10:35 AM</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-[10px] font-bold">TH</div>
+<span class="font-medium text-text-main-light dark:text-text-main-dark text-xs truncate max-w-[100px]">Trần Thị Hoa</span>
+</div>
+</td>
+<td class="px-6 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300">Google Ads</span>
+</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-1.5 text-xs text-text-main-light dark:text-text-main-dark">
+<span class="material-icons-outlined text-sm text-green-500">touch_app</span> Click Ad
+                                        </div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-3 text-xs text-text-sub-light whitespace-nowrap">10:15 AM</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-2">
+<img alt="User" class="w-6 h-6 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQFlB4gskQrSlQUoyOF-mTJHh0Fgw_JXqPXgmSLI0Ikl93AyDFCl56me1XOV3rat1q2_aHARYeDc9RovGAMWftPu4g3biOCJW1jvifz8EMl3L_tL3dnQJpLtN9eJpW7lW5GYUfYiDNWNqflXUt__Rjp7mNAPOuCxtccb_OYfAWPqet7jk_qRHeAZYNE691NyAlJopp1h46xR0HiuRcXbcxGkEOa9yPHpWsWJ-jljNJvD0IfpbILsG-S7lRZ9ui8rNcjS0Y8FXPazQ"/>
+<span class="font-medium text-text-main-light dark:text-text-main-dark text-xs truncate max-w-[100px]">Lê Minh Tuấn</span>
+</div>
+</td>
+<td class="px-6 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-orange-50 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300">Email</span>
+</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-1.5 text-xs text-text-main-light dark:text-text-main-dark">
+<span class="material-icons-outlined text-sm text-blue-500">chat</span> Chat Start
+                                        </div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-3 text-xs text-text-sub-light whitespace-nowrap">09:50 AM</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-2">
+<img alt="User" class="w-6 h-6 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzul7yPV6V9pSxsCXWH65xnycjRYO_3piuXvieSZpnm0KuuNQcRm1B5WnnsE2KeJxOk4rby6RKGEATn-xdLru73fGHuSvyADKWSimFDY0hiLS8cnoowwH9U03hLS5pc-EmWe64H7ofm5uemKqIFbl0avrK7CGfN-IivADty3rjUxlvY0gP_Y8prCbXYRyILoYhBsv7X-2e4aMYR4oWhMIgS3dPX1JVuQ0zK172NQhvDr5rwzFTlGVNwfbF2TveNIx48-iGjFXLusU"/>
+<span class="font-medium text-text-main-light dark:text-text-main-dark text-xs truncate max-w-[100px]">Visitor #9928</span>
+</div>
+</td>
+<td class="px-6 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">Direct</span>
+</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-1.5 text-xs text-text-main-light dark:text-text-main-dark">
+<span class="material-icons-outlined text-sm text-slate-500">visibility</span> Page View
+                                        </div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-3 text-xs text-text-sub-light whitespace-nowrap">09:45 AM</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-[10px] font-bold">KV</div>
+<span class="font-medium text-text-main-light dark:text-text-main-dark text-xs truncate max-w-[100px]">Khách Vãng Lai</span>
+</div>
+</td>
+<td class="px-6 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300">Referral</span>
+</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-1.5 text-xs text-text-main-light dark:text-text-main-dark">
+<span class="material-icons-outlined text-sm text-orange-500">shopping_cart</span> Add Cart
+                                        </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm flex flex-col h-full">
+<div class="px-6 py-4 border-b border-border-light dark:border-border-dark flex justify-between items-center bg-slate-50/50 dark:bg-slate-800/20 shrink-0">
+<div class="flex items-center gap-2">
+<span class="material-icons-outlined text-primary text-xl">hub</span>
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark">UTM &amp; Attribution</h3>
+</div>
+<button class="text-xs font-bold text-primary hover:underline">Chi tiết báo cáo</button>
+</div>
+<div class="p-6 flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-6">
+<div>
+<div class="flex justify-between items-end mb-2">
+<h4 class="text-xs font-bold text-text-sub-light uppercase">Nguồn Traffic (Last 30 days)</h4>
+</div>
+<div class="flex h-4 w-full rounded-full overflow-hidden mb-3">
+<div class="bg-blue-500 h-full" style="width: 45%" title="Facebook (45%)"></div>
+<div class="bg-red-500 h-full" style="width: 30%" title="Google (30%)"></div>
+<div class="bg-slate-400 h-full" style="width: 15%" title="Direct (15%)"></div>
+<div class="bg-orange-400 h-full" style="width: 10%" title="Email (10%)"></div>
+</div>
+<div class="flex flex-wrap gap-4 text-xs">
+<div class="flex items-center gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-blue-500"></div>
+<span class="text-text-main-light dark:text-text-main-dark">Facebook (45%)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+<span class="text-text-main-light dark:text-text-main-dark">Google (30%)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-slate-400"></div>
+<span class="text-text-main-light dark:text-text-main-dark">Direct (15%)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-orange-400"></div>
+<span class="text-text-main-light dark:text-text-main-dark">Email (10%)</span>
+</div>
+</div>
+</div>
+<div class="flex-1">
+<h4 class="text-xs font-bold text-text-sub-light uppercase mb-3">Top Campaign (UTM_CAMPAIGN)</h4>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 rounded-lg border border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 flex items-center justify-center rounded bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 font-bold text-xs text-primary">#1</div>
+<div>
+<div class="font-bold text-sm text-text-main-light dark:text-text-main-dark">q4_user_acquisition</div>
+<div class="text-[10px] text-text-sub-light">Source: facebook</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-bold text-sm text-text-main-light dark:text-text-main-dark">452 Conversions</div>
+<div class="text-[10px] text-green-600 font-medium">32% CR</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg border border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 flex items-center justify-center rounded bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 font-bold text-xs text-primary">#2</div>
+<div>
+<div class="font-bold text-sm text-text-main-light dark:text-text-main-dark">black_friday_early_bird</div>
+<div class="text-[10px] text-text-sub-light">Source: email_newsletter</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-bold text-sm text-text-main-light dark:text-text-main-dark">318 Conversions</div>
+<div class="text-[10px] text-green-600 font-medium">28% CR</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg border border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 flex items-center justify-center rounded bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 font-bold text-xs text-primary">#3</div>
+<div>
+<div class="font-bold text-sm text-text-main-light dark:text-text-main-dark">search_brand_generic</div>
+<div class="text-[10px] text-text-sub-light">Source: google</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-bold text-sm text-text-main-light dark:text-text-main-dark">195 Conversions</div>
+<div class="text-[10px] text-green-600 font-medium">15% CR</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main>
+</div>
+</body></html>

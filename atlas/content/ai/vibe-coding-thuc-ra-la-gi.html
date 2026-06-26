@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibe coding thực ra là gì khi bạn không phải dân code · Học cùng Tobi</title>
+<meta name="description" content="Không phải &#x27;lười học code&#x27; mà là đổi vai: bạn mô tả, AI gõ phím">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b1020;--bg-elev:#0f1530;--surface:#151b3d;--surface-2:#1c244d;
+  --border:#2a3470;--border-soft:#1f2654;
+  --accent:#7c83ff;--accent-2:#a5acff;--accent-soft:#3d3e9c;--violet:#c4a8ff;
+  --green:#34d399;--amber:#fbbf24;--sky:#38bdf8;
+  --text:#e8ecff;--text-2:#a8b0d6;--text-3:#6b75a8;
+  --shadow-lg:0 4px 8px rgba(0,0,0,.35),0 24px 48px rgba(0,0,0,.3);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Outfit','Be Vietnam Pro',sans-serif}
+body{font-family:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;
+  background:radial-gradient(1200px 600px at 20% -10%,rgba(124,131,255,.12),transparent 60%),
+             radial-gradient(900px 500px at 90% 10%,rgba(196,168,255,.08),transparent 60%),var(--bg);
+  color:var(--text);min-height:100vh;line-height:1.7;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;overflow-wrap:break-word}
+::selection{background:var(--accent);color:#fff}
+img{max-width:100%}
+a{color:var(--accent-2);text-decoration:none;border-bottom:1px dashed var(--accent-soft)}
+a:hover{border-bottom-style:solid}
+
+.topbar{position:sticky;top:0;z-index:100;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  background:rgba(11,16,32,.78);border-bottom:1px solid var(--border-soft)}
+.topbar-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:14px 28px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;border:none}
+.brand-mark{width:40px;height:40px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,#7c83ff,#c4a8ff);box-shadow:0 4px 16px rgba(124,131,255,.35);
+  display:flex;align-items:center;justify-content:center}
+.brand-mark svg{width:22px;height:22px}
+.brand-text h1{font-size:.95rem;font-weight:800;line-height:1.2}
+.brand-text h1 span{color:var(--accent-2)}
+.brand-text p{font-size:.72rem;color:var(--text-3);font-weight:500;margin-top:1px}
+.topbar .pill{margin-left:auto;font-size:.74rem;font-weight:700;color:var(--accent-2);
+  background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);border-radius:999px;padding:6px 16px}
+
+.container{max-width:920px;margin:0 auto;padding:40px 28px 80px}
+
+.hero{display:grid;grid-template-columns:1fr;gap:28px;margin-bottom:44px;align-items:center}
+.hero.has-art{grid-template-columns:1.1fr .9fr}
+.hero .kick{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--accent-2);background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);
+  border-radius:999px;padding:7px 18px;margin-bottom:18px}
+.hero h1.title{font-size:2.5rem;font-weight:900;letter-spacing:-1px;line-height:1.12;margin-bottom:14px}
+.hero .angle{color:var(--text-2);font-size:1.05rem;line-height:1.6}
+.hero-art{border-radius:20px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg)}
+.hero-art img{display:block;width:100%;height:auto}
+
+.article h2{font-size:1.5rem;font-weight:800;margin:42px 0 14px;padding-bottom:10px;
+  border-bottom:1px solid var(--border-soft);color:var(--text)}
+.article h3{font-size:1.18rem;font-weight:700;margin:30px 0 10px;color:var(--accent-2)}
+.article h4{font-size:1.02rem;font-weight:700;margin:22px 0 8px;color:var(--violet)}
+.article p{color:var(--text-2);margin:14px 0;font-size:1.02rem}
+.article strong{color:var(--text);font-weight:700}
+.article code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--bg-elev);
+  padding:2px 7px;border-radius:5px;color:var(--violet);border:1px solid var(--border-soft)}
+.article ul,.article ol{margin:14px 0 14px 8px;padding-left:22px;color:var(--text-2)}
+.article li{margin:8px 0;font-size:1.02rem}
+.article ul li::marker{color:var(--accent)}
+.callout{background:linear-gradient(180deg,rgba(124,131,255,.08),transparent);
+  border:1px solid var(--border-soft);border-left:4px solid var(--accent);
+  border-radius:4px 14px 14px 4px;padding:16px 20px;margin:22px 0;color:var(--text);font-size:1.02rem}
+.tbl-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--border-soft);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--border-soft)}
+thead th{background:var(--surface);color:var(--text);font-weight:700}
+tbody tr:hover{background:var(--surface)}
+td{color:var(--text-2)}
+
+.author-card{margin-top:54px;background:linear-gradient(135deg,rgba(124,131,255,.06),rgba(196,168,255,.04));
+  border:1px solid var(--border-soft);border-radius:18px;padding:28px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center}
+.author-avatar{width:84px;height:84px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:3px solid var(--accent-soft);box-shadow:0 8px 32px rgba(124,131,255,.3)}
+.author-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.author-info .kicker{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:6px}
+.author-info h3{font-size:1.3rem;font-weight:800;margin-bottom:4px;
+  background:linear-gradient(90deg,var(--accent-2),var(--violet));-webkit-background-clip:text;
+  background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.author-info p{color:var(--text-2);font-size:.88rem;line-height:1.6;max-width:520px}
+.social-grid{display:grid;grid-template-columns:repeat(4,40px);gap:8px}
+.social-btn{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid var(--border-soft);color:var(--text-2);transition:all .15s}
+.social-btn svg{width:18px;height:18px}
+.social-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.3)}
+
+@media(max-width:780px){
+  .hero.has-art{grid-template-columns:1fr}
+  .hero h1.title{font-size:1.9rem}
+}
+.media{margin:0 0 44px}
+.media .media-label{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin:0 0 12px}
+.video-embed{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;
+  border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px;background:#000}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.media.cover{margin:0 0 40px}
+.cover-art{border-radius:18px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px}
+.cover-art img{display:block;width:100%;height:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.audio-embed{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;
+  border:1px solid var(--border-soft);background:var(--surface)}
+.audio-embed .ic{font-size:1.3rem}
+.audio-embed audio{flex:1;width:100%}
+@media (max-width:720px){
+  .hero.has-art{grid-template-columns:1fr}
+  .author-card{grid-template-columns:1fr;text-align:center;gap:18px;padding:22px}
+  .author-avatar{margin:0 auto}.author-info p{margin:0 auto}.social-grid{justify-content:center;margin:0 auto}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="https://ducnguyen.vn/atlas/" target="_blank" rel="noopener">
+      <div class="brand-mark"><svg viewBox="0 0 576 512" fill="#fff"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"/></svg></div>
+      <div class="brand-text"><h1>Học cùng <span>Tobi</span></h1><p>COMPA Class · KPIM Academy</p></div>
+    </a>
+    <span class="pill">AI Agent</span>
+  </div>
+</header>
+
+<main class="container">
+  <section class="media cover"><h1 class="sr-only">Vibe coding thực ra là gì khi bạn không phải dân code</h1><div class="video-embed"><iframe src="https://www.youtube.com/embed/H4Pm9Q98tF0" title="Vibe coding thực ra là gì khi bạn không phải dân code" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="audio-embed"><span class="ic">🎧</span><audio controls preload="none" src="vibe-coding-thuc-ra-la-gi.mp3"></audio></div></section>
+  <article class="article">
+    <p><strong>Ngày xưa, để có một phần mềm, câu hỏi đầu tiên luôn là: &quot;Bạn có biết code không?&quot;. Bây giờ, câu hỏi đáng giá hơn lại là: &quot;Bạn có mô tả rõ được điều mình muốn không?&quot;.</strong></p>
+<p>Nghe thì giống một câu nói cho sang. Nhưng không. Đây là một sự thay đổi rất thật về <strong>vai trò</strong> của bạn trong việc tạo ra sản phẩm — và nếu bạn đã từng gõ vài câu hỏi cho ChatGPT, thì bạn đang đứng gần ranh giới đó hơn bạn nghĩ.</p>
+<p>Bài này là bài mở màn cho series <strong>Vibe Coding cho người Non-tech</strong>. Mình sẽ không dạy bạn dòng code nào trong hôm nay cả. Việc duy nhất mình muốn làm là giúp bạn nhìn lại một thứ bạn đã có sẵn, và gọi đúng tên nó.</p>
+<h2>Bạn đã làm vibe coding rồi, chỉ là chưa gọi tên nó</h2>
+<p>Hãy nhớ lại lần gần nhất bạn nhờ ChatGPT viết hộ một email từ chối khéo một lời mời. Bạn không biết &quot;văn phong công sở chuẩn&quot; được lập trình thế nào. Bạn chỉ mô tả: *&quot;Viết giúp mình email từ chối nhẹ nhàng, vẫn giữ quan hệ, giọng thân thiện.&quot;* Rồi đọc kết quả, thấy chưa ưng, bạn chỉnh: *&quot;Ngắn hơn, bớt khách sáo.&quot;*</p>
+<p>Bạn vừa làm đúng cái cốt lõi của vibe coding đấy — chỉ là với chữ thay vì với phần mềm.</p>
+<p><strong>Vibe coding</strong> (tạm hiểu: &quot;lập trình theo cảm hứng / theo mô tả&quot;) là cách tạo ra sản phẩm phần mềm bằng việc <strong>bạn mô tả điều mình muốn bằng ngôn ngữ tự nhiên — ở đây là tiếng Việt — và AI viết phần code thật phía sau</strong>. Từ &quot;vibe&quot; ở đây không có nghĩa là làm bừa cho có cảm giác; nó nói đến việc bạn dẫn dắt bằng ý định và mô tả, thay vì bằng cú pháp.</p>
+<p>Điểm mấu chốt: cái kỹ năng &quot;diễn đạt rõ điều mình muốn rồi chỉnh lại cho tới khi ưng&quot; — bạn đã luyện nó hằng ngày khi dùng ChatGPT. Bạn không bắt đầu từ con số không. Bạn đang chuyển một kỹ năng đã có sang một sân chơi mới.</p>
+<div class="callout">💡 Vibe coding không bắt đầu bằng việc học một ngôn ngữ lạ. Nó bắt đầu bằng việc bạn nhận ra: khả năng mô tả rõ ràng chính là &quot;ngôn ngữ&quot; mà AI hiểu.</div>
+<h2>Vibe coding thực ra là gì?</h2>
+<p>Mình muốn định nghĩa lại cho thật gọn, bỏ hết phần hào nhoáng:</p>
+<p><strong>Vibe coding là khi bạn đổi vai: từ người tự tay làm sang người ra đề và mô tả, còn AI là người gõ phím.</strong></p>
+<p>Để ý chữ <strong>đổi vai</strong>. Nó không phải &quot;AI làm hết, bạn ngồi chơi&quot;. Nó cũng không phải &quot;bạn lười nên né học code&quot;. Nó là một sự phân công lại công việc:</p>
+<ul><li>Phần <strong>bạn giỏi hơn AI</strong>: biết mình muốn gì, sản phẩm phục vụ ai, cái nào quan trọng, cái nào bỏ được, kết quả thế nào là &quot;đúng&quot;.</li><li>Phần <strong>AI giỏi hơn bạn</strong>: dịch ý định đó thành code chạy được, nhớ cú pháp, xử lý mấy chỗ kỹ thuật lắt nhắt mà bạn không cần thuộc.</li></ul>
+<p>Bạn vẫn là người chịu trách nhiệm cho sản phẩm. Bạn vẫn phải biết nhìn ra &quot;cái này chưa đúng ý mình&quot;. Chỉ là bạn không còn phải tự gõ từng dòng nữa.</p>
+<div class="callout">🧠 Điều cần nhớ: trong vibe coding, AI là <strong>người thợ giỏi việc</strong>, còn bạn là <strong>người đặt hàng biết rõ mình muốn gì</strong>. Người thợ giỏi đến đâu cũng không tự biết bạn cần một quán cà phê hay một tiệm bánh — đó là phần của bạn.</div>
+<h2>Đặt món qua app vs mô tả món cho đầu bếp</h2>
+<p>Đây là hình ảnh mình thấy dễ hình dung nhất cho người mới.</p>
+<p>Khi bạn <strong>dùng ChatGPT để hỏi đáp thông thường</strong>, nó giống như <strong>đặt món qua app giao đồ ăn</strong>. Trên app có sẵn một thực đơn. Bạn bấm &quot;Phở bò&quot;, app trả về đúng tô phở bò. Câu hỏi của bạn càng giống một món có sẵn trên đời, kết quả càng nhanh và đúng. Bạn là <strong>người chọn món</strong>.</p>
+<p>Còn khi bạn <strong>dùng AI để xây một sản phẩm riêng</strong>, nó giống như bạn <strong>ngồi xuống mô tả một món cho đầu bếp nấu riêng</strong>. Không có sẵn trên thực đơn. Bạn phải nói: *&quot;Mình muốn một món bún, nước dùng thanh, ít dầu mỡ, cho người ăn kiêng, không hành.&quot;* Đầu bếp (AI) sẽ nấu. Bạn nếm thử, thấy nhạt thì nói &quot;đậm hơn chút&quot;, thấy nhiều bún thì nói &quot;ít bún lại&quot;. Qua vài lần, ra đúng món bạn cần.</p>
+<p>Thấy khác nhau ở đâu chưa?</p>
+<ul><li>Đặt món qua app: bạn <strong>chọn</strong> từ cái có sẵn. Một câu là xong.</li><li>Mô tả cho đầu bếp: bạn <strong>thiết kế</strong> ra cái chưa có. Cần mô tả, nếm, chỉnh — và bạn phải biết &quot;ngon&quot; với bạn là thế nào.</li></ul>
+<p>Vibe coding nằm ở vế thứ hai. Bạn không tra một câu trả lời có sẵn. Bạn cùng AI <strong>làm ra một thứ chưa từng tồn tại</strong> — cái app nhỏ, cái công cụ, cái trang web của riêng bạn. Và vì là món riêng, bạn không thể &quot;đặt một câu rồi đi&quot;; bạn phải ở lại, nếm, và chỉnh.</p>
+<div class="callout">⚠️ Sai lầm thường gặp: bê nguyên thói quen &quot;đặt món qua app&quot; sang việc xây sản phẩm — gõ một câu mơ hồ rồi mong AI hiểu hết. Đầu bếp giỏi mấy cũng không nấu đúng món bạn chưa nói rõ.</div>
+<h2>&quot;Hỏi AI&quot; và &quot;xây cùng AI&quot; — khác nhau ở đâu?</h2>
+<p>Vì bạn đã quen dùng AI để hỏi, mình tách hai vai này ra cho rạch ròi. Đây là sự phân biệt quan trọng nhất của cả bài, và là mục tiêu học số một của series.</p>
+<div class="tbl-wrap"><table><thead><tr><th></th><th>Dùng AI để <strong>HỎI</strong></th><th>Dùng AI để <strong>XÂY</strong></th></tr></thead><tbody><tr><td>Bạn muốn gì</td><td>Một câu trả lời, một đoạn văn, một lời khuyên</td><td>Một sản phẩm chạy được (app, web, công cụ)</td></tr><tr><td>Tương tác</td><td>Thường hỏi một lần là xong</td><td>Lặp lại nhiều vòng: mô tả → xem → chỉnh</td></tr><tr><td>Vai của bạn</td><td>Người chọn món</td><td>Người ra đề, người nghiệm thu</td></tr><tr><td>Cái bạn cần rõ</td><td>Câu hỏi đúng</td><td>Mình muốn sản phẩm làm được gì, cho ai</td></tr><tr><td>Kết quả &quot;đúng&quot; là</td><td>Đọc thấy hợp lý</td><td>Bấm vào nó chạy thật, đúng ý mình</td></tr><tr><td>Khi sai thì</td><td>Hỏi lại câu khác</td><td>Mô tả lại chỗ chưa đúng, để AI sửa tiếp</td></tr></tbody></table></div>
+<p>Nhìn bảng này, bạn sẽ thấy: <strong>&quot;hỏi&quot; cho ra thông tin, &quot;xây&quot; cho ra một thứ chạy được</strong>. Người dùng ChatGPT lâu năm rất giỏi vế trái. Việc của series này là dắt bạn sang vế phải — mà không cần bạn phải thành dân code.</p>
+<div class="callout">🎯 Mục tiêu học của bài hôm nay rất nhỏ và rất rõ: phân biệt được lúc nào bạn đang HỎI AI, lúc nào bạn đang XÂY cùng AI. Chỉ cần nhận ra mình đang ở vai nào, bạn đã đi trước rất nhiều người.</div>
+<h2>Vậy bạn cần học cái gì, nếu không phải học code?</h2>
+<p>Câu hỏi hợp lý tiếp theo: &quot;Nếu không học cú pháp, thì học gì?&quot;. Vì rõ ràng không phải cứ mở AI ra là tự nhiên có sản phẩm.</p>
+<p>Theo mình, người non-tech làm vibe coding cần ba thứ — và không cái nào là ngôn ngữ lập trình cả:</p>
+<ol><li><strong>Biết diễn đạt rõ điều mình muốn.</strong> Đây là phần bạn đã có nền từ ChatGPT. Khác biệt là khi xây sản phẩm, bạn phải mô tả cả &quot;sản phẩm này dùng để làm gì, cho ai, màn hình có gì&quot; — chứ không chỉ một câu hỏi lẻ.</li></ol>
+<ol><li><strong>Biết kiểm tra kết quả.</strong> AI gõ code, nhưng bạn là người bấm thử và nói &quot;chỗ này đúng ý&quot; hay &quot;chỗ này chưa ổn&quot;. Bạn không cần đọc hiểu code; bạn cần biết sản phẩm chạy ra có giống cái bạn hình dung không. Giống nếm món ăn — không cần biết công thức vẫn biết mặn hay nhạt.</li></ol>
+<ol><li><strong>Biết chia nhỏ và lắp ghép.</strong> Một ý tưởng to (&quot;mình muốn một app quản lý khách hàng&quot;) cần được tách thành từng phần nhỏ để mô tả lần lượt cho AI. Đây là tư duy, không phải kỹ thuật — và mình sẽ đi sâu ở các bài sau.</li></ol>
+<p>Để ý: cả ba đều là <strong>kỹ năng tư duy và diễn đạt</strong>, không phải kỹ năng gõ máy. Đó là lý do mình tin một người non-tech hoàn toàn có thể làm được — nếu chịu đổi vai cho đúng.</p>
+<h2>Nói thẳng một chút: vibe coding hợp với ai, khó với ai</h2>
+<p>Mình không thích kiểu nói tô hồng &quot;ai cũng làm được, dễ lắm&quot;. Nên xin nói thẳng, nhìn qua ba lớp.</p>
+<p><strong>Lớp kỹ thuật.</strong> Công cụ AI hôm nay đã đủ tốt để dựng những sản phẩm nhỏ, chạy thật, từ mô tả tiếng Việt. Đây là điều vài năm trước chưa làm được. Nhưng nó không phải đũa thần: sản phẩm càng phức tạp, bạn càng cần mô tả kỹ và kiểm tra chặt. AI khuếch đại sự rõ ràng của bạn — chứ không thay bạn nghĩ.</p>
+<p><strong>Lớp giá trị công việc.</strong> Cái lợi thật không nằm ở chỗ &quot;biết một kỹ năng oai&quot;. Nó nằm ở chỗ: một ý tưởng trong đầu bạn — cái form thu thông tin, cái công cụ tính toán nội bộ, cái trang giới thiệu — giờ có thể thành một thứ chạy được trong vài buổi, thay vì phải đi thuê hoặc xếp xó vì &quot;mình đâu biết code&quot;. Theo mình, đây mới là phần đáng giá: rút ngắn quãng đường từ ý tưởng đến một thứ sờ được.</p>
+<p><strong>Lớp con người.</strong> Và đây là chỗ thật nhất: vibe coding <strong>hợp với người rõ mình muốn gì</strong>, và <strong>khó với người mơ hồ rồi mong AI tự hiểu</strong>. Nếu bạn quen ngồi xuống nghĩ cho rõ trước khi nói, bạn sẽ tiến rất nhanh. Nếu bạn quen kiểu &quot;AI ơi làm cho tôi một cái gì đó hay hay&quot;, bạn sẽ thất vọng — không phải vì AI dở, mà vì chưa ai ra đề rõ cho nó.</p>
+<p>Cho nên khuyến nghị của mình rất gọn: <strong>đừng học vibe coding như học một công cụ; hãy học nó như học cách ra đề.</strong> Công cụ sẽ thay đổi liên tục. Tư duy ra đề thì còn mãi.</p>
+<h2>Series này sẽ đưa bạn đi qua đâu</h2>
+<p>Vì đây là bài mở màn, mình nói nhanh đường đi để bạn biết mình đang bước vào hành trình thế nào.</p>
+<p>Series <strong>Vibe Coding cho người Non-tech</strong> được thiết kế cho đúng người như bạn: đã quen AI cơ bản, chưa biết code, muốn tự tay làm ra sản phẩm. Chúng ta sẽ đi từ tư duy, sang cách mô tả, sang cách bắt tay AI dựng từng thứ nhỏ — và lớn dần lên. Không nhảy vào kỹ thuật khó ngay. Mỗi bài một chiến thắng nhỏ, đủ để bạn tin &quot;à, mình làm được&quot;.</p>
+<p>Bài tiếp theo, mình sẽ đào sâu vào <strong>cú đổi vai quan trọng nhất: từ người làm bài thành người ra đề</strong>. Vì khi bạn không còn tự gõ phím, công việc thật sự của bạn là *đặt đúng đề bài* — và đó là một kỹ năng có thể học, có cách luyện hẳn hoi.</p>
+<h2>Kết luận</h2>
+<p>Nếu bạn đã dùng ChatGPT để hỏi, bạn không bắt đầu từ con số không. Bạn đã có cái nền quan trọng nhất: khả năng diễn đạt điều mình muốn. Vibe coding chỉ là dùng cái nền đó để làm ra sản phẩm, thay vì chỉ để lấy câu trả lời.</p>
+<p><strong>Vibe coding không phải là &quot;lười học code để AI làm thay&quot;, mà là &quot;đổi vai: bạn mô tả, AI gõ phím — và bạn học cách biến ý tưởng thành sản phẩm thật&quot;.</strong></p>
+<p>Nếu thấy hành trình này hợp với mình, bạn theo dõi series nhé — mình sẽ đi cùng bạn từng bước, từ tư duy đến sản phẩm đầu tiên chạy được. Đây cũng là tinh thần tụi mình theo đuổi ở COMPA Class: biến những thứ tưởng &quot;chỉ dân kỹ thuật mới làm được&quot; thành cái dốc dễ leo cho người mới. Hẹn bạn ở bài kế.</p>
+<p>---</p>
+  </article>
+
+  <footer class="author-card" aria-labelledby="author-name">
+    <div class="author-avatar">
+      <img src="https://ducnguyen221.github.io/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức" loading="lazy" width="84" height="84">
+    </div>
+    <div class="author-info">
+      <div class="kicker">Tác giả · Author</div>
+      <h3 id="author-name">Nguyễn Quang Đức (Tobi)</h3>
+      <p>Data &amp; AI Engineer · Trainer tại KPIM Academy &amp; COMPA Class. Trang cá nhân tại
+        <a href="https://ducnguyen.vn" target="_blank" rel="noopener">ducnguyen.vn</a>.</p>
+    </div>
+    <nav class="social-grid" aria-label="Liên kết tác giả">
+      <a class="social-btn" href="https://ducnguyen.vn" target="_blank" rel="noopener" aria-label="Website" title="ducnguyen.vn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.facebook.com/TobiNguyenData/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.youtube.com/@PowerBIHeroVn" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a class="social-btn" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" aria-label="E-Profile" title="E-Profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      </a>
+    </nav>
+  </footer>
+</main>
+</body>
+</html>

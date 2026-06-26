@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>E-Business Card - Nguyễn Quang Đức</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        // Deep Forest Green / Warm Aubergine
+                        "primary": "#4C6B4B", // Darker forest green
+                        "primary-light": "#6D916B", // Lighter forest green
+                        "accent-gold": "#C69749", // Bronze/Gold accent
+                        "accent-dark-gold": "#A37A3B", // Darker gold for hover
+                        "background-dark-start": "#0f172a", // Navy base
+                        "background-dark-end": "#1e293b", // Slightly lighter navy
+                        "aubergine-base": "#3A2A3E", // Warm aubergine alternative
+                        "aubergine-end": "#4C3852",
+                        "glass-bg": "rgba(255, 255, 255, 0.04)",
+                        "glass-border": "rgba(255, 255, 255, 0.08)",
+                        "glass-highlight": "rgba(255, 255, 255, 0.12)",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "ui-sans-serif", "system-ui", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "card": "1.25rem", // approx 20px
+                        "DEFAULT": "1rem", 
+                        "lg": "2rem", 
+                        "xl": "3rem", 
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "glow": "0 0 20px rgba(76, 107, 75, 0.15)", // Green glow
+                        "glass": "0 8px 32px 0 rgba(0, 0, 0, 0.3)",
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">:root {
+            --bg-start: #001F3F;--bg-end: #001226;--primary-color: #4C6B4B;
+            --primary-hover-color: #6D916B;
+            --accent-color: #C69749;
+            --accent-hover-color: #A37A3B;
+            --text-color: #E0E0E0;
+            --soft-text-color: #B0B0B0;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.06);
+            --card-hover-bg: rgba(255, 255, 255, 0.09);
+        }
+        .light {
+            --bg-start: #F0F2F5;
+            --bg-end: #FFFFFF;
+            --primary-color: #6D916B;
+            --primary-hover-color: #4C6B4B;
+            --accent-color: #A37A3B;
+            --accent-hover-color: #C69749;
+            --text-color: #333333;
+            --soft-text-color: #666666;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --card-bg: rgba(0, 0, 0, 0.03);
+            --card-hover-bg: rgba(0, 0, 0, 0.06);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-start);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }.glass-panel {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.15);background: var(--card-hover-bg);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }.custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }@keyframes slideUp {
+            from { transform: translate(-50%, 100%); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
+        }
+        .toast-enter {
+            animation: slideUp 0.3s ease forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    .skill-icon {
+        width: 2rem;
+        height: 2rem;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 0.25rem;
+        border-radius: 50%;
+        object-fit: cover;
+    }.highlight-active {
+        background-color: var(--primary-color) !important;
+        border: 1px solid var(--accent-color) !important;
+        color: white !important;
+        transform: scale(1.05);
+        box-shadow: 0 4px 20px rgba(76, 107, 75, 0.5), 0 0 10px rgba(198, 151, 73, 0.3);
+        z-index: 10;
+        position: relative;
+    }
+    .highlight-active .skill-icon {
+        box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
+    }
+    .highlight-active .text-muted {
+         color: rgba(255,255,255,0.8) !important;
+    }.filter-btn-active {
+        background-color: var(--primary-color) !important;
+        color: white !important;
+        border-color: var(--primary-color) !important;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="relative h-screen w-full overflow-hidden bg-gradient-to-br from-[var(--bg-start)] to-[var(--bg-end)] selection:bg-[var(--primary-color)] selection:text-white">
+<canvas class="absolute inset-0 z-0 pointer-events-none opacity-40" id="bgCanvas"></canvas>
+<div class="relative z-10 flex flex-col h-full max-w-[100vw] mx-auto p-4 lg:mx-[50px] lg:px-0 lg:py-4 gap-4 lg:gap-4">
+<div class="flex items-center justify-between shrink-0">
+<h1 class="text-[var(--text-color)] tracking-tight text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-[var(--accent-color)]">dashboard</span>
+                Analyst Dashboard
+            </h1>
+<div class="flex items-center gap-4">
+<button aria-label="Toggle theme" class="focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] rounded-full p-2 transition-colors duration-200" id="theme-toggle">
+<span class="material-symbols-outlined text-[var(--soft-text-color)] text-xl dark:block light:hidden">light_mode</span>
+<span class="material-symbols-outlined text-[var(--soft-text-color)] text-xl dark:hidden light:block">dark_mode</span>
+</button>
+<div class="text-xs font-medium text-[var(--soft-text-color)] tracking-widest uppercase hidden sm:block">
+                KPIM × COMPA
+            </div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-4 h-full min-h-0">
+<div class="lg:col-span-5 flex flex-col h-full min-h-0 overflow-y-auto custom-scrollbar pr-1">
+<div class="glass-panel rounded-card p-6 lg:p-8 flex flex-col items-center text-center gap-6 justify-start relative overflow-hidden group h-full">
+<div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[var(--accent-color)] to-transparent"></div>
+<div class="relative">
+<div class="w-32 h-32 lg:w-40 lg:h-40 rounded-full border-2 border-[var(--primary-color)] p-1 relative z-10 bg-[var(--background-dark-start)]">
+<img alt="Portrait of Nguyễn Quang Đức in professional attire" class="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJgJf4tF9FqtnfjvbGBk3BDhqCm2fOvaJtxUge-sLXay_akfLfvxATr4ZAhAfmDjEt7I6SBE2eFRyIha0MpVvohiX7MFZyEHQ8U2VdXSFBbdpfi8JnLbYynoEaIUWX-XTyOqD9KKLwB9v3jkW2g0om7i60e1vxQ--f1rIZSF_RY1wN46AwHedCF5dZIrxsIalfsNy9yvLmDBF9ih1OsGRyt-StWw99GxTDTpwzL-D_LRRV-sM-E92j5ZnmxVLC3kf64qMf3gaxYlg"/>
+</div>
+<div class="absolute inset-0 bg-[var(--primary-color)]/20 blur-2xl rounded-full -z-0 transform scale-110"></div>
+</div>
+<div class="space-y-2">
+<h2 class="text-3xl lg:text-4xl font-bold text-[var(--text-color)] tracking-tight">Nguyễn Quang Đức</h2>
+<p class="text-[var(--accent-gold)] font-medium text-lg">Data Analytics Expert</p>
+</div>
+<div class="flex flex-col gap-2 max-w-sm w-full">
+<div class="flex flex-wrap justify-center gap-2">
+<span class="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] text-xs font-medium text-[var(--soft-text-color)] flex items-center gap-1">
+<span class="material-symbols-outlined text-[1rem] text-[var(--accent-color)]">corporate_fare</span>
+                            Founder &amp; CEO COMPA
+                        </span>
+<span class="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] text-xs font-medium text-[var(--soft-text-color)] flex items-center gap-1">
+<span class="material-symbols-outlined text-[1rem] text-[var(--accent-color)]">groups</span>
+                            Co-founder KPIM
+                        </span>
+<span class="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] text-xs font-medium text-[var(--soft-text-color)] flex items-center gap-1">
+<span class="material-symbols-outlined text-[1rem] text-[var(--accent-color)]">person_apron</span>
+                            Corporate Trainer
+                        </span>
+<span class="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] text-xs font-medium text-[var(--soft-text-color)] flex items-center gap-1">
+<span class="material-symbols-outlined text-[1rem] text-[var(--accent-color)]">psychology</span>
+                            Data &amp; AI Mentor
+                        </span>
+</div>
+</div>
+<p class="text-[var(--soft-text-color)] text-sm leading-relaxed max-w-md">
+                        Transforming data into actionable insights. Passionate about building data cultures and empowering businesses through Data Platform &amp; AI solutions.
+                    </p>
+<div class="w-full grid grid-cols-12 gap-2 lg:gap-4 mt-8 flex-1">
+<div class="col-span-7 lg:col-span-6 flex justify-end pr-2 border-r border-[var(--border-color)] border-dashed">
+<div class="relative border-l border-[var(--border-color)] space-y-6 py-2 text-left mr-1">
+<div class="relative pl-6 group">
+<a class="absolute -left-[18px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-white border-2 border-[var(--background-dark-start)] outline outline-1 outline-[var(--border-color)] group-hover:outline-[var(--accent-color)] transition-all z-10 overflow-hidden shadow-lg" href="#">
+<img alt="COMPA Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzw2_pRSs8_cyrdHwxOHLWdubOA2ELomk2NKU9hl5yH-xX31REZw0lRrIilo_fEvGYS7hVNvLto2gIeuFG08EGllBNNyAJ2Xmay-eYr4px6P0Y_ENB7XEx57zLVoCpD2VjsIwt5w3g0ss0NVroPOnHHZuTUO7eaGzGXgYdXaGPoTsPOcZ45IN48kVoWoeiDMnyyooJs4wIkJrKswYi66ADBpyxCh7ZCgFnaq2QX55jwtvaN1bSR3FiOmaHjEWLWIEF7aCdJdeoCYU"/>
+</a>
+<div class="flex flex-col items-start text-left">
+<span class="text-[10px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5 font-display">[Present] VN</span>
+<span class="text-sm font-bold text-[var(--text-color)] group-hover:text-[var(--primary-light)] transition-colors leading-tight">COMPA, JSC</span>
+<span class="text-[11px] text-[var(--accent-gold)] font-medium italic">Co-founder &amp; CEO</span>
+</div>
+</div>
+<div class="relative pl-6 group">
+<a class="absolute -left-[18px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-white border-2 border-[var(--background-dark-start)] outline outline-1 outline-[var(--border-color)] group-hover:outline-[var(--accent-color)] transition-all z-10 overflow-hidden shadow-lg" href="#">
+<img alt="KPIM Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfAsweITmmQgO9JCfFeNzYMv9yxYcE_dRJtPJLFuz2ud09HJvpsexKYYkEN3CIRtw8JdVTehu2O7VOqa8c4w2xZ2w4SJ7CFS5_Od6l0AU9bHoUQI-4eDKi17MU7bT7brJsxCz6ZOAmN0X7EZQL_ls5oEPNUBxNdIG-pQv-m_lZFYtAHoplNReRgBdsAEL3bISuvqYexD5YJZdttMUYG7DZ0KV6m6qi_Qm1OlFaHFpEbiTm_BB2iyK_RY_rkucIAsBqtkgDBcLZIvE"/>
+</a>
+<div class="flex flex-col items-start text-left">
+<span class="text-[10px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5 font-display">[Present] VN</span>
+<span class="text-sm font-bold text-[var(--text-color)] group-hover:text-[var(--primary-light)] transition-colors leading-tight">KPIM, JSC</span>
+<span class="text-[11px] text-[var(--accent-gold)] font-medium italic">Co-founder &amp; CEO</span>
+</div>
+</div>
+<div class="relative pl-6 group">
+<a class="absolute -left-[18px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-white border-2 border-[var(--background-dark-start)] outline outline-1 outline-[var(--border-color)] group-hover:outline-[var(--accent-color)] transition-all z-10 overflow-hidden shadow-lg" href="#">
+<img alt="YPTC Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAultT2iHVldZlnH_FVZGlnxb7R-fdRKd3goSHMwjB0q-0PP7L5jFVF26oqImUoXJPEPoyS8kn7cWa9BE6Z3ejDlLJKg4fma2lBhu5MYbwWfRHq2z-vUvqTC9hQHXl0j9UDakaO1teMdUrhHFVGzKalPrmrcgvIVyrv4-HysMERmNNzf-FlzEfkx54m4BpQxoXjq90f9KUoUXUJnhTqza_Ribp0Jf2IqY681gEKap8a2tzly6ep7yiPrGXK-Zj9nq5TY43qyVkjYt8"/>
+</a>
+<div class="flex flex-col items-start text-left">
+<span class="text-[10px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5 font-display">[2016-2020] USA</span>
+<span class="text-sm font-bold text-[var(--text-color)] group-hover:text-[var(--primary-light)] transition-colors leading-tight">YPTC, LLC</span>
+<span class="text-[11px] text-[var(--soft-text-color)] font-medium italic">DVG Manager</span>
+</div>
+</div>
+<div class="relative pl-6 group">
+<a class="absolute -left-[18px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-white border-2 border-[var(--background-dark-start)] outline outline-1 outline-[var(--border-color)] group-hover:outline-[var(--accent-color)] transition-all z-10 overflow-hidden shadow-lg" href="#">
+<img alt="Lazada Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRrwCJOvGFnk33tm6ZjHSVjCeZwzncLdwSBkU7_eFBDxbt9iPq3h_orsmGrvlfvxcrLI-pi9Z0XSJRY9TPdJ1hkoPqiT4Q7QBMvsYJ5yrhLaPOcXUSIXJOjKU1JQDWI3GYW-HHnS_9dAVoj_boE3Ew18Tiehh4ZGjHKIKBCYXsu_p6Z9bOA3fI6ENgV61exgjeOOVkFTAfF1ZozAn3XZCFmN9YvqMMEQLepIJ4JFIRaVTA2Nm9IetSGlPjFfY0AFKZ5aE1OayIMa8"/>
+</a>
+<div class="flex flex-col items-start text-left">
+<span class="text-[10px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5 font-display">[2015] SG, VN</span>
+<span class="text-sm font-bold text-[var(--text-color)] group-hover:text-[var(--primary-light)] transition-colors leading-tight">LAZADA</span>
+<span class="text-[11px] text-[var(--soft-text-color)] font-medium italic">Analyst</span>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-5 lg:col-span-6 flex flex-col justify-center gap-3 pl-2">
+<div class="flex flex-col gap-1 w-full text-sm">
+<a class="flex items-center gap-2 p-1.5 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group" href="mailto:duc.nguyen@kpim.vn">
+<div class="w-6 h-6 rounded-full bg-[var(--card-bg)] flex items-center justify-center border border-[var(--border-color)] group-hover:border-[var(--accent-color)] transition-colors shrink-0">
+<span class="material-symbols-outlined text-[var(--soft-text-color)] group-hover:text-[var(--accent-color)] text-[0.9rem]">mail</span>
+</div>
+<span class="text-[var(--text-color)] group-hover:text-[var(--primary-light)] transition-colors font-medium text-xs truncate">duc.nguyen@kpim.vn</span>
+</a>
+<a class="flex items-center gap-2 p-1.5 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group" href="tel:0932215555">
+<div class="w-6 h-6 rounded-full bg-[var(--card-bg)] flex items-center justify-center border border-[var(--border-color)] group-hover:border-[var(--accent-color)] transition-colors shrink-0">
+<span class="material-symbols-outlined text-[var(--soft-text-color)] group-hover:text-[var(--accent-color)] text-[0.9rem]">call</span>
+</div>
+<span class="text-[var(--text-color)] group-hover:text-[var(--primary-light)] transition-colors font-medium text-xs">0932215555</span>
+</a>
+<a class="flex items-center gap-2 p-1.5 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group" href="https://kpim.vn" target="_blank">
+<div class="w-6 h-6 rounded-full bg-[var(--card-bg)] flex items-center justify-center border border-[var(--border-color)] group-hover:border-[var(--accent-color)] transition-colors shrink-0">
+<span class="material-symbols-outlined text-[var(--soft-text-color)] group-hover:text-[var(--accent-color)] text-[0.9rem]">language</span>
+</div>
+<span class="text-[var(--text-color)] group-hover:text-[var(--primary-light)] transition-colors font-medium text-xs">kpim.vn</span>
+</a>
+<a class="flex items-center gap-2 p-1.5 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group" href="https://compaclass.com" target="_blank">
+<div class="w-6 h-6 rounded-full bg-[var(--card-bg)] flex items-center justify-center border border-[var(--border-color)] group-hover:border-[var(--accent-color)] transition-colors shrink-0">
+<span class="material-symbols-outlined text-[var(--soft-text-color)] group-hover:text-[var(--accent-color)] text-[0.9rem]">school</span>
+</div>
+<span class="text-[var(--text-color)] group-hover:text-[var(--primary-light)] transition-colors font-medium text-xs">compaclass.com</span>
+</a>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-[var(--accent-color)] hover:bg-[var(--accent-hover-color)] text-white text-xs font-bold shadow-lg shadow-[var(--accent-color)]/20 hover:shadow-[var(--accent-color)]/40 transition-all flex items-center justify-center gap-2 mt-auto">
+<span>Contact Form</span>
+<span class="material-symbols-outlined text-[14px]">arrow_outward</span>
+</button>
+<div class="flex justify-center items-center gap-3 mt-1 pt-3 border-t border-[var(--border-color)]">
+<a class="p-2 rounded-full bg-[var(--card-bg)] hover:bg-[var(--card-hover-bg)] border border-[var(--border-color)] text-[var(--soft-text-color)] hover:text-[#1877F2] hover:border-[#1877F2]/30 transition-all transform hover:-translate-y-1" href="#" target="_blank" title="Facebook">
+<svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg>
+</a>
+<a class="p-2 rounded-full bg-[var(--card-bg)] hover:bg-[var(--card-hover-bg)] border border-[var(--border-color)] text-[var(--soft-text-color)] hover:text-[#0A66C2] hover:border-[#0A66C2]/30 transition-all transform hover:-translate-y-1" href="#" target="_blank" title="LinkedIn">
+<svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill-rule="evenodd"></path></svg>
+</a>
+<a class="p-2 rounded-full bg-[var(--card-bg)] hover:bg-[var(--card-hover-bg)] border border-[var(--border-color)] text-[var(--soft-text-color)] hover:text-[#FF0000] hover:border-[#FF0000]/30 transition-all transform hover:-translate-y-1" href="#" target="_blank" title="YouTube">
+<svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.254.418-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 12 5 12 5s6.256 0 7.812.418zM9.75 15.02l5.75-3.02-5.75-3.02v6.04z" fill-rule="evenodd"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7 flex flex-col gap-6 h-full min-h-0 overflow-y-auto custom-scrollbar pr-1 pb-16 lg:pb-0">
+<div class="glass-panel rounded-card p-5 flex flex-col gap-2 group shrink-0">
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-3 mb-2">
+<div class="flex flex-col sm:flex-row sm:items-center gap-3 w-full">
+<h3 class="text-xl font-semibold text-[var(--text-color)] flex items-center gap-2 shrink-0">
+<span class="material-symbols-outlined text-[var(--accent-color)]">military_tech</span>
+                            Core Competencies
+                        </h3>
+<div class="flex flex-wrap gap-2 sm:ml-auto">
+<button class="px-3 py-1 rounded-full bg-[var(--primary-color)] text-white border border-[var(--primary-color)] text-sm font-medium hover:bg-[var(--primary-color)] hover:text-white transition-colors filter-btn filter-btn-active" data-filter="all">All</button>
+<button class="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] text-sm font-medium text-[var(--soft-text-color)] hover:bg-[var(--primary-color)] hover:text-white transition-colors filter-btn" data-filter="domain">Domain</button>
+<button class="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] text-sm font-medium text-[var(--soft-text-color)] hover:bg-[var(--primary-color)] hover:text-white transition-colors filter-btn" data-filter="data-tools">Data Tools</button>
+<button class="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] text-sm font-medium text-[var(--soft-text-color)] hover:bg-[var(--primary-color)] hover:text-white transition-colors filter-btn" data-filter="automation">Automation</button>
+<button class="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] text-sm font-medium text-[var(--soft-text-color)] hover:bg-[var(--primary-color)] hover:text-white transition-colors filter-btn" data-filter="genai">GenAI</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-3 text-sm text-[var(--text-color)]">
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="domain">
+<img alt="Data Architecture" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaqodxUPrKb-8OnnbSlUXdpDTVJBDJKLMCDbpdl60x_nXOzfk37EeYYFdHZ0K83QAUaNDvAmelOHTLMMdU9h_ty9hysCSf4IG0wJUShhrlxftih1nnGMpvKwGvUN4M9fGOk-4f7n0kYBNBjFoA_z1uMrXhzde9IjC8Eo6xibyefTz4pCWF-YFTvH9Le3yio1Oc8glcTrMuWyRDysvMoT6GjA7oaiL0fjq5XRZ6b2KHYvIVZoX5Xlb4MBELEMDej8fgltD_7Lc8XiE"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">Data Architecture</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="domain">
+<img alt="Data Analytics" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKjp5MlQZl9iUP9G7cXk-aHPXSduPHytbvfQXIEiY2rfoJ9DNMsWceVPafQAmviyHe6dVYlp9zQD2BP0ZhqsTzP9rPUdklKzavJlaPm7W0P0Iw4xMir8Cc_IgZUoSEphurvb-iqvpf3uQRBs7jT_L3qYQYMWTB14CscMY91_UK8uk0cobBYmgqbPWp6cU5Rzcc5REMrBtl2zsMXNO7OHWUKmFh6H8TpTKs7jKv70unYFrcPedFKrBUfEn5HFfOSqKN-klxw_TCcyc"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">Data Analytics</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="domain">
+<img alt="AI Application" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDGx5dK6dhrxLqxS5WsmgiwhL6tbepA_ZXXvk7cCxMFacrMCM10pVJT1YY6qskpz4Tm1WmaJM7hK-6vcgtMBSgn2Krc7JboVRdinrv-i6Ugb0r9SYRKFPnWGQV4_F7kTJdHmn-psUgeP8QFxPUDzf69Y5tEUFjrLtqK7GwfQsW18BdE4HhP8ulj97enEMGMZu6Yaq6WzQUBkf7oT_oOZEpr9KTBSgGO5j-wR9lXUEvrDut9Be-6AqMzDvbsCmFrBXFEaalWDf1iqA"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">AI Application</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="domain">
+<img alt="Project Management" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_VEB7YufAZRsmK_dKBh-I4P8CfDc2Ya7vhJz7f7DJNgdoi-3IfDBw4WFDG7RkeUdJM2ud42RjejXjm1AMCIpjuD3udeo88KYWGMuQecU6_ygFudpeu_45eXIm8M0lTd9PTxsgblbb9olgXAf9G7yvTTBy1yDWAWhWP-vLjAHAgMYy14ViihZuvEa5VnGGksXaRgI4mMy56i2Re5SWR8XHHcDskHblJjHjnOnWRM5hBC5oaHG_Ij61KnC9zC3ehuNlNOcqQAahOtQ"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">Project Management</span>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="data-tools">
+<img alt="Excel" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd231J2DIg9Cd0aAdB5UhNQnWSgtCO5jfmMHyIMTUuD3s7JQsPjAtRMiyrDypD3JfOehSpki77EeTd2U89-x8wJd8M9QCaJhp5ljnejd4t_w7RHFRAmoBDF3r819JwWNOKXQVJ-ogQZ_CQYZil1OZcWbs6FuyQiJPY9p0O98ZsyFC0lD0hIs0wxI8CGhqX-jRHWbfSB_LPQNRlyLKbRFpUOISTGIBJnGRK-Bmg21dIn5q6gRs3uyPKU0TBdRouYiMuMjOFi-_s40g"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">Excel</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="data-tools">
+<img alt="SQL" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdI_E-L1Umdyr0cYk6_m-v-TKrxMgZ10sv94fSFulBP9nY7CPQSsHZ6x-VAx5P-Vc5d9j3hkuqEXK6YUDNmpaG-l2-NFTdCXHAkVG7jGgnQ76DLdmj8G7rPfUFT-F1zA9gEqyUxt6br8PU15y_JNTvTL-ffgkWOrsDlLKUJh5TqPWYB5AJnM4k_6FAWl3a6n6TWeDhCEK5zumfdWHk8a4kZxFGCPxdsggym1OEyrATRImq2-b1qiUoq5E18HakemSwntZiomB8wLU"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">SQL</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="data-tools">
+<img alt="Power BI" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzHM1VijJbur19Zi_WDPTAf3YAHXfLirsCTqjk-yA1fpSrG93tOMjLsLKdNZfugtQMO25a4a6XWyXnMsuNLSe7Ot0srpsHGLwVFPbXXev8ITFHcomNz4OMEV__O6V3Wg7gCYHdYLVGHd7QNUIjT8RX_z-2Yrrc4onU1wi83sXsuVmWjKlc-5CRyunnRo-sYp2qnfDaYupiItzhLz39AX5yjevSDxPdAz4sz2y6iEW7dmPk9_AWN7tfOZX8gYvls64QgRze2DBPqRM"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">Power BI</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="data-tools">
+<img alt="Python" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2ffy0ENR6wtWry62HBcS-dPYC16qikwd7Kg09zuQ_SeFPt2jnc0ZIA6Hbj3t0EUMnj0s7EzV5FJa9ZutW7ezGhhfkVj-40rh5fG8mAuCHnr5v6HshWHr8doDH80gHFys5PD4AZ6aa76i2YbcvMb5gX4kq6VI3MDSqfu2HyaAE2xdzCNc_ix4zvWmyobML8ppC55ZPJ1UufS162xQieaJPHjBrsBYcsAz1dFoEBCQsS9H-QMHt12vPZhz_DC3_oLQmYTWVgfrFOBE"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">Python</span>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="automation">
+<img alt="Power Platform" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvADclX_iHznkRIMx9kFBQHEfIpnq_UTVY-oJ8rXpqY5rGsm_Wlz1y4sX-f-IyQs5NRhPmAdzPg1yh_56pQ7qLCvg6HRJz8OVXDew7-Tat4mFyBlDKMYVov_6BnWYlweex4xI3CAA1NWcwbgG0qf_ZcgOz3FxE7i9i80_EmmS9aWP1cTqJ7MorVcd5zSFDKasB7z3xMxBZB-56EqnD-QTPFlT6kdICbsH5F4Rv6VY-2qgw14TmnnIYeu-jaXxvqgHltScGMmXQGPw"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">Power Platform</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="automation">
+<img alt="n8n" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWCE5l80nIpPQAo-qZ5bmNuP5KPSbwZeQnstnEJJIKHEJVMG34lCrcM-sLa5BRG7EdGc4yeIZgMJadAEnstowp3trsspcZK5be6qfg_FNROhs7b0UM42gPJOr0XjPdnSPYt6mnHOW0i4Dg6aYmMg7JqLRbQ2AdB8w6Ouwq0zTIQ7aMEIwaC8SeIHDaE5kNo-wwOHe12FnsfjSXY5ZOkRf4jTLSrQqEFNkwMriqfx7pQGI64x_94s2FKd1xYQAx2QtqYs0DTQImdOQ"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">n8n</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="automation">
+<img alt="Make" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8CjDlHay1c8F8EDJwu7CbEbcG3LhsZ3CntwUylWVBVYkybVuwOj_82sD2qY3m2jVzCopVEQgpbFrGhd0sTNiAE5dVQBqMLUUBHZZ10vgBPbGrDFBxE0LmjSsTDowrOp7BZFGHfjrOvdrt7EWmJlcNufBJPiSPbuLPKmkuHbXEolSPzitP8A0BR8R4c2M6YiPUGoXP68CxKwNVHCpOHc05CycRGNNmEYokXOGLVU4xOm5W-lXcCBQ_EKHvwfYcxtA97qiRNlQ2UFQ"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">Make</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="automation">
+<img alt="Microsoft Fabric" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4iyCRNNE276hT-YQDKVGSwMpQl31Skieb-VhEJy8AUE-fK8fqWZ4Ajj8bc9rHzxKG2nkoZaGI01czg2ECSRBLCPUpO9i0RSeKIIdBev_U-0NHxMWfz1rvXWS98ilUFPM08q5OtUh5IV4CtQueSxJxCf8_wI19w5GeQdmHCuzUGSOdi-lSPK4DXnM2asfurSrTHBtKPZm4O7rwUYmcZZI0009Uk7F01aEAn42y4WPtHlvcAZhyCtFKuGvXyDfglfXdB3GSnJTeWBo"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">Microsoft Fabric</span>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="genai">
+<img alt="ChatGPT" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhlug9jR2jeSYkrTUEs894nI4raFUqX7oEbZ5fGcSuSEs07LXxzxV-UTSCN3zZqeOOEhIJy78dPXW-8ZadoANRFFehcJ9iDjoS8oBaDK0n6bJxYwXjzu07uOnPlE1we1DNVZcgca372cHV8fFzM6TQP7pYn5oPyMNF1Wi3VM1Rs2j0FFVfldkqJahAA338j5jWsfQ-I4eoaODkYYR5aM85ayJq3la6DP6x6VicS_nOpn6XHYlkp_G68atMmIBQA5PgjJEVlJC2jdU"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">ChatGPT</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="genai">
+<img alt="Gemini" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJNUIFmI8U6zvPc-ps1TBmST98MGs3g-2pui0o9W7mV7QnkUznsbDduIYj31yE-MI3vJqZQXXzjBwzWXvGxRzDPYghBLsnaAam3_m4RD8qwcw00m1n3hz5l082phY5C9DQGjp5GS-N284AWTINfwb9ILfWLFU7FCTqiFXbimTSP8IlYs_6dOIEumQsvC69BkR_VL7HEgFlkDwDOAMPSRtRnAaCe4ZNj2LaneTmodDPkauebHOV-Pq9o_1ddHSMfiK6Uct4wGv--Dk"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">Gemini</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="genai">
+<img alt="NotebookLM" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAttkf4phjna4tduVDojQ-8w8NBfn618Qpa_lKUpIt46BDUPGK1CpZpVll332GPHs4OPaQ5pZJfGBAp1onaaZn00wauXFNVgm9xy7e5NIWfrC_SMg1svF30EeyVsu3N7uKlaH6yqA6uCiICRJB_8fJuNDwu6Uek5I-hPFdfXbgSLNWoTVbBGu1B6_8CBQsBzmRAeawei_UcmaNwX8KzJe-la37aCLLK4oykMkmkQfcM7WRIY5srV0uePzoJ98-ePGNR9b7W81XJLH4"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">NotebookLM</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors tool-item" data-category="genai">
+<img alt="AI Studio" class="skill-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBE_RM9XSym2l5iS2D6jG0SoU3_jv1k8DLFQEsYQb1C9TcrQh-9owMOfEll7XrB0HuKuyXmZTnTMJVX9L65G6YEcIIoVDq0JIb-YjBTykeRZoGgEkzLldcdPzD0MbiBVlZCAJRvlZTxw4DA8ga5ckriAEz2rWvcau4fjC-xGi9_3eHo9pOqPWozLEfhr5pDY5BxgxwAVXDaZf9CPSk4MTfF9rp0P0p-ySdHjmwQ4uMe5LzKElAFGsNsk9QzD8Dq8QXhh2v0s2FRhVI"/>
+<span class="text-xs sm:text-sm font-medium leading-tight">AI Studio</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1 h-full">
+<div class="glass-panel rounded-card p-5 flex flex-col gap-4 h-full order-1 sm:order-2">
+<h3 class="text-xl font-semibold text-[var(--text-color)] flex items-center gap-2">
+<span class="material-symbols-outlined text-[var(--accent-color)]">work</span>
+                            My Showcase / Project
+                        </h3>
+<div class="grid grid-cols-2 gap-4 mt-2 flex-1 auto-rows-fr">
+<a class="group relative h-full min-h-[6rem] rounded-card overflow-hidden shadow-lg hover:shadow-[var(--accent-color)]/30 transition-all duration-300 transform hover:-translate-y-1 block" href="https://kpim.vn/" target="_blank">
+<div class="absolute inset-0 bg-black">
+<img alt="Power BI" class="w-full h-full object-cover opacity-20 group-hover:opacity-10 group-hover:scale-110 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiaB2O1do4dLGFb4Ap86QE51UWK2hGxSsieayQwI7iAjvSXcNwnrJXD3qbUGOUBwxzvW1dAHdGrNMD8ztkEwmxSc2ck15P5LRUs3xELOAbTyYo0XNup7R7hweinX6OKi-aXKMqXuONy5YsmFYnWxNRd0BDd2-HNsoX93ei-Xl3gdbswqviX_3Y9uiwG1yeKD50k2VlJVrQTdngeEAILl7v95TfFQ-FKUv1KEUS0FBGOSZD12yeMmRW-FEQk5aXOxAyRLr1loKLLoo"/>
+</div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-2 text-center z-10">
+<span class="material-symbols-outlined text-white text-3xl mb-1 drop-shadow-lg">monitoring</span>
+<span class="text-white font-bold text-base tracking-wide drop-shadow-lg group-hover:text-[var(--accent-color)] transition-colors">Portfolio</span>
+</div>
+<div class="absolute inset-0 border-2 border-transparent group-hover:border-[var(--accent-color)] rounded-card transition-colors duration-300 pointer-events-none"></div>
+</a>
+<a class="group relative h-full min-h-[6rem] rounded-card overflow-hidden shadow-lg hover:shadow-[var(--accent-color)]/30 transition-all duration-300 transform hover:-translate-y-1 block" href="https://kpim.vn/" target="_blank">
+<div class="absolute inset-0 bg-black">
+<img alt="My Dashboard" class="w-full h-full object-cover opacity-20 group-hover:opacity-10 group-hover:scale-110 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRxMj1MYvA_YJ4qsulLqd9Lp_A42YhXrJbT19zJ269FlbBK9KjPcVeBQvVvbT68Hlic1H19BWYIEdXr-qmOOT6_P00YmFsVN1SzJjjafIkxaT-sJ9C6iI-GRYfUE_CdFcu9ETvGRlyNcynYx6wZ6_JqtKnG5MswO_xmLI1FGaCWGZqxT9968aZUgHsbOfKSgBKcWU4Mr3nMSHLnqLTSZtAK2oj7CHcCtc2SkFA3Zhq2GCkCUhSt-2Jpzy0hjcxXvaxFz8PdHrcbYo"/>
+</div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-2 text-center z-10">
+<span class="material-symbols-outlined text-white text-3xl mb-1 drop-shadow-lg">assessment</span>
+<span class="text-white font-bold text-base tracking-wide drop-shadow-lg group-hover:text-[var(--accent-color)] transition-colors">My Dashboard</span>
+</div>
+<div class="absolute inset-0 border-2 border-transparent group-hover:border-[var(--accent-color)] rounded-card transition-colors duration-300 pointer-events-none"></div>
+</a>
+<a class="group relative h-full min-h-[6rem] rounded-card overflow-hidden shadow-lg hover:shadow-[var(--accent-color)]/30 transition-all duration-300 transform hover:-translate-y-1 block" href="https://kpim.vn/" target="_blank">
+<div class="absolute inset-0 bg-black">
+<img alt="My Blog" class="w-full h-full object-cover opacity-20 group-hover:opacity-10 group-hover:scale-110 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHKKumnNLJ4kEYRijIsoFLg0zJttMEE1U94BbD3Yh6s8ZzM3pSM6wRiReVkk2Yk_je1hlJA1zI-ZjQspPYNaQkPSDFy51mRBMS4uz8tNXWows4sicBcKkUa1kthXdQjbVxKuVJOCBq1mTrz8rTJ2ZP7j8B8BqS6EJcx7ZY8OKfqxszsvWM-K8jZT5IBnqaa5_TfNfSrEwavu0Kp56AZoZuPbIUJijjw9hMXa8XucThLCHEFA2bNVl6DaXzSKofzI9OSLUyCJ5tLfU"/>
+</div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-2 text-center z-10">
+<span class="material-symbols-outlined text-white text-3xl mb-1 drop-shadow-lg">article</span>
+<span class="text-white font-bold text-base tracking-wide drop-shadow-lg group-hover:text-[var(--accent-color)] transition-colors">My Blog</span>
+</div>
+<div class="absolute inset-0 border-2 border-transparent group-hover:border-[var(--accent-color)] rounded-card transition-colors duration-300 pointer-events-none"></div>
+</a>
+<a class="group relative h-full min-h-[6rem] rounded-card overflow-hidden shadow-lg hover:shadow-[var(--accent-color)]/30 transition-all duration-300 transform hover:-translate-y-1 block" href="https://kpim.vn/" target="_blank">
+<div class="absolute inset-0 bg-black">
+<img alt="My Profile" class="w-full h-full object-cover opacity-20 group-hover:opacity-10 group-hover:scale-110 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-My6X2NquCAvzk5pp8xVL6DSsDbfxkS_uwv_CEjDV03CqaDv-DU5uJIhUsaso1xdBfVSNPlTIIYdionU_yCOO4bGT6OGJf9XBwHmyvvqhGlE3b-5XyhLEKKFRAsXM4J5YT0E-yYEFSJkIfpvKODsddml7ROhaYWyflCc6Ws2UkHwALfIGQ2z8HMkWUSk71l75gEP12X5RibRd0w7zAE2uS4T08febBNdanJfPkVDL8Shy31LuDfYuHpE1pqFFNSlRfNz6I5zMf8A"/>
+</div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-2 text-center z-10">
+<span class="material-symbols-outlined text-white text-3xl mb-1 drop-shadow-lg">person</span>
+<span class="text-white font-bold text-base tracking-wide drop-shadow-lg group-hover:text-[var(--accent-color)] transition-colors">My Profile</span>
+</div>
+<div class="absolute inset-0 border-2 border-transparent group-hover:border-[var(--accent-color)] rounded-card transition-colors duration-300 pointer-events-none"></div>
+</a>
+<a class="group relative h-full min-h-[6rem] rounded-card overflow-hidden shadow-lg hover:shadow-[var(--accent-color)]/30 transition-all duration-300 transform hover:-translate-y-1 block" href="https://kpim.vn/" target="_blank">
+<div class="absolute inset-0 bg-black">
+<img alt="AI ChatBot" class="w-full h-full object-cover opacity-20 group-hover:opacity-10 group-hover:scale-110 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhlug9jR2jeSYkrTUEs894nI4raFUqX7oEbZ5fGcSuSEs07LXxzxV-UTSCN3zZqeOOEhIJy78dPXW-8ZadoANRFFehcJ9iDjoS8oBaDK0n6bJxYwXjzu07uOnPlE1we1DNVZcgca372cHV8fFzM6TQP7pYn5oPyMNF1Wi3VM1Rs2j0FFVfldkqJahAA338j5jWsfQ-I4eoaODkYYR5aM85ayJq3la6DP6x6VicS_nOpn6XHYlkp_G68atMmIBQA5PgjJEVlJC2jdU"/>
+</div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-2 text-center z-10">
+<span class="material-symbols-outlined text-white text-3xl mb-1 drop-shadow-lg">smart_toy</span>
+<span class="text-white font-bold text-base tracking-wide drop-shadow-lg group-hover:text-[var(--accent-color)] transition-colors">AI ChatBot</span>
+</div>
+<div class="absolute inset-0 border-2 border-transparent group-hover:border-[var(--accent-color)] rounded-card transition-colors duration-300 pointer-events-none"></div>
+</a>
+<a class="group relative h-full min-h-[6rem] rounded-card overflow-hidden shadow-lg hover:shadow-[var(--accent-color)]/30 transition-all duration-300 transform hover:-translate-y-1 block" href="https://kpim.vn/" target="_blank">
+<div class="absolute inset-0 bg-black">
+<img alt="Community" class="w-full h-full object-cover opacity-20 group-hover:opacity-10 group-hover:scale-110 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtIDHdysvK7KzKFIkyg0y6N9Gc0_x4DuH4xXOICOiJotFPU6WMFSqjDt7raYz7hnG-_x03AjYGYSmOeiV-jTLBWHvFzzge_BxyD2NDVgXLrNEGvQhy6Vk4n8TFWGDk4H2nlHgytrMJ9f-oMlAsjvIsAGkZqkEyv9-u7B1WluiQq96btI_eKgmq71KgH3XxLCWyt3Xz2sCFpUk_BddRPyc816Cau3gQzquiMPDhefd-G0uHu7Km2J-2l4IfD16yhwH_pbO9cv04UQI"/>
+</div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-2 text-center z-10">
+<span class="material-symbols-outlined text-white text-3xl mb-1 drop-shadow-lg">groups</span>
+<span class="text-white font-bold text-base tracking-wide drop-shadow-lg group-hover:text-[var(--accent-color)] transition-colors">Community</span>
+</div>
+<div class="absolute inset-0 border-2 border-transparent group-hover:border-[var(--accent-color)] rounded-card transition-colors duration-300 pointer-events-none"></div>
+</a>
+</div>
+</div>
+<div class="glass-panel rounded-card p-5 flex flex-col gap-4 h-full order-2 sm:order-1">
+<h3 class="text-xl font-semibold text-[var(--text-color)] flex items-center gap-2">
+<span class="material-symbols-outlined text-[var(--accent-color)]">school</span>
+                            My Training Program
+                        </h3>
+<div class="flex flex-col gap-2 flex-1 justify-center">
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group flex-1" href="#" target="_blank">
+<div class="w-16 h-12 rounded-lg overflow-hidden bg-gray-800 flex-shrink-0">
+<img alt="Data Analytics Course Thumbnail showing charts" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFfeeuJmaKvl6_xa4QNO45d42tgcv4_-2EuHnLzXi0hCOkiZANIeK3ePz0ZfPXBw8jMTRXhYLSoJd2nd84FL6AcmtM-CoDlee8enTQKjIuQkh9Zcs52PF-0VC4ycW2X1_xGKqBoenvlU0LAHi_VHSoboT_EsqRzhiViaS58UZSXD5WKE2dlS3Zl92dDfKOwMlucDhB7rGFyVCtCCvZFJROeEfE3iodKX5yhWWb33U-F_VWZufDLa5rmhRQe2vyRXtQYZAjyP8mwTw"/>
+</div>
+<div class="flex flex-col flex-grow min-w-0">
+<span class="text-sm font-medium text-[var(--text-color)] truncate group-hover:text-[var(--primary-color)] transition-colors">Mastering Power BI: Zero to Hero</span>
+<span class="text-xs text-[var(--soft-text-color)]">40h • Advanced</span>
+</div>
+<span class="material-symbols-outlined text-[var(--soft-text-color)] text-[1rem] group-hover:text-[var(--accent-color)]">arrow_right_alt</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group flex-1" href="#" target="_blank">
+<div class="w-16 h-12 rounded-lg overflow-hidden bg-gray-800 flex-shrink-0">
+<img alt="Coding screen for AI Apps course" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwY1hAvj_692x8ObQ8D9uOG2Tu9L7ArMJrC2f3JqGgcMvBHS9vCEmIGZzpxihjXWEp_uABuNDXv4WY_ZsW9UOBc8sCXNu4ddiiUbY8KwwNbq8YKQmiM3WPAOeOez3VSSygfBz5im3fajGepjaK4AXmVxQpqY7OA60BIg4shygiLu3ZIBuDJ9S5DDNnNEjEKRg_Xa0ZBuMTI9bx2VvvP5pXlKNm-OBC7jH7frKlWGV5N8lRG0DRk6M8Bxr-7KyYtF9Q9Pr74GISQ6g"/>
+</div>
+<div class="flex flex-col flex-grow min-w-0">
+<span class="text-sm font-medium text-[var(--text-color)] truncate group-hover:text-[var(--primary-color)] transition-colors">Building AI Apps with Fabric</span>
+<span class="text-xs text-[var(--soft-text-color)]">24h • Intermediate</span>
+</div>
+<span class="material-symbols-outlined text-[var(--soft-text-color)] text-[1rem] group-hover:text-[var(--accent-color)]">arrow_right_alt</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group flex-1" href="#" target="_blank">
+<div class="w-16 h-12 rounded-lg overflow-hidden bg-gray-800 flex-shrink-0">
+<img alt="Business meeting analyzing data charts" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRxMj1MYvA_YJ4qsulLqd9Lp_A42YhXrJbT19zJ269FlbBK9KjPcVeBQvVvbT68Hlic1H19BWYIEdXr-qmOOT6_P00YmFsVN1SzJjjafIkxaT-sJ9C6iI-GRYfUE_CdFcu9ETvGRlyNcynYx6wZ6_JqtKnG5MswO_xmLI1FGaCWGZqxT9968aZUgHsbOfKSgBKcWU4Mr3nMSHLnqLTSZtAK2oj7CHcCtc2SkFA3Zhq2GCkCUhSt-2Jpzy0hjcxXvaxFz8PdHrcbYo"/>
+</div>
+<div class="flex flex-col flex-grow min-w-0">
+<span class="text-sm font-medium text-[var(--text-color)] truncate group-hover:text-[var(--primary-color)] transition-colors">Data Storytelling for Leaders</span>
+<span class="text-xs text-[var(--soft-text-color)]">12h • Beginner</span>
+</div>
+<span class="material-symbols-outlined text-[var(--soft-text-color)] text-[1rem] group-hover:text-[var(--accent-color)]">arrow_right_alt</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group flex-1" href="#" target="_blank">
+<div class="w-16 h-12 rounded-lg overflow-hidden bg-gray-800 flex-shrink-0">
+<img alt="Python for Data Science" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2ffy0ENR6wtWry62HBcS-dPYC16qikwd7Kg09zuQ_SeFPt2jnc0ZIA6Hbj3t0EUMnj0s7EzV5FJa9ZutW7ezGhhfkVj-40rh5fG8mAuCHnr5v6HshWHr8doDH80gHFys5PD4AZ6aa76i2YbcvMb5gX4kq6VI3MDSqfu2HyaAE2xdzCNc_ix4zvWmyobML8ppC55ZPJ1UufS162xQieaJPHjBrsBYcsAz1dFoEBCQsS9H-QMHt12vPZhz_DC3_oLQmYTWVgfrFOBE"/>
+</div>
+<div class="flex flex-col flex-grow min-w-0">
+<span class="text-sm font-medium text-[var(--text-color)] truncate group-hover:text-[var(--primary-color)] transition-colors">Python for Data Science</span>
+<span class="text-xs text-[var(--soft-text-color)]">30h • Intermediate</span>
+</div>
+<span class="material-symbols-outlined text-[var(--soft-text-color)] text-[1rem] group-hover:text-[var(--accent-color)]">arrow_right_alt</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group flex-1" href="#" target="_blank">
+<div class="w-16 h-12 rounded-lg overflow-hidden bg-gray-800 flex-shrink-0">
+<img alt="SQL Mastery for Analysts" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdI_E-L1Umdyr0cYk6_m-v-TKrxMgZ10sv94fSFulBP9nY7CPQSsHZ6x-VAx5P-Vc5d9j3hkuqEXK6YUDNmpaG-l2-NFTdCXHAkVG7jGgnQ76DLdmj8G7rPfUFT-F1zA9gEqyUxt6br8PU15y_JNTvTL-ffgkWOrsDlLKUJh5TqPWYB5AJnM4k_6FAWl3a6n6TWeDhCEK5zumfdWHk8a4kZxFGCPxdsggym1OEyrATRImq2-b1qiUoq5E18HakemSwntZiomB8wLU"/>
+</div>
+<div class="flex flex-col flex-grow min-w-0">
+<span class="text-sm font-medium text-[var(--text-color)] truncate group-hover:text-[var(--primary-color)] transition-colors">SQL Mastery for Analysts</span>
+<span class="text-xs text-[var(--soft-text-color)]">20h • Advanced</span>
+</div>
+<span class="material-symbols-outlined text-[var(--soft-text-color)] text-[1rem] group-hover:text-[var(--accent-color)]">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="block sm:hidden text-center pb-4 text-xs font-medium text-[var(--soft-text-color)] uppercase tracking-widest">
+            KPIM × COMPA
+        </div>
+</div>
+<div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-900 border border-white/10 text-white px-4 py-3 rounded-full shadow-2xl flex items-center gap-3 z-50 hidden" id="toast">
+<span class="material-symbols-outlined text-green-400 text-[20px]">check_circle</span>
+<span class="text-sm font-medium" id="toast-message">Action successful</span>
+</div>
+<script>
+        // --- Canvas Background Animation ---
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initParticles();
+        }
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.min(width * height / 15000, 100); // Responsive count
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 2 + 0.5,
+                    opacity: Math.random() * 0.5 + 0.1
+                });
+            }
+        }
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            // Draw particles
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                // Bounce off edges
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(100, 180, 255, ${p.opacity})`;
+                ctx.fill();
+            });
+            // Draw connections (subtle grid effect)
+            ctx.strokeStyle = 'rgba(100, 180, 255, 0.05)';
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+        // --- Toast Functionality ---
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = message;
+            toast.classList.remove('hidden');
+            toast.classList.add('toast-enter');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('toast-enter');
+            }, 3000);
+        }
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast("Email copied to clipboard!");
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                showToast("Failed to copy");
+            });
+        }
+        function downloadVCard() {
+            const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Nguyễn Quang Đức
+N:Đức;Nguyễn Quang;;;
+TITLE:Data Analytics Expert
+ORG:KPIM;COMPA
+EMAIL;TYPE=INTERNET;TYPE=WORK:contact@example.com
+TEL;TYPE=CELL:+84901234567
+URL:https://www.yourportfolio.com
+END:VCARD`;
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'NguyenQuangDuc.vcf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast("vCard downloaded!");
+        }
+        // --- Theme Toggle ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        // Check for saved theme preference or default to dark
+        if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            htmlElement.classList.add('light');
+            htmlElement.classList.remove('dark');
+        } else {
+            htmlElement.classList.add('dark');
+            htmlElement.classList.remove('light');
+        }
+        themeToggle.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                htmlElement.classList.add('light');
+                localStorage.theme = 'light';
+            } else {
+                htmlElement.classList.remove('light');
+                htmlElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        });
+        // --- Core Competencies Highlighting ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const toolItems = document.querySelectorAll('.tool-item');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update button states
+                filterBtns.forEach(b => {
+                    b.classList.remove('filter-btn-active');
+                    b.classList.remove('bg-[var(--primary-color)]');
+                    b.classList.remove('text-white');
+                    b.classList.add('bg-[var(--card-bg)]');
+                    b.classList.add('text-[var(--soft-text-color)]');
+                });
+                btn.classList.add('filter-btn-active');
+                btn.classList.remove('bg-[var(--card-bg)]');
+                btn.classList.remove('text-[var(--soft-text-color)]');
+                btn.classList.add('bg-[var(--primary-color)]');
+                btn.classList.add('text-white');
+                const filterValue = btn.getAttribute('data-filter');
+                toolItems.forEach(item => {
+                    // Reset all items
+                    item.classList.remove('highlight-active');
+                    item.classList.remove('opacity-30'); // remove dimmed state if exists
+                    if (filterValue === 'all') {
+                        // All items normal visibility
+                    } else if (item.getAttribute('data-category') === filterValue) {
+                        // Highlight match
+                        item.classList.add('highlight-active');
+                    } else {
+                        // Dim non-matches slightly for better contrast
+                        item.classList.add('opacity-30');
+                    }
+                });
+            });
+        });
+    </script>
+</div></body></html>

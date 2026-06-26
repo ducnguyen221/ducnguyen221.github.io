@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tư duy &quot;người ra đề&quot; thay vì &quot;người làm bài&quot;: Bạn không cần biết nấu, bạn cần biết gọi đúng món · Học cùng Tobi</title>
+<meta name="description" content="Bạn không cần biết nấu, bạn cần biết gọi đúng món">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b1020;--bg-elev:#0f1530;--surface:#151b3d;--surface-2:#1c244d;
+  --border:#2a3470;--border-soft:#1f2654;
+  --accent:#7c83ff;--accent-2:#a5acff;--accent-soft:#3d3e9c;--violet:#c4a8ff;
+  --green:#34d399;--amber:#fbbf24;--sky:#38bdf8;
+  --text:#e8ecff;--text-2:#a8b0d6;--text-3:#6b75a8;
+  --shadow-lg:0 4px 8px rgba(0,0,0,.35),0 24px 48px rgba(0,0,0,.3);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Outfit','Be Vietnam Pro',sans-serif}
+body{font-family:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;
+  background:radial-gradient(1200px 600px at 20% -10%,rgba(124,131,255,.12),transparent 60%),
+             radial-gradient(900px 500px at 90% 10%,rgba(196,168,255,.08),transparent 60%),var(--bg);
+  color:var(--text);min-height:100vh;line-height:1.7;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;overflow-wrap:break-word}
+::selection{background:var(--accent);color:#fff}
+img{max-width:100%}
+a{color:var(--accent-2);text-decoration:none;border-bottom:1px dashed var(--accent-soft)}
+a:hover{border-bottom-style:solid}
+
+.topbar{position:sticky;top:0;z-index:100;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  background:rgba(11,16,32,.78);border-bottom:1px solid var(--border-soft)}
+.topbar-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:14px 28px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;border:none}
+.brand-mark{width:40px;height:40px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,#7c83ff,#c4a8ff);box-shadow:0 4px 16px rgba(124,131,255,.35);
+  display:flex;align-items:center;justify-content:center}
+.brand-mark svg{width:22px;height:22px}
+.brand-text h1{font-size:.95rem;font-weight:800;line-height:1.2}
+.brand-text h1 span{color:var(--accent-2)}
+.brand-text p{font-size:.72rem;color:var(--text-3);font-weight:500;margin-top:1px}
+.topbar .pill{margin-left:auto;font-size:.74rem;font-weight:700;color:var(--accent-2);
+  background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);border-radius:999px;padding:6px 16px}
+
+.container{max-width:920px;margin:0 auto;padding:40px 28px 80px}
+
+.hero{display:grid;grid-template-columns:1fr;gap:28px;margin-bottom:44px;align-items:center}
+.hero.has-art{grid-template-columns:1.1fr .9fr}
+.hero .kick{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--accent-2);background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);
+  border-radius:999px;padding:7px 18px;margin-bottom:18px}
+.hero h1.title{font-size:2.5rem;font-weight:900;letter-spacing:-1px;line-height:1.12;margin-bottom:14px}
+.hero .angle{color:var(--text-2);font-size:1.05rem;line-height:1.6}
+.hero-art{border-radius:20px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg)}
+.hero-art img{display:block;width:100%;height:auto}
+
+.article h2{font-size:1.5rem;font-weight:800;margin:42px 0 14px;padding-bottom:10px;
+  border-bottom:1px solid var(--border-soft);color:var(--text)}
+.article h3{font-size:1.18rem;font-weight:700;margin:30px 0 10px;color:var(--accent-2)}
+.article h4{font-size:1.02rem;font-weight:700;margin:22px 0 8px;color:var(--violet)}
+.article p{color:var(--text-2);margin:14px 0;font-size:1.02rem}
+.article strong{color:var(--text);font-weight:700}
+.article code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--bg-elev);
+  padding:2px 7px;border-radius:5px;color:var(--violet);border:1px solid var(--border-soft)}
+.article ul,.article ol{margin:14px 0 14px 8px;padding-left:22px;color:var(--text-2)}
+.article li{margin:8px 0;font-size:1.02rem}
+.article ul li::marker{color:var(--accent)}
+.callout{background:linear-gradient(180deg,rgba(124,131,255,.08),transparent);
+  border:1px solid var(--border-soft);border-left:4px solid var(--accent);
+  border-radius:4px 14px 14px 4px;padding:16px 20px;margin:22px 0;color:var(--text);font-size:1.02rem}
+.tbl-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--border-soft);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--border-soft)}
+thead th{background:var(--surface);color:var(--text);font-weight:700}
+tbody tr:hover{background:var(--surface)}
+td{color:var(--text-2)}
+
+.author-card{margin-top:54px;background:linear-gradient(135deg,rgba(124,131,255,.06),rgba(196,168,255,.04));
+  border:1px solid var(--border-soft);border-radius:18px;padding:28px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center}
+.author-avatar{width:84px;height:84px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:3px solid var(--accent-soft);box-shadow:0 8px 32px rgba(124,131,255,.3)}
+.author-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.author-info .kicker{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:6px}
+.author-info h3{font-size:1.3rem;font-weight:800;margin-bottom:4px;
+  background:linear-gradient(90deg,var(--accent-2),var(--violet));-webkit-background-clip:text;
+  background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.author-info p{color:var(--text-2);font-size:.88rem;line-height:1.6;max-width:520px}
+.social-grid{display:grid;grid-template-columns:repeat(4,40px);gap:8px}
+.social-btn{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid var(--border-soft);color:var(--text-2);transition:all .15s}
+.social-btn svg{width:18px;height:18px}
+.social-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.3)}
+
+@media(max-width:780px){
+  .hero.has-art{grid-template-columns:1fr}
+  .hero h1.title{font-size:1.9rem}
+}
+.media{margin:0 0 44px}
+.media .media-label{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin:0 0 12px}
+.video-embed{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;
+  border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px;background:#000}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.media.cover{margin:0 0 40px}
+.cover-art{border-radius:18px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px}
+.cover-art img{display:block;width:100%;height:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.audio-embed{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;
+  border:1px solid var(--border-soft);background:var(--surface)}
+.audio-embed .ic{font-size:1.3rem}
+.audio-embed audio{flex:1;width:100%}
+@media (max-width:720px){
+  .hero.has-art{grid-template-columns:1fr}
+  .author-card{grid-template-columns:1fr;text-align:center;gap:18px;padding:22px}
+  .author-avatar{margin:0 auto}.author-info p{margin:0 auto}.social-grid{justify-content:center;margin:0 auto}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="https://ducnguyen.vn/atlas/" target="_blank" rel="noopener">
+      <div class="brand-mark"><svg viewBox="0 0 576 512" fill="#fff"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"/></svg></div>
+      <div class="brand-text"><h1>Học cùng <span>Tobi</span></h1><p>COMPA Class · KPIM Academy</p></div>
+    </a>
+    <span class="pill">AI Agent</span>
+  </div>
+</header>
+
+<main class="container">
+  <section class="media cover"><h1 class="sr-only">Tư duy &quot;người ra đề&quot; thay vì &quot;người làm bài&quot;: Bạn không cần biết nấu, bạn cần biết gọi đúng món</h1><div class="video-embed"><iframe src="https://www.youtube.com/embed/1-nZCxhnTnA" title="Tư duy &quot;người ra đề&quot; thay vì &quot;người làm bài&quot;: Bạn không cần biết nấu, bạn cần biết gọi đúng món" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="audio-embed"><span class="ic">🎧</span><audio controls preload="none" src="tu-duy-nguoi-ra-de.mp3"></audio></div></section>
+  <article class="article">
+    <p><strong>Ở bài trước, mình nói vibe coding là một cú &quot;đổi vai&quot;: bạn mô tả, AI gõ phím. Nghe thì gọn. Nhưng đổi vai xong rồi thì vai mới của bạn *làm gì* mỗi ngày? Bài này trả lời đúng câu đó.</strong></p>
+<p>Và mình xin nói trước một điều để bạn đỡ kỳ vọng sai: &quot;ra đề&quot; không phải là gõ một câu thật kêu rồi ngồi chờ phép màu. Nó là một kỹ năng có khung, có quy trình, có cách luyện — y như viết một bản yêu cầu công việc cho người khác làm. Hôm nay mình sẽ bóc tách cái khung đó ra.</p>
+<h2>Từ &quot;bạn có biết làm không&quot; sang &quot;bạn có mô tả rõ không&quot;</h2>
+<p>Hãy quay lại cái ranh giới ở bài một. Ngày xưa, muốn có phần mềm, người ta hỏi: *&quot;Bạn có biết code không?&quot;*. Đó là câu hỏi của thời mà người làm ra sản phẩm phải là <strong>người làm bài</strong> — tự tay giải, tự tay gõ từng dòng.</p>
+<p>Bây giờ AI gõ được phần lớn dòng code đó. Nên câu hỏi đáng giá đã đổi thành: *&quot;Bạn có mô tả rõ được điều mình muốn không?&quot;*. Đây là câu hỏi của <strong>người ra đề</strong> — người không trực tiếp giải, nhưng quyết định bài toán là gì, đúng nghĩa là sao, và khi nào thì coi như xong.</p>
+<p>Mình thích một hình ảnh thế này: <strong>bạn không cần biết nấu, bạn cần biết gọi đúng món.</strong> Một người sành ăn không nhất thiết phải đứng bếp giỏi. Nhưng họ biết mình muốn một tô bún thanh, ít dầu, cho người ăn kiêng, không hành — và họ biết khi nào món bị mặn để mà nói lại. Người ra đề cho AI cũng đứng đúng ở vị trí đó: không cầm dao thớt, nhưng cầm trịch toàn bộ &quot;thế nào là đúng&quot;.</p>
+<div class="callout">💡 Nguyên tắc vàng: Trong vibe coding, giá trị của bạn không nằm ở chỗ *làm được* (AI làm phần đó), mà ở chỗ *biết rõ mình muốn gì và nhận ra khi nào kết quả chưa đúng*. Đó là việc máy không làm thay bạn.</div>
+<h2>&quot;Người làm bài&quot; và &quot;người ra đề&quot; — khác nhau ở đâu?</h2>
+<p>Đây là cú lật tư duy quan trọng nhất của cả bài, nên mình tách hẳn hai vai ra cho rạch ròi. Hầu hết người mới thất bại với AI không phải vì AI yếu, mà vì họ vẫn giữ tư duy &quot;người làm bài&quot; trong một thế giới cần tư duy &quot;người ra đề&quot;.</p>
+<div class="tbl-wrap"><table><thead><tr><th></th><th>Tư duy <strong>người làm bài</strong></th><th>Tư duy <strong>người ra đề</strong></th></tr></thead><tbody><tr><td>Bạn tập trung vào</td><td>*Cách làm* — phải gõ gì, cú pháp nào</td><td>*Cái cần đạt* — sản phẩm phải làm được gì, cho ai</td></tr><tr><td>Khi bí</td><td>Tự loay hoay tìm cách, sợ &quot;mình không biết&quot;</td><td>Mô tả lại bài toán cho rõ hơn, giao phần thực thi cho AI</td></tr><tr><td>Thước đo thành công</td><td>Mình có tự làm ra được không</td><td>Kết quả cuối có đúng ý, có chạy thật không</td></tr><tr><td>Khi sai</td><td>Đổ tại mình kém / đổ tại AI dở</td><td>Soi lại: mình đã mô tả đủ rõ chưa, thiếu ràng buộc nào</td></tr><tr><td>Năng lượng dồn vào</td><td>Học cú pháp, ghi nhớ kỹ thuật</td><td>Diễn đạt, đánh giá, ra quyết định &quot;đúng/chưa đúng&quot;</td></tr><tr><td>Câu cửa miệng</td><td>&quot;Cái này làm sao bây giờ?&quot;</td><td>&quot;Mình muốn ra cái gì, và đúng nghĩa là thế nào?&quot;</td></tr></tbody></table></div>
+<p>Nhìn bảng này, bạn sẽ thấy điều an ủi: cú đổi vai <strong>không đòi bạn giỏi kỹ thuật hơn</strong>. Nó đòi bạn nghĩ rõ hơn. Mà nghĩ rõ thì người non-tech hoàn toàn luyện được — thậm chí nhiều người làm nghề khác (quản lý, kinh doanh, vận hành) còn quen ra đề hơn cả dân kỹ thuật.</p>
+<p>Trong ngành, người ta gọi đầu việc &quot;mô tả rõ điều mình muốn cho người/máy khác làm&quot; là viết <strong>requirement</strong> (yêu cầu) hoặc <strong>brief</strong> (bản tóm tắt yêu cầu). Bạn ra đề cho AI thực chất là đang viết brief. Giữ chữ này trong đầu, vì nó là sợi chỉ xuyên suốt cả bài.</p>
+<h2>Ba việc của người ra đề: Mô tả → Đánh giá → Phản hồi</h2>
+<p>Nếu phải gói vai trò mới của bạn vào ba động từ, thì đây:</p>
+<ol><li><strong>Mô tả (describe).</strong> Nói cho AI biết bạn muốn gì: sản phẩm làm được gì, phục vụ ai, trông ra sao, cái gì bắt buộc, cái gì bỏ được. Đây là lúc bạn viết brief.</li><li><strong>Đánh giá (evaluate).</strong> AI trả về kết quả, bạn là người *nghiệm thu*: bấm thử, nhìn, đối chiếu với cái bạn hình dung, rồi phán &quot;chỗ này đúng ý&quot; hay &quot;chỗ này chưa ổn&quot;. Bạn không cần đọc hiểu code — bạn cần biết sản phẩm chạy ra có giống cái trong đầu bạn không.</li><li><strong>Phản hồi (feedback).</strong> Chỗ chưa ổn thì nói lại cho cụ thể để AI sửa: &quot;nút này để bên phải&quot;, &quot;form thiếu ô số điện thoại&quot;, &quot;màu này tối quá&quot;. Phản hồi tốt thì sửa nhanh; phản hồi mơ hồ (&quot;nhìn chưa ổn&quot;) thì AI sửa mò.</li></ol>
+<p>Ba việc này nghe đơn giản, nhưng để ý: <strong>không có việc nào là &quot;tự gõ code&quot; cả.</strong> Cả ba đều là việc của tư duy và diễn đạt. Đó chính là lý do mình tin người non-tech làm được — miễn là làm đúng vai.</p>
+<div class="callout">🧠 Điều cần nhớ: Mô tả – Đánh giá – Phản hồi là ba việc bạn KHÔNG được nhường cho AI. Bạn có thể nhường việc gõ code. Bạn không nhường được việc biết mình muốn gì và nhận ra khi nào nó sai.</div>
+<h2>Intent vs Implementation: bạn lo phần &quot;ý&quot;, AI lo phần &quot;cách&quot;</h2>
+<p>Để hiểu vì sao ba việc trên lại là *của bạn*, cần một cặp khái niệm nền của ngành phần mềm: <strong>intent</strong> và <strong>implementation</strong>.</p>
+<ul><li><strong>Intent</strong> (ý định / mục đích): *bạn muốn cái gì và tại sao*. Ví dụ: &quot;Mình muốn một form để khách điền thông tin đặt bàn, vì hiện giờ khách toàn nhắn tin lẻ tẻ rất khó quản.&quot;</li><li><strong>Implementation</strong> (cách hiện thực): *làm điều đó bằng cách nào về mặt kỹ thuật* — dùng ngôn ngữ gì, lưu dữ liệu ở đâu, viết hàm ra sao.</li></ul>
+<p>Cú phân vai của vibe coding gói gọn trong một câu: <strong>bạn giữ intent, bạn giao implementation cho AI.</strong> Bạn là người duy nhất biết rõ &quot;form này để giải quyết nỗi đau gì, thiếu ô nào là hỏng việc&quot;. AI thì giỏi phần còn lại — biến cái ý đó thành code chạy được.</p>
+<p>Hiểu cặp này rồi, bạn sẽ bớt một nỗi sợ rất phổ biến: &quot;mình không biết kỹ thuật thì sao dám làm?&quot;. Câu trả lời: phần kỹ thuật (implementation) vốn không phải việc của bạn. Việc của bạn là phần mà *không ai làm thay được* — biết rõ cái mình cần. Một đầu bếp năm sao cũng không tự đoán ra bạn đang ăn kiêng nếu bạn không nói.</p>
+<div class="callout">⚠️ Sai lầm thường gặp: lao vào học cú pháp (implementation) để &quot;đỡ dốt&quot;, trong khi cái thực sự quyết định kết quả lại là độ rõ của intent. Học sai chỗ thì càng học càng nản.</div>
+<h2>Vòng lặp &quot;Mô tả → Tạo → Đánh giá → Phản hồi → lặp lại&quot;</h2>
+<p>Đây là khung quan trọng nhất để bạn mang theo cả series. Trong ngành gọi nó là <strong>iteration</strong> (lặp) hay <strong>feedback loop</strong> (vòng phản hồi). Mình diễn giải thành một quy trình năm bước cho dễ hình dung:</p>
+<ol><li><strong>Mô tả (Describe).</strong> Bạn viết yêu cầu: muốn gì, cho ai, ràng buộc gì, thế nào là đúng.</li><li><strong>Tạo (Generate).</strong> AI dựa trên mô tả của bạn để tạo ra sản phẩm (đoạn giao diện, cái form, cái app nhỏ).</li><li><strong>Đánh giá (Evaluate).</strong> Bạn nghiệm thu: chạy thử, đối chiếu với hình dung và với tiêu chí &quot;đúng&quot; bạn đặt ra.</li><li><strong>Phản hồi (Refine).</strong> Chỗ lệch thì bạn mô tả lại cụ thể để AI sửa.</li><li><strong>Lặp lại (Repeat).</strong> Quay về bước 2 với phản hồi mới. Mỗi vòng, sản phẩm tiến gần hơn cái bạn cần.</li></ol>
+<p>Điểm cốt lõi — và là điều người mới hay hiểu nhầm nhất: <strong>không ai ra đề đúng hoàn hảo ngay lần đầu, và điều đó hoàn toàn bình thường.</strong> Vibe coding không phải &quot;gõ một prompt thần thánh rồi ra sản phẩm hoàn chỉnh&quot;. Nó là *xoay vòng* nhanh: mô tả thô → xem → chỉnh → xem lại. Người làm tốt không phải người ra đề đúng ngay, mà là người <strong>xoay vòng nhanh và phản hồi sắc</strong>.</p>
+<p>Hãy hình dung như đặt may một bộ đồ. Bạn không mong thợ may cắt một nhát ra ngay bộ vừa khít. Bạn mô tả, thử lên người, chỗ rộng thì bóp, chỗ ngắn thì nới — qua vài lần thử là vừa. Cái form, cái app cũng vậy. Vòng lặp chính là chỗ &quot;thử đồ&quot;.</p>
+<div class="callout">🎯 Mục tiêu học của bài hôm nay: nắm chắc vòng lặp 5 bước này như một *thói quen làm việc*. Khi AI ra kết quả chưa đúng, phản xạ của bạn không phải &quot;AI dở quá&quot; mà là &quot;ok, mình đang ở bước Phản hồi — giờ mô tả lại chỗ lệch cho cụ thể&quot;.</div>
+<h2>Khung viết một yêu cầu tốt: Bối cảnh – Mục tiêu – Ràng buộc – Tiêu chí đúng</h2>
+<p>Vòng lặp ở trên chỉ chạy tốt khi bước <strong>Mô tả</strong> đủ chất. Vậy một yêu cầu (brief) tốt gồm những gì? Mình gợi ý một khung bốn phần, dễ nhớ cho người non-tech:</p>
+<ol><li><strong>Bối cảnh (Context):</strong> Bạn là ai, sản phẩm này để giải quyết việc gì, dùng trong tình huống nào. *&quot;Mình mở một quán cà phê nhỏ, muốn khách tự đặt bàn online thay vì nhắn tin.&quot;*</li><li><strong>Mục tiêu (Goal/Objective):</strong> Sản phẩm cần *làm được* việc gì cụ thể. *&quot;Một trang để khách điền tên, số điện thoại, số người, giờ đến — và mình xem được danh sách đặt bàn.&quot;*</li><li><strong>Ràng buộc (Constraints):</strong> Những giới hạn bắt buộc. *&quot;Phải dùng được trên điện thoại, tiếng Việt, không bắt khách đăng nhập.&quot;*</li><li><strong>Tiêu chí đúng (Acceptance criteria):</strong> Dấu hiệu để bạn coi là &quot;xong và đúng&quot;. *&quot;Khách điền xong bấm gửi thì mình nhận được thông tin; thiếu số điện thoại thì không gửi được.&quot;*</li></ol>
+<p>Bốn phần này không phải mình tự nghĩ ra cho vui — nó vọng lại đúng những <strong>khung prompt</strong> mà giới làm việc với AI đang dùng. Nhắc qua vài cái có thật để bạn biết đường đào sâu (đây là fact, theo tài liệu prompt engineering phổ biến):</p>
+<ul><li><strong>RTF</strong> — *Role – Task – Format* (Vai – Việc – Định dạng): khung tối giản. Gán cho AI một vai, giao một việc, nói rõ định dạng đầu ra mong muốn.</li><li><strong>CRAFT</strong> — *Context – Role – Action – Format – Tone* (Bối cảnh – Vai – Hành động – Định dạng – Giọng): nhỉnh hơn, thêm bối cảnh và giọng điệu, hợp với việc tạo nội dung.</li><li><strong>CO-STAR</strong> — *Context – Objective – Style – Tone – Audience – Response* (Bối cảnh – Mục tiêu – Phong cách – Giọng – Đối tượng – Kiểu phản hồi): đầy đủ hơn nữa, dùng khi cần kiểm soát kỹ.</li></ul>
+<p>Bạn không cần thuộc lòng cái nào. Điểm chung của tất cả — và là thứ đáng nhớ — là: <strong>một yêu cầu tốt luôn nói rõ bối cảnh, mục tiêu, ràng buộc và &quot;đúng nghĩa là gì&quot;.</strong> Khung bốn phần của mình ở trên chính là bản rút gọn, dễ dùng cho người mới, của cùng một tư duy đó.</p>
+<div class="callout">💡 Nguyên tắc vàng: Đừng học thuộc framework. Hãy nhớ bốn câu hỏi — *Dùng trong hoàn cảnh nào? Cần đạt gì? Bị giới hạn gì? Thế nào thì coi là đúng?* Trả lời được bốn câu này là brief của bạn đã hơn 90% người mới.</div>
+<h2>Acceptance criteria: định nghĩa &quot;đúng&quot; trước khi AI bắt tay</h2>
+<p>Trong bốn phần trên, phần hay bị bỏ quên nhất — mà lại quan trọng nhất — là <strong>tiêu chí đúng</strong>, tiếng ngành gọi là <strong>acceptance criteria</strong> (tiêu chí nghiệm thu). Đây là khái niệm chuẩn trong quản lý yêu cầu phần mềm: *điều kiện cụ thể để một hạng mục được coi là hoàn thành và đúng.*</p>
+<p>Vì sao nó đáng giá đến vậy? Vì nó biến bước <strong>Đánh giá</strong> từ chỗ &quot;đoán mò theo cảm tính&quot; thành &quot;đối chiếu theo chuẩn&quot;. Nếu trước khi làm bạn không định nghĩa &quot;đúng là thế nào&quot;, thì lúc nghiệm thu bạn chỉ có thể nói &quot;nhìn cũng được&quot; hoặc &quot;thấy sai sai&quot; — và AI không sửa được theo một phản hồi mơ hồ như thế.</p>
+<p>So sánh nhanh:</p>
+<ul><li><strong>Không có tiêu chí đúng:</strong> &quot;Làm cho mình cái form đặt bàn.&quot; → AI làm ra một cái gì đó → bạn nhìn → &quot;hình như thiếu gì đó?&quot; → loay hoay.</li><li><strong>Có tiêu chí đúng:</strong> &quot;Form đặt bàn phải có 4 ô: tên, số điện thoại, số người, giờ đến. Bỏ trống số điện thoại thì không gửi được. Gửi xong hiện chữ &#x27;Đã nhận đặt bàn&#x27;.&quot; → AI làm → bạn check từng dòng → đúng/sai rõ ràng → phản hồi chính xác chỗ lệch.</li></ul>
+<p>Thấy chưa? Tiêu chí đúng không phải thủ tục rườm rà. Nó là tấm bản đồ để bạn nghiệm thu, và là ngôn ngữ chung để bạn phản hồi. Đặt tiêu chí trước khi AI bắt tay = bạn đã cầm sẵn đáp án để chấm bài.</p>
+<h2>Use-case thật: brief cho designer, chủ shop nhỏ, người đi làm</h2>
+<p>Lý thuyết vậy đủ rồi. Xem nó sống thế nào trong việc thật.</p>
+<p><strong>Use-case 1 — Brief cho một designer (ẩn dụ gần gũi nhất).</strong> Tưởng tượng bạn thuê một designer giỏi nhưng *không đọc được suy nghĩ của bạn*. Nếu bạn nói &quot;thiết kế cho mình cái logo đẹp đẹp&quot;, bạn sẽ nhận về mười phương án lệch, và mỗi vòng sửa là một lần ức chế. Nhưng nếu bạn brief: *&quot;Logo cho quán cà phê tên ABC, phong cách mộc — gỗ và xanh lá, dùng được cả trên biển hiệu lẫn ly giấy, tránh màu mè, gửi mình 2 phương án&quot;* — designer làm trúng ngay từ vòng đầu. <strong>Ra đề cho AI giống hệt vậy.</strong> AI là một &quot;designer/thợ&quot; giỏi nghề nhưng vô tri về ý bạn; brief càng rõ, kết quả càng trúng.</p>
+<p><strong>Use-case 2 — Chủ shop nhỏ tự dựng công cụ.</strong> Chị chủ một shop online muốn một trang để khách tự tra tình trạng đơn hàng. Tư duy *người làm bài*: &quot;Mình đâu biết lập trình, thôi thuê người, mà thuê thì đắt, để đó vậy.&quot; Tư duy *người ra đề*: chị viết brief — bối cảnh (shop bán đồ, khách hay hỏi &#x27;đơn tới đâu rồi&#x27;), mục tiêu (khách nhập mã đơn → xem trạng thái), ràng buộc (dùng trên điện thoại, tiếng Việt), tiêu chí đúng (nhập sai mã thì báo &#x27;không tìm thấy&#x27;). Rồi chị bước vào vòng lặp với AI: xem → &quot;chữ to hơn chút&quot;, &quot;thêm ngày dự kiến giao&quot; → vài vòng là có công cụ chạy thật. Chị không viết một dòng code nào. Chị chỉ *ra đề và nghiệm thu giỏi*.</p>
+<p><strong>Use-case 3 — Người đi làm văn phòng.</strong> Một bạn nhân sự muốn một biểu mẫu thu thập đăng ký nội bộ cho sự kiện công ty, kèm trang xem danh sách. Thay vì chờ phòng IT, bạn ấy mô tả intent rõ, đặt tiêu chí đúng (&quot;mỗi người chỉ đăng ký 1 lần&quot;, &quot;xuất được danh sách ra Excel&quot;), và xoay vòng với AI trong một buổi chiều. Đây đúng tinh thần bài một: rút ngắn quãng đường từ *ý tưởng trong đầu* đến *thứ chạy được*.</p>
+<p>Điểm chung của cả ba: người làm <strong>không giỏi kỹ thuật hơn ai cả</strong>. Họ chỉ chuyển từ tư duy &quot;tôi không làm được&quot; sang tư duy &quot;tôi sẽ ra đề và nghiệm thu&quot;. Cái khác biệt nằm ở vai, không nằm ở kỹ năng gõ máy.</p>
+<div class="callout">🧠 Điều cần nhớ: Mỗi lần định nói &quot;mình không biết làm cái này&quot;, thử đổi thành &quot;mình sẽ mô tả cái này cho rõ để giao cho AI&quot;. Một câu đổi vai nhỏ, nhưng nó mở ra cả một lớp việc bạn tưởng ngoài tầm với.</div>
+<h2>Prompt engineering thực ra là gì — và vì sao mô tả rõ lại quan trọng</h2>
+<p>Đến đây mình giới thiệu thẳng cái tên mà bạn sẽ gặp đi gặp lại: <strong>prompt engineering</strong>.</p>
+<p><strong>Prompt</strong> là câu/đoạn bạn nhập cho AI. <strong>Prompt engineering</strong> (tạm dịch: *kỹ thuật soạn lời nhắc*) là kỹ năng viết những lời nhắc đó sao cho AI hiểu đúng và làm trúng. Nghe &quot;engineering&quot; thì oai, nhưng với người non-tech, bản chất của nó rất gần gũi: <strong>diễn đạt rõ ràng có chủ đích.</strong> Nó không phải mánh lới bí mật; nó là kỷ luật mô tả — đúng cái khung Bối cảnh – Mục tiêu – Ràng buộc – Tiêu chí đúng ở trên.</p>
+<p>Vì sao mô tả rõ lại quyết định kết quả đến vậy? Vì AI <strong>không đoán được ngữ cảnh trong đầu bạn</strong>. Nó chỉ có đúng những gì bạn viết ra. Khoảng trống trong mô tả của bạn, AI sẽ tự lấp bằng phỏng đoán — và phỏng đoán thì hên xui. Mô tả rõ = bạn thu hẹp khoảng phỏng đoán đó lại. Đây cũng là lý do &quot;ra đề&quot; là một kỹ năng thật, có thể tệ hoặc giỏi, chứ không phải &quot;ai gõ chữ chẳng được&quot;.</p>
+<p>Và đây là chỗ mở đường sang các khái niệm bạn sẽ gặp tiếp:</p>
+<ul><li><strong>Delegation (giao việc).</strong> Bản chất cả trò này là bạn *giao việc* cho AI như giao cho một cộng sự. Mọi nguyên tắc giao việc cho người đều áp dụng: nói rõ kết quả mong muốn, nói rõ ràng buộc, kiểm tra lại đầu ra. Nếu bạn từng quản lý ai đó, bạn đã có sẵn cơ bắp này.</li><li><strong>Specification (spec).</strong> Khi yêu cầu lớn dần, brief của bạn sẽ tiến hóa thành một <strong>spec</strong> — bản đặc tả mô tả đầy đủ sản phẩm cần làm gì. Spec chỉ là requirement được viết kỹ và có cấu trúc hơn.</li><li><strong>Chia nhỏ yêu cầu.</strong> Một đề bài to (&quot;làm cho mình một app quản lý khách hàng&quot;) không nên ném nguyên cục cho AI. Nó cần được *bẻ* thành những đề nhỏ làm lần lượt — và đây chính là chủ đề mình dành hẳn một bài sau để đi sâu.</li></ul>
+<div class="callout">⚠️ Sai lầm thường gặp: nghĩ prompt engineering là &quot;học vài câu thần chú để AI nghe lời&quot;. Không có thần chú. Chỉ có mô tả rõ hay mô tả mơ hồ. Câu prompt dài mà rỗng ý vẫn thua một brief ngắn mà đủ bối cảnh – mục tiêu – ràng buộc – tiêu chí.</div>
+<h2>Nói thẳng một chút: ai hợp, ai khó với tư duy này</h2>
+<p>Mình không thích kiểu &quot;ai cũng làm được, dễ lắm&quot;. Nên soi qua ba lớp cho thật.</p>
+<p><strong>Lớp kỹ thuật.</strong> Tư duy ra đề không đòi bạn biết code, nhưng nó đòi bạn chịu khó *viết ra* điều mình muốn — và viết cho cụ thể. Công cụ AI hôm nay đủ tốt để biến một brief rõ ràng thành sản phẩm nhỏ chạy thật. Nhưng nó khuếch đại đúng cái bạn đưa vào: brief rõ thì ra kết quả tốt, brief mơ hồ thì ra mớ lệch. AI không sửa được sự mơ hồ của bạn; nó chỉ nhân nó lên.</p>
+<p><strong>Lớp giá trị công việc.</strong> Theo mình, đây là kỹ năng &quot;lãi kép&quot; nhất bạn học được trong cả series. Vì *mô tả – đánh giá – phản hồi* không chỉ dùng cho vibe coding. Nó là kỹ năng giao việc, viết yêu cầu, nghiệm thu — thứ bạn dùng khi làm việc với nhân viên, với đối tác thuê ngoài, với bất kỳ công cụ AI nào sau này. Học ra đề cho AI, bạn vô tình giỏi luôn việc ra đề cho người.</p>
+<p><strong>Lớp con người.</strong> Và đây là chỗ thật nhất: tư duy này <strong>hợp với người chịu nghĩ cho rõ trước khi nói</strong>, và <strong>khó với người quen kiểu &quot;làm đại đi rồi tính&quot;</strong>. Nếu bạn vốn cẩn thận, hay viết ra cho rành mạch trước khi nhờ ai việc gì — bạn sẽ tiến rất nhanh. Nếu bạn quen ném một câu lửng lơ rồi mong người ta (hay AI) tự hiểu, bạn sẽ phải tập lại thói quen đó. Tin tốt: thói quen này luyện được, và nó trả công xứng đáng ở mọi mặt của công việc.</p>
+<p>Cho nên khuyến nghị của mình rất gọn: <strong>đừng luyện &quot;câu lệnh&quot;, hãy luyện cách nghĩ cho rõ và nói cho đủ.</strong> Câu lệnh, công cụ sẽ đổi liên tục. Khả năng ra đề rõ thì còn mãi.</p>
+<h2>Kết luận</h2>
+<p>Vibe coding không bắt bạn thành dân code. Nó dời công việc của bạn sang một chỗ khác — và chỗ đó là *ra đề*. Mô tả rõ điều mình muốn. Nghiệm thu kết quả theo tiêu chí mình đặt. Phản hồi cụ thể để AI sửa. Xoay vòng cho tới khi đúng ý. Bốn việc đó, không việc nào cần bạn biết nấu — chỉ cần bạn biết gọi đúng món và nếm cho tinh.</p>
+<p><strong>Tư duy người ra đề không phải là &quot;ra lệnh cho AI rồi ngồi chờ&quot;, mà là &quot;biết rõ mình muốn gì, định nghĩa được thế nào là đúng, và kiên trì phản hồi cho tới khi sản phẩm khớp với cái trong đầu mình&quot;.</strong></p>
+<p>Ở bài tiếp theo, mình sẽ đi vào một kỹ năng làm cho việc ra đề dễ thở hơn nhiều: <strong>cách chia một yêu cầu lớn thành những đề nhỏ để AI làm trúng từng phần.</strong> Vì khi bạn đã quen ra đề, thử thách kế tiếp là ra những đề *vừa miếng* — không quá to để AI loạn, không quá vụn để bạn mệt. Đó cũng là tinh thần tụi mình theo ở COMPA Class: biến mỗi bước tưởng khó thành một cái dốc dễ leo. Hẹn bạn ở bài kế nhé.</p>
+<p>---</p>
+  </article>
+
+  <footer class="author-card" aria-labelledby="author-name">
+    <div class="author-avatar">
+      <img src="https://ducnguyen221.github.io/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức" loading="lazy" width="84" height="84">
+    </div>
+    <div class="author-info">
+      <div class="kicker">Tác giả · Author</div>
+      <h3 id="author-name">Nguyễn Quang Đức (Tobi)</h3>
+      <p>Data &amp; AI Engineer · Trainer tại KPIM Academy &amp; COMPA Class. Trang cá nhân tại
+        <a href="https://ducnguyen.vn" target="_blank" rel="noopener">ducnguyen.vn</a>.</p>
+    </div>
+    <nav class="social-grid" aria-label="Liên kết tác giả">
+      <a class="social-btn" href="https://ducnguyen.vn" target="_blank" rel="noopener" aria-label="Website" title="ducnguyen.vn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.facebook.com/TobiNguyenData/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.youtube.com/@PowerBIHeroVn" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a class="social-btn" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" aria-label="E-Profile" title="E-Profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      </a>
+    </nav>
+  </footer>
+</main>
+</body>
+</html>

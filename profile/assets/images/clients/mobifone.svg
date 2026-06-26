@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" fill="none">
+  <rect width="160" height="160" rx="28" fill="#0F172A"/>
+  <path d="M24 48C24 34.7452 34.7452 24 48 24H112C125.255 24 136 34.7452 136 48V112C136 125.255 125.255 136 112 136H48C34.7452 136 24 125.255 24 112V48Z" fill="#2563EB" fill-opacity="0.18" stroke="#60A5FA" stroke-width="2"/>
+  <text x="80" y="94" text-anchor="middle" fill="#EFF6FF" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">Mobi</text>
+</svg>

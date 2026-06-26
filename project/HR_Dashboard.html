@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HR Dashboard – Inline Data (KPIM)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root{--bg:#f7f8fa;--card:#fff;--text:#111827;--muted:#6b7280;--primary:#1E88E5;--success:#43A047;--danger:#E53935}
+    *{box-sizing:border-box} html,body{height:100%;margin:0;overflow:hidden;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--text)}
+    .app{display:flex;height:100vh;overflow:hidden;background:var(--bg)}
+    .sidebar{flex:0 0 240px;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.08);padding:16px;display:flex;flex-direction:column}
+    .nav button{display:block;width:100%;text-align:left;background:transparent;border:0;padding:10px 12px;border-radius:8px;font-weight:600;color:#374151;cursor:pointer}
+    .nav button:hover{background:#f3f4f6}
+    .main{--pad:12px;--gap:10px;flex:1;padding:var(--pad);display:flex;flex-direction:column;gap:var(--gap);overflow:hidden}
+    .grid{display:grid;gap:var(--gap);min-height:0}
+    .row1{grid-template-columns:repeat(4,1fr);height:calc((100vh - (var(--pad)*2) - (var(--gap)*3)) * 0.05)}
+    .row2{grid-template-columns:2fr 1fr;      height:calc((100vh - (var(--pad)*2) - (var(--gap)*3)) * 0.35)}
+    .row3{grid-template-columns:repeat(3,1fr);height:calc((100vh - (var(--pad)*2) - (var(--gap)*3)) * 0.30)}
+    .row4{grid-template-columns:1fr;          height:calc((100vh - (var(--pad)*2) - (var(--gap)*3)) * 0.30)}
+    .card{background:var(--card);border-radius:14px;box-shadow:0 1px 6px rgba(0,0,0,.06);padding:10px;display:flex;flex-direction:column;min-height:0}
+    .kpi{flex-direction:row;align-items:center;gap:8px}
+    .row1 .kpi .icon{width:22px;height:22px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px}
+    .row1 .kpi .muted{font-size:10px}
+    .row1 .kpi .value{font-size:14px;font-weight:800}
+    .muted{color:var(--muted);font-size:12px}
+    .title{font-size:13px;font-weight:700;margin:0 0 6px}
+    .chart{position:relative;flex:1;min-height:0}
+    .chart canvas{width:100%!important;height:100%!important}
+    .table-wrap{flex:1;overflow:auto;border:1px solid #e5e7eb;border-radius:10px}
+    table{width:100%;border-collapse:collapse;font-size:12px}
+    thead th{position:sticky;top:0;background:#fff;z-index:1}
+    th,td{padding:8px;border-bottom:1px solid #f0f2f5;white-space:nowrap}
+  </style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <img src="https://kpim.vn/wp-content/uploads/2020/12/logo-blue-retina.png" alt="KPIM" style="height:48px;margin:6px 0 20px"/>
+    <div class="nav">
+      <button>Overview</button>
+      <button>Employees</button>
+      <button>Reports</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section class="grid row1">
+      <div class="card kpi"><div class="icon" style="background:var(--primary)">👥</div><div><div class="muted">Headcount</div><div id="kpiHeadcount" class="value">—</div></div></div>
+      <div class="card kpi"><div class="icon" style="background:var(--success)">⏱️</div><div><div class="muted">Average Tenure</div><div id="kpiTenure" class="value">—</div></div></div>
+      <div class="card kpi"><div class="icon" style="background:var(--danger)">📉</div><div><div class="muted">Attrition Rate</div><div id="kpiAttr" class="value">—</div></div></div>
+      <div class="card kpi"><div class="icon" style="background:#FB8C00">🔒</div><div><div class="muted">Retention Rate</div><div id="kpiRet" class="value">—</div></div></div>
+    </section>
+
+    <section class="grid row2">
+      <div class="card">
+        <h3 class="title">New Hires & Attrition + Growth</h3>
+        <div class="chart"><canvas id="chartTime"></canvas></div>
+      </div>
+      <div class="card">
+        <h3 class="title">Headcount by Position</h3>
+        <div class="chart"><canvas id="chartPos"></canvas></div>
+      </div>
+    </section>
+
+    <section class="grid row3">
+      <div class="card">
+        <h3 class="title">Headcount by Office</h3>
+        <div class="chart"><canvas id="chartOffice"></canvas></div>
+      </div>
+      <div class="card">
+        <h3 class="title">Headcount by Worktype</h3>
+        <div class="chart"><canvas id="chartWork"></canvas></div>
+      </div>
+      <div class="card">
+        <h3 class="title">Headcount by Department</h3>
+        <div class="chart"><canvas id="chartDept"></canvas></div>
+      </div>
+    </section>
+
+    <section class="grid row4">
+      <div class="card">
+        <h3 class="title">Employee List (Active)</h3>
+        <div class="table-wrap">
+          <table id="empTable">
+            <thead><tr>
+              <th>Name</th><th>Position</th><th>Department</th><th>Office</th>
+              <th>Worktype</th><th>Email</th><th>JoinDate</th><th>EndDate</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  // Inline data & aggregates
+  const TABLE = [{"FullName":"Trương Phương Tùng","Position":"Lập trình viên","Department":"Phòng Kỹ thuật","Office":"VP Hà Nội","WorkType":"Remote","Email":"tung.truong@compaclass.com","JoinDate":"2021-07-12","EndDate":""},{"FullName":"Phan Văn Hùng","Position":"Lập trình viên","Department":"Phòng Kỹ thuật","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"hung.phan@compaclass.com","JoinDate":"2023-04-17","EndDate":""},{"FullName":"Nguyễn Mạnh Hùng","Position":"Lập trình viên","Department":"Phòng Kỹ thuật","Office":"VP Hà Nội","WorkType":"Onsite","Email":"hung.nguyenm@compaclass.com","JoinDate":"2024-05-13","EndDate":""},{"FullName":"Nguyễn Phan Duy","Position":"Giảng viên","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"duy.nguyenp@compaclass.com","JoinDate":"2025-02-21","EndDate":""},{"FullName":"Nguyễn Quốc Huy","Position":"Giảng viên","Department":"Phòng Đào tạo","Office":"VP HCM","WorkType":"Hybrid","Email":"huy.nguyenq@compaclass.com","JoinDate":"2024-06-18","EndDate":""},{"FullName":"Đàm Thành Trung","Position":"Giảng viên","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"trung.dam@compaclass.com","JoinDate":"2022-09-15","EndDate":""},{"FullName":"Đỗ Bảo Châu","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"chau.do@compaclass.com","JoinDate":"2023-03-01","EndDate":""},{"FullName":"Ngô Trần Khánh Duy","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP HCM","WorkType":"Hybrid","Email":"duy.ngotk@compaclass.com","JoinDate":"2024-07-22","EndDate":""},{"FullName":"Lê Tuấn Anh","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"anh.letuan@compaclass.com","JoinDate":"2023-11-20","EndDate":""},{"FullName":"Vũ Hà Trang","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"trang.vu@compaclass.com","JoinDate":"2022-05-09","EndDate":""},{"FullName":"Đào Minh Quân","Position":"Lập trình viên","Department":"Phòng Kỹ thuật","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"quan.dao@compaclass.com","JoinDate":"2025-03-25","EndDate":""},{"FullName":"Trần Lê Thanh Nhàn","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP HCM","WorkType":"Hybrid","Email":"nhan.tranlt@compaclass.com","JoinDate":"2023-08-14","EndDate":""},{"FullName":"Lê Thanh Hải","Position":"Giảng viên","Department":"Phòng Đào tạo","Office":"VP Đà Nẵng","WorkType":"Hybrid","Email":"hai.lethanh@compaclass.com","JoinDate":"2024-01-08","EndDate":""},{"FullName":"Nguyễn Đức Thiện","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"thien.nguyend@compaclass.com","JoinDate":"2024-09-02","EndDate":""},{"FullName":"Dương Lan Chi","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP HCM","WorkType":"Hybrid","Email":"chi.duong@compaclass.com","JoinDate":"2024-10-07","EndDate":""},{"FullName":"Nguyễn Thành Trung","Position":"Giảng viên","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"trung.nguyent@compaclass.com","JoinDate":"2023-10-16","EndDate":""},{"FullName":"Hoàng Thị Thanh Thuỷ","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"thuy.hoangtt@compaclass.com","JoinDate":"2024-04-22","EndDate":""},{"FullName":"Âu Văn Tài","Position":"Giảng viên","Department":"Phòng Đào tạo","Office":"VP HCM","WorkType":"Hybrid","Email":"tai.au@compaclass.com","JoinDate":"2022-06-20","EndDate":""},{"FullName":"Bùi Thế Hùng","Position":"Giảng viên","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"hung.bui@compaclass.com","JoinDate":"2024-03-11","EndDate":""},{"FullName":"Bùi Văn Trọng","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"trong.bui@compaclass.com","JoinDate":"2022-11-07","EndDate":""},{"FullName":"Cao Quỳnh Trang","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"trang.caoq@compaclass.com","JoinDate":"2023-12-18","EndDate":""},{"FullName":"Đinh Bích Hạnh","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"hanh.dinh@compaclass.com","JoinDate":"2022-12-12","EndDate":""},{"FullName":"Đỗ Thanh Bình","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"binh.do@compaclass.com","JoinDate":"2025-07-07","EndDate":""},{"FullName":"Đỗ Văn Lộc","Position":"Lập trình viên","Department":"Phòng Kỹ thuật","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"loc.do@compaclass.com","JoinDate":"2023-06-05","EndDate":""},{"FullName":"Dương Minh Nhật","Position":"Lập trình viên","Department":"Phòng Kỹ thuật","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"nhat.duong@compaclass.com","JoinDate":"2022-10-03","EndDate":""},{"FullName":"Hà Anh Khoa","Position":"Lập trình viên","Department":"Phòng Kỹ thuật","Office":"VP Hà Nội","WorkType":"Remote","Email":"khoa.ha@compaclass.com","JoinDate":"2025-01-13","EndDate":""},{"FullName":"Hà Công Tuấn","Position":"Giảng viên","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"tuan.ha@compaclass.com","JoinDate":"2021-03-08","EndDate":""},{"FullName":"Hà Duy Hưng","Position":"Giảng viên","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"hung.haduy@compaclass.com","JoinDate":"2024-08-19","EndDate":""},{"FullName":"Hà Phương Thảo","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"thao.ha@compaclass.com","JoinDate":"2024-02-19","EndDate":""},{"FullName":"Hoàng Khắc Dũng","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"dung.hoangk@compaclass.com","JoinDate":"2023-05-15","EndDate":""},{"FullName":"Hoàng Mạnh Cường","Position":"Giảng viên","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"cuong.hoangm@compaclass.com","JoinDate":"2022-04-18","EndDate":""},{"FullName":"Hoàng Thu Hằng","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"hang.hoangt@compaclass.com","JoinDate":"2025-06-02","EndDate":""},{"FullName":"Hoàng Văn Tiến","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"tien.hoang@compaclass.com","JoinDate":"2024-05-06","EndDate":""},{"FullName":"La Thành Long","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"long.la@compaclass.com","JoinDate":"2023-01-16","EndDate":""},{"FullName":"Lê Anh Đức","Position":"Giảng viên","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"duc.lea@compaclass.com","JoinDate":"2020-08-03","EndDate":""},{"FullName":"Lê Bảo Ngọc","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"ngoc.lebao@compaclass.com","JoinDate":"2025-08-11","EndDate":""},{"FullName":"Lê Công Hoàng","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"hoang.lec@compaclass.com","JoinDate":"2022-03-21","EndDate":""},{"FullName":"Lê Đình Dũng","Position":"Giảng viên","Department":"Phòng Đào tạo","Office":"VP HCM","WorkType":"Hybrid","Email":"dung.led@compaclass.com","JoinDate":"2021-10-25","EndDate":""},{"FullName":"Lê Minh Hoàng","Position":"Lập trình viên","Department":"Phòng Kỹ thuật","Office":"VP Hà Nội","WorkType":"Remote","Email":"hoang.leminh@compaclass.com","JoinDate":"2023-09-18","EndDate":""},{"FullName":"Lê Minh Quân","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"quan.leminh@compaclass.com","JoinDate":"2022-02-14","EndDate":""},{"FullName":"Lê Quang Minh","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"minh.leq@compaclass.com","JoinDate":"2022-07-25","EndDate":""},{"FullName":"Lê Thị Hồng","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"hong.leth@compaclass.com","JoinDate":"2024-11-11","EndDate":""},{"FullName":"Lê Thị Mai","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"mai.leti@compaclass.com","JoinDate":"2024-06-24","EndDate":""},{"FullName":"Lê Thị Quỳnh","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"quynh.leth@compaclass.com","JoinDate":"2025-05-19","EndDate":""},{"FullName":"Lê Thuỳ Dương","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"duong.lethuy@compaclass.com","JoinDate":"2023-07-10","EndDate":""},{"FullName":"Lê Văn Thịnh","Position":"Giảng viên","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"thinh.le@compaclass.com","JoinDate":"2021-01-04","EndDate":""},{"FullName":"Lê Việt Anh","Position":"Giảng viên","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"anh.lev@compaclass.com","JoinDate":"2024-12-16","EndDate":""},{"FullName":"Lê Xuân Bách","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"bach.le@compaclass.com","JoinDate":"2025-04-14","EndDate":""},{"FullName":"Mai Thị Hương","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"huong.mai@compaclass.com","JoinDate":"2023-09-04","EndDate":""},{"FullName":"Ngô Quang Huy","Position":"Lập trình viên","Department":"Phòng Kỹ thuật","Office":"VP Hà Nội","WorkType":"Remote","Email":"huy.ngoq@compaclass.com","JoinDate":"2024-01-29","EndDate":""},{"FullName":"Ngô Thanh Tùng","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"tung.ngo@compaclass.com","JoinDate":"2023-02-06","EndDate":""},{"FullName":"Nguyễn Anh Quân","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"quan.nguyena@compaclass.com","JoinDate":"2024-03-18","EndDate":""},{"FullName":"Nguyễn Bảo Long","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"long.nguyenb@compaclass.com","JoinDate":"2023-06-19","EndDate":""},{"FullName":"Nguyễn Cao Cường","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"cuong.nguyenc@compaclass.com","JoinDate":"2025-03-10","EndDate":""},{"FullName":"Nguyễn Đình Đức","Position":"Giảng viên","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"duc.nguyend@compaclass.com","JoinDate":"2022-01-10","EndDate":""},{"FullName":"Nguyễn Đình Long","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"long.nguyend@compaclass.com","JoinDate":"2024-08-05","EndDate":""},{"FullName":"Nguyễn Hải Đăng","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"dang.nguyenh@compaclass.com","JoinDate":"2023-04-24","EndDate":""},{"FullName":"Nguyễn Hải Nam","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"nam.nguyenh@compaclass.com","JoinDate":"2025-01-27","EndDate":""},{"FullName":"Nguyễn Hoài Nam","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"nam.nguyenhoai@compaclass.com","JoinDate":"2024-10-21","EndDate":""},{"FullName":"Nguyễn Hoàng Anh","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"anh.nguyenh@compaclass.com","JoinDate":"2023-08-28","EndDate":""},{"FullName":"Nguyễn Hồng Ngọc","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"ngoc.nguyenh@compaclass.com","JoinDate":"2022-06-06","EndDate":""},{"FullName":"Nguyễn Khánh Linh","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"linh.nguyenk@compaclass.com","JoinDate":"2024-01-15","EndDate":""},{"FullName":"Nguyễn Kim Oanh","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"oanh.nguyenk@compaclass.com","JoinDate":"2025-02-03","EndDate":""},{"FullName":"Nguyễn Lê Phương Mai","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"mai.nguyenlp@compaclass.com","JoinDate":"2023-05-29","EndDate":""},{"FullName":"Nguyễn Minh Hải","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"hai.nguyenm@compaclass.com","JoinDate":"2022-08-15","EndDate":""},{"FullName":"Nguyễn Minh Quân","Position":"Lập trình viên","Department":"Phòng Kỹ thuật","Office":"VP Hà Nội","WorkType":"Remote","Email":"quan.nguyenm@compaclass.com","JoinDate":"2024-04-29","EndDate":""},{"FullName":"Nguyễn Minh Thuỷ","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"thuy.nguyenm@compaclass.com","JoinDate":"2025-08-25","EndDate":""},{"FullName":"Nguyễn Ngọc Ánh","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Onsite","Email":"anh.nguyenng@compaclass.com","JoinDate":"2023-01-30","EndDate":""},{"FullName":"Nguyễn Ngọc Huyền","Position":"Trợ giảng","Department":"Phòng Đào tạo","Office":"VP Hà Nội","WorkType":"Hybrid","Email":"huyen.nguyenng@compaclass.com","JoinDate":"2025-09-09","EndDate":""}];
+  const DATA = {
+    kpis: { headcount: 81, avgTenureYears: 2.1, attritionRatePct: 11.3, retentionRatePct: 88.5 },
+    hiresAttrition: [
+      {year:2020,newHires:6,attrition:0,headcount:6},
+      {year:2021,newHires:10,attrition:0,headcount:16},
+      {year:2022,newHires:17,attrition:1,headcount:32},
+      {year:2023,newHires:29,attrition:0,headcount:61},
+      {year:2024,newHires:26,attrition:9,headcount:78},
+      {year:2025,newHires:12,attrition:9,headcount:81}
+    ],
+    positionData: [
+      {position:"Trợ giảng",count:21},{position:"Giảng viên",count:20},{position:"Lập trình viên",count:20},
+      {position:"Chuyên viên bán hàng",count:7},{position:"Chuyên viên CSKH",count:4},
+      {position:"Chuyên gia tư vấn",count:3},{position:"Quản lý đào tạo",count:3},
+      {position:"Chuyên viên Marketing",count:2},{position:"Kế toán viên",count:1}
+    ],
+    officePie: [{name:"VP Hà Nội",value:39},{name:"VP HCM",value:34},{name:"VP Đà Nẵng",value:8}],
+    worktypePie: [{name:"Onsite",value:36},{name:"Hybrid",value:29},{name:"Remote",value:16}],
+    deptData: [
+      {dept:"Phòng Đào tạo",count:47},{dept:"Phòng Kỹ thuật",count:20},{dept:"Phòng Bán hàng",count:7},
+      {dept:"Phòng CSKH",count:4},{dept:"Phòng Marketing",count:2},{dept:"Phòng Kế toán",count:1}
+    ]
+  };
+</script>
+
+<script>
+(function(){
+  const pct=v=> `${(Math.round(v*10)/10).toFixed(1)}%`;
+  document.getElementById('kpiHeadcount').textContent = DATA.kpis.headcount;
+  document.getElementById('kpiTenure').textContent   = DATA.kpis.avgTenureYears + ' yrs';
+  document.getElementById('kpiAttr').textContent     = pct(DATA.kpis.attritionRatePct);
+  document.getElementById('kpiRet').textContent      = pct(DATA.kpis.retentionRatePct);
+
+  const valueLabels={id:'valueLabels',afterDatasetsDraw(chart){const {ctx}=chart;ctx.save();ctx.fillStyle='#374151';ctx.font='10px Inter, system-ui';ctx.textAlign='center';ctx.textBaseline='bottom';chart.data.datasets.forEach((ds,di)=>{const m=chart.getDatasetMeta(di);if(!m||m.hidden)return;m.data.forEach((el,i)=>{const v=ds.data[i];if(v==null)return;if(chart.config.type==='pie'){const tot=ds.data.reduce((a,b)=>a+(+b||0),0)||1;if((v/tot)*100<5)return;}const p=el.tooltipPosition();const y=(ds.type==='line')?6:4;ctx.fillText(v,p.x,p.y-y);});});ctx.restore();}};
+  if(window.Chart) Chart.register(valueLabels);
+
+  const grid={color:'#e5e7eb'}; const ticks={color:'#6b7280',font:{size:11}};
+  const palette={blue:'rgba(30,136,229,0.9)',red:'rgba(229,57,53,0.9)',green:'rgba(67,160,71,0.9)',teal:'rgba(38,166,154,0.9)'};
+
+  const yrs=DATA.hiresAttrition.map(d=>d.year), hires=DATA.hiresAttrition.map(d=>d.newHires), leavers=DATA.hiresAttrition.map(d=>d.attrition), hcs=DATA.hiresAttrition.map(d=>d.headcount);
+  new Chart(document.getElementById('chartTime'), {type:'bar',data:{labels:yrs,datasets:[{type:'bar',label:'New Hires',data:hires,backgroundColor:palette.blue,borderRadius:6},{type:'bar',label:'Attrition',data:leavers,backgroundColor:palette.red,borderRadius:6},{type:'line',label:'Headcount',data:hcs,borderColor:palette.green,tension:.3,pointRadius:3,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'},tooltip:{mode:'index',intersect:false},valueLabels:{}},scales:{x:{ticks},y:{ticks,grid}}}});
+
+  new Chart(document.getElementById('chartPos'), {type:'bar',data:{labels:DATA.positionData.map(d=>d.position),datasets:[{label:'Headcount',data:DATA.positionData.map(d=>d.count),backgroundColor:palette.teal,borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},valueLabels:{}},scales:{x:{ticks,grid:{display:false}},y:{ticks,grid}}}});
+
+  new Chart(document.getElementById('chartOffice'), {type:'pie',data:{labels:DATA.officePie.map(d=>d.name),datasets:[{data:DATA.officePie.map(d=>d.value),backgroundColor:['#1E88E5','#FB8C00','#43A047']} ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'},valueLabels:{}}}});
+
+  new Chart(document.getElementById('chartWork'), {type:'pie',data:{labels:DATA.worktypePie.map(d=>d.name),datasets:[{data:DATA.worktypePie.map(d=>d.value),backgroundColor:['#43A047','#1E88E5','#8E24AA']} ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'},valueLabels:{}}}});
+
+  new Chart(document.getElementById('chartDept'), {type:'bar',data:{labels:DATA.deptData.map(d=>d.dept),datasets:[{label:'Headcount',data:DATA.deptData.map(d=>d.count),backgroundColor:palette.green,borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},valueLabels:{}},scales:{x:{ticks,grid:{display:false}},y:{ticks,grid}}}});
+
+  // Render inline table
+  const tbody=document.querySelector('#empTable tbody');
+  TABLE.forEach(r=>{const tr=document.createElement('tr'); tr.innerHTML=`<td>${r.FullName}</td><td>${r.Position}</td><td>${r.Department}</td><td>${r.Office}</td><td>${r.WorkType}</td><td>${r.Email}</td><td>${r.JoinDate||''}</td><td>${r.EndDate||''}</td>`; tbody.appendChild(tr);});
+})();
+</script>
+</body>
+</html>

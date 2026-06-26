@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atlas — Interactive Knowledge Visualizations</title>
+  <meta name="description" content="Atlas là kho tài liệu tương tác trực quan chuyển đổi kiến thức phức tạp thành các bài học sinh động và dễ chia sẻ của Nguyễn Quang Đức.">
+  <meta name="keywords" content="atlas, kiến thức, trực quan hóa, học tập, AI, data engineering, power bi, automation">
+  <meta name="author" content="Nguyễn Quang Đức">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Atlas — Interactive Knowledge Visualizations">
+  <meta property="og:description" content="Chuyển đổi kiến thức phức tạp thành các bài học trực quan và tương tác.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ducnguyen.vn/">
+  <link rel="canonical" href="https://ducnguyen.vn/">
+
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+
+  <!-- Google Fonts for Vietnamese support -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+  <!-- ═══ Topbar ═══ -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+      <a class="brand" href="./" aria-label="Atlas Home">
+        <div class="brand-icon">🗺️</div>
+        <div class="brand-text">
+          <h1>Atlas</h1>
+          <p>Knowledge Hub</p>
+        </div>
+      </a>
+      <nav class="topbar-links" aria-label="External links">
+        <a href="https://github.com/ducnguyen221/atlas" target="_blank" rel="noopener" aria-label="GitHub repository">
+          <i class="fa-brands fa-github"></i>
+          <span>GitHub</span>
+        </a>
+        <a href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" aria-label="Author profile">
+          <i class="fa-solid fa-user-tie"></i>
+          <span>Tác giả</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══ Portfolio Hero Section ═══ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-tech-bg" aria-hidden="true">
+      <!-- Animated orbits and grids -->
+      <span class="tech-orbit tech-orbit-a"></span>
+      <span class="tech-orbit tech-orbit-b"></span>
+      <span class="tech-node tech-node-a"></span>
+      <span class="tech-node tech-node-b"></span>
+      <span class="tech-node tech-node-c"></span>
+    </div>
+    
+    <div class="portfolio-container">
+      <div class="portfolio-avatar-wrapper">
+        <img class="portfolio-avatar" src="https://ducnguyen221.github.io/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức">
+        <div class="avatar-glow"></div>
+      </div>
+      
+      <div class="portfolio-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Data &amp; AI Engineer · Portfolio
+        </div>
+        <h2 id="hero-title">
+          Xin chào, tôi là <span class="gradient">Nguyễn Quang Đức</span>
+        </h2>
+        <p class="bio-text">
+          Trainer tại KPIM Academy &amp; COMPA Class. Tôi xây dựng <strong>Atlas</strong> như một thư viện tài liệu tương tác trực quan, giúp đơn giản hóa các chủ đề kỹ thuật phức tạp về AI, Data Engineering, Business Intelligence và Tự động hóa quy trình.
+        </p>
+        
+        <!-- Social links integrated in Hero -->
+        <nav class="portfolio-socials" aria-label="Social connections">
+          <a href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" class="social-chip" title="E-Profile">
+            <i class="fa-solid fa-address-card"></i> Profile
+          </a>
+          <a href="https://github.com/ducnguyen221" target="_blank" rel="noopener" class="social-chip" title="GitHub">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/tobi-nguyen/" target="_blank" rel="noopener" class="social-chip" title="LinkedIn">
+            <i class="fa-brands fa-linkedin"></i> LinkedIn
+          </a>
+          <a href="https://www.facebook.com/TobiNguyenData/" target="_blank" rel="noopener" class="social-chip" title="Facebook">
+            <i class="fa-brands fa-facebook"></i> Facebook
+          </a>
+          <a href="https://www.youtube.com/@PowerBIHeroVn" target="_blank" rel="noopener" class="social-chip" title="YouTube">
+            <i class="fa-brands fa-youtube"></i> YouTube
+          </a>
+          <a href="mailto:duc.nguyen@kpim.vn" class="social-chip" title="Email">
+            <i class="fa-solid fa-envelope"></i> Email
+          </a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Stats ═══ -->
+  <div class="stats-strip" aria-label="Repository statistics">
+    <div class="stat-item">
+      <div class="num" id="stat-viz">0</div>
+      <div class="label">Tài liệu</div>
+    </div>
+    <div class="stat-item">
+      <div class="num" id="stat-cats">0</div>
+      <div class="label">Danh mục</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">∞</div>
+      <div class="label">Không ngừng mở rộng</div>
+    </div>
+  </div>
+
+  <!-- ═══ Search controls (Centralized & Clean) ═══ -->
+  <div class="controls">
+    <div class="search-wrapper">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input id="search-input" type="text" placeholder="Tìm kiếm tài liệu tương tác..." autocomplete="off" aria-label="Search visualizations">
+      <span class="kbd-hint" id="kbd-hint">/</span>
+    </div>
+  </div>
+
+  <!-- ═══ Category Sections List ═══ -->
+  <main class="grid-section">
+    <!-- ═══ Latest articles — horizontal strip (kéo / ấn tiếp) ═══ -->
+    <section class="latest-strip" id="latest-strip" hidden aria-label="Bài viết mới nhất">
+      <div class="latest-head">
+        <h2><i class="fa-solid fa-bolt"></i> Mới nhất</h2>
+        <div class="latest-nav">
+          <button class="latest-arrow" id="latest-prev" type="button" aria-label="Bài trước"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="latest-arrow" id="latest-next" type="button" aria-label="Bài tiếp"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+      <div class="latest-row" id="latest-row"></div>
+    </section>
+
+    <div class="categories-container" id="categories-container">
+      <!-- Dynamically generated by main.js (Categorized groups with Expand toggles) -->
+      <div class="loading-state">
+        <i class="fa-solid fa-circle-notch fa-spin"></i> Đang tải dữ liệu tài liệu...
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══ Site Footer ═══ -->
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <div class="icon">🗺️</div>
+      <div class="text">
+        <strong>Atlas</strong> · Kiến tạo và phát triển bởi Nguyễn Quang Đức
+      </div>
+    </div>
+    <nav class="footer-links" aria-label="Footer links">
+      <a href="https://github.com/ducnguyen221/atlas" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener">Tác giả</a>
+      <a href="https://github.com/ducnguyen221/atlas/blob/main/LICENSE" target="_blank" rel="noopener">Giấy phép</a>
+    </nav>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

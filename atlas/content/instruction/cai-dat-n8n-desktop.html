@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng dẫn Cài đặt n8n chi tiết cho người mới bắt đầu (Non-Tech)</title>
+    <meta name="description" content="Hướng dẫn từng bước cài đặt n8n trên máy tính cá nhân bằng Node.js và Docker Desktop chi tiết, trực quan và dễ hiểu dành cho người dùng non-tech.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Mermaid JS for diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'dark',
+            themeVariables: {
+                background: '#111827',
+                primaryColor: '#312E81',
+                primaryTextColor: '#F3F4F6',
+                primaryBorderColor: '#4F46E5',
+                lineColor: '#6366F1',
+                secondaryColor: '#1E1B4B',
+                tertiaryColor: '#030712'
+            }
+        });
+    </script>
+    
+    <style>
+        :root {
+            --bg-base: #0B0F19;
+            --bg-surface: rgba(17, 24, 39, 0.7);
+            --bg-surface-hover: rgba(31, 41, 55, 0.8);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(99, 102, 241, 0.4);
+            
+            --primary: #6366F1;
+            --primary-glow: rgba(99, 102, 241, 0.15);
+            --secondary: #8B5CF6;
+            --cyan: #06B6D4;
+            --emerald: #10B981;
+            
+            --text-main: #E2E8F0;
+            --text-muted: #94A3B8;
+            --text-inverse: #0F172A;
+            
+            --glass-blur: blur(16px);
+            --card-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.7);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Be Vietnam Pro', 'Inter', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 45%);
+            background-attachment: fixed;
+        }
+
+        /* Top Navigation Header */
+        nav.top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(11, 15, 25, 0.75);
+            backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav.top-nav .logo {
+            font-family: 'Outfit', 'Be Vietnam Pro', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ffffff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav.top-nav .back-btn {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        nav.top-nav .back-btn:hover {
+            color: #ffffff;
+            border-color: var(--primary);
+            background: var(--primary-glow);
+            text-decoration: none;
+        }
+
+        /* Hero Header */
+        header {
+            padding: 5rem 2rem 4rem 2rem;
+            text-align: center;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            color: #a5b4fc;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            backdrop-filter: var(--glass-blur);
+        }
+
+        header h1 {
+            font-family: 'Outfit', 'Be Vietnam Pro', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.15;
+            margin: 0 0 1.5rem 0;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p.lead {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin: 0 auto;
+            max-width: 700px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        /* Page Layout Grid */
+        .wrapper {
+            max-width: 1300px;
+            margin: 2rem auto 6rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 3rem;
+        }
+
+        /* Main Content Panel */
+        main {
+            background-color: var(--bg-surface);
+            backdrop-filter: var(--glass-blur);
+            padding: 3.5rem;
+            border-radius: 1.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Visual Separators */
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color) 20%, var(--border-color) 80%, transparent);
+            margin: 3.5rem 0;
+        }
+
+        /* Headings */
+        h2, h3, h4 {
+            font-family: 'Outfit', 'Be Vietnam Pro', sans-serif;
+            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 4rem;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 9999px;
+        }
+
+        h3 {
+            font-size: 1.45rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+        }
+
+        /* Text formatting */
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: var(--text-main);
+        }
+
+        strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            font-size: 1.05rem;
+        }
+
+        /* Links */
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border-bottom: 1px dashed rgba(99, 102, 241, 0.4);
+            padding-bottom: 1px;
+        }
+
+        a:hover {
+            color: #a5b4fc;
+            border-bottom-style: solid;
+            text-decoration: none;
+        }
+
+        /* Inline code */
+        code {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            background-color: rgba(99, 102, 241, 0.1);
+            color: #a5b4fc;
+            padding: 0.15rem 0.4rem;
+            border-radius: 0.375rem;
+            font-size: 0.9em;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+        }
+
+        /* Code block container */
+        .terminal-block {
+            background-color: #030712;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            margin: 1.5rem 0;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .terminal-header {
+            background-color: #111827;
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 9999px;
+        }
+
+        .terminal-dot.red { background-color: #EF4444; }
+        .terminal-dot.yellow { background-color: #F59E0B; }
+        .terminal-dot.green { background-color: #10B981; }
+
+        .terminal-title {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        pre {
+            margin: 0;
+            padding: 1.25rem;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        pre code {
+            background-color: transparent !important;
+            color: #38BDF8 !important;
+            padding: 0 !important;
+            font-size: 0.95em !important;
+            border: none !important;
+            display: block;
+            line-height: 1.6;
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-muted);
+            padding: 0.35rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-family: 'Be Vietnam Pro', 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Interactive Method Selection Grid (Comparison Cards) */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .method-card {
+            background: rgba(20, 27, 45, 0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .method-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: transparent;
+            transition: var(--transition);
+        }
+
+        .method-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            background: rgba(20, 27, 45, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .method-card.active {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+        }
+
+        .method-card.active::before {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .method-card h3 {
+            margin-top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .method-card .recommended-badge {
+            background: linear-gradient(135deg, var(--emerald) 0%, #059669 100%);
+            color: #ffffff;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .method-card .desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .method-card .meta-rows {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+
+        .method-card .meta-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .method-card .meta-row span.val {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        /* Interactive Tabs Navigation */
+        .methods-tabs-nav {
+            display: flex;
+            gap: 1rem;
+            background: rgba(11, 15, 25, 0.6);
+            padding: 0.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            margin: 2.5rem 0 1.5rem 0;
+        }
+
+        .tab-trigger {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Outfit', 'Be Vietnam Pro', sans-serif;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-trigger:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .tab-trigger.active {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Wizard steps view panels */
+        .method-view-panel {
+            display: none;
+            animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .method-view-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Alert blockquotes style */
+        .alert-box {
+            display: flex;
+            gap: 1.25rem;
+            border-left: 4px solid var(--text-muted);
+            background-color: rgba(255, 255, 255, 0.02);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border-color);
+            border-left-width: 4px;
+        }
+
+        .alert-icon {
+            font-size: 1.35rem;
+            display: flex;
+            align-items: flex-start;
+            margin-top: 0.15rem;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-content p {
+            margin: 0;
+            font-size: 0.975rem;
+        }
+
+        /* Specific Alerts Colors */
+        .alert-box.note {
+            border-left-color: var(--primary);
+            background-color: rgba(99, 102, 241, 0.05);
+            border-color: rgba(99, 102, 241, 0.1);
+        }
+        .alert-box.note .alert-icon { color: var(--primary); }
+        .alert-box.note .alert-content p { color: #a5b4fc; }
+
+        .alert-box.important {
+            border-left-color: #EF4444;
+            background-color: rgba(239, 68, 68, 0.05);
+            border-color: rgba(239, 68, 68, 0.1);
+        }
+        .alert-box.important .alert-icon { color: #EF4444; }
+        .alert-box.important .alert-content p { color: #fca5a5; }
+
+        .alert-box.warning {
+            border-left-color: #F59E0B;
+            background-color: rgba(245, 158, 11, 0.05);
+            border-color: rgba(245, 158, 11, 0.1);
+        }
+        .alert-box.warning .alert-icon { color: #F59E0B; }
+        .alert-box.warning .alert-content p { color: #fde68a; }
+
+        .alert-box.tip {
+            border-left-color: var(--emerald);
+            background-color: rgba(16, 185, 129, 0.05);
+            border-color: rgba(16, 185, 129, 0.1);
+        }
+        .alert-box.tip .alert-icon { color: var(--emerald); }
+        .alert-box.tip .alert-content p { color: #a7f3d0; }
+
+        /* Tables styling */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            text-align: left;
+            background: rgba(17, 24, 39, 0.3);
+        }
+
+        th, td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: rgba(17, 24, 39, 0.8);
+            color: #ffffff;
+            font-weight: 600;
+            font-family: 'Outfit', 'Be Vietnam Pro', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Mermaid Diagram Wrapper */
+        .mermaid-container {
+            background-color: #030712;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Sidebar Navigation */
+        aside {
+            position: sticky;
+            top: 6rem;
+            align-self: start;
+            max-height: calc(100vh - 8rem);
+            overflow-y: auto;
+            background-color: var(--bg-surface);
+            backdrop-filter: var(--glass-blur);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        aside h4 {
+            margin-top: 0;
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .toc-item {
+            margin-bottom: 0.75rem;
+        }
+
+        .toc-link {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: block;
+            padding: 0.2rem 0;
+            font-weight: 400;
+            transition: var(--transition);
+            border-bottom: none;
+        }
+
+        .toc-link:hover {
+            color: #ffffff;
+            transform: translateX(2px);
+        }
+
+        .toc-link.active {
+            color: var(--primary);
+            font-weight: 600;
+            border-left: 2px solid var(--primary);
+            padding-left: 0.75rem;
+        }
+
+        /* Step layout in Wizard */
+        .step-block {
+            margin-bottom: 3rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.05);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            left: -1rem;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            background: #111827;
+            border: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', 'Be Vietnam Pro', sans-serif;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 0.9rem;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+        }
+
+        .step-block h3 {
+            margin-top: 0;
+            padding-top: 0.15rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 6rem;
+            background-color: rgba(11, 15, 25, 0.8);
+            backdrop-filter: var(--glass-blur);
+        }
+
+        footer p {
+            margin: 0;
+            color: var(--text-muted);
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .wrapper {
+                grid-template-columns: 1fr;
+            }
+            aside {
+                display: none;
+            }
+            main {
+                padding: 2rem;
+            }
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <a href="../../index.html" class="logo">
+            <i class="fa-solid fa-compass"></i> ATLAS
+        </a>
+        <a href="../../index.html" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Quay lại trang chủ
+        </a>
+    </nav>
+
+    <header>
+        <div class="badge">
+            <i class="fa-solid fa-gears animate-spin"></i> Hướng Dẫn Kỹ Thuật
+        </div>
+        <h1>Cài Đặt n8n Trên Máy Tính Cá Nhân</h1>
+        <p class="lead">Tự động hóa công việc cá nhân của bạn hoàn toàn miễn phí. Hướng dẫn chi tiết từng bước, đơn giản, trực quan và dễ hiểu dành cho tất cả mọi người (kể cả Non-Tech).</p>
+    </header>
+
+    <div class="wrapper">
+        <main>
+            <section id="introduction">
+                <p>
+                    <strong>n8n</strong> là một công cụ tự động hóa quy trình (workflow automation) cực kỳ mạnh mẽ, giúp bạn kết nối các ứng dụng khác nhau (như Google Sheets, Gmail, Facebook, Telegram...) để tự động chạy các tác vụ lặp đi lặp lại.
+                </p>
+                <p>
+                    Thay vì phải trả phí hàng tháng cho phiên bản Cloud, bạn hoàn toàn có thể tự cài đặt và chạy n8n ngay trên máy tính cá nhân của mình <strong>hoàn toàn miễn phí</strong>. Tài liệu này sẽ hướng dẫn bạn từng bước thực hiện điều đó một cách dễ hiểu nhất, ngay cả khi bạn không có kiến thức về lập trình.
+                </p>
+                
+                <div class="alert-box important">
+                    <div class="alert-icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="alert-content">
+                        <p>
+                            <strong>Lưu ý quan trọng trước khi bắt đầu:</strong> Phiên bản phần mềm n8n Desktop (ứng dụng cài đặt bằng file .exe hoặc .dmg cũ) đã bị n8n ngừng phát triển từ tháng 5/2023. Hiện tại, để chạy n8n trên máy tính cá nhân ổn định, chúng ta sẽ sử dụng các phương pháp cài đặt chính thức dưới đây thông qua dòng lệnh đơn giản hoặc Docker.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <hr/>
+
+            <section id="architecture">
+                <h2>1. Mô hình hoạt động của n8n trên máy tính cá nhân</h2>
+                <p>
+                    Để bạn dễ hình dung, khi cài đặt n8n cục bộ (local), máy tính của bạn sẽ đóng vai trò là một "máy chủ" thu nhỏ:
+                </p>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+                        graph TD
+                            User([Bạn - Trình duyệt Web]) <-->|Truy cập http://localhost:5678| n8nApp[n8n Engine chạy ngầm]
+                            n8nApp <-->|Đọc/Ghi quy trình & thông tin cấu hình| LocalDB[(Cơ sở dữ liệu SQLite cục bộ)]
+                            n8nApp <-->|Gửi/Nhận dữ liệu| Internet((Internet / Google, Facebook, v.v.))
+                            classDef default fill:#1e1b4b,stroke:#4f46e5,stroke-width:2px,color:#f3f4f6;
+                            classDef user fill:#312e81,stroke:#6366f1,stroke-width:2px,color:#ffffff;
+                            classDef db fill:#064e3b,stroke:#10b981,stroke-width:2px,color:#ffffff;
+                            class User user;
+                            class LocalDB db;
+                    </div>
+                </div>
+                <ul>
+                    <li><strong>n8n Engine:</strong> Chương trình chạy ngầm trên máy tính để xử lý các quy trình tự động hóa.</li>
+                    <li><strong>Trình duyệt Web (Chrome, Edge...):</strong> Nơi bạn thiết kế giao diện quy trình bằng cách kéo thả thông qua địa chỉ <code>http://localhost:5678</code>.</li>
+                    <li><strong>Cơ sở dữ liệu cục bộ (SQLite):</strong> File dữ liệu nằm ngay trên ổ cứng của bạn để lưu trữ các workflow và thông tin tài khoản an toàn.</li>
+                </ul>
+            </section>
+
+            <hr/>
+
+            <section id="comparison">
+                <h2>2. So sánh và Lựa chọn Phương pháp Cài đặt</h2>
+                <p>
+                    Dưới đây là hai cách phổ biến nhất để chạy n8n trên máy tính cá nhân. Hãy click chọn phương pháp bạn quan tâm hoặc tham khảo bảng so sánh bên dưới:
+                </p>
+
+                <div class="comparison-grid">
+                    <!-- Method 1 Card Linker -->
+                    <div class="method-card active" onclick="switchMethod('node')" id="card-node">
+                        <h3>Cách 1: Node.js & npx</h3>
+                        <p class="desc">Khởi động nhanh chóng chỉ với 1 dòng lệnh duy nhất, rất nhẹ và không tốn tài nguyên.</p>
+                        <div class="meta-rows">
+                            <div class="meta-row">
+                                <span>Độ khó</span>
+                                <span class="val">⭐ (Rất Dễ)</span>
+                            </div>
+                            <div class="meta-row">
+                                <span>Thời gian thiết lập</span>
+                                <span class="val">~5 phút</span>
+                            </div>
+                            <div class="meta-row">
+                                <span>Độ ổn định</span>
+                                <span class="val">Trung bình</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Method 2 Card Linker -->
+                    <div class="method-card" onclick="switchMethod('docker')" id="card-docker">
+                        <h3>Cách 2: Docker Desktop <span class="recommended-badge">Khuyên dùng</span></h3>
+                        <p class="desc">Chạy ngầm ổn định lâu dài, tự khởi động cùng máy tính và quản lý dữ liệu an toàn tuyệt đối.</p>
+                        <div class="meta-rows">
+                            <div class="meta-row">
+                                <span>Độ khó</span>
+                                <span class="val">⭐⭐⭐ (Khá)</span>
+                            </div>
+                            <div class="meta-row">
+                                <span>Thời gian thiết lập</span>
+                                <span class="val">~15 phút</span>
+                            </div>
+                            <div class="meta-row">
+                                <span>Độ ổn định</span>
+                                <span class="val">Tuyệt đối</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tiêu chí</th>
+                                <th>Cách 1: Sử dụng Node.js & npx</th>
+                                <th>Cách 2: Sử dụng Docker Desktop (Khuyên dùng)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Độ khó</strong></td>
+                                <td>⭐ (Dễ nhất cho người mới bắt đầu)</td>
+                                <td>⭐⭐ (Cần tìm hiểu một chút về Docker)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Yêu cầu hệ thống</strong></td>
+                                <td>Thấp, máy tính văn phòng thông thường.</td>
+                                <td>Trung bình - Khá, cần bật ảo hóa (Virtualization) trong BIOS.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Độ ổn định</strong></td>
+                                <td>Trung bình (Có thể bị ngắt nếu vô tình đóng dòng lệnh).</td>
+                                <td>Rất cao (Tự khởi động cùng hệ thống, cô lập an toàn).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bảo toàn dữ liệu</strong></td>
+                                <td>Dữ liệu được lưu trữ tự động trong profile người dùng.</td>
+                                <td>Dữ liệu lưu riêng ở thư mục bạn tạo, cập nhật n8n không sợ mất.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Phù hợp cho</strong></td>
+                                <td>Trải nghiệm nhanh, test workflow đơn giản.</td>
+                                <td>Sử dụng lâu dài, ổn định làm việc hàng ngày.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <hr/>
+
+            <!-- Tab Container Navigation -->
+            <div class="methods-tabs-nav">
+                <button type="button" class="tab-trigger active" onclick="switchMethod('node')" id="tab-node">
+                    <i class="fa-brands fa-node-js"></i> Cách 1: Node.js & npx (Nhanh chóng)
+                </button>
+                <button type="button" class="tab-trigger" onclick="switchMethod('docker')" id="tab-docker">
+                    <i class="fa-brands fa-docker"></i> Cách 2: Docker Desktop (Ổn định)
+                </button>
+            </div>
+
+            <!-- View Panel: Node.js -->
+            <div class="method-view-panel active" id="view-node">
+                <section id="method-node">
+                    <h2>Cách 1: Cài đặt nhanh bằng Node.js & npx (Đơn giản nhất)</h2>
+                    <p>
+                        Cách này chỉ yêu cầu bạn tải một môi trường quản lý ứng dụng Javascript (Node.js) và chạy một dòng lệnh duy nhất để khởi động n8n.
+                    </p>
+
+                    <div class="step-block">
+                        <div class="step-number">1</div>
+                        <h3>Tải và cài đặt Node.js</h3>
+                        <ol>
+                            <li>Truy cập trang web chính thức của Node.js: <a href="https://nodejs.org/" target="_blank">https://nodejs.org/</a>.</li>
+                            <li>Tải bản <strong>LTS</strong> (bản hỗ trợ lâu dài, khuyên dùng để có độ ổn định tốt nhất).</li>
+                            <li>Mở file tải về (`.msi` trên Windows hoặc `.pkg` trên macOS) và tiến hành cài đặt bằng cách nhấn <strong>Next</strong> liên tục cho đến khi hoàn thành.</li>
+                        </ol>
+                    </div>
+
+                    <div class="step-block">
+                        <div class="step-number">2</div>
+                        <h3>Khởi động n8n bằng Command Line</h3>
+                        <ul>
+                            <li><strong>Trên Windows:</strong> Nhấn phím <code>Windows</code> (hoặc Start), gõ <code>cmd</code> rồi nhấn Enter để mở <strong>Command Prompt</strong>.</li>
+                            <li><strong>Trên macOS:</strong> Nhấn tổ hợp phím <code>Cmd + Space</code>, gõ <code>Terminal</code> rồi nhấn Enter.</li>
+                        </ul>
+                        <p>Sao chép câu lệnh dưới đây, dán vào cửa sổ dòng lệnh và nhấn <strong>Enter</strong>:</p>
+                        
+                        <div class="terminal-block">
+                            <div class="terminal-header">
+                                <div class="terminal-dots">
+                                    <div class="terminal-dot red"></div>
+                                    <div class="terminal-dot yellow"></div>
+                                    <div class="terminal-dot green"></div>
+                                </div>
+                                <div class="terminal-title">bash / cmd</div>
+                                <button type="button" class="copy-btn" data-code="npx n8n">
+                                    <i class="far fa-copy"></i> Sao chép
+                                </button>
+                            </div>
+                            <pre><code>npx n8n</code></pre>
+                        </div>
+
+                        <div class="alert-box note">
+                            <div class="alert-icon">
+                                <i class="fas fa-sticky-note"></i>
+                            </div>
+                            <div class="alert-content">
+                                <p>
+                                    * Ở lần chạy đầu tiên, hệ thống sẽ hỏi bạn đồng ý cài đặt gói n8n không. Hãy gõ <strong>y</strong> (đồng ý) và nhấn <strong>Enter</strong>.<br/>
+                                    * Quá trình tải và thiết lập ban đầu có thể mất từ 1 - 2 phút tùy thuộc vào tốc độ mạng của bạn.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-block">
+                        <div class="step-number">3</div>
+                        <h3>Truy cập giao diện quản trị n8n</h3>
+                        <p>Khi màn hình dòng lệnh hiện thông báo có chứa dòng chữ:</p>
+                        <p><code>n8n ready. Open http://localhost:5678/</code></p>
+                        <p>
+                            Hãy mở trình duyệt web bất kỳ (Chrome, Edge, Safari...) và truy cập địa chỉ sau: <br/>
+                            👉 <strong><a href="http://localhost:5678" target="_blank">http://localhost:5678</a></strong>
+                        </p>
+                        <p>
+                            Ở lần đăng nhập đầu tiên, n8n sẽ yêu cầu bạn tạo một tài khoản Quản trị viên (Email và Mật khẩu tùy ý) để bảo mật thông tin quy trình của bạn.
+                        </p>
+                    </div>
+
+                    <div class="alert-box warning">
+                        <div class="alert-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="alert-content">
+                            <p>
+                                <strong>Điểm yếu của phương pháp này:</strong> Bạn phải luôn giữ cho cửa sổ Command Prompt/Terminal mở. Nếu vô tình tắt cửa sổ này hoặc tắt máy tính, n8n sẽ ngay lập tức ngừng hoạt động.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- View Panel: Docker -->
+            <div class="method-view-panel" id="view-docker">
+                <section id="method-docker">
+                    <h2>Cách 2: Cài đặt bằng Docker Desktop (Khuyên dùng lâu dài)</h2>
+                    <p>
+                        Docker giúp đóng gói n8n vào một môi trường cô lập ("container"). Điều này giúp n8n chạy cực kỳ ổn định, không bị ảnh hưởng bởi phần mềm khác và tự động chạy ngầm mỗi khi bạn mở máy.
+                    </p>
+
+                    <div class="step-block">
+                        <div class="step-number">1</div>
+                        <h3>Kiểm tra bật ảo hóa (Virtualization) trên Windows</h3>
+                        <p>Để chạy được Docker, máy tính Windows của bạn cần được bật ảo hóa trong BIOS.</p>
+                        <ul>
+                            <li><strong>Cách kiểm tra:</strong> Nhấn tổ hợp phím <code>Ctrl + Shift + Esc</code> để mở <strong>Task Manager</strong> -> Chọn tab <strong>Performance</strong> -> Nhìn góc dưới bên phải xem dòng <strong>Virtualization</strong> có đang ở trạng thái <strong>Enabled</strong> hay không.</li>
+                            <li>Nếu là <strong>Disabled</strong>, bạn cần khởi động lại máy tính, truy cập BIOS và bật cài đặt Virtualization (VT-x / AMD-V) lên.</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-block">
+                        <div class="step-number">2</div>
+                        <h3>Tải và cài đặt Docker Desktop</h3>
+                        <ol>
+                            <li>Truy cập trang chủ Docker: <a href="https://www.docker.com/products/docker-desktop/" target="_blank">https://www.docker.com/products/docker-desktop/</a> và tải bộ cài đặt.</li>
+                            <li>Mở file cài đặt và làm theo hướng dẫn trên màn hình. Nếu hệ thống hỏi cài đặt WSL 2, hãy đồng ý và làm theo hướng dẫn liên kết để hoàn tất.</li>
+                            <li>Mở ứng dụng <strong>Docker Desktop</strong> vừa cài đặt, chấp nhận các điều khoản và để nó chạy ngầm (có biểu tượng chú cá voi ở khay hệ thống).</li>
+                        </ol>
+                    </div>
+
+                    <div class="step-block">
+                        <div class="step-number">3</div>
+                        <h3>Tạo thư mục lưu trữ dữ liệu n8n</h3>
+                        <p>
+                            Khi cập nhật n8n hoặc tắt container, dữ liệu của bạn có thể bị mất nếu không lưu trữ ngoài. Chúng ta sẽ tạo một thư mục riêng để lưu trữ workflow an toàn:
+                        </p>
+                        <p>Hãy tạo một thư mục trống tên là <code>n8n_data</code> tại phân vùng ổ đĩa mong muốn, ví dụ: <code>C:\n8n_data</code> (hoặc <code>/Users/Username/n8n_data</code> trên macOS).</p>
+                    </div>
+
+                    <div class="step-block">
+                        <div class="step-number">4</div>
+                        <h3>Kích hoạt n8n bằng Docker lệnh</h3>
+                        <p>Mở <strong>Command Prompt</strong> hoặc <strong>Terminal</strong>, copy dòng lệnh dưới đây (chú ý đổi <code>C:/n8n_data</code> thành đường dẫn thực tế của thư mục bạn đã tạo ở Bước 3) và nhấn Enter:</p>
+                        
+                        <div class="terminal-block">
+                            <div class="terminal-header">
+                                <div class="terminal-dots">
+                                    <div class="terminal-dot red"></div>
+                                    <div class="terminal-dot yellow"></div>
+                                    <div class="terminal-dot green"></div>
+                                </div>
+                                <div class="terminal-title">Docker Run</div>
+                                <button type="button" class="copy-btn" data-code="docker run -d --name n8n -p 5678:5678 -v C:/n8n_data:/home/node/.n8n -e N8N_ENCRYPTION_KEY=my_secure_key_12345 --restart always docker.n8n.io/n8nio/n8n">
+                                    <i class="far fa-copy"></i> Sao chép
+                                </button>
+                            </div>
+                            <pre><code>docker run -d --name n8n -p 5678:5678 -v C:/n8n_data:/home/node/.n8n -e N8N_ENCRYPTION_KEY=my_secure_key_12345 --restart always docker.n8n.io/n8nio/n8n</code></pre>
+                        </div>
+
+                        <p><strong>Giải thích các tham số quan trọng trong dòng lệnh:</strong></p>
+                        <ul>
+                            <li><code>-d</code>: Chạy ngầm chương trình (bạn có thể đóng cửa sổ CMD/Terminal thoải mái).</li>
+                            <li><code>--name n8n</code>: Đặt tên cho tiến trình container này là <code>n8n</code> để dễ quản lý.</li>
+                            <li><code>-p 5678:5678</code>: Liên kết cổng truy cập 5678 từ phần mềm ra trình duyệt web của bạn.</li>
+                            <li><code>-v C:/n8n_data:/home/node/.n8n</code>: Gắn ổ đĩa máy tính vào container để lưu trữ quy trình mãi mãi không mất đi.</li>
+                            <li><code>--restart always</code>: Cấu hình tự khởi động cùng máy tính của bạn khi mở máy.</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-block">
+                        <div class="step-number">5</div>
+                        <h3>Trải nghiệm n8n trên trình duyệt</h3>
+                        <p>
+                            Bây giờ, bạn chỉ cần mở trình duyệt và truy cập <strong><a href="http://localhost:5678" target="_blank">http://localhost:5678</a></strong>. Bạn có thể bật, tắt, hoặc xem các thông số hoạt động của n8n trực quan ngay trong ứng dụng giao diện đồ họa của <strong>Docker Desktop</strong> mà không cần mở Terminal nữa.
+                        </p>
+                    </div>
+                </section>
+            </div>
+
+            <hr/>
+
+            <section id="tips">
+                <h2>3. Các Mẹo Quan trọng cho Người dùng Cá nhân (Local)</h2>
+                <p>Khi chạy n8n trên máy tính cá nhân thay vì máy chủ đám mây, bạn cần lưu ý một số vấn đề thực tế sau:</p>
+
+                <h3>Mẹo 1: Khắc phục giới hạn Webhook cục bộ (Nhận dữ liệu từ ngoài Internet)</h3>
+                <div class="alert-box warning">
+                    <div class="alert-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="alert-content">
+                        <p>
+                            <strong>Giới hạn mạng:</strong> Địa chỉ IP local của bạn (localhost) là nội bộ. Các dịch vụ bên ngoài (như Telegram, Facebook, Google Sheets) không thể tự động đẩy dữ liệu (Webhook) về máy tính cá nhân của bạn nếu không được cấu hình định tuyến.
+                        </p>
+                    </div>
+                </div>
+
+                <p><strong>Giải pháp tối ưu và đơn giản nhất (Sử dụng ngrok):</strong></p>
+                <ol>
+                    <li>Tải công cụ đường ống bảo mật miễn phí <strong>ngrok</strong> tại: <a href="https://ngrok.com/" target="_blank">https://ngrok.com/</a>.</li>
+                    <li>Khởi chạy ngrok để tạo một đường dẫn kết nối công khai nối trực tiếp vào cổng n8n cục bộ bằng câu lệnh:
+                        
+                        <div class="terminal-block">
+                            <div class="terminal-header">
+                                <div class="terminal-dots">
+                                    <div class="terminal-dot red"></div>
+                                    <div class="terminal-dot yellow"></div>
+                                    <div class="terminal-dot green"></div>
+                                </div>
+                                <div class="terminal-title">ngrok console</div>
+                                <button type="button" class="copy-btn" data-code="ngrok http 5678">
+                                    <i class="far fa-copy"></i> Sao chép
+                                </button>
+                            </div>
+                            <pre><code>ngrok http 5678</code></pre>
+                        </div>
+                    </li>
+                    <li>ngrok sẽ tạo một đường dẫn an toàn dạng <code>https://xxxx-xxxx.ngrok-free.app</code>. Hãy copy link này để làm Webhook URL cấu hình trên các API dịch vụ ngoài. Hệ thống bên ngoài sẽ gửi thông tin thông suốt về máy bạn.</li>
+                </ol>
+
+                <h3>Mẹo 2: Sao lưu (Backup) quy trình của bạn thường xuyên</h3>
+                <p>Để đảm bảo không bị mất công sức thiết kế các workflow, hãy thực hiện sao lưu bằng các cách sau:</p>
+                <ul>
+                    <li><strong>Xuất file trực tiếp từ giao diện n8n:</strong> Ở góc trên bên phải giao diện thiết kế workflow -> chọn <strong>Export Workflow</strong> để tải file định dạng <code>.json</code> về máy tính.</li>
+                    <li><strong>Sao lưu thư mục gốc:</strong> Nếu sử dụng phương pháp Docker, hãy copy thư mục <code>n8n_data</code> cất vào Google Drive, OneDrive hoặc USB cá nhân định kỳ.</li>
+                </ul>
+
+                <h3>Mẹo 3: Cập nhật n8n lên phiên bản mới nhất</h3>
+                <ul>
+                    <li><strong>Nếu dùng Node.js:</strong> Nhấn tổ hợp phím <code>Ctrl + C</code> trong Terminal để tắt n8n đang chạy, sau đó chạy lại lệnh khởi động ban đầu. Hệ thống sẽ tự động cập nhật bản mới nhất.</li>
+                    <li><strong>Nếu dùng Docker Desktop:</strong>
+                        <ol>
+                            <li>Mở Docker Desktop -> Tab <strong>Containers</strong> -> Bấm <strong>Stop</strong> và bấm <strong>Delete</strong> container n8n cũ.</li>
+                            <li>Mở dòng lệnh chạy lại câu lệnh ở <strong>Bước 4 của Cách 2</strong>. Docker sẽ tải bản mới nhất về khởi tạo lại. Các workflow cũ không bị mất vì đã được map lưu trữ riêng ở thư mục <code>n8n_data</code> trên ổ đĩa máy tính.</li>
+                        </ol>
+                    </li>
+                </ul>
+            </section>
+
+            <hr/>
+
+            <section id="conclusion">
+                <h2>Kết luận &amp; Khuyến nghị</h2>
+                <p>
+                    Nếu mục tiêu của bạn chỉ là muốn trải nghiệm thử n8n xem các tính năng hoạt động ra sao, hãy chọn <strong>Cách 1 (Node.js)</strong> để nhanh chóng có n8n chạy trong vòng chưa đầy 3 phút.
+                </p>
+                <p>
+                    Nếu bạn xác định sử dụng n8n để phục vụ các công việc hàng ngày lâu dài và tự động, hãy dành thêm thời gian cài đặt theo <strong>Cách 2 (Docker Desktop)</strong>. Ổn định, an toàn và tự khởi động chạy ngầm sẽ giúp tối ưu năng suất làm việc của bạn mà không phải lo lắng về việc duy trì các cửa sổ Terminal phức tạp.
+                </p>
+                <div class="alert-box tip">
+                    <div class="alert-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="alert-content">
+                        <p>
+                            Chúc bạn thiết lập thành công và tạo nên những quy trình tự động hóa tuyệt vời để giải phóng sức lao động!
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <aside>
+            <h4>Mục Lục Chi Tiết</h4>
+            <ul class="toc-list" id="toc">
+                <!-- TOC dynamically generated by JavaScript -->
+            </ul>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2026. Hướng dẫn được thiết kế tự động chuẩn hóa nhằm phục vụ mục đích học tập và tích lũy kiến thức cá nhân.</p>
+    </footer>
+
+    <script>
+        // 1. Toggle between Node.js and Docker Method Views
+        function switchMethod(method) {
+            // Update tabs
+            document.querySelectorAll('.tab-trigger').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById('tab-' + method).classList.add('active');
+
+            // Update cards
+            document.querySelectorAll('.method-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.getElementById('card-' + method).classList.add('active');
+
+            // Update views
+            document.querySelectorAll('.method-view-panel').forEach(view => {
+                view.classList.remove('active');
+            });
+            document.getElementById('view-' + method).classList.add('active');
+
+            // Re-trigger scroll event to update TOC
+            setTimeout(() => {
+                window.dispatchEvent(new Event('scroll'));
+            }, 100);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // 2. Generate Table of Contents (TOC)
+            const mainContent = document.querySelector('main');
+            const tocList = document.getElementById('toc');
+            
+            // Query all H2 and H3 elements inside main
+            const headings = mainContent.querySelectorAll('h2, h3');
+            
+            headings.forEach((heading, index) => {
+                // Generate a unique ID if not present
+                if (!heading.id) {
+                    heading.id = 'heading-' + index;
+                }
+                
+                const li = document.createElement('li');
+                li.className = 'toc-item';
+                if (heading.tagName === 'H3') {
+                    li.style.paddingLeft = '1rem';
+                }
+                
+                const a = document.createElement('a');
+                a.href = '#' + heading.id;
+                a.className = 'toc-link';
+                a.textContent = heading.textContent;
+                
+                li.appendChild(a);
+                tocList.appendChild(li);
+            });
+
+            // 3. Add Copy Button Action
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            copyButtons.forEach((button) => {
+                button.addEventListener('click', function() {
+                    const codeText = button.getAttribute('data-code');
+                    
+                    navigator.clipboard.writeText(codeText).then(function() {
+                        const originalHTML = button.innerHTML;
+                        button.innerHTML = '<i class="fas fa-check"></i> Đã sao chép!';
+                        button.style.backgroundColor = '#10B981';
+                        button.style.borderColor = '#10B981';
+                        button.style.color = '#ffffff';
+                        
+                        setTimeout(function() {
+                            button.innerHTML = originalHTML;
+                            button.style.backgroundColor = '';
+                            button.style.borderColor = '';
+                            button.style.color = '';
+                        }, 2000);
+                    }, function(err) {
+                        console.error('Không thể sao chép: ', err);
+                    });
+                });
+            });
+
+            // 4. Highlight Active Heading in TOC on Scroll
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            function highlightTOC() {
+                // Filter only visible headings
+                const visibleHeadings = Array.from(headings).filter(h => {
+                    const parentView = h.closest('.method-view-panel');
+                    return !parentView || parentView.classList.contains('active');
+                });
+
+                let index = visibleHeadings.length;
+                while(--index && window.scrollY + 120 < visibleHeadings[index].offsetTop) {}
+                
+                tocLinks.forEach((link) => link.classList.remove('active'));
+                if (visibleHeadings.length > 0 && index >= 0) {
+                    const activeLink = document.querySelector(`a[href="#${visibleHeadings[index].id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            }
+            
+            highlightTOC();
+            window.addEventListener('scroll', highlightTOC);
+        });
+    </script>
+</body>
+</html>

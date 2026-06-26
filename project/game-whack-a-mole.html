@@ -1,0 +1,1902 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Whack-a-Workflow — n8n Whack-a-mole Quiz</title>
+  <style>
+    :root{
+      --bg0:#071525;
+      --bg1:#0b2138;
+      --panel:#0f2b47;
+      --panel2:#0c223a;
+      --line:rgba(255,255,255,.10);
+      --text:#e9f2ff;
+      --muted:rgba(233,242,255,.72);
+      --good:#2fe38c;
+      --bad:#ff5b6b;
+      --warn:#ffd24a;
+      --blue:#5cc7ff;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background: radial-gradient(1000px 600px at 15% 5%, rgba(92,199,255,.14), transparent 60%),
+                  radial-gradient(900px 700px at 85% 30%, rgba(47,227,140,.10), transparent 55%),
+                  linear-gradient(180deg, var(--bg0), #040b14 65%, #030812);
+      overflow:hidden;
+    }
+
+    /* Subtle tech grid */
+    .grid-bg{
+      position:fixed; inset:0;
+      background-image: none;
+      background-size: 48px 48px;
+      opacity:.35;
+      mask-image: radial-gradient(circle at 30% 20%, rgba(0,0,0,1), transparent 65%);
+      pointer-events:none;
+    }
+    .glow{
+      position:fixed; inset:-20%;
+      background: radial-gradient(circle at 40% 35%, rgba(92,199,255,.10), transparent 45%),
+                  radial-gradient(circle at 60% 55%, rgba(255,210,74,.08), transparent 45%),
+                  radial-gradient(circle at 30% 70%, rgba(47,227,140,.08), transparent 45%);
+      filter: blur(20px);
+      pointer-events:none;
+      animation: floatGlow 10s ease-in-out infinite alternate;
+      opacity:.75;
+    }
+    @keyframes floatGlow{
+      from{ transform: translate3d(-1%, -1%, 0) scale(1); }
+      to  { transform: translate3d(1%, 1%, 0) scale(1.02); }
+    }
+
+    /* Layout */
+    .app{
+      position:relative;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+    }
+    header{
+      position:sticky; top:0;
+      z-index:10;
+      background: linear-gradient(180deg, rgba(7,21,37,.92), rgba(7,21,37,.68));
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .header-inner{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 10px 14px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 220px;
+    }
+    .logo{
+      width:38px; height:38px;
+      border-radius:12px;
+      background: radial-gradient(circle at 30% 30%, rgba(92,199,255,.9), rgba(92,199,255,.2)),
+                  linear-gradient(135deg, rgba(47,227,140,.35), rgba(255,210,74,.18));
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.12);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:-30%;
+      background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,.28) 50%, transparent 65%);
+      transform: rotate(12deg);
+      animation: shimmer 2.8s linear infinite;
+      opacity:.75;
+    }
+    @keyframes shimmer{ from{ transform: translateX(-40%) rotate(12deg);} to{ transform: translateX(40%) rotate(12deg);} }
+
+    .brand h1{
+      font-size: 14px;
+      margin:0;
+      line-height:1.15;
+      letter-spacing:.2px;
+    }
+    .brand .sub{
+      font-size: 12px;
+      color: var(--muted);
+      margin-top:2px;
+    }
+
+    .hud{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .pill{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 10px 20px rgba(0,0,0,.18);
+      min-width: 128px;
+      justify-content:center;
+    }
+    .pill .k{ font-size:12px; color:var(--muted); }
+    .pill .v{ font-weight: 700; font-size:13px; font-family: var(--mono); }
+    .pill .dot{
+      width:9px;height:9px;border-radius:999px;
+      background: var(--blue);
+      box-shadow: 0 0 14px rgba(92,199,255,.5);
+    }
+    .pill.good .dot{ background: var(--good); box-shadow: 0 0 14px rgba(47,227,140,.5); }
+    .pill.bad .dot{ background: var(--bad); box-shadow: 0 0 14px rgba(255,91,107,.5); }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+      min-width: 260px;
+    }
+    button{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius: 12px;
+      padding: 10px 12px;
+      color: var(--text);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      transition: transform .08s ease, background .18s ease, border-color .18s ease;
+      box-shadow: 0 12px 24px rgba(0,0,0,.18);
+      font-weight: 700;
+      letter-spacing:.2px;
+    }
+    button:hover{ background: rgba(255,255,255,.11); border-color: rgba(255,255,255,.18);}
+    button:active{ transform: translateY(1px) scale(.99);}
+    button.primary{
+      background: linear-gradient(135deg, rgba(92,199,255,.35), rgba(47,227,140,.22));
+      border-color: rgba(92,199,255,.35);
+    }
+    button.danger{
+      background: rgba(255,91,107,.14);
+      border-color: rgba(255,91,107,.30);
+    }
+    button.ghost{
+      background: transparent;
+      border-color: rgba(255,255,255,.12);
+      box-shadow:none;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      color: var(--muted);
+      user-select:none;
+      cursor:pointer;
+      transition: background .18s ease, border-color .18s ease;
+    }
+    .chip:hover{ background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.16); }
+    .chip input{ display:none; }
+    .chip.on{ color: var(--text); border-color: rgba(92,199,255,.30); box-shadow: 0 0 0 2px rgba(92,199,255,.10) inset; }
+    .chip .toggle{
+      width:34px;height:18px;border-radius:999px;
+      background: rgba(255,255,255,.14);
+      position:relative;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .chip .toggle:after{
+      content:"";
+      width:14px;height:14px;border-radius:999px;
+      position:absolute; top:1px; left:2px;
+      background: rgba(255,255,255,.80);
+      transition: transform .18s ease, background .18s ease;
+    }
+    .chip.on .toggle{ background: rgba(92,199,255,.22); border-color: rgba(92,199,255,.30); }
+    .chip.on .toggle:after{ transform: translateX(16px); background: rgba(92,199,255,.90); }
+
+    main{
+      flex:1;
+      display:flex;
+      gap:12px;
+      padding: 12px 14px 14px;
+      max-width: 1400px;
+      margin: 0 auto;
+      width:100%;
+      min-height:0;
+    }
+
+    /* Left panel: prompt/question */
+    .panel{
+      background: linear-gradient(180deg, rgba(15,43,71,.78), rgba(12,34,58,.72));
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-width: 330px;
+      flex: 1.05;
+      min-height:0;
+    }
+    .panel .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 12px 12px 10px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,0,0,.10);
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .badge .icon{ font-size:14px; }
+    .panel .content{
+      padding: 12px 14px 14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-height:0;
+    }
+    .q{
+      font-size: 16px;
+      line-height: 1.35;
+      margin:0;
+    }
+    .meta-row{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      color: var(--muted);
+      font-size:12px;
+    }
+    .tag{
+      font-family: var(--mono);
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+    }
+
+    .hint-exp{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin-top: 6px;
+    }
+    .box{
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.12);
+      padding: 10px 10px;
+    }
+    .box .title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      font-size:12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .box .body{
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.35;
+      white-space: pre-wrap;
+    }
+    .box.hidden .body{ display:none; }
+    .box.hidden{ background: rgba(0,0,0,.08); }
+    .reveal-row{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:auto;
+      padding-top: 6px;
+    }
+    .reveal-row button{ flex:1; min-width: 140px; }
+    .reveal-row .small{
+      padding: 10px 10px;
+      font-weight: 800;
+      border-radius: 12px;
+    }
+
+    /* Right: game board */
+    .board{
+      background: linear-gradient(180deg, rgba(15,43,71,.78), rgba(12,34,58,.72));
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      flex: 1.35;
+      min-height:0;
+    }
+    .board .topbar{
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      background: rgba(0,0,0,.10);
+    }
+    .board .topbar .left{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .board .topbar .right{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .progressbar{
+      width: 220px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+    }
+    .progressbar > div{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, rgba(92,199,255,.85), rgba(47,227,140,.85));
+      border-radius: 999px;
+      transition: width .25s ease;
+    }
+
+    .play-area{
+      flex:1;
+      padding: 14px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:0;
+    }
+
+    /* Holes grid */
+    .holes{
+      flex:1;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      min-height: 280px;
+    }
+    @media (max-width: 980px){
+      main{flex-direction:column; overflow:auto;}
+      body{overflow:auto;}
+      .panel,.board{min-width: unset;}
+      .holes{min-height: 260px;}
+    }
+    @media (max-width: 520px){
+      .holes{grid-template-columns: repeat(2, 1fr);}
+      .progressbar{width: 160px;}
+      .brand{min-width: 160px;}
+      .actions{min-width: 210px;}
+    }
+
+    .hole{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: radial-gradient(100px 80px at 50% 70%, rgba(0,0,0,.35), rgba(0,0,0,.10)),
+                  linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      position:relative;
+      overflow:hidden;
+      box-shadow: 0 16px 26px rgba(0,0,0,.24);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      user-select:none;
+      transform: translateZ(0);
+    }
+    .hole:before{
+      content:"";
+      position:absolute; inset: -1px -1px auto -1px;
+      height: 32%;
+      background: linear-gradient(180deg, rgba(92,199,255,.10), transparent);
+      opacity:.65;
+      pointer-events:none;
+    }
+
+    .mole{
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      border-radius: 16px;
+      transform: translateY(18px) scale(.92);
+      opacity:0;
+      pointer-events:none;
+      transition: transform .16s ease, opacity .16s ease;
+    }
+    .mole.show{
+      transform: translateY(0) scale(1);
+      opacity:1;
+      pointer-events:auto;
+    }
+    .mole .card{
+      width:100%;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:8px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+      padding: 10px;
+    }
+    .mole .emoji{
+      font-size: 28px;
+      line-height: 1;
+    }
+    .mole .label{
+      font-size: 13px;
+      line-height: 1.25;
+      color: var(--text);
+      font-weight: 800;
+      letter-spacing: .1px;
+    }
+    .mole .sub{
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.3;
+      font-family: var(--mono);
+    }
+
+    .mole.correct .card{
+      background: radial-gradient(200px 120px at 30% 20%, rgba(47,227,140,.18), rgba(0,0,0,.22));
+      border-color: rgba(47,227,140,.34);
+    }
+    .mole.wrong .card{
+      background: radial-gradient(200px 120px at 30% 20%, rgba(255,91,107,.16), rgba(0,0,0,.22));
+      border-color: rgba(255,91,107,.34);
+    }
+
+    /* Feedback toast */
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom: 16px;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(0,0,0,.65);
+      border: 1px solid rgba(255,255,255,.14);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .2s ease, transform .2s ease;
+      max-width: min(860px, calc(100% - 24px));
+      z-index: 50;
+      backdrop-filter: blur(10px);
+    }
+    .toast.show{
+      opacity:1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .toast .row{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .toast .big{
+      font-size: 18px;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .toast .txt{
+      font-size: 13px;
+      line-height: 1.35;
+      color: var(--text);
+      white-space: pre-wrap;
+    }
+    .toast .muted{ color: var(--muted); font-size: 12px; margin-top: 2px; }
+
+    /* Modal (Teacher) */
+    .modal{
+      position:fixed; inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:100;
+      background: rgba(0,0,0,.60);
+      backdrop-filter: blur(10px);
+      padding: 16px;
+    }
+    .modal.open{ display:flex; }
+    .modal .dialog{
+      width: min(980px, 100%);
+      max-height: min(90vh, 880px);
+      background: linear-gradient(180deg, rgba(15,43,71,.92), rgba(12,34,58,.90));
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+    .dialog header{
+      position:unset;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,0,0,.18);
+    }
+    .dialog .inner{
+      padding: 12px 12px 14px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 12px;
+      overflow:auto;
+    }
+    @media (max-width: 920px){
+      .dialog .inner{ grid-template-columns: 1fr; }
+    }
+    textarea{
+      width:100%;
+      min-height: 280px;
+      resize: vertical;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      padding: 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.35;
+      outline:none;
+    }
+    textarea:focus{
+      border-color: rgba(92,199,255,.40);
+      box-shadow: 0 0 0 3px rgba(92,199,255,.10);
+    }
+    .field{
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.10);
+      padding: 10px;
+    }
+    .field label{
+      display:block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .field input, .field select{
+      width:100%;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.14);
+      color: var(--text);
+      padding: 10px;
+      font-weight: 700;
+      outline:none;
+    }
+    .field input:focus, .field select:focus{
+      border-color: rgba(92,199,255,.40);
+      box-shadow: 0 0 0 3px rgba(92,199,255,.10);
+    }
+    .mini{
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .row2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .dialog .footer{
+      padding: 12px;
+      border-top: 1px solid var(--line);
+      display:flex;
+      gap:10px;
+      justify-content:flex-end;
+      flex-wrap:wrap;
+      background: rgba(0,0,0,.12);
+    }
+    .kbd{
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: var(--muted);
+    }
+    .status{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+    }
+    .status .led{
+      width:10px;height:10px;border-radius:999px;background: var(--warn);
+      box-shadow: 0 0 16px rgba(255,210,74,.4);
+    }
+    .status.on .led{ background: var(--good); box-shadow: 0 0 16px rgba(47,227,140,.45); }
+    .status.on{ color: var(--text); border-color: rgba(47,227,140,.28); }
+
+    /* Footer help */
+    footer{
+      padding: 10px 14px 14px;
+      max-width: 1400px;
+      margin: 0 auto;
+      width:100%;
+      color: var(--muted);
+      font-size: 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      border-top: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.18));
+    }
+    footer .help{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none !important; transition:none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glow"></div>
+  <div class="grid-bg"></div>
+
+  <div class="app" id="app">
+    <header>
+      <div class="header-inner">
+        <div class="brand" title="Whack-a-Workflow (n8n Whack-a-mole)">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <h1>Whack-a-Workflow</h1>
+            <div class="sub">n8n Whack-a-mole Quiz • offline • 5–15 phút</div>
+          </div>
+        </div>
+
+        <div class="hud" aria-label="HUD">
+          <div class="pill good" title="Thời gian còn lại">
+            <span class="dot"></span>
+            <span class="k">Timer</span>
+            <span class="v" id="hudTimer">00:00</span>
+          </div>
+          <div class="pill" title="Điểm số">
+            <span class="dot"></span>
+            <span class="k">Score</span>
+            <span class="v" id="hudScore">0</span>
+          </div>
+          <div class="pill" title="Chuỗi combo">
+            <span class="dot"></span>
+            <span class="k">Combo</span>
+            <span class="v" id="hudCombo">x0</span>
+          </div>
+          <div class="pill bad" title="Penalty (sai/đập nhầm)">
+            <span class="dot"></span>
+            <span class="k">Penalty</span>
+            <span class="v" id="hudPenalty">0</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="primary" id="btnStart" title="Bắt đầu / Tiếp tục (Space)">▶ Start</button>
+          <button class="ghost" id="btnPause" title="Tạm dừng (Esc)">⏸ Pause</button>
+          <button class="danger" id="btnReset" title="Reset game">↺ Reset</button>
+          <div class="chip" id="chipTeacher" title="Teacher Mode">
+            <span>👩‍🏫 Teacher</span>
+            <span class="toggle" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Left panel -->
+      <section class="panel" aria-label="Question Panel">
+        <div class="topbar">
+          <div class="badge" id="roundBadge">
+            <span class="icon">🧩</span>
+            <span><b>Round</b>: <span id="hudRound">0</span>/<span id="hudTotal">0</span></span>
+          </div>
+          <div class="badge">
+            <span class="icon">⌨️</span>
+            <span class="kbd">Space</span> Next • <span class="kbd">R</span> Reveal • <span class="kbd">Esc</span> Pause
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="meta-row">
+            <span class="tag" id="tagTopic">TOPIC:n8n</span>
+            <span class="tag" id="tagDifficulty">LEVEL:mix</span>
+            <span class="tag" id="tagMode">MODE:Whack</span>
+          </div>
+
+          <p class="q" id="qText">
+            Nhấn <b>Start</b> để bắt đầu. Khi “mục tiêu đúng” xuất hiện, hãy đập nhanh! 💥
+          </p>
+
+          <div class="hint-exp">
+            <div class="box hidden" id="hintBox">
+              <div class="title">
+                <span>💡 Gợi ý</span>
+                <span class="kbd">R</span>
+              </div>
+              <div class="body" id="hintText">—</div>
+            </div>
+
+            <div class="box hidden" id="expBox">
+              <div class="title">
+                <span>🔍 Giải thích</span>
+                <span class="kbd">R</span>
+              </div>
+              <div class="body" id="expText">—</div>
+            </div>
+          </div>
+
+          <div class="reveal-row">
+            <button class="small" id="btnNext" title="Câu tiếp theo (Space)">⏭ Next</button>
+            <button class="small" id="btnReveal" title="Hiện Gợi ý/Giải thích (R)">🪄 Reveal</button>
+            <button class="small" id="btnExport" title="Xuất kết quả CSV">⬇ Export CSV</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right board -->
+      <section class="board" aria-label="Game Board">
+        <div class="topbar">
+          <div class="left">
+            <div class="status" id="statusGame">
+              <span class="led"></span>
+              <span id="statusText">READY</span>
+            </div>
+            <div class="badge" title="Luật chơi nhanh">
+              <span class="icon">🎯</span>
+              <span><b>Đập đúng</b> + điểm • <b>Đập sai</b> - điểm • Combo tăng thưởng</span>
+            </div>
+          </div>
+          <div class="right">
+            <div class="badge" title="Progress">
+              <span class="icon">📌</span>
+              <span>Progress</span>
+            </div>
+            <div class="progressbar" aria-label="Progress bar">
+              <div id="progressFill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="play-area">
+          <div class="holes" id="holes" aria-label="Whack holes">
+            <!-- 9 holes -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="help">
+        <span class="badge"><span class="icon">🧠</span> Mẹo lớp học: chia 2 đội, mỗi lượt 1 bạn lên đập 10s</span>
+        <span class="badge"><span class="icon">⚙️</span> Teacher Mode: chỉnh timer, độ khó, bộ câu hỏi</span>
+      </div>
+      <div class="help">
+        <span class="badge"><span class="icon">📄</span> Offline: dữ liệu nằm trong <span class="kbd">CONFIG</span> đầu file</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Teacher Modal -->
+  <div class="modal" id="teacherModal" role="dialog" aria-modal="true" aria-labelledby="teacherTitle">
+    <div class="dialog">
+      <header>
+        <div class="header-inner" style="padding:10px 12px; max-width:unset;">
+          <div class="brand" style="min-width:unset;">
+            <div class="logo" style="width:34px;height:34px;border-radius:12px;"></div>
+            <div>
+              <h1 id="teacherTitle" style="font-size:14px;margin:0;">Teacher Mode</h1>
+              <div class="sub" style="font-size:12px;">Chỉnh cấu hình • dán JSON • kiểm tra nhanh</div>
+            </div>
+          </div>
+          <div class="actions" style="min-width:unset;">
+            <button class="ghost" id="btnCloseTeacher">✕ Close</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="inner">
+        <div class="field">
+          <label>CONFIG (JSON) — câu hỏi/keyword demo về n8n</label>
+          <textarea id="configEditor" spellcheck="false"></textarea>
+          <div class="mini" style="margin-top:8px;">
+            Gợi ý: Mỗi câu nên có <span class="kbd">question</span>, <span class="kbd">correct</span> (keyword đúng),
+            <span class="kbd">decoys</span> (keyword sai), <span class="kbd">hint</span>, <span class="kbd">explanation</span>.
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div class="row2">
+            <div class="field">
+              <label>Thời lượng game (phút)</label>
+              <input id="inpMinutes" type="number" min="1" max="15" step="1" />
+            </div>
+            <div class="field">
+              <label>Tốc độ (ms) — càng thấp càng nhanh</label>
+              <input id="inpTick" type="number" min="350" max="1600" step="50" />
+            </div>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label>Thời gian hiển thị 1 “mole” (ms)</label>
+              <input id="inpMoleLife" type="number" min="250" max="1400" step="50" />
+            </div>
+            <div class="field">
+              <label>Tỉ lệ “mục tiêu đúng” (%)</label>
+              <input id="inpCorrectRate" type="number" min="10" max="90" step="5" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Chế độ câu hỏi</label>
+            <select id="selMode">
+              <option value="keyword">Keyword (đập đúng keyword)</option>
+              <option value="statement">Statement (đập phát biểu đúng)</option>
+            </select>
+            <div class="mini" style="margin-top:8px;">
+              * Keyword: mỗi lượt sẽ có 1 keyword đúng + nhiều keyword nhiễu.<br/>
+              * Statement: “mole” là các phát biểu; chọn phát biểu đúng.
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Quick checklist</label>
+            <div class="mini">
+              ✅ 16:9 + responsive • ✅ Timer/Score/Progress • ✅ Teacher Mode • ✅ Export CSV • ✅ Offline<br/>
+              ⌨️ Phím tắt: <span class="kbd">Space</span> Next, <span class="kbd">R</span> Reveal, <span class="kbd">Esc</span> Pause
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <button class="ghost" id="btnLoadSample">↩ Load Sample</button>
+        <button class="danger" id="btnApplyConfig">✅ Apply & Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <div class="row">
+      <div class="big" id="toastIcon">🎯</div>
+      <div>
+        <div class="txt" id="toastText"></div>
+        <div class="muted" id="toastSub"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /********************************************************************
+     * CONFIG — Chỉnh ở Teacher Mode hoặc sửa trực tiếp dưới đây
+     * Topic: Tự động hóa với n8n (demo 10–20)
+     ********************************************************************/
+    const SAMPLE_CONFIG = {
+      meta: {
+        topic: "Tự động hóa với n8n",
+        level: "mix",
+        version: "1.0",
+      },
+      settings: {
+        minutes: 6,           // 1–15
+        tickMs: 900,          // nhịp spawn (ms)
+        moleLifeMs: 850,      // thời gian hiển thị 1 mole (ms)
+        correctRate: 55,      // % xuất hiện mục tiêu đúng
+        mode: "keyword"       // keyword | statement
+      },
+      // Mỗi item là 1 "round" (câu hỏi / chủ đề) -> game sẽ xoay vòng
+      items: [
+        {
+          id: "n8n-001",
+          tags: ["basics","workflow"],
+          question: "Trong n8n, thành phần nào đại diện cho một bước xử lý (gọi API, biến đổi dữ liệu, điều kiện...)?",
+          correct: { label: "Node", emoji:"🧩" },
+          decoys: [
+            { label:"Branch", emoji:"🌿" },
+            { label:"Ticket", emoji:"🎫" },
+            { label:"Widget", emoji:"🧱" },
+            { label:"Template", emoji:"📄" }
+          ],
+          hint: "💡 Đây là khối cơ bản nhất trong workflow.",
+          explanation: "✅ Node là đơn vị xử lý trong n8n. ❌ Branch chỉ là nhánh logic; Template/Widget không phải khái niệm cốt lõi của n8n."
+        },
+        {
+          id: "n8n-002",
+          tags: ["trigger"],
+          question: "Node nào thường dùng để kích hoạt workflow theo lịch (cron) trong n8n?",
+          correct: { label: "Cron", emoji:"⏰" },
+          decoys: [
+            { label:"HTTP Request", emoji:"🌐" },
+            { label:"Set", emoji:"✍️" },
+            { label:"Merge", emoji:"🔀" },
+            { label:"NoOp", emoji:"🫥" }
+          ],
+          hint: "💡 Liên quan đến chạy theo phút/giờ/ngày.",
+          explanation: "✅ Cron Trigger chạy theo lịch. ❌ HTTP Request gọi API; Set gán biến; Merge hợp dòng dữ liệu."
+        },
+        {
+          id: "n8n-003",
+          tags: ["webhook","integration"],
+          question: "Muốn nhận dữ liệu từ hệ thống bên ngoài gọi vào n8n theo URL, dùng node nào?",
+          correct: { label: "Webhook", emoji:"🪝" },
+          decoys: [
+            { label:"Email Trigger", emoji:"✉️" },
+            { label:"Schedule", emoji:"🗓️" },
+            { label:"IF", emoji:"🧠" },
+            { label:"SplitInBatches", emoji:"📦" }
+          ],
+          hint: "💡 Đây là endpoint để hệ thống khác 'đẩy' dữ liệu vào.",
+          explanation: "✅ Webhook tạo URL để nhận request. ❌ Email Trigger nhận email; IF là điều kiện; SplitInBatches dùng chia batch."
+        },
+        {
+          id: "n8n-004",
+          tags: ["data","transform"],
+          question: "Node nào thường dùng để gán/chuẩn hóa field dữ liệu đầu ra (set fields) trong n8n?",
+          correct: { label: "Set", emoji:"✍️" },
+          decoys: [
+            { label:"Read Binary File", emoji:"📁" },
+            { label:"Execute Command", emoji:"💻" },
+            { label:"NoOp", emoji:"🫥" },
+            { label:"Wait", emoji:"⏳" }
+          ],
+          hint: "💡 Dùng để tạo/chọn/đổi tên field.",
+          explanation: "✅ Set node dùng chỉnh fields. ❌ Wait chỉ chờ; Execute Command chạy lệnh; Read Binary File đọc file."
+        },
+        {
+          id: "n8n-005",
+          tags: ["logic","condition"],
+          question: "Trong n8n, để rẽ nhánh theo điều kiện đúng/sai, bạn thường dùng node nào?",
+          correct: { label: "IF", emoji:"🧠" },
+          decoys: [
+            { label:"Merge", emoji:"🔀" },
+            { label:"Move Binary Data", emoji:"🧬" },
+            { label:"Code", emoji:"🧑‍💻" },
+            { label:"Delay", emoji:"🐢" }
+          ],
+          hint: "💡 Tên node chính là cấu trúc điều kiện phổ biến.",
+          explanation: "✅ IF tạo nhánh true/false. ❌ Merge hợp dữ liệu; Code chạy script; Delay/Wait là chờ."
+        },
+        {
+          id: "n8n-006",
+          tags: ["api","http"],
+          question: "Node nào dùng để gọi REST API/HTTP endpoint trong n8n?",
+          correct: { label: "HTTP Request", emoji:"🌐" },
+          decoys: [
+            { label:"Webhook", emoji:"🪝" },
+            { label:"Cron", emoji:"⏰" },
+            { label:"IF", emoji:"🧠" },
+            { label:"SplitInBatches", emoji:"📦" }
+          ],
+          hint: "💡 Tên node nói thẳng nhiệm vụ: gửi request.",
+          explanation: "✅ HTTP Request gọi API. ❌ Webhook nhận request; Cron theo lịch; IF rẽ nhánh; SplitInBatches chia batch."
+        },
+        {
+          id: "n8n-007",
+          tags: ["loop","batch"],
+          question: "Khi cần xử lý danh sách lớn theo từng nhóm nhỏ (batch), dùng node nào phù hợp?",
+          correct: { label: "SplitInBatches", emoji:"📦" },
+          decoys: [
+            { label:"Merge", emoji:"🔀" },
+            { label:"Set", emoji:"✍️" },
+            { label:"Wait", emoji:"⏳" },
+            { label:"NoOp", emoji:"🫥" }
+          ],
+          hint: "💡 Tên node có chữ 'Batches'.",
+          explanation: "✅ SplitInBatches xử lý theo batch. ❌ Merge hợp dữ liệu; Wait là chờ; NoOp không làm gì."
+        },
+        {
+          id: "n8n-008",
+          tags: ["data","combine"],
+          question: "Trong n8n, để hợp nhất dữ liệu từ 2 nhánh workflow, node nào thường dùng?",
+          correct: { label: "Merge", emoji:"🔀" },
+          decoys: [
+            { label:"IF", emoji:"🧠" },
+            { label:"Cron", emoji:"⏰" },
+            { label:"Webhook", emoji:"🪝" },
+            { label:"Set", emoji:"✍️" }
+          ],
+          hint: "💡 Tên node nghĩa là 'gộp'.",
+          explanation: "✅ Merge dùng để gộp/merge streams. ❌ IF/Cron/Webhook/Set không phải để hợp nhánh."
+        },
+        {
+          id: "n8n-009",
+          tags: ["debug","ops"],
+          question: "Một best practice khi workflow lỗi: bạn nên làm gì trước để xác định node gây lỗi?",
+          correct: { label: "Xem Execution data/Logs", emoji:"🧾" },
+          decoys: [
+            { label:"Xóa workflow và làm lại", emoji:"🗑️" },
+            { label:"Tăng timer lên 15 phút", emoji:"⏱️" },
+            { label:"Tắt hết trigger vĩnh viễn", emoji:"🚫" },
+            { label:"Đổi tên tất cả node", emoji:"🏷️" }
+          ],
+          hint: "💡 Bắt đầu từ dữ liệu chạy thực tế (execution).",
+          explanation: "✅ Execution data/logs cho biết input/output từng node. ❌ Xóa/tắt vĩnh viễn/đổi tên không giải quyết gốc rễ."
+        },
+        {
+          id: "n8n-010",
+          tags: ["security","ops"],
+          question: "Để bảo vệ credential/API key trong n8n, bạn nên lưu ở đâu?",
+          correct: { label: "Credentials (vault) của n8n", emoji:"🔐" },
+          decoys: [
+            { label:"Ghi thẳng vào Set node", emoji:"✍️" },
+            { label:"Dán vào ghi chú workflow", emoji:"📝" },
+            { label:"Gửi vào Slack công khai", emoji:"📣" },
+            { label:"Hard-code trong Code node", emoji:"🧑‍💻" }
+          ],
+          hint: "💡 Nơi quản lý tập trung, phân quyền, thay đổi an toàn.",
+          explanation: "✅ Credentials của n8n quản lý bí mật an toàn. ❌ Hard-code/dán công khai dễ rò rỉ."
+        },
+        {
+          id: "n8n-011",
+          tags: ["pattern","retry"],
+          question: "Khi API thỉnh thoảng lỗi (429/5xx), giải pháp phù hợp là gì?",
+          correct: { label: "Retry + Backoff", emoji:"♻️" },
+          decoys: [
+            { label:"Gọi lại liên tục không delay", emoji:"🏃" },
+            { label:"Tắt hẳn workflow", emoji:"🚫" },
+            { label:"Bỏ qua lỗi mọi lúc", emoji:"🙈" },
+            { label:"Giảm log để đỡ thấy lỗi", emoji:"🫥" }
+          ],
+          hint: "💡 Thử lại có kiểm soát và giãn cách.",
+          explanation: "✅ Retry/backoff giúp ổn định và tôn trọng rate limit. ❌ Spam request dễ bị block; bỏ qua lỗi làm mất dữ liệu."
+        },
+        {
+          id: "n8n-012",
+          tags: ["design","idempotency"],
+          question: "Khái niệm giúp tránh chạy trùng thao tác khi workflow bị retry là gì?",
+          correct: { label: "Idempotency", emoji:"🧷" },
+          decoys: [
+            { label:"Obfuscation", emoji:"🫥" },
+            { label:"Normalization", emoji:"📏" },
+            { label:"Minification", emoji:"🗜️" },
+            { label:"Pagination", emoji:"📄" }
+          ],
+          hint: "💡 Một request chạy lại vẫn cho kết quả như 1 lần chạy.",
+          explanation: "✅ Idempotency giúp không tạo bản ghi trùng khi retry. ❌ Các lựa chọn khác không đúng ngữ cảnh."
+        },
+        {
+          id: "n8n-013",
+          tags: ["practice","ops"],
+          question: "Trong automation, ưu tiên nào giúp workflow bền vững nhất?",
+          correct: { label: "Quan sát + cảnh báo (monitoring)", emoji:"📡" },
+          decoys: [
+            { label:"Thêm thật nhiều node không cần thiết", emoji:"🧱" },
+            { label:"Chỉ test một lần rồi thôi", emoji:"🧪" },
+            { label:"Giấu lỗi để 'đỡ phiền'", emoji:"🙃" },
+            { label:"Chạy mọi thứ bằng tài khoản admin", emoji:"👑" }
+          ],
+          hint: "💡 Bạn cần nhìn thấy sớm khi có vấn đề.",
+          explanation: "✅ Monitoring/alert giúp phát hiện và xử lý sớm. ❌ Admin quá quyền & giấu lỗi là rủi ro lớn."
+        },
+        {
+          id: "n8n-014",
+          tags: ["design","data"],
+          question: "Một nguyên tắc tốt khi đặt tên node/workflow để dễ bảo trì là gì?",
+          correct: { label: "Tên mô tả hành động + hệ thống", emoji:"🏷️" },
+          decoys: [
+            { label:"Đặt tên 'test1', 'test2' cho nhanh", emoji:"⚡" },
+            { label:"Không đặt tên để khỏi rối", emoji:"🫥" },
+            { label:"Tên thật dài và khó đọc", emoji:"📚" },
+            { label:"Đặt tên giống nhau cho tất cả", emoji:"🧩" }
+          ],
+          hint: "💡 Người khác đọc tên là hiểu ngay node làm gì.",
+          explanation: "✅ Tên mô tả giúp maintain tốt. ❌ Tên vô nghĩa/giống nhau gây khó debug và chuyển giao."
+        }
+      ]
+    };
+
+    /********************************************************************
+     * App State
+     ********************************************************************/
+    const $ = (s, el=document) => el.querySelector(s);
+    const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+
+    const els = {
+      hudTimer: $("#hudTimer"),
+      hudScore: $("#hudScore"),
+      hudCombo: $("#hudCombo"),
+      hudPenalty: $("#hudPenalty"),
+      hudRound: $("#hudRound"),
+      hudTotal: $("#hudTotal"),
+      progressFill: $("#progressFill"),
+      statusGame: $("#statusGame"),
+      statusText: $("#statusText"),
+      qText: $("#qText"),
+      hintBox: $("#hintBox"),
+      hintText: $("#hintText"),
+      expBox: $("#expBox"),
+      expText: $("#expText"),
+      btnStart: $("#btnStart"),
+      btnPause: $("#btnPause"),
+      btnReset: $("#btnReset"),
+      btnNext: $("#btnNext"),
+      btnReveal: $("#btnReveal"),
+      btnExport: $("#btnExport"),
+      holes: $("#holes"),
+      chipTeacher: $("#chipTeacher"),
+      teacherModal: $("#teacherModal"),
+      btnCloseTeacher: $("#btnCloseTeacher"),
+      btnApplyConfig: $("#btnApplyConfig"),
+      btnLoadSample: $("#btnLoadSample"),
+      configEditor: $("#configEditor"),
+      inpMinutes: $("#inpMinutes"),
+      inpTick: $("#inpTick"),
+      inpMoleLife: $("#inpMoleLife"),
+      inpCorrectRate: $("#inpCorrectRate"),
+      selMode: $("#selMode"),
+      tagTopic: $("#tagTopic"),
+      tagDifficulty: $("#tagDifficulty"),
+      tagMode: $("#tagMode"),
+      toast: $("#toast"),
+      toastIcon: $("#toastIcon"),
+      toastText: $("#toastText"),
+      toastSub: $("#toastSub"),
+    };
+
+    let CONFIG = deepClone(SAMPLE_CONFIG);
+
+    const state = {
+      running: false,
+      paused: false,
+      startedAt: 0,
+      remainingMs: 0,
+      tickHandle: null,
+      timerHandle: null,
+
+      roundIndex: -1,
+      score: 0,
+      combo: 0,
+      penalty: 0,
+
+      // per round
+      current: null,
+      revealed: false,
+      shownMoles: new Map(), // holeIndex -> moleData
+      history: [], // events for CSV
+      totalRounds: 0,
+
+      // spawn
+      lastHole: -1,
+      moleTimeouts: [],
+    };
+
+    /********************************************************************
+     * Build UI: holes
+     ********************************************************************/
+    function buildHoles(){
+      els.holes.innerHTML = "";
+      const count = 9;
+      for(let i=0;i<count;i++){
+        const hole = document.createElement("div");
+        hole.className = "hole";
+        hole.setAttribute("data-hole", String(i));
+        const mole = document.createElement("div");
+        mole.className = "mole";
+        mole.innerHTML = `
+          <div class="card">
+            <div class="emoji" aria-hidden="true">🎯</div>
+            <div class="label">—</div>
+            <div class="sub">Tap/Click</div>
+          </div>
+        `;
+        hole.appendChild(mole);
+        hole.addEventListener("click", () => onWhack(i));
+        els.holes.appendChild(hole);
+      }
+    }
+
+    /********************************************************************
+     * Game controls
+     ********************************************************************/
+    function setStatus(text, on=false){
+      els.statusText.textContent = text;
+      els.statusGame.classList.toggle("on", on);
+    }
+
+    function formatMs(ms){
+      ms = Math.max(0, ms|0);
+      const s = Math.floor(ms/1000);
+      const m = Math.floor(s/60);
+      const ss = String(s%60).padStart(2,'0');
+      const mm = String(m).padStart(2,'0');
+      return `${mm}:${ss}`;
+    }
+
+    function updateHUD(){
+      els.hudScore.textContent = String(state.score);
+      els.hudCombo.textContent = "x" + String(state.combo);
+      els.hudPenalty.textContent = String(state.penalty);
+      els.hudRound.textContent = String(Math.max(0, state.roundIndex+1));
+      els.hudTotal.textContent = String(state.totalRounds);
+      const p = state.totalRounds ? ((Math.max(0, state.roundIndex+1))/state.totalRounds)*100 : 0;
+      els.progressFill.style.width = `${Math.min(100, p)}%`;
+
+      els.tagTopic.textContent = "TOPIC:" + (CONFIG.meta?.topic || "n8n");
+      els.tagDifficulty.textContent = "LEVEL:" + (CONFIG.meta?.level || "mix");
+      els.tagMode.textContent = "MODE:" + (CONFIG.settings?.mode || "keyword");
+    }
+
+    function resetRoundUI(){
+      state.revealed = false;
+      els.hintBox.classList.add("hidden");
+      els.expBox.classList.add("hidden");
+      els.hintText.textContent = "—";
+      els.expText.textContent = "—";
+    }
+
+    function showToast(icon, text, sub=""){
+      els.toastIcon.textContent = icon;
+      els.toastText.textContent = text;
+      els.toastSub.textContent = sub;
+      els.toast.classList.add("show");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => els.toast.classList.remove("show"), 2200);
+    }
+
+    function startGame(){
+      if(state.running && !state.paused) return;
+      if(!state.running){
+        // New session
+        state.running = true;
+        state.paused = false;
+        state.score = 0;
+        state.combo = 0;
+        state.penalty = 0;
+        state.history = [];
+        state.roundIndex = -1;
+        state.totalRounds = (CONFIG.items?.length || 0);
+        state.remainingMs = clamp((CONFIG.settings.minutes||6) * 60 * 1000, 10_000, 15*60*1000);
+        state.startedAt = Date.now();
+
+        nextRound(true);
+        setStatus("PLAYING", true);
+        showToast("▶️", "Bắt đầu!", "Đập mục tiêu đúng để ghi điểm.");
+      }else{
+        // Resume
+        state.paused = false;
+        setStatus("PLAYING", true);
+        showToast("▶️", "Tiếp tục", "Chúc may mắn!");
+      }
+
+      els.btnStart.textContent = state.paused ? "▶ Resume" : "▶ Start";
+      runLoops();
+      updateHUD();
+    }
+
+    function pauseGame(){
+      if(!state.running) return;
+      if(state.paused){
+        startGame();
+        return;
+      }
+      state.paused = true;
+      stopLoops();
+      clearMoles();
+      setStatus("PAUSED", false);
+      showToast("⏸️", "Tạm dừng", "Nhấn Start để tiếp tục.");
+    }
+
+    function resetGame(){
+      stopLoops();
+      clearMoles();
+      state.running = false;
+      state.paused = false;
+      state.score = 0;
+      state.combo = 0;
+      state.penalty = 0;
+      state.roundIndex = -1;
+      state.current = null;
+      state.revealed = false;
+      state.history = [];
+      state.totalRounds = (CONFIG.items?.length || 0);
+      state.remainingMs = clamp((CONFIG.settings.minutes||6) * 60 * 1000, 10_000, 15*60*1000);
+
+      els.hudTimer.textContent = formatMs(state.remainingMs);
+      els.btnStart.textContent = "▶ Start";
+      setStatus("READY", false);
+      els.qText.innerHTML = `Nhấn <b>Start</b> để bắt đầu. Khi “mục tiêu đúng” xuất hiện, hãy đập nhanh! 💥`;
+      resetRoundUI();
+      updateHUD();
+      showToast("↺", "Đã reset", "Chọn Start để chơi lại.");
+    }
+
+    function stopLoops(){
+      clearInterval(state.tickHandle);
+      clearInterval(state.timerHandle);
+      state.tickHandle = null;
+      state.timerHandle = null;
+    }
+
+    function runLoops(){
+      stopLoops();
+      // Timer
+      state.timerHandle = setInterval(() => {
+        if(!state.running || state.paused) return;
+        state.remainingMs -= 250;
+        els.hudTimer.textContent = formatMs(state.remainingMs);
+        if(state.remainingMs <= 0){
+          endGame();
+        }
+      }, 250);
+
+      // Spawn loop
+      state.tickHandle = setInterval(() => {
+        if(!state.running || state.paused) return;
+        spawnMole();
+      }, clamp(CONFIG.settings.tickMs||900, 350, 1600));
+    }
+
+    function endGame(){
+      stopLoops();
+      clearMoles();
+      state.running = false;
+      state.paused = false;
+      setStatus("FINISHED", false);
+      els.btnStart.textContent = "▶ Start";
+      els.hudTimer.textContent = "00:00";
+
+      const summary = `Score: ${state.score} • Penalty: ${state.penalty} • Rounds: ${Math.max(0,state.roundIndex+1)}/${state.totalRounds}`;
+      showToast("🏁", "Kết thúc!", summary);
+      // Auto reveal last explanation if any
+      reveal(true);
+    }
+
+    /********************************************************************
+     * Rounds
+     ********************************************************************/
+    function nextRound(fromStart=false){
+      if(!CONFIG.items || CONFIG.items.length === 0){
+        els.qText.textContent = "CONFIG.items trống. Vào Teacher Mode để dán JSON câu hỏi.";
+        return;
+      }
+      resetRoundUI();
+      state.roundIndex++;
+      if(state.roundIndex >= CONFIG.items.length){
+        // Loop or end? We'll loop to keep within 5–15 mins.
+        state.roundIndex = 0;
+      }
+      state.current = normalizeItem(CONFIG.items[state.roundIndex]);
+      state.revealed = false;
+      els.qText.textContent = state.current.question;
+
+      els.hintText.textContent = state.current.hint || "—";
+      els.expText.textContent = state.current.explanation || "—";
+
+      updateHUD();
+
+      if(!fromStart){
+        showToast("⏭️", "Round tiếp theo", `#${state.roundIndex+1}: ${shorten(state.current.question, 72)}`);
+      }
+    }
+
+    function reveal(force=false){
+      if(!state.current) return;
+      if(state.revealed && !force){
+        // toggle off
+        state.revealed = false;
+        els.hintBox.classList.add("hidden");
+        els.expBox.classList.add("hidden");
+        showToast("🫥", "Đã ẩn", "Hint/Explanation");
+        return;
+      }
+      state.revealed = true;
+      els.hintBox.classList.remove("hidden");
+      els.expBox.classList.remove("hidden");
+      showToast("🪄", "Reveal", "Hiện gợi ý & giải thích");
+    }
+
+    /********************************************************************
+     * Mole spawn and whack logic
+     ********************************************************************/
+    function clearMoles(){
+      // cancel scheduled hides
+      state.moleTimeouts.forEach(t => clearTimeout(t));
+      state.moleTimeouts = [];
+      state.shownMoles.clear();
+
+      $$(".hole", els.holes).forEach(h => {
+        const mole = h.querySelector(".mole");
+        mole.classList.remove("show","correct","wrong");
+      });
+    }
+
+    function spawnMole(){
+      if(!state.current) return;
+
+      // choose hole not same as last (if possible)
+      const holeCount = $$(".hole", els.holes).length;
+      let holeIdx = randInt(0, holeCount-1);
+      if(holeCount > 1){
+        let tries = 0;
+        while(holeIdx === state.lastHole && tries < 6){
+          holeIdx = randInt(0, holeCount-1);
+          tries++;
+        }
+      }
+      state.lastHole = holeIdx;
+
+      // determine whether this mole is correct
+      const isCorrect = Math.random() * 100 < clamp(CONFIG.settings.correctRate||55, 10, 90);
+
+      // pick content
+      const moleData = buildMoleData(state.current, isCorrect);
+
+      // show
+      const holeEl = $(`.hole[data-hole="${holeIdx}"]`, els.holes);
+      const moleEl = holeEl.querySelector(".mole");
+      moleEl.classList.remove("correct","wrong");
+      moleEl.classList.add(isCorrect ? "correct" : "wrong");
+      moleEl.querySelector(".emoji").textContent = moleData.emoji || (isCorrect ? "✅" : "❌");
+      moleEl.querySelector(".label").textContent = moleData.label;
+      moleEl.querySelector(".sub").textContent = isCorrect ? "ĐẬP ĐÚNG ✅" : "BẪY ❌";
+
+      // store
+      state.shownMoles.set(holeIdx, {
+        ...moleData,
+        isCorrect,
+        roundId: state.current.id,
+        tsShown: Date.now()
+      });
+
+      moleEl.classList.add("show");
+
+      // schedule hide
+      const life = clamp(CONFIG.settings.moleLifeMs||850, 250, 1400);
+      const t = setTimeout(() => {
+        // If still same mole and not whacked
+        if(state.shownMoles.has(holeIdx)){
+          const d = state.shownMoles.get(holeIdx);
+          state.shownMoles.delete(holeIdx);
+          moleEl.classList.remove("show");
+          // Missed a correct target? small penalty
+          if(d.isCorrect){
+            applyPenalty("Missed correct target", 1, { holeIdx, label: d.label });
+            showToast("😬", "Bỏ lỡ mục tiêu đúng!", `-1 (đập nhanh hơn)`);
+          }
+          updateHUD();
+        }else{
+          moleEl.classList.remove("show");
+        }
+      }, life);
+      state.moleTimeouts.push(t);
+    }
+
+    function onWhack(holeIdx){
+      if(!state.running || state.paused) return;
+
+      const data = state.shownMoles.get(holeIdx);
+      if(!data){
+        // whacked empty hole
+        applyPenalty("Whacked empty", 1, { holeIdx });
+        state.combo = 0;
+        updateHUD();
+        showToast("🕳️", "Đập hụt!", "Penalty -1 • Combo reset");
+        return;
+      }
+
+      // remove mole immediately
+      state.shownMoles.delete(holeIdx);
+      const holeEl = $(`.hole[data-hole="${holeIdx}"]`, els.holes);
+      const moleEl = holeEl.querySelector(".mole");
+      moleEl.classList.remove("show");
+
+      const reactionMs = Date.now() - data.tsShown;
+
+      if(data.isCorrect){
+        // score + combo
+        state.combo += 1;
+        const base = 3;
+        const speedBonus = reactionMs < 280 ? 3 : reactionMs < 420 ? 2 : reactionMs < 650 ? 1 : 0;
+        const comboBonus = Math.min(6, Math.floor(state.combo/3)); // +1 each 3 streak, capped
+        const gain = base + speedBonus + comboBonus;
+        state.score += gain;
+
+        // log
+        logEvent("HIT_CORRECT", {
+          roundId: data.roundId,
+          label: data.label,
+          holeIdx,
+          reactionMs,
+          gain,
+          combo: state.combo
+        });
+
+        showToast("✅", `ĐÚNG! +${gain}`, `Reaction ${reactionMs}ms • Combo x${state.combo}`);
+        // advance round occasionally to keep variety
+        if(state.combo % 4 === 0){
+          nextRound();
+        }
+      }else{
+        // wrong target: penalty and combo reset
+        state.combo = 0;
+        const loss = 2;
+        state.score -= loss;
+        state.penalty += loss;
+
+        logEvent("HIT_WRONG", {
+          roundId: data.roundId,
+          label: data.label,
+          holeIdx,
+          reactionMs,
+          loss
+        });
+
+        showToast("❌", `SAI! -${loss}`, `Bẫy ❌ • Combo reset`);
+      }
+
+      clampScore();
+      updateHUD();
+    }
+
+    function applyPenalty(reason, amount, extra={}){
+      state.score -= amount;
+      state.penalty += amount;
+      clampScore();
+      logEvent("PENALTY", { reason, amount, ...extra, roundId: state.current?.id || "" });
+    }
+
+    function clampScore(){
+      if(!Number.isFinite(state.score)) state.score = 0;
+      state.score = Math.max(-999, Math.min(9999, state.score));
+    }
+
+    function buildMoleData(item, isCorrect){
+      const mode = CONFIG.settings.mode || "keyword";
+      if(mode === "statement"){
+        // For statement mode, each item can define: correctStatement, decoyStatements
+        // fallback: use keyword-based to build statements
+        const correctSt = item.correctStatement || `✅ ${item.correct.label} là khái niệm đúng trong n8n.`;
+        const decoys = item.decoyStatements && item.decoyStatements.length ? item.decoyStatements : [
+          `❌ "${pick(item.decoys).label}" là node chính để chạy theo lịch (cron).`,
+          `❌ Webhook dùng để gọi API ra ngoài (thực ra là nhận request).`,
+          `❌ Set node chuyên để merge dữ liệu hai nhánh.`
+        ];
+        const label = isCorrect ? correctSt : pick(decoys);
+        return { label, emoji: isCorrect ? "✅" : "❌" };
+      }
+
+      // keyword mode
+      if(isCorrect){
+        return { label: item.correct.label, emoji: item.correct.emoji || "✅" };
+      }
+      const d = pick(item.decoys);
+      return { label: d.label, emoji: d.emoji || "❌" };
+    }
+
+    /********************************************************************
+     * CSV Export
+     ********************************************************************/
+    function exportCSV(){
+      const rows = [];
+      // header
+      rows.push([
+        "timestamp",
+        "event",
+        "roundId",
+        "question",
+        "label",
+        "holeIdx",
+        "reactionMs",
+        "gain",
+        "loss",
+        "scoreAfter",
+        "comboAfter",
+        "penaltyAfter"
+      ]);
+
+      for(const e of state.history){
+        const item = findItemById(e.roundId);
+        rows.push([
+          new Date(e.ts).toISOString(),
+          e.type,
+          e.roundId || "",
+          (item?.question || "").replace(/\s+/g, " ").trim(),
+          (e.label || ""),
+          (e.holeIdx ?? ""),
+          (e.reactionMs ?? ""),
+          (e.gain ?? ""),
+          (e.loss ?? ""),
+          (e.scoreAfter ?? ""),
+          (e.comboAfter ?? ""),
+          (e.penaltyAfter ?? "")
+        ]);
+      }
+
+      const csv = rows.map(r => r.map(cell => {
+        const s = String(cell ?? "");
+        if(/[",\n]/.test(s)) return `"${s.replaceAll('"','""')}"`;
+        return s;
+      }).join(",")).join("\n");
+
+      const blob = new Blob([csv], { type:"text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `whack-a-workflow_results_${Date.now()}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+      showToast("⬇️", "Đã xuất CSV", "Mở file để xem log & điểm.");
+    }
+
+    function logEvent(type, data){
+      const rec = {
+        ts: Date.now(),
+        type,
+        roundId: data.roundId || "",
+        label: data.label || "",
+        holeIdx: data.holeIdx,
+        reactionMs: data.reactionMs,
+        gain: data.gain,
+        loss: data.loss,
+        scoreAfter: state.score,
+        comboAfter: state.combo,
+        penaltyAfter: state.penalty
+      };
+      state.history.push(rec);
+    }
+
+    function findItemById(id){
+      if(!id) return null;
+      return (CONFIG.items || []).find(x => String(x.id) === String(id)) || null;
+    }
+
+    /********************************************************************
+     * Teacher Mode
+     ********************************************************************/
+    const TEACHER_PASSWORD = "1234"; // đổi nếu muốn
+    function openTeacher(){
+      // simple password prompt (only on first open per session)
+      if(!openTeacher._ok){
+        const p = prompt("Teacher password:", "");
+        if(p !== TEACHER_PASSWORD){
+          showToast("🔒", "Sai mật khẩu", "Không mở Teacher Mode.");
+          els.chipTeacher.classList.remove("on");
+          return;
+        }
+        openTeacher._ok = true;
+      }
+      els.teacherModal.classList.add("open");
+      els.configEditor.value = JSON.stringify(CONFIG, null, 2);
+      els.inpMinutes.value = CONFIG.settings.minutes ?? 6;
+      els.inpTick.value = CONFIG.settings.tickMs ?? 900;
+      els.inpMoleLife.value = CONFIG.settings.moleLifeMs ?? 850;
+      els.inpCorrectRate.value = CONFIG.settings.correctRate ?? 55;
+      els.selMode.value = CONFIG.settings.mode ?? "keyword";
+    }
+    function closeTeacher(){
+      els.teacherModal.classList.remove("open");
+    }
+    function applyTeacher(){
+      try{
+        const parsed = JSON.parse(els.configEditor.value);
+        if(!parsed || !Array.isArray(parsed.items) || parsed.items.length === 0){
+          throw new Error("CONFIG.items phải là mảng và không được rỗng.");
+        }
+        // apply numeric settings
+        parsed.settings = parsed.settings || {};
+        parsed.settings.minutes = clamp(Number(els.inpMinutes.value||6), 1, 15);
+        parsed.settings.tickMs = clamp(Number(els.inpTick.value||900), 350, 1600);
+        parsed.settings.moleLifeMs = clamp(Number(els.inpMoleLife.value||850), 250, 1400);
+        parsed.settings.correctRate = clamp(Number(els.inpCorrectRate.value||55), 10, 90);
+        parsed.settings.mode = els.selMode.value || "keyword";
+
+        CONFIG = parsed;
+
+        // Re-normalize a copy to avoid missing fields
+        CONFIG.items = CONFIG.items.map(normalizeItem);
+
+        // If game is running, restart loops to take effect
+        updateHUD();
+        if(state.running && !state.paused){
+          runLoops();
+        }else{
+          els.hudTimer.textContent = formatMs(clamp((CONFIG.settings.minutes||6)*60*1000, 10_000, 15*60*1000));
+        }
+        state.totalRounds = CONFIG.items.length;
+
+        closeTeacher();
+        showToast("✅", "Đã áp dụng", "Cấu hình Teacher Mode được cập nhật.");
+      }catch(err){
+        alert("CONFIG JSON lỗi:\n" + (err?.message || err));
+      }
+    }
+
+    function loadSample(){
+      CONFIG = deepClone(SAMPLE_CONFIG);
+      els.configEditor.value = JSON.stringify(CONFIG, null, 2);
+      els.inpMinutes.value = CONFIG.settings.minutes;
+      els.inpTick.value = CONFIG.settings.tickMs;
+      els.inpMoleLife.value = CONFIG.settings.moleLifeMs;
+      els.inpCorrectRate.value = CONFIG.settings.correctRate;
+      els.selMode.value = CONFIG.settings.mode;
+      showToast("↩️", "Đã nạp sample", "Bạn có thể sửa JSON rồi Apply.");
+    }
+
+    /********************************************************************
+     * Keyboard shortcuts
+     ********************************************************************/
+    function onKey(e){
+      const k = e.key.toLowerCase();
+      if(k === " "){
+        e.preventDefault();
+        // Space: start/resume if not running; else next
+        if(!state.running){
+          startGame();
+        }else if(state.paused){
+          startGame();
+        }else{
+          nextRound();
+        }
+      }
+      if(k === "escape"){
+        e.preventDefault();
+        pauseGame();
+      }
+      if(k === "r"){
+        e.preventDefault();
+        reveal();
+      }
+      // Optional 1/2/3/4 picks not needed in whack mode, reserved
+    }
+
+    /********************************************************************
+     * Utils
+     ********************************************************************/
+    function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
+    function randInt(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
+    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+    function deepClone(o){ return JSON.parse(JSON.stringify(o)); }
+    function shorten(s, n){
+      s = String(s||"").trim();
+      return s.length > n ? s.slice(0, n-1) + "…" : s;
+    }
+    function normalizeItem(item){
+      const x = deepClone(item || {});
+      x.id = x.id || ("item-" + Math.random().toString(16).slice(2));
+      x.tags = Array.isArray(x.tags) ? x.tags : [];
+      x.question = x.question || "Câu hỏi (chưa có nội dung)";
+      // correct
+      if(!x.correct || typeof x.correct !== "object"){
+        x.correct = { label: "Correct", emoji:"✅" };
+      }else{
+        x.correct.label = x.correct.label || "Correct";
+        x.correct.emoji = x.correct.emoji || "✅";
+      }
+      // decoys
+      if(!Array.isArray(x.decoys) || x.decoys.length < 2){
+        x.decoys = [
+          { label:"Decoy A", emoji:"❌" },
+          { label:"Decoy B", emoji:"❌" },
+          { label:"Decoy C", emoji:"❌" }
+        ];
+      }else{
+        x.decoys = x.decoys.map(d => ({
+          label: (d && d.label) ? String(d.label) : "Decoy",
+          emoji: (d && d.emoji) ? String(d.emoji) : "❌"
+        }));
+      }
+      x.hint = x.hint || "💡 (Chưa có gợi ý)";
+      x.explanation = x.explanation || "🔍 (Chưa có giải thích)";
+      return x;
+    }
+
+    /********************************************************************
+     * Wire up events
+     ********************************************************************/
+    function init(){
+      buildHoles();
+      updateHUD();
+      state.totalRounds = CONFIG.items.length;
+      els.hudTimer.textContent = formatMs((CONFIG.settings.minutes||6) * 60 * 1000);
+
+      els.btnStart.addEventListener("click", startGame);
+      els.btnPause.addEventListener("click", pauseGame);
+      els.btnReset.addEventListener("click", resetGame);
+      els.btnNext.addEventListener("click", () => nextRound());
+      els.btnReveal.addEventListener("click", () => reveal());
+      els.btnExport.addEventListener("click", exportCSV);
+
+      els.chipTeacher.addEventListener("click", () => {
+        const on = !els.chipTeacher.classList.contains("on");
+        els.chipTeacher.classList.toggle("on", on);
+        if(on) openTeacher(); else closeTeacher();
+      });
+      els.btnCloseTeacher.addEventListener("click", () => {
+        els.chipTeacher.classList.remove("on");
+        closeTeacher();
+      });
+      els.btnApplyConfig.addEventListener("click", applyTeacher);
+      els.btnLoadSample.addEventListener("click", loadSample);
+
+      // Close modal when clicking backdrop
+      els.teacherModal.addEventListener("click", (e) => {
+        if(e.target === els.teacherModal){
+          els.chipTeacher.classList.remove("on");
+          closeTeacher();
+        }
+      });
+
+      document.addEventListener("keydown", onKey);
+
+      // Initial hint
+      showToast("👋", "Sẵn sàng!", "Nhấn Start hoặc Space để bắt đầu.");
+    }
+
+    init();
+
+    /********************************************************************
+     * HƯỚNG DẪN NHANH (cuối file)
+     * 1) Đổi dữ liệu:
+     *    - Mở Teacher Mode (password: 1234)
+     *    - Sửa JSON trong CONFIG.items (question/correct/decoys/hint/explanation)
+     *    - Apply & Close
+     *
+     * 2) Cách chơi trên lớp (gợi ý 10–15 phút):
+     *    - Chia 2 đội, mỗi lượt 1 học viên lên đập 10–15s
+     *    - Đập đúng + điểm, đập bẫy trừ điểm, combo tăng thưởng
+     *    - Nhấn Space để Next round, R để Reveal hint/explanation, Esc để Pause
+     *
+     * 3) Xuất kết quả:
+     *    - Bấm Export CSV để tải log (điểm, penalty, reaction time)
+     ********************************************************************/
+  </script>
+</body>
+</html>

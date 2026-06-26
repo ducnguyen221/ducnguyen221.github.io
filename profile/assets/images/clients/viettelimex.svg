@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" fill="none">
+  <rect width="160" height="160" rx="28" fill="#18212F"/>
+  <rect x="14" y="14" width="132" height="132" rx="22" fill="#C69749" fill-opacity="0.14" stroke="#C69749" stroke-width="2"/>
+  <text x="80" y="92" text-anchor="middle" fill="#F3F4F6" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="800">VTX</text>
+</svg>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html class="dark" lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Projects | Nguyen Quang Duc</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="./assets/css/subpage-shell.css" rel="stylesheet" />
+</head>
+
+<body data-page="projects">
+    <canvas id="bgCanvas" class="shell-canvas"></canvas>
+
+    <div class="site-shell">
+        <header class="site-header">
+            <a class="brand" href="./index.html">
+                <img alt="Nguyen Quang Duc" src="./assets/images/KPIM-Duc-Nguyen.png" />
+                <span class="brand-title t-lang" data-en="E-Profile" data-vi="Hồ sơ điện tử">E-Profile</span>
+            </a>
+
+            <nav class="top-nav">
+                <a class="nav-link" data-page-link="profile" href="./index.html">
+                    <span class="material-symbols-outlined">person</span>
+                    <span class="t-lang" data-en="Profile" data-vi="Hồ sơ">Profile</span>
+                </a>
+                <a class="nav-link" data-page-link="experience" href="./experience.html">
+                    <span class="material-symbols-outlined">work_history</span>
+                    <span class="t-lang" data-en="Experience" data-vi="Kinh nghiệm">Experience</span>
+                </a>
+                <a class="nav-link" data-page-link="projects" href="./projects.html">
+                    <span class="material-symbols-outlined">workspaces</span>
+                    <span class="t-lang" data-en="Projects" data-vi="Dự án">Projects</span>
+                </a>
+                <a class="nav-link" data-page-link="courses" href="./courses.html">
+                    <span class="material-symbols-outlined">school</span>
+                    <span class="t-lang" data-en="Courses" data-vi="Khóa học">Courses</span>
+                </a>
+                <a class="nav-link" data-page-link="socials" href="./socials.html">
+                    <span class="material-symbols-outlined">subscriptions</span>
+                    <span class="t-lang" data-en="Socials" data-vi="Xã hội">Socials</span>
+                </a>
+                <a class="nav-link" data-page-link="solutions" href="./solutions.html">
+                    <span class="material-symbols-outlined">widgets</span>
+                    <span class="t-lang" data-en="Solutions" data-vi="Giải pháp">Solutions</span>
+                </a>
+                <a class="nav-link" data-page-link="powerbi" href="./powerbi.html">
+                    <span class="material-symbols-outlined">bar_chart</span>
+                    <span class="t-lang" data-en="PowerBI Demo" data-vi="PowerBI Demo">PowerBI Demo</span>
+                </a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="header-icon-btn" id="lang-toggle-btn" type="button">VI</button>
+                <button class="header-icon-btn material-symbols-outlined" id="theme-toggle-btn"
+                    type="button">dark_mode</button>
+            </div>
+        </header>
+
+        <main class="shell-main">
+            <section class="glass-panel hero-panel project-summary-panel">
+                <div class="project-summary-grid">
+                    <div class="project-metric-stack">
+                        <article class="project-metric-card">
+                            <span class="project-metric-label t-lang" data-en="Projects" data-vi="Dự án">Projects</span>
+                            <strong id="project-count">9</strong>
+                            <p class="t-lang" data-en="records in the current filtered view"
+                                data-vi="bản ghi trong bộ lọc hiện tại">records in the current filtered view</p>
+                        </article>
+                        <article class="project-metric-card">
+                            <span class="project-metric-label t-lang" data-en="Companies" data-vi="Công ty">Companies</span>
+                            <strong id="company-count">9</strong>
+                            <p class="t-lang" data-en="unique client companies represented"
+                                data-vi="số công ty khách hàng xuất hiện">unique client companies represented</p>
+                        </article>
+                    </div>
+
+                    <div class="project-insight-grid">
+                        <article class="project-visual-card">
+                            <div class="project-card-head">
+                                <div>
+                                    <span class="project-card-kicker t-lang" data-en="Role Mix" data-vi="Cơ cấu role">Role
+                                        Mix</span>
+                                    <h2 class="project-card-title t-lang" data-en="Projects by Role"
+                                        data-vi="Dự án theo role">Projects by Role</h2>
+                                </div>
+                            </div>
+                            <div class="project-role-layout">
+                                <div class="project-role-chart" id="roleChart" role="img"
+                                    aria-label="Project distribution by role">
+                                    <div class="project-role-chart-center">
+                                        <strong id="roleChartTotal">9</strong>
+                                        <span class="t-lang" data-en="Projects" data-vi="Dự án">Projects</span>
+                                    </div>
+                                    <div class="project-role-labels" id="roleLabels"></div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="project-visual-card">
+                            <div class="project-card-head">
+                                <div>
+                                    <span class="project-card-kicker t-lang" data-en="Clients" data-vi="Khách hàng">Clients</span>
+                                    <h2 class="project-card-title t-lang" data-en="Company List"
+                                        data-vi="Danh sách khách hàng">Company List</h2>
+                                </div>
+                                <span class="project-client-badge" id="clientCountBadge">9</span>
+                            </div>
+                            <div class="project-client-directory" id="clientDirectory"></div>
+                        </article>
+                    </div>
+
+                    <div class="hero-copy">
+                        <span class="hero-kicker">
+                            <span class="material-symbols-outlined">table_chart</span>
+                            <span class="t-lang" data-en="Project Inventory" data-vi="Kho dự án">Project Inventory</span>
+                        </span>
+                        <h1 class="t-lang"
+                            data-en="Structured delivery history with table controls, filters, and technology bubbles."
+                            data-vi="Lịch sử triển khai được cấu trúc thành bảng với tìm kiếm, bộ lọc và bubble công nghệ.">
+                            Structured delivery history with table controls, filters, and technology bubbles.
+                        </h1>
+                        <p class="t-lang"
+                            data-en="This page transforms the project section from the CV into a searchable project inventory. Default sorting follows the latest end date, while filters help narrow the list by year, role, team size, and technology."
+                            data-vi="Trang này chuyển phần dự án trong CV thành một kho dữ liệu có thể tìm kiếm. Mặc định danh sách được sắp xếp theo ngày kết thúc mới nhất, đồng thời có bộ lọc theo năm, vai trò, quy mô team và công nghệ.">
+                            This page transforms the project section from the CV into a searchable project inventory.
+                            Default sorting follows the latest end date, while filters help narrow the list by year,
+                            role, team size, and technology.
+                        </p>
+                    </div>
+                    <div class="meta-grid">
+                        <div class="meta-card">
+                            <strong id="project-count-legacy">9</strong>
+                            <span class="t-lang" data-en="project records seeded from KPIM CV"
+                                data-vi="bản ghi dự án seed từ CV KPIM">project records seeded from KPIM CV</span>
+                        </div>
+                        <div class="meta-card">
+                            <strong>Default Sort</strong>
+                            <span class="t-lang" data-en="End date descending, switchable by header click"
+                                data-vi="Sắp xếp theo ngày kết thúc giảm dần, có thể đổi bằng cách bấm tiêu đề cột">End
+                                date descending, switchable by header click</span>
+                        </div>
+                        <div class="meta-card">
+                            <strong>Filter Set</strong>
+                            <span class="t-lang" data-en="Year, role, team size, technology"
+                                data-vi="Năm, vai trò, team size, công nghệ">Year, role, team size, technology</span>
+                        </div>
+                        <div class="meta-card">
+                            <strong>Responsive</strong>
+                            <span class="t-lang" data-en="Table on desktop, cards on mobile"
+                                data-vi="Bảng trên desktop, card trên mobile">Table on desktop, cards on mobile</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel hero-panel">
+                <div class="section-head">
+                    <div>
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">tune</span>
+                            <span class="t-lang" data-en="Search &amp; Filter" data-vi="Tìm kiếm &amp; Lọc">Search &amp;
+                                Filter</span>
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="filters-row">
+                    <div style="flex: 2 1 280px;">
+                        <label class="field-label t-lang" data-en="Keyword Search" data-vi="Từ khóa">Keyword Search</label>
+                        <input class="input" id="searchInput" placeholder="Search project, client, overview, tech..." />
+                    </div>
+                    <div style="flex: 1 1 160px;">
+                        <label class="field-label t-lang" data-en="End Year" data-vi="Năm kết thúc">End Year</label>
+                        <select class="select" id="yearFilter"></select>
+                    </div>
+                    <div style="flex: 1 1 180px;">
+                        <label class="field-label t-lang" data-en="Role" data-vi="Vai trò">Role</label>
+                        <select class="select" id="roleFilter"></select>
+                    </div>
+                    <div style="flex: 1 1 150px;">
+                        <label class="field-label t-lang" data-en="Team Size" data-vi="Team size">Team Size</label>
+                        <select class="select" id="teamFilter"></select>
+                    </div>
+                    <div style="flex: 1 1 190px;">
+                        <label class="field-label t-lang" data-en="Technology" data-vi="Công nghệ">Technology</label>
+                        <select class="select" id="techFilter"></select>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="glass-panel hero-panel">
+                <div class="section-head">
+                    <div>
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">dataset</span>
+                            <span class="t-lang" data-en="Project Table" data-vi="Bảng dự án">Project Table</span>
+                        </h2>
+                        <p class="section-subtitle">
+                            <span class="t-lang" data-en="Click any header to sort. Default is by latest end date."
+                                data-vi="Bấm tiêu đề cột để sort. Mặc định là ngày kết thúc mới nhất.">Click any header
+                                to sort. Default is by latest end date.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="table-wrap">
+                    <table class="data-table" id="projectsTable">
+                        <thead id="projectsHead"></thead>
+                        <tbody id="projectsBody"></tbody>
+                    </table>
+                </div>
+
+                <div class="mobile-card-list" id="projectsMobile"></div>
+            </section>
+        </main>
+
+        <nav class="bottom-nav">
+            <a class="bottom-link" data-page-link="profile" href="./index.html">
+                <span class="material-symbols-outlined">person</span>
+                <span class="t-lang" data-en="Profile" data-vi="Hồ sơ">Profile</span>
+            </a>
+            <a class="bottom-link" data-page-link="experience" href="./experience.html">
+                <span class="material-symbols-outlined">work_history</span>
+                <span class="t-lang" data-en="Exp" data-vi="KN">Exp</span>
+            </a>
+            <a class="bottom-link" data-page-link="projects" href="./projects.html">
+                <span class="material-symbols-outlined">workspaces</span>
+                <span class="t-lang" data-en="Projects" data-vi="Dự án">Projects</span>
+            </a>
+            <a class="bottom-link" data-page-link="courses" href="./courses.html">
+                <span class="material-symbols-outlined">school</span>
+                <span class="t-lang" data-en="Courses" data-vi="Khóa học">Courses</span>
+            </a>
+            <a class="bottom-link" data-page-link="socials" href="./socials.html">
+                <span class="material-symbols-outlined">subscriptions</span>
+                <span class="t-lang" data-en="Social" data-vi="XH">Social</span>
+            </a>
+            <a class="bottom-link" data-page-link="solutions" href="./solutions.html">
+                <span class="material-symbols-outlined">widgets</span>
+                <span class="t-lang" data-en="Solutions" data-vi="Giải pháp">Solutions</span>
+            </a>
+            <a class="bottom-link" data-page-link="powerbi" href="./powerbi.html">
+                <span class="material-symbols-outlined">bar_chart</span>
+                <span class="t-lang" data-en="PowerBI" data-vi="PowerBI">PowerBI</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="./assets/js/subpage-shell.js"></script>
+    <script>
+        const projects = [
+            {
+                startDate: "2022-01",
+                endDate: "2022-09",
+                projectName: "Power BI analytics reporting system",
+                clientName: "Viettelimex",
+                clientLogo: "./assets/images/clients/viettelimex.svg",
+                role: "Project Manager",
+                teamSize: 4,
+                technologies: ["Power BI Desktop", "Power BI Service", "SQL", "SSIS"],
+                overview: "Build a Power BI-based analytics reporting system from a consolidated repository of multiple sources.",
+                responsibilities: [
+                    "Analyze new requirements and operating models from the client.",
+                    "Design report and dashboard interfaces that match management needs.",
+                    "Maintain the current system and implement new features.",
+                    "Support issue handling and optimize the overall platform."
+                ]
+            },
+            {
+                startDate: "2021-06",
+                endDate: "2021-12",
+                projectName: "Power BI Service reporting platform",
+                clientName: "PVI",
+                clientLogo: "./assets/images/clients/pvi.svg",
+                role: "Project Manager",
+                teamSize: 4,
+                technologies: ["Power BI Desktop", "Power BI Service", "SharePoint", "Excel", "SQL", "SSIS"],
+                overview: "Build reporting on Power BI Service and Power BI Embedded with data crawling from CafeF plus SharePoint and Excel flows.",
+                responsibilities: [
+                    "Consult data entry patterns on Excel and storage processes on SharePoint.",
+                    "Build automated data crawling from CafeF to SQL Server.",
+                    "Build reports, dashboards, and multilingual Power BI apps.",
+                    "Set up automatic updates and optimize performance."
+                ]
+            },
+            {
+                startDate: "2021-01",
+                endDate: "2021-06",
+                projectName: "Internal reporting suite for package revenue",
+                clientName: "MobiFone",
+                clientLogo: "./assets/images/clients/mobifone.svg",
+                role: "Power BI Developer",
+                teamSize: 2,
+                technologies: ["Power BI Desktop", "Power BI Report Server", "SQL"],
+                overview: "Build internal reporting system and reporting suite to manage package revenue sources on Power BI Report Server.",
+                responsibilities: [
+                    "Receive reporting requests and advise on business visualizations.",
+                    "Coordinate with devops to set up Power BI Report Server.",
+                    "Build multidimensional models and on-demand reports.",
+                    "Automate refresh and train users for operations."
+                ]
+            },
+            {
+                startDate: "2020-08",
+                endDate: "2020-12",
+                projectName: "Embedded CRM referral analytics",
+                clientName: "MB Ageas",
+                clientLogo: "./assets/images/clients/mb-ageas.svg",
+                role: "Power BI Developer",
+                teamSize: 3,
+                technologies: ["Power BI Desktop", "Power BI Service", "Power BI Embedded", "SQL"],
+                overview: "Build a Power BI Embedded reporting system for referral process analytics from a self-built CRM platform.",
+                responsibilities: [
+                    "Analyze business requirements and coordinate with backend teams.",
+                    "Consult visual direction and analytics content.",
+                    "Build reports, analytics pages, and secure data gateway setup.",
+                    "Embed reports with role-based decentralization."
+                ]
+            },
+            {
+                startDate: "2016-03",
+                endDate: "2020-08",
+                projectName: "Internal BI operating system",
+                clientName: "YPTC",
+                clientLogo: "./assets/images/YPTC-Logo.png",
+                role: "Data Analytics Team Manager",
+                teamSize: 6,
+                technologies: ["SharePoint", "SQL", "Excel", "Power BI", "ClicData"],
+                overview: "Consult, build, and set up management reporting across company operations while training the internal analytics team.",
+                responsibilities: [
+                    "Develop storage, synchronization, and reporting processes.",
+                    "Build dashboards and scorecards across departments.",
+                    "Embed reporting platforms into websites and SharePoint.",
+                    "Lead internal consulting, analytics enablement, and team management."
+                ]
+            },
+            {
+                startDate: "2017-08",
+                endDate: "2018-08",
+                projectName: "Financial reporting on Power BI Service",
+                clientName: "Healthy Humor",
+                clientLogo: "./assets/images/clients/healthy-humor.svg",
+                role: "Power BI Developer",
+                teamSize: 2,
+                technologies: ["Excel", "SharePoint", "QuickBooks", "Power BI"],
+                overview: "Consult and build accounting and financial administration reports based on synchronized SharePoint and QuickBooks data.",
+                responsibilities: [
+                    "Study accounting data structures and financial indicator formulas.",
+                    "Consult report form and build finance reporting suites.",
+                    "Support technical delivery and train end users.",
+                    "Maintain and extend the deployed reports."
+                ]
+            },
+            {
+                startDate: "2016-08",
+                endDate: "2017-08",
+                projectName: "Financial management reporting suite",
+                clientName: "Bestworks",
+                clientLogo: "./assets/images/clients/bestworks.svg",
+                role: "Power BI Developer",
+                teamSize: 2,
+                technologies: ["Microsoft Dynamics", "Power BI"],
+                overview: "Build a set of finance and accounting management reports from internal accounting software on Power BI Service.",
+                responsibilities: [
+                    "Research internal Dynamics accounting and connect data to reporting.",
+                    "Build gateway-based data extraction and automated refresh.",
+                    "Consult visualization content and reporting scope.",
+                    "Maintain, optimize, and support the platform."
+                ]
+            },
+            {
+                startDate: "2015-03",
+                endDate: "2015-09",
+                projectName: "Operations planning dashboards and Excel automation",
+                clientName: "Lazada Group",
+                clientLogo: "./assets/images/logo-lazada.png",
+                role: "Operation Strategy and Planning Analyst",
+                teamSize: 5,
+                technologies: ["Excel", "VBA", "Solver", "SQL Server", "R"],
+                overview: "Build Excel and SQL-driven operations reporting to monitor product shipments and automate planning calculations for the accounting team.",
+                responsibilities: [
+                    "Analyze logistics allocation and reduce operating costs.",
+                    "Review supply chain lead time and warehouse process performance.",
+                    "Build dashboards from MySQL and SQL Server data.",
+                    "Use text mining to resolve wrong-category issues."
+                ]
+            },
+            {
+                startDate: "2014-03",
+                endDate: "2014-09",
+                projectName: "SQL data quality and migration dashboard",
+                clientName: "NRG Northeast Retail",
+                clientLogo: "./assets/images/NRG-logo.png",
+                role: "Business Analyst",
+                teamSize: 3,
+                technologies: ["SQL Server", "SSIS", "SSRS", "SSAS", "Excel"],
+                overview: "Manage SQL Server data quality and build ETL and reporting processes for multiple business units.",
+                responsibilities: [
+                    "Run QA for data integration and daily reporting completeness.",
+                    "Coordinate with suppliers and partners on transfer plans.",
+                    "Design SSRS reports to track missing data and performance.",
+                    "Troubleshoot stored procedures and SSIS packages."
+                ]
+            }
+        ];
+
+        const columns = [
+            { key: "startDate", label: "Start", sortable: true },
+            { key: "endDate", label: "End", sortable: true },
+            { key: "projectName", label: "Project", sortable: true },
+            { key: "clientName", label: "Client", sortable: true },
+            { key: "role", label: "Role", sortable: true },
+            { key: "teamSize", label: "Team Size", sortable: true },
+            { key: "technologies", label: "Technology", sortable: false },
+            { key: "overview", label: "Overview", sortable: false },
+            { key: "responsibilities", label: "Responsibilities", sortable: false }
+        ];
+
+        let sortState = { key: "endDate", direction: "desc" };
+
+        const headEl = document.getElementById("projectsHead");
+        const bodyEl = document.getElementById("projectsBody");
+        const mobileEl = document.getElementById("projectsMobile");
+        const yearFilter = document.getElementById("yearFilter");
+        const roleFilter = document.getElementById("roleFilter");
+        const teamFilter = document.getElementById("teamFilter");
+        const techFilter = document.getElementById("techFilter");
+        const searchInput = document.getElementById("searchInput");
+        const countEl = document.getElementById("project-count");
+        const companyCountEl = document.getElementById("company-count");
+        const roleChartEl = document.getElementById("roleChart");
+        const roleChartTotalEl = document.getElementById("roleChartTotal");
+        const roleLabelsEl = document.getElementById("roleLabels");
+        const clientDirectoryEl = document.getElementById("clientDirectory");
+        const clientCountBadgeEl = document.getElementById("clientCountBadge");
+
+        const rolePalette = ["#c69749", "#2a9d8f", "#f97316", "#3b82f6", "#84cc16", "#ef4444"];
+
+        function monthLabel(value) {
+            const [year, month] = value.split("-");
+            return `${month}/${year}`;
+        }
+
+        function currentLang() {
+            return document.documentElement.lang === "vi" ? "vi" : "en";
+        }
+
+        function summaryText(en, vi) {
+            return currentLang() === "vi" ? vi : en;
+        }
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        function uniqueValues(getter) {
+            return [...new Set(projects.flatMap(getter))].filter(Boolean).sort((a, b) =>
+                typeof a === "number" ? a - b : String(a).localeCompare(String(b))
+            );
+        }
+
+        function initFilters() {
+            const years = uniqueValues((p) => [p.endDate.slice(0, 4)]).sort((a, b) => b.localeCompare(a));
+            const roles = uniqueValues((p) => [p.role]);
+            const teams = uniqueValues((p) => [p.teamSize]);
+            const technologies = uniqueValues((p) => p.technologies);
+
+            yearFilter.innerHTML = `<option value="">All years</option>${years.map((y) => `<option value="${y}">${y}</option>`).join("")}`;
+            roleFilter.innerHTML = `<option value="">All roles</option>${roles.map((v) => `<option value="${v}">${v}</option>`).join("")}`;
+            teamFilter.innerHTML = `<option value="">All team sizes</option>${teams.map((v) => `<option value="${v}">${v}</option>`).join("")}`;
+            techFilter.innerHTML = `<option value="">All technologies</option>${technologies.map((v) => `<option value="${v}">${v}</option>`).join("")}`;
+        }
+
+        function compareValues(a, b, key) {
+            const dir = sortState.direction === "asc" ? 1 : -1;
+            let left = a[key];
+            let right = b[key];
+
+            if (key === "teamSize") {
+                return (left - right) * dir;
+            }
+
+            if (key === "startDate" || key === "endDate") {
+                return left.localeCompare(right) * dir;
+            }
+
+            return String(left).localeCompare(String(right)) * dir;
+        }
+
+        function filteredProjects() {
+            const keyword = searchInput.value.trim().toLowerCase();
+            const year = yearFilter.value;
+            const role = roleFilter.value;
+            const team = teamFilter.value;
+            const tech = techFilter.value;
+
+            return projects
+                .filter((project) => {
+                    const haystack = [
+                        project.projectName,
+                        project.clientName,
+                        project.role,
+                        project.overview,
+                        project.technologies.join(" "),
+                        project.responsibilities.join(" ")
+                    ].join(" ").toLowerCase();
+
+                    const matchesKeyword = !keyword || haystack.includes(keyword);
+                    const matchesYear = !year || project.endDate.startsWith(year);
+                    const matchesRole = !role || project.role === role;
+                    const matchesTeam = !team || String(project.teamSize) === team;
+                    const matchesTech = !tech || project.technologies.includes(tech);
+
+                    return matchesKeyword && matchesYear && matchesRole && matchesTeam && matchesTech;
+                })
+                .sort((a, b) => compareValues(a, b, sortState.key));
+        }
+
+        function clientMarkup(project) {
+            const logo = project.clientLogo
+                ? `<img alt="${project.clientName}" src="${project.clientLogo}" />`
+                : `<span class="client-fallback">${project.clientName.slice(0, 2).toUpperCase()}</span>`;
+            return `<div class="logo-pill">${logo}<span>${project.clientName}</span></div>`;
+        }
+
+        function summarizeRows(rows) {
+            const roleMap = new Map();
+            const clientMap = new Map();
+
+            rows.forEach((project) => {
+                roleMap.set(project.role, (roleMap.get(project.role) || 0) + 1);
+
+                if (clientMap.has(project.clientName)) {
+                    clientMap.get(project.clientName).count += 1;
+                } else {
+                    clientMap.set(project.clientName, {
+                        name: project.clientName,
+                        logo: project.clientLogo,
+                        count: 1
+                    });
+                }
+            });
+
+            const roles = [...roleMap.entries()]
+                .map(([role, count]) => ({ role, count }))
+                .sort((a, b) => b.count - a.count || a.role.localeCompare(b.role));
+
+            const clients = [...clientMap.values()]
+                .sort((a, b) => a.name.localeCompare(b.name));
+
+            return {
+                projectCount: rows.length,
+                companyCount: clients.length,
+                roles,
+                clients
+            };
+        }
+
+        function clientDirectoryMarkup(client) {
+            const logo = client.logo
+                ? `<img alt="${escapeHtml(client.name)}" src="${escapeHtml(client.logo)}" />`
+                : `<span class="project-client-fallback">${escapeHtml(client.name.slice(0, 2).toUpperCase())}</span>`;
+            return `
+                <div class="project-client-item">
+                    ${logo}
+                    <strong>${escapeHtml(client.name)}</strong>
+                </div>
+            `;
+        }
+
+        function renderSummary(rows) {
+            const summary = summarizeRows(rows);
+
+            countEl.textContent = summary.projectCount;
+            companyCountEl.textContent = summary.companyCount;
+            roleChartTotalEl.textContent = summary.projectCount;
+            clientCountBadgeEl.textContent = summary.companyCount;
+            roleChartEl.setAttribute("aria-label", summaryText("Project distribution by role", "Phân bổ dự án theo role"));
+
+            if (!summary.projectCount) {
+                roleChartEl.style.background = "conic-gradient(rgba(255,255,255,0.08) 0 100%)";
+                roleLabelsEl.innerHTML = "";
+                clientDirectoryEl.innerHTML = `<div class="project-empty">${summaryText("No clients match the current filters.", "Không có khách hàng phù hợp với bộ lọc hiện tại.")}</div>`;
+                return;
+            }
+
+            let cursor = 0;
+            const segments = summary.roles.map((item, index) => {
+                const color = rolePalette[index % rolePalette.length];
+                const next = cursor + (item.count / summary.projectCount) * 100;
+                const segment = `${color} ${cursor.toFixed(2)}% ${next.toFixed(2)}%`;
+                const midAngle = ((cursor + next) / 2 / 100) * Math.PI * 2 - Math.PI / 2;
+                cursor = next;
+                return {
+                    color,
+                    segment,
+                    midAngle,
+                    role: item.role,
+                    count: item.count
+                };
+            });
+
+            roleChartEl.style.background = `conic-gradient(${segments.map((item) => item.segment).join(", ")})`;
+
+            roleLabelsEl.innerHTML = segments.map((item) => {
+                const xVector = Math.cos(item.midAngle);
+                const yVector = Math.sin(item.midAngle);
+                const x = Math.min(92, Math.max(8, 50 + xVector * 46));
+                const y = Math.min(88, Math.max(12, 50 + yVector * 46));
+                const anchor = xVector > 0.22 ? "right" : xVector < -0.22 ? "left" : "center";
+                const countLabel = currentLang() === "vi"
+                    ? `${item.count} dự án`
+                    : `${item.count} projects`;
+                return `
+                    <div class="project-role-label project-role-label--${anchor}" style="left:${x.toFixed(2)}%; top:${y.toFixed(2)}%; --label-color:${item.color};">
+                        <span>${escapeHtml(item.role)}</span>
+                        <strong>${countLabel}</strong>
+                    </div>
+                `;
+            }).join("");
+
+            clientDirectoryEl.innerHTML = summary.clients.map(clientDirectoryMarkup).join("");
+        }
+
+        function renderHead() {
+            const isLight = !document.documentElement.classList.contains("dark");
+            headEl.innerHTML = `<tr>${columns.map((column) => {
+                const indicator = column.sortable && sortState.key === column.key
+                    ? ` ${sortState.direction === "asc" ? "▲" : "▼"}`
+                    : "";
+                return `<th class="${isLight ? "light-surface" : ""}" data-key="${column.key}" ${column.sortable ? "" : 'style="cursor:default"'}>${column.label}${indicator}</th>`;
+            }).join("")}</tr>`;
+
+            headEl.querySelectorAll("th[data-key]").forEach((th) => {
+                const key = th.getAttribute("data-key");
+                const column = columns.find((item) => item.key === key);
+                if (!column || !column.sortable) return;
+                th.addEventListener("click", () => {
+                    if (sortState.key === key) {
+                        sortState.direction = sortState.direction === "asc" ? "desc" : "asc";
+                    } else {
+                        sortState = { key, direction: "asc" };
+                    }
+                    render();
+                });
+            });
+        }
+
+        function render() {
+            const rows = filteredProjects();
+            renderSummary(rows);
+
+            bodyEl.innerHTML = rows.map((project) => `
+                <tr>
+                    <td>${monthLabel(project.startDate)}</td>
+                    <td>${monthLabel(project.endDate)}</td>
+                    <td><strong>${project.projectName}</strong></td>
+                    <td>${clientMarkup(project)}</td>
+                    <td>${project.role}</td>
+                    <td>${project.teamSize}</td>
+                    <td><div class="chip-list">${project.technologies.map((tech) => `<span class="chip">${tech}</span>`).join("")}</div></td>
+                    <td>${project.overview}</td>
+                    <td>${project.responsibilities.join("<br />")}</td>
+                </tr>
+            `).join("");
+
+            mobileEl.innerHTML = rows.map((project) => `
+                <article class="mobile-card">
+                    ${clientMarkup(project)}
+                    <h3>${project.projectName}</h3>
+                    <p class="muted">${project.overview}</p>
+                    <div class="chip-list">${project.technologies.map((tech) => `<span class="chip">${tech}</span>`).join("")}</div>
+                    <div class="mobile-meta">
+                        <div><strong>Timeline:</strong> ${monthLabel(project.startDate)} → ${monthLabel(project.endDate)}</div>
+                        <div><strong>Role:</strong> ${project.role}</div>
+                        <div><strong>Team size:</strong> ${project.teamSize}</div>
+                        <div><strong>Responsibilities:</strong> ${project.responsibilities.join("; ")}</div>
+                    </div>
+                </article>
+            `).join("");
+
+            renderHead();
+        }
+
+        [searchInput, yearFilter, roleFilter, teamFilter, techFilter].forEach((el) => {
+            el.addEventListener("input", render);
+            el.addEventListener("change", render);
+        });
+
+        const langToggleBtn = document.getElementById("lang-toggle-btn");
+        if (langToggleBtn) {
+            langToggleBtn.addEventListener("click", () => {
+                window.requestAnimationFrame(render);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initFilters();
+            render();
+        });
+    </script>
+</body>
+
+</html>

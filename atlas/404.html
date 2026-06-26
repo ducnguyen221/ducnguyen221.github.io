@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atlas — Đang chuyển hướng…</title>
+<meta name="robots" content="noindex">
+<script>
+  // SPA fallback: /atlas/<nhóm>/ -> /atlas/?cat=<nhóm> (main.js lọc theo nhóm).
+  (function () {
+    var CATS = ["strategy","ai","ba","da","de","bi","edtech","coding","automation","instruction","other"];
+    var segs = location.pathname.replace(/\/+$/, "").split("/");
+    var cat = (segs[segs.length - 1] || "").toLowerCase();
+    if (CATS.indexOf(cat) >= 0) {
+      location.replace("/atlas/?cat=" + cat);
+    } else {
+      location.replace("/atlas/");
+    }
+  })();
+</script>
+</head>
+<body style="font-family:system-ui,sans-serif;background:#0a0f1a;color:#9fb2c6;text-align:center;padding:80px 20px">
+  <p>Đang chuyển hướng… Nếu không tự chuyển, <a href="/atlas/" style="color:#38bdf8">về trang Atlas</a>.</p>
+</body>
+</html>

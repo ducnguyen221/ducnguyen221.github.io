@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quản lý Cuộc gọi - COMPA CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0ea5e9",
+                        secondary: "#0f172a",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                        "border-light": "#e2e8f0",
+                        "border-dark": "#334155",
+                        "text-main-light": "#1e293b",
+                        "text-main-dark": "#f1f5f9",
+                        "text-sub-light": "#64748b",
+                        "text-sub-dark": "#94a3b8",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'lg': '0.75rem',
+                        'xl': '1rem',
+                        '2xl': '1.25rem',
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-body text-text-main-light dark:text-text-main-dark h-screen flex overflow-hidden selection:bg-primary selection:text-white">
+<aside class="w-20 lg:w-24 flex-shrink-0 bg-secondary flex flex-col items-center py-6 z-20 shadow-xl border-r border-slate-800">
+<div class="flex flex-col items-center justify-center mb-6">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white mb-2 shadow-lg shadow-sky-500/20">
+<span class="font-bold text-xl font-display">C</span>
+</div>
+<div class="flex flex-col items-center leading-none">
+<span class="text-[10px] font-bold text-white tracking-wider">COMPA</span>
+<span class="text-[8px] font-semibold text-sky-400 tracking-widest mt-0.5">CRM</span>
+</div>
+</div>
+<nav class="flex-1 w-full space-y-2 px-2 overflow-y-auto no-scrollbar">
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC100_dashboard.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">dashboard</span>
+<span class="text-[9px] font-medium tracking-wide">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC200_chat.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1">chat</span>
+<span class="text-[9px] font-medium tracking-wide">Hội thoại</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-primary transition-all duration-200" data-href="SC300_call.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">call</span>
+<span class="text-[9px] font-medium tracking-wide">Cuộc gọi</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC400_email.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">email</span>
+<span class="text-[9px] font-medium tracking-wide">Email</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC500_contact.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">contacts</span>
+<span class="text-[9px] font-medium tracking-wide">Liên hệ</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC600_pipeline.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">monetization_on</span>
+<span class="text-[9px] font-medium tracking-wide">Pipeline</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC700_customer.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">people</span>
+<span class="text-[9px] font-medium tracking-wide">Khách hàng</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC800_marketing.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">campaign</span>
+<span class="text-[9px] font-medium tracking-wide">Marketing</span>
+</a>
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" data-href="SC900_affiliate.html" href="#">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">handshake</span>
+<span class="text-[9px] font-medium tracking-wide">Affiliate</span>
+</a>
+</nav>
+<div class="w-full px-2 mt-2 pt-4 border-t border-slate-800/50">
+<a class="flex flex-col items-center justify-center group w-full py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all duration-200" href="/settings">
+<span class="material-icons-outlined text-2xl mb-1 group-hover:text-white transition-colors">settings</span>
+<span class="text-[9px] font-medium tracking-wide">Cài đặt</span>
+</a>
+</div>
+</aside>
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+<header class="bg-surface-light dark:bg-surface-dark h-16 border-b border-border-light dark:border-border-dark flex items-center justify-between px-6 z-10 shadow-sm shrink-0">
+<div class="flex items-center gap-3">
+<div class="font-display font-bold text-lg tracking-tight text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-primary">call</span>
+                    Quản lý Cuộc gọi
+                </div>
+<div class="hidden md:flex relative group ml-4">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+<span class="material-icons-outlined text-slate-400 text-lg">search</span>
+</div>
+<input class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-80 pl-10 p-2" placeholder="Tìm kiếm cuộc gọi, số điện thoại..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-transparent">
+<span class="text-xs font-bold text-primary">KPIM</span>
+<span class="text-text-main-light dark:text-text-main-dark">Học viện KPIM</span>
+<span class="material-icons-outlined text-base">expand_more</span>
+</button>
+<div class="flex items-center gap-2">
+<button class="h-9 px-3 flex items-center justify-center gap-1.5 border border-primary bg-primary text-white rounded text-xs font-bold hover:bg-sky-600 transition-colors">
+<span class="material-icons-outlined text-sm">workspace_premium</span>
+                        Premium
+                    </button>
+<button class="w-9 h-9 flex items-center justify-center border border-border-light dark:border-border-dark rounded text-xs font-bold text-text-sub-light hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                        VI
+                    </button>
+<button class="w-9 h-9 flex items-center justify-center border border-border-light dark:border-border-dark rounded text-text-sub-light hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-icons-outlined text-xl">dark_mode</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 flex items-center justify-center border border-border-light dark:border-border-dark rounded text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors relative">
+<span class="material-icons-outlined text-xl text-text-sub-light">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-surface-dark"></span>
+</button>
+<button class="w-9 h-9 rounded-full overflow-hidden border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzul7yPV6V9pSxsCXWH65xnycjRYO_3piuXvieSZpnm0KuuNQcRm1B5WnnsE2KeJxOk4rby6RKGEATn-xdLru73fGHuSvyADKWSimFDY0hiLS8cnoowwH9U03hLS5pc-EmWe64H7ofm5uemKqIFbl0avrK7CGfN-IivADty3rjUxlvY0gP_Y8prCbXYRyILoYhBsv7X-2e4aMYR4oWhMIgS3dPX1JVuQ0zK172NQhvDr5rwzFTlGVNwfbF2TveNIx48-iGjFXLusU"/>
+</button>
+</div>
+</div>
+</header>
+
+<div class="flex-1 overflow-hidden" id="appScreens">
+<section aria-hidden="false" class="flex-1 flex overflow-hidden bg-background-light dark:bg-background-dark" id="screen-sc300">
+<!-- ===== Main Screen: SC300 (default) ===== -->
+<div class="w-[30%] min-w-[320px] max-w-sm flex flex-col border-r border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+<div class="p-4 border-b border-border-light dark:border-border-dark space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<h2 class="font-bold text-lg text-text-main-light dark:text-text-main-dark">Lịch sử cuộc gọi</h2>
+</div>
+<div class="flex gap-2 items-center h-10">
+<button class="flex items-center justify-center w-10 h-full rounded-full border border-border-light hover:bg-slate-50 text-text-sub-light transition-colors" title="Lọc">
+<span class="material-icons-outlined text-lg">filter_list</span>
+</button>
+<button id="btnIntegrations" class="flex items-center justify-center h-full px-4 rounded-full bg-primary hover:bg-sky-600 text-white transition-colors shadow-lg shadow-sky-500/30 gap-1" title="Thêm tích hợp">
+<span class="text-sm font-bold whitespace-nowrap">+ Tích hợp</span>
+</button>
+</div>
+</div>
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-slate-800 text-white shadow-sm transition-colors">Tất cả</button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors relative">
+                            Nhỡ (2)
+                            <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white dark:border-surface-dark"></span>
+</button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Đến</button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Đi</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<div class="group flex items-center gap-3 p-4 bg-primary/5 dark:bg-primary/10 border-l-4 border-primary cursor-pointer hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors relative">
+<div class="relative flex-shrink-0">
+<img alt="User" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASeWAHxCPHYbmawnAlAD3z45VOKUWnDzzYp1QPOFli0fU8iYhw_NCUBKvKN8WOXD-lZ_s7EtEE9GG-45w2hf6VMA_UOXXG7lLbaWUJnQsbvHkjR9vR9vOH1LwDKMwKvu2O8jlLuNhMGG40BavpY0YyEptrJHij3CiHlY6XJ7zAcQpKe781R31aWkYJmZ_8V9BbfzMVcWd-NxecBF8K4d3G-9MVqf2MOziHUovoXx7A29zapFdkY35EnitU8dhbfFVR1JKMsytuJL8"/>
+<div class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center p-0.5 shadow-sm">
+<span class="material-icons text-[12px] text-green-500">call_received</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Nguyễn Văn An</h3>
+<span class="text-[10px] text-text-sub-light whitespace-nowrap">10:30 AM</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-icons-outlined text-[14px] text-green-600">call</span>
+<span class="text-xs text-text-main-light dark:text-text-main-dark truncate font-medium">Đến • 15 phút 20 giây</span>
+</div>
+</div>
+</div>
+<div class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-red-700 dark:text-red-400 font-bold text-lg">
+                                PD
+                            </div>
+<div class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center p-0.5 shadow-sm">
+<span class="material-icons text-[12px] text-red-500">call_missed</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Phạm Đức</h3>
+<span class="text-[10px] text-red-500 font-bold whitespace-nowrap">09:15 AM</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-icons-outlined text-[14px] text-red-500">call_missed</span>
+<span class="text-xs text-red-500 truncate font-medium">Cuộc gọi nhỡ (2)</span>
+</div>
+</div>
+</div>
+<div class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent">
+<div class="relative flex-shrink-0">
+<img alt="User" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQFlB4gskQrSlQUoyOF-mTJHh0Fgw_JXqPXgmSLI0Ikl93AyDFCl56me1XOV3rat1q2_aHARYeDc9RovGAMWftPu4g3biOCJW1jvifz8EMl3L_tL3dnQJpLtN9eJpW7lW5GYUfYiDNWNqflXUt__Rjp7mNAPOuCxtccb_OYfAWPqet7jk_qRHeAZYNE691NyAlJopp1h46xR0HiuRcXbcxGkEOa9yPHpWsWJ-jljNJvD0IfpbILsG-S7lRZ9ui8rNcjS0Y8FXPazQ"/>
+<div class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center p-0.5 shadow-sm">
+<span class="material-icons text-[12px] text-blue-500">call_made</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Lê Minh Tuấn</h3>
+<span class="text-[10px] text-text-sub-light whitespace-nowrap">Hôm qua</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-icons-outlined text-[14px] text-blue-500">call_made</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark truncate">Đi • 2 phút 10 giây</span>
+</div>
+</div>
+</div>
+<div class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent opacity-75">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold text-lg">
+                                TH
+                            </div>
+<div class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center p-0.5 shadow-sm">
+<span class="material-icons text-[12px] text-gray-500">videocam</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Trần Thị Hoa</h3>
+<span class="text-[10px] text-text-sub-light whitespace-nowrap">Hôm qua</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-icons-outlined text-[14px] text-gray-500">videocam</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark truncate">Zoom Meeting • 45 phút</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col bg-slate-50/50 dark:bg-slate-900/50 min-w-[400px] overflow-hidden">
+<div class="h-16 px-6 border-b border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark flex items-center justify-between shrink-0">
+<div class="flex items-center gap-2">
+<button class="p-2 -ml-2 text-text-sub-light hover:text-primary transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-icons-outlined">arrow_back</span>
+</button>
+<div>
+<h1 class="font-bold text-lg text-text-main-light dark:text-text-main-dark">Chi tiết Meeting</h1>
+<p class="text-xs text-text-sub-light hidden sm:block">Chi tiết cuộc họp, bản ghi và nội dung trao đổi</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-border-light dark:border-border-dark text-text-sub-light hover:text-primary transition-colors text-xs font-medium shadow-sm">
+<span class="material-icons-outlined text-base">share</span>
+                            Chia sẻ
+                        </button>
+<button class="p-2 text-text-sub-light hover:text-primary transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-icons-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-6">
+<div class="max-w-6xl mx-auto space-y-6">
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-border-light dark:border-border-dark shadow-sm">
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 rounded-2xl bg-[#2D8CFF]/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[#2D8CFF] text-4xl">videocam</span>
+</div>
+<div>
+<div class="flex items-center gap-3 flex-wrap">
+<h2 class="text-xl font-bold text-text-main-light dark:text-text-main-dark">Cuộc họp chiến lược Marketing</h2>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-900/50">
+                                                Đã kết thúc
+                                            </span>
+</div>
+<p class="text-sm text-text-sub-light mt-1">Host: <span class="font-medium text-text-main-light dark:text-text-main-dark">Nguyễn Văn An</span> • Zoom Meeting</p>
+<div class="flex items-center gap-4 mt-3 text-xs text-text-sub-light">
+<div class="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2 py-1 rounded border border-slate-200 dark:border-slate-700">
+<span class="material-icons-outlined text-sm">calendar_today</span>
+<span>10:00 AM, 24/05/2024</span>
+</div>
+<div class="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2 py-1 rounded border border-slate-200 dark:border-slate-700">
+<span class="material-icons-outlined text-sm">schedule</span>
+<span>45 phút</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-icons-outlined text-sm">link</span>
+<a class="text-primary hover:underline truncate max-w-[200px]" href="#">zoom.us/j/123456789</a>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto mt-2 md:mt-0">
+<button class="flex-1 md:flex-none px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-sky-600 rounded-xl transition-colors shadow-lg shadow-sky-500/20 flex items-center justify-center gap-2">
+<span class="material-icons-outlined text-lg">videocam</span>
+                                        Tham gia lại
+                                    </button>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl border border-border-light dark:border-border-dark shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-border-light dark:border-border-dark flex justify-between items-center bg-slate-50/50 dark:bg-slate-800/30">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-primary">mic</span>
+                                            Bản ghi cuộc họp
+                                        </h3>
+<button class="text-xs font-medium text-primary hover:text-sky-600 flex items-center gap-1">
+<span class="material-icons-outlined text-sm">download</span>
+                                            Tải xuống
+                                        </button>
+</div>
+<div class="p-6">
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-6 border border-border-light dark:border-border-dark relative group">
+<div class="flex items-center gap-4">
+<button class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-sky-600 transition-colors shadow-lg shadow-sky-500/30">
+<span class="material-icons text-xl">play_arrow</span>
+</button>
+<div class="flex-1 min-w-0">
+<div class="h-12 w-full flex items-center gap-1 opacity-60">
+<div class="w-1.5 h-4 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-6 bg-primary rounded-full"></div>
+<div class="w-1.5 h-8 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-5 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-10 bg-primary rounded-full"></div>
+<div class="w-1.5 h-4 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-7 bg-primary rounded-full"></div>
+<div class="w-1.5 h-3 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-9 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-5 bg-primary rounded-full"></div>
+<div class="w-1.5 h-6 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-4 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-8 bg-primary rounded-full"></div>
+<div class="w-1.5 h-5 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-3 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-7 bg-primary rounded-full"></div>
+<div class="w-1.5 h-4 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-6 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-10 bg-primary rounded-full"></div>
+<div class="w-1.5 h-5 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-4 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-8 bg-primary rounded-full"></div>
+<div class="w-1.5 h-6 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-4 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
+<div class="w-1.5 h-7 bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center text-xs text-text-sub-light mt-3 px-1">
+<span>00:00</span>
+<span>45:20</span>
+</div>
+</div>
+<div class="bg-blue-50 dark:bg-blue-900/10 rounded-xl border border-blue-100 dark:border-blue-900/30 p-4 flex gap-3 mt-6">
+<span class="material-icons-outlined text-blue-500">auto_awesome</span>
+<div>
+<h4 class="text-sm font-bold text-blue-800 dark:text-blue-300">Tóm tắt AI (AI Summary)</h4>
+<p class="text-sm text-blue-600 dark:text-blue-400 mt-1 leading-relaxed">
+                                            Cuộc họp tập trung vào chiến lược Marketing Q2. <span class="font-bold">Văn An</span> đề xuất tập trung vào Facebook Ads. <span class="font-bold">Phạm Đức</span> báo cáo hiệu quả social media tháng trước. <span class="font-bold">Thị Hoa</span> đề xuất mở rộng sang TikTok để tiếp cận đối tượng trẻ.
+                                        </p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl border border-border-light dark:border-border-dark shadow-sm flex flex-col h-[500px]">
+<div class="px-5 py-4 border-b border-border-light dark:border-border-dark flex justify-between items-center bg-slate-50/50 dark:bg-slate-800/30">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-indigo-500">description</span>
+                                            Transcript
+                                        </h3>
+<button class="text-text-sub-light hover:text-primary">
+<span class="material-icons-outlined text-lg">search</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-5 space-y-4">
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-blue-100 flex-shrink-0 flex items-center justify-center text-xs font-bold text-blue-600">VA</div>
+<div class="flex-1">
+<div class="flex items-baseline justify-between mb-1">
+<span class="text-xs font-bold text-text-main-light dark:text-text-main-dark">Văn An</span>
+<span class="text-[10px] text-text-sub-light">00:15</span>
+</div>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark leading-relaxed bg-slate-50 dark:bg-slate-800/50 p-2.5 rounded-xl rounded-tl-none border border-slate-100 dark:border-slate-700">
+                                                    Chào mọi người, hôm nay chúng ta sẽ bàn về chiến lược marketing cho quý tới.
+                                                </p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-red-100 flex-shrink-0 flex items-center justify-center text-xs font-bold text-red-600">PĐ</div>
+<div class="flex-1">
+<div class="flex items-baseline justify-between mb-1">
+<span class="text-xs font-bold text-text-main-light dark:text-text-main-dark">Phạm Đức</span>
+<span class="text-[10px] text-text-sub-light">00:22</span>
+</div>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark leading-relaxed bg-slate-50 dark:bg-slate-800/50 p-2.5 rounded-xl rounded-tl-none border border-slate-100 dark:border-slate-700">
+                                                    Vâng anh, em đã chuẩn bị báo cáo về hiệu quả của các kênh social media tháng vừa rồi.
+                                                </p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-blue-100 flex-shrink-0 flex items-center justify-center text-xs font-bold text-blue-600">VA</div>
+<div class="flex-1">
+<div class="flex items-baseline justify-between mb-1">
+<span class="text-xs font-bold text-text-main-light dark:text-text-main-dark">Văn An</span>
+<span class="text-[10px] text-text-sub-light">00:45</span>
+</div>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark leading-relaxed bg-slate-50 dark:bg-slate-800/50 p-2.5 rounded-xl rounded-tl-none border border-slate-100 dark:border-slate-700">
+                                                    Tốt lắm. Đặc biệt chú ý đến tỷ lệ chuyển đổi từ Facebook Ads nhé.
+                                                </p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-purple-100 flex-shrink-0 flex items-center justify-center text-xs font-bold text-purple-600">TH</div>
+<div class="flex-1">
+<div class="flex items-baseline justify-between mb-1">
+<span class="text-xs font-bold text-text-main-light dark:text-text-main-dark">Thị Hoa</span>
+<span class="text-[10px] text-text-sub-light">01:10</span>
+</div>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark leading-relaxed bg-slate-50 dark:bg-slate-800/50 p-2.5 rounded-xl rounded-tl-none border border-slate-100 dark:border-slate-700">
+                                                    Em nghĩ chúng ta nên cân nhắc thêm về TikTok, đối tượng trẻ đang rất tiềm năng.
+                                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden xl:flex w-[25%] min-w-[280px] max-w-sm flex-col border-l border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark overflow-y-auto custom-scrollbar">
+<div class="p-5 border-b border-border-light dark:border-border-dark sticky top-0 bg-surface-light dark:bg-surface-dark z-10">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark">Thông tin liên hệ</h3>
+<button class="text-text-sub-light hover:text-primary transition-colors">
+<span class="material-icons-outlined text-xl">edit</span>
+</button>
+</div>
+<div class="flex flex-col items-center mb-6">
+<div class="w-20 h-20 rounded-2xl overflow-hidden mb-3 bg-gradient-to-b from-teal-50 to-teal-100">
+<img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASeWAHxCPHYbmawnAlAD3z45VOKUWnDzzYp1QPOFli0fU8iYhw_NCUBKvKN8WOXD-lZ_s7EtEE9GG-45w2hf6VMA_UOXXG7lLbaWUJnQsbvHkjR9vR9vOH1LwDKMwKvu2O8jlLuNhMGG40BavpY0YyEptrJHij3CiHlY6XJ7zAcQpKe781R31aWkYJmZ_8V9BbfzMVcWd-NxecBF8K4d3G-9MVqf2MOziHUovoXx7A29zapFdkY35EnitU8dhbfFVR1JKMsytuJL8"/>
+</div>
+<h2 class="text-lg font-bold text-text-main-light dark:text-text-main-dark text-center">Nguyễn Văn An</h2>
+<p class="text-xs font-medium text-text-sub-light dark:text-text-sub-dark text-center mt-0.5">
+                            Trưởng phòng Marketing <br/>
+<span class="text-text-sub-light/80">@ Công ty ABC</span>
+</p>
+<div class="flex items-center gap-3 mt-4 w-full">
+<button class="flex-1 h-9 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center justify-center gap-2 transition-colors text-xs font-semibold text-text-main-light dark:text-text-main-dark shadow-sm">
+<span class="material-icons-outlined text-sm">call</span>
+                                Gọi điện
+                            </button>
+<button class="flex-1 h-9 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center justify-center gap-2 transition-colors text-xs font-semibold text-text-main-light dark:text-text-main-dark shadow-sm">
+<span class="material-icons-outlined text-sm">email</span>
+                                Email
+                            </button>
+</div>
+</div>
+<div class="space-y-4 px-1">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center flex-shrink-0">
+<span class="material-icons-outlined text-slate-500 text-sm">phone</span>
+</div>
+<div class="flex-1">
+<label class="text-[10px] font-bold text-text-sub-light uppercase tracking-wider mb-0.5 block">ĐIỆN THOẠI</label>
+<div class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">090 123 4567</div>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center flex-shrink-0">
+<span class="material-icons-outlined text-slate-500 text-sm">email</span>
+</div>
+<div class="flex-1 min-w-0">
+<label class="text-[10px] font-bold text-text-sub-light uppercase tracking-wider mb-0.5 block">EMAIL</label>
+<div class="text-sm font-semibold text-text-main-light dark:text-text-main-dark truncate">an.nguyen@abc.com</div>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center flex-shrink-0">
+<span class="material-icons-outlined text-slate-500 text-sm">public</span>
+</div>
+<div class="flex-1">
+<label class="text-[10px] font-bold text-text-sub-light uppercase tracking-wider mb-0.5 block">NGUỒN</label>
+<div class="text-sm font-semibold text-text-main-light dark:text-text-main-dark">Facebook Ads</div>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center flex-shrink-0">
+<span class="material-icons-outlined text-slate-500 text-sm">person_outline</span>
+</div>
+<div class="flex-1">
+<label class="text-[10px] font-bold text-text-sub-light uppercase tracking-wider mb-0.5 block">PHỤ TRÁCH</label>
+<div class="text-sm font-semibold text-text-main-light dark:text-text-main-dark flex items-center gap-1.5">
+<span class="font-bold">VK</span>
+<span class="font-normal text-text-sub-light">(Võ Nguyên Khôi)</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-border-light dark:border-border-dark">
+<div class="border border-border-light dark:border-border-dark rounded-2xl p-4 bg-slate-50/50 dark:bg-slate-800/20">
+<div class="flex items-center justify-between mb-2">
+<h4 class="text-xs font-bold text-text-sub-light uppercase">CƠ HỘI (DEAL)</h4>
+<button class="text-[10px] font-semibold text-primary hover:underline">Chi tiết</button>
+</div>
+<div class="mb-3">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark">Khóa học DA Pro</h3>
+<div class="text-sm font-bold text-green-600 mt-0.5">15.000.000 ₫</div>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden mb-1.5">
+<div class="bg-blue-600 h-full rounded-full" style="width: 80%"></div>
+</div>
+<div class="flex items-center justify-between text-[10px] text-text-sub-light">
+<span>Quan tâm</span>
+<span>80%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-5 pt-0">
+<h4 class="text-xs font-bold text-text-sub-light uppercase mb-3">TAGS &amp; NHÃN</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300">Persona: Manager</span>
+<span class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-50 text-red-600 dark:bg-red-900/30 dark:text-red-300">Độ nóng: Cao</span>
+<button class="w-7 h-7 flex items-center justify-center rounded-full border border-dashed border-slate-300 hover:border-primary text-slate-400 hover:text-primary transition-colors">
+<span class="material-icons-outlined text-sm">add</span>
+</button>
+</div>
+<h4 class="text-xs font-bold text-text-sub-light uppercase mb-3 mt-6">HOẠT ĐỘNG GẦN ĐÂY</h4>
+<div class="space-y-4 pl-1">
+<div class="relative pl-4 border-l border-slate-200 dark:border-slate-700 pb-1 last:pb-0">
+<div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-blue-500 border-2 border-white dark:border-surface-dark"></div>
+<p class="text-xs text-text-main-light dark:text-text-main-dark font-medium">Truy cập trang <span class="font-bold">Bảng giá</span></p>
+<p class="text-[10px] text-text-sub-light mt-0.5">10 phút trước</p>
+</div>
+<div class="relative pl-4 border-l border-slate-200 dark:border-slate-700 pb-1 last:pb-0">
+<div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-green-500 border-2 border-white dark:border-surface-dark"></div>
+<p class="text-xs text-text-main-light dark:text-text-main-dark font-medium">Cuộc gọi thành công</p>
+<p class="text-[10px] text-text-sub-light mt-0.5">Hôm qua 14:30</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section aria-hidden="true" class="flex-1 flex overflow-hidden bg-background-light dark:bg-background-dark hidden" id="screen-integrations">
+<!-- ===== Integration Screens: SC310/SC320/SC330/SC340 (embedded) ===== -->
+<div class="w-[30%] min-w-[320px] max-w-sm flex flex-col border-r border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+<div class="p-4 border-b border-border-light dark:border-border-dark space-y-4">
+<div class="flex items-center gap-2">
+<a id="btnBackFromIntegrations" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-icons-outlined text-xl text-text-sub-light dark:text-text-sub-dark">arrow_back</span>
+</a>
+<h2 class="font-bold text-lg text-text-main-light dark:text-text-main-dark">Danh sách cuộc gọi</h2>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+<button class="px-3 py-1.5 rounded-lg bg-primary/10 text-primary border border-primary/20 text-xs font-bold whitespace-nowrap transition-colors">
+                            Tất cả
+                        </button>
+<button class="px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark border border-border-light dark:border-border-dark hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-medium whitespace-nowrap transition-colors">
+                            Chưa kết nối
+                        </button>
+<button class="px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800 text-text-sub-light dark:text-text-sub-dark border border-border-light dark:border-border-dark hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-medium whitespace-nowrap transition-colors">
+                            Lỗi kết nối
+                        </button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<div class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent relative" data-channel="teams" role="button" tabindex="0">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-xl bg-[#464EB8]/10 flex items-center justify-center">
+<img alt="Teams" class="w-7 h-7 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUVmQ0KfcI9AQe21eYaDm0ZMRC65f_dgd2mslyHkf1E-v-Xc8qp-kMVjILdBgE6-BV7hS6EPFoqeQ6RZb29EGQ4DNDi8NZg7wuxyf4ORHHJF2MNW2BTgmRhxTD_AJ0vsc-h3s_HYpDis8A9eKCZ75zHbzas1I8lO40sEUiwHz4ckUc9FYSYPey6sB4g3UjvBOB5GPhp2jbWL4VeXUfrmAjzcV_R2LWWI7DWH5P2JbQmav37AMcuUnDkHjDLxJ-NVRCWAm8lBJYsiM"/>
+</div>
+<div class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center p-0.5 shadow-sm">
+<span class="material-icons text-[12px] text-green-500">check_circle</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Microsoft Teams</h3>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">
+                                Đã kết nối
+                            </span>
+</div>
+<div class="flex items-center gap-1">
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark truncate font-medium">Video Meeting &amp; Chat</span>
+</div>
+</div>
+</div>
+<div class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent relative" data-channel="zoom" role="button" tabindex="0">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-xl bg-[#2D8CFF]/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-[#2D8CFF] text-2xl">videocam</span>
+</div>
+<div class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center p-0.5 shadow-sm">
+<span class="material-icons text-[12px] text-green-500">check_circle</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Zoom Meeting</h3>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">
+                                Đã kết nối
+                            </span>
+</div>
+<div class="flex items-center gap-1">
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark truncate">Video Conference</span>
+</div>
+</div>
+</div>
+<div class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent relative" data-channel="googlemeet" role="button" tabindex="0">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-xl bg-orange-50 dark:bg-orange-900/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-orange-600 text-2xl">video_camera_front</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Google Meet</h3>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+                                Chưa kết nối
+                            </span>
+</div>
+<div class="flex items-center gap-1">
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark truncate">Video Call</span>
+</div>
+</div>
+</div>
+<div class="group flex items-center gap-3 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-l-4 border-transparent relative" data-channel="pbx" role="button" tabindex="0">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-900/10 flex items-center justify-center">
+<span class="material-icons-outlined text-purple-600 text-2xl">dialpad</span>
+</div>
+<div class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center p-0.5 shadow-sm">
+<span class="material-icons text-[12px] text-green-500">check_circle</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-bold text-sm text-text-main-light dark:text-text-main-dark truncate">Tổng đài ảo (PBX)</h3>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">
+                                Đã kết nối
+                            </span>
+</div>
+<div class="flex items-center gap-1">
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark truncate">VOIP &amp; Call Center</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col bg-slate-50/50 dark:bg-slate-900/50 min-w-[400px] overflow-hidden" id="integrationsRight">
+<!-- Panel: Teams (default) -->
+<section class="h-full flex flex-col" data-panel="teams">
+<div class="h-16 px-6 border-b border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark flex items-center justify-between shrink-0">
+<div class="flex items-center gap-2">
+<div>
+<h1 class="font-bold text-lg text-text-main-light dark:text-text-main-dark">Cấu hình Kênh Teams</h1>
+<p class="text-xs text-text-sub-light hidden sm:block">Quản lý kết nối và cài đặt mặc định cho Microsoft Teams</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-800 text-text-sub-light hover:text-text-main-light transition-colors text-sm font-medium">
+                            Hủy
+                        </button>
+<button class="px-4 py-2 rounded-lg bg-primary hover:bg-sky-600 text-white transition-colors text-sm font-bold shadow-lg shadow-sky-500/20">
+                            Lưu cấu hình
+                        </button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-6">
+<div class="max-w-4xl mx-auto space-y-6">
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-border-light dark:border-border-dark shadow-sm">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-6 border-b border-border-light dark:border-border-dark">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-2xl bg-[#464EB8]/10 flex items-center justify-center flex-shrink-0">
+<img alt="Teams" class="w-10 h-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtQfMqvTIAReJGPLDrYWH6zbJ_CWP-I-HFcohzCh6hGzjAHjcu_RK5WzJLkgzncAKFr2iWVqQ6r1JXAuh3mHUAZPeBRq8DVkcLnihBpCfmE17N-ud8l9QhdBieDmrWjFLZxKkbaVK3gC7fez228u0HBBuOJKqNFxu3MvObVUNoWx6IG7Rd7Ys1RWfgcQrCgaG8Ci6HIT9WP02khtOaP9EojCA1HCU7PlizmFpjYvsrTpDu5lYn0PNwb3z74Ny3XoINk4q_vhFIr8M"/>
+</div>
+<div>
+<h2 class="text-xl font-bold text-text-main-light dark:text-text-main-dark">Microsoft Teams</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<p class="text-sm font-medium text-green-600 dark:text-green-400">Đang hoạt động</p>
+</div>
+</div>
+</div>
+<button class="px-4 py-2 text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:hover:bg-red-900/40 rounded-lg transition-colors border border-red-200 dark:border-red-800/50">
+                                    Ngắt kết nối
+                                </button>
+</div>
+<div class="pt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Tài khoản kết nối</label>
+<div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-border-light dark:border-border-dark">
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300">
+                                            KP
+                                        </div>
+<div class="flex-1 min-w-0">
+<div class="text-sm font-bold text-text-main-light dark:text-text-main-dark">admin@kpim.vn</div>
+<div class="text-xs text-text-sub-light">Microsoft 365 Business Standard</div>
+</div>
+<span class="material-icons-outlined text-green-500 text-lg">verified</span>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Lần đồng bộ cuối</label>
+<div class="flex items-center gap-3 p-3 h-[58px]">
+<span class="material-icons-outlined text-text-sub-light">sync</span>
+<div class="flex-1">
+<div class="text-sm font-medium text-text-main-light dark:text-text-main-dark">Vừa xong</div>
+<div class="text-xs text-text-sub-light">Tự động đồng bộ mỗi 15 phút</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl border border-border-light dark:border-border-dark shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-border-light dark:border-border-dark bg-slate-50/50 dark:bg-slate-800/30">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-primary">settings</span>
+                                    Cài đặt chung
+                                </h3>
+</div>
+<div class="p-6 space-y-6">
+<div class="flex items-center justify-between pb-6 border-b border-border-light dark:border-border-dark last:border-0 last:pb-0">
+<div class="pr-8">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Đồng bộ Lịch (Calendar Sync)</h4>
+<p class="text-xs text-text-sub-light mt-1">Tự động thêm lịch họp đã tạo từ CRM vào Outlook Calendar và ngược lại.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between pb-6 border-b border-border-light dark:border-border-dark last:border-0 last:pb-0">
+<div class="pr-8">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Tự động tạo link họp (Meeting Link)</h4>
+<p class="text-xs text-text-sub-light mt-1">Khi tạo lịch hẹn mới trong CRM với loại là "Online Meeting", hệ thống sẽ tự động sinh link Teams.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between pb-6 border-b border-border-light dark:border-border-dark last:border-0 last:pb-0">
+<div class="pr-8">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Đồng bộ Danh bạ (Contacts)</h4>
+<p class="text-xs text-text-sub-light mt-1">Đồng bộ danh bạ khách hàng từ CRM sang Microsoft Teams Contacts.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div class="pr-8">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Thông báo nhắc nhở (Reminder)</h4>
+<p class="text-xs text-text-sub-light mt-1">Gửi thông báo nhắc nhở cuộc họp qua Bot Teams trước 15 phút.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl border border-border-light dark:border-border-dark shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-border-light dark:border-border-dark bg-slate-50/50 dark:bg-slate-800/30">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-primary">tune</span>
+                                    Tùy chọn cuộc họp mặc định
+                                </h3>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Thời lượng mặc định</label>
+<select class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5">
+<option>30 phút</option>
+<option selected="">45 phút</option>
+<option>60 phút</option>
+<option>90 phút</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Quyền Lobby (Phòng chờ)</label>
+<select class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5">
+<option>Mọi người đều phải đợi</option>
+<option selected="">Người trong tổ chức được vào thẳng</option>
+<option>Tất cả mọi người được vào thẳng</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Ghi âm tự động</label>
+<div class="flex items-center gap-2 mt-2">
+<input class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary dark:focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" id="record" type="checkbox"/>
+<label class="text-sm font-medium text-text-main-light dark:text-text-main-dark" for="record">Tự động ghi âm khi bắt đầu</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Panel: Zoom -->
+<section class="h-full flex flex-col hidden" data-panel="zoom">
+<div class="h-16 px-6 border-b border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark flex items-center justify-between shrink-0">
+<div class="flex items-center gap-2">
+<div>
+<h1 class="font-bold text-lg text-text-main-light dark:text-text-main-dark">Cấu hình Kênh Zoom</h1>
+<p class="text-xs text-text-sub-light hidden sm:block">Quản lý kết nối và cài đặt mặc định cho Zoom Meeting</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-800 text-text-sub-light hover:text-text-main-light transition-colors text-sm font-medium">
+                            Hủy
+                        </button>
+<button class="px-4 py-2 rounded-lg bg-primary hover:bg-sky-600 text-white transition-colors text-sm font-bold shadow-lg shadow-sky-500/20">
+                            Lưu cấu hình
+                        </button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-6">
+<div class="max-w-4xl mx-auto space-y-6">
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-border-light dark:border-border-dark shadow-sm">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-6 border-b border-border-light dark:border-border-dark">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-2xl bg-[#2D8CFF]/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[#2D8CFF] text-3xl">videocam</span>
+</div>
+<div>
+<h2 class="text-xl font-bold text-text-main-light dark:text-text-main-dark">Zoom Meeting</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<p class="text-sm font-medium text-green-600 dark:text-green-400">Đang hoạt động</p>
+</div>
+</div>
+</div>
+<button class="px-4 py-2 text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:hover:bg-red-900/40 rounded-lg transition-colors border border-red-200 dark:border-red-800/50">
+                                    Ngắt kết nối
+                                </button>
+</div>
+<div class="pt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Tài khoản kết nối</label>
+<div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-border-light dark:border-border-dark">
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300">
+                                            KP
+                                        </div>
+<div class="flex-1 min-w-0 flex justify-between items-center">
+<div>
+<div class="text-sm font-bold text-text-main-light dark:text-text-main-dark">admin@kpim.vn</div>
+<div class="text-xs text-text-sub-light">Đã kết nối với Zoom như <span class="font-medium text-primary">Zoom One Pro</span></div>
+</div>
+</div>
+<button class="text-xs font-bold text-primary hover:text-sky-600 hover:underline px-2 py-1">
+                                            Đổi tài khoản
+                                        </button>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Lần đồng bộ cuối</label>
+<div class="flex items-center gap-3 p-3 h-[58px]">
+<span class="material-icons-outlined text-text-sub-light">sync</span>
+<div class="flex-1">
+<div class="text-sm font-medium text-text-main-light dark:text-text-main-dark">Vừa xong</div>
+<div class="text-xs text-text-sub-light">Tự động đồng bộ mỗi 15 phút</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl border border-border-light dark:border-border-dark shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-border-light dark:border-border-dark bg-slate-50/50 dark:bg-slate-800/30">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-primary">settings</span>
+                                    Cài đặt chung
+                                </h3>
+</div>
+<div class="p-6 space-y-6">
+<div class="flex items-center justify-between pb-6 border-b border-border-light dark:border-border-dark last:border-0 last:pb-0">
+<div class="pr-8">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Đồng bộ Lịch (Calendar Sync)</h4>
+<p class="text-xs text-text-sub-light mt-1">Tự động thêm lịch họp đã tạo từ CRM vào Zoom Calendar/Google Calendar và ngược lại.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between pb-6 border-b border-border-light dark:border-border-dark last:border-0 last:pb-0">
+<div class="pr-8">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Tự động tạo link họp (Meeting Link)</h4>
+<p class="text-xs text-text-sub-light mt-1">Khi tạo lịch hẹn mới trong CRM với loại là "Online Meeting", hệ thống sẽ tự động sinh link Zoom.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between pb-6 border-b border-border-light dark:border-border-dark last:border-0 last:pb-0">
+<div class="pr-8">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Đồng bộ Danh bạ (Contacts)</h4>
+<p class="text-xs text-text-sub-light mt-1">Đồng bộ danh bạ khách hàng từ CRM sang Zoom Contacts.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div class="pr-8">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Thông báo nhắc nhở (Reminder)</h4>
+<p class="text-xs text-text-sub-light mt-1">Gửi thông báo nhắc nhở cuộc họp qua Bot Zoom trước 15 phút.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl border border-border-light dark:border-border-dark shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-border-light dark:border-border-dark bg-slate-50/50 dark:bg-slate-800/30">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-primary">tune</span>
+                                    Tùy chọn cuộc họp mặc định
+                                </h3>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Thời lượng mặc định</label>
+<select class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5">
+<option>30 phút</option>
+<option selected="">45 phút</option>
+<option>60 phút</option>
+<option>90 phút</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Quyền Lobby (Phòng chờ)</label>
+<select class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5">
+<option>Bật phòng chờ (Waiting Room)</option>
+<option selected="">Tắt phòng chờ (Cho phép tham gia ngay)</option>
+<option>Chỉ khách vãng lai mới cần chờ</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Ghi âm tự động</label>
+<div class="flex items-center gap-2 mt-2">
+<input class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary dark:focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" id="record" type="checkbox"/>
+<label class="text-sm font-medium text-text-main-light dark:text-text-main-dark" for="record">Tự động ghi âm khi bắt đầu</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Panel: Google Meet -->
+<section class="h-full flex flex-col hidden" data-panel="googlemeet">
+<div class="h-16 px-6 border-b border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark flex items-center justify-between shrink-0">
+<div class="flex items-center gap-2">
+<div>
+<h1 class="font-bold text-lg text-text-main-light dark:text-text-main-dark">Cấu hình Kênh Google Meet</h1>
+<p class="text-xs text-text-sub-light hidden sm:block">Quản lý kết nối và cài đặt mặc định cho Google Meet</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-800 text-text-sub-light hover:text-text-main-light transition-colors text-sm font-medium">
+                            Hủy
+                        </button>
+<button class="px-4 py-2 rounded-lg bg-primary hover:bg-sky-600 text-white transition-colors text-sm font-bold shadow-lg shadow-sky-500/20">
+                            Lưu cấu hình
+                        </button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-6">
+<div class="max-w-4xl mx-auto space-y-6">
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-border-light dark:border-border-dark shadow-sm">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-6 border-b border-border-light dark:border-border-dark">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-2xl bg-orange-50 dark:bg-orange-900/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-orange-600 text-4xl">video_camera_front</span>
+</div>
+<div>
+<h2 class="text-xl font-bold text-text-main-light dark:text-text-main-dark">Google Meet</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<p class="text-sm font-medium text-green-600 dark:text-green-400">Đang hoạt động</p>
+</div>
+</div>
+</div>
+<button class="px-4 py-2 text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:hover:bg-red-900/40 rounded-lg transition-colors border border-red-200 dark:border-red-800/50">
+                                    Ngắt kết nối
+                                </button>
+</div>
+<div class="pt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Tài khoản kết nối</label>
+<div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-border-light dark:border-border-dark">
+<div class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0">
+<svg class="w-5 h-5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.84z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path></svg>
+</div>
+<div class="flex-1 min-w-0">
+<div class="text-sm font-bold text-text-main-light dark:text-text-main-dark truncate">admin@kpim.vn</div>
+<div class="text-xs text-text-sub-light truncate">Đã kết nối với Google như...</div>
+</div>
+<button class="px-3 py-1.5 text-xs font-bold text-text-sub-light hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors whitespace-nowrap">
+                                            Đổi tài khoản
+                                        </button>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Lần đồng bộ cuối</label>
+<div class="flex items-center gap-3 p-3 h-[58px]">
+<span class="material-icons-outlined text-text-sub-light">sync</span>
+<div class="flex-1">
+<div class="text-sm font-medium text-text-main-light dark:text-text-main-dark">Vừa xong</div>
+<div class="text-xs text-text-sub-light">Tự động đồng bộ mỗi 15 phút</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl border border-border-light dark:border-border-dark shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-border-light dark:border-border-dark bg-slate-50/50 dark:bg-slate-800/30">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-primary">settings</span>
+                                    Cài đặt chung
+                                </h3>
+</div>
+<div class="p-6 space-y-6">
+<div class="flex items-center justify-between pb-6 border-b border-border-light dark:border-border-dark last:border-0 last:pb-0">
+<div class="pr-8">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Đồng bộ Lịch (Calendar Sync)</h4>
+<p class="text-xs text-text-sub-light mt-1">Tự động thêm lịch họp đã tạo từ CRM vào Google Calendar và ngược lại.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between pb-6 border-b border-border-light dark:border-border-dark last:border-0 last:pb-0">
+<div class="pr-8">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Tự động tạo link họp (Meeting Link)</h4>
+<p class="text-xs text-text-sub-light mt-1">Khi tạo lịch hẹn mới trong CRM với loại là "Online Meeting", hệ thống sẽ tự động sinh link Google Meet.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between pb-6 border-b border-border-light dark:border-border-dark last:border-0 last:pb-0">
+<div class="pr-8">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Đồng bộ Danh bạ (Contacts)</h4>
+<p class="text-xs text-text-sub-light mt-1">Đồng bộ danh bạ khách hàng từ CRM sang Google Contacts.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div class="pr-8">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Thông báo nhắc nhở (Reminder)</h4>
+<p class="text-xs text-text-sub-light mt-1">Gửi thông báo nhắc nhở cuộc họp qua Google Calendar/Bot trước 15 phút.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl border border-border-light dark:border-border-dark shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-border-light dark:border-border-dark bg-slate-50/50 dark:bg-slate-800/30">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-primary">tune</span>
+                                    Tùy chọn cuộc họp mặc định
+                                </h3>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Thời lượng mặc định</label>
+<select class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5">
+<option>30 phút</option>
+<option selected="">45 phút</option>
+<option>60 phút</option>
+<option>90 phút</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Quyền Lobby (Phòng chờ)</label>
+<select class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5">
+<option>Mọi người đều phải đợi</option>
+<option selected="">Người trong tổ chức được vào thẳng</option>
+<option>Tất cả mọi người được vào thẳng</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Panel: Tổng đài (PBX) -->
+<section class="h-full flex flex-col hidden" data-panel="pbx">
+<div class="h-16 px-6 border-b border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark flex items-center justify-between shrink-0">
+<div class="flex items-center gap-2">
+<div>
+<h1 class="font-bold text-lg text-text-main-light dark:text-text-main-dark">Cấu hình Tổng đài</h1>
+<p class="text-xs text-text-sub-light hidden sm:block">Kết nối và quản lý tổng đài IP/PBX của doanh nghiệp</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-800 text-text-sub-light hover:text-text-main-light transition-colors text-sm font-medium">
+                            Hủy
+                        </button>
+<button class="px-4 py-2 rounded-lg bg-primary hover:bg-sky-600 text-white transition-colors text-sm font-bold shadow-lg shadow-sky-500/20">
+                            Lưu cấu hình
+                        </button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-6">
+<div class="max-w-4xl mx-auto space-y-6">
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-border-light dark:border-border-dark shadow-sm">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-6 border-b border-border-light dark:border-border-dark">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-2xl bg-purple-50 dark:bg-purple-900/10 flex items-center justify-center flex-shrink-0">
+<span class="material-icons-outlined text-purple-600 text-3xl">dialpad</span>
+</div>
+<div>
+<h2 class="text-xl font-bold text-text-main-light dark:text-text-main-dark">Tổng đài ảo (PBX)</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<p class="text-sm font-medium text-green-600 dark:text-green-400">Đang hoạt động</p>
+</div>
+</div>
+</div>
+<button class="px-4 py-2 text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:hover:bg-red-900/40 rounded-lg transition-colors border border-red-200 dark:border-red-800/50">
+                                    Ngắt kết nối
+                                </button>
+</div>
+<div class="pt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="col-span-1 md:col-span-2">
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Địa chỉ máy chủ PBX</label>
+<input class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-text-main-light dark:text-text-main-dark text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5" type="text" value="sip.compacrm.com"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Cổng</label>
+<input class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-text-main-light dark:text-text-main-dark text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5" type="text" value="5060"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Tên người dùng API</label>
+<input class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-text-main-light dark:text-text-main-dark text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5" type="text" value="api_admin_01"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-text-sub-light uppercase mb-2">Mật khẩu API</label>
+<input class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-text-main-light dark:text-text-main-dark text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5" type="password" value="password123"/>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl border border-border-light dark:border-border-dark shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-border-light dark:border-border-dark bg-slate-50/50 dark:bg-slate-800/30">
+<h3 class="font-bold text-base text-text-main-light dark:text-text-main-dark flex items-center gap-2">
+<span class="material-icons-outlined text-primary">settings</span>
+                                    Cài đặt chung
+                                </h3>
+</div>
+<div class="p-6 space-y-6">
+<div class="flex items-center justify-between pb-6 border-b border-border-light dark:border-border-dark last:border-0 last:pb-0">
+<div class="pr-8">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Ghi âm cuộc gọi</h4>
+<p class="text-xs text-text-sub-light mt-1">Tự động ghi âm tất cả cuộc gọi đến và đi để phục vụ tra soát chất lượng.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between pb-6 border-b border-border-light dark:border-border-dark last:border-0 last:pb-0">
+<div class="pr-8">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Thông báo cuộc gọi đến</h4>
+<p class="text-xs text-text-sub-light mt-1">Hiển thị popup thông báo và đổ chuông trên trình duyệt khi có cuộc gọi tới.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div class="pr-8">
+<h4 class="text-sm font-bold text-text-main-light dark:text-text-main-dark">Đồng bộ Danh bạ (Contacts)</h4>
+<p class="text-xs text-text-sub-light mt-1">Tự động đồng bộ thông tin khách hàng từ CRM sang danh bạ tổng đài.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</section>
+</div>
+
+</div>
+<!-- =========================================================
+  CONFIG - Dễ thay thế link
+  - BASE_PATH: đường dẫn gốc tới các file HTML khác (sidebar)
+  Ví dụ:
+    const BASE_PATH = "/compa-crm-public/";
+========================================================== -->
+<script>
+  // ====== CONFIG ======
+  const BASE_PATH = "/compa-crm-public/";
+
+  // ====== Helpers: apply sidebar links from data-href ======
+  (function applySidebarLinks() {
+    document.querySelectorAll('[data-href]').forEach(a => {
+      const p = a.getAttribute('data-href') || '';
+      // allow absolute URLs if user puts full link later
+      if (/^https?:\/\//i.test(p)) {
+        a.href = p;
+      } else {
+        a.href = BASE_PATH + p;
+      }
+    });
+  })();
+
+  // ====== View Switching (SC200 <-> SC210) ======
+  const viewChat = document.getElementById('view-chat');
+  const viewConnect = document.getElementById('view-connect');
+  const btnConnect = document.getElementById('btnConnectChannel');
+  const btnBack = document.getElementById('btnBackToChat');
+
+  function showView(view) {
+    if (view === 'connect') {
+      viewChat.classList.add('hidden');
+      viewConnect.classList.remove('hidden');
+    } else {
+      viewConnect.classList.add('hidden');
+      viewChat.classList.remove('hidden');
+    }
+  }
+
+  if (btnConnect) {
+    btnConnect.addEventListener('click', () => showView('connect'));
+  }
+  if (btnBack) {
+    btnBack.addEventListener('click', () => showView('chat'));
+  }
+
+  // Optional: support browser back/forward with hash
+  function syncHash() {
+    const h = (location.hash || '').replace('#','');
+    if (h === 'connect') showView('connect');
+    else showView('chat');
+  }
+  window.addEventListener('hashchange', syncHash);
+  // set default hash when user clicks
+  if (btnConnect) btnConnect.addEventListener('click', () => (location.hash = 'connect'));
+  if (btnBack) btnBack.addEventListener('click', () => (location.hash = 'chat'));
+  syncHash();
+</script>
+
+<script>
+/**
+ * COMPA CRM - Calls Module (SC300 + Integrations SC310/320/330/340)
+ * - Default: SC300 (Call/Meeting screen)
+ * - Click "+ Tích hợp" -> open Integrations screen and default channel = Teams
+ * - In Integrations: click left channel list to switch panel (Teams/Zoom/Google Meet/PBX)
+ * - Click back arrow -> return to SC300
+ *
+ * NOTE: This file is a 1-file prototype. Replace ROUTES below with real paths when integrating to app router.
+ */
+(function () {
+  const ROUTES = {
+    dashboard: "#dashboard",
+    chat: "#chat",
+    calls: "#calls",
+    emails: "#emails",
+    contacts: "#contacts",
+    pipeline: "#pipeline",
+    customers: "#customers",
+    marketing: "#marketing",
+    affiliate: "#affiliate",
+    settings: "#settings"
+  };
+
+  // ----- Screen switching -----
+  const screenMain = document.getElementById("screen-sc300");
+  const screenIntegrations = document.getElementById("screen-integrations");
+
+  function showScreen(screen) {
+    const isMain = screen === "main";
+    screenMain.classList.toggle("hidden", !isMain);
+    screenMain.setAttribute("aria-hidden", String(!isMain));
+    screenIntegrations.classList.toggle("hidden", isMain);
+    screenIntegrations.setAttribute("aria-hidden", String(isMain));
+  }
+
+  // ----- Integrations: channel switching -----
+  const channelItems = Array.from(document.querySelectorAll("#screen-integrations [data-channel]"));
+  const panels = Array.from(document.querySelectorAll("#integrationsRight [data-panel]"));
+
+  function setActiveChannel(channel) {
+    // Highlight left item
+    channelItems.forEach((el) => {
+      const isActive = el.getAttribute("data-channel") === channel;
+      el.classList.toggle("bg-primary/5", isActive);
+      el.classList.toggle("dark:bg-primary/10", isActive);
+      el.classList.toggle("border-primary", isActive);
+      // remove any leftover active styles
+      if (!isActive) {
+        el.classList.remove("bg-primary/10", "border-primary");
+      }
+    });
+
+    // Show corresponding right panel
+    panels.forEach((p) => {
+      const isActive = p.getAttribute("data-panel") === channel;
+      p.classList.toggle("hidden", !isActive);
+    });
+  }
+
+  function openIntegrations(defaultChannel) {
+    showScreen("integrations");
+    setActiveChannel(defaultChannel || "teams");
+  }
+
+  // Bind "+ Tích hợp" (SC300)
+// Prefer an explicit id, but also support the original SC300 markup (no id)
+let btnIntegrations = document.getElementById("btnIntegrations");
+if (!btnIntegrations) {
+  // Fallback: match by title or visible label
+  btnIntegrations =
+    document.querySelector('#screen-sc300 button[title="Thêm tích hợp"]') ||
+    Array.from(document.querySelectorAll("#screen-sc300 button")).find((b) =>
+      (b.textContent || "").replace(/\s+/g, " ").includes("+ Tích hợp")
+    );
+}
+if (btnIntegrations) {
+  btnIntegrations.addEventListener("click", function (e) {
+    e.preventDefault();
+    openIntegrations("teams"); // default = Teams (SC310)
+  });
+}
+
+  // Bind back button in Integrations
+  const btnBack = document.getElementById("btnBackFromIntegrations");
+  if (btnBack) {
+    btnBack.addEventListener("click", function (e) {
+      e.preventDefault();
+      showScreen("main");
+    });
+  }
+
+  // Bind channel clicks
+  channelItems.forEach((el) => {
+    const chan = el.getAttribute("data-channel");
+    const handler = (e) => {
+      e.preventDefault();
+      setActiveChannel(chan);
+    };
+    el.addEventListener("click", handler);
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") handler(e);
+    });
+  });
+
+  // Default startup
+  showScreen("main");
+})();
+</script>
+</body></html>

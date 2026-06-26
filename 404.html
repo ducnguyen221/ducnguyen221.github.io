@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đang chuyển hướng… — ducnguyen.vn</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/cyber_ai_profile.png">
+<script>
+  /* Site-wide 404 handler for the merged monorepo.
+     GitHub Pages serves THIS root 404 for every missing path on the domain,
+     so it must also cover behaviours that used to live in per-repo 404s. */
+  (function () {
+    var p = location.pathname;
+
+    /* 1) Legacy /my-project/* → /project/*  (repo renamed during the merge) */
+    if (p === "/my-project" || p.indexOf("/my-project/") === 0) {
+      var rest = p.replace(/^\/my-project\/?/, "");
+      location.replace("/project/" + rest + location.search + location.hash);
+      return;
+    }
+
+    /* 2) Atlas SPA fallback: /atlas/<cat>/ → /atlas/?cat=<cat> (was atlas/404.html) */
+    if (p.indexOf("/atlas/") === 0) {
+      var CATS = ["strategy","ai","ba","da","de","bi","edtech","coding","automation","instruction","other"];
+      var segs = p.replace(/\/+$/, "").split("/");
+      var cat = (segs[segs.length - 1] || "").toLowerCase();
+      if (CATS.indexOf(cat) >= 0) location.replace("/atlas/?cat=" + cat);
+      else location.replace("/atlas/");
+      return;
+    }
+  })();
+</script>
+<style>
+  :root { color-scheme: dark; }
+  body { font-family: ui-sans-serif, system-ui, sans-serif; background:#0a0f1a; color:#9fb2c6;
+         min-height:100dvh; margin:0; display:grid; place-items:center; text-align:center; padding:24px; }
+  .card { max-width:32rem; }
+  h1 { font-size:clamp(2.5rem,8vw,4rem); margin:0 0 .25rem; color:#e8eef6; letter-spacing:-.02em; }
+  p  { line-height:1.6; }
+  a.btn { display:inline-block; margin-top:1rem; padding:.6rem 1.1rem; border-radius:.6rem;
+          background:#38bdf8; color:#04121f; font-weight:600; text-decoration:none; }
+  .links { margin-top:1.5rem; font-size:.9rem; opacity:.85; }
+  .links a { color:#38bdf8; margin:0 .5rem; text-decoration:none; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>404</h1>
+    <p>Không tìm thấy trang này. Có thể đường dẫn đã thay đổi hoặc nội dung đã được di chuyển.</p>
+    <a class="btn" href="/">← Về trang chủ ducnguyen.vn</a>
+    <div class="links">
+      <a href="/atlas/">Atlas</a>·
+      <a href="/news/">News</a>·
+      <a href="/profile/">Profile</a>·
+      <a href="/project/">Project</a>·
+      <a href="/docs/">Docs</a>
+    </div>
+  </div>
+</body>
+</html>

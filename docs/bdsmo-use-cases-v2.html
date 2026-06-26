@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BDSMO Use Cases v2 — UC Explorer (85 UCs)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .gradient-text { background: linear-gradient(135deg, #4f46e5, #ec4899); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  details > summary { cursor: pointer; list-style: none; }
+  details > summary::after { content: '▼'; float: right; transition: transform 0.2s; font-size: 0.75rem; opacity: 0.5; }
+  details[open] > summary::after { transform: rotate(180deg); }
+  .uc-card { transition: all 0.15s; }
+  .uc-card:hover { box-shadow: 0 6px 15px rgba(0,0,0,0.1); transform: translateY(-1px); }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; margin-right: 4px; }
+  pre.ascii { background: #0f172a; color: #f1f5f9; padding: 12px; border-radius: 6px; font-size: 11px; line-height: 1.4; overflow-x: auto; }
+  .mermaid { background: #f1f5f9; padding: 8px; border-radius: 6px; }
+</style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+
+<header class="bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white py-6 px-6 shadow-2xl">
+  <div class="max-w-7xl mx-auto">
+    <h1 class="text-3xl font-bold mb-1">📋 BDSMO Use Cases v2 — Explorer</h1>
+    <p class="text-blue-200">85 use cases across 14 features + 1 foundation. Heavy spec với ASCII wireframes + Mermaid sequence diagrams.</p>
+    <div class="text-xs text-blue-300 mt-2">Companion: <code>bdsmo-use-cases-v2.md</code> (full spec ~50KB) · Generated 2026-05-11</div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-6 space-y-6">
+
+<!-- FILTERS -->
+<section class="bg-white rounded-xl p-4 shadow-md sticky top-0 z-30">
+  <div class="grid md:grid-cols-4 gap-3">
+    <div>
+      <label class="text-xs font-bold text-slate-700 block mb-1">🔍 Search</label>
+      <input type="text" id="search-input" placeholder="UC ID, title, actor..." class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-indigo-300 focus:outline-none" />
+    </div>
+    <div>
+      <label class="text-xs font-bold text-slate-700 block mb-1">📦 Feature</label>
+      <select id="filter-feature" class="w-full px-3 py-2 border rounded-lg text-sm">
+        <option value="">All features</option>
+      </select>
+    </div>
+    <div>
+      <label class="text-xs font-bold text-slate-700 block mb-1">👥 Persona</label>
+      <select id="filter-persona" class="w-full px-3 py-2 border rounded-lg text-sm">
+        <option value="">All personas</option>
+        <option value="BU">BU - Buyer</option>
+        <option value="RE">RE - Renter</option>
+        <option value="OW">OW - Owner-DIY</option>
+        <option value="IN">IN - Investor</option>
+        <option value="BK">BK - Solo Broker</option>
+        <option value="BG">BG - Brokerage</option>
+        <option value="ADMIN">ADMIN/SUPER_ADMIN</option>
+      </select>
+    </div>
+    <div>
+      <label class="text-xs font-bold text-slate-700 block mb-1">📅 Sprint</label>
+      <select id="filter-sprint" class="w-full px-3 py-2 border rounded-lg text-sm">
+        <option value="">All sprints</option>
+      </select>
+    </div>
+  </div>
+  <div class="mt-3 text-xs text-slate-500 flex justify-between items-center">
+    <span><strong id="result-count">85</strong>/85 UCs hiển thị</span>
+    <button id="clear-filters" class="text-indigo-600 hover:underline">Clear filters</button>
+  </div>
+</section>
+
+<!-- UC GRID -->
+<section id="uc-list" class="space-y-3"></section>
+
+<footer class="text-center text-xs text-slate-500 pt-8 pb-4">
+  Generated 2026-05-11 by 3 BA parallel agents
+</footer>
+
+</main>
+
+<script>
+mermaid.initialize({ startOnLoad: false, theme: 'default' });
+
+// 85 UCs (abbreviated metadata; full content trong .md file)
+const UCS = [
+  // Feature #1 Property/Unit (UC-PROP)
+  { id:'UC-PROP-001', feature:'#1 Property/Unit', title:'Owner tạo Property mới với dedupe-check', actors:['OW','IN','BK'], sprint:'SP-24', desc:'Step 1 wizard với dedupe-check endpoint. User nhập tên + địa chỉ → backend canonicalize → nếu trùng hiển thị modal cho user chọn existing hay tạo mới.', hasFlow:true, hasWireframe:true },
+  { id:'UC-PROP-002', feature:'#1 Property/Unit', title:'Owner thêm nhiều Units bulk-add', actors:['OW','IN'], sprint:'SP-25', desc:'Bulk add với pattern auto-generate (20 floors × 10 units = 200 units) hoặc manual entry table.', hasFlow:true, hasWireframe:true },
+  { id:'UC-PROP-003', feature:'#1 Property/Unit', title:'Property→Project link + VerificationBadge live', actors:['OW','IN','ADMIN'], sprint:'SP-24', desc:'Property card hiển thị badge verification state từ project.verified_at. Admin có thể đổi project link qua autocomplete.', hasFlow:true, hasWireframe:true },
+  { id:'UC-PROP-004', feature:'#1 Property/Unit', title:'User submit Suggested Edit cho Project', actors:['BK','BG'], sprint:'SP-24', desc:'Broker tier+ submit suggestion về Project info sai. Tạo suggested_edits row pending admin review.', hasFlow:false, hasWireframe:true },
+  { id:'UC-PROP-005', feature:'#1 Property/Unit', title:'Admin review Suggested Edit + accept/reject', actors:['ADMIN'], sprint:'SP-24', desc:'Admin queue UI accept/reject pending edits. Accept → apply patch + verified_by/at. Reject → reason.', hasFlow:false, hasWireframe:false },
+  { id:'UC-PROP-006', feature:'#1 Property/Unit', title:'Investor xem Master Projects admin', actors:['IN','ADMIN'], sprint:'SP-24', desc:'Master data dashboard: total/verified/pending/recently-updated stats. Filter by source.', hasFlow:false, hasWireframe:false },
+  { id:'UC-PROP-007', feature:'#1 Property/Unit', title:'Auto-import Project từ Google Places', actors:['ADMIN'], sprint:'SP-24', desc:'Admin gõ tên → Google Places autocomplete → fill form → tạo Project với data_source=google_places, confidence=85.', hasFlow:false, hasWireframe:false },
+
+  // Feature #2 Listing (UC-LIST)
+  { id:'UC-LIST-001', feature:'#2 Listing', title:'Broker post listing free (sale or rent)', actors:['OW','BK','BG'], sprint:'SP-21+SP-24', desc:'4-step form: pick BĐS → toggle SALE/RENT/BOTH → pricing fields → title+description+images. Free quota check.', hasFlow:true, hasWireframe:true },
+  { id:'UC-LIST-002', feature:'#2 Listing', title:'Broker upgrade listing thành Featured (paid)', actors:['BK','BG','OW'], sprint:'SP-30', desc:'Modal pricing 7 days = 10 credits / 30 days = 25 credits. Deduct credits → set featured_until → bump to top of search.', hasFlow:false, hasWireframe:true },
+  { id:'UC-LIST-003', feature:'#2 Listing', title:'User apply for Verified-Owner badge', actors:['OW','BK'], sprint:'TBD vendor-blocked', desc:'Upload CCCD + sổ đỏ → admin review → ✅ "Chính chủ" badge.', hasFlow:false, hasWireframe:false },
+  { id:'UC-LIST-004', feature:'#2 Listing', title:'Multi-broker listing display N per subject', actors:['BU','RE'], sprint:'SP-23+SP-30', desc:'Buyer thấy "Còn 2 broker khác đang bán căn này" với compare giá/dịch vụ.', hasFlow:true, hasWireframe:false },
+  { id:'UC-LIST-005', feature:'#2 Listing', title:'Admin filter listings by source', actors:['ADMIN'], sprint:'SP-41', desc:'Filter All / User-created / Referral crawl. Hide/restore/flag actions.', hasFlow:false, hasWireframe:false },
+  { id:'UC-LIST-006', feature:'#2 Listing', title:'User report listing as spam', actors:['BU','RE'], sprint:'SP-33', desc:'Report reason (spam/info sai/lừa đảo) + note. Auto-hide khi >=3 reports.', hasFlow:false, hasWireframe:false },
+  { id:'UC-LIST-007', feature:'#2 Listing', title:'Bulk-list nhiều units cho IN/BG', actors:['IN','BG'], sprint:'SP-22+SP-30', desc:'Select 5 units checkbox → shared template → tạo 5 listings cùng lúc.', hasFlow:false, hasWireframe:false },
+
+  // Feature #6 Booking (UC-BOOK)
+  { id:'UC-BOOK-001', feature:'#6 Booking', title:'Renter book viewing căn cho thuê', actors:['RE'], sprint:'SP-9', desc:'Calendar 7 days với time slots. Renter chọn slot + nhập contact → owner accept/reject 24h.', hasFlow:false, hasWireframe:true },
+  { id:'UC-BOOK-002', feature:'#6 Booking', title:'Owner confirm/reject booking', actors:['OW','BK'], sprint:'SP-9', desc:'Notification → detail → Accept/Reject với lý do/Suggest other time.', hasFlow:false, hasWireframe:false },
+  { id:'UC-BOOK-003', feature:'#6 Booking', title:'Short-term rental booking với calendar grid', actors:['RE'], sprint:'SP-36', desc:'Airbnb-style: chọn check-in/check-out dates → tính total → payment hold.', hasFlow:false, hasWireframe:false },
+  { id:'UC-BOOK-004', feature:'#6 Booking', title:'Owner xem calendar tổng (multi-property)', actors:['IN','BG'], sprint:'SP-36', desc:'Month view với swimlanes per property, color-coded by status, filter by property.', hasFlow:false, hasWireframe:false },
+  { id:'UC-BOOK-005', feature:'#6 Booking', title:'Cancel booking với refund logic', actors:['RE','OW'], sprint:'SP-9', desc:'Refund policy: >7d=100%, 3-7d=50%, <3d=0%.', hasFlow:false, hasWireframe:false },
+  { id:'UC-BOOK-006', feature:'#6 Booking', title:'Auto-status engine PENDING expire 24h', actors:['SYSTEM'], sprint:'SP-9', desc:'Hourly cron: PENDING > 24h → EXPIRED, free up calendar slot.', hasFlow:false, hasWireframe:false },
+
+  // Feature #14 AI Homepage (UC-AI)
+  { id:'UC-AI-001', feature:'#14 AI Homepage', title:'Buyer hỏi AI tìm 2BR dưới 5 tỷ Bình Thạnh', actors:['BU','RE'], sprint:'SP-19', desc:'Gemini parse intent → extract filters → query DB → carousel results. Deduct 1 credit.', hasFlow:false, hasWireframe:false },
+  { id:'UC-AI-002', feature:'#14 AI Homepage', title:'Buyer hỏi giá có hợp lý không', actors:['BU'], sprint:'SP-40', desc:'AI tính avg price/m² in same area + property type, last 90 days → response với offer suggestion.', hasFlow:false, hasWireframe:false },
+  { id:'UC-AI-003', feature:'#14 AI Homepage', title:'Phong thủy — tuổi mệnh hợp hướng nhà', actors:['BU'], sprint:'SP-40', desc:'Form ngày sinh + giới tính → AI tính mệnh + hướng tốt → filter listings phù hợp.', hasFlow:false, hasWireframe:false },
+  { id:'UC-AI-004', feature:'#14 AI Homepage', title:'Streaming response (SSE)', actors:['BU','RE'], sprint:'SP-40', desc:'Server-Sent Events stream chunks; UI render token-by-token.', hasFlow:false, hasWireframe:false },
+  { id:'UC-AI-005', feature:'#14 AI Homepage', title:'Compare 2-3 listings side-by-side', actors:['BU'], sprint:'SP-40', desc:'AI table compare price/area/bedrooms/score → verdict for use case.', hasFlow:false, hasWireframe:false },
+  { id:'UC-AI-006', feature:'#14 AI Homepage', title:'Voice input (Vietnamese STT)', actors:['BU','RE'], sprint:'SP-40', desc:'Web Speech API mic transcribe → text input → auto-submit.', hasFlow:false, hasWireframe:false },
+
+  // Feature #3 Community (UC-COM)
+  { id:'UC-COM-001', feature:'#3 Community', title:'User join group "Cho thuê BĐS Q.7"', actors:['BU','RE','OW','BK'], sprint:'SP-25', desc:'Group landing → click Join → community_group_members row. Notify admin nếu group privacy=closed.', hasFlow:false, hasWireframe:false },
+  { id:'UC-COM-002', feature:'#3 Community', title:'Broker post listing trong group + Verified badge', actors:['BK','BG'], sprint:'SP-25+SP-28', desc:'Form text + image + link existing listing. Verified badge ✅. Notify members. Track clicks.', hasFlow:false, hasWireframe:false },
+  { id:'UC-COM-003', feature:'#3 Community', title:'Buyer comment + DM broker → CRM lead', actors:['BU','RE'], sprint:'SP-28', desc:'Click Nhắn tin → 1:1 thread → NLP classify intent → high-intent auto-create CRM Lead.', hasFlow:false, hasWireframe:false },
+  { id:'UC-COM-004', feature:'#3 Community', title:'Group recommendation engine', actors:['BU','RE','BK'], sprint:'SP-28', desc:'/community/discover suggest groups by location + intent + popularity.', hasFlow:false, hasWireframe:false },
+  { id:'UC-COM-005', feature:'#3 Community', title:'Admin moderation hide spam post', actors:['ADMIN group'], sprint:'SP-28', desc:'Auto-flag khi report >=3. Admin Hide/Delete/Ban user actions.', hasFlow:false, hasWireframe:false },
+  { id:'UC-COM-006', feature:'#3 Community', title:'Notification new post in joined group', actors:['MEMBER'], sprint:'SP-28', desc:'Async job: in-app notification + optional email digest.', hasFlow:false, hasWireframe:false },
+  { id:'UC-COM-007', feature:'#3 Community', title:'Leave group', actors:['MEMBER'], sprint:'SP-25', desc:'Settings → Leave → soft-delete (status=LEFT) for analytics.', hasFlow:false, hasWireframe:false },
+
+  // Feature #7 CRM (UC-CRM)
+  { id:'UC-CRM-001', feature:'#7 CRM', title:'Broker xem Customer 360 view', actors:['BK','BG'], sprint:'SP-29', desc:'/app/crm/customers/{id} với profile + bookings + messages + contracts + total spent + activity timeline.', hasFlow:false, hasWireframe:false },
+  { id:'UC-CRM-002', feature:'#7 CRM', title:'Broker move lead through pipeline', actors:['BK','BG'], sprint:'SP-29', desc:'Dropdown LEAD→QUALIFIED→NEGOTIATING→WON/LOST. Modal lý do + log to customer_activities.', hasFlow:false, hasWireframe:false },
+  { id:'UC-CRM-003', feature:'#7 CRM', title:'AI suggest next action', actors:['SYSTEM','BK'], sprint:'SP-29', desc:'Gemini analyze profile + activities last 30d → suggest action+priority+timing. Save to next_action_suggested.', hasFlow:false, hasWireframe:false },
+  { id:'UC-CRM-004', feature:'#7 CRM', title:'Lead source attribution', actors:['SYSTEM'], sprint:'SP-29', desc:'Parse cookie bdsmo_attr → save Customer.source as community/affiliate/organic/ai-chat.', hasFlow:false, hasWireframe:false },
+  { id:'UC-CRM-005', feature:'#7 CRM', title:'Bulk import customers từ CSV', actors:['BG'], sprint:'SP-31', desc:'Upload CSV → preview mapping → bulk insert → dedup by email/phone.', hasFlow:false, hasWireframe:false },
+
+  // Feature #8 Affiliate (UC-AFF)
+  { id:'UC-AFF-001', feature:'#8 Affiliate', title:'User generate referral code', actors:['ALL'], sprint:'SP-25', desc:'/app/affiliate first time generate unique code + link + QR. Stats cards.', hasFlow:false, hasWireframe:false },
+  { id:'UC-AFF-002', feature:'#8 Affiliate', title:'Friend signs up via referral link', actors:['NEW USER'], sprint:'SP-25', desc:'/r/{code} → set cookie 30d → /signup → backend save users.referred_by_user_id.', hasFlow:false, hasWireframe:false },
+  { id:'UC-AFF-003', feature:'#8 Affiliate', title:'Bonus tier earned', actors:['SYSTEM'], sprint:'SP-30', desc:'Trigger on referee posts first listing. Tier: 1-5=50K, 6-20=100K, 21+=150K.', hasFlow:false, hasWireframe:false },
+  { id:'UC-AFF-004', feature:'#8 Affiliate', title:'Request payout', actors:['BK','BG'], sprint:'SP-30', desc:'Earnings >=500K → choose payment method → admin review/approve → manual payout.', hasFlow:false, hasWireframe:false },
+  { id:'UC-AFF-005', feature:'#8 Affiliate', title:'Affiliate dashboard analytics', actors:['BK'], sprint:'SP-30', desc:'Charts earnings over time, tier progress, top performing links, recent referrals.', hasFlow:false, hasWireframe:false },
+
+  // Feature #5 Omnichannel (UC-INB)
+  { id:'UC-INB-001', feature:'#5 Omnichannel', title:'Broker connect Zalo OA', actors:['BK','BG'], sprint:'SP-37', desc:'OAuth2 → encrypt token vào IntegrationConfig (Secret Manager) → register webhook.', hasFlow:false, hasWireframe:false },
+  { id:'UC-INB-002', feature:'#5 Omnichannel', title:'Inbound Zalo message routes vào unified inbox', actors:['SYSTEM'], sprint:'SP-37', desc:'Verify HMAC → identify customer → insert Message + Conversation → notify broker.', hasFlow:false, hasWireframe:false },
+  { id:'UC-INB-003', feature:'#5 Omnichannel', title:'Broker reply trong unified inbox', actors:['BK','BG'], sprint:'SP-37', desc:'Composer with channel icon → Send via Zalo OA Send API → insert outbound Message.', hasFlow:false, hasWireframe:false },
+  { id:'UC-INB-004', feature:'#5 Omnichannel', title:'Unified inbox view với filter', actors:['BK','BG'], sprint:'SP-37', desc:'/app/inbox list conversations sort by last_message_at, filter by channel, search, pin, unread badge.', hasFlow:false, hasWireframe:true },
+  { id:'UC-INB-005', feature:'#5 Omnichannel', title:'AI auto-suggest reply', actors:['SYSTEM'], sprint:'SP-39', desc:'Inbound message → AI classify intent + listing context → suggest reply trong composer (gray italic). Use/Edit/Discard.', hasFlow:false, hasWireframe:false },
+
+  // Feature #9 SEO (UC-SEO)
+  { id:'UC-SEO-001', feature:'#9 SEO', title:'Auto-generate meta tags + Schema.org per listing', actors:['SYSTEM'], sprint:'SP-33', desc:'On publish: meta_title (60), meta_description (160), OG tags, Schema.org RealEstateListing JSON-LD.', hasFlow:false, hasWireframe:false },
+  { id:'UC-SEO-002', feature:'#9 SEO', title:'Featured listing UI toggle (carry-over SP-22)', actors:['BK','BG'], sprint:'SP-30', desc:'Modal pricing → deduct credits → featured_until → bump to top.', hasFlow:false, hasWireframe:false },
+  { id:'UC-SEO-003', feature:'#9 SEO', title:'Keyword targeting per listing', actors:['BK','BG'], sprint:'SP-33', desc:'Form primary + secondary keywords + custom meta + slug. Optional Search Console integration.', hasFlow:false, hasWireframe:false },
+  { id:'UC-SEO-004', feature:'#9 SEO', title:'Area guide pages', actors:['BG'], sprint:'SP-33', desc:'/areas/{slug}/ với H1/H2/H3, prices table, top listings widget, breadcrumb, internal linking.', hasFlow:false, hasWireframe:false },
+  { id:'UC-SEO-005', feature:'#9 SEO', title:'Sitemap.xml + robots.txt automation', actors:['SYSTEM'], sprint:'SP-33', desc:'Daily cron generate sitemap + ping Google Search Console.', hasFlow:false, hasWireframe:false },
+
+  // Feature #4 Custom Tenant Sites (UC-SITE)
+  { id:'UC-SITE-001', feature:'#4 Custom Sites', title:'BG configure tenant site theme', actors:['BG'], sprint:'SP-34', desc:'Settings: logo upload + color picker + hero text + contact info. Live preview.', hasFlow:false, hasWireframe:false },
+  { id:'UC-SITE-002', feature:'#4 Custom Sites', title:'Public visitor browse tenant site', actors:['BU','RE'], sprint:'SP-34', desc:'/{org_slug} render với org branding, hero, listings grid (org-scoped), contact widget.', hasFlow:false, hasWireframe:false },
+  { id:'UC-SITE-003', feature:'#4 Custom Sites', title:'BG setup custom domain', actors:['BG'], sprint:'SP-35', desc:'Input domain → DNS instructions (CNAME) → verify → SSL provisioning ~10-60min → ACTIVE.', hasFlow:false, hasWireframe:false },
+  { id:'UC-SITE-004', feature:'#4 Custom Sites', title:'Tenant site embed booking widget', actors:['BU','RE'], sprint:'SP-36', desc:'Click "Đặt lịch xem" → modal embed UC-BOOK-001 flow. Booking attributed to tenant org.', hasFlow:false, hasWireframe:false },
+  { id:'UC-SITE-005', feature:'#4 Custom Sites', title:'Tenant site analytics', actors:['BG'], sprint:'SP-36', desc:'/app/site-settings/analytics: page views, listing views, lead conversion, top sources.', hasFlow:false, hasWireframe:false },
+  { id:'UC-SITE-006', feature:'#4 Custom Sites', title:'Tenant site embedded AI chat', actors:['BU','RE'], sprint:'SP-36', desc:'AI scoped to org listings. System prompt: "Bạn là assistant của [Org name]".', hasFlow:false, hasWireframe:false },
+  { id:'UC-SITE-007', feature:'#4 Custom Sites', title:'Multi-tenant data isolation enforcement', actors:['SYSTEM'], sprint:'SP-34 security', desc:'Middleware extract org_slug → all queries auto-scope to org_id. Pen-test gate.', hasFlow:false, hasWireframe:false },
+
+  // Feature #10 Maintenance (UC-MNT)
+  { id:'UC-MNT-001', feature:'#10 Maintenance', title:'Tenant raise ticket', actors:['RE'], sprint:'SP-31', desc:'Form: type + priority + description + photos. POST /operations/tickets. Notify owner.', hasFlow:false, hasWireframe:false },
+  { id:'UC-MNT-002', feature:'#10 Maintenance', title:'Owner/Manager assign ticket to contractor', actors:['OW','IN','BG'], sprint:'SP-31', desc:'Modal contractors filter by specialty, sort by rating + SLA. Assign → notify contractor.', hasFlow:false, hasWireframe:false },
+  { id:'UC-MNT-003', feature:'#10 Maintenance', title:'Contractor accept/decline assignment', actors:['CONTRACTOR'], sprint:'SP-31', desc:'/partner/tickets → Accept (status=IN_PROGRESS, ETA) hoặc Decline + reason → re-route.', hasFlow:false, hasWireframe:false },
+  { id:'UC-MNT-004', feature:'#10 Maintenance', title:'Contractor complete + photo evidence', actors:['CONTRACTOR'], sprint:'SP-31', desc:'Upload after photos + summary → status=DONE → trigger UC-FIN-002 expense recording.', hasFlow:false, hasWireframe:false },
+  { id:'UC-MNT-005', feature:'#10 Maintenance', title:'Tenant rate contractor', actors:['RE'], sprint:'SP-31', desc:'Notification → modal 1-5 star + comment. Update contractor avg rating.', hasFlow:false, hasWireframe:false },
+  { id:'UC-MNT-006', feature:'#10 Maintenance', title:'SLA timer + escalation', actors:['SYSTEM'], sprint:'SP-31', desc:'Cron check tickets nearing SLA. Breach → alert owner + escalate to backup contractor.', hasFlow:false, hasWireframe:false },
+  { id:'UC-MNT-007', feature:'#10 Maintenance', title:'Contractor portal /partner/tickets', actors:['CONTRACTOR'], sprint:'SP-31', desc:'List assigned + in-progress tickets, filter by status/due date, click → detail UC-MNT-003/004.', hasFlow:false, hasWireframe:false },
+
+  // Feature #11+#13 Crawler (UC-CRAWL)
+  { id:'UC-CRAWL-001', feature:'#11+#13 Crawler', title:'Admin add new crawl rule', actors:['SUPER_ADMIN'], sprint:'SP-41', desc:'Form: source name, URL pattern, CSS selectors, schedule. Test with sample URL → preview extract.', hasFlow:false, hasWireframe:false },
+  { id:'UC-CRAWL-002', feature:'#11+#13 Crawler', title:'Cron run crawl job', actors:['SYSTEM'], sprint:'SP-41', desc:'APScheduler trigger → fetch (proxy rotation) → parse → dedup content_hash → insert CrawledListing pending review.', hasFlow:false, hasWireframe:false },
+  { id:'UC-CRAWL-003', feature:'#11+#13 Crawler', title:'AI confidence score (Gemini)', actors:['SYSTEM'], sprint:'SP-42', desc:'Gemini match crawled listing với existing Projects. >=80% auto-match. <80% create suggested_edits pending.', hasFlow:false, hasWireframe:false },
+  { id:'UC-CRAWL-004', feature:'#11+#13 Crawler', title:'Admin approval queue', actors:['SUPER_ADMIN'], sprint:'SP-42', desc:'/app/admin/crawled-pending list pending. Action: Import as listing / Reject / Mark duplicate.', hasFlow:false, hasWireframe:false },
+  { id:'UC-CRAWL-005', feature:'#11+#13 Crawler', title:'Cost dashboard', actors:['SUPER_ADMIN'], sprint:'SP-42', desc:'Crawl jobs/listings ingested/proxy bandwidth/Gemini token cost. Alert >threshold.', hasFlow:false, hasWireframe:false },
+  { id:'UC-CRAWL-006', feature:'#11+#13 Crawler', title:'Source 2 — Nhatot.com.vn integration', actors:['SUPER_ADMIN'], sprint:'SP-42', desc:'Same UC-CRAWL-001 flow with Nhatot URLs/selectors after Source 1 stable.', hasFlow:false, hasWireframe:false },
+  { id:'UC-CRAWL-007', feature:'#11+#13 Crawler', title:'Dedup logic content_hash', actors:['SYSTEM'], sprint:'SP-41', desc:'Hash (price + area + first 100 chars desc). If exists in crawled_listings → skip.', hasFlow:false, hasWireframe:false },
+
+  // Feature #12 Finance (UC-FIN)
+  { id:'UC-FIN-001', feature:'#12 Finance', title:'Record income transaction (link property+unit)', actors:['OW','IN','ACCOUNTANT'], sprint:'SP-32', desc:'Form: type, property+unit, tenant autocomplete, amount, date, payment_method, ref. POST /finance/transactions.', hasFlow:false, hasWireframe:false },
+  { id:'UC-FIN-002', feature:'#12 Finance', title:'Record expense (link work order)', actors:['ADMIN'], sprint:'SP-32', desc:'From WO completion auto-pre-fill. Manual entry: form + approval workflow if amount >500K.', hasFlow:false, hasWireframe:false },
+  { id:'UC-FIN-003', feature:'#12 Finance', title:'Generate P&L report per property', actors:['IN','BG'], sprint:'SP-32', desc:'Date range. Revenue/expense breakdown by category. Net + occupancy% + expense ratio. Export CSV/PDF.', hasFlow:false, hasWireframe:false },
+  { id:'UC-FIN-004', feature:'#12 Finance', title:'Owner statement PDF (monthly)', actors:['SYSTEM','ADMIN'], sprint:'SP-32', desc:'Aggregate transactions cho owner, generate PDF với properties table + signature line + bank account. Email or download.', hasFlow:false, hasWireframe:false },
+  { id:'UC-FIN-005', feature:'#12 Finance', title:'Bank reconciliation (CSV import)', actors:['ACCOUNTANT'], sprint:'SP-32', desc:'Upload CSV → auto-match by amount+date tolerance → manual review unmatched.', hasFlow:false, hasWireframe:false },
+  { id:'UC-FIN-006', feature:'#12 Finance', title:'Cashflow forecast 12 months', actors:['IN'], sprint:'SP-32', desc:'Avg monthly rent × occupancy forecast. Adjust by lease end dates. Chart line graph. Scenario planner.', hasFlow:false, hasWireframe:false },
+
+  // Foundation Multi-tenant org (UC-ORG)
+  { id:'UC-ORG-001', feature:'F1 Multi-tenant', title:'Investor signup → create first org', actors:['IN'], sprint:'SP-26', desc:'Onboarding modal name+slug+description → POST /api/organizations → creator becomes ADMIN.', hasFlow:false, hasWireframe:false },
+  { id:'UC-ORG-002', feature:'F1 Multi-tenant', title:'ADMIN invite member by email', actors:['IN'], sprint:'SP-26', desc:'Form email + role (MANAGER/STAFF) → token 32 bytes → email sent → 14-day expiry. Seat-cap check.', hasFlow:false, hasWireframe:false },
+  { id:'UC-ORG-003', feature:'F1 Multi-tenant', title:'Invitee accept invite', actors:['NEW USER','EXISTING USER'], sprint:'SP-26', desc:'Preview page (no auth). New user → /signup with pre-fill. Existing → email match check. Create OrganizationMember.', hasFlow:false, hasWireframe:false },
+  { id:'UC-ORG-004', feature:'F1 Multi-tenant', title:'User switch active org via OrgSwitcher', actors:['MULTI-ORG USER'], sprint:'SP-26', desc:'Sidebar dropdown list active orgs → click → mint new JWT with active_org_id → page reload.', hasFlow:false, hasWireframe:false },
+  { id:'UC-ORG-005', feature:'F1 Multi-tenant', title:'ADMIN remove member', actors:['ADMIN'], sprint:'SP-26', desc:'Click trash → confirm → soft-remove (status=REMOVED, removed_at, removed_by). Preserve audit trail.', hasFlow:false, hasWireframe:false }
+];
+
+// ============================================================
+// Render & filter
+// ============================================================
+const list = document.getElementById('uc-list');
+const featureSel = document.getElementById('filter-feature');
+const sprintSel = document.getElementById('filter-sprint');
+const personaSel = document.getElementById('filter-persona');
+const searchIn = document.getElementById('search-input');
+const resultCount = document.getElementById('result-count');
+
+// Populate selects
+const features = [...new Set(UCS.map(u => u.feature))].sort();
+features.forEach(f => featureSel.insertAdjacentHTML('beforeend', `<option>${f}</option>`));
+const sprints = [...new Set(UCS.map(u => u.sprint))].sort();
+sprints.forEach(s => sprintSel.insertAdjacentHTML('beforeend', `<option>${s}</option>`));
+
+function render() {
+  const q = searchIn.value.toLowerCase();
+  const fF = featureSel.value;
+  const fS = sprintSel.value;
+  const fP = personaSel.value;
+  const filtered = UCS.filter(u => {
+    if (q && !(u.id.toLowerCase().includes(q) || u.title.toLowerCase().includes(q) || u.desc.toLowerCase().includes(q))) return false;
+    if (fF && u.feature !== fF) return false;
+    if (fS && u.sprint !== fS) return false;
+    if (fP && !u.actors.includes(fP)) return false;
+    return true;
+  });
+  resultCount.textContent = filtered.length;
+  list.innerHTML = filtered.map(u => {
+    const flowBadge = u.hasFlow ? '<span class="badge bg-purple-100 text-purple-700">📊 Flow</span>' : '';
+    const wfBadge = u.hasWireframe ? '<span class="badge bg-cyan-100 text-cyan-700">🎨 Wireframe</span>' : '';
+    return `
+      <div class="uc-card bg-white rounded-xl p-4 shadow-sm border-l-4 border-indigo-400">
+        <div class="flex items-start justify-between gap-3 flex-wrap">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 flex-wrap mb-1">
+              <span class="font-mono text-sm font-bold text-indigo-700">${u.id}</span>
+              <span class="text-xs text-slate-500">·</span>
+              <span class="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded">${u.feature}</span>
+              <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded">${u.sprint}</span>
+              ${flowBadge}${wfBadge}
+            </div>
+            <h3 class="font-bold text-base">${u.title}</h3>
+            <div class="text-sm text-slate-700 mt-1">${u.desc}</div>
+            <div class="text-xs text-slate-500 mt-2">
+              <strong>Actors:</strong> ${u.actors.join(', ')}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+[searchIn, featureSel, sprintSel, personaSel].forEach(el => el.addEventListener('input', render));
+document.getElementById('clear-filters').onclick = () => {
+  searchIn.value = ''; featureSel.value = ''; sprintSel.value = ''; personaSel.value = '';
+  render();
+};
+
+render();
+</script>
+
+</body>
+</html>
