@@ -253,6 +253,48 @@
       outline: none;
     }
 
+    /* Mobile hamburger (hidden on desktop) — mirrors home page */
+    .nav-toggle {
+      display: none; align-items: center; justify-content: center;
+      width: 44px; height: 40px; flex: 0 0 auto; cursor: pointer;
+      border: 1px solid var(--line-active); border-radius: var(--radius-sm);
+      background: rgba(0, 240, 255, 0.06); color: var(--cyan);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-toggle:hover { background: rgba(0, 240, 255, 0.14); }
+    .nav-toggle svg { width: 22px; height: 22px; }
+    .nav-toggle .ico-close { display: none; }
+    .topbar.nav-open .nav-toggle .ico-open { display: none; }
+    .topbar.nav-open .nav-toggle .ico-close { display: block; }
+
+    /* Product showcase (synced with home page) */
+    .products-section { margin-top: 4px; }
+    .products-head { margin-bottom: 20px; }
+    .products-head h2 {
+      margin: 0;
+      font-family: var(--font-heading);
+      font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+      font-weight: 850;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .products-head p { margin: 6px 0 0; color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+    .product-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    .product-cta {
+      display: flex; flex-direction: column; gap: 10px; padding: 20px;
+      border: 1px solid var(--line-active); border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(189, 0, 255, 0.05));
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .product-cta:hover { transform: translateY(-3px); border-color: var(--cyan); box-shadow: 0 12px 32px rgba(0, 240, 255, 0.12); }
+    .product-cta .pc-logo { width: 52px; height: 52px; border-radius: 12px; flex: 0 0 auto; display: grid; place-items: center; overflow: hidden; background: #fff; }
+    .product-cta .pc-logo img { width: 100%; height: 100%; object-fit: contain; padding: 6px; }
+    .product-cta .pc-logo.edp { font-family: var(--font-heading); font-weight: 800; font-size: 0.78rem; color: #04060a; border-radius: 50%; }
+    .product-cta h3 { font-family: var(--font-heading); font-size: 1rem; font-weight: 800; color: #fff; }
+    .product-cta p { color: #cbd5e1; font-size: 0.84rem; line-height: 1.55; flex: 1; }
+    .product-cta .pc-btn { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: 0.84rem; color: var(--cyan); }
+    .product-cta .pc-btn svg { width: 14px; height: 14px; }
+
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(330px, 0.9fr);
@@ -765,14 +807,36 @@
       }
 
       .topbar {
-        align-items: flex-start;
-        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        row-gap: 12px;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
       }
 
       .nav {
+        display: none;
         width: 100%;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .topbar.nav-open .nav {
+        display: flex;
+      }
+
+      .nav a {
+        width: 100%;
+        justify-content: flex-start;
+        height: 44px;
+        font-size: 0.92rem;
+      }
+
+      .product-row {
+        grid-template-columns: 1fr;
       }
 
       .hero {
@@ -826,15 +890,50 @@
           <span>MY PROJECT HUB</span>
         </div>
       </a>
-      <nav class="nav" aria-label="Điều hướng trang">
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="primaryNav" onclick="toggleNav()">
+        <svg class="ico-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <nav class="nav" id="primaryNav" aria-label="Điều hướng trang">
         <a href="/">Home</a>
-        <a href="/atlas/">Atlas</a>
         <a href="/news/">News</a>
-        <a href="/profile/">Profile</a>
         <a href="/docs/">Docs</a>
         <a href="#gallery">Tệp Tin</a>
       </nav>
     </header>
+
+    <section class="products-section" id="products" aria-labelledby="products-title">
+      <div class="products-head">
+        <h2 id="products-title">Sản phẩm</h2>
+        <p>Các sản phẩm mình quản lý và vibe-code — nhấn để khám phá.</p>
+      </div>
+      <div class="product-row">
+        <a class="product-cta" href="https://ducnguyen.vn/ai-record/" target="_blank" rel="noopener">
+          <span class="pc-logo"><img src="/ai-record-logo.png" alt="AI Record" loading="lazy"></span>
+          <h3>AI Record — Meeting Scribe</h3>
+          <p>Thu âm họp &amp; đọc-chép giọng nói: transcribe realtime, dịch, tách người nói, tóm tắt AI. 100% local, mã nguồn mở.</p>
+          <span class="pc-btn">Khám phá <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="product-cta" href="https://compaclass.com" target="_blank" rel="noopener">
+          <span class="pc-logo"><img src="/profile/assets/images/COMPA-CLASS.jpg" alt="COMPA CLASS" loading="lazy"></span>
+          <h3>Sản phẩm EduTech COMPA CLASS</h3>
+          <p>Sản phẩm LMS ứng dụng AI trong tạo và quản lý tài liệu, kiến thức học tập.</p>
+          <span class="pc-btn">Truy cập <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="product-cta" href="https://edp.vn/" target="_blank" rel="noopener">
+          <span class="pc-logo edp">EDP.vn</span>
+          <h3>EDP.vn</h3>
+          <p>Quản lý giải pháp dữ liệu và ứng dụng AI trong DA, DE, BI và quản lý dữ liệu doanh nghiệp.</p>
+          <span class="pc-btn">Truy cập <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="product-cta" href="https://bi.edp.vn/auth/signin" target="_blank" rel="noopener">
+          <span class="pc-logo"><img src="/profile/assets/images/powerbi-logo.svg" alt="Power BI" loading="lazy"></span>
+          <h3>Giải pháp PowerBI Embedded</h3>
+          <p>Nhúng và quản lý các báo cáo PowerBI Service trên giải pháp của bạn.</p>
+          <span class="pc-btn">Truy cập <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </section>
 
     <section class="hero" aria-labelledby="page-title">
       <div class="hero-main">
@@ -858,16 +957,8 @@
           </button>
         </div>
         <div class="route-list" id="quick-routes" aria-label="Nhóm mở nhanh">
-          <a class="route-button" href="#gallery" data-route-filter="Profile">
-            <span class="route-index">01</span>
-            <span class="route-copy">
-              <strong>/profile</strong>
-              <span>Hồ sơ cá nhân và business card tương tác.</span>
-            </span>
-            <span class="route-arrow">↗</span>
-          </a>
           <a class="route-button" href="#gallery" data-route-filter="Game">
-            <span class="route-index">02</span>
+            <span class="route-index">01</span>
             <span class="route-copy">
               <strong>/game</strong>
               <span>Quiz, classroom game và các tương tác học tập.</span>
@@ -875,7 +966,7 @@
             <span class="route-arrow">↗</span>
           </a>
           <a class="route-button" href="#gallery" data-route-filter="Dashboard">
-            <span class="route-index">03</span>
+            <span class="route-index">02</span>
             <span class="route-copy">
               <strong>/dashboard</strong>
               <span>Dashboard, CRM, báo cáo và prototype dữ liệu.</span>
@@ -1230,6 +1321,23 @@
       } catch (error) {
         alert(list);
       }
+    });
+
+    // Mobile hamburger menu (mirrors home page behaviour)
+    window.toggleNav = function () {
+      const tb = document.querySelector(".topbar");
+      if (!tb) return;
+      const open = tb.classList.toggle("nav-open");
+      const bt = document.getElementById("navToggle");
+      if (bt) bt.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    document.querySelectorAll(".nav a").forEach((a) => {
+      a.addEventListener("click", () => {
+        const tb = document.querySelector(".topbar");
+        if (tb) tb.classList.remove("nav-open");
+        const bt = document.getElementById("navToggle");
+        if (bt) bt.setAttribute("aria-expanded", "false");
+      });
     });
 
     searchEl.addEventListener("input", renderCards);
