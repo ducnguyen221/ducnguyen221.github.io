@@ -759,7 +759,7 @@
     }
 
     /* Product CTAs row (COMPA CLASS / EDP.vn / PowerBI) */
-    .product-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; }
+    .product-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 20px; }
     .product-cta {
       display: flex; flex-direction: column; gap: 10px; padding: 20px;
       border: 1px solid var(--line-active); border-radius: var(--radius);
@@ -1881,6 +1881,12 @@
         </div>
 
         <div class="product-row">
+          <a class="product-cta" href="https://ducnguyen.vn/ai-record/" target="_blank" rel="noopener">
+            <span class="pc-logo"><img src="/ai-record-logo.png" alt="AI Record" loading="lazy"></span>
+            <h3>AI Record — Meeting Scribe</h3>
+            <p>Thu âm họp &amp; đọc-chép giọng nói: transcribe realtime, dịch, tách người nói, tóm tắt AI. 100% local, mã nguồn mở.</p>
+            <span class="pc-btn">Khám phá <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
           <a class="product-cta" href="https://compaclass.com" target="_blank" rel="noopener">
             <span class="pc-logo"><img src="/profile/assets/images/COMPA-CLASS.jpg" alt="COMPA CLASS" loading="lazy"></span>
             <h3>Sản phẩm EduTech COMPA CLASS</h3>
