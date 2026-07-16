@@ -28,8 +28,8 @@
   },
   {
     "slug": "hr-analytics",
-    "title": "HR Analytics · Tài liệu tư vấn nghiệp vụ (HRA-101) · Atlas",
-    "description": "Bộ tài liệu tư vấn nghiệp vụ HR Analytics: đầu ra nghiệp vụ, bộ mô tả dữ liệu, bộ chỉ tiêu KPI nhân sự, danh sách báo cáo Power BI và tư vấn theo chuẩn human capital reporting.",
+    "title": "HR Analytics · Chuẩn hóa dữ liệu · KPI · Báo cáo (HRA-101) · Atlas",
+    "description": "Bộ tài liệu HR Analytics: Data Dictionary 42 bảng, KPI Dictionary 6 nhóm chỉ tiêu và Report List 13 báo cáo — kèm ERD, mindmap nghiệp vụ và luồng dữ liệu tương tác (zoom, pan, toàn màn hình).",
     "categories": [
       "da",
       "strategy",
@@ -38,7 +38,7 @@
     "path": "content/da/hr-analytics.html",
     "thumbnail": "",
     "lastModified": "2026-07-16",
-    "fileSize": 182591
+    "fileSize": 161389
   },
   {
     "slug": "cai-dat-n8n-desktop-1",
