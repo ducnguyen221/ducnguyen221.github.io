@@ -1,0 +1,4130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Analytics · Tài liệu tư vấn nghiệp vụ (HRA-101) · Atlas</title>
+<meta name="description" content="Bộ tài liệu tư vấn nghiệp vụ HR Analytics: đầu ra nghiệp vụ, bộ mô tả dữ liệu, bộ chỉ tiêu KPI nhân sự, danh sách báo cáo Power BI và tư vấn theo chuẩn human capital reporting.">
+<link rel="icon" href="../../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --bg:#0d0e1a; --bg2:#12132200; --surface:#171a2e; --surface2:#1e2138; --line:#2a2e4a;
+  --text:#e7e9f5; --muted:#a2a7c4; --faint:#7b80a3;
+  --accent:#7c83ff; --accent2:#a78bfa; --accent-soft:#7c83ff22; --good:#34d399; --warn:#fbbf24;
+  --radius:14px; --maxread:820px; --sidebar:288px;
+  --shadow:0 10px 40px -12px rgba(0,0,0,.6);
+}
+:root[data-theme=light]{
+  --bg:#f6f7fb; --surface:#ffffff; --surface2:#f0f1f8; --line:#e2e4f0;
+  --text:#1c1f33; --muted:#4a4f6b; --faint:#6b7091; --accent:#5b62e6; --accent2:#7c3aed;
+  --accent-soft:#5b62e615; --shadow:0 10px 40px -18px rgba(60,60,120,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+/* ---- layout ---- */
+.shell{display:grid;grid-template-columns:var(--sidebar) 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--surface);
+  border-right:1px solid var(--line);display:flex;flex-direction:column;padding:22px 16px;gap:6px;z-index:40}
+.brand{display:flex;gap:12px;align-items:center;padding:6px 10px 16px;border-bottom:1px solid var(--line);margin-bottom:10px}
+.brand .logo{width:40px;height:40px;border-radius:11px;flex:0 0 auto;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#fff;font-size:19px;box-shadow:0 6px 18px -6px var(--accent)}
+.brand b{font-size:15px;font-weight:800;letter-spacing:.2px;display:block}
+.brand small{color:var(--faint);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.6px}
+.nav-lbl{color:var(--faint);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;padding:12px 12px 6px}
+.nav-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;color:var(--muted);
+  font-size:14px;font-weight:600;transition:.16s;border:1px solid transparent}
+.nav-item i{width:18px;text-align:center;font-size:14px;color:var(--faint);transition:.16s}
+.nav-item:hover{background:var(--surface2);color:var(--text)}
+.nav-item:hover i{color:var(--accent)}
+.nav-item.active{background:var(--accent-soft);color:var(--text);border-color:var(--accent)}
+.nav-item.active i{color:var(--accent)}
+.nav-item .nl b{font-weight:600;display:block;line-height:1.3}
+.side-foot{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.side-foot a.back{color:var(--muted);font-size:13px;font-weight:600;display:flex;gap:8px;align-items:center;padding:8px 12px;border-radius:9px}
+.side-foot a.back:hover{background:var(--surface2);color:var(--text)}
+.side-foot .by{color:var(--faint);font-size:11.5px;padding:2px 12px}
+/* ---- main ---- */
+.main{min-width:0;position:relative}
+.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;
+  padding:12px 24px;background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hamb{display:none;background:var(--surface2);border:1px solid var(--line);color:var(--text);
+  width:40px;height:40px;border-radius:10px;font-size:16px;cursor:pointer}
+.crumb{font-size:13px;color:var(--faint);font-weight:600;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crumb b{color:var(--muted)}
+.tbtn{background:var(--surface2);border:1px solid var(--line);color:var(--muted);
+  width:40px;height:40px;border-radius:10px;font-size:15px;cursor:pointer;transition:.16s;flex:0 0 auto}
+.tbtn:hover{color:var(--accent);border-color:var(--accent)}
+.wrap{padding:36px 24px 80px}
+/* overview */
+#overview .hero{max-width:960px;margin:0 auto 8px}
+#overview .hero .tag{display:inline-flex;gap:8px;align-items:center;background:var(--accent-soft);
+  color:var(--accent);border:1px solid var(--accent);padding:5px 13px;border-radius:100px;font-size:12.5px;font-weight:700;letter-spacing:.3px}
+#overview h1{font-size:clamp(28px,4vw,42px);line-height:1.12;margin:18px 0 10px;letter-spacing:-.5px;font-weight:800}
+#overview .lead{color:var(--muted);font-size:17px;max-width:720px;margin:0 0 8px}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 6px}
+.chip{display:inline-flex;gap:7px;align-items:center;background:var(--surface);border:1px solid var(--line);
+  padding:7px 13px;border-radius:100px;font-size:12.5px;color:var(--muted);font-weight:600}
+.chip i{color:var(--accent)}
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;max-width:960px;margin:26px auto 0}
+.ov-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;
+  display:flex;flex-direction:column;gap:9px;transition:.18s;position:relative;overflow:hidden}
+.ov-card:before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:.18s}
+.ov-card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:var(--shadow)}
+.ov-card:hover:before{opacity:1}
+.ov-ic{width:46px;height:46px;border-radius:12px;background:var(--accent-soft);color:var(--accent);
+  display:grid;place-items:center;font-size:20px;border:1px solid var(--accent)}
+.ov-card h3{margin:4px 0 0;font-size:17px;font-weight:700}
+.ov-card p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.55;flex:1}
+.ov-go{color:var(--accent);font-size:13px;font-weight:700;display:inline-flex;gap:7px;align-items:center;margin-top:4px}
+.ov-note{max-width:960px;margin:28px auto 0;background:var(--surface);border:1px solid var(--line);
+  border-left:3px solid var(--warn);border-radius:10px;padding:14px 18px;color:var(--muted);font-size:13.5px}
+.ov-note b{color:var(--text)}
+/* doc page */
+.doc{display:none}
+.doc.on{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.doc-grid{display:grid;grid-template-columns:minmax(0,1fr) 232px;gap:44px;max-width:1180px;margin:0 auto;align-items:start}
+.doc-main{min-width:0;max-width:var(--maxread)}
+.kicker{display:inline-flex;gap:8px;align-items:center;color:var(--accent);font-weight:700;font-size:12.5px;
+  text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+.doc-title{font-size:clamp(24px,3.4vw,34px);line-height:1.15;margin:0 0 12px;letter-spacing:-.4px;font-weight:800}
+.doc-blurb{color:var(--muted);font-size:16px;margin:0 0 8px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+/* rendered markdown */
+.doc-body{font-family:Lora,Georgia,serif;font-size:17px;line-height:1.75;color:var(--text)}
+.doc-body h2{font-family:Inter,sans-serif;font-size:22px;font-weight:700;margin:38px 0 12px;padding-top:10px;letter-spacing:-.3px;scroll-margin-top:80px}
+.doc-body h2:before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--accent);margin-right:11px;vertical-align:middle}
+.doc-body h3{font-family:Inter,sans-serif;font-size:17.5px;font-weight:700;margin:26px 0 10px;color:var(--text);scroll-margin-top:80px}
+.doc-body h4{font-family:Inter,sans-serif;font-size:15px;font-weight:700;margin:20px 0 8px;color:var(--muted)}
+.doc-body p{margin:0 0 15px}
+.doc-body ul,.doc-body ol{margin:0 0 16px;padding-left:24px}
+.doc-body li{margin:6px 0}
+.doc-body li::marker{color:var(--accent)}
+.doc-body a{border-bottom:1px solid var(--accent-soft)}
+.doc-body code{font-family:"SF Mono",Consolas,monospace;font-size:.86em;background:var(--surface2);
+  border:1px solid var(--line);padding:1.5px 6px;border-radius:6px;color:var(--accent2)}
+.doc-body pre{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto}
+.doc-body pre code{background:none;border:none;padding:0;color:var(--text)}
+.doc-body blockquote{margin:18px 0;padding:14px 20px;background:var(--accent-soft);border-left:3px solid var(--accent);
+  border-radius:0 10px 10px 0;color:var(--muted);font-style:italic}
+.doc-body blockquote p:last-child{margin:0}
+.doc-body strong{color:var(--text);font-weight:600}
+.doc-body hr{border:none;border-top:1px solid var(--line);margin:30px 0}
+/* tables */
+.doc-body .tbl,.doc-body p:has(>table){overflow-x:auto}
+.doc-body table{width:100%;border-collapse:collapse;font-family:Inter,sans-serif;font-size:13.5px;
+  margin:6px 0 20px;display:block;overflow-x:auto;white-space:normal}
+.doc-body thead th{background:var(--surface2);color:var(--text);font-weight:700;text-align:left;
+  padding:11px 14px;border-bottom:2px solid var(--accent);position:sticky;left:auto;font-size:12.5px;
+  text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+.doc-body tbody td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5;min-width:120px}
+.doc-body tbody tr:nth-child(even){background:color-mix(in srgb,var(--surface) 55%,transparent)}
+.doc-body tbody tr:hover{background:var(--accent-soft)}
+.doc-body td code{white-space:nowrap}
+/* toc */
+.toc{position:sticky;top:78px;align-self:start;max-height:calc(100vh - 100px);overflow-y:auto}
+.toc-h{color:var(--faint);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin:0 0 10px}
+.toc ul{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
+.toc li a{display:block;color:var(--muted);font-size:13px;padding:6px 0 6px 14px;margin-left:-1px;
+  border-left:2px solid transparent;line-height:1.4;transition:.15s}
+.toc li a:hover{color:var(--text)}
+.toc li a.active{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+/* prev/next */
+.prevnext{display:flex;gap:14px;margin-top:44px;padding-top:24px;border-top:1px solid var(--line);flex-wrap:wrap}
+.pn{flex:1;min-width:200px;background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:14px 18px;display:flex;flex-direction:column;gap:3px;transition:.16s}
+.pn:hover{border-color:var(--accent);background:var(--surface2)}
+.pn span{color:var(--faint);font-size:12px;font-weight:600}
+.pn strong{color:var(--text);font-size:14.5px;font-weight:700}
+.pn.next{text-align:right}
+/* mobile */
+.scrim{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:35}
+@media(max-width:1080px){.doc-grid{grid-template-columns:1fr}.toc{display:none}}
+@media(max-width:860px){
+  .shell{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:290px;transform:translateX(-100%);transition:transform .25s;box-shadow:var(--shadow)}
+  .sidebar.open{transform:none}
+  .hamb{display:grid;place-items:center}
+  .scrim.show{display:block}
+  .wrap{padding:24px 18px 70px}
+}
+.doc-body::-webkit-scrollbar,.sidebar::-webkit-scrollbar,.toc::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="logo"><i class="fa-solid fa-people-group"></i></div>
+      <div><b>HR Analytics</b><small>HRA-101 · Tư vấn</small></div>
+    </div>
+    <a class="nav-item" href="#overview" data-nav="overview"><i class="fa-solid fa-house"></i><span class="nl"><b>Tổng quan</b></span></a>
+    <div class="nav-lbl">Tài liệu</div>
+    <a class="nav-item" href="#business-outputs" data-nav="business-outputs"><i class="fa-solid fa-diagram-project"></i><span class="nl"><b>Đầu ra nghiệp vụ &amp; phương án</b></span></a>
+<a class="nav-item" href="#data-dictionary" data-nav="data-dictionary"><i class="fa-solid fa-database"></i><span class="nl"><b>Bộ mô tả dữ liệu &amp; nguồn</b></span></a>
+<a class="nav-item" href="#kpi-dictionary" data-nav="kpi-dictionary"><i class="fa-solid fa-ruler-combined"></i><span class="nl"><b>Bộ chuẩn chỉ tiêu (KPI)</b></span></a>
+<a class="nav-item" href="#reports-list" data-nav="reports-list"><i class="fa-solid fa-file-lines"></i><span class="nl"><b>Danh sách báo cáo &amp; yêu cầu</b></span></a>
+<a class="nav-item" href="#external-research" data-nav="external-research"><i class="fa-solid fa-book-open-reader"></i><span class="nl"><b>Tư vấn từ nghiên cứu ngoài</b></span></a>
+    <div class="side-foot">
+      <a class="back" href="/atlas/"><i class="fa-solid fa-arrow-left-long"></i> Về Atlas</a>
+      <span class="by">Nguyễn Quang Đức · KPIM Academy</span>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+  <main class="main">
+    <div class="topbar">
+      <button class="hamb" id="hamb" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+      <div class="crumb"><b>Atlas</b> / HR Analytics / <span id="crumb-doc">Tổng quan</span></div>
+      <button class="tbtn" id="theme" aria-label="Đổi giao diện"><i class="fa-solid fa-moon"></i></button>
+    </div>
+    <div class="wrap">
+      <section class="doc on" id="overview" data-doc>
+        <div class="hero">
+          <span class="tag"><i class="fa-solid fa-layer-group"></i> Bộ tài liệu nghiệp vụ</span>
+          <h1>Tài liệu tư vấn nghiệp vụ HR Analytics</h1>
+          <p class="lead">Lớp nghiệp vụ dữ liệu nhân sự bổ sung cho khóa <b>HRA-101</b> — để khóa học không dừng ở đào tạo công cụ Excel/Power BI mà gắn với câu hỏi điều hành, mô hình dữ liệu và chuẩn báo cáo nhân sự.</p>
+          <div class="meta-row">
+            <span class="chip"><i class="fa-solid fa-file-lines"></i> 5 tài liệu</span>
+            <span class="chip"><i class="fa-solid fa-calendar"></i> Phiên bản 2026-07-15</span>
+            <span class="chip"><i class="fa-solid fa-graduation-cap"></i> Ứng dụng AI & phân tích dữ liệu nhân sự</span>
+          </div>
+        </div>
+        <div class="ov-grid">
+      <a class="ov-card" href="#business-outputs">
+        <div class="ov-ic"><i class="fa-solid fa-diagram-project"></i></div>
+        <h3>Đầu ra nghiệp vụ &amp; phương án</h3>
+        <p>Nhận định nhanh, 3 phương án triển khai (tối thiểu → đầy đủ → quản trị dữ liệu), khuyến nghị chọn và các output nên tạo cho khóa học.</p>
+        <span class="ov-go">Mở tài liệu <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+      <a class="ov-card" href="#data-dictionary">
+        <div class="ov-ic"><i class="fa-solid fa-database"></i></div>
+        <h3>Bộ mô tả dữ liệu &amp; nguồn</h3>
+        <p>Data dictionary cho 6 bảng nguồn (Nhân sự, Phòng ban, Chấm công, Nghỉ phép, Đào tạo, Lương) + bản đồ nguồn dữ liệu và quy tắc chất lượng.</p>
+        <span class="ov-go">Mở tài liệu <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+      <a class="ov-card" href="#kpi-dictionary">
+        <div class="ov-ic"><i class="fa-solid fa-ruler-combined"></i></div>
+        <h3>Bộ chuẩn chỉ tiêu (KPI)</h3>
+        <p>Định nghĩa và công thức chỉ tiêu nhân sự: headcount, hợp đồng, chấm công, lương–phúc lợi, đào tạo, so sánh theo thời gian, chất lượng dữ liệu.</p>
+        <span class="ov-go">Mở tài liệu <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+      <a class="ov-card" href="#reports-list">
+        <div class="ov-ic"><i class="fa-solid fa-file-lines"></i></div>
+        <h3>Danh sách báo cáo &amp; yêu cầu</h3>
+        <p>7 báo cáo HR-01→07: câu hỏi phân tích, thành phần hiển thị, bộ lọc, tính năng Power BI và tiêu chí nghiệm thu báo cáo điều hành.</p>
+        <span class="ov-go">Mở tài liệu <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+      <a class="ov-card" href="#external-research">
+        <div class="ov-ic"><i class="fa-solid fa-book-open-reader"></i></div>
+        <h3>Tư vấn từ nghiên cứu ngoài</h3>
+        <p>Lớp bổ sung theo chuẩn human capital reporting (ISO 30414, GRI, ESG): trường dữ liệu, KPI mở rộng và cảnh báo khi đưa vào tài liệu chính thức.</p>
+        <span class="ov-go">Mở tài liệu <i class="fa-solid fa-arrow-right"></i></span>
+      </a></div>
+        <div class="ov-note"><b>Ghi chú:</b> Đây là tài liệu tư vấn/giảng dạy. Các định nghĩa chỉ tiêu, mô hình dữ liệu và ví dụ mang tính tham chiếu, cần đối chiếu với quy định và dữ liệu thực tế trước khi đưa vào báo cáo chính thức.</div>
+      </section>
+      
+    <section class="doc" id="business-outputs" data-doc>
+      <div class="doc-grid">
+        <article class="doc-main">
+          <div class="kicker"><i class="fa-solid fa-diagram-project"></i> Tài liệu 1/5</div>
+          <h1 class="doc-title">Tư vấn bổ sung đầu ra nghiệp vụ cho khóa HR Analytics</h1>
+          <p class="doc-blurb">Nhận định nhanh, 3 phương án triển khai (tối thiểu → đầy đủ → quản trị dữ liệu), khuyến nghị chọn và các output nên tạo cho khóa học.</p>
+          <div class="doc-body"><blockquote>
+<p>Góc nhìn lãnh đạo: Tài liệu này được chuẩn hóa để phục vụ trao đổi ở cấp quản lý: làm rõ câu hỏi điều hành, trách nhiệm sở hữu số liệu, mức độ tin cậy của báo cáo và các rủi ro cần kiểm soát trước khi triển khai công cụ.</p>
+</blockquote>
+<p>Khóa học: Ứng dụng AI và phân tích dữ liệu nhân sự<br />
+Phiên bản: 2026-07-15<br />
+Mục tiêu quản lý: đề xuất các tài liệu bổ sung nên có để khóa học không dừng ở là đào tạo công cụ Excel/Power BI, mà có lớp nghiệp vụ dữ liệu nhân sự phù hợp bối cảnh Agribank.  </p>
+<h2 id="1-nhan-inh-nhanh">1. Nhận định nhanh</h2>
+<p>Các tài liệu thực hành hiện tại đã có nền tảng tốt về:</p>
+<ul>
+<li>Excel Function/Pivot Table: <code>COUNTIFS</code>, <code>SUMIFS</code>, tính active số nhân sự, ngày nghỉ, tổng lương.</li>
+<li>mô hình báo cáo trong Gợi ý triển khai trên Excel: quan hệ giữa các bảng, <code>dim_date</code>, calculated column, chỉ tiêu tính toán, slicer.</li>
+<li>Power BI và Power Query - bước xử lý dữ liệu: kết nối dữ liệu, chuẩn hóa dữ liệu, tạo mô hình báo cáo và bảng ma trận.</li>
+<li>công thức Power BI: số nhân sự theo thời điểm, nhân sự mới, nghỉ việc, điều chuyển, hết hạn hợp đồng, ký đúng hạn, giữ chân nhân sự, tỷ lệ nghỉ việc, so sánh cùng kỳ năm trước.</li>
+<li>Báo cáo điều hành: card, gauge, donut, map, matrix, tooltip, bookmark, bullet chart.</li>
+</ul>
+<p>Điểm còn thiếu nếu nhìn từ góp ý Agribank:</p>
+<ul>
+<li>Chưa đóng gói thành một bộ chuẩn nghiệp vụ gồm bộ mô tả dữ liệu, bản đồ nguồn dữ liệu, bộ chuẩn chỉ tiêu, ma trận yêu cầu báo cáo.</li>
+<li>Một số chỉ tiêu xuất hiện trong thực hành nhưng chưa có định nghĩa quản trị đầy đủ: mục đích, mẫu số, kỳ tính, chiều phân tích, cảnh báo, đơn vị chịu trách nhiệm.</li>
+<li>Bài toán ngân hàng cần nhấn mạnh chi nhánh/vùng/tỉnh thành, quản trị hợp đồng, bảo mật dữ liệu lương/dữ liệu cá nhân nhạy cảm và kiểm soát chất lượng dữ liệu.</li>
+<li>Nghiệp vụ tuyển dụng, hiệu suất, định biên và kế hoạch nhân sự mới ở mức khuyến nghị, chưa có dữ liệu thực hành thực hành đầy đủ.</li>
+</ul>
+<h2 id="2-option-trien-khai">2. Option triển khai</h2>
+<h3 id="option-a-goi-toi-thieu-cho-lop-hoc">Option A - Gói tối thiểu cho lớp học</h3>
+<p>Phù hợp khi cần bổ sung nhanh vào Buổi 1 và không thay đổi nhiều giáo án.</p>
+<table>
+<thead>
+<tr>
+<th>Output</th>
+<th>Mục đích</th>
+<th>Trạng thái đề xuất</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bộ mô tả dữ liệu</td>
+<td>Giúp học viên hiểu bảng/trường trước khi phân tích</td>
+<td>Nên dùng ngay</td>
+</tr>
+<tr>
+<td>bộ chuẩn chỉ tiêu nhân sự</td>
+<td>Chuẩn hóa tên KPI, công thức và nguồn dữ liệu</td>
+<td>Nên dùng ngay</td>
+</tr>
+<tr>
+<td>danh sách báo cáo cần quản lý</td>
+<td>Biết báo cáo điều hành cuối khóa cần trả lời câu hỏi nào</td>
+<td>Nên dùng ngay</td>
+</tr>
+</tbody>
+</table>
+<p>Ưu điểm: nhanh, ít thay đổi nội dung, dễ lồng vào phần AI ở Buổi 1.
+Hạn chế: chưa đủ lớp quản trị dữ liệu và kiểm soát triển khai thực tế.</p>
+<h3 id="option-b-goi-nghiep-vu-ay-u-cho-agribank">Option B - Gói nghiệp vụ đầy đủ cho Agribank</h3>
+<p>Khuyến nghị chọn nếu mục tiêu là khóa đào tạo B2B có tính tư vấn và áp dụng thực tế.</p>
+<table>
+<thead>
+<tr>
+<th>Output</th>
+<th>Mục đích</th>
+<th>Cách dùng trong khóa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bộ mô tả dữ liệu và bản đồ nguồn dữ liệu</td>
+<td>Chuẩn hóa nguồn, bảng, trường, mức chi tiết của dữ liệu, đơn vị chịu trách nhiệm</td>
+<td>Buổi 1, 4</td>
+</tr>
+<tr>
+<td>bộ chuẩn chỉ tiêu nhân sự</td>
+<td>Chuẩn hóa công thức, mẫu số, chiều phân tích</td>
+<td>Buổi 1, 2, 5</td>
+</tr>
+<tr>
+<td>ma trận yêu cầu báo cáo</td>
+<td>Map câu hỏi nghiệp vụ -&gt; KPI -&gt; thành phần hiển thị -&gt; nguồn</td>
+<td>Buổi 1, 6</td>
+</tr>
+<tr>
+<td>danh sách kiểm tra chất lượng dữ liệu</td>
+<td>Kiểm tra dữ liệu trước khi báo cáo điều hành</td>
+<td>Buổi 1, 4</td>
+</tr>
+<tr>
+<td>công thức Power BI Calculation Rules Book</td>
+<td>Ghi rõ quy tắc tính số nhân sự, tỷ lệ nghỉ việc, giữ chân nhân sự, hợp đồng</td>
+<td>Buổi 5</td>
+</tr>
+<tr>
+<td>danh sách tiêu chí nghiệm thu báo cáo</td>
+<td>Tiêu chí hoàn thành báo cáo điều hành cuối khóa</td>
+<td>Buổi 6</td>
+</tr>
+</tbody>
+</table>
+<p>Ưu điểm: giải quyết đúng góp ý chuyên môn, tăng tính ngân hàng/enterprise.
+Hạn chế: cần dành thời lượng Buổi 1 để học viên thống nhất nghiệp vụ trước khi làm công cụ.</p>
+<h3 id="option-c-goi-quan-tri-du-lieu-va-bao-mat-cho-ngan-hang">Option C - Gói quản trị dữ liệu và bảo mật cho ngân hàng</h3>
+<p>Phù hợp nếu Agribank muốn nhấn mạnh dữ liệu thật, phân quyền, AI an toàn và vận hành sau đào tạo.</p>
+<table>
+<thead>
+<tr>
+<th>Output</th>
+<th>Mục đích</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>khung trách nhiệm quản trị dữ liệu nhân sự</td>
+<td>Xác định đơn vị chịu trách nhiệm, đầu mối phụ trách chất lượng dữ liệu, hệ thống nguồn, quy trình phê duyệt KPI</td>
+<td>Dùng trong workshop Buổi 1</td>
+</tr>
+<tr>
+<td>danh sách kiểm soát an toàn dữ liệu nhân sự khi dùng AI</td>
+<td>Quy tắc dùng AI với dữ liệu nhân sự, lương, dữ liệu cá nhân nhạy cảm</td>
+<td>Rất nên có cho ngân hàng</td>
+</tr>
+<tr>
+<td>ma trận phân quyền truy cập</td>
+<td>Ai được xem dữ liệu cấp nào: toàn hàng, vùng, chi nhánh, phòng ban</td>
+<td>Dùng khi thiết kế Power BI</td>
+</tr>
+<tr>
+<td>KPI Sign-off Workflow</td>
+<td>Quy trình chốt định nghĩa KPI giữa HR, Finance, IT/Data</td>
+<td>Tránh tranh cãi công thức</td>
+</tr>
+<tr>
+<td>bộ tình huống kiểm thử nghiệm thu</td>
+<td>Bộ test đối chiếu số liệu giữa Excel, Power BI, nguồn hệ thống</td>
+<td>Dùng cho triển khai sau khóa</td>
+</tr>
+</tbody>
+</table>
+<p>Ưu điểm: sát môi trường ngân hàng, giảm rủi ro bảo mật và sai lệch số liệu.
+Hạn chế: vượt khỏi phạm vi lớp công cụ cơ bản, cần stakeholder nghiệp vụ tham gia.</p>
+<h2 id="3-khuyen-nghi-chon">3. Khuyến nghị chọn</h2>
+<p>Khuyến nghị triển khai Option B ngay cho bản tài liệu khóa học Agribank, đồng thời thêm một phần rút gọn của Option C trong Buổi 1:</p>
+<ul>
+<li>Buổi 1: dùng AI để tạo bộ mô tả dữ liệu, bộ chuẩn chỉ tiêu, ma trận yêu cầu báo cáo và AI/Data Bảo mật checklist bản nháp.</li>
+<li>Buổi 2-3: học viên dùng chính bộ mô tả dữ liệu/bộ chuẩn chỉ tiêu để viết công thức Excel, Pivot và Power Pivot - mô hình tính toán trong Excel - mô hình tính toán trong Excel - mô hình tính toán trong Excel - mô hình tính toán trong Excel.</li>
+<li>Buổi 4: dùng bản đồ nguồn dữ liệu và Data Quality Rules khi xử lý dữ liệu trong Power Query - bước xử lý dữ liệu.</li>
+<li>Buổi 5: dùng bộ chuẩn chỉ tiêu để viết và quản lý công thức chỉ tiêu trong Power BI.</li>
+<li>Buổi 6: dùng danh sách báo cáo cần quản lý và danh sách tiêu chí nghiệm thu để hoàn thiện báo cáo điều hành.</li>
+</ul>
+<h2 id="4-cac-output-nen-tao-tiep">4. Các output nên tạo tiếp</h2>
+<table>
+<thead>
+<tr>
+<th>Output tiếp theo</th>
+<th style="text-align: right;">Mức ưu tiên</th>
+<th>Lý do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HR_KPI_Calculation_Rules_Book.md</code></td>
+<td style="text-align: right;">Cao</td>
+<td>Ghi rõ từng công thức số nhân sự, tỷ lệ nghỉ việc, giữ chân nhân sự, hợp đồng, so sánh cùng kỳ năm trước để tránh hiểu sai</td>
+</tr>
+<tr>
+<td><code>HR_Report_Requirement_Matrix.xlsx</code></td>
+<td style="text-align: right;">Cao</td>
+<td>Dạng Excel dễ review với Agribank: câu hỏi, KPI, thành phần hiển thị, nguồn, đơn vị chịu trách nhiệm, priority</td>
+</tr>
+<tr>
+<td><code>HR_Data_Quality_Rules_Checklist.md</code></td>
+<td style="text-align: right;">Cao</td>
+<td>Bổ sung nội dung quản trị dữ liệu theo góp ý Agribank</td>
+</tr>
+<tr>
+<td><code>AI_HR_Data_Security_Checklist.md</code></td>
+<td style="text-align: right;">Cao</td>
+<td>Cần cho môi trường ngân hàng khi dùng ChatGPT/AI</td>
+</tr>
+<tr>
+<td><code>PowerBI_Data_Model_Blueprint.md</code></td>
+<td style="text-align: right;">Trung bình</td>
+<td>Mô tả mô hình báo cáo rõ ràng theo bảng nghiệp vụ và bảng danh mục, quan hệ giữa các bảng, bảng bảng nghiệp vụ/bảng danh mục, mức chi tiết của dữ liệu</td>
+</tr>
+<tr>
+<td><code>Dashboard_Wireframe_Requirements.md</code></td>
+<td style="text-align: right;">Trung bình</td>
+<td>Chuyển danh sách báo cáo cần quản lý thành bố cục trang báo cáo điều hành</td>
+</tr>
+<tr>
+<td><code>DAX_Measure_Test_Cases.md</code></td>
+<td style="text-align: right;">Trung bình</td>
+<td>Đối chiếu Excel vs Power BI, kiểm tra chỉ tiêu tính toán theo ngày và bộ lọc</td>
+</tr>
+<tr>
+<td><code>Agribank_HR_Source_System_Assumption_Log.md</code></td>
+<td style="text-align: right;">Trung bình</td>
+<td>Ghi giả định về HRIS, LMS, Lương và phúc lợi, chấm công, nghỉ phép, tuyển dụng</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-noi-dung-nen-bo-sung-vao-tung-buoi">5. Nội dung nên bổ sung vào từng buổi</h2>
+<table>
+<thead>
+<tr>
+<th>Buổi</th>
+<th>Nội dung bổ sung nghiệp vụ</th>
+<th>Output học viên nên có</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Buổi 1 - AI phân tích dữ liệu HR</td>
+<td>Khung bài toán HR Analytics ngân hàng; bản đồ nguồn dữ liệu; bộ chuẩn chỉ tiêu; rủi ro dữ liệu cá nhân nhạy cảm/lương khi dùng AI</td>
+<td>Bản nháp bộ mô tả dữ liệu, bộ chuẩn chỉ tiêu, danh sách báo cáo cần quản lý</td>
+</tr>
+<tr>
+<td>Buổi 2 - Excel</td>
+<td>Giải thích active số nhân sự, nhân sự mới, ngày nghỉ, tổng lương trước khi viết hàm</td>
+<td>Bảng Excel function có ghi chú nghiệp vụ công thức</td>
+</tr>
+<tr>
+<td>Buổi 3 - mô hình báo cáo trong Gợi ý triển khai trên Excel</td>
+<td>Mức chi tiết của dữ liệu, quan hệ giữa các bảng, inactive quan hệ giữa các bảng, <code>dim_date</code>, vì sao không kéo thả sai quan hệ</td>
+<td>mô hình dữ liệu phục vụ báo cáo blueprint mini</td>
+</tr>
+<tr>
+<td>Buổi 4 - Power BI xử lý dữ liệu</td>
+<td>Chuẩn hóa tên trường, kiểu dữ liệu, unpivot kế hoạch đào tạo, data quality checks</td>
+<td>Query steps + checklist lỗi dữ liệu</td>
+</tr>
+<tr>
+<td>Buổi 5 - công thức chỉ tiêu trong Power BI</td>
+<td>Bộ chỉ tiêu tính toán chuẩn: số nhân sự, movement, contract, tỷ lệ nghỉ việc, giữ chân nhân sự, so sánh cùng kỳ năm trước</td>
+<td>chỉ tiêu tính toán folder + calculation note</td>
+</tr>
+<tr>
+<td>Buổi 6 - Báo cáo điều hành</td>
+<td>Mỗi trang báo cáo điều hành phải trả lời câu hỏi quản trị, có cảnh báo và drill-through</td>
+<td>Báo cáo điều hành theo danh sách báo cáo cần quản lý và danh sách tiêu chí nghiệm thu</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-iem-can-noi-ro-voi-agribank">6. Điểm cần nói rõ với Agribank</h2>
+<table>
+<thead>
+<tr>
+<th>Vấn đề</th>
+<th>Khuyến nghị diễn giải</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dữ liệu thực hành học là dữ liệu mô phỏng</td>
+<td>Dùng để học tư duy và kỹ thuật, không đại diện đầy đủ hệ thống thật của Agribank</td>
+</tr>
+<tr>
+<td>Chỉ tiêu lương và dữ liệu cá nhân nhạy cảm nhạy cảm</td>
+<td>Báo cáo điều hành lương phải có phân quyền và không hiển thị cấp cá nhân đại trà</td>
+</tr>
+<tr>
+<td>KPI cần chốt duyệt</td>
+<td>Công thức tỷ lệ nghỉ việc, giữ chân nhân sự, active số nhân sự, ký đúng hạn cần thống nhất giữa HR, Finance, IT/Data</td>
+</tr>
+<tr>
+<td>Tuyển dụng/hiệu suất chưa có đủ dữ liệu thực hành</td>
+<td>Có thể đưa vào phần khuyến nghị mở rộng hoặc dữ liệu thực hành giai đoạn mở rộng</td>
+</tr>
+<tr>
+<td>AI chỉ hỗ trợ tạo nháp</td>
+<td>AI có thể tạo bộ mô tả dữ liệu, M code, công thức Power BI draft, nhưng cần đơn vị chịu trách nhiệm nghiệp vụ kiểm tra</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-ket-luan">7. Kết luận</h2>
+<p>Tài liệu thực hành hiện có đủ nền tảng công cụ để học viên làm được phân tích HR trên Excel và Power BI. Góp ý của Agribank là đúng ở lớp nghiệp vụ: cần chuẩn hóa trước bộ dữ liệu, nguồn dữ liệu, chỉ tiêu và yêu cầu báo cáo. Vì vậy, phần bổ sung nên không thay cho chương trình hiện tại, mà đóng vai trò "business layer" xuyên suốt từ Buổi 1 đến Buổi 6.</p>
+<h2 id="8-phan-bo-sung-tu-van-tu-nghien-cuu-ben-ngoai">8. Phần bổ sung tư vấn từ nghiên cứu bên ngoài</h2>
+<blockquote>
+<p>Phạm vi: phần này tổng hợp các đề xuất mở rộng đã nghiên cứu từ nguồn nghiệp vụ và chuẩn tham chiếu bên ngoài. Các nội dung này nên được trình bày như lớp tư vấn riêng, không trộn với các output đã có dữ liệu/công thức đúng theo bài thực hành.</p>
+</blockquote>
+<h3 id="81-nguon-tham-chieu-dung-e-mo-rong-tu-van">8.1. Nguồn tham chiếu dùng để mở rộng tư vấn</h3>
+<table>
+<thead>
+<tr>
+<th>Nhóm nguồn</th>
+<th>Cách sử dụng trong khóa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO 30414:2025 - Human capital reporting</td>
+<td>Bổ sung nhóm KPI ngoài số nhân sự/tỷ lệ nghỉ việc: workforce composition, skills, recruitment, luân chuyển nội bộ, kế nhiệm, sức khỏe và gắn kết, tuân thủ</td>
+</tr>
+<tr>
+<td>ISO 30415 - Diversity &amp; Inclusion</td>
+<td>Gợi ý D&amp;I/pay equity view ở mức tư vấn, cần review chính sách và pháp lý trước khi triển khai</td>
+</tr>
+<tr>
+<td>ISO 45001/45003 - OH&amp;S và psychological health &amp; safety</td>
+<td>Bổ sung góc nhìn workload, OT sustainability, sức khỏe và gắn kết ở mức đơn vị/nhóm</td>
+</tr>
+<tr>
+<td>ISO/IEC 42001, NIST AI RMF, OECD AI Principles</td>
+<td>Bổ sung kiểm soát sử dụng AI cho Buổi 1: dữ liệu nào được phép đưa vào AI, người phụ trách kiểm tra lại, logging, tránh bias/privacy risk</td>
+</tr>
+<tr>
+<td>Microsoft Learn - Power BI phân quyền theo vai trò và nhãn phân loại dữ liệu nhạy cảm</td>
+<td>Bổ sung yêu cầu phân quyền theo dòng, kiểm thử role, gắn nhãn dữ liệu nhạy cảm và bảo vệ khi xuất dữ liệu</td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-thanh-phan-moi-nen-bo-sung-vao-tung-output">8.2. Thành phần mới nên bổ sung vào từng output</h3>
+<table>
+<thead>
+<tr>
+<th>Output hiện có</th>
+<th>Thành phần tư vấn bổ sung</th>
+<th>Ghi chú triển khai</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bộ mô tả dữ liệu và bản đồ nguồn dữ liệu</td>
+<td>Thêm thông tin quản lý bổ sung: <code>business_owner</code>, <code>source_system</code>, <code>grain</code>, <code>data_classification</code>, <code>pii_flag</code>, <code>masking_rule</code>, <code>quality_rule</code></td>
+<td>Ưu tiên đưa vào ngay vì phù hợp góp ý về thiếu chuẩn dữ liệu</td>
+</tr>
+<tr>
+<td>bộ mô tả dữ liệu và bản đồ nguồn dữ liệu</td>
+<td>Thêm các bảng mở rộng: tuyển dụng, định biên, performance, skills, kế nhiệm, gắn kết, employee relations, AI usage log</td>
+<td>Chỉ dùng như danh sách ưu tiên mở rộng nếu Agribank xác nhận có nguồn dữ liệu</td>
+</tr>
+<tr>
+<td>bộ chuẩn chỉ tiêu nhân sự</td>
+<td>Thêm nhóm KPI workforce planning, recruitment, skills/certification, gắn kết, sức khỏe và gắn kết, tuân thủ/quản trị dữ liệu, kiểm soát sử dụng AI</td>
+<td>Phân tách rõ “KPI tư vấn” với “KPI thực hành đã có công thức”</td>
+</tr>
+<tr>
+<td>danh sách báo cáo cần quản lý</td>
+<td>Thêm danh sách ưu tiên mở rộng báo cáo: Cơ cấu nhân sự Planning, Recruitment Funnel, Skills &amp; Certification, quản trị báo cáo nhân sự, kiểm soát sử dụng AI</td>
+<td>Không yêu cầu học viên làm hết trong 6 buổi; dùng để tư vấn giai đoạn mở rộng</td>
+</tr>
+<tr>
+<td>Practice Lab/giáo án</td>
+<td>Thêm checklist sử dụng AI an toàn và data phân loại mức độ nhạy cảm ở Buổi 1</td>
+<td>Phù hợp nhận định buổi AI nên lồng nghiệp vụ và quản trị và kiểm soát</td>
+</tr>
+<tr>
+<td>Báo cáo điều hành cuối khóa</td>
+<td>Thêm acceptance criteria về nguồn số liệu chính thức, phân quyền theo vai trò, nhãn phân loại dữ liệu nhạy cảm, dữ liệu cá nhân nhạy cảm ẩn/che dữ liệu, ngưỡng bảo mật nhóm</td>
+<td>Giúp báo cáo điều hành đúng nghiệp vụ, không dừng ở đúng thành phần hiển thị</td>
+</tr>
+</tbody>
+</table>
+<h3 id="83-khuyen-nghi-uu-tien-cho-agribank">8.3. Khuyến nghị ưu tiên cho Agribank</h3>
+<table>
+<thead>
+<tr>
+<th>Mức ưu tiên</th>
+<th>Nên làm</th>
+<th>Lý do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ưu tiên 1</td>
+<td>Bổ sung data phân loại mức độ nhạy cảm, dữ liệu cá nhân nhạy cảm flag, đơn vị chịu trách nhiệm và nguồn system vào bộ mô tả dữ liệu</td>
+<td>Dữ liệu HR/lương/hiệu suất/nghỉ phép đều nhạy cảm</td>
+</tr>
+<tr>
+<td>Ưu tiên 1</td>
+<td>Thêm HR báo cáo giám sát chất lượng dữ liệu hoặc checklist data quality vào bài thực hành</td>
+<td>Góp ý Agribank nhấn mạnh lớp quản trị dữ liệu còn thiếu</td>
+</tr>
+<tr>
+<td>Ưu tiên 1</td>
+<td>Thêm Cơ cấu nhân sự Planning/Vacancy và Skills &amp; Certification vào danh sách ưu tiên mở rộng báo cáo</td>
+<td>Phù hợp bối cảnh ngân hàng có mạng lưới chi nhánh, chức danh, chứng chỉ</td>
+</tr>
+<tr>
+<td>Ưu tiên 1</td>
+<td>Đưa phân quyền theo vai trò, nhãn phân loại dữ liệu nhạy cảm và danh sách kiểm soát sử dụng AI thành điểm nhấn quản trị và kiểm soát</td>
+<td>Cần thiết khi triển khai Power BI và AI trong môi trường enterprise</td>
+</tr>
+<tr>
+<td>Giai đoạn mở rộng</td>
+<td>Gắn kết/eNPS, Pay Equity, Employee Relations, Kế nhiệm Planning</td>
+<td>Cần dữ liệu nhạy cảm, survey hoặc review chính sách trước</td>
+</tr>
+<tr>
+<td>Giai đoạn mở rộng</td>
+<td>Attrition prediction hoặc scoring cá nhân bằng AI</td>
+<td>Chỉ nên làm khi có quản trị và kiểm soát, người phụ trách kiểm tra lại, đánh giá bias và quyền riêng tư</td>
+</tr>
+</tbody>
+</table>
+<h3 id="84-canh-bao-khi-ua-vao-tai-lieu-chinh-thuc">8.4. Cảnh báo khi đưa vào tài liệu chính thức</h3>
+<ul>
+<li>Không thay thế định nghĩa KPI nội bộ của Agribank; các chỉ tiêu như FTE, vacancy, tỷ lệ nghỉ việc, giữ chân nhân sự, pay equity phải được HR/Finance/IT/Data chốt duyệt.</li>
+<li>Không đưa dữ liệu cá nhân, dữ liệu lương, đánh giá hiệu suất hoặc lý do nghỉ phép thật vào công cụ AI công khai.</li>
+<li>Không dùng chỉ số sức khỏe và gắn kết/burnout proxy để quy kết cá nhân; nên dùng ở mức đơn vị hoặc nhóm đủ lớn.</li>
+<li>Không xem nhãn phân loại dữ liệu nhạy cảm là thay thế phân quyền; vẫn cần Power BI permissions, phân quyền theo vai trò/phân quyền theo đối tượng dữ liệu và quy trình chia sẻ.</li>
+<li>Không triển khai attrition prediction hoặc risk scoring cá nhân nếu chưa có đánh giá pháp lý, đạo đức, bias và quyền riêng tư.</li>
+</ul></div>
+          <div class="prevnext"><a class="pn prev" href="#overview"><span>← Trước</span><strong>Tổng quan</strong></a><a class="pn next" href="#data-dictionary"><span>Tiếp →</span><strong>Bộ mô tả dữ liệu &amp; nguồn</strong></a></div>
+        </article>
+        <nav class="toc" aria-label="Mục lục"><p class="toc-h">Trên trang này</p><ul><li><a href="#" data-anchor="1-nhan-inh-nhanh">1. Nhận định nhanh</a></li><li><a href="#" data-anchor="2-option-trien-khai">2. Option triển khai</a></li><li><a href="#" data-anchor="3-khuyen-nghi-chon">3. Khuyến nghị chọn</a></li><li><a href="#" data-anchor="4-cac-output-nen-tao-tiep">4. Các output nên tạo tiếp</a></li><li><a href="#" data-anchor="5-noi-dung-nen-bo-sung-vao-tung-buoi">5. Nội dung nên bổ sung vào từng buổi</a></li><li><a href="#" data-anchor="6-iem-can-noi-ro-voi-agribank">6. Điểm cần nói rõ với Agribank</a></li><li><a href="#" data-anchor="7-ket-luan">7. Kết luận</a></li><li><a href="#" data-anchor="8-phan-bo-sung-tu-van-tu-nghien-cuu-ben-ngoai">8. Phần bổ sung tư vấn từ nghiên cứu bên ngoài</a></li></ul></nav>
+      </div>
+    </section>
+
+    <section class="doc" id="data-dictionary" data-doc>
+      <div class="doc-grid">
+        <article class="doc-main">
+          <div class="kicker"><i class="fa-solid fa-database"></i> Tài liệu 2/5</div>
+          <h1 class="doc-title">Bộ mô tả dữ liệu và bản đồ nguồn dữ liệu - HR Analytics</h1>
+          <p class="doc-blurb">Data dictionary cho 6 bảng nguồn (Nhân sự, Phòng ban, Chấm công, Nghỉ phép, Đào tạo, Lương) + bản đồ nguồn dữ liệu và quy tắc chất lượng.</p>
+          <div class="doc-body"><blockquote>
+<p>Góc nhìn lãnh đạo: Tài liệu này được chuẩn hóa để phục vụ trao đổi ở cấp quản lý: làm rõ câu hỏi điều hành, trách nhiệm sở hữu số liệu, mức độ tin cậy của báo cáo và các rủi ro cần kiểm soát trước khi triển khai công cụ.</p>
+</blockquote>
+<p>Khóa học: Ứng dụng AI và phân tích dữ liệu nhân sự<br />
+Phiên bản: 2026-07-15<br />
+Phạm vi: bổ sung lớp nghiệp vụ dữ liệu cho chương trình HR Analytics, dùng cho bối cảnh Agribank hoặc ngân hàng có mạng lưới chi nhánh/phòng ban lớn.  </p>
+<h2 id="1-nguon-oi-chieu">1. Nguồn đối chiếu</h2>
+<ul>
+<li>File Excel hoàn thiện: <code>Excel/KPIM_Bank_HR_Data_Excel_Complete.xlsx</code></li>
+<li>Tài liệu Word thực hành chương 2, 3, 5, 6, 7 và Capstone trong folder <code>3. Learning Activites</code></li>
+<li>Nội dung góp ý chuyên môn Agribank: cần chuẩn hóa bộ mô tả dữ liệu, bản đồ nguồn dữ liệu, bộ chỉ tiêu HR và logic dữ liệu trước khi đi sâu vào Excel/Power BI.</li>
+</ul>
+<h2 id="2-tong-quan-mo-hinh-du-lieu-thuc-hanh">2. Tổng quan mô hình dữ liệu thực hành</h2>
+<table>
+<thead>
+<tr>
+<th>Nhóm bảng</th>
+<th>Bảng trong file học</th>
+<th>Vai trò nghiệp vụ</th>
+<th>Mức chi tiết đề xuất</th>
+<th>Khóa chính/khóa liên kết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Danh mục/hồ sơ gốc</td>
+<td><code>Nhân Sự</code></td>
+<td>Hồ sơ nhân sự, trạng thái làm việc, chi nhánh, phòng ban, chức danh, hợp đồng</td>
+<td>1 dòng/nhân sự hoặc 1 dòng/phiên bản nhân sự nếu quản lý lịch sử</td>
+<td><code>ID Nhân Sự</code></td>
+</tr>
+<tr>
+<td>Danh mục/hồ sơ gốc</td>
+<td><code>Phòng Ban</code></td>
+<td>Danh mục phòng ban và khối chức năng</td>
+<td>1 dòng/phòng ban</td>
+<td><code>Mã Phòng Ban</code></td>
+</tr>
+<tr>
+<td>Bảng nghiệp vụ phát sinh</td>
+<td><code>Data Chấm Công</code></td>
+<td>Ghi nhận ngày công, ca làm, giờ làm, tăng ca</td>
+<td>1 dòng/nhân sự/ngày/ca</td>
+<td><code>ID Nhân Sự</code>, <code>Ngày</code>, <code>Ca</code></td>
+</tr>
+<tr>
+<td>Bảng nghiệp vụ phát sinh</td>
+<td><code>Data Nghỉ Phép</code></td>
+<td>Đơn nghỉ phép và trạng thái duyệt</td>
+<td>1 dòng/đơn nghỉ phép</td>
+<td><code>ID Nhân Sự</code>, <code>Ngày Bắt Đầu</code>, <code>Ngày Kết Thúc</code></td>
+</tr>
+<tr>
+<td>Bảng nghiệp vụ phát sinh</td>
+<td><code>Data Đào Tạo</code></td>
+<td>Nhân sự tham gia khóa đào tạo</td>
+<td>1 dòng/nhân sự/khóa học</td>
+<td><code>ID Nhân Sự</code>, <code>Id Khóa Học</code></td>
+</tr>
+<tr>
+<td>Bảng nghiệp vụ phát sinh</td>
+<td><code>Data Lương</code></td>
+<td>Bảng lương theo kỳ công</td>
+<td>1 dòng/nhân sự/kỳ công</td>
+<td><code>ID Nhân Sự</code>, <code>Kỳ Công</code></td>
+</tr>
+<tr>
+<td>Date dimension</td>
+<td><code>dim_date</code></td>
+<td>Danh mục ngày dùng lọc thời gian chung</td>
+<td>1 dòng/ngày</td>
+<td><code>Date</code> hoặc <code>ngày</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-bo-mo-ta-du-lieu-theo-bang-nguon">3. Bộ mô tả dữ liệu theo bảng nguồn</h2>
+<h3 id="31-bang-nhan-su">3.1. Bảng <code>Nhân Sự</code></h3>
+<p>Mục đích: làm bảng master trung tâm để phân tích số nhân sự, cơ cấu, biến động nhân sự, hợp đồng, thâm niên, nhóm tuổi và liên kết các bảng fact.</p>
+<table>
+<thead>
+<tr>
+<th>Trường</th>
+<th>Kiểu dữ liệu</th>
+<th>Định nghĩa nghiệp vụ</th>
+<th>Vai trò phân tích</th>
+<th>Lưu ý chất lượng dữ liệu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ID Nhân Sự</code></td>
+<td>Text</td>
+<td>Mã định danh duy nhất của nhân sự</td>
+<td>Khóa liên kết sang chấm công, nghỉ phép, đào tạo, lương</td>
+<td>Không được rỗng, không trùng trong cùng phiên bản dữ liệu</td>
+</tr>
+<tr>
+<td><code>Họ Tên</code></td>
+<td>Text</td>
+<td>Họ tên nhân sự</td>
+<td>Hiển thị chi tiết, drill-through</td>
+<td>Có dữ liệu cá nhân nhạy cảm, hạn chế hiển thị ở báo cáo cấp tổng hợp</td>
+</tr>
+<tr>
+<td><code>Giới Tính</code></td>
+<td>Text</td>
+<td>Giới tính nhân sự</td>
+<td>Cơ cấu nhân sự, slicer</td>
+<td>Chuẩn hóa danh mục Nam/Nữ/Khác nếu có</td>
+</tr>
+<tr>
+<td><code>Ngày Sinh</code></td>
+<td>Date</td>
+<td>Ngày sinh</td>
+<td>Tính tuổi, nhóm tuổi</td>
+<td>Không được lớn hơn ngày hiện tại; cần kiểm tra tuổi bất thường</td>
+</tr>
+<tr>
+<td><code>Ngày Vào Làm</code></td>
+<td>Date</td>
+<td>Ngày bắt đầu làm việc</td>
+<td>Tính nhân sự mới, thâm niên, số nhân sự tại thời điểm</td>
+<td>Không được sau ngày nghỉ việc</td>
+</tr>
+<tr>
+<td><code>Ngày Nghỉ Việc</code></td>
+<td>Date</td>
+<td>Ngày kết thúc làm việc nếu có</td>
+<td>Tính nghỉ việc, tỷ lệ nghỉ việc, số nhân sự active</td>
+<td>Rỗng nếu còn làm việc</td>
+</tr>
+<tr>
+<td><code>Trạng Thái</code></td>
+<td>Text</td>
+<td>Trạng thái làm việc hoặc biến động</td>
+<td>Phân loại đang làm việc, bãi nhiệm/nghỉ việc, điều chuyển</td>
+<td>Cần danh mục chuẩn và đối chiếu nguồn với quy định Agribank</td>
+</tr>
+<tr>
+<td><code>Mã Chi Nhánh</code></td>
+<td>Text</td>
+<td>Mã chi nhánh/đơn vị</td>
+<td>Phân tích theo mạng lưới</td>
+<td>Nên tách thành <code>dim_chi_nhanh</code></td>
+</tr>
+<tr>
+<td><code>Tên Chi Nhánh</code></td>
+<td>Text</td>
+<td>Tên chi nhánh/đơn vị</td>
+<td>Hiển thị báo cáo</td>
+<td>Cần đồng bộ với mã chi nhánh chính thức</td>
+</tr>
+<tr>
+<td><code>Mã Phòng Ban</code></td>
+<td>Text</td>
+<td>Mã phòng ban trực thuộc</td>
+<td>Liên kết <code>Phòng Ban</code></td>
+<td>Không được có mã không tồn tại trong danh mục phòng ban</td>
+</tr>
+<tr>
+<td><code>Chức Danh</code></td>
+<td>Text</td>
+<td>Chức danh/vị trí</td>
+<td>Cơ cấu chức danh, phân tích năng lực</td>
+<td>Nên tách thành <code>dim_chuc_danh</code> khi triển khai thật</td>
+</tr>
+<tr>
+<td><code>Bậc Lương</code></td>
+<td>Text</td>
+<td>Bậc/thang lương</td>
+<td>Phân tích lương theo grade</td>
+<td>Có tính nhạy cảm, kiểm soát quyền truy cập</td>
+</tr>
+<tr>
+<td><code>ID Quản Lý</code></td>
+<td>Text</td>
+<td>Mã quản lý trực tiếp</td>
+<td>Phân tích span of control, cây quản lý</td>
+<td>Có thể rỗng với cấp cao nhất</td>
+</tr>
+<tr>
+<td><code>Loại Hợp Đồng</code></td>
+<td>Text</td>
+<td>Loại hợp đồng lao động</td>
+<td>Cơ cấu hợp đồng, cảnh báo hết hạn</td>
+<td>Chuẩn hóa danh mục: thử việc, 1 năm, 3 năm, chính thức...</td>
+</tr>
+<tr>
+<td><code>Tuổi</code></td>
+<td>Number</td>
+<td>Cột tính từ ngày sinh</td>
+<td>Nhóm tuổi, demographic</td>
+<td>Công thức Excel: <code>(TODAY()-[Ngày Sinh])/365</code></td>
+</tr>
+<tr>
+<td><code>Nhóm Tuổi</code></td>
+<td>Text</td>
+<td>Nhóm tuổi phân bậc</td>
+<td>Slicer/bộ lọc</td>
+<td>Cần thống nhất band tuổi theo chuẩn báo cáo</td>
+</tr>
+<tr>
+<td><code>Ngày Hiệu Lực</code></td>
+<td>Date</td>
+<td>Ngày hiệu lực/hết hạn hợp đồng suy ra từ loại hợp đồng</td>
+<td>Cảnh báo hợp đồng</td>
+<td>Trong file Complete đang tính bằng công thức dựa vào loại hợp đồng</td>
+</tr>
+<tr>
+<td><code>Tên Phòng Ban</code></td>
+<td>Text</td>
+<td>Tên phòng ban lookup từ <code>Phòng Ban</code></td>
+<td>Hiển thị báo cáo</td>
+<td>Nên lấy từ dimension thay vì tính rời rạc ở Excel</td>
+</tr>
+<tr>
+<td><code>Tên Quản Lý</code></td>
+<td>Text</td>
+<td>Tên quản lý lookup theo <code>ID Quản Lý</code></td>
+<td>Drill-through, tổ chức</td>
+<td>Có dữ liệu cá nhân nhạy cảm</td>
+</tr>
+<tr>
+<td><code>Tổng Giờ Đào Tạo</code></td>
+<td>Number</td>
+<td>Tổng giờ đào tạo theo nhân sự</td>
+<td>KPI đào tạo cá nhân</td>
+<td>Trong Excel dùng <code>SUMIF</code> từ <code>Data Đào Tạo</code></td>
+</tr>
+<tr>
+<td><code>Tổng Giờ Hoàn Thành</code></td>
+<td>Number</td>
+<td>Tổng giờ đào tạo hoàn thành</td>
+<td>Tỷ lệ hoàn thành đào tạo</td>
+<td>Trong Excel dùng <code>SUMIFS</code> theo trạng thái hoàn thành</td>
+</tr>
+<tr>
+<td><code>Tỷ Lệ Hoàn Thành</code></td>
+<td>Decimal</td>
+<td>Giờ hoàn thành / tổng giờ đào tạo</td>
+<td>Training completion</td>
+<td>Dùng <code>IFERROR</code> hoặc <code>DIVIDE</code> để tránh lỗi chia 0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-bang-phong-ban">3.2. Bảng <code>Phòng Ban</code></h3>
+<table>
+<thead>
+<tr>
+<th>Trường</th>
+<th>Kiểu dữ liệu</th>
+<th>Định nghĩa nghiệp vụ</th>
+<th>Vai trò phân tích</th>
+<th>Lưu ý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Mã Phòng Ban</code></td>
+<td>Text</td>
+<td>Mã định danh phòng ban</td>
+<td>Khóa liên kết với nhân sự</td>
+<td>Không được trùng</td>
+</tr>
+<tr>
+<td><code>Tên Phòng Ban</code></td>
+<td>Text</td>
+<td>Tên phòng ban</td>
+<td>Hiển thị báo cáo, slicer</td>
+<td>Chuẩn hóa chính tả và tên đơn vị</td>
+</tr>
+<tr>
+<td><code>Khối</code></td>
+<td>Text</td>
+<td>Khối chức năng cấp cao</td>
+<td>Phân tích theo khối</td>
+<td>Cần danh mục khối chính thức</td>
+</tr>
+<tr>
+<td><code>Lãnh Đạo</code></td>
+<td>Text</td>
+<td>Người phụ trách phòng ban</td>
+<td>Drill-through quản trị</td>
+<td>Có dữ liệu cá nhân nhạy cảm, kiểm soát hiển thị</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-bang-data-cham-cong">3.3. Bảng <code>Data Chấm Công</code></h3>
+<table>
+<thead>
+<tr>
+<th>Trường</th>
+<th>Kiểu dữ liệu</th>
+<th>Định nghĩa nghiệp vụ</th>
+<th>Vai trò phân tích</th>
+<th>Lưu ý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ID Nhân Sự</code></td>
+<td>Text</td>
+<td>Mã nhân sự chấm công</td>
+<td>Liên kết nhân sự</td>
+<td>Không rỗng; phải tồn tại trong <code>Nhân Sự</code></td>
+</tr>
+<tr>
+<td><code>Ngày</code></td>
+<td>Date</td>
+<td>Ngày chấm công</td>
+<td>Phân tích thời gian, dim_date</td>
+<td>Không nằm ngoài giai đoạn báo cáo</td>
+</tr>
+<tr>
+<td><code>Ca</code></td>
+<td>Text</td>
+<td>Ca làm việc</td>
+<td>Phân tích ca sáng/chiều/cả ngày</td>
+<td>Chuẩn hóa danh mục ca</td>
+</tr>
+<tr>
+<td><code>Giờ Vào</code></td>
+<td>Time/Text</td>
+<td>Giờ check-in</td>
+<td>Tính đi muộn</td>
+<td>Cần chuẩn hóa kiểu thời gian</td>
+</tr>
+<tr>
+<td><code>Giờ Ra</code></td>
+<td>Time/Text</td>
+<td>Giờ check-out</td>
+<td>Tính về sớm, giờ làm</td>
+<td>Cần kiểm tra giờ ra sau giờ vào</td>
+</tr>
+<tr>
+<td><code>Giờ Làm</code></td>
+<td>Decimal</td>
+<td>Tổng giờ làm trong ngày</td>
+<td>KPI tổng giờ công, giờ công bình quân</td>
+<td>Đối chiếu với quy định ca làm</td>
+</tr>
+<tr>
+<td><code>Giờ Tăng Ca</code></td>
+<td>Decimal</td>
+<td>Giờ làm thêm</td>
+<td>KPI OT hours, OT rate</td>
+<td>Kiểm tra giá trị âm hoặc quá cao</td>
+</tr>
+<tr>
+<td><code>Cuối Tuần</code></td>
+<td>Number/Flag</td>
+<td>Cờ cuối tuần</td>
+<td>Phân tích weekend work</td>
+<td>0/1 hoặc TRUE/FALSE</td>
+</tr>
+<tr>
+<td><code>Ngày Lễ</code></td>
+<td>Number/Flag</td>
+<td>Cờ ngày lễ</td>
+<td>Phân tích làm ngày lễ</td>
+<td>Cần lịch ngày lễ chính thức</td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-bang-data-nghi-phep">3.4. Bảng <code>Data Nghỉ Phép</code></h3>
+<table>
+<thead>
+<tr>
+<th>Trường</th>
+<th>Kiểu dữ liệu</th>
+<th>Định nghĩa nghiệp vụ</th>
+<th>Vai trò phân tích</th>
+<th>Lưu ý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ID Nhân Sự</code></td>
+<td>Text</td>
+<td>Mã nhân sự nghỉ phép</td>
+<td>Liên kết nhân sự</td>
+<td>Không rỗng</td>
+</tr>
+<tr>
+<td><code>Loại Phép</code></td>
+<td>Text</td>
+<td>Loại nghỉ phép</td>
+<td>Cơ cấu nghỉ phép</td>
+<td>Chuẩn hóa danh mục phép</td>
+</tr>
+<tr>
+<td><code>Ngày Tạo</code></td>
+<td>Date</td>
+<td>Ngày tạo đơn</td>
+<td>Phân tích SLA duyệt phép</td>
+<td>Không sau ngày bắt đầu quá xa nếu quy định có SLA</td>
+</tr>
+<tr>
+<td><code>Ngày Bắt Đầu</code></td>
+<td>Date</td>
+<td>Ngày bắt đầu nghỉ</td>
+<td>Tính số ngày nghỉ</td>
+<td>Không sau ngày kết thúc</td>
+</tr>
+<tr>
+<td><code>Ngày Kết Thúc</code></td>
+<td>Date</td>
+<td>Ngày kết thúc nghỉ</td>
+<td>Tính số ngày nghỉ</td>
+<td>Kiểm tra khoảng nghỉ bất thường</td>
+</tr>
+<tr>
+<td><code>Duyệt</code></td>
+<td>Number/Flag</td>
+<td>Trạng thái duyệt</td>
+<td>Tỷ lệ duyệt phép</td>
+<td>Cần đối chiếu nguồn rõ 1/0 hoặc Approved/Pending/Rejected</td>
+</tr>
+<tr>
+<td><code>Số Ngày</code></td>
+<td>Number</td>
+<td>Số ngày nghỉ tính theo quy định</td>
+<td>KPI leave days</td>
+<td>Đối chiếu với lịch làm việc</td>
+</tr>
+<tr>
+<td><code>Lý Do</code></td>
+<td>Text</td>
+<td>Lý do nghỉ</td>
+<td>Phân tích định tính nếu cần</td>
+<td>Có thể nhạy cảm, hạn chế đưa lên báo cáo điều hành</td>
+</tr>
+</tbody>
+</table>
+<h3 id="35-bang-data-ao-tao">3.5. Bảng <code>Data Đào Tạo</code></h3>
+<table>
+<thead>
+<tr>
+<th>Trường</th>
+<th>Kiểu dữ liệu</th>
+<th>Định nghĩa nghiệp vụ</th>
+<th>Vai trò phân tích</th>
+<th>Lưu ý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ID Nhân Sự</code></td>
+<td>Text</td>
+<td>Mã nhân sự tham gia đào tạo</td>
+<td>Liên kết nhân sự</td>
+<td>Không rỗng</td>
+</tr>
+<tr>
+<td><code>Id Khóa Học</code></td>
+<td>Text</td>
+<td>Mã khóa học</td>
+<td>Liên kết danh mục khóa học</td>
+<td>Nên tách <code>dim_dao_tao</code></td>
+</tr>
+<tr>
+<td><code>Tên Khóa Học</code></td>
+<td>Text</td>
+<td>Tên khóa học</td>
+<td>Phân tích chủ đề/kỹ năng</td>
+<td>Chuẩn hóa tên khóa</td>
+</tr>
+<tr>
+<td><code>Đơn Vị Tổ Chức</code></td>
+<td>Text</td>
+<td>Đơn vị tổ chức</td>
+<td>Phân tích nội bộ/ngoài</td>
+<td>Cần danh mục nhà cung cấp nếu triển khai thật</td>
+</tr>
+<tr>
+<td><code>Ngày Bắt Đầu</code></td>
+<td>Date</td>
+<td>Ngày bắt đầu khóa</td>
+<td>Phân tích thời gian</td>
+<td>Không sau ngày kết thúc</td>
+</tr>
+<tr>
+<td><code>Ngày Kết Thúc</code></td>
+<td>Date</td>
+<td>Ngày kết thúc khóa</td>
+<td>Completion, time intelligence</td>
+<td>Liên kết <code>dim_date</code></td>
+</tr>
+<tr>
+<td><code>Số Giờ</code></td>
+<td>Number</td>
+<td>Giờ đào tạo ghi nhận</td>
+<td>Tổng giờ đào tạo</td>
+<td>Không âm</td>
+</tr>
+<tr>
+<td><code>Chi Phí</code></td>
+<td>Number</td>
+<td>Chi phí đào tạo</td>
+<td>Chi phí đào tạo/FTE</td>
+<td>Có thể nhạy cảm</td>
+</tr>
+<tr>
+<td><code>Trạng Thái</code></td>
+<td>Text</td>
+<td>Trạng thái học</td>
+<td>Hoàn thành, đang học, hủy</td>
+<td>Chuẩn hóa status</td>
+</tr>
+<tr>
+<td><code>Hạn Chứng Chỉ</code></td>
+<td>Date</td>
+<td>Ngày hết hạn chứng chỉ</td>
+<td>Cảnh báo chứng chỉ</td>
+<td>Nên có báo cáo chứng chỉ sắp hết hạn</td>
+</tr>
+</tbody>
+</table>
+<h3 id="36-bang-data-luong">3.6. Bảng <code>Data Lương</code></h3>
+<table>
+<thead>
+<tr>
+<th>Trường</th>
+<th>Kiểu dữ liệu</th>
+<th>Định nghĩa nghiệp vụ</th>
+<th>Vai trò phân tích</th>
+<th>Lưu ý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ID Nhân Sự</code></td>
+<td>Text</td>
+<td>Mã nhân sự nhận lương</td>
+<td>Liên kết nhân sự</td>
+<td>dữ liệu cá nhân nhạy cảm/nhạy cảm, kiểm soát quyền</td>
+</tr>
+<tr>
+<td><code>Kỳ Công</code></td>
+<td>Text/Date</td>
+<td>Kỳ lương/kỳ công</td>
+<td>Phân tích theo tháng</td>
+<td>Nên chuẩn hóa thành date hoặc YearMonth</td>
+</tr>
+<tr>
+<td><code>Lương Cơ Bản</code></td>
+<td>Number</td>
+<td>Lương cơ bản trong kỳ</td>
+<td>Lương và phúc lợi component</td>
+<td>Nhạy cảm</td>
+</tr>
+<tr>
+<td><code>Phụ Cấp</code></td>
+<td>Number</td>
+<td>Tổng phụ cấp</td>
+<td>Lương và phúc lợi component</td>
+<td>Nhạy cảm</td>
+</tr>
+<tr>
+<td><code>Lương Tăng Ca</code></td>
+<td>Number</td>
+<td>Tiền lương OT</td>
+<td>Lương và phúc lợi component</td>
+<td>Đối chiếu với giờ OT</td>
+</tr>
+<tr>
+<td><code>Thưởng</code></td>
+<td>Number</td>
+<td>Tiền thưởng</td>
+<td>Lương và phúc lợi component</td>
+<td>Nhạy cảm</td>
+</tr>
+<tr>
+<td><code>Khấu Trừ</code></td>
+<td>Number</td>
+<td>Các khoản trừ</td>
+<td>Lương và phúc lợi component</td>
+<td>Nhạy cảm</td>
+</tr>
+<tr>
+<td><code>Bảo Hiểm</code></td>
+<td>Number</td>
+<td>Khoản bảo hiểm</td>
+<td>Lương và phúc lợi component</td>
+<td>Nhạy cảm</td>
+</tr>
+<tr>
+<td><code>Thuế</code></td>
+<td>Number</td>
+<td>Thuế TNCN</td>
+<td>Lương và phúc lợi component</td>
+<td>Nhạy cảm</td>
+</tr>
+<tr>
+<td><code>Thực Lĩnh</code></td>
+<td>Number</td>
+<td>Lương thực nhận</td>
+<td>KPI payroll, bảng chi tiết</td>
+<td>Không đưa cấp cá nhân nếu chưa có quyền</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-ban-o-nguon-du-lieu-e-xuat-cho-agribank">4. bản đồ nguồn dữ liệu đề xuất cho Agribank</h2>
+<table>
+<thead>
+<tr>
+<th>Nguồn hệ thống nghiệp vụ</th>
+<th>Bảng đích trong mô hình học</th>
+<th>Nhóm dữ liệu chính</th>
+<th>Chủ dữ liệu gợi ý</th>
+<th>Tần suất cập nhật</th>
+<th>Ghi chú kiểm soát</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Core HR/HRIS</td>
+<td><code>dim_nhan_su</code>, <code>dim_phong_ban</code>, <code>dim_chi_nhanh</code>, <code>dim_chuc_danh</code></td>
+<td>Hồ sơ nhân sự, tổ chức, chức danh, trạng thái</td>
+<td>Ban Nhân sự/HR Operations</td>
+<td>Ngày hoặc tháng</td>
+<td>Là nguồn sự thật cho số nhân sự, trạng thái, đơn vị</td>
+</tr>
+<tr>
+<td>Hệ thống chấm công</td>
+<td><code>fact_cham_cong</code></td>
+<td>Check-in/out, giờ làm, tăng ca, ca làm</td>
+<td>HR Operations/Chi nhánh</td>
+<td>Ngày</td>
+<td>Cần lịch ca và quy định vi phạm đi muộn/về sớm</td>
+</tr>
+<tr>
+<td>Hệ thống nghỉ phép</td>
+<td><code>fact_nghi_phep</code></td>
+<td>Đơn nghỉ phép, loại phép, duyệt</td>
+<td>HR Operations</td>
+<td>Ngày</td>
+<td>Cần chuẩn hóa trạng thái duyệt và loại phép</td>
+</tr>
+<tr>
+<td>LMS/đào tạo</td>
+<td><code>fact_dao_tao</code>, <code>dim_dao_tao</code>, <code>fact_dao_tao_ke_hoach</code></td>
+<td>Khóa học, giờ học, chi phí, kế hoạch/actual</td>
+<td>Đào tạo/Học viện nội bộ</td>
+<td>Tháng</td>
+<td>Phân biệt đăng ký, tham gia, hoàn thành</td>
+</tr>
+<tr>
+<td>Lương và phúc lợi/C&amp;B</td>
+<td><code>fact_luong</code> hoặc <code>fact_payroll</code></td>
+<td>Lương, phụ cấp, thưởng, khấu trừ, thuế, bảo hiểm</td>
+<td>C&amp;B/Tài chính</td>
+<td>Tháng</td>
+<td>Nhạy cảm cao, cần phân quyền theo vai trò và ẩn/che dữ liệu</td>
+</tr>
+<tr>
+<td>Tuyển dụng/ATS</td>
+<td><code>fact_tuyen_dung</code></td>
+<td>Yêu cầu tuyển, ứng viên, offer, tuyển mới</td>
+<td>Tuyển dụng</td>
+<td>Tuần/tháng</td>
+<td>Hiện chưa có trong dữ liệu thực hành học, nên bổ sung nếu Agribank cần recruitment analytics</td>
+</tr>
+<tr>
+<td>Quản lý hợp đồng</td>
+<td><code>fact_hop_dong</code> hoặc lịch sử trong <code>dim_nhan_su_scd</code></td>
+<td>Ngày hiệu lực, ngày hết hạn, ký đúng hạn</td>
+<td>HR Operations/Pháp chế nhân sự</td>
+<td>Ngày/tháng</td>
+<td>Quan trọng cho cảnh báo rủi ro tuân thủ</td>
+</tr>
+<tr>
+<td>Quản lý hiệu suất</td>
+<td><code>fact_performance</code></td>
+<td>Điểm đánh giá, kỳ đánh giá, xếp loại</td>
+<td>HRBP/Hiệu suất</td>
+<td>Kỳ đánh giá</td>
+<td>Workbook có chỉ tiêu tính toán Catalog performance nhưng dữ liệu thực hành học chưa có bảng thực hành</td>
+</tr>
+<tr>
+<td>Định biên/ngân sách</td>
+<td><code>fact_dinh_bien_budget</code></td>
+<td>Định biên, kế hoạch nhân sự, budget lương</td>
+<td>HR Planning/Tài chính</td>
+<td>Tháng/quý</td>
+<td>Cần để so sánh actual vs target</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-cac-bang-nen-bo-sung-khi-customize-cho-agribank">5. Các bảng nên bổ sung khi customize cho Agribank</h2>
+<table>
+<thead>
+<tr>
+<th>Bảng bổ sung</th>
+<th>Lý do cần có</th>
+<th>Trường tối thiểu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dim_chi_nhanh</code></td>
+<td>Agribank có mạng lưới chi nhánh lớn; cần phân tích theo vùng/tỉnh/thành/loại đơn vị</td>
+<td><code>ma_chi_nhanh</code>, <code>ten_chi_nhanh</code>, <code>vung</code>, <code>tinh_thanh</code>, <code>loai_don_vi</code>, <code>cap_quan_ly</code></td>
+</tr>
+<tr>
+<td><code>dim_chuc_danh</code></td>
+<td>Chuẩn hóa chức danh và cấp bậc để phân tích cơ cấu, đào tạo, lương</td>
+<td><code>ma_chuc_danh</code>, <code>ten_chuc_danh</code>, <code>nhom_chuc_danh</code>, <code>cap_bac</code>, <code>job_family</code></td>
+</tr>
+<tr>
+<td><code>dim_hop_dong</code></td>
+<td>Phân tích loại hợp đồng, hết hạn, ký đúng hạn</td>
+<td><code>loai_hop_dong</code>, <code>thoi_han_thang</code>, <code>quy_dinh_gia_han</code>, <code>nhom_rui_ro</code></td>
+</tr>
+<tr>
+<td><code>fact_headcount_snapshot</code></td>
+<td>Tính số nhân sự cuối kỳ/bình quân nhanh và ổn định hơn logic truy vết ngày</td>
+<td><code>nhan_su_id</code>, <code>snapshot_date</code>, <code>active_flag</code>, <code>ma_chi_nhanh</code>, <code>ma_phong_ban</code>, <code>fte</code></td>
+</tr>
+<tr>
+<td><code>fact_tuyen_dung</code></td>
+<td>Bổ sung góc nhìn tuyển dụng mà góp ý nghiệp vụ có thể yêu cầu</td>
+<td><code>requisition_id</code>, <code>ma_chi_nhanh</code>, <code>ma_chuc_danh</code>, <code>open_date</code>, <code>hire_date</code>, <code>status</code>, <code>source</code></td>
+</tr>
+<tr>
+<td><code>fact_performance</code></td>
+<td>Liên kết hiệu suất với lương, đào tạo, giữ chân nhân sự</td>
+<td><code>nhan_su_id</code>, <code>ky_danh_gia</code>, <code>diem</code>, <code>xep_loai</code>, <code>muc_tieu_hoan_thanh</code></td>
+</tr>
+<tr>
+<td><code>fact_data_quality</code></td>
+<td>Theo dõi chất lượng dữ liệu đầu vào trước khi phân tích</td>
+<td><code>rule_id</code>, <code>table_name</code>, <code>field_name</code>, <code>error_count</code>, <code>run_date</code>, <code>severity</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-quy-tac-chat-luong-du-lieu-toi-thieu">6. Quy tắc chất lượng dữ liệu tối thiểu</h2>
+<table>
+<thead>
+<tr>
+<th>Nhóm kiểm tra</th>
+<th>Quy tắc</th>
+<th>Ứng dụng trong khóa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Khóa dữ liệu</td>
+<td><code>ID Nhân Sự</code> không rỗng, không trùng bất thường</td>
+<td>Trước khi tạo quan hệ giữa các bảng/mô hình dữ liệu phục vụ báo cáo</td>
+</tr>
+<tr>
+<td>Đối chiếu nguồn danh mục</td>
+<td><code>Mã Phòng Ban</code>, <code>Mã Chi Nhánh</code>, <code>Chức Danh</code> phải map được sang dimension</td>
+<td>Bài Power Query - bước xử lý dữ liệu/mô hình dữ liệu phục vụ báo cáo</td>
+</tr>
+<tr>
+<td>Ngày tháng</td>
+<td><code>Ngày Vào Làm</code> &lt;= <code>Ngày Nghỉ Việc</code>; ngày sinh hợp lý; kỳ công chuẩn</td>
+<td>Bài công thức Power BI time intelligence</td>
+</tr>
+<tr>
+<td>Trạng thái</td>
+<td><code>Trạng Thái</code>, <code>Loại Hợp Đồng</code>, <code>Trạng Thái Đào Tạo</code> theo danh mục chuẩn</td>
+<td>Bài CALCULATE theo điều kiện</td>
+</tr>
+<tr>
+<td>Số liệu</td>
+<td>Giờ làm, giờ tăng ca, số ngày nghỉ, lương, chi phí không âm</td>
+<td>Bài Pivot/Matrix/KPI</td>
+</tr>
+<tr>
+<td>dữ liệu cá nhân nhạy cảm/nhạy cảm</td>
+<td>Họ tên, lương, lý do nghỉ, quản lý trực tiếp phải phân quyền</td>
+<td>Khi thiết kế báo cáo điều hành cho Agribank</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-oi-chieu-nguon-vao-6-buoi-ao-tao">7. Đối chiếu nguồn vào 6 buổi đào tạo</h2>
+<table>
+<thead>
+<tr>
+<th>Buổi</th>
+<th>Cách lồng bộ mô tả dữ liệu và bản đồ nguồn dữ liệu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Buổi 1 - AI phân tích dữ liệu HR</td>
+<td>Dùng AI tạo bản nháp bộ mô tả dữ liệu, bản đồ nguồn dữ liệu và Data Quality Checklist từ yêu cầu nghiệp vụ Agribank</td>
+</tr>
+<tr>
+<td>Buổi 2 - Excel</td>
+<td>Dùng bộ mô tả dữ liệu để hiểu trường trước khi viết <code>COUNTIFS</code>, <code>SUMIFS</code>, Pivot Table</td>
+</tr>
+<tr>
+<td>Buổi 3 - mô hình báo cáo trong Gợi ý triển khai trên Excel</td>
+<td>Chuyển bộ mô tả dữ liệu thành mô hình bảng, khóa, quan hệ giữa các bảng và <code>dim_date</code></td>
+</tr>
+<tr>
+<td>Buổi 4 - Power BI xử lý dữ liệu</td>
+<td>Dùng bản đồ nguồn dữ liệu để import, rename, type change, unpivot và chuẩn hóa dữ liệu</td>
+</tr>
+<tr>
+<td>Buổi 5 - công thức chỉ tiêu trong Power BI</td>
+<td>Dùng bộ chuẩn chỉ tiêu để viết chỉ tiêu tính toán đúng định nghĩa nghiệp vụ</td>
+</tr>
+<tr>
+<td>Buổi 6 - Báo cáo điều hành</td>
+<td>Dùng danh sách báo cáo cần quản lý và Data Quality rules để kiểm tra báo cáo điều hành trước khi bàn giao</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-phan-bo-sung-tu-van-tu-nghien-cuu-ben-ngoai">8. Phần bổ sung tư vấn từ nghiên cứu bên ngoài</h2>
+<blockquote>
+<p>Phạm vi: các mục dưới đây là khuyến nghị mở rộng, chưa thay thế bộ mô tả dữ liệu bám theo dữ liệu và bài thực hành hiện có. Chỉ đưa vào giáo án/báo cáo điều hành chính thức khi Agribank xác nhận có dữ liệu, nguồn số liệu chính thức, quyền sử dụng và đơn vị chịu trách nhiệm nghiệp vụ.</p>
+</blockquote>
+<p>Nguồn tham chiếu chính: ISO 30414:2025 về human capital reporting, ISO 30415 về diversity &amp; inclusion, ISO 45001/45003 về sức khỏe và sức khỏe và gắn kết, ISO/IEC 42001 và NIST AI RMF về quản trị AI, Microsoft Learn về Power BI phân quyền theo vai trò và nhãn phân loại dữ liệu nhạy cảm.</p>
+<h3 id="81-bang-du-lieu-nghiep-vu-nen-can-nhac-bo-sung">8.1. Bảng dữ liệu nghiệp vụ nên cân nhắc bổ sung</h3>
+<table>
+<thead>
+<tr>
+<th>Bảng đề xuất</th>
+<th>Mục đích nghiệp vụ</th>
+<th>Trường dữ liệu tối thiểu</th>
+<th>Nguồn gợi ý</th>
+<th style="text-align: right;">Ưu tiên</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fact_tuyen_dung</code></td>
+<td>Theo dõi requisition, pipeline, offer, nhận việc và chi phí tuyển dụng</td>
+<td><code>requisition_id</code>, <code>ma_chi_nhanh</code>, <code>ma_chuc_danh</code>, <code>approved_date</code>, <code>offer_date</code>, <code>accept_date</code>, <code>start_date</code>, <code>status</code>, <code>source</code>, <code>cost</code></td>
+<td>ATS hoặc recruitment tracker</td>
+<td style="text-align: right;">Cao</td>
+</tr>
+<tr>
+<td><code>fact_dinh_bien</code></td>
+<td>So sánh nhân sự thực tế với định biên/kế hoạch</td>
+<td><code>ma_don_vi</code>, <code>ma_chuc_danh</code>, <code>period</code>, <code>approved_headcount</code>, <code>budgeted_fte</code>, <code>actual_headcount</code></td>
+<td>Cơ cấu nhân sự Planning, HR Planning, Finance</td>
+<td style="text-align: right;">Cao</td>
+</tr>
+<tr>
+<td><code>fact_performance</code></td>
+<td>Liên kết hiệu suất với đào tạo, lương và giữ chân nhân sự</td>
+<td><code>nhan_su_id</code>, <code>period</code>, <code>rating</code>, <code>score</code>, <code>goal_completion</code>, <code>review_status</code>, <code>reviewer_id</code></td>
+<td>Hiệu suất Management</td>
+<td style="text-align: right;">Cao</td>
+</tr>
+<tr>
+<td><code>dim_skill</code></td>
+<td>Chuẩn hóa kỹ năng, năng lực và chứng chỉ bắt buộc</td>
+<td><code>skill_id</code>, <code>skill_name</code>, <code>skill_group</code>, <code>criticality</code>, <code>required_for_role</code></td>
+<td>Khung năng lực, LMS</td>
+<td style="text-align: right;">Cao</td>
+</tr>
+<tr>
+<td><code>fact_skill_profile</code></td>
+<td>Theo dõi skill gap và mức độ thành thạo theo nhân sự</td>
+<td><code>nhan_su_id</code>, <code>skill_id</code>, <code>proficiency_level</code>, <code>assessment_date</code>, <code>source</code></td>
+<td>LMS, assessment, certification</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td><code>fact_succession</code></td>
+<td>Quản trị vị trí trọng yếu, successor và rủi ro kế nhiệm</td>
+<td><code>position_id</code>, <code>incumbent_id</code>, <code>successor_id</code>, <code>readiness_level</code>, <code>risk_level</code></td>
+<td>Nhân tài Management</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td><code>fact_engagement_survey</code></td>
+<td>Đo gắn kết, văn hóa và trải nghiệm nhân viên</td>
+<td><code>survey_id</code>, <code>nhan_su_id_or_group</code>, <code>period</code>, <code>dimension</code>, <code>score</code>, <code>response_count</code></td>
+<td>Employee Survey</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td><code>fact_employee_relations</code></td>
+<td>Theo dõi quan hệ lao động, khiếu nại, kỷ luật, tuân thủ</td>
+<td><code>case_id</code>, <code>case_type</code>, <code>opened_date</code>, <code>closed_date</code>, <code>status</code>, <code>severity</code>, <code>ma_don_vi</code></td>
+<td>HR Tuân thủ, Employee Relations</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td><code>fact_wellbeing_risk</code></td>
+<td>Theo dõi workload/sức khỏe và gắn kết ở mức tổng hợp</td>
+<td><code>period</code>, <code>ma_don_vi</code>, <code>ot_hours</code>, <code>absence_days</code>, <code>violation_count</code>, <code>survey_score</code>, <code>risk_level</code></td>
+<td>Chấm công, Leave, Survey</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td><code>fact_ai_usage_log</code></td>
+<td>Ghi nhận việc dùng AI trong xử lý dữ liệu HR</td>
+<td><code>use_case_id</code>, <code>user_role</code>, <code>tool</code>, <code>data_classification</code>, <code>prompt_type</code>, <code>approval_status</code>, <code>reviewer</code></td>
+<td>kiểm soát sử dụng AI Log</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-thong-tin-quan-ly-bo-sung-nen-them-vao-bo-mo-ta-du-lieu">8.2. Thông tin quản lý bổ sung nên thêm vào bộ mô tả dữ liệu</h3>
+<table>
+<thead>
+<tr>
+<th>Trường thông tin quản lý bổ sung</th>
+<th>Ý nghĩa</th>
+<th>Vì sao nên có cho Agribank</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>business_owner</code></td>
+<td>Đơn vị chịu trách nhiệm nghiệp vụ cho bảng/trường</td>
+<td>Tránh tranh cãi công thức và nguồn số liệu</td>
+</tr>
+<tr>
+<td><code>technical_owner</code></td>
+<td>Đơn vị/hệ thống chịu trách nhiệm kỹ thuật</td>
+<td>Cần khi truy vết lỗi ETL, Power Query - bước xử lý dữ liệu, Power BI cập nhật dữ liệu</td>
+</tr>
+<tr>
+<td><code>source_system</code></td>
+<td>Hệ thống nguồn chính thức</td>
+<td>Giúp xác định nguồn số liệu chính thức</td>
+</tr>
+<tr>
+<td><code>refresh_frequency</code></td>
+<td>Tần suất cập nhật</td>
+<td>Phân biệt báo cáo ngày, tháng, quý</td>
+</tr>
+<tr>
+<td><code>grain</code></td>
+<td>Mức chi tiết của bảng</td>
+<td>Ngăn lỗi cộng gộp sai trong mô hình dữ liệu phục vụ báo cáo</td>
+</tr>
+<tr>
+<td><code>data_classification</code></td>
+<td>Public/Internal/Confidential/Highly Confidential</td>
+<td>Phù hợp dữ liệu HR, payroll và dữ liệu cá nhân nhạy cảm</td>
+</tr>
+<tr>
+<td><code>pii_flag</code></td>
+<td>Có chứa dữ liệu cá nhân không</td>
+<td>Cần khi dùng AI, xuất dữ liệu hoặc chia sẻ Power BI</td>
+</tr>
+<tr>
+<td><code>masking_rule</code></td>
+<td>Quy tắc ẩn/che dữ liệu</td>
+<td>Họ tên, lương, lý do nghỉ phép, đánh giá hiệu suất</td>
+</tr>
+<tr>
+<td><code>retention_policy</code></td>
+<td>Thời hạn lưu dữ liệu</td>
+<td>Cần cho dữ liệu nhân sự và lịch sử hợp đồng</td>
+</tr>
+<tr>
+<td><code>quality_rule</code></td>
+<td>Quy tắc kiểm tra chất lượng</td>
+<td>Hỗ trợ báo cáo giám sát chất lượng dữ liệu</td>
+</tr>
+</tbody>
+</table>
+<h3 id="83-cach-ua-vao-chuong-trinh-ma-khong-lam-nang-bai-thuc-hanh">8.3. Cách đưa vào chương trình mà không làm nặng bài thực hành</h3>
+<table>
+<thead>
+<tr>
+<th>Buổi</th>
+<th>Cách bổ sung nhẹ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Buổi 1</td>
+<td>Dùng AI tạo nháp bộ mô tả dữ liệu có thêm <code>business_owner</code>, <code>source_system</code>, <code>pii_flag</code>, <code>data_classification</code>; nhấn mạnh không đưa dữ liệu HR thật vào prompt công khai</td>
+</tr>
+<tr>
+<td>Buổi 3</td>
+<td>Khi dạy mô hình dữ liệu phục vụ báo cáo, thêm ví dụ vì sao cần <code>fact_dinh_bien</code>, <code>dim_skill</code>, <code>dim_date</code> và trường <code>grain</code></td>
+</tr>
+<tr>
+<td>Buổi 4</td>
+<td>Khi dạy Power Query - bước xử lý dữ liệu, thêm bước gắn nhãn trường nhạy cảm hoặc tạo bảng đối chiếu nguồn <code>dim_data_classification</code></td>
+</tr>
+<tr>
+<td>Buổi 6</td>
+<td>Khi checklist báo cáo điều hành, kiểm tra report có đúng nguồn, đúng quyền, đúng nhãn dữ liệu và đúng đơn vị chịu trách nhiệm KPI</td>
+</tr>
+</tbody>
+</table></div>
+          <div class="prevnext"><a class="pn prev" href="#business-outputs"><span>← Trước</span><strong>Đầu ra nghiệp vụ &amp; phương án</strong></a><a class="pn next" href="#kpi-dictionary"><span>Tiếp →</span><strong>Bộ chuẩn chỉ tiêu (KPI)</strong></a></div>
+        </article>
+        <nav class="toc" aria-label="Mục lục"><p class="toc-h">Trên trang này</p><ul><li><a href="#" data-anchor="1-nguon-oi-chieu">1. Nguồn đối chiếu</a></li><li><a href="#" data-anchor="2-tong-quan-mo-hinh-du-lieu-thuc-hanh">2. Tổng quan mô hình dữ liệu thực hành</a></li><li><a href="#" data-anchor="3-bo-mo-ta-du-lieu-theo-bang-nguon">3. Bộ mô tả dữ liệu theo bảng nguồn</a></li><li><a href="#" data-anchor="4-ban-o-nguon-du-lieu-e-xuat-cho-agribank">4. bản đồ nguồn dữ liệu đề xuất cho Agribank</a></li><li><a href="#" data-anchor="5-cac-bang-nen-bo-sung-khi-customize-cho-agribank">5. Các bảng nên bổ sung khi customize cho Agribank</a></li><li><a href="#" data-anchor="6-quy-tac-chat-luong-du-lieu-toi-thieu">6. Quy tắc chất lượng dữ liệu tối thiểu</a></li><li><a href="#" data-anchor="7-oi-chieu-nguon-vao-6-buoi-ao-tao">7. Đối chiếu nguồn vào 6 buổi đào tạo</a></li><li><a href="#" data-anchor="8-phan-bo-sung-tu-van-tu-nghien-cuu-ben-ngoai">8. Phần bổ sung tư vấn từ nghiên cứu bên ngoài</a></li></ul></nav>
+      </div>
+    </section>
+
+    <section class="doc" id="kpi-dictionary" data-doc>
+      <div class="doc-grid">
+        <article class="doc-main">
+          <div class="kicker"><i class="fa-solid fa-ruler-combined"></i> Tài liệu 3/5</div>
+          <h1 class="doc-title">Bộ chuẩn chỉ tiêu nhân sự - Excel và Power BI</h1>
+          <p class="doc-blurb">Định nghĩa và công thức chỉ tiêu nhân sự: headcount, hợp đồng, chấm công, lương–phúc lợi, đào tạo, so sánh theo thời gian, chất lượng dữ liệu.</p>
+          <div class="doc-body"><blockquote>
+<p>Góc nhìn lãnh đạo: Tài liệu này được chuẩn hóa để phục vụ trao đổi ở cấp quản lý: làm rõ câu hỏi điều hành, trách nhiệm sở hữu số liệu, mức độ tin cậy của báo cáo và các rủi ro cần kiểm soát trước khi triển khai công cụ.</p>
+</blockquote>
+<p>Khóa học: Ứng dụng AI và phân tích dữ liệu nhân sự<br />
+Phiên bản: 2026-07-15<br />
+Mục tiêu quản lý: chuẩn hóa danh sách chỉ tiêu HR, logic tính, nguồn dữ liệu và cách triển khai trong Excel/Power BI để bổ sung lớp nghiệp vụ cho chương trình Agribank.  </p>
+<h2 id="1-quy-uoc-chung">1. Quy ước chung</h2>
+<table>
+<thead>
+<tr>
+<th>Nội dung</th>
+<th>Quy ước</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mức tính của chỉ tiêu</td>
+<td>Ghi rõ KPI tính tại thời điểm, trong kỳ hay lũy kế</td>
+</tr>
+<tr>
+<td>Mẫu số</td>
+<td>Với tỷ lệ nghỉ việc/điều chuyển/hết hạn hợp đồng, ưu tiên dùng nhân sự bình quân trong kỳ</td>
+</tr>
+<tr>
+<td>Ngày báo cáo</td>
+<td>Dùng <code>dim_date</code> và ngày cuối kỳ khi tính số nhân sự tại thời điểm</td>
+</tr>
+<tr>
+<td>Excel</td>
+<td>Dùng <code>COUNTIFS</code>, <code>SUMIFS</code>, <code>VLOOKUP/XLOOKUP</code>, Pivot Table và Power Pivot - mô hình tính toán trong Excel - mô hình tính toán trong Excel - mô hình tính toán trong Excel - mô hình tính toán trong Excel chỉ tiêu tính toáns</td>
+</tr>
+<tr>
+<td>Power BI</td>
+<td>Dùng mô hình báo cáo rõ ràng theo bảng nghiệp vụ và bảng danh mục, bảng <code>_Measures</code>, <code>CALCULATE</code>, <code>USERELATIONSHIP</code>, <code>SAMEPERIODLASTYEAR</code>, <code>DATEADD</code>, <code>DIVIDE</code></td>
+</tr>
+<tr>
+<td>Bảo mật</td>
+<td>KPI lương và dữ liệu cá nhân cần phân quyền, ẩn/che dữ liệu hoặc chỉ hiển thị tổng hợp</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-co-cau-nhan-su-va-headcount">2. Cơ cấu nhân sự và Headcount</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Câu hỏi nghiệp vụ</th>
+<th>Logic tính</th>
+<th>Gợi ý triển khai trên Excel</th>
+<th>Gợi ý triển khai trên Power BI</th>
+<th>Nguồn dữ liệu</th>
+<th>Chiều phân tích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Số nhân sự</td>
+<td>Có bao nhiêu nhân sự trong phạm vi đang xem?</td>
+<td>Đếm distinct <code>ID Nhân Sự</code></td>
+<td><code>DISTINCTCOUNT(nhan_su[ID Nhân Sự])</code> trong Power Pivot - mô hình tính toán trong Excel - mô hình tính toán trong Excel - mô hình tính toán trong Excel - mô hình tính toán trong Excel</td>
+<td><code>DISTINCTCOUNT(dim_nhan_su[nhan_su_id])</code></td>
+<td><code>Nhân Sự</code></td>
+<td>Chi nhánh, phòng ban, chức danh, giới tính, nhóm tuổi</td>
+</tr>
+<tr>
+<td>Số nhân sự đang làm việc</td>
+<td>Hiện có bao nhiêu nhân sự active?</td>
+<td>Đếm nhân sự có trạng thái đang làm việc</td>
+<td><code>CALCULATE([Số nhân sự], nhan_su[Trạng Thái]="Đang làm việc")</code></td>
+<td><code>CALCULATE([Số nhân sự], dim_nhan_su[trang_thai]="Đang làm việc")</code></td>
+<td><code>Nhân Sự</code></td>
+<td>Chi nhánh, phòng ban, chức danh</td>
+</tr>
+<tr>
+<td>Tổng số nhân sự tại thời điểm</td>
+<td>Tại ngày báo cáo có bao nhiêu nhân sự?</td>
+<td><code>Ngày Vào Làm &lt;= ngày báo cáo</code> và <code>Ngày Nghỉ Việc</code> rỗng hoặc sau ngày báo cáo</td>
+<td><code>COUNTIFS</code> theo ngày vào/ngày nghỉ</td>
+<td><code>CALCULATE([Số nhân sự], dim_nhan_su[hieu_luc_tu] &lt;= MAX(dim_date[Date]), dim_nhan_su[ngay_ket_thuc]=BLANK() || dim_nhan_su[ngay_ket_thuc] &gt; MAX(dim_date[Date]))</code></td>
+<td><code>dim_nhan_su</code>, <code>dim_date</code></td>
+<td>Thời gian, chi nhánh, phòng ban</td>
+</tr>
+<tr>
+<td>Số nhân sự đầu kỳ</td>
+<td>Đầu kỳ có bao nhiêu nhân sự active?</td>
+<td>Active trước ngày đầu kỳ</td>
+<td>công thức trong Power Pivot - mô hình tính toán trong Excel - mô hình tính toán trong Excel - mô hình tính toán trong Excel với <code>MIN(dim_date[ngày])</code></td>
+<td><code>CALCULATE([Số nhân sự], dim_nhan_su[hieu_luc_tu] &lt; MIN(dim_date[Date]), dim_nhan_su[ngay_ket_thuc]=BLANK() || dim_nhan_su[ngay_ket_thuc] &gt;= MIN(dim_date[Date]))</code></td>
+<td><code>dim_nhan_su</code>, <code>dim_date</code></td>
+<td>Thời gian, chi nhánh</td>
+</tr>
+<tr>
+<td>Số nhân sự bình quân</td>
+<td>Bình quân nhân sự trong kỳ là bao nhiêu?</td>
+<td>Trung bình đầu kỳ và cuối kỳ hoặc average snapshot</td>
+<td>Có thể tính từ các chỉ tiêu tính toán đầu/cuối kỳ</td>
+<td><code>DIVIDE([Tổng số nhân sự đầu kỳ] + [Tổng số nhân sự], 2)</code> hoặc snapshot average</td>
+<td><code>dim_nhan_su</code> hoặc <code>fact_headcount_snapshot</code></td>
+<td>Thời gian, đơn vị</td>
+</tr>
+<tr>
+<td>Nhân sự mới</td>
+<td>Bao nhiêu người mới vào trong kỳ?</td>
+<td>Ngày vào làm nằm trong kỳ</td>
+<td><code>COUNTIFS([Ngày Vào Làm],"&gt;="&amp;start,[Ngày Vào Làm],"&lt;="&amp;end)</code></td>
+<td><code>CALCULATE([Số nhân sự], USERELATIONSHIP(dim_date[Date], dim_nhan_su[hieu_luc_tu]), dim_nhan_su[so_phien_ban]=1)</code></td>
+<td><code>dim_nhan_su</code>, <code>dim_date</code></td>
+<td>Chi nhánh, chức danh, tháng/năm</td>
+</tr>
+<tr>
+<td>Nhân sự nghỉ việc/Bãi nhiệm</td>
+<td>Bao nhiêu người nghỉ việc trong kỳ?</td>
+<td>Ngày kết thúc nằm trong kỳ và trạng thái nghỉ/bãi nhiệm</td>
+<td><code>COUNTIFS([Ngày Nghỉ Việc], kỳ, [Trạng Thái],"Bãi nhiệm")</code></td>
+<td><code>CALCULATE([Số nhân sự], USERELATIONSHIP(dim_date[Date], dim_nhan_su[ngay_ket_thuc]), dim_nhan_su[trang_thai]="Bãi nhiệm")</code></td>
+<td><code>dim_nhan_su</code></td>
+<td>Chi nhánh, phòng ban, tháng/năm</td>
+</tr>
+<tr>
+<td>Nhân sự điều chuyển</td>
+<td>Bao nhiêu người điều chuyển trong kỳ?</td>
+<td>Ngày kết thúc/hiệu lực điều chuyển nằm trong kỳ, trạng thái điều chuyển</td>
+<td><code>COUNTIFS</code> theo trạng thái và ngày</td>
+<td><code>CALCULATE([Số nhân sự], USERELATIONSHIP(dim_date[Date], dim_nhan_su[ngay_ket_thuc]), dim_nhan_su[trang_thai]="Điều chuyển")</code></td>
+<td><code>dim_nhan_su</code> hoặc <code>fact_dieu_chuyen</code></td>
+<td>Chi nhánh, phòng ban, chức danh</td>
+</tr>
+<tr>
+<td>Tỷ lệ giữ chân nhân sự</td>
+<td>Tổ chức giữ được bao nhiêu nhân sự so với đầu kỳ?</td>
+<td>Tổng số nhân sự cuối kỳ / nhân sự đầu kỳ</td>
+<td><code>=[Tổng số nhân sự]/[Tổng số nhân sự đầu kỳ]</code></td>
+<td><code>DIVIDE([Tổng số nhân sự], [Tổng số nhân sự đầu kỳ])</code></td>
+<td><code>dim_nhan_su</code>, <code>dim_date</code></td>
+<td>Chi nhánh, phòng ban</td>
+</tr>
+<tr>
+<td>Turnover Ratio</td>
+<td>Tỷ lệ nghỉ việc đang ở mức nào?</td>
+<td>Số nhân sự nghỉ việc / nhân sự bình quân</td>
+<td><code>=[Số nghỉ việc]/[Nhân sự bình quân]</code></td>
+<td><code>DIVIDE([Số nhân sự nghỉ việc], [Tổng số nhân sự bình quân])</code></td>
+<td><code>dim_nhan_su</code>, <code>dim_date</code></td>
+<td>Chi nhánh, chức danh, loại hợp đồng</td>
+</tr>
+<tr>
+<td>Tỷ lệ nhân sự mới</td>
+<td>Tốc độ tuyển mới/mở rộng quy mô ra sao?</td>
+<td>Nhân sự mới / nhân sự bình quân</td>
+<td>chỉ tiêu tính toán tỷ lệ</td>
+<td><code>DIVIDE([Số nhân sự mới], [Tổng số nhân sự bình quân])</code></td>
+<td><code>dim_nhan_su</code>, <code>dim_date</code></td>
+<td>Chi nhánh, phòng ban</td>
+</tr>
+<tr>
+<td>Tỷ lệ điều chuyển</td>
+<td>Biến động nội bộ có cao không?</td>
+<td>Nhân sự điều chuyển / nhân sự bình quân</td>
+<td>chỉ tiêu tính toán tỷ lệ</td>
+<td><code>DIVIDE([Số nhân sự điều chuyển], [Tổng số nhân sự bình quân])</code></td>
+<td><code>dim_nhan_su</code></td>
+<td>Phòng ban, chức danh</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-hop-ong-va-tuan-thu">3. Hợp đồng và tuân thủ</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Câu hỏi nghiệp vụ</th>
+<th>Logic tính</th>
+<th>Gợi ý triển khai trên Excel/Power BI</th>
+<th>Nguồn dữ liệu</th>
+<th>Ghi chú Agribank</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Số hợp đồng</td>
+<td>Có bao nhiêu bản ghi/hồ sơ hợp đồng?</td>
+<td>Đếm <code>nhan_su_sk</code> hoặc phiên bản hợp đồng</td>
+<td><code>COUNT(dim_nhan_su[nhan_su_sk])</code></td>
+<td><code>dim_nhan_su</code> hoặc <code>fact_hop_dong</code></td>
+<td>Nên tách lịch sử hợp đồng khi triển khai thật</td>
+</tr>
+<tr>
+<td>Số nhân sự hết hạn hợp đồng</td>
+<td>Bao nhiêu hợp đồng hết hạn trong kỳ?</td>
+<td>Dùng ngày hết hạn/hieu_luc_den theo <code>dim_date</code></td>
+<td><code>CALCULATE([Số nhân sự], USERELATIONSHIP(dim_date[Date], dim_nhan_su[hieu_luc_den]))</code></td>
+<td><code>dim_nhan_su</code>, <code>dim_date</code></td>
+<td>Cần cảnh báo 30/60/90 ngày</td>
+</tr>
+<tr>
+<td>Số nhân sự ký hợp đồng đúng hạn</td>
+<td>Bao nhiêu trường hợp gia hạn/ký đúng hạn?</td>
+<td>Cờ <code>ky_hd_dung_han = 1</code> trong tập hết hạn</td>
+<td><code>CALCULATE([Số nhân sự hết hạn hợp đồng], dim_nhan_su[ky_hd_dung_han]=1)</code></td>
+<td><code>dim_nhan_su</code></td>
+<td>Liên quan tuân thủ nhân sự</td>
+</tr>
+<tr>
+<td>Tỷ lệ hết hạn hợp đồng</td>
+<td>Mức độ rủi ro hợp đồng trong kỳ?</td>
+<td>Hết hạn hợp đồng / nhân sự bình quân</td>
+<td><code>DIVIDE([Số nhân sự hết hạn hợp đồng], [Tổng số nhân sự bình quân])</code></td>
+<td><code>dim_nhan_su</code></td>
+<td>Hiển thị gauge/card cảnh báo</td>
+</tr>
+<tr>
+<td>Tỷ lệ ký đúng hạn</td>
+<td>Quản trị hợp đồng có đúng SLA không?</td>
+<td>Ký đúng hạn / hết hạn hợp đồng</td>
+<td><code>DIVIDE([Số nhân sự ký hợp đồng đúng hạn], [Số nhân sự hết hạn hợp đồng])</code></td>
+<td><code>dim_nhan_su</code>, <code>fact_hop_dong</code></td>
+<td>Nên có drill-through danh sách rủi ro</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-cham-cong-cham-cong-va-nghi-phep">4. Chấm công, chấm công và nghỉ phép</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Câu hỏi nghiệp vụ</th>
+<th>Logic tính</th>
+<th>Gợi ý triển khai trên Excel/Power BI</th>
+<th>Nguồn dữ liệu</th>
+<th>Chiều phân tích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tổng giờ công</td>
+<td>Tổng giờ làm trong kỳ là bao nhiêu?</td>
+<td>Sum <code>Giờ Làm</code></td>
+<td>Pivot Sum <code>Giờ Làm</code>; Matrix Sum <code>gio_lam</code></td>
+<td><code>Data Chấm Công</code>/<code>fact_cham_cong</code></td>
+<td>Ngày, tháng, chi nhánh, phòng ban</td>
+</tr>
+<tr>
+<td>Giờ công trung bình</td>
+<td>Bình quân giờ công/người hoặc/lượt là bao nhiêu?</td>
+<td>Tổng giờ công / nhân sự hoặc số lượt chấm công</td>
+<td><code>DIVIDE([Tổng giờ công], [Số nhân sự])</code></td>
+<td><code>fact_cham_cong</code>, <code>dim_nhan_su</code></td>
+<td>Chi nhánh, nhóm thâm niên</td>
+</tr>
+<tr>
+<td>Số lượt chấm công</td>
+<td>Có bao nhiêu bản ghi chấm công?</td>
+<td>Count rows chấm công</td>
+<td><code>COUNTROWS(fact_cham_cong)</code></td>
+<td><code>fact_cham_cong</code></td>
+<td>Ngày, ca, chi nhánh</td>
+</tr>
+<tr>
+<td>Tổng giờ tăng ca</td>
+<td>OT có cao bất thường không?</td>
+<td>Sum <code>Giờ Tăng Ca</code></td>
+<td>Pivot Sum <code>Giờ Tăng Ca</code></td>
+<td><code>fact_cham_cong</code></td>
+<td>Chi nhánh, phòng ban, tháng</td>
+</tr>
+<tr>
+<td>OT Rate</td>
+<td>Tỷ lệ OT so với giờ chuẩn ra sao?</td>
+<td>OT hours / giờ làm chuẩn dự kiến</td>
+<td><code>DIVIDE([OT Hours], [WorkingDays] * 8 * [Avg Headcount])</code></td>
+<td><code>fact_cham_cong</code>, <code>dim_date</code></td>
+<td>Đơn vị, thời gian</td>
+</tr>
+<tr>
+<td>Số ngày nghỉ phép</td>
+<td>Nhân sự nghỉ bao nhiêu ngày?</td>
+<td>Sum <code>Số Ngày</code></td>
+<td>Pivot Sum <code>Số Ngày</code> theo nhân sự</td>
+<td><code>Data Nghỉ Phép</code></td>
+<td>Loại phép, phòng ban</td>
+</tr>
+<tr>
+<td>Tỷ lệ duyệt phép</td>
+<td>Quy trình nghỉ phép có danh sách ưu tiên mở rộng không?</td>
+<td>Đơn đã duyệt / tổng đơn</td>
+<td><code>DIVIDE([Đơn duyệt], [Tổng đơn])</code></td>
+<td><code>fact_nghi_phep</code></td>
+<td>Loại phép, chi nhánh</td>
+</tr>
+<tr>
+<td>Số lượt vi phạm chấm công</td>
+<td>Vi phạm tập trung ở đâu?</td>
+<td>Đếm đi muộn/về sớm theo quy định ca</td>
+<td>Cột tính Power Query - bước xử lý dữ liệu hoặc công thức Power BI flag</td>
+<td><code>fact_cham_cong</code></td>
+<td>Chi nhánh, phòng ban, ca</td>
+</tr>
+<tr>
+<td>Tỷ lệ vi phạm chấm công</td>
+<td>Mức độ kỷ luật lao động ra sao?</td>
+<td>Số lượt vi phạm / số lượt chấm công</td>
+<td><code>DIVIDE([Số lượt vi phạm], [Số lượt chấm công])</code></td>
+<td><code>fact_cham_cong</code></td>
+<td>Ngày, thâm niên, đơn vị</td>
+</tr>
+<tr>
+<td>Bình quân phút vi phạm</td>
+<td>Mức độ vi phạm nặng hay nhẹ?</td>
+<td>Tổng phút đi muộn/về sớm / lượt vi phạm</td>
+<td>chỉ tiêu tính toán từ cột phút vi phạm</td>
+<td><code>fact_cham_cong</code></td>
+<td>Nhân sự, chi nhánh</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-luong-va-phuc-loi-luong-va-phuc-loi">5. Lương và phúc lợi, lương và phúc lợi</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Câu hỏi nghiệp vụ</th>
+<th>Logic tính</th>
+<th>Gợi ý triển khai trên Excel/Power BI</th>
+<th>Nguồn dữ liệu</th>
+<th>Lưu ý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tổng thực lĩnh</td>
+<td>Tổng chi trả thực nhận là bao nhiêu?</td>
+<td>Sum <code>Thực Lĩnh</code></td>
+<td>Pivot Sum <code>Thực Lĩnh</code>; <code>SUM(fact_luong[thuc_linh])</code></td>
+<td><code>Data Lương</code></td>
+<td>Nhạy cảm, ưu tiên tổng hợp</td>
+</tr>
+<tr>
+<td>Tổng thu nhập</td>
+<td>Tổng khoản chi trước/sau trừ theo định nghĩa?</td>
+<td>Sum trường thu nhập được chọn</td>
+<td><code>SUM(fact_monthly_snapshot[thuc_linh])</code> trong tài liệu</td>
+<td><code>fact_luong</code></td>
+<td>Cần định nghĩa Gross/Net rõ</td>
+</tr>
+<tr>
+<td>Lương bình quân</td>
+<td>Bình quân lương/người là bao nhiêu?</td>
+<td>Tổng thực lĩnh / số nhân sự hoặc số người có lương</td>
+<td><code>DIVIDE([Tổng thực lĩnh], [Số nhân sự])</code></td>
+<td><code>fact_luong</code>, <code>dim_nhan_su</code></td>
+<td>So sánh theo grade/chức danh</td>
+</tr>
+<tr>
+<td>Lương cơ bản</td>
+<td>Quỹ lương cơ bản</td>
+<td>Sum <code>Lương Cơ Bản</code></td>
+<td><code>SUM(fact_luong[luong_co_ban])</code></td>
+<td><code>fact_luong</code></td>
+<td>Component waterfall</td>
+</tr>
+<tr>
+<td>Phụ cấp</td>
+<td>Tổng phụ cấp</td>
+<td>Sum <code>Phụ Cấp</code></td>
+<td><code>SUM(fact_luong[phu_cap])</code></td>
+<td><code>fact_luong</code></td>
+<td>Component waterfall</td>
+</tr>
+<tr>
+<td>Lương tăng ca</td>
+<td>Chi phí OT</td>
+<td>Sum <code>Lương Tăng Ca</code></td>
+<td><code>SUM(fact_luong[luong_tang_ca])</code></td>
+<td><code>fact_luong</code>, <code>fact_cham_cong</code></td>
+<td>Đối chiếu với giờ OT</td>
+</tr>
+<tr>
+<td>Thưởng</td>
+<td>Tổng thưởng</td>
+<td>Sum <code>Thưởng</code></td>
+<td><code>SUM(fact_luong[thuong])</code></td>
+<td><code>fact_luong</code></td>
+<td>Phân tích theo kỳ</td>
+</tr>
+<tr>
+<td>Khấu trừ/Bảo hiểm/Thuế</td>
+<td>Các khoản giảm trừ</td>
+<td>Sum từng component</td>
+<td><code>SUM</code> từng cột</td>
+<td><code>fact_luong</code></td>
+<td>Dùng trong waterfall</td>
+</tr>
+<tr>
+<td>Lương và phúc lợi Full Cost</td>
+<td>Chi phí nhân sự đầy đủ</td>
+<td>Gross + phụ cấp + bảo hiểm doanh nghiệp nếu có</td>
+<td>chỉ tiêu tính toán tùy định nghĩa</td>
+<td><code>fact_luong</code>, payroll system</td>
+<td>Dữ liệu thực hành học chưa có đầy đủ full cost</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-training-va-phat-trien-nang-luc">6. Training và phát triển năng lực</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Câu hỏi nghiệp vụ</th>
+<th>Logic tính</th>
+<th>Gợi ý triển khai trên Excel/Power BI</th>
+<th>Nguồn dữ liệu</th>
+<th>Chiều phân tích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tổng giờ đào tạo</td>
+<td>Đào tạo bao nhiêu giờ?</td>
+<td>Sum <code>Số Giờ</code></td>
+<td><code>SUM(dao_tao[Số Giờ])</code>; <code>SUM(fact_dao_tao[so_gio])</code></td>
+<td><code>Data Đào Tạo</code></td>
+<td>Khóa học, chi nhánh, chức danh</td>
+</tr>
+<tr>
+<td>Giờ đào tạo hoàn thành</td>
+<td>Bao nhiêu giờ đã hoàn thành?</td>
+<td>Sum <code>Số Giờ</code> với trạng thái hoàn thành</td>
+<td><code>CALCULATE([Giờ đào tạo], dao_tao[Trạng Thái]="Hoàn thành")</code></td>
+<td><code>Data Đào Tạo</code></td>
+<td>Khóa học, thời gian</td>
+</tr>
+<tr>
+<td>Tỷ lệ hoàn thành đào tạo</td>
+<td>Mức độ hoàn thành chương trình?</td>
+<td>Giờ hoàn thành / tổng giờ đăng ký</td>
+<td><code>DIVIDE([Giờ đào tạo hoàn thành], [Giờ đào tạo])</code></td>
+<td><code>Data Đào Tạo</code></td>
+<td>Chi nhánh, khóa học</td>
+</tr>
+<tr>
+<td>Nhân sự tham gia đào tạo</td>
+<td>Có bao nhiêu người tham gia?</td>
+<td>Distinct count nhân sự trong đào tạo</td>
+<td><code>DISTINCTCOUNT(fact_dao_tao[nhan_su_id])</code></td>
+<td><code>fact_dao_tao</code></td>
+<td>Chi nhánh, chức danh, tháng</td>
+</tr>
+<tr>
+<td>Giờ đào tạo bình quân</td>
+<td>Đầu tư đào tạo/người ra sao?</td>
+<td>Tổng giờ đào tạo / số nhân sự hoặc người tham gia</td>
+<td><code>DIVIDE([Tổng giờ đào tạo], [Số nhân sự])</code></td>
+<td><code>fact_dao_tao</code>, <code>dim_nhan_su</code></td>
+<td>Đơn vị, chức danh</td>
+</tr>
+<tr>
+<td>Chi phí đào tạo</td>
+<td>Tổng chi phí đào tạo</td>
+<td>Sum <code>Chi Phí</code></td>
+<td><code>SUM(fact_dao_tao[chi_phi])</code></td>
+<td><code>Data Đào Tạo</code></td>
+<td>Khóa học, nhà cung cấp</td>
+</tr>
+<tr>
+<td>Chi phí đào tạo bình quân</td>
+<td>Chi phí đào tạo/người</td>
+<td>Chi phí đào tạo / người tham gia</td>
+<td><code>DIVIDE([Chi phí đào tạo], [Nhân sự tham gia đào tạo])</code></td>
+<td><code>fact_dao_tao</code></td>
+<td>Đơn vị, khóa học</td>
+</tr>
+<tr>
+<td>Đào tạo thực hiện vs kế hoạch</td>
+<td>Đơn vị có đạt kế hoạch đào tạo không?</td>
+<td>Actual giờ đào tạo vs <code>fact_dao_tao_ke_hoach</code></td>
+<td>Matrix actual + kế hoạch</td>
+<td><code>fact_dao_tao</code>, <code>fact_dao_tao_ke_hoach</code></td>
+<td>Năm, tháng, khóa học, chi nhánh</td>
+</tr>
+<tr>
+<td>Chứng chỉ sắp hết hạn</td>
+<td>Có chứng chỉ nào cần gia hạn?</td>
+<td>Hạn chứng chỉ trong 30/60/90 ngày</td>
+<td>Filter ngày hết hạn</td>
+<td><code>Data Đào Tạo</code></td>
+<td>Nhân sự, khóa học</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-so-sanh-theo-thoi-gian-va-so-sanh">7. So sánh theo thời gian và so sánh</h2>
+<table>
+<thead>
+<tr>
+<th>KPI/chỉ tiêu tính toán</th>
+<th>Mục đích</th>
+<th>Cách hiểu và cách triển khai gợi ý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Số nhân sự mới CK năm ngoái</td>
+<td>So sánh new hires cùng kỳ</td>
+<td><code>CALCULATE([Số nhân sự mới], SAMEPERIODLASTYEAR(dim_date[Date]))</code></td>
+</tr>
+<tr>
+<td>Tổng số nhân sự tháng trước</td>
+<td>So sánh với tháng trước</td>
+<td><code>CALCULATE([Tổng số nhân sự], DATEADD(dim_date[Date], -1, MONTH))</code></td>
+</tr>
+<tr>
+<td>Tổng số nhân sự cuối năm</td>
+<td>Chốt số nhân sự cuối năm</td>
+<td><code>CLOSINGBALANCEYEAR([Tổng số nhân sự], dim_date[Date])</code></td>
+</tr>
+<tr>
+<td>Tổng số nhân sự CK năm ngoái</td>
+<td>So sánh số nhân sự cùng kỳ</td>
+<td><code>CALCULATE([Tổng số nhân sự], SAMEPERIODLASTYEAR(dim_date[Date]))</code></td>
+</tr>
+<tr>
+<td>% Nhân sự vs năm ngoái</td>
+<td>Tăng/giảm số nhân sự so sánh cùng kỳ năm trước</td>
+<td><code>DIVIDE([Tổng số nhân sự] - [Tổng số nhân sự CK năm ngoái], [Tổng số nhân sự CK năm ngoái])</code></td>
+</tr>
+<tr>
+<td>% chỉ tiêu biến động vs năm ngoái</td>
+<td>Dùng chung cho nghỉ việc, điều chuyển, hết hạn hợp đồng, ký đúng hạn</td>
+<td><code>DIVIDE([KPI] - [KPI CK năm ngoái], [KPI CK năm ngoái])</code></td>
+</tr>
+<tr>
+<td>Tiêu đề thời gian báo cáo</td>
+<td>Hiển thị khoảng lọc trên báo cáo điều hành</td>
+<td><code>"Từ " &amp; FORMAT(MIN(dim_date[Date]),"dd/mm/yyyy") &amp; " - " &amp; FORMAT(MAX(dim_date[Date]),"dd/mm/yyyy")</code></td>
+</tr>
+<tr>
+<td>Card KPI động</td>
+<td>Hiển thị KPI kèm dấu tăng/giảm</td>
+<td>Dùng chỉ tiêu tính toán text/format hoặc conditional formatting theo % so sánh cùng kỳ năm trước</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-hieu-suat-va-nhan-tai-nen-bo-sung">8. Hiệu suất và Nhân tài - nên bổ sung</h2>
+<p>Workbook có chỉ tiêu tính toán Catalog tham chiếu nhóm Hiệu suất nhưng dữ liệu thực hành thực hành chưa có bảng hiệu suất. Nếu Agribank muốn trả lời câu hỏi về năng lực, hiệu suất và giữ chân nhân tài, nên bổ sung:</p>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Logic tính</th>
+<th>Nguồn cần bổ sung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Avg Hiệu suất Score</td>
+<td>Trung bình điểm đánh giá trong kỳ</td>
+<td><code>fact_performance</code></td>
+</tr>
+<tr>
+<td>High Performer Ratio</td>
+<td>High performers / số người được đánh giá</td>
+<td><code>fact_performance</code>, danh mục xếp loại</td>
+</tr>
+<tr>
+<td>Low Performer Ratio</td>
+<td>Low performers / số người được đánh giá</td>
+<td><code>fact_performance</code></td>
+</tr>
+<tr>
+<td>Training to Hiệu suất Link</td>
+<td>So sánh điểm hiệu suất trước/sau đào tạo</td>
+<td><code>fact_training</code>, <code>fact_performance</code></td>
+</tr>
+<tr>
+<td>Retention of High Performers</td>
+<td>High performers còn làm việc / high performers đầu kỳ</td>
+<td><code>fact_performance</code>, <code>fact_headcount_snapshot</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-kpi-chat-luong-du-lieu">9. KPI chất lượng dữ liệu</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Logic tính</th>
+<th>Mục đích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Missing Employee ID Count</td>
+<td>Đếm dòng có <code>ID Nhân Sự</code> rỗng</td>
+<td>Kiểm tra khóa liên kết</td>
+</tr>
+<tr>
+<td>Duplicate Employee ID Count</td>
+<td>Đếm ID trùng bất thường trong master</td>
+<td>Kiểm tra master data</td>
+</tr>
+<tr>
+<td>Unmapped Department Count</td>
+<td>Nhân sự có <code>Mã Phòng Ban</code> không map được</td>
+<td>Kiểm tra mô hình dữ liệu phục vụ báo cáo</td>
+</tr>
+<tr>
+<td>Invalid Date Count</td>
+<td>Ngày vào sau ngày nghỉ, ngày sinh bất thường, ngày kết thúc trước ngày bắt đầu</td>
+<td>Kiểm tra logic thời gian</td>
+</tr>
+<tr>
+<td>Lương và phúc lợi Outlier Count</td>
+<td>Lương/thu nhập quá cao, âm hoặc thiếu kỳ</td>
+<td>Kiểm tra dữ liệu nhạy cảm</td>
+</tr>
+<tr>
+<td>Training Status Missing Count</td>
+<td>Khóa học thiếu trạng thái</td>
+<td>Kiểm tra tỷ lệ hoàn thành</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-oi-chieu-nguon-kpi-vao-thuc-hanh">10. Đối chiếu nguồn KPI vào thực hành</h2>
+<table>
+<thead>
+<tr>
+<th>Buổi</th>
+<th>KPI/nhóm KPI chính</th>
+<th>Công cụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Buổi 1</td>
+<td>bộ chuẩn chỉ tiêu, business questions, nguồn đối chiếu nguồn</td>
+<td>AI/ChatGPT</td>
+</tr>
+<tr>
+<td>Buổi 2</td>
+<td>Số nhân sự theo chi nhánh/chức vụ, nhân sự mới theo năm, active số nhân sự, nghỉ phép, tổng lương</td>
+<td>Excel Function, Pivot Table</td>
+</tr>
+<tr>
+<td>Buổi 3</td>
+<td>Số nhân sự, giờ đào tạo, giờ hoàn thành, tỷ lệ hoàn thành, <code>dim_date</code></td>
+<td>Power Pivot - mô hình tính toán trong Excel - mô hình tính toán trong Excel - mô hình tính toán trong Excel - mô hình tính toán trong Excel, công thức Power BI, Power Query - bước xử lý dữ liệu</td>
+</tr>
+<tr>
+<td>Buổi 4</td>
+<td>Matrix lương, giờ công, ngày nghỉ, đào tạo; kế hoạch vs thực hiện đào tạo</td>
+<td>Power BI, Power Query - bước xử lý dữ liệu, mô hình dữ liệu phục vụ báo cáo</td>
+</tr>
+<tr>
+<td>Buổi 5</td>
+<td>Headcount tại thời điểm, nghỉ việc, điều chuyển, hết hạn hợp đồng, ký đúng hạn, tỷ lệ nghỉ việc, giữ chân nhân sự, so sánh cùng kỳ năm trước</td>
+<td>công thức chỉ tiêu trong Power BI</td>
+</tr>
+<tr>
+<td>Buổi 6</td>
+<td>thẻ chỉ tiêu tổng quan, gauge, donut, map, matrix, bullet chart, tooltip, bookmark</td>
+<td>Power BI Báo cáo điều hành</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-phan-bo-sung-tu-van-tu-nghien-cuu-ben-ngoai">11. Phần bổ sung tư vấn từ nghiên cứu bên ngoài</h2>
+<blockquote>
+<p>Phạm vi: các KPI dưới đây là gợi ý mở rộng theo nghiệp vụ HR/human capital reporting và quản trị dữ liệu. Đây không phải công thức đã có trong file Excel/Power BI thực hành; cần Agribank chốt duyệt định nghĩa, mẫu số, kỳ tính, nguồn và quyền sử dụng trước khi đưa vào báo cáo điều hành chính thức.</p>
+</blockquote>
+<h3 id="111-co-cau-nhan-su-composition-va-workforce-planning">11.1. Cơ cấu nhân sự composition và workforce planning</h3>
+<table>
+<thead>
+<tr>
+<th>KPI tư vấn</th>
+<th>Logic khái niệm</th>
+<th>Điều kiện dữ liệu</th>
+<th>Vì sao nên bổ sung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FTE</td>
+<td>Tổng quy đổi toàn thời gian của nhân sự</td>
+<td>Cần <code>fte_ratio</code> hoặc quy tắc quy đổi theo loại hợp đồng</td>
+<td>Headcount đơn thuần chưa phản ánh năng lực cung ứng nhân sự</td>
+</tr>
+<tr>
+<td>Vacancy Rate</td>
+<td>Vị trí còn trống / định biên được duyệt</td>
+<td>Cần <code>fact_dinh_bien</code>, tuyển dụng và số nhân sự</td>
+<td>Quan trọng với ngân hàng có mạng lưới chi nhánh rộng</td>
+</tr>
+<tr>
+<td>Span of Control</td>
+<td>Số nhân sự trực thuộc / quản lý</td>
+<td>Cần <code>ID Quản Lý</code> hoặc org chart</td>
+<td>Đánh giá tải quản lý và cấu trúc tổ chức</td>
+</tr>
+<tr>
+<td>Cơ cấu nhân sự Availability</td>
+<td>Nhân sự sẵn sàng làm việc / nhân sự kế hoạch</td>
+<td>Cần lịch làm, nghỉ phép, vắng mặt, FTE</td>
+<td>Bổ sung góc nhìn vận hành, không dừng ở biên chế</td>
+</tr>
+<tr>
+<td>Critical Role Coverage</td>
+<td>Vị trí trọng yếu có người đảm nhiệm / tổng vị trí trọng yếu</td>
+<td>Cần danh mục vị trí trọng yếu</td>
+<td>Hữu ích cho quản trị rủi ro vận hành ngân hàng</td>
+</tr>
+</tbody>
+</table>
+<h3 id="112-recruitment-luan-chuyen-noi-bo-va-giu-chan-nhan-su-mo-rong">11.2. Recruitment, luân chuyển nội bộ và giữ chân nhân sự mở rộng</h3>
+<table>
+<thead>
+<tr>
+<th>KPI tư vấn</th>
+<th>Logic khái niệm</th>
+<th>Điều kiện dữ liệu</th>
+<th>Vì sao nên bổ sung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Time to Fill</td>
+<td>Số ngày từ khi yêu cầu tuyển dụng được duyệt đến khi ứng viên nhận việc</td>
+<td><code>approved_date</code>, <code>start_date</code></td>
+<td>Đo hiệu quả tuyển dụng và rủi ro thiếu người</td>
+</tr>
+<tr>
+<td>Time to Accept</td>
+<td>Số ngày từ khi yêu cầu được duyệt đến khi ứng viên chấp nhận offer</td>
+<td><code>approved_date</code>, <code>accept_date</code></td>
+<td>Tách độ trễ offer khỏi onboarding</td>
+</tr>
+<tr>
+<td>Offer Acceptance Rate</td>
+<td>Offer được chấp nhận / tổng offer</td>
+<td>Offer status</td>
+<td>Đo sức hút chính sách và thương hiệu tuyển dụng</td>
+</tr>
+<tr>
+<td>Nguồn of Hire</td>
+<td>Tỷ trọng tuyển thành công theo nguồn</td>
+<td>Candidate nguồn</td>
+<td>Tối ưu kênh tuyển dụng</td>
+</tr>
+<tr>
+<td>Internal Luân chuyển nội bộ Rate</td>
+<td>Điều chuyển/thăng chuyển nội bộ / số nhân sự bình quân</td>
+<td>Lịch sử điều chuyển</td>
+<td>Phù hợp ngân hàng có luân chuyển chi nhánh/phòng ban</td>
+</tr>
+<tr>
+<td>New Hire 12-Month Retention</td>
+<td>Nhân sự mới còn làm sau 12 tháng / tổng nhân sự mới</td>
+<td>Hire date và status sau 12 tháng</td>
+<td>Đo chất lượng tuyển dụng bền vững hơn số lượng tuyển</td>
+</tr>
+</tbody>
+</table>
+<h3 id="113-skills-capability-va-learning-impact">11.3. Skills, capability và learning impact</h3>
+<table>
+<thead>
+<tr>
+<th>KPI tư vấn</th>
+<th>Logic khái niệm</th>
+<th>Điều kiện dữ liệu</th>
+<th>Vì sao nên bổ sung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Skill Coverage</td>
+<td>Nhân sự đạt kỹ năng bắt buộc / tổng nhân sự thuộc vai trò</td>
+<td><code>dim_skill</code>, <code>fact_skill_profile</code></td>
+<td>Liên kết đào tạo với năng lực vị trí</td>
+</tr>
+<tr>
+<td>Critical Certification Tuân thủ</td>
+<td>Chứng chỉ còn hiệu lực / chứng chỉ bắt buộc</td>
+<td>Hạn chứng chỉ và danh mục bắt buộc</td>
+<td>Phù hợp nghiệp vụ ngân hàng có chứng chỉ/tuân thủ</td>
+</tr>
+<tr>
+<td>Skill Gap Count</td>
+<td>Số kỹ năng bắt buộc chưa đạt</td>
+<td>Khung năng lực theo chức danh</td>
+<td>Giúp ưu tiên kế hoạch đào tạo</td>
+</tr>
+<tr>
+<td>Training Effectiveness Proxy</td>
+<td>Thay đổi performance/skill sau đào tạo</td>
+<td>Training + assessment/performance</td>
+<td>Vượt khỏi KPI giờ học, tiến tới hiệu quả đào tạo</td>
+</tr>
+<tr>
+<td>Learning Plan Completion</td>
+<td>Kế hoạch đào tạo hoàn thành / kế hoạch được giao</td>
+<td><code>fact_dao_tao_ke_hoach</code></td>
+<td>Kế thừa bài thực hành kế hoạch vs thực hiện</td>
+</tr>
+</tbody>
+</table>
+<h3 id="114-gan-ket-ke-nhiem-va-suc-khoe-va-gan-ket">11.4. Gắn kết, kế nhiệm và sức khỏe và gắn kết</h3>
+<table>
+<thead>
+<tr>
+<th>KPI tư vấn</th>
+<th>Logic khái niệm</th>
+<th>Điều kiện dữ liệu</th>
+<th>Lưu ý sử dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kế nhiệm Coverage</td>
+<td>Vị trí trọng yếu có successor sẵn sàng / tổng vị trí trọng yếu</td>
+<td>Kế nhiệm plan</td>
+<td>Dùng cho quản trị rủi ro nhân sự cấp quản lý</td>
+</tr>
+<tr>
+<td>Leadership Bench Strength</td>
+<td>Số successor sẵn sàng theo vị trí quản lý</td>
+<td>Readiness level</td>
+<td>Nên phân tích ở nhóm vị trí, không công khai cá nhân rộng rãi</td>
+</tr>
+<tr>
+<td>Gắn kết Score</td>
+<td>Điểm khảo sát gắn kết bình quân</td>
+<td>Survey</td>
+<td>Cần ngưỡng bảo mật nhóm đủ lớn</td>
+</tr>
+<tr>
+<td>eNPS</td>
+<td>% promoter - % detractor trong khảo sát nhân viên</td>
+<td>Survey eNPS</td>
+<td>Dễ truyền thông cho lãnh đạo nhưng không nên đơn giản hóa quá mức</td>
+</tr>
+<tr>
+<td>Workload Risk Index</td>
+<td>Kết hợp OT, vi phạm chấm công, nghỉ phép bất thường, survey score</td>
+<td>Chấm công, Leave, Survey</td>
+<td>Nên dùng mức đơn vị/nhóm, không quy kết cá nhân</td>
+</tr>
+<tr>
+<td>Overtime Sustainability</td>
+<td>OT bình quân nhiều kỳ liên tiếp vượt ngưỡng</td>
+<td>OT theo tháng và ngưỡng</td>
+<td>Hữu ích với chi nhánh thiếu người hoặc peak workload</td>
+</tr>
+</tbody>
+</table>
+<h3 id="115-tuan-thu-quan-tri-du-lieu-va-kiem-soat-su-dung-ai">11.5. Tuân thủ, quản trị dữ liệu và kiểm soát sử dụng AI</h3>
+<table>
+<thead>
+<tr>
+<th>KPI tư vấn</th>
+<th>Logic khái niệm</th>
+<th>Điều kiện dữ liệu</th>
+<th>Vì sao nên bổ sung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HR Data Quality Score</td>
+<td>1 - tỷ lệ lỗi dữ liệu trọng yếu</td>
+<td>Data quality rules</td>
+<td>Đảm bảo số liệu đáng tin trước khi ra quyết định</td>
+</tr>
+<tr>
+<td>số lượt lộ dữ liệu cá nhân nhạy cảm</td>
+<td>Số report/xuất dữ liệu chứa trường dữ liệu cá nhân nhạy cảm không đúng quyền</td>
+<td>Data phân loại mức độ nhạy cảm và nhật ký kiểm soát</td>
+<td>Quan trọng với dữ liệu nhân sự/ngân hàng</td>
+</tr>
+<tr>
+<td>Lương và phúc lợi Access Exceptions</td>
+<td>Số người dùng có quyền xem lương ngoài danh sách được duyệt</td>
+<td>Access matrix</td>
+<td>Giảm rủi ro dữ liệu lương nhạy cảm</td>
+</tr>
+<tr>
+<td>tỷ lệ kiểm thử phân quyền đạt</td>
+<td>Số test phân quyền theo vai trò đạt / tổng test phân quyền theo vai trò</td>
+<td>Test cases theo role</td>
+<td>Cần khi báo cáo điều hành phân quyền theo vùng/chi nhánh/phòng ban</td>
+</tr>
+<tr>
+<td>mức độ gắn nhãn dữ liệu nhạy cảm</td>
+<td>Artifact HR BI có label / tổng tài sản báo cáo HR BI</td>
+<td>Power BI/Microsoft Purview labels</td>
+<td>Bảo vệ dữ liệu khi xuất dữ liệu hoặc chia sẻ</td>
+</tr>
+<tr>
+<td>AI Use Case Approval Rate</td>
+<td>Use case AI được duyệt / tổng use case AI HR</td>
+<td>AI usage log</td>
+<td>Gắn AI vào quản trị và kiểm soát thay vì dùng tự phát</td>
+</tr>
+<tr>
+<td>Prompt dữ liệu cá nhân nhạy cảm Violation Count</td>
+<td>Số lần prompt chứa dữ liệu cá nhân nhạy cảm/lương vượt chính sách</td>
+<td>Logging hoặc checklist tự khai báo</td>
+<td>Phù hợp Buổi 1 về dùng AI an toàn</td>
+</tr>
+</tbody>
+</table></div>
+          <div class="prevnext"><a class="pn prev" href="#data-dictionary"><span>← Trước</span><strong>Bộ mô tả dữ liệu &amp; nguồn</strong></a><a class="pn next" href="#reports-list"><span>Tiếp →</span><strong>Danh sách báo cáo &amp; yêu cầu</strong></a></div>
+        </article>
+        <nav class="toc" aria-label="Mục lục"><p class="toc-h">Trên trang này</p><ul><li><a href="#" data-anchor="1-quy-uoc-chung">1. Quy ước chung</a></li><li><a href="#" data-anchor="2-co-cau-nhan-su-va-headcount">2. Cơ cấu nhân sự và Headcount</a></li><li><a href="#" data-anchor="3-hop-ong-va-tuan-thu">3. Hợp đồng và tuân thủ</a></li><li><a href="#" data-anchor="4-cham-cong-cham-cong-va-nghi-phep">4. Chấm công, chấm công và nghỉ phép</a></li><li><a href="#" data-anchor="5-luong-va-phuc-loi-luong-va-phuc-loi">5. Lương và phúc lợi, lương và phúc lợi</a></li><li><a href="#" data-anchor="6-training-va-phat-trien-nang-luc">6. Training và phát triển năng lực</a></li><li><a href="#" data-anchor="7-so-sanh-theo-thoi-gian-va-so-sanh">7. So sánh theo thời gian và so sánh</a></li><li><a href="#" data-anchor="8-hieu-suat-va-nhan-tai-nen-bo-sung">8. Hiệu suất và Nhân tài - nên bổ sung</a></li><li><a href="#" data-anchor="9-kpi-chat-luong-du-lieu">9. KPI chất lượng dữ liệu</a></li><li><a href="#" data-anchor="10-oi-chieu-nguon-kpi-vao-thuc-hanh">10. Đối chiếu nguồn KPI vào thực hành</a></li><li><a href="#" data-anchor="11-phan-bo-sung-tu-van-tu-nghien-cuu-ben-ngoai">11. Phần bổ sung tư vấn từ nghiên cứu bên ngoài</a></li></ul></nav>
+      </div>
+    </section>
+
+    <section class="doc" id="reports-list" data-doc>
+      <div class="doc-grid">
+        <article class="doc-main">
+          <div class="kicker"><i class="fa-solid fa-file-lines"></i> Tài liệu 4/5</div>
+          <h1 class="doc-title">Danh sách báo cáo và yêu cầu hiển thị - HR Analytics</h1>
+          <p class="doc-blurb">7 báo cáo HR-01→07: câu hỏi phân tích, thành phần hiển thị, bộ lọc, tính năng Power BI và tiêu chí nghiệm thu báo cáo điều hành.</p>
+          <div class="doc-body"><blockquote>
+<p>Góc nhìn lãnh đạo: Tài liệu này được chuẩn hóa để phục vụ trao đổi ở cấp quản lý: làm rõ câu hỏi điều hành, trách nhiệm sở hữu số liệu, mức độ tin cậy của báo cáo và các rủi ro cần kiểm soát trước khi triển khai công cụ.</p>
+</blockquote>
+<p>Khóa học: Ứng dụng AI và phân tích dữ liệu nhân sự<br />
+Phiên bản: 2026-07-15<br />
+Mục tiêu quản lý: tổng hợp danh sách báo cáo, câu hỏi phân tích, chỉ tiêu, thành phần hiển thị và yêu cầu hiển thị cần thiết để chuyển từ thực hành Excel/Power BI sang bài toán nghiệp vụ Agribank.  </p>
+<h2 id="1-danh-sach-bao-cao-uu-tien">1. Danh sách báo cáo ưu tiên</h2>
+<table>
+<thead>
+<tr>
+<th>Mã báo cáo</th>
+<th>Tên báo cáo</th>
+<th>Mục tiêu quản trị</th>
+<th>Người dùng chính</th>
+<th>Nguồn dữ liệu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HR-01</td>
+<td>Báo cáo Quản lý Nhân sự</td>
+<td>Theo dõi số nhân sự, biến động, cơ cấu và rủi ro hợp đồng</td>
+<td>Ban Nhân sự, Ban điều hành, HRBP chi nhánh</td>
+<td><code>dim_nhan_su</code>, <code>dim_chi_nhanh</code>, <code>dim_phong_ban</code>, <code>dim_date</code></td>
+</tr>
+<tr>
+<td>HR-02</td>
+<td>Báo cáo Chấm công</td>
+<td>Theo dõi giờ công, tăng ca, vi phạm chấm công và xu hướng vận hành</td>
+<td>HR Operations, quản lý chi nhánh</td>
+<td><code>fact_cham_cong</code>, <code>dim_nhan_su</code>, <code>dim_date</code></td>
+</tr>
+<tr>
+<td>HR-03</td>
+<td>Báo cáo Nghỉ phép</td>
+<td>Theo dõi ngày nghỉ, loại phép, trạng thái duyệt và đơn vị có bất thường</td>
+<td>HR Operations, quản lý đơn vị</td>
+<td><code>fact_nghi_phep</code>, <code>dim_nhan_su</code>, <code>dim_date</code></td>
+</tr>
+<tr>
+<td>HR-04</td>
+<td>Báo cáo Lương và Phúc lợi</td>
+<td>Phân tích quỹ lương, cơ cấu chi phí, biến động theo đơn vị/nhóm nhân sự</td>
+<td>C&amp;B, Tài chính, Ban điều hành</td>
+<td><code>fact_luong</code>, <code>dim_nhan_su</code>, <code>dim_date</code></td>
+</tr>
+<tr>
+<td>HR-05</td>
+<td>Báo cáo Đào tạo</td>
+<td>Theo dõi giờ đào tạo, người tham gia, tỷ lệ hoàn thành, kế hoạch vs thực hiện</td>
+<td>Đào tạo, HRBP, quản lý đơn vị</td>
+<td><code>fact_dao_tao</code>, <code>fact_dao_tao_ke_hoach</code>, <code>dim_dao_tao</code>, <code>dim_date</code></td>
+</tr>
+<tr>
+<td>HR-06</td>
+<td>Báo cáo Chất lượng dữ liệu HR</td>
+<td>Kiểm soát lỗi dữ liệu đầu vào trước khi ra quyết định</td>
+<td>Đầu mối phụ trách chất lượng dữ liệu, HR Operations, Đơn vị chịu trách nhiệm BI</td>
+<td><code>fact_data_quality</code>, tất cả bảng nguồn</td>
+</tr>
+<tr>
+<td>HR-07</td>
+<td>Báo cáo điều hành Tổng quan HR Executive</td>
+<td>Một trang tổng hợp KPI chiến lược cho lãnh đạo</td>
+<td>Ban điều hành, Giám đốc nhân sự</td>
+<td>Tất cả nhóm dữ liệu tổng hợp</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-hr-01-bao-cao-quan-ly-nhan-su">2. HR-01 - Báo cáo Quản lý Nhân sự</h2>
+<h3 id="cau-hoi-phan-tich">Câu hỏi phân tích</h3>
+<table>
+<thead>
+<tr>
+<th>Câu hỏi</th>
+<th>KPI trả lời</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tổng số nhân sự hiện tại là bao nhiêu?</td>
+<td>Tổng số nhân sự tại thời điểm, Số nhân sự đang làm việc</td>
+</tr>
+<tr>
+<td>So với cùng kỳ năm trước tăng/giảm như thế nào?</td>
+<td>Tổng số nhân sự CK năm ngoái, % Nhân sự vs năm ngoái</td>
+</tr>
+<tr>
+<td>Biến động nhân sự tháng này đến từ đâu?</td>
+<td>Nhân sự mới, Nghỉ việc/Bãi nhiệm, Điều chuyển, Hết hạn hợp đồng</td>
+</tr>
+<tr>
+<td>Chi nhánh/phòng ban nào tăng trưởng tốt hoặc giảm mạnh bất thường?</td>
+<td>Headcount theo chi nhánh/phòng ban, so sánh cùng kỳ năm trước %</td>
+</tr>
+<tr>
+<td>Tỷ lệ nghỉ việc hiện tại có đang ở mức cảnh báo không?</td>
+<td>Turnover Ratio, Retention Ratio</td>
+</tr>
+<tr>
+<td>Tình trạng ký hợp đồng đúng hạn có rủi ro không?</td>
+<td>Số hết hạn hợp đồng, Tỷ lệ ký đúng hạn</td>
+</tr>
+</tbody>
+</table>
+<h3 id="thanh-phan-hien-thi-va-noi-dung-hien-thi">Thành phần hiển thị và nội dung hiển thị</h3>
+<table>
+<thead>
+<tr>
+<th>Khu vực trang</th>
+<th>Thành phần hiển thị</th>
+<th>Nội dung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Header</td>
+<td>Text/Card</td>
+<td>Tên báo cáo, khoảng thời gian báo cáo</td>
+</tr>
+<tr>
+<td>KPI tổng quan</td>
+<td>Card/Multi-row card</td>
+<td>Tổng nhân sự, nhân sự mới, nghỉ việc, điều chuyển, hết hạn hợp đồng, ký HĐ đúng hạn</td>
+</tr>
+<tr>
+<td>So sánh so sánh cùng kỳ năm trước</td>
+<td>Card/Bullet chart</td>
+<td>Mỗi KPI có giá trị năm ngoái và % tăng/giảm</td>
+</tr>
+<tr>
+<td>Tỷ lệ</td>
+<td>Gauge/KPI thành phần hiển thị</td>
+<td>Retention Ratio, Turnover Ratio, tỷ lệ nhân sự mới, tỷ lệ điều chuyển, tỷ lệ hết hạn HĐ, tỷ lệ ký đúng hạn</td>
+</tr>
+<tr>
+<td>Cơ cấu</td>
+<td>Donut/Pie</td>
+<td>Cơ cấu theo loại hợp đồng, khối/phòng ban</td>
+</tr>
+<tr>
+<td>Bản đồ</td>
+<td>Azure Map/Shape Map</td>
+<td>Phân bổ nhân sự theo tỉnh thành/chi nhánh</td>
+</tr>
+<tr>
+<td>Chi tiết</td>
+<td>Matrix</td>
+<td>Chi nhánh, phòng ban, chức danh, nhân sự hiện tại, năm ngoái, % tăng/giảm</td>
+</tr>
+<tr>
+<td>Drill-through</td>
+<td>Detail page</td>
+<td>Danh sách nhân sự rủi ro hợp đồng, hết hạn 30/60/90 ngày</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bo-loc-can-co">Bộ lọc cần có</h3>
+<p><code>Năm</code>, <code>Tháng</code>, <code>Vùng</code>, <code>Tỉnh thành</code>, <code>Chi nhánh</code>, <code>Khối</code>, <code>Phòng ban</code>, <code>Chức danh</code>, <code>Loại hợp đồng</code>, <code>Giới tính</code>, <code>Nhóm tuổi</code>.</p>
+<h3 id="tinh-nang-power-bi-nen-ap-dung">Tính năng Power BI nên áp dụng</h3>
+<ul>
+<li>Tooltip mini profile theo chi nhánh: số nhân sự, new hire, tỷ lệ nghỉ việc, hợp đồng hết hạn.</li>
+<li>What-if parameter cho ngưỡng cảnh báo tỷ lệ nghỉ việc.</li>
+<li>Decomposition Tree theo Chi nhánh -&gt; Phòng ban -&gt; Chức danh -&gt; Loại hợp đồng.</li>
+<li>Bookmark/tab: Cơ cấu nhân sự, Biến động nhân sự, Xu hướng, Demographic, Hết hạn hợp đồng.</li>
+</ul>
+<h2 id="3-hr-02-bao-cao-cham-cong">3. HR-02 - Báo cáo Chấm công</h2>
+<h3 id="cau-hoi-phan-tich_1">Câu hỏi phân tích</h3>
+<table>
+<thead>
+<tr>
+<th>Câu hỏi</th>
+<th>KPI trả lời</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tổng giờ công tháng này là bao nhiêu?</td>
+<td>Tổng giờ công, giờ công trung bình</td>
+</tr>
+<tr>
+<td>So với năm trước thay đổi như thế nào?</td>
+<td>Tổng giờ công CK năm ngoái, % tăng/giảm</td>
+</tr>
+<tr>
+<td>Số lượt vi phạm và tỷ lệ vi phạm tập trung ở đâu?</td>
+<td>Số lượt vi phạm, Tỷ lệ vi phạm</td>
+</tr>
+<tr>
+<td>Nhóm thâm niên nào có tỷ lệ vi phạm cao?</td>
+<td>Vi phạm theo nhóm thâm niên</td>
+</tr>
+<tr>
+<td>Vi phạm xảy ra nhiều vào giai đoạn nào trong tháng?</td>
+<td>Heatmap ngày/giờ, trend theo ngày</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quy-tac-nghiep-vu-cham-cong-tu-capstone">Quy tắc nghiệp vụ chấm công từ capstone</h3>
+<table>
+<thead>
+<tr>
+<th>Nội dung</th>
+<th>Quy tắc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cả ngày</td>
+<td>8:00 - 17:30, giờ vào trước 12:30 và giờ ra sau 13:00</td>
+</tr>
+<tr>
+<td>Ca sáng</td>
+<td>8:00 - 12:30, giờ ra trước 13:00</td>
+</tr>
+<tr>
+<td>Ca chiều</td>
+<td>13:00 - 17:30, giờ ra sau 13:00</td>
+</tr>
+<tr>
+<td>Đi muộn</td>
+<td>Ca sáng/cả ngày sau 8:15; ca chiều sau 13:15</td>
+</tr>
+<tr>
+<td>Về sớm</td>
+<td>Ca sáng trước 12:15; ca chiều/cả ngày trước 17:15</td>
+</tr>
+</tbody>
+</table>
+<h3 id="thanh-phan-hien-thi-va-noi-dung-hien-thi_1">Thành phần hiển thị và nội dung hiển thị</h3>
+<table>
+<thead>
+<tr>
+<th>Khu vực trang</th>
+<th>Thành phần hiển thị</th>
+<th>Nội dung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>thẻ chỉ tiêu tổng quan</td>
+<td>Card</td>
+<td>Tổng giờ công, giờ công trung bình, số lượt chấm công, số lượt vi phạm, % vi phạm, bình quân phút vi phạm</td>
+</tr>
+<tr>
+<td>Xu hướng</td>
+<td>Line/Combo chart</td>
+<td>Tổng giờ công theo ngày và % vi phạm theo ngày</td>
+</tr>
+<tr>
+<td>Vi phạm</td>
+<td>Bar/Column</td>
+<td>Vi phạm theo thâm niên, chi nhánh, phòng ban</td>
+</tr>
+<tr>
+<td>Bản đồ</td>
+<td>Azure Map</td>
+<td>Tỷ lệ vi phạm hoặc số vi phạm theo chi nhánh/tỉnh thành</td>
+</tr>
+<tr>
+<td>Chi tiết</td>
+<td>Matrix/Table</td>
+<td>Chi nhánh, giờ công, vi phạm, % vi phạm, xếp hạng</td>
+</tr>
+<tr>
+<td>Nâng cao</td>
+<td>Heatmap/Anomaly detection</td>
+<td>Pattern vi phạm theo ngày trong tuần, khung giờ, ngày bất thường</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-hr-03-bao-cao-nghi-phep">4. HR-03 - Báo cáo Nghỉ phép</h2>
+<h3 id="cau-hoi-phan-tich_2">Câu hỏi phân tích</h3>
+<table>
+<thead>
+<tr>
+<th>Câu hỏi</th>
+<th>KPI trả lời</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tổng số ngày nghỉ trong kỳ là bao nhiêu?</td>
+<td>Số ngày nghỉ phép</td>
+</tr>
+<tr>
+<td>Loại phép nào chiếm tỷ trọng lớn nhất?</td>
+<td>Số ngày nghỉ theo loại phép</td>
+</tr>
+<tr>
+<td>Đơn nghỉ phép có được duyệt đúng và kịp thời không?</td>
+<td>Tỷ lệ duyệt phép, số đơn chưa duyệt</td>
+</tr>
+<tr>
+<td>Đơn vị nào có số ngày nghỉ bất thường?</td>
+<td>Leave days theo chi nhánh/phòng ban</td>
+</tr>
+<tr>
+<td>Nghỉ phép có liên quan tới ca làm, thời điểm hoặc nhóm nhân sự nào không?</td>
+<td>Leave days theo tháng, nhóm tuổi, thâm niên</td>
+</tr>
+</tbody>
+</table>
+<h3 id="thanh-phan-hien-thi-va-noi-dung-hien-thi_2">Thành phần hiển thị và nội dung hiển thị</h3>
+<table>
+<thead>
+<tr>
+<th>Khu vực trang</th>
+<th>Thành phần hiển thị</th>
+<th>Nội dung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>thẻ chỉ tiêu tổng quan</td>
+<td>Card</td>
+<td>Tổng ngày nghỉ, số đơn nghỉ, tỷ lệ duyệt, số đơn chưa duyệt</td>
+</tr>
+<tr>
+<td>Cơ cấu</td>
+<td>Donut/Bar</td>
+<td>Ngày nghỉ theo loại phép</td>
+</tr>
+<tr>
+<td>Xu hướng</td>
+<td>Line chart</td>
+<td>Ngày nghỉ theo tháng</td>
+</tr>
+<tr>
+<td>Chi tiết đơn vị</td>
+<td>Matrix</td>
+<td>Chi nhánh, phòng ban, số ngày nghỉ, số đơn, tỷ lệ duyệt</td>
+</tr>
+<tr>
+<td>Drill-through</td>
+<td>Table</td>
+<td>Danh sách đơn nghỉ, nhân sự, loại phép, ngày bắt đầu/kết thúc, trạng thái</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-hr-04-bao-cao-luong-va-phuc-loi">5. HR-04 - Báo cáo Lương và Phúc lợi</h2>
+<h3 id="cau-hoi-phan-tich_3">Câu hỏi phân tích</h3>
+<table>
+<thead>
+<tr>
+<th>Câu hỏi</th>
+<th>KPI trả lời</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tổng thực lĩnh tháng này là bao nhiêu?</td>
+<td>Tổng thực lĩnh</td>
+</tr>
+<tr>
+<td>Lương bình quân thay đổi như thế nào?</td>
+<td>Lương bình quân, so sánh cùng kỳ năm trước</td>
+</tr>
+<tr>
+<td>Thành phần nào kéo quỹ lương tăng mạnh nhất?</td>
+<td>Lương cơ bản, phụ cấp, OT, thưởng, bảo hiểm, khấu trừ, thuế</td>
+</tr>
+<tr>
+<td>Cơ cấu quỹ lương theo loại hợp đồng ra sao?</td>
+<td>Tỷ trọng lương theo loại hợp đồng</td>
+</tr>
+<tr>
+<td>Đơn vị nào có biến động chi phí lương bất thường?</td>
+<td>Lương và phúc lợi by branch/department, variance</td>
+</tr>
+</tbody>
+</table>
+<h3 id="thanh-phan-hien-thi-va-noi-dung-hien-thi_3">Thành phần hiển thị và nội dung hiển thị</h3>
+<table>
+<thead>
+<tr>
+<th>Khu vực trang</th>
+<th>Thành phần hiển thị</th>
+<th>Nội dung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>thẻ chỉ tiêu tổng quan</td>
+<td>Card</td>
+<td>Tổng thực lĩnh, lương bình quân, % so sánh cùng kỳ năm trước</td>
+</tr>
+<tr>
+<td>Cơ cấu chi phí</td>
+<td>Waterfall</td>
+<td>Lương cơ bản, tăng ca, phụ cấp, thưởng, bảo hiểm, khấu trừ, thuế</td>
+</tr>
+<tr>
+<td>Cơ cấu hợp đồng</td>
+<td>Donut/Pie</td>
+<td>Quỹ lương theo loại hợp đồng</td>
+</tr>
+<tr>
+<td>Theo thâm niên</td>
+<td>Combo chart</td>
+<td>Tổng lương hoặc lương bình quân theo nhóm thâm niên</td>
+</tr>
+<tr>
+<td>Xu hướng</td>
+<td>Line chart</td>
+<td>Tổng thực lĩnh/lương bình quân theo tháng</td>
+</tr>
+<tr>
+<td>Chi tiết</td>
+<td>Matrix/Table</td>
+<td>Nhân sự hoặc đơn vị, lương cơ bản, phụ cấp, tăng ca, thưởng, bảo hiểm, khấu trừ, thuế, thực lĩnh</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tinh-nang-bao-mat-e-xuat">Tính năng bảo mật đề xuất</h3>
+<ul>
+<li>Phân quyền phân quyền theo vai trò theo vùng/chi nhánh/phòng ban.</li>
+<li>Ẩn chi tiết cá nhân với người dùng không có quyền C&amp;B.</li>
+<li>Tạo view tổng hợp cho lãnh đạo và view chi tiết riêng cho C&amp;B/Tài chính.</li>
+</ul>
+<h2 id="6-hr-05-bao-cao-ao-tao">6. HR-05 - Báo cáo Đào tạo</h2>
+<h3 id="cau-hoi-phan-tich_4">Câu hỏi phân tích</h3>
+<table>
+<thead>
+<tr>
+<th>Câu hỏi</th>
+<th>KPI trả lời</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tổng giờ đào tạo và số nhân sự tham gia là bao nhiêu?</td>
+<td>Tổng giờ đào tạo, Nhân sự tham gia đào tạo</td>
+</tr>
+<tr>
+<td>So với năm trước tăng/giảm ra sao?</td>
+<td>Training hours so sánh cùng kỳ năm trước, participants so sánh cùng kỳ năm trước</td>
+</tr>
+<tr>
+<td>Chi nhánh/phòng ban nào tham gia tốt/kém?</td>
+<td>Giờ đào tạo và tỷ lệ tham gia theo đơn vị</td>
+</tr>
+<tr>
+<td>Chủ đề/kỹ năng nào được ưu tiên?</td>
+<td>Ranking khóa học/chủ đề</td>
+</tr>
+<tr>
+<td>Chức vụ nào được đầu tư đào tạo nhiều/ít?</td>
+<td>Giờ đào tạo theo chức danh</td>
+</tr>
+<tr>
+<td>Kế hoạch đào tạo có đạt không?</td>
+<td>Actual vs Plan</td>
+</tr>
+</tbody>
+</table>
+<h3 id="thanh-phan-hien-thi-va-noi-dung-hien-thi_4">Thành phần hiển thị và nội dung hiển thị</h3>
+<table>
+<thead>
+<tr>
+<th>Khu vực trang</th>
+<th>Thành phần hiển thị</th>
+<th>Nội dung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>thẻ chỉ tiêu tổng quan</td>
+<td>Card</td>
+<td>Tổng giờ đào tạo, nhân sự tham gia, % so sánh cùng kỳ năm trước</td>
+</tr>
+<tr>
+<td>Đơn vị</td>
+<td>Bar/Bullet chart</td>
+<td>Giờ đào tạo hoặc nhân sự tham gia theo chi nhánh/phòng ban</td>
+</tr>
+<tr>
+<td>Chức vụ</td>
+<td>Bar chart</td>
+<td>Giờ đào tạo theo chức danh</td>
+</tr>
+<tr>
+<td>Chủ đề</td>
+<td>Ranking bar chart</td>
+<td>Khóa học/chủ đề có nhiều giờ hoặc nhiều người học nhất</td>
+</tr>
+<tr>
+<td>Xu hướng</td>
+<td>Line chart</td>
+<td>Giờ đào tạo năm nay vs năm ngoái hoặc người tham gia theo tháng</td>
+</tr>
+<tr>
+<td>Kế hoạch</td>
+<td>Matrix/Bullet/Gauge</td>
+<td>Actual vs kế hoạch đào tạo theo khóa học/chi nhánh/tháng</td>
+</tr>
+<tr>
+<td>Chi tiết</td>
+<td>Matrix</td>
+<td>Số khóa học, nhân sự, tỷ lệ tham gia, giờ đào tạo, so sánh cùng kỳ năm trước</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tinh-nang-power-bi-nen-ap-dung_1">Tính năng Power BI nên áp dụng</h3>
+<ul>
+<li>Field Parameters chuyển giữa <code>Giờ đào tạo</code>, <code>Nhân sự tham gia</code>, <code>Tỷ lệ tham gia</code>, <code>Giờ đào tạo bình quân</code>.</li>
+<li>Tooltip mini trend 12 tháng cho từng chi nhánh.</li>
+<li>Drill-through Training Profile theo chi nhánh/chức danh/chủ đề.</li>
+<li>Scorecard/Gauge mục tiêu đào tạo theo đơn vị.</li>
+</ul>
+<h2 id="7-hr-06-bao-cao-chat-luong-du-lieu-hr">7. HR-06 - Báo cáo chất lượng dữ liệu HR</h2>
+<p>Đây là báo cáo nên bổ sung để đáp ứng góp ý của Agribank về quản trị dữ liệu, nguồn dữ liệu và khả năng ứng dụng thực tế.</p>
+<table>
+<thead>
+<tr>
+<th>Nội dung</th>
+<th>Yêu cầu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mục tiêu</td>
+<td>Kiểm tra độ tin cậy dữ liệu trước khi dùng Excel/Power BI ra quyết định</td>
+</tr>
+<tr>
+<td>thẻ chỉ tiêu tổng quan</td>
+<td>Số lỗi dữ liệu, số dòng lỗi, % bản ghi lỗi, số đối chiếu nguồn lỗi, số trường nhạy cảm chưa phân quyền</td>
+</tr>
+<tr>
+<td>Matrix</td>
+<td>Bảng, trường, quy tắc, số lỗi, mức độ nghiêm trọng, đơn vị chịu trách nhiệm xử lý</td>
+</tr>
+<tr>
+<td>Biểu đồ</td>
+<td>Lỗi theo nguồn hệ thống, lỗi theo thời gian, top lỗi phổ biến</td>
+</tr>
+<tr>
+<td>Drill-through</td>
+<td>Danh sách bản ghi lỗi cần xử lý</td>
+</tr>
+<tr>
+<td>Nguồn dữ liệu</td>
+<td>Rule checks từ Power Query - bước xử lý dữ liệu/Excel hoặc bảng <code>fact_data_quality</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-hr-07-bao-cao-ieu-hanh-tong-quan-hr-executive">8. HR-07 - Báo cáo điều hành Tổng quan HR Executive</h2>
+<table>
+<thead>
+<tr>
+<th>Khu vực</th>
+<th>Nội dung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cơ cấu nhân sự</td>
+<td>Headcount, New Hires, Terminations, Turnover Ratio, Retention Ratio</td>
+</tr>
+<tr>
+<td>Chấm công</td>
+<td>Tổng giờ công, OT Rate, Tỷ lệ vi phạm</td>
+</tr>
+<tr>
+<td>Lương và phúc lợi</td>
+<td>Tổng thực lĩnh, lương bình quân, biến động quỹ lương</td>
+</tr>
+<tr>
+<td>Training</td>
+<td>Tổng giờ đào tạo, nhân sự tham gia, completion rate, actual vs plan</td>
+</tr>
+<tr>
+<td>Risk alerts</td>
+<td>Hợp đồng sắp hết hạn, tỷ lệ nghỉ việc vượt ngưỡng, payroll outlier, dữ liệu thiếu</td>
+</tr>
+<tr>
+<td>Filters</td>
+<td>Năm, tháng, vùng, chi nhánh, khối, phòng ban</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-danh-sach-tieu-chi-nghiem-thu-cho-bao-cao-ieu-hanh-cuoi-khoa">9. danh sách tiêu chí nghiệm thu cho báo cáo điều hành cuối khóa</h2>
+<table>
+<thead>
+<tr>
+<th>Nhóm kiểm tra</th>
+<th>Tiêu chí đạt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nghiệp vụ</td>
+<td>Mỗi trang trả lời rõ câu hỏi quản trị, không dừng ở kéo thả thành phần hiển thị</td>
+</tr>
+<tr>
+<td>KPI</td>
+<td>Tên KPI, định nghĩa, mẫu số, kỳ tính và nguồn dữ liệu rõ ràng</td>
+</tr>
+<tr>
+<td>mô hình dữ liệu phục vụ báo cáo</td>
+<td>Có <code>dim_date</code>, quan hệ giữa các bảng đúng chiều, không dùng nhiều-to-nhiều nếu không cần</td>
+</tr>
+<tr>
+<td>công thức Power BI</td>
+<td>chỉ tiêu tính toán được gom vào folder, dùng <code>DIVIDE</code>, <code>CALCULATE</code>, <code>USERELATIONSHIP</code>, time intelligence đúng ngữ cảnh</td>
+</tr>
+<tr>
+<td>Thành phần hiển thị</td>
+<td>Có card, trend, cơ cấu, chi tiết, bộ lọc; không nhồi quá nhiều thành phần hiển thị trên một trang</td>
+</tr>
+<tr>
+<td>Bảo mật</td>
+<td>Không hiển thị dữ liệu cá nhân nhạy cảm/lương cá nhân cho người không có quyền</td>
+</tr>
+<tr>
+<td>Agribank fit</td>
+<td>Có góc nhìn chi nhánh/vùng/tỉnh thành, phòng ban, chức danh, hợp đồng</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-phan-bo-sung-tu-van-tu-nghien-cuu-ben-ngoai">10. Phần bổ sung tư vấn từ nghiên cứu bên ngoài</h2>
+<blockquote>
+<p>Phạm vi: các báo cáo dưới đây là danh sách ưu tiên mở rộng mở rộng để tư vấn cho Agribank. Chúng không thay cho danh sách HR-01 đến HR-07 bám theo dữ liệu thực hành hiện tại; mỗi báo cáo cần xác nhận có dữ liệu, đơn vị chịu trách nhiệm nghiệp vụ, quyền truy cập và quy tắc bảo mật trước khi triển khai.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Báo cáo tư vấn</th>
+<th>Mục tiêu</th>
+<th>Chỉ tiêu và thành phần hiển thị chính</th>
+<th>Điều kiện triển khai</th>
+<th style="text-align: right;">Ưu tiên</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cơ cấu nhân sự Planning &amp; Vacancy Báo cáo điều hành</td>
+<td>So sánh actual số nhân sự với định biên và nhu cầu tuyển</td>
+<td>Headcount vs approved HC, vacancy rate, critical role coverage</td>
+<td>Cần <code>fact_dinh_bien</code>, danh mục vị trí</td>
+<td style="text-align: right;">Cao</td>
+</tr>
+<tr>
+<td>Recruitment Funnel Báo cáo điều hành</td>
+<td>Theo dõi tuyển dụng từ requisition đến nhận việc</td>
+<td>Time to Fill, Offer Acceptance Rate, Nguồn of Hire, funnel conversion</td>
+<td>Cần ATS hoặc tracker tuyển dụng</td>
+<td style="text-align: right;">Cao nếu mở rộng tuyển dụng</td>
+</tr>
+<tr>
+<td>Skills &amp; Certification Tuân thủ Báo cáo điều hành</td>
+<td>Theo dõi năng lực, chứng chỉ bắt buộc, skill gap</td>
+<td>Certification tuân thủ, skill coverage, training plan gap</td>
+<td>Cần skill framework, chứng chỉ</td>
+<td style="text-align: right;">Cao</td>
+</tr>
+<tr>
+<td>báo cáo giám sát quản trị báo cáo nhân sự</td>
+<td>Kiểm soát dữ liệu, phân quyền, label, cập nhật dữ liệu, lỗi nguồn</td>
+<td>Data quality score, phân quyền theo vai trò pass rate, nhãn phân loại dữ liệu nhạy cảm coverage</td>
+<td>Cần nhật ký kiểm soáts, data catalog</td>
+<td style="text-align: right;">Cao</td>
+</tr>
+<tr>
+<td>kiểm soát sử dụng AI trong phân tích nhân sự</td>
+<td>Kiểm soát use case AI, prompt, dữ liệu nhạy cảm, người phụ trách kiểm tra lại</td>
+<td>AI use case log, approval status, dữ liệu cá nhân nhạy cảm prompt violations</td>
+<td>Cần chính sách AI nội bộ</td>
+<td style="text-align: right;">Cao khi dùng AI ở Buổi 1</td>
+</tr>
+<tr>
+<td>Nhân tài &amp; Kế nhiệm Báo cáo điều hành</td>
+<td>Quản trị vị trí trọng yếu, successor và rủi ro kế nhiệm</td>
+<td>Kế nhiệm coverage, readiness, critical role risk</td>
+<td>Cần talent/kế nhiệm data</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td>Gắn kết &amp; Culture Báo cáo điều hành</td>
+<td>Phân tích gắn kết, eNPS, manager effectiveness</td>
+<td>Gắn kết score, eNPS, trend, heatmap theo đơn vị</td>
+<td>Cần survey và ngưỡng bảo mật nhóm</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td>Sức khỏe và gắn kết &amp; Workload Risk Báo cáo điều hành</td>
+<td>Cảnh báo workload, OT, nghỉ phép/vắng mặt bất thường</td>
+<td>Workload risk, overtime sustainability, absence pattern</td>
+<td>Cần attendance, leave, survey</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td>D&amp;I and Pay Equity View</td>
+<td>Theo dõi cơ cấu đa dạng, đại diện theo cấp, chênh lệch lương</td>
+<td>Gender mix, leadership representation, pay gap view</td>
+<td>Cần legal/HR policy review và dữ liệu đủ sạch</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td>Employee Relations &amp; Tuân thủ Báo cáo điều hành</td>
+<td>Theo dõi case quan hệ lao động, kỷ luật, khiếu nại, SLA xử lý</td>
+<td>Case volume, closure SLA, severity, trend</td>
+<td>Cần case management data</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+</tbody>
+</table>
+<h3 id="101-tieu-chi-bo-sung-vao-acceptance-checklist">10.1. Tiêu chí bổ sung vào acceptance checklist</h3>
+<table>
+<thead>
+<tr>
+<th>Nhóm kiểm tra</th>
+<th>Tiêu chí bổ sung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nguồn of truth</td>
+<td>Mỗi report mở rộng phải ghi rõ hệ thống nguồn và đơn vị chịu trách nhiệm xác nhận</td>
+</tr>
+<tr>
+<td>Bảo mật dữ liệu</td>
+<td>Các trang có dữ liệu cá nhân nhạy cảm/lương/performance phải có role, phân quyền theo vai trò/phân quyền theo đối tượng dữ liệu hoặc quy tắc ẩn dữ liệu</td>
+</tr>
+<tr>
+<td>Nhãn phân loại dữ liệu nhạy cảm</td>
+<td>Report/dữ liệu thực hành HR nhạy cảm cần có nhãn phân loại trước khi chia sẻ/xuất dữ liệu</td>
+</tr>
+<tr>
+<td>Ngưỡng bảo mật nhóm</td>
+<td>Gắn kết, D&amp;I, sức khỏe và gắn kết chỉ nên hiển thị khi nhóm đủ lớn để tránh nhận diện cá nhân</td>
+</tr>
+<tr>
+<td>kiểm soát sử dụng AI</td>
+<td>Mọi báo cáo điều hành dùng AI để phân tích/tóm tắt HR phải có người phụ trách kiểm tra lại và không dùng prompt chứa dữ liệu cá nhân nhạy cảm thật</td>
+</tr>
+<tr>
+<td>Bias &amp; ethics</td>
+<td>Các mô hình dự báo attrition/risk scoring nếu có phải được review bias, privacy và mục đích sử dụng</td>
+</tr>
+</tbody>
+</table>
+<h3 id="102-cach-long-vao-6-buoi">10.2. Cách lồng vào 6 buổi</h3>
+<table>
+<thead>
+<tr>
+<th>Buổi</th>
+<th>Report tư vấn nên nhắc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Buổi 1</td>
+<td>kiểm soát sử dụng AI trong phân tích nhân sự, báo cáo giám sát quản trị báo cáo nhân sự</td>
+</tr>
+<tr>
+<td>Buổi 2</td>
+<td>báo cáo giám sát quản trị báo cáo nhân sự ở mức data quality check bằng Excel</td>
+</tr>
+<tr>
+<td>Buổi 3</td>
+<td>Cơ cấu nhân sự Planning &amp; Vacancy, Skills &amp; Certification dưới góc nhìn mô hình dữ liệu phục vụ báo cáo</td>
+</tr>
+<tr>
+<td>Buổi 4</td>
+<td>Nguồn đối chiếu nguồn, phân loại mức độ nhạy cảm và Power Query - bước xử lý dữ liệu cho report quản trị và kiểm soát</td>
+</tr>
+<tr>
+<td>Buổi 5</td>
+<td>tỷ lệ kiểm thử phân quyền đạt, mức độ gắn nhãn dữ liệu nhạy cảm, chỉ tiêu tính toán chốt duyệt</td>
+</tr>
+<tr>
+<td>Buổi 6</td>
+<td>Chọn 1-2 report mở rộng làm danh sách ưu tiên mở rộng giai đoạn mở rộng sau báo cáo điều hành thực hành</td>
+</tr>
+</tbody>
+</table></div>
+          <div class="prevnext"><a class="pn prev" href="#kpi-dictionary"><span>← Trước</span><strong>Bộ chuẩn chỉ tiêu (KPI)</strong></a><a class="pn next" href="#external-research"><span>Tiếp →</span><strong>Tư vấn từ nghiên cứu ngoài</strong></a></div>
+        </article>
+        <nav class="toc" aria-label="Mục lục"><p class="toc-h">Trên trang này</p><ul><li><a href="#" data-anchor="1-danh-sach-bao-cao-uu-tien">1. Danh sách báo cáo ưu tiên</a></li><li><a href="#" data-anchor="2-hr-01-bao-cao-quan-ly-nhan-su">2. HR-01 - Báo cáo Quản lý Nhân sự</a></li><li><a href="#" data-anchor="3-hr-02-bao-cao-cham-cong">3. HR-02 - Báo cáo Chấm công</a></li><li><a href="#" data-anchor="4-hr-03-bao-cao-nghi-phep">4. HR-03 - Báo cáo Nghỉ phép</a></li><li><a href="#" data-anchor="5-hr-04-bao-cao-luong-va-phuc-loi">5. HR-04 - Báo cáo Lương và Phúc lợi</a></li><li><a href="#" data-anchor="6-hr-05-bao-cao-ao-tao">6. HR-05 - Báo cáo Đào tạo</a></li><li><a href="#" data-anchor="7-hr-06-bao-cao-chat-luong-du-lieu-hr">7. HR-06 - Báo cáo chất lượng dữ liệu HR</a></li><li><a href="#" data-anchor="8-hr-07-bao-cao-ieu-hanh-tong-quan-hr-executive">8. HR-07 - Báo cáo điều hành Tổng quan HR Executive</a></li><li><a href="#" data-anchor="9-danh-sach-tieu-chi-nghiem-thu-cho-bao-cao-ieu-hanh-cuoi-khoa">9. danh sách tiêu chí nghiệm thu cho báo cáo điều hành cuối khóa</a></li><li><a href="#" data-anchor="10-phan-bo-sung-tu-van-tu-nghien-cuu-ben-ngoai">10. Phần bổ sung tư vấn từ nghiên cứu bên ngoài</a></li></ul></nav>
+      </div>
+    </section>
+
+    <section class="doc" id="external-research" data-doc>
+      <div class="doc-grid">
+        <article class="doc-main">
+          <div class="kicker"><i class="fa-solid fa-book-open-reader"></i> Tài liệu 5/5</div>
+          <h1 class="doc-title">Tư vấn bổ sung từ nghiên cứu bên ngoài - HR Analytics</h1>
+          <p class="doc-blurb">Lớp bổ sung theo chuẩn human capital reporting (ISO 30414, GRI, ESG): trường dữ liệu, KPI mở rộng và cảnh báo khi đưa vào tài liệu chính thức.</p>
+          <div class="doc-body"><blockquote>
+<p>Góc nhìn lãnh đạo: Tài liệu này được chuẩn hóa để phục vụ trao đổi ở cấp quản lý: làm rõ câu hỏi điều hành, trách nhiệm sở hữu số liệu, mức độ tin cậy của báo cáo và các rủi ro cần kiểm soát trước khi triển khai công cụ.</p>
+</blockquote>
+<p>Khóa học: Ứng dụng AI và phân tích dữ liệu nhân sự<br />
+Phiên bản: 2026-07-15<br />
+Vai trò tài liệu: tài liệu tư vấn bổ sung, tách riêng khỏi các danh sách bám theo dữ liệu/công thức thực hành.  </p>
+<h2 id="1-nguyen-tac-su-dung">1. Nguyên tắc sử dụng</h2>
+<p>File này không sửa trực tiếp các file đã tạo trước đó:</p>
+<ul>
+<li><code>HR_Analytics_Data_Dictionary_Data_Source_Mapping_2026-07-15.md</code></li>
+<li><code>HR_Analytics_HR_KPI_Dictionary_Excel_PowerBI_2026-07-15.md</code></li>
+<li><code>HR_Analytics_Reports_List_Requirements_2026-07-15.md</code></li>
+<li><code>HR_Analytics_Business_Outputs_Options_2026-07-15.md</code></li>
+</ul>
+<p>Các mục dưới đây là phần tư vấn mở rộng dựa trên nghiên cứu bên ngoài. Chỉ nên đưa vào giáo án, báo cáo hoặc báo cáo điều hành khi Agribank xác nhận có dữ liệu, định nghĩa nghiệp vụ và quyền sử dụng phù hợp.</p>
+<h2 id="2-nguon-tham-khao-chinh">2. Nguồn tham khảo chính</h2>
+<table>
+<thead>
+<tr>
+<th>Nguồn</th>
+<th>Nội dung rút ra cho khóa HR Analytics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.iso.org/standard/30414">ISO 30414:2025 - Human capital reporting and disclosure</a></td>
+<td>Khung báo cáo vốn nhân lực gồm workforce composition, diversity, costs, productivity, health/safety/sức khỏe và gắn kết, leadership/culture/gắn kết, tuân thủ/ethics/workforce relations, recruitment, luân chuyển nội bộ/kế nhiệm, tỷ lệ nghỉ việc, skills/capabilities/development.</td>
+</tr>
+<tr>
+<td><a href="https://www.iso.org/standard/71164.html">ISO 30415:2021 - Diversity and inclusion</a></td>
+<td>D&amp;I cần được xem như phần của quản trị và kiểm soát, trách nhiệm quản lý, hành động khuyến nghị, chỉ số đo lường và kết quả mong đợi.</td>
+</tr>
+<tr>
+<td><a href="https://www.iso.org/standard/63787.html">ISO 45001:2018 - Occupational health and safety management</a></td>
+<td>An toàn sức khỏe nghề nghiệp nên quản trị bằng chính sách, mục tiêu, nhận diện nguy cơ, đánh giá rủi ro, tuân thủ pháp lý và cải tiến liên tục.</td>
+</tr>
+<tr>
+<td><a href="https://www.iso.org/standard/64283.html">ISO 45003:2021 - Psychological health and safety at work</a></td>
+<td>Sức khỏe và gắn kết không dừng ở là vắng mặt/nghỉ phép, mà cần xem thêm rủi ro tâm lý xã hội, môi trường làm việc lành mạnh và phòng ngừa tổn hại liên quan công việc.</td>
+</tr>
+<tr>
+<td><a href="https://www.iso.org/standard/42001">ISO/IEC 42001:2023 - AI management system</a></td>
+<td>Khi dùng AI trong HR, cần có hệ thống quản lý AI, chính sách, quy trình, quản trị rủi ro, minh bạch, truy vết và cải tiến.</td>
+</tr>
+<tr>
+<td><a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI Risk Management Framework</a></td>
+<td>AI trong HR cần quản trị rủi ro cho cá nhân, tổ chức và xã hội; dùng để định hướng checklist AI an toàn khi xử lý dữ liệu nhân sự.</td>
+</tr>
+<tr>
+<td><a href="https://oecd.ai/en/ai-principles">OECD AI Principles</a></td>
+<td>AI nên tôn trọng quyền con người, công bằng, quyền riêng tư, minh bạch, giải thích được, an toàn, bảo mật và có trách nhiệm giải trình.</td>
+</tr>
+<tr>
+<td><a href="https://learn.microsoft.com/en-us/fabric/security/service-admin-row-level-security">Microsoft Learn - Power BI phân quyền theo vai trò</a></td>
+<td>phân quyền theo vai trò giới hạn dữ liệu theo dòng cho từng nhóm người dùng; cần thiết khi báo cáo điều hành HR phân quyền theo vùng, chi nhánh, phòng ban.</td>
+</tr>
+<tr>
+<td><a href="https://learn.microsoft.com/en-us/power-bi/enterprise/service-security-sensitivity-label-overview">Microsoft Learn - Nhãn phân loại dữ liệu nhạy cảm in Power BI</a></td>
+<td>Nhãn phân loại dữ liệu nhạy cảm giúp phân loại nội dung nhạy cảm và duy trì bảo vệ khi dữ liệu rời Power BI qua Excel, PowerPoint, PDF hoặc PBIX.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-tu-van-bo-sung-cho-bo-mo-ta-du-lieu-va-ban-o-nguon-du-lieu">3. Tư vấn bổ sung cho bộ mô tả dữ liệu và bản đồ nguồn dữ liệu</h2>
+<h3 id="31-bang-du-lieu-nen-bo-sung-theo-chuan-human-capital-reporting">3.1. Bảng dữ liệu nên bổ sung theo chuẩn human capital reporting</h3>
+<table>
+<thead>
+<tr>
+<th>Bảng đề xuất</th>
+<th>Mục đích nghiệp vụ</th>
+<th>Trường dữ liệu tối thiểu</th>
+<th>Nguồn gợi ý</th>
+<th style="text-align: right;">Mức ưu tiên</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fact_tuyen_dung</code></td>
+<td>Theo dõi tuyển dụng, requisition, pipeline, offer, time-to-fill</td>
+<td><code>requisition_id</code>, <code>ma_chi_nhanh</code>, <code>ma_chuc_danh</code>, <code>open_date</code>, <code>approved_date</code>, <code>offer_date</code>, <code>accept_date</code>, <code>start_date</code>, <code>status</code>, <code>source</code>, <code>cost</code></td>
+<td>ATS, HR recruitment tracker</td>
+<td style="text-align: right;">Cao</td>
+</tr>
+<tr>
+<td><code>fact_dinh_bien</code></td>
+<td>So sánh nhân sự thực tế với định biên/kế hoạch</td>
+<td><code>ma_don_vi</code>, <code>ma_chuc_danh</code>, <code>period</code>, <code>approved_headcount</code>, <code>budgeted_fte</code>, <code>actual_headcount</code></td>
+<td>Cơ cấu nhân sự planning, HR Planning, Finance</td>
+<td style="text-align: right;">Cao</td>
+</tr>
+<tr>
+<td><code>fact_performance</code></td>
+<td>Liên kết hiệu suất với đào tạo, lương, giữ chân nhân sự</td>
+<td><code>nhan_su_id</code>, <code>period</code>, <code>rating</code>, <code>score</code>, <code>goal_completion</code>, <code>review_status</code>, <code>reviewer_id</code></td>
+<td>Hiệu suất management system</td>
+<td style="text-align: right;">Cao</td>
+</tr>
+<tr>
+<td><code>dim_skill</code></td>
+<td>Chuẩn hóa năng lực/kỹ năng/chứng chỉ</td>
+<td><code>skill_id</code>, <code>skill_name</code>, <code>skill_group</code>, <code>criticality</code>, <code>required_for_role</code></td>
+<td>Khung năng lực, LMS</td>
+<td style="text-align: right;">Cao</td>
+</tr>
+<tr>
+<td><code>fact_skill_profile</code></td>
+<td>Theo dõi skill gap và năng lực hiện tại</td>
+<td><code>nhan_su_id</code>, <code>skill_id</code>, <code>proficiency_level</code>, <code>assessment_date</code>, <code>source</code></td>
+<td>LMS, assessment, certification</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td><code>fact_succession</code></td>
+<td>Quản trị kế nhiệm và rủi ro vị trí trọng yếu</td>
+<td><code>position_id</code>, <code>incumbent_id</code>, <code>successor_id</code>, <code>readiness_level</code>, <code>risk_level</code></td>
+<td>Nhân tài management</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td><code>fact_engagement_survey</code></td>
+<td>Đo gắn kết, văn hóa, trải nghiệm nhân viên</td>
+<td><code>survey_id</code>, <code>nhan_su_id_or_group</code>, <code>period</code>, <code>dimension</code>, <code>score</code>, <code>response_count</code></td>
+<td>Employee survey</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td><code>fact_employee_relations</code></td>
+<td>Theo dõi quan hệ lao động, khiếu nại, kỷ luật, tuân thủ</td>
+<td><code>case_id</code>, <code>case_type</code>, <code>opened_date</code>, <code>closed_date</code>, <code>status</code>, <code>severity</code>, <code>ma_don_vi</code></td>
+<td>HR tuân thủ, employee relations</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td><code>fact_wellbeing_risk</code></td>
+<td>Theo dõi workload/sức khỏe và gắn kết ở mức tổng hợp</td>
+<td><code>period</code>, <code>ma_don_vi</code>, <code>ot_hours</code>, <code>absence_days</code>, <code>violation_count</code>, <code>survey_score</code>, <code>risk_level</code></td>
+<td>Chấm công, leave, survey</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td><code>dim_data_classification</code></td>
+<td>Gắn nhãn độ nhạy cảm dữ liệu</td>
+<td><code>table_name</code>, <code>field_name</code>, <code>classification</code>, <code>pii_flag</code>, <code>salary_sensitive_flag</code>, <code>allowed_roles</code></td>
+<td>Quản trị dữ liệu và bảo mật</td>
+<td style="text-align: right;">Cao</td>
+</tr>
+<tr>
+<td><code>fact_ai_usage_log</code></td>
+<td>Ghi nhận việc dùng AI trong xử lý HR data</td>
+<td><code>use_case_id</code>, <code>user_role</code>, <code>tool</code>, <code>data_classification</code>, <code>prompt_type</code>, <code>approval_status</code>, <code>reviewer</code></td>
+<td>kiểm soát sử dụng AI log</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-truong-quan-tri-va-kiem-soat-nen-them-vao-bo-mo-ta-du-lieu">3.2. Trường quản trị và kiểm soát nên thêm vào bộ mô tả dữ liệu</h3>
+<table>
+<thead>
+<tr>
+<th>Trường thông tin quản lý bổ sung</th>
+<th>Ý nghĩa</th>
+<th>Vì sao nên có cho Agribank</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>business_owner</code></td>
+<td>Đơn vị chịu trách nhiệm nghiệp vụ cho trường/bảng</td>
+<td>Tránh tranh cãi công thức và nguồn số liệu</td>
+</tr>
+<tr>
+<td><code>technical_owner</code></td>
+<td>Đơn vị/hệ thống chịu trách nhiệm kỹ thuật</td>
+<td>Cần khi truy vết lỗi ETL, Power Query - bước xử lý dữ liệu, Power BI cập nhật dữ liệu</td>
+</tr>
+<tr>
+<td><code>source_system</code></td>
+<td>Hệ thống nguồn chính thức</td>
+<td>Giúp xác định nguồn số liệu chính thức</td>
+</tr>
+<tr>
+<td><code>refresh_frequency</code></td>
+<td>Tần suất cập nhật</td>
+<td>Phân biệt báo cáo ngày, tháng, quý</td>
+</tr>
+<tr>
+<td><code>grain</code></td>
+<td>Mức chi tiết của bảng</td>
+<td>Ngăn lỗi cộng gộp sai trong mô hình dữ liệu phục vụ báo cáo</td>
+</tr>
+<tr>
+<td><code>data_classification</code></td>
+<td>Public/Internal/Confidential/Highly Confidential</td>
+<td>Phù hợp dữ liệu HR, payroll và dữ liệu cá nhân nhạy cảm</td>
+</tr>
+<tr>
+<td><code>pii_flag</code></td>
+<td>Có chứa dữ liệu cá nhân không</td>
+<td>Cần khi dùng AI và xuất dữ liệu từ Power BI</td>
+</tr>
+<tr>
+<td><code>masking_rule</code></td>
+<td>Quy tắc ẩn/che dữ liệu</td>
+<td>Họ tên, lương, lý do nghỉ phép, đánh giá hiệu suất</td>
+</tr>
+<tr>
+<td><code>retention_policy</code></td>
+<td>Thời hạn lưu dữ liệu</td>
+<td>Cần cho dữ liệu nhân sự và lịch sử hợp đồng</td>
+</tr>
+<tr>
+<td><code>quality_rule</code></td>
+<td>Quy tắc kiểm tra chất lượng</td>
+<td>Hỗ trợ báo cáo giám sát chất lượng dữ liệu</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-tu-van-bo-sung-cho-bo-chuan-chi-tieu-nhan-su">4. Tư vấn bổ sung cho bộ chuẩn chỉ tiêu nhân sự</h2>
+<h3 id="41-co-cau-nhan-su-composition-va-workforce-planning">4.1. Cơ cấu nhân sự composition và workforce planning</h3>
+<table>
+<thead>
+<tr>
+<th>KPI tư vấn</th>
+<th>Logic khái niệm</th>
+<th>Điều kiện dữ liệu</th>
+<th>Vì sao nên bổ sung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FTE</td>
+<td>Tổng quy đổi toàn thời gian của nhân sự</td>
+<td>Cần <code>fte_ratio</code> hoặc loại hợp đồng/quy đổi FTE</td>
+<td>Headcount đơn thuần không phản ánh năng lực cung ứng nhân sự</td>
+</tr>
+<tr>
+<td>Vacancy Rate</td>
+<td>Vị trí còn trống / định biên được duyệt</td>
+<td>Cần <code>fact_dinh_bien</code>, tuyển dụng, số nhân sự</td>
+<td>Quan trọng với ngân hàng có mạng lưới chi nhánh rộng</td>
+</tr>
+<tr>
+<td>Span of Control</td>
+<td>Số nhân sự trực thuộc / quản lý</td>
+<td>Cần <code>ID Quản Lý</code> hoặc org chart</td>
+<td>Đánh giá tải quản lý và cấu trúc tổ chức</td>
+</tr>
+<tr>
+<td>Cơ cấu nhân sự Availability</td>
+<td>Nhân sự sẵn sàng làm việc / nhân sự kế hoạch</td>
+<td>Cần lịch làm, nghỉ phép, vắng mặt, FTE</td>
+<td>Bổ sung góc nhìn vận hành, không dừng ở biên chế</td>
+</tr>
+<tr>
+<td>Critical Role Coverage</td>
+<td>Vị trí trọng yếu có người đảm nhiệm / tổng vị trí trọng yếu</td>
+<td>Cần danh mục vị trí trọng yếu</td>
+<td>Hữu ích cho quản trị rủi ro vận hành ngân hàng</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-recruitment-va-luan-chuyen-noi-bo">4.2. Recruitment và luân chuyển nội bộ</h3>
+<table>
+<thead>
+<tr>
+<th>KPI tư vấn</th>
+<th>Logic khái niệm</th>
+<th>Điều kiện dữ liệu</th>
+<th>Vì sao nên bổ sung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Time to Fill</td>
+<td>Ngày tuyển đủ từ khi yêu cầu được duyệt đến khi ứng viên nhận việc</td>
+<td>Cần <code>approved_date</code>, <code>start_date</code></td>
+<td>Đo hiệu quả tuyển dụng và rủi ro thiếu người tại chi nhánh</td>
+</tr>
+<tr>
+<td>Time to Accept</td>
+<td>Ngày từ yêu cầu được duyệt đến khi ứng viên chấp nhận offer</td>
+<td>Cần <code>approved_date</code>, <code>accept_date</code></td>
+<td>Tách phần chậm ở offer khỏi onboarding</td>
+</tr>
+<tr>
+<td>Offer Acceptance Rate</td>
+<td>Offer được chấp nhận / tổng offer</td>
+<td>Cần offer status</td>
+<td>Đo sức hút chính sách, thương hiệu tuyển dụng</td>
+</tr>
+<tr>
+<td>Nguồn of Hire</td>
+<td>Tỷ trọng tuyển thành công theo nguồn</td>
+<td>Cần candidate nguồn</td>
+<td>Tối ưu kênh tuyển dụng</td>
+</tr>
+<tr>
+<td>Internal Luân chuyển nội bộ Rate</td>
+<td>Điều chuyển/thăng chuyển nội bộ / số nhân sự bình quân</td>
+<td>Cần lịch sử điều chuyển</td>
+<td>Quan trọng khi ngân hàng có luân chuyển chi nhánh/phòng ban</td>
+</tr>
+<tr>
+<td>New Hire 12-Month Retention</td>
+<td>Nhân sự mới còn làm sau 12 tháng / tổng nhân sự mới</td>
+<td>Cần hire date và status sau 12 tháng</td>
+<td>Đo chất lượng tuyển dụng bền vững hơn số lượng tuyển</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-skills-capability-va-learning-impact">4.3. Skills, capability và learning impact</h3>
+<table>
+<thead>
+<tr>
+<th>KPI tư vấn</th>
+<th>Logic khái niệm</th>
+<th>Điều kiện dữ liệu</th>
+<th>Vì sao nên bổ sung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Skill Coverage</td>
+<td>Nhân sự đạt kỹ năng bắt buộc / tổng nhân sự thuộc vai trò</td>
+<td>Cần <code>dim_skill</code>, <code>fact_skill_profile</code></td>
+<td>Liên kết đào tạo với năng lực vị trí</td>
+</tr>
+<tr>
+<td>Critical Certification Tuân thủ</td>
+<td>Chứng chỉ còn hiệu lực / chứng chỉ bắt buộc</td>
+<td>Cần hạn chứng chỉ và danh mục bắt buộc</td>
+<td>Phù hợp nghiệp vụ ngân hàng có chứng chỉ/tuân thủ</td>
+</tr>
+<tr>
+<td>Skill Gap Count</td>
+<td>Số kỹ năng bắt buộc chưa đạt</td>
+<td>Cần khung năng lực theo chức danh</td>
+<td>Giúp ưu tiên kế hoạch đào tạo</td>
+</tr>
+<tr>
+<td>Training Effectiveness Proxy</td>
+<td>Thay đổi performance/skill sau đào tạo</td>
+<td>Cần training + assessment/performance</td>
+<td>Vượt khỏi KPI giờ học, tiến tới hiệu quả đào tạo</td>
+</tr>
+<tr>
+<td>Learning Plan Completion</td>
+<td>Kế hoạch đào tạo hoàn thành / kế hoạch được giao</td>
+<td>Cần <code>fact_dao_tao_ke_hoach</code></td>
+<td>Kế thừa bài thực hành kế hoạch vs thực hiện</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44-leadership-ke-nhiem-va-gan-ket">4.4. Leadership, kế nhiệm và gắn kết</h3>
+<table>
+<thead>
+<tr>
+<th>KPI tư vấn</th>
+<th>Logic khái niệm</th>
+<th>Điều kiện dữ liệu</th>
+<th>Vì sao nên bổ sung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kế nhiệm Coverage</td>
+<td>Vị trí trọng yếu có successor sẵn sàng / tổng vị trí trọng yếu</td>
+<td>Cần kế nhiệm plan</td>
+<td>Hữu ích cho quản trị rủi ro nhân sự cấp quản lý</td>
+</tr>
+<tr>
+<td>Leadership Bench Strength</td>
+<td>Số successor sẵn sàng theo từng vị trí quản lý</td>
+<td>Cần readiness level</td>
+<td>Đo chất lượng pipeline lãnh đạo</td>
+</tr>
+<tr>
+<td>Gắn kết Score</td>
+<td>Điểm khảo sát gắn kết bình quân</td>
+<td>Cần survey</td>
+<td>Giải thích nguyên nhân tỷ lệ nghỉ việc ngoài dữ liệu hành chính</td>
+</tr>
+<tr>
+<td>eNPS</td>
+<td>% promoter - % detractor trong khảo sát nhân viên</td>
+<td>Cần khảo sát eNPS</td>
+<td>Dễ truyền thông cho lãnh đạo nhưng phải tránh đơn giản hóa quá mức</td>
+</tr>
+<tr>
+<td>Manager Effectiveness Score</td>
+<td>Điểm quản lý từ survey/performance/tỷ lệ nghỉ việc đội nhóm</td>
+<td>Cần survey, org tree, tỷ lệ nghỉ việc</td>
+<td>Dùng để phân tích rủi ro theo quản lý</td>
+</tr>
+</tbody>
+</table>
+<h3 id="45-suc-khoe-va-gan-ket-workload-va-rui-ro-tam-ly-xa-hoi">4.5. Sức khỏe và gắn kết, workload và rủi ro tâm lý xã hội</h3>
+<table>
+<thead>
+<tr>
+<th>KPI tư vấn</th>
+<th>Logic khái niệm</th>
+<th>Điều kiện dữ liệu</th>
+<th>Vì sao nên bổ sung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workload Risk Index</td>
+<td>Kết hợp OT, vi phạm chấm công, nghỉ phép bất thường, survey score</td>
+<td>Cần attendance, leave, survey</td>
+<td>Gắn ISO 45003 vào phân tích HR nhưng nên dùng mức đơn vị, không quy kết cá nhân</td>
+</tr>
+<tr>
+<td>Burnout Proxy</td>
+<td>OT cao liên tục + nghỉ phép/ốm tăng + gắn kết giảm</td>
+<td>Cần dữ liệu theo chuỗi thời gian</td>
+<td>Cảnh báo sớm cho HRBP, không dùng để đánh giá kỷ luật cá nhân</td>
+</tr>
+<tr>
+<td>Absence Pattern Risk</td>
+<td>Vắng mặt/vi phạm tập trung theo ngày/ca/đơn vị</td>
+<td>Cần chấm công, nghỉ phép</td>
+<td>Mở rộng từ báo cáo chấm công hiện có</td>
+</tr>
+<tr>
+<td>Overtime Sustainability</td>
+<td>OT bình quân nhiều kỳ liên tiếp vượt ngưỡng</td>
+<td>Cần OT theo tháng và ngưỡng</td>
+<td>Hữu ích với chi nhánh thiếu người hoặc peak workload</td>
+</tr>
+</tbody>
+</table>
+<h3 id="46-tuan-thu-ethics-quan-tri-du-lieu-va-kiem-soat-su-dung-ai">4.6. Tuân thủ, ethics, quản trị dữ liệu và kiểm soát sử dụng AI</h3>
+<table>
+<thead>
+<tr>
+<th>KPI tư vấn</th>
+<th>Logic khái niệm</th>
+<th>Điều kiện dữ liệu</th>
+<th>Vì sao nên bổ sung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HR Data Quality Score</td>
+<td>1 - tỷ lệ lỗi dữ liệu trọng yếu</td>
+<td>Cần data quality rules</td>
+<td>Đảm bảo số liệu đáng tin trước khi ra quyết định</td>
+</tr>
+<tr>
+<td>số lượt lộ dữ liệu cá nhân nhạy cảm</td>
+<td>Số report/xuất dữ liệu chứa trường dữ liệu cá nhân nhạy cảm không đúng quyền</td>
+<td>Cần data phân loại mức độ nhạy cảm và nhật ký kiểm soát</td>
+<td>Quan trọng với dữ liệu nhân sự/ngân hàng</td>
+</tr>
+<tr>
+<td>Lương và phúc lợi Access Exceptions</td>
+<td>Số người dùng có quyền xem lương ngoài danh sách được duyệt</td>
+<td>Cần access matrix</td>
+<td>Giảm rủi ro dữ liệu lương nhạy cảm</td>
+</tr>
+<tr>
+<td>tỷ lệ kiểm thử phân quyền đạt</td>
+<td>Số test phân quyền theo vai trò đạt / tổng test phân quyền theo vai trò</td>
+<td>Cần tình huống kiểm thử</td>
+<td>Dựa theo khuyến nghị kiểm thử role trong Power BI</td>
+</tr>
+<tr>
+<td>mức độ gắn nhãn dữ liệu nhạy cảm</td>
+<td>Report/model/dataflow có label / tổng tài sản báo cáo HR BI</td>
+<td>Cần Microsoft Purview/Power BI labels</td>
+<td>Bảo vệ dữ liệu khi xuất dữ liệu hoặc chia sẻ</td>
+</tr>
+<tr>
+<td>AI Use Case Approval Rate</td>
+<td>Use case AI được duyệt / tổng use case AI HR</td>
+<td>Cần AI usage log</td>
+<td>Gắn AI vào quản trị và kiểm soát thay vì dùng tự phát</td>
+</tr>
+<tr>
+<td>Prompt dữ liệu cá nhân nhạy cảm Violation Count</td>
+<td>Số lần prompt chứa dữ liệu cá nhân nhạy cảm/lương vượt chính sách</td>
+<td>Cần logging hoặc checklist tự khai báo</td>
+<td>Phù hợp Buổi 1 về dùng AI an toàn</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-tu-van-bo-sung-cho-danh-sach-bao-cao-can-quan-ly">5. Tư vấn bổ sung cho danh sách báo cáo cần quản lý</h2>
+<table>
+<thead>
+<tr>
+<th>Báo cáo tư vấn</th>
+<th>Mục tiêu</th>
+<th>Chỉ tiêu và thành phần hiển thị chính</th>
+<th>Điều kiện triển khai</th>
+<th style="text-align: right;">Mức ưu tiên</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cơ cấu nhân sự Planning &amp; Vacancy Báo cáo điều hành</td>
+<td>So sánh actual số nhân sự với định biên và nhu cầu tuyển</td>
+<td>Headcount vs approved HC, vacancy rate, critical role coverage</td>
+<td>Cần <code>fact_dinh_bien</code>, danh mục vị trí</td>
+<td style="text-align: right;">Cao</td>
+</tr>
+<tr>
+<td>Recruitment Funnel Báo cáo điều hành</td>
+<td>Theo dõi tuyển dụng từ requisition đến nhận việc</td>
+<td>Time to Fill, Offer Acceptance Rate, Nguồn of Hire, funnel conversion</td>
+<td>Cần ATS hoặc tracker tuyển dụng</td>
+<td style="text-align: right;">Cao nếu Agribank muốn mở rộng tuyển dụng</td>
+</tr>
+<tr>
+<td>Nhân tài &amp; Kế nhiệm Báo cáo điều hành</td>
+<td>Quản trị vị trí trọng yếu, successor và rủi ro kế nhiệm</td>
+<td>Kế nhiệm coverage, readiness, critical role risk</td>
+<td>Cần talent/kế nhiệm data</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td>Skills &amp; Certification Tuân thủ Báo cáo điều hành</td>
+<td>Theo dõi năng lực, chứng chỉ bắt buộc, skill gap</td>
+<td>Certification tuân thủ, skill coverage, training plan gap</td>
+<td>Cần skill framework, chứng chỉ</td>
+<td style="text-align: right;">Cao với nghiệp vụ ngân hàng</td>
+</tr>
+<tr>
+<td>Gắn kết &amp; Culture Báo cáo điều hành</td>
+<td>Phân tích gắn kết, eNPS, manager effectiveness</td>
+<td>Gắn kết score, eNPS, trend, heatmap theo đơn vị</td>
+<td>Cần survey và ngưỡng bảo mật nhóm</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td>Sức khỏe và gắn kết &amp; Workload Risk Báo cáo điều hành</td>
+<td>Cảnh báo workload, OT, nghỉ phép/vắng mặt bất thường</td>
+<td>Workload risk, overtime sustainability, absence pattern</td>
+<td>Cần attendance, leave, survey</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td>D&amp;I and Pay Equity View</td>
+<td>Theo dõi cơ cấu đa dạng, đại diện theo cấp, chênh lệch lương</td>
+<td>Gender mix, leadership representation, pay gap view</td>
+<td>Cần legal/HR policy review và dữ liệu đủ sạch</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td>Employee Relations &amp; Tuân thủ Báo cáo điều hành</td>
+<td>Theo dõi case quan hệ lao động, kỷ luật, khiếu nại, SLA xử lý</td>
+<td>Case volume, closure SLA, severity, trend</td>
+<td>Cần case management data</td>
+<td style="text-align: right;">Trung bình</td>
+</tr>
+<tr>
+<td>báo cáo giám sát quản trị báo cáo nhân sự</td>
+<td>Kiểm soát dữ liệu, phân quyền, label, cập nhật dữ liệu, lỗi nguồn</td>
+<td>Data quality score, phân quyền theo vai trò pass rate, nhãn phân loại dữ liệu nhạy cảm coverage</td>
+<td>Cần nhật ký kiểm soáts, data catalog</td>
+<td style="text-align: right;">Cao</td>
+</tr>
+<tr>
+<td>kiểm soát sử dụng AI trong phân tích nhân sự</td>
+<td>Kiểm soát use case AI, prompt, dữ liệu nhạy cảm, người phụ trách kiểm tra lại</td>
+<td>AI use case log, approval status, dữ liệu cá nhân nhạy cảm prompt violations</td>
+<td>Cần chính sách AI nội bộ</td>
+<td style="text-align: right;">Cao khi dùng AI trong Buổi 1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-cach-long-vao-6-buoi-ma-khong-lam-nang-chuong-trinh">6. Cách lồng vào 6 buổi mà không làm nặng chương trình</h2>
+<table>
+<thead>
+<tr>
+<th>Buổi</th>
+<th>Bổ sung tư vấn nên lồng</th>
+<th>Cách triển khai nhẹ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Buổi 1</td>
+<td>kiểm soát sử dụng AI, phân loại mức độ nhạy cảm của dữ liệu, HR KPI theo ISO 30414</td>
+<td>Thêm 20-30 phút case Agribank: AI được dùng để tạo nháp, không đưa dữ liệu cá nhân nhạy cảm/lương thật vào prompt</td>
+</tr>
+<tr>
+<td>Buổi 2</td>
+<td>Data Quality và KPI definition trước khi viết Excel function</td>
+<td>Thêm checklist 5 lỗi dữ liệu trước khi <code>COUNTIFS/SUMIFS</code></td>
+</tr>
+<tr>
+<td>Buổi 3</td>
+<td>Mức chi tiết của dữ liệu, quan hệ giữa các bảng, workforce planning và skill data</td>
+<td>Thêm ví dụ vì sao cần <code>fact_dinh_bien</code>, <code>dim_skill</code>, <code>dim_date</code></td>
+</tr>
+<tr>
+<td>Buổi 4</td>
+<td>Power Query - bước xử lý dữ liệu chuẩn hóa nguồn đối chiếu nguồn và data phân loại mức độ nhạy cảm</td>
+<td>Thêm cột phân loại mức độ nhạy cảm/dữ liệu cá nhân nhạy cảm flag trong query hoặc bộ mô tả dữ liệu</td>
+</tr>
+<tr>
+<td>Buổi 5</td>
+<td>công thức Power BI quản trị và kiểm soát, phân quyền theo vai trò test, chỉ tiêu tính toán chốt duyệt</td>
+<td>Thêm ví dụ phân quyền theo vai trò theo chi nhánh/vùng và chỉ tiêu tính toán đơn vị chịu trách nhiệm</td>
+</tr>
+<tr>
+<td>Buổi 6</td>
+<td>Báo cáo điều hành quản trị và kiểm soát, nhãn phân loại dữ liệu nhạy cảm, report acceptance</td>
+<td>Thêm checklist: report đúng câu hỏi, đúng quyền, đúng nhãn dữ liệu</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-khuyen-nghi-uu-tien-cho-agribank">7. Khuyến nghị ưu tiên cho Agribank</h2>
+<h3 id="nen-bo-sung-ngay-vao-tai-lieu-khoa-hoc">Nên bổ sung ngay vào tài liệu khóa học</h3>
+<table>
+<thead>
+<tr>
+<th>Mục</th>
+<th>Lý do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data phân loại mức độ nhạy cảm và dữ liệu cá nhân nhạy cảm flag trong bộ mô tả dữ liệu</td>
+<td>Dữ liệu HR, lương, hiệu suất, nghỉ phép đều nhạy cảm</td>
+</tr>
+<tr>
+<td>HR báo cáo giám sát chất lượng dữ liệu</td>
+<td>Góp ý Agribank nhấn mạnh thiếu nghiệp vụ quản trị dữ liệu</td>
+</tr>
+<tr>
+<td>Cơ cấu nhân sự Planning/Vacancy metrics</td>
+<td>Ngân hàng có mạng lưới chi nhánh lớn, cần nhìn thiếu/thừa người theo đơn vị</td>
+</tr>
+<tr>
+<td>Skills &amp; Certification Tuân thủ</td>
+<td>Phù hợp đào tạo, tuân thủ và năng lực nghiệp vụ ngân hàng</td>
+</tr>
+<tr>
+<td>phân quyền theo vai trò và nhãn phân loại dữ liệu nhạy cảm trong Power BI</td>
+<td>Cần thiết khi triển khai báo cáo điều hành HR/lương ở môi trường enterprise</td>
+</tr>
+<tr>
+<td>AI Usage &amp; Bảo mật Checklist</td>
+<td>Buổi 1 dùng AI nên có ranh giới rõ: dữ liệu nào được phép đưa vào AI, dữ liệu nào phải ẩn/giả lập</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nen-ua-vao-phan-mo-ronggiai-oan-mo-rong">Nên đưa vào phần “mở rộng/giai đoạn mở rộng”</h3>
+<table>
+<thead>
+<tr>
+<th>Mục</th>
+<th>Lý do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gắn kết/eNPS</td>
+<td>Cần khảo sát và quy tắc bảo mật nhóm, không nên suy diễn từ dữ liệu hành chính</td>
+</tr>
+<tr>
+<td>Pay equity view</td>
+<td>Cần legal/HR policy review, không nên đưa vào nếu dữ liệu lương chưa chuẩn</td>
+</tr>
+<tr>
+<td>Attrition prediction/AI model</td>
+<td>Có rủi ro bias và privacy; chỉ nên dùng khi có quản trị và kiểm soát, người phụ trách kiểm tra lại và dữ liệu đủ sạch</td>
+</tr>
+<tr>
+<td>Employee relations case analytics</td>
+<td>Dữ liệu nhạy cảm, cần phân quyền rất chặt</td>
+</tr>
+<tr>
+<td>Kế nhiệm planning</td>
+<td>Cần dữ liệu talent riêng, không có trong dữ liệu thực hành hiện tại</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-canh-bao-khi-dung-tu-van-ben-ngoai">8. Cảnh báo khi dùng tư vấn bên ngoài</h2>
+<ul>
+<li>Không thay thế định nghĩa KPI nội bộ của Agribank. Các chỉ tiêu như tỷ lệ nghỉ việc, giữ chân nhân sự, FTE, vacancy, pay equity phải được HR/Finance/IT/Data chốt duyệt.</li>
+<li>Không đưa dữ liệu cá nhân, dữ liệu lương, đánh giá hiệu suất hoặc lý do nghỉ phép thật vào công cụ AI công khai.</li>
+<li>Không dùng chỉ số sức khỏe và gắn kết/burnout proxy để quy kết cá nhân. Nên dùng mức đơn vị hoặc nhóm đủ lớn.</li>
+<li>Không triển khai attrition prediction hoặc scoring cá nhân nếu chưa có đánh giá pháp lý, đạo đức, bias và quyền riêng tư.</li>
+<li>Không xem nhãn phân loại dữ liệu nhạy cảm là thay thế phân quyền. Labels giúp phân loại/bảo vệ khi xuất dữ liệu, còn quyền xem vẫn cần Power BI permissions, phân quyền theo vai trò/phân quyền theo đối tượng dữ liệu và quản trị và kiểm soát.</li>
+</ul>
+<h2 id="9-ket-luan-tu-van">9. Kết luận tư vấn</h2>
+<p>Phần thực hành hiện có đã đủ để dạy Excel, mô hình dữ liệu phục vụ báo cáo, Power BI và công thức Power BI trên dữ liệu HR mô phỏng. Phần cần bổ sung để thuyết phục Agribank là lớp quản trị và kiểm soát và nghiệp vụ nâng cao:</p>
+<ul>
+<li>Chuẩn hóa human capital reporting theo nhóm chỉ tiêu rộng hơn.</li>
+<li>Thêm workforce planning, recruitment, skills, tuân thủ và HR BI quản trị và kiểm soát.</li>
+<li>Đưa AI vào như công cụ hỗ trợ có kiểm soát, không phải nơi xử lý dữ liệu nhạy cảm tùy tiện.</li>
+<li>Thiết kế báo cáo điều hành không dừng ở “đẹp và đúng công thức” mà còn đúng quyền, đúng nguồn, đúng định nghĩa và có khả năng audit.</li>
+</ul></div>
+          <div class="prevnext"><a class="pn prev" href="#reports-list"><span>← Trước</span><strong>Danh sách báo cáo &amp; yêu cầu</strong></a></div>
+        </article>
+        <nav class="toc" aria-label="Mục lục"><p class="toc-h">Trên trang này</p><ul><li><a href="#" data-anchor="1-nguyen-tac-su-dung">1. Nguyên tắc sử dụng</a></li><li><a href="#" data-anchor="2-nguon-tham-khao-chinh">2. Nguồn tham khảo chính</a></li><li><a href="#" data-anchor="3-tu-van-bo-sung-cho-bo-mo-ta-du-lieu-va-ban-o-nguon-du-lieu">3. Tư vấn bổ sung cho bộ mô tả dữ liệu và bản đồ nguồn dữ liệu</a></li><li><a href="#" data-anchor="4-tu-van-bo-sung-cho-bo-chuan-chi-tieu-nhan-su">4. Tư vấn bổ sung cho bộ chuẩn chỉ tiêu nhân sự</a></li><li><a href="#" data-anchor="5-tu-van-bo-sung-cho-danh-sach-bao-cao-can-quan-ly">5. Tư vấn bổ sung cho danh sách báo cáo cần quản lý</a></li><li><a href="#" data-anchor="6-cach-long-vao-6-buoi-ma-khong-lam-nang-chuong-trinh">6. Cách lồng vào 6 buổi mà không làm nặng chương trình</a></li><li><a href="#" data-anchor="7-khuyen-nghi-uu-tien-cho-agribank">7. Khuyến nghị ưu tiên cho Agribank</a></li><li><a href="#" data-anchor="8-canh-bao-khi-dung-tu-van-ben-ngoai">8. Cảnh báo khi dùng tư vấn bên ngoài</a></li><li><a href="#" data-anchor="9-ket-luan-tu-van">9. Kết luận tư vấn</a></li></ul></nav>
+      </div>
+    </section>
+    </div>
+  </main>
+</div>
+<script>
+(function(){
+  var docs=["overview","business-outputs","data-dictionary","kpi-dictionary","reports-list","external-research"];
+  var titles={"overview":"Tổng quan","business-outputs":"Đầu ra nghiệp vụ & phương án","data-dictionary":"Bộ mô tả dữ liệu & nguồn","kpi-dictionary":"Bộ chuẩn chỉ tiêu (KPI)","reports-list":"Danh sách báo cáo & yêu cầu","external-research":"Tư vấn từ nghiên cứu ngoài"};
+  function show(id){
+    if(docs.indexOf(id)<0)id="overview";
+    document.querySelectorAll("[data-doc]").forEach(function(s){s.classList.toggle("on",s.id===id);});
+    document.querySelectorAll("[data-nav]").forEach(function(a){a.classList.toggle("active",a.getAttribute("data-nav")===id);});
+    document.getElementById("crumb-doc").textContent=titles[id]||"Tổng quan";
+    window.scrollTo(0,0);
+    closeMenu();
+    buildSpy();
+  }
+  function route(){show((location.hash||"#overview").slice(1));}
+  window.addEventListener("hashchange",route);
+  // sidebar (mobile)
+  var sb=document.getElementById("sidebar"),sc=document.getElementById("scrim");
+  function closeMenu(){sb.classList.remove("open");sc.classList.remove("show");}
+  document.getElementById("hamb").onclick=function(){sb.classList.toggle("open");sc.classList.toggle("show");};
+  sc.onclick=closeMenu;
+  // theme
+  var tb=document.getElementById("theme");
+  function setTheme(t){document.documentElement.setAttribute("data-theme",t);
+    tb.innerHTML='<i class="fa-solid fa-'+(t==="light"?"sun":"moon")+'"></i>';
+    try{localStorage.setItem("hra-theme",t);}catch(e){}}
+  tb.onclick=function(){setTheme(document.documentElement.getAttribute("data-theme")==="light"?"dark":"light");};
+  var saved="dark";try{saved=localStorage.getItem("hra-theme")||"dark";}catch(e){}
+  setTheme(saved);
+  // toc anchors + scrollspy
+  document.querySelectorAll(".toc a[data-anchor]").forEach(function(a){
+    a.onclick=function(e){e.preventDefault();var el=document.getElementById(a.getAttribute("data-anchor"));
+      if(el)el.scrollIntoView({behavior:"smooth",block:"start"});};
+  });
+  var spy=null;
+  function buildSpy(){
+    if(spy)spy.disconnect();
+    var sec=document.querySelector(".doc.on");if(!sec)return;
+    var links={};sec.parentElement.querySelectorAll(".toc a[data-anchor]").forEach(function(a){links[a.getAttribute("data-anchor")]=a;});
+    var heads=sec.querySelectorAll(".doc-body h2[id]");if(!heads.length)return;
+    spy=new IntersectionObserver(function(ents){
+      ents.forEach(function(en){if(en.isIntersecting){
+        Object.values(links).forEach(function(l){l.classList.remove("active");});
+        if(links[en.target.id])links[en.target.id].classList.add("active");
+      }});
+    },{rootMargin:"-70px 0px -70% 0px"});
+    heads.forEach(function(h){spy.observe(h);});
+  }
+  // arrow-key nav between docs
+  document.addEventListener("keydown",function(e){
+    if(e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA")return;
+    var cur=docs.indexOf((location.hash||"#overview").slice(1));
+    if(e.key==="ArrowRight"&&cur<docs.length-1)location.hash=docs[cur+1];
+    if(e.key==="ArrowLeft"&&cur>0)location.hash=docs[cur-1];
+  });
+  route();
+})();
+</script>
+</body>
+</html>

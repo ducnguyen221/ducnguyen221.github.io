@@ -9,8 +9,8 @@
     ],
     "path": "content/automation/n8n-vs-knime.html",
     "thumbnail": "",
-    "lastModified": "2026-05-21",
-    "fileSize": 79836
+    "lastModified": "2026-06-23",
+    "fileSize": 82032
   },
   {
     "slug": "databricks-genai",
@@ -23,8 +23,22 @@
     ],
     "path": "content/ai/databricks-genai.html",
     "thumbnail": "",
-    "lastModified": "2026-05-21",
-    "fileSize": 92644
+    "lastModified": "2026-06-23",
+    "fileSize": 93776
+  },
+  {
+    "slug": "hr-analytics",
+    "title": "HR Analytics · Tài liệu tư vấn nghiệp vụ (HRA-101) · Atlas",
+    "description": "Bộ tài liệu tư vấn nghiệp vụ HR Analytics: đầu ra nghiệp vụ, bộ mô tả dữ liệu, bộ chỉ tiêu KPI nhân sự, danh sách báo cáo Power BI và tư vấn theo chuẩn human capital reporting.",
+    "categories": [
+      "da",
+      "strategy",
+      "bi"
+    ],
+    "path": "content/da/hr-analytics.html",
+    "thumbnail": "",
+    "lastModified": "2026-07-16",
+    "fileSize": 182591
   },
   {
     "slug": "cai-dat-n8n-desktop-1",
@@ -37,8 +51,8 @@
     ],
     "path": "content/instruction/cai-dat-n8n-desktop-1.html",
     "thumbnail": "",
-    "lastModified": "2026-05-22",
-    "fileSize": 59324
+    "lastModified": "2026-06-23",
+    "fileSize": 60644
   },
   {
     "slug": "cai-dat-n8n-desktop",
@@ -51,8 +65,8 @@
     ],
     "path": "content/instruction/cai-dat-n8n-desktop.html",
     "thumbnail": "",
-    "lastModified": "2026-05-21",
-    "fileSize": 55281
+    "lastModified": "2026-06-23",
+    "fileSize": 56562
   },
   {
     "slug": "lasoong-loyalty-os",
@@ -63,8 +77,8 @@
     ],
     "path": "content/strategy/LaSoong_Loyalty_OS.html",
     "thumbnail": "",
-    "lastModified": "2026-06-04",
-    "fileSize": 31300
+    "lastModified": "2026-06-23",
+    "fileSize": 31643
   },
   {
     "slug": "powerbi-glossary-domain-knowledge",
@@ -76,8 +90,8 @@
     ],
     "path": "content/bi/powerbi-glossary-domain-knowledge.html",
     "thumbnail": "",
-    "lastModified": "2026-05-21",
-    "fileSize": 140075
+    "lastModified": "2026-06-23",
+    "fileSize": 140892
   },
   {
     "slug": "prompt-nhu-mot-ban-yeu-cau",
