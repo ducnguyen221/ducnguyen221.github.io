@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HR Analytics · Chuẩn hóa dữ liệu · KPI · Báo cáo (HRA-101) · Atlas</title>
 <meta name="description" content="Bộ tài liệu HR Analytics: Data Dictionary 42 bảng, KPI Dictionary 6 nhóm chỉ tiêu và Report List 13 báo cáo — kèm ERD, mindmap nghiệp vụ và luồng dữ liệu tương tác (zoom, pan, toàn màn hình).">
-<link rel="icon" href="../../favicon.svg">
+<link rel="icon" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -114,11 +114,12 @@ a{color:var(--accent);text-decoration:none}
 .doc-body blockquote p:last-child{margin:0}
 .doc-body strong{color:var(--text);font-weight:600}
 .doc-body hr{border:none;border-top:1px solid var(--line);margin:30px 0}
-.doc-body table{width:100%;border-collapse:collapse;font-family:Inter,sans-serif;font-size:13.5px;
-  margin:6px 0 20px;display:block;overflow-x:auto;white-space:normal}
+.doc-body .tbl-wrap{overflow-x:auto;margin:6px 0 20px;border:1px solid var(--line);border-radius:10px}
+.doc-body table{width:auto;min-width:100%;border-collapse:collapse;font-family:Inter,sans-serif;font-size:13.5px;margin:0;white-space:normal}
 .doc-body thead th{background:var(--surface2);color:var(--text);font-weight:700;text-align:left;
-  padding:11px 14px;border-bottom:2px solid var(--accent);font-size:12.5px;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
-.doc-body tbody td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5;min-width:120px}
+  padding:10px 14px;border-bottom:2px solid var(--accent);font-size:12px;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap;vertical-align:bottom}
+.doc-body tbody td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5;min-width:92px}
+.doc-body th.col-wide,.doc-body td.col-wide{min-width:360px;white-space:normal}
 .doc-body tbody tr:nth-child(even){background:color-mix(in srgb,var(--surface) 55%,transparent)}
 .doc-body tbody tr:hover{background:var(--accent-soft)}
 .doc-body td code{white-space:nowrap}
@@ -268,15 +269,15 @@ a{color:var(--accent);text-decoration:none}
 <blockquote>
 <p><strong>Ghi chú cho lãnh đạo:</strong> Không cần chờ đủ toàn bộ 42 bảng mới bắt đầu. Có thể phát hành phiên bản đầu tiên với các bảng bắt buộc, nhưng phải công khai phạm vi dữ liệu và đánh dấu các chỉ tiêu chưa đủ cơ sở tính.</p>
 </blockquote>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Nhóm</th>
-<th>Tên bảng English</th>
-<th>Tên bảng tiếng Việt không dấu</th>
+<th>Tên bảng EN</th>
+<th>Tên bảng VN</th>
 <th>Grain</th>
-<th>Cột nghiệp vụ trọng tâm</th>
-<th>Khóa chính/khóa ngoại</th>
+<th class="col-wide">Các cột chính</th>
+<th>PK / FK</th>
 <th>Ưu tiên</th>
 </tr>
 </thead>
@@ -286,7 +287,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_date</code></td>
 <td><code>dm_ngay</code></td>
 <td>1 dòng/ngày</td>
-<td><code>date_sk</code>, <code>full_date</code>, <code>year</code>, <code>quarter_no</code>, <code>month_no</code>, <code>year_month</code>, <code>is_weekend</code>, <code>is_holiday</code></td>
+<td class="col-wide"><code>date_sk</code>, <code>full_date</code>, <code>year</code>, <code>quarter_no</code>, <code>month_no</code>, <code>year_month</code>, <code>is_weekend</code>, <code>is_holiday</code></td>
 <td>PK <code>date_sk</code></td>
 <td>Bắt buộc</td>
 </tr>
@@ -295,7 +296,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_employee</code></td>
 <td><code>dm_nhan_su</code></td>
 <td>1 nhân sự/phiên bản SCD2</td>
-<td><code>employee_sk</code>, <code>employee_id</code>, <code>full_name</code>, <code>gender</code>, <code>hire_date_sk</code>, <code>termination_date_sk</code>, <code>contract_end_date</code>, <code>employment_type_sk</code>, <code>contract_type_sk</code>, <code>employee_status</code>, <code>manager_employee_sk</code>, <code>valid_from</code>, <code>valid_to</code>, <code>is_current</code></td>
+<td class="col-wide"><code>employee_sk</code>, <code>employee_id</code>, <code>full_name</code>, <code>gender</code>, <code>hire_date_sk</code>, <code>termination_date_sk</code>, <code>contract_end_date</code>, <code>employment_type_sk</code>, <code>contract_type_sk</code>, <code>employee_status</code>, <code>manager_employee_sk</code>, <code>valid_from</code>, <code>valid_to</code>, <code>is_current</code></td>
 <td>PK <code>employee_sk</code>; FK date/type/contract/self</td>
 <td>Bắt buộc</td>
 </tr>
@@ -304,7 +305,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_branch</code></td>
 <td><code>dm_chi_nhanh</code></td>
 <td>1 chi nhánh/phiên bản</td>
-<td><code>branch_sk</code>, <code>branch_id</code>, <code>branch_name</code>, <code>region_name</code>, <code>province_city</code>, <code>branch_type</code>, <code>is_active</code></td>
+<td class="col-wide"><code>branch_sk</code>, <code>branch_id</code>, <code>branch_name</code>, <code>region_name</code>, <code>province_city</code>, <code>branch_type</code>, <code>is_active</code></td>
 <td>PK <code>branch_sk</code></td>
 <td>Bắt buộc</td>
 </tr>
@@ -313,7 +314,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_department</code></td>
 <td><code>dm_phong_ban</code></td>
 <td>1 phòng ban/đơn vị</td>
-<td><code>department_sk</code>, <code>department_id</code>, <code>department_name</code>, <code>branch_sk</code>, <code>parent_department_sk</code>, <code>department_level</code>, <code>is_active</code></td>
+<td class="col-wide"><code>department_sk</code>, <code>department_id</code>, <code>department_name</code>, <code>branch_sk</code>, <code>parent_department_sk</code>, <code>department_level</code>, <code>is_active</code></td>
 <td>PK <code>department_sk</code>; FK branch/self</td>
 <td>Bắt buộc</td>
 </tr>
@@ -322,7 +323,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_position</code></td>
 <td><code>dm_vi_tri</code></td>
 <td>1 vị trí/chức danh</td>
-<td><code>position_sk</code>, <code>position_id</code>, <code>position_title</code>, <code>job_family</code>, <code>job_level_sk</code>, <code>is_managerial</code></td>
+<td class="col-wide"><code>position_sk</code>, <code>position_id</code>, <code>position_title</code>, <code>job_family</code>, <code>job_level_sk</code>, <code>is_managerial</code></td>
 <td>PK <code>position_sk</code>; FK job level</td>
 <td>Bắt buộc</td>
 </tr>
@@ -331,7 +332,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_job_level</code></td>
 <td><code>dm_cap_bac</code></td>
 <td>1 cấp bậc</td>
-<td><code>job_level_sk</code>, <code>job_level_code</code>, <code>job_level_name</code>, <code>management_level</code>, <code>salary_band</code></td>
+<td class="col-wide"><code>job_level_sk</code>, <code>job_level_code</code>, <code>job_level_name</code>, <code>management_level</code>, <code>salary_band</code></td>
 <td>PK <code>job_level_sk</code></td>
 <td>Nên có</td>
 </tr>
@@ -340,7 +341,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_location</code></td>
 <td><code>dm_dia_diem</code></td>
 <td>1 địa điểm</td>
-<td><code>location_sk</code>, <code>location_code</code>, <code>location_name</code>, <code>province_city</code>, <code>region_name</code></td>
+<td class="col-wide"><code>location_sk</code>, <code>location_code</code>, <code>location_name</code>, <code>province_city</code>, <code>region_name</code></td>
 <td>PK <code>location_sk</code></td>
 <td>Nên có</td>
 </tr>
@@ -349,7 +350,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_cost_center</code></td>
 <td><code>dm_trung_tam_chi_phi</code></td>
 <td>1 cost center</td>
-<td><code>cost_center_sk</code>, <code>cost_center_code</code>, <code>cost_center_name</code>, <code>finance_owner</code></td>
+<td class="col-wide"><code>cost_center_sk</code>, <code>cost_center_code</code>, <code>cost_center_name</code>, <code>finance_owner</code></td>
 <td>PK <code>cost_center_sk</code></td>
 <td>Nên có</td>
 </tr>
@@ -358,7 +359,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_employment_type</code></td>
 <td><code>dm_loai_hinh_lam_viec</code></td>
 <td>1 loại hình làm việc</td>
-<td><code>employment_type_sk</code>, <code>employment_type_code</code>, <code>employment_type_name</code>, <code>fte_ratio</code></td>
+<td class="col-wide"><code>employment_type_sk</code>, <code>employment_type_code</code>, <code>employment_type_name</code>, <code>fte_ratio</code></td>
 <td>PK <code>employment_type_sk</code></td>
 <td>Bắt buộc</td>
 </tr>
@@ -367,7 +368,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_contract_type</code></td>
 <td><code>dm_loai_hop_dong</code></td>
 <td>1 loại hợp đồng</td>
-<td><code>contract_type_sk</code>, <code>contract_type_code</code>, <code>contract_type_name</code>, <code>term_months</code>, <code>risk_group</code></td>
+<td class="col-wide"><code>contract_type_sk</code>, <code>contract_type_code</code>, <code>contract_type_name</code>, <code>term_months</code>, <code>risk_group</code></td>
 <td>PK <code>contract_type_sk</code></td>
 <td>Bắt buộc</td>
 </tr>
@@ -376,7 +377,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_shift</code></td>
 <td><code>dm_ca_lam_viec</code></td>
 <td>1 ca làm việc</td>
-<td><code>shift_sk</code>, <code>shift_code</code>, <code>shift_name</code>, <code>scheduled_start</code>, <code>scheduled_end</code>, <code>late_threshold_min</code>, <code>early_threshold_min</code></td>
+<td class="col-wide"><code>shift_sk</code>, <code>shift_code</code>, <code>shift_name</code>, <code>scheduled_start</code>, <code>scheduled_end</code>, <code>late_threshold_min</code>, <code>early_threshold_min</code></td>
 <td>PK <code>shift_sk</code></td>
 <td>Bắt buộc</td>
 </tr>
@@ -385,7 +386,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_leave_type</code></td>
 <td><code>dm_loai_nghi_phep</code></td>
 <td>1 loại phép</td>
-<td><code>leave_type_sk</code>, <code>leave_type_code</code>, <code>leave_type_name</code>, <code>paid_flag</code>, <code>approval_required</code></td>
+<td class="col-wide"><code>leave_type_sk</code>, <code>leave_type_code</code>, <code>leave_type_name</code>, <code>paid_flag</code>, <code>approval_required</code></td>
 <td>PK <code>leave_type_sk</code></td>
 <td>Bắt buộc</td>
 </tr>
@@ -394,7 +395,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_pay_component</code></td>
 <td><code>dm_thanh_phan_luong</code></td>
 <td>1 thành phần payroll</td>
-<td><code>pay_component_sk</code>, <code>component_code</code>, <code>component_name</code>, <code>reporting_bucket</code>, <code>sign</code>, <code>sensitive_flag</code></td>
+<td class="col-wide"><code>pay_component_sk</code>, <code>component_code</code>, <code>component_name</code>, <code>reporting_bucket</code>, <code>sign</code>, <code>sensitive_flag</code></td>
 <td>PK <code>pay_component_sk</code></td>
 <td>Bắt buộc</td>
 </tr>
@@ -403,7 +404,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_training_course</code></td>
 <td><code>dm_khoa_dao_tao</code></td>
 <td>1 khóa học</td>
-<td><code>course_sk</code>, <code>course_code</code>, <code>course_name</code>, <code>skill_sk</code>, <code>planned_hours</code>, <code>course_type</code>, <code>mandatory_flag</code></td>
+<td class="col-wide"><code>course_sk</code>, <code>course_code</code>, <code>course_name</code>, <code>skill_sk</code>, <code>planned_hours</code>, <code>course_type</code>, <code>mandatory_flag</code></td>
 <td>PK <code>course_sk</code>; FK skill</td>
 <td>Bắt buộc</td>
 </tr>
@@ -412,7 +413,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_performance_cycle</code></td>
 <td><code>dm_ky_danh_gia</code></td>
 <td>1 kỳ đánh giá</td>
-<td><code>cycle_sk</code>, <code>cycle_code</code>, <code>cycle_name</code>, <code>start_date_sk</code>, <code>end_date_sk</code>, <code>review_type</code></td>
+<td class="col-wide"><code>cycle_sk</code>, <code>cycle_code</code>, <code>cycle_name</code>, <code>start_date_sk</code>, <code>end_date_sk</code>, <code>review_type</code></td>
 <td>PK <code>cycle_sk</code>; FK date</td>
 <td>Nên có</td>
 </tr>
@@ -421,7 +422,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_rating_scale</code></td>
 <td><code>dm_thang_diem_danh_gia</code></td>
 <td>1 mức xếp loại</td>
-<td><code>rating_scale_sk</code>, <code>rating_code</code>, <code>rating_name</code>, <code>min_score</code>, <code>max_score</code>, <code>performance_bucket</code></td>
+<td class="col-wide"><code>rating_scale_sk</code>, <code>rating_code</code>, <code>rating_name</code>, <code>min_score</code>, <code>max_score</code>, <code>performance_bucket</code></td>
 <td>PK <code>rating_scale_sk</code></td>
 <td>Nên có</td>
 </tr>
@@ -430,7 +431,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_recruitment_source</code></td>
 <td><code>dm_nguon_tuyen_dung</code></td>
 <td>1 nguồn tuyển dụng</td>
-<td><code>source_sk</code>, <code>source_code</code>, <code>source_name</code>, <code>source_group</code>, <code>paid_flag</code></td>
+<td class="col-wide"><code>source_sk</code>, <code>source_code</code>, <code>source_name</code>, <code>source_group</code>, <code>paid_flag</code></td>
 <td>PK <code>source_sk</code></td>
 <td>Mở rộng</td>
 </tr>
@@ -439,7 +440,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_termination_reason</code></td>
 <td><code>dm_ly_do_nghi_viec</code></td>
 <td>1 lý do nghỉ</td>
-<td><code>termination_reason_sk</code>, <code>reason_code</code>, <code>reason_name</code>, <code>voluntary_flag</code>, <code>regrettable_flag</code></td>
+<td class="col-wide"><code>termination_reason_sk</code>, <code>reason_code</code>, <code>reason_name</code>, <code>voluntary_flag</code>, <code>regrettable_flag</code></td>
 <td>PK <code>termination_reason_sk</code></td>
 <td>Nên có</td>
 </tr>
@@ -448,7 +449,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_skill</code></td>
 <td><code>dm_ky_nang</code></td>
 <td>1 kỹ năng/chứng chỉ</td>
-<td><code>skill_sk</code>, <code>skill_code</code>, <code>skill_name</code>, <code>skill_group</code>, <code>criticality</code>, <code>required_for_role</code></td>
+<td class="col-wide"><code>skill_sk</code>, <code>skill_code</code>, <code>skill_name</code>, <code>skill_group</code>, <code>criticality</code>, <code>required_for_role</code></td>
 <td>PK <code>skill_sk</code></td>
 <td>Mở rộng</td>
 </tr>
@@ -457,7 +458,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_requisition</code></td>
 <td><code>dm_yeu_cau_tuyen_dung</code></td>
 <td>1 yêu cầu tuyển dụng</td>
-<td><code>requisition_sk</code>, <code>requisition_id</code>, <code>position_sk</code>, <code>department_sk</code>, <code>approved_date_sk</code>, <code>status</code>, <code>approved_headcount</code></td>
+<td class="col-wide"><code>requisition_sk</code>, <code>requisition_id</code>, <code>position_sk</code>, <code>department_sk</code>, <code>approved_date_sk</code>, <code>status</code>, <code>approved_headcount</code></td>
 <td>PK <code>requisition_sk</code>; FK position/department/date</td>
 <td>Mở rộng</td>
 </tr>
@@ -466,7 +467,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_benefit_plan</code></td>
 <td><code>dm_goi_phuc_loi</code></td>
 <td>1 gói phúc lợi</td>
-<td><code>benefit_plan_sk</code>, <code>plan_code</code>, <code>plan_name</code>, <code>benefit_type</code>, <code>employer_share_rule</code></td>
+<td class="col-wide"><code>benefit_plan_sk</code>, <code>plan_code</code>, <code>plan_name</code>, <code>benefit_type</code>, <code>employer_share_rule</code></td>
 <td>PK <code>benefit_plan_sk</code></td>
 <td>Mở rộng</td>
 </tr>
@@ -475,7 +476,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>dim_survey</code></td>
 <td><code>dm_khao_sat</code></td>
 <td>1 cuộc khảo sát</td>
-<td><code>survey_sk</code>, <code>survey_code</code>, <code>survey_name</code>, <code>survey_type</code>, <code>survey_date_sk</code>, <code>anonymity_group_size</code></td>
+<td class="col-wide"><code>survey_sk</code>, <code>survey_code</code>, <code>survey_name</code>, <code>survey_type</code>, <code>survey_date_sk</code>, <code>anonymity_group_size</code></td>
 <td>PK <code>survey_sk</code>; FK date</td>
 <td>Mở rộng</td>
 </tr>
@@ -484,7 +485,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_employee_snapshot</code></td>
 <td><code>ft_snapshot_nhan_su</code></td>
 <td>1 nhân sự/ngày hoặc tháng snapshot</td>
-<td><code>snapshot_sk</code>, <code>employee_sk</code>, <code>snapshot_date_sk</code>, <code>branch_sk</code>, <code>department_sk</code>, <code>position_sk</code>, <code>headcount</code>, <code>fte</code>, <code>active_flag</code></td>
+<td class="col-wide"><code>snapshot_sk</code>, <code>employee_sk</code>, <code>snapshot_date_sk</code>, <code>branch_sk</code>, <code>department_sk</code>, <code>position_sk</code>, <code>headcount</code>, <code>fte</code>, <code>active_flag</code></td>
 <td>PK <code>snapshot_sk</code>; FK employee/date/org</td>
 <td>Bắt buộc</td>
 </tr>
@@ -493,7 +494,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_employee_movement</code></td>
 <td><code>ft_bien_dong_nhan_su</code></td>
 <td>1 sự kiện biến động</td>
-<td><code>movement_sk</code>, <code>employee_sk</code>, <code>movement_date_sk</code>, <code>movement_type</code>, <code>from_department_sk</code>, <code>to_department_sk</code>, <code>from_position_sk</code>, <code>to_position_sk</code>, <code>movement_count</code></td>
+<td class="col-wide"><code>movement_sk</code>, <code>employee_sk</code>, <code>movement_date_sk</code>, <code>movement_type</code>, <code>from_department_sk</code>, <code>to_department_sk</code>, <code>from_position_sk</code>, <code>to_position_sk</code>, <code>movement_count</code></td>
 <td>PK <code>movement_sk</code>; FK employee/date/org/reason</td>
 <td>Bắt buộc</td>
 </tr>
@@ -502,7 +503,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_attendance</code></td>
 <td><code>ft_cham_cong</code></td>
 <td>1 nhân sự/ngày/ca</td>
-<td><code>attendance_sk</code>, <code>employee_sk</code>, <code>attendance_date_sk</code>, <code>shift_sk</code>, <code>scheduled_hours</code>, <code>worked_hours</code>, <code>late_minutes</code>, <code>early_leave_minutes</code>, <code>violation_flag</code></td>
+<td class="col-wide"><code>attendance_sk</code>, <code>employee_sk</code>, <code>attendance_date_sk</code>, <code>shift_sk</code>, <code>scheduled_hours</code>, <code>worked_hours</code>, <code>late_minutes</code>, <code>early_leave_minutes</code>, <code>violation_flag</code></td>
 <td>PK <code>attendance_sk</code>; FK employee/date/shift</td>
 <td>Bắt buộc</td>
 </tr>
@@ -511,7 +512,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_leave</code></td>
 <td><code>ft_nghi_phep</code></td>
 <td>1 nhân sự/ngày nghỉ hoặc request-day</td>
-<td><code>leave_sk</code>, <code>employee_sk</code>, <code>leave_date_sk</code>, <code>leave_type_sk</code>, <code>request_id</code>, <code>leave_days</code>, <code>approval_status</code></td>
+<td class="col-wide"><code>leave_sk</code>, <code>employee_sk</code>, <code>leave_date_sk</code>, <code>leave_type_sk</code>, <code>request_id</code>, <code>leave_days</code>, <code>approval_status</code></td>
 <td>PK <code>leave_sk</code>; FK employee/date/type</td>
 <td>Bắt buộc</td>
 </tr>
@@ -520,7 +521,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_overtime</code></td>
 <td><code>ft_tang_ca</code></td>
 <td>1 nhân sự/ngày/request OT</td>
-<td><code>overtime_sk</code>, <code>employee_sk</code>, <code>overtime_date_sk</code>, <code>shift_sk</code>, <code>ot_hours</code>, <code>ot_amount</code>, <code>approval_status</code></td>
+<td class="col-wide"><code>overtime_sk</code>, <code>employee_sk</code>, <code>overtime_date_sk</code>, <code>shift_sk</code>, <code>ot_hours</code>, <code>ot_amount</code>, <code>approval_status</code></td>
 <td>PK <code>overtime_sk</code>; FK employee/date/shift</td>
 <td>Nên có</td>
 </tr>
@@ -529,7 +530,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_payroll</code></td>
 <td><code>ft_bang_luong</code></td>
 <td>1 nhân sự/kỳ lương/thành phần</td>
-<td><code>payroll_sk</code>, <code>employee_sk</code>, <code>pay_period_end_date_sk</code>, <code>pay_component_sk</code>, <code>amount</code>, <code>employer_cost_amount</code>, <code>currency_code</code>, <code>payroll_status</code>, <code>outlier_flag</code></td>
+<td class="col-wide"><code>payroll_sk</code>, <code>employee_sk</code>, <code>pay_period_end_date_sk</code>, <code>pay_component_sk</code>, <code>amount</code>, <code>employer_cost_amount</code>, <code>currency_code</code>, <code>payroll_status</code>, <code>outlier_flag</code></td>
 <td>PK <code>payroll_sk</code>; FK employee/date/component</td>
 <td>Bắt buộc</td>
 </tr>
@@ -538,7 +539,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_training</code></td>
 <td><code>ft_dao_tao</code></td>
 <td>1 nhân sự/khóa học/lần đăng ký</td>
-<td><code>training_sk</code>, <code>employee_sk</code>, <code>course_sk</code>, <code>registration_date_sk</code>, <code>completion_date_sk</code>, <code>certificate_expiry_date</code>, <code>attended_hours</code>, <code>cost_amount</code>, <code>completion_status</code></td>
+<td class="col-wide"><code>training_sk</code>, <code>employee_sk</code>, <code>course_sk</code>, <code>registration_date_sk</code>, <code>completion_date_sk</code>, <code>certificate_expiry_date</code>, <code>attended_hours</code>, <code>cost_amount</code>, <code>completion_status</code></td>
 <td>PK <code>training_sk</code>; FK employee/course/date</td>
 <td>Bắt buộc</td>
 </tr>
@@ -547,7 +548,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_training_plan</code></td>
 <td><code>ft_ke_hoach_dao_tao</code></td>
 <td>1 tháng/đơn vị/khóa học</td>
-<td><code>training_plan_sk</code>, <code>period_sk</code>, <code>branch_sk</code>, <code>department_sk</code>, <code>course_sk</code>, <code>planned_hours</code>, <code>planned_participants</code>, <code>planned_cost</code></td>
+<td class="col-wide"><code>training_plan_sk</code>, <code>period_sk</code>, <code>branch_sk</code>, <code>department_sk</code>, <code>course_sk</code>, <code>planned_hours</code>, <code>planned_participants</code>, <code>planned_cost</code></td>
 <td>PK <code>training_plan_sk</code>; FK date/org/course</td>
 <td>Nên có</td>
 </tr>
@@ -556,7 +557,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_performance</code></td>
 <td><code>ft_hieu_suat</code></td>
 <td>1 nhân sự/kỳ đánh giá</td>
-<td><code>performance_sk</code>, <code>employee_sk</code>, <code>cycle_sk</code>, <code>assessment_date_sk</code>, <code>overall_score</code>, <code>rating_scale_sk</code>, <code>review_status</code></td>
+<td class="col-wide"><code>performance_sk</code>, <code>employee_sk</code>, <code>cycle_sk</code>, <code>assessment_date_sk</code>, <code>overall_score</code>, <code>rating_scale_sk</code>, <code>review_status</code></td>
 <td>PK <code>performance_sk</code>; FK employee/cycle/date/rating</td>
 <td>Nên có</td>
 </tr>
@@ -565,7 +566,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_performance_goal</code></td>
 <td><code>ft_muc_tieu_hieu_suat</code></td>
 <td>1 nhân sự/kỳ/mục tiêu</td>
-<td><code>goal_sk</code>, <code>employee_sk</code>, <code>cycle_sk</code>, <code>goal_id</code>, <code>achievement_pct</code>, <code>goal_weight_pct</code>, <code>goal_status</code></td>
+<td class="col-wide"><code>goal_sk</code>, <code>employee_sk</code>, <code>cycle_sk</code>, <code>goal_id</code>, <code>achievement_pct</code>, <code>goal_weight_pct</code>, <code>goal_status</code></td>
 <td>PK <code>goal_sk</code>; FK employee/cycle</td>
 <td>Mở rộng</td>
 </tr>
@@ -574,7 +575,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_recruitment</code></td>
 <td><code>ft_tuyen_dung</code></td>
 <td>1 ứng viên/requisition/stage event</td>
-<td><code>recruitment_sk</code>, <code>requisition_sk</code>, <code>application_id</code>, <code>stage_name</code>, <code>stage_date_sk</code>, <code>source_sk</code>, <code>hired_flag</code>, <code>cost_amount</code></td>
+<td class="col-wide"><code>recruitment_sk</code>, <code>requisition_sk</code>, <code>application_id</code>, <code>stage_name</code>, <code>stage_date_sk</code>, <code>source_sk</code>, <code>hired_flag</code>, <code>cost_amount</code></td>
 <td>PK <code>recruitment_sk</code>; FK requisition/date/source</td>
 <td>Mở rộng</td>
 </tr>
@@ -583,7 +584,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_engagement_survey</code></td>
 <td><code>ft_khao_sat_gan_ket</code></td>
 <td>1 response/question hoặc nhóm ẩn danh</td>
-<td><code>survey_response_sk</code>, <code>survey_sk</code>, <code>employee_sk</code>, <code>department_sk</code>, <code>question_code</code>, <code>score</code>, <code>response_count</code></td>
+<td class="col-wide"><code>survey_response_sk</code>, <code>survey_sk</code>, <code>employee_sk</code>, <code>department_sk</code>, <code>question_code</code>, <code>score</code>, <code>response_count</code></td>
 <td>PK <code>survey_response_sk</code>; FK survey/employee/org</td>
 <td>Mở rộng</td>
 </tr>
@@ -592,7 +593,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_hr_budget</code></td>
 <td><code>ft_ngan_sach_nhan_su</code></td>
 <td>1 kỳ/đơn vị/budget type/version</td>
-<td><code>budget_sk</code>, <code>period_sk</code>, <code>branch_sk</code>, <code>department_sk</code>, <code>position_sk</code>, <code>budget_type</code>, <code>approved_headcount</code>, <code>budgeted_fte</code>, <code>budget_amount</code></td>
+<td class="col-wide"><code>budget_sk</code>, <code>period_sk</code>, <code>branch_sk</code>, <code>department_sk</code>, <code>position_sk</code>, <code>budget_type</code>, <code>approved_headcount</code>, <code>budgeted_fte</code>, <code>budget_amount</code></td>
 <td>PK <code>budget_sk</code>; FK date/org/position</td>
 <td>Mở rộng</td>
 </tr>
@@ -601,7 +602,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_benefit_enrollment</code></td>
 <td><code>ft_dang_ky_phuc_loi</code></td>
 <td>1 nhân sự/gói/kỳ hiệu lực</td>
-<td><code>enrollment_sk</code>, <code>employee_sk</code>, <code>benefit_plan_sk</code>, <code>effective_date_sk</code>, <code>employee_contribution</code>, <code>employer_contribution</code>, <code>enrollment_status</code></td>
+<td class="col-wide"><code>enrollment_sk</code>, <code>employee_sk</code>, <code>benefit_plan_sk</code>, <code>effective_date_sk</code>, <code>employee_contribution</code>, <code>employer_contribution</code>, <code>enrollment_status</code></td>
 <td>PK <code>enrollment_sk</code>; FK employee/plan/date</td>
 <td>Mở rộng</td>
 </tr>
@@ -610,7 +611,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_data_quality</code></td>
 <td><code>ft_chat_luong_du_lieu</code></td>
 <td>1 rule/bảng/trường/run</td>
-<td><code>data_quality_sk</code>, <code>run_date_sk</code>, <code>table_name</code>, <code>field_name</code>, <code>rule_id</code>, <code>error_count</code>, <code>severity</code>, <code>remediation_status</code></td>
+<td class="col-wide"><code>data_quality_sk</code>, <code>run_date_sk</code>, <code>table_name</code>, <code>field_name</code>, <code>rule_id</code>, <code>error_count</code>, <code>severity</code>, <code>remediation_status</code></td>
 <td>PK <code>data_quality_sk</code>; FK date</td>
 <td>Bắt buộc</td>
 </tr>
@@ -619,7 +620,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_skill_profile</code></td>
 <td><code>ft_ho_so_ky_nang</code></td>
 <td>1 nhân sự/kỹ năng/lần đánh giá</td>
-<td><code>skill_profile_sk</code>, <code>employee_sk</code>, <code>skill_sk</code>, <code>assessment_date_sk</code>, <code>proficiency_level</code>, <code>required_flag</code></td>
+<td class="col-wide"><code>skill_profile_sk</code>, <code>employee_sk</code>, <code>skill_sk</code>, <code>assessment_date_sk</code>, <code>proficiency_level</code>, <code>required_flag</code></td>
 <td>PK <code>skill_profile_sk</code>; FK employee/skill/date</td>
 <td>Mở rộng</td>
 </tr>
@@ -628,7 +629,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_succession</code></td>
 <td><code>ft_ke_nhiem</code></td>
 <td>1 vị trí trọng yếu/successor/kỳ rà soát</td>
-<td><code>succession_sk</code>, <code>position_sk</code>, <code>incumbent_employee_sk</code>, <code>successor_employee_sk</code>, <code>readiness_level</code>, <code>risk_level</code>, <code>review_date_sk</code></td>
+<td class="col-wide"><code>succession_sk</code>, <code>position_sk</code>, <code>incumbent_employee_sk</code>, <code>successor_employee_sk</code>, <code>readiness_level</code>, <code>risk_level</code>, <code>review_date_sk</code></td>
 <td>PK <code>succession_sk</code>; FK position/employee/date</td>
 <td>Mở rộng</td>
 </tr>
@@ -637,7 +638,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_employee_relations</code></td>
 <td><code>ft_quan_he_lao_dong</code></td>
 <td>1 case quan hệ lao động/sự kiện xử lý</td>
-<td><code>relation_case_sk</code>, <code>employee_sk</code>, <code>department_sk</code>, <code>opened_date_sk</code>, <code>closed_date_sk</code>, <code>case_type</code>, <code>severity</code>, <code>status</code></td>
+<td class="col-wide"><code>relation_case_sk</code>, <code>employee_sk</code>, <code>department_sk</code>, <code>opened_date_sk</code>, <code>closed_date_sk</code>, <code>case_type</code>, <code>severity</code>, <code>status</code></td>
 <td>PK <code>relation_case_sk</code>; FK employee/department/date</td>
 <td>Mở rộng</td>
 </tr>
@@ -646,7 +647,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_wellbeing_risk</code></td>
 <td><code>ft_rui_ro_suc_khoe_cong_viec</code></td>
 <td>1 tháng/đơn vị tổng hợp</td>
-<td><code>wellbeing_risk_sk</code>, <code>period_sk</code>, <code>branch_sk</code>, <code>department_sk</code>, <code>ot_hours</code>, <code>absence_days</code>, <code>survey_score</code>, <code>risk_level</code></td>
+<td class="col-wide"><code>wellbeing_risk_sk</code>, <code>period_sk</code>, <code>branch_sk</code>, <code>department_sk</code>, <code>ot_hours</code>, <code>absence_days</code>, <code>survey_score</code>, <code>risk_level</code></td>
 <td>PK <code>wellbeing_risk_sk</code>; FK date/org</td>
 <td>Mở rộng</td>
 </tr>
@@ -655,12 +656,12 @@ a{color:var(--accent);text-decoration:none}
 <td><code>fact_ai_usage_log</code></td>
 <td><code>ft_nhat_ky_su_dung_ai</code></td>
 <td>1 use case/lần sử dụng hoặc phê duyệt</td>
-<td><code>ai_usage_sk</code>, <code>use_case_id</code>, <code>run_date_sk</code>, <code>user_role</code>, <code>tool_name</code>, <code>data_classification</code>, <code>approval_status</code>, <code>reviewer</code></td>
+<td class="col-wide"><code>ai_usage_sk</code>, <code>use_case_id</code>, <code>run_date_sk</code>, <code>user_role</code>, <code>tool_name</code>, <code>data_classification</code>, <code>approval_status</code>, <code>reviewer</code></td>
 <td>PK <code>ai_usage_sk</code>; FK date</td>
 <td>Governance</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="3-data-dictionary-cot-loi">3. Data Dictionary cột lõi</h2>
 <p>Các bảng đều dùng audit columns: <code>source_system</code> (string), <code>source_file</code> (string), <code>source_row_id</code> (string), <code>loaded_at</code> (datetime), <code>record_hash</code> (string). Dimension SCD2 thêm <code>valid_from</code>, <code>valid_to</code>, <code>is_current</code>; fact có <code>record_count</code> (int64) khi cần đếm dòng.</p>
 <h3 id="31-cach-su-dung-tu-ien-cot">3.1. Cách sử dụng từ điển cột</h3>
@@ -668,13 +669,13 @@ a{color:var(--accent);text-decoration:none}
 <blockquote>
 <p><strong>Ghi chú cho lãnh đạo:</strong> Các trường nhạy cảm như họ tên, lương, đánh giá và lý do nghỉ việc không nên xuất hiện trong mọi báo cáo. Chỉ cấp đúng mức chi tiết cần thiết cho vai trò sử dụng và ưu tiên tổng hợp theo đơn vị khi có thể.</p>
 </blockquote>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Bảng</th>
 <th>Cột</th>
-<th>Loại dữ liệu</th>
-<th>Mô tả/ý nghĩa nghiệp vụ</th>
+<th>Kiểu DL</th>
+<th>Ý nghĩa nghiệp vụ</th>
 <th>PK/FK</th>
 </tr>
 </thead>
@@ -1023,14 +1024,14 @@ a{color:var(--accent);text-decoration:none}
 <td>PK; FK date</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="32-quy-uoc-ten-cot-english-vietnamese-khong-dau">3.2. Quy ước tên cột English – Vietnamese không dấu</h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
-<th>Tên cột English</th>
-<th>Tên cột tiếng Việt không dấu</th>
-<th>Ý nghĩa nghiệp vụ</th>
+<th>Cột EN</th>
+<th>Cột VN</th>
+<th>Ý nghĩa</th>
 </tr>
 </thead>
 <tbody>
@@ -1275,14 +1276,14 @@ a{color:var(--accent);text-decoration:none}
 <td>Mức độ rủi ro</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="4-grain-va-quy-tac-chat-luong">4. Grain và quy tắc chất lượng</h2>
 <h3 id="41-y-nghia-quan-tri-cua-grain">4.1. Ý nghĩa quản trị của grain</h3>
 <p>Grain là “đơn vị quan sát” của dữ liệu. Ví dụ, <code>fact_attendance</code> có thể có một dòng cho mỗi nhân sự mỗi ngày, trong khi <code>fact_payroll</code> có một dòng cho mỗi nhân sự mỗi kỳ lương. Trộn hai grain trong một phép nối có thể làm nhân bản dòng và thổi phồng headcount, ngày công hoặc chi phí.</p>
 <blockquote>
 <p><strong>Ghi chú cho lãnh đạo:</strong> Khi một con số biến động bất thường, cần kiểm tra cả nghiệp vụ và grain dữ liệu. Một thay đổi do nhân sự thực tế khác với một thay đổi do nạp trùng dòng hoặc nối sai khóa.</p>
 </blockquote>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Nhóm</th>
@@ -1337,7 +1338,7 @@ a{color:var(--accent);text-decoration:none}
 <td>Refresh gate kiểm tra missing, duplicate, unmapped, invalid date và outlier.</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="5-erd-quan-he-bang">5. ERD quan hệ bảng</h2>
 <h3 id="51-cach-oc-erd">5.1. Cách đọc ERD</h3>
 <p>Các bảng <code>dim_*</code> cung cấp ngữ cảnh để lọc và phân nhóm; các bảng <code>fact_*</code> lưu sự kiện hoặc số đo phát sinh theo thời gian. Mũi tên nên đi từ dimension đến fact theo quan hệ một-nhiều. Mô hình không nối trực tiếp fact-to-fact; nếu cần so sánh, dùng dimension dùng chung như <code>dim_date</code>, <code>dim_employee</code> và <code>dim_department</code>.</p>
@@ -1449,11 +1450,11 @@ a{color:var(--accent);text-decoration:none}
     F[fact_performance and fact_performance_goal] --&gt; PF[Goal Achievement = SUM Actual x Weight / SUM Weight]
     Q[fact_data_quality] --&gt; DQ[DQ Score = 1 - Weighted Errors / Checked Rows]</pre></div></figure>
 <h2 id="8-checklist-danh-cho-lanh-ao-truoc-khi-su-dung-so-lieu">8. Checklist dành cho lãnh đạo trước khi sử dụng số liệu</h2>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Câu hỏi kiểm tra</th>
-<th>Cách xác nhận trong bộ tài liệu</th>
+<th>Cách xác nhận</th>
 </tr>
 </thead>
 <tbody>
@@ -1478,7 +1479,7 @@ a{color:var(--accent);text-decoration:none}
 <td>Gắn insight với owner, deadline và trạng thái xử lý trong quy trình HR.</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <blockquote>
 <p><strong>Nguyên tắc điều hành:</strong> Số liệu dùng cho quyết định cần trả lời được bốn điểm: phạm vi, thời điểm, định nghĩa và người chịu trách nhiệm.</p>
 </blockquote>
@@ -1511,12 +1512,12 @@ a{color:var(--accent);text-decoration:none}
 <h2 id="2-measure-list-chuan">2. Measure List chuẩn</h2>
 <h3 id="20-cau-truc-va-nguyen-tac-oc">2.0. Cấu trúc và nguyên tắc đọc</h3>
 <p>Các mã trong cột <code>Mã</code> là mã kỹ thuật ổn định để liên kết với DAX, report và tài liệu triển khai. Không đổi mã khi đổi cách hiển thị tên. Prefix được hiểu như sau:</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
-<th>Prefix mã</th>
-<th>Tên đầy đủ English</th>
-<th>Diễn giải tiếng Việt</th>
+<th>Prefix</th>
+<th>Tên đầy đủ EN</th>
+<th>Diễn giải VN</th>
 </tr>
 </thead>
 <tbody>
@@ -1551,21 +1552,21 @@ a{color:var(--accent);text-decoration:none}
 <td>Chất lượng và quản trị dữ liệu</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Nhóm đầu cho biết quy mô và áp lực nhân sự; nhóm giữa giải thích giờ công, chi phí và năng lực; nhóm <code>DQ-</code> xác nhận số liệu đủ điều kiện để phát hành.</p>
 <h3 id="21-quy-mo-va-luc-luong-nhan-su-headcount-va-workforce">2.1. Quy mô và lực lượng nhân sự (Headcount và Workforce)</h3>
 <blockquote>
 <p><strong>Ghi chú cho lãnh đạo:</strong> Headcount và FTE cho biết quy mô nguồn lực; turnover, vacancy và contract expiry cho biết áp lực cần xử lý. Khi so sánh các kỳ, ưu tiên dùng average headcount cho tỷ lệ nghỉ việc để tránh sai lệch do biến động đầu kỳ/cuối kỳ.</p>
 </blockquote>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Mã</th>
-<th>Tên kỹ thuật English</th>
-<th>Tên công thức tiếng Việt đầy đủ</th>
-<th>Định nghĩa nghiệp vụ và công thức cốt lõi</th>
-<th>Công thức DAX chính</th>
-<th>Ngưỡng cảnh báo gợi ý</th>
+<th>Tên kỹ thuật EN</th>
+<th>Tên công thức VN</th>
+<th>Định nghĩa &amp; logic</th>
+<th>DAX chính</th>
+<th>Ngưỡng cảnh báo</th>
 </tr>
 </thead>
 <tbody>
@@ -1666,20 +1667,20 @@ a{color:var(--accent);text-decoration:none}
 <td>Green ≥98%; Amber 90–98%; Red &lt;90%</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="22-cham-cong-va-nghi-phep-attendance-va-absence">2.2. Chấm công và nghỉ phép (Attendance và Absence)</h3>
 <blockquote>
 <p><strong>Ghi chú cho lãnh đạo:</strong> Attendance và overtime là tín hiệu sớm về tải công việc, kỷ luật vận hành hoặc thiếu người. Nên xem theo ca, đơn vị và xu hướng liên tiếp; không dùng riêng chỉ số đi muộn để đánh giá cá nhân khi chưa kiểm tra lịch ca và quy định áp dụng.</p>
 </blockquote>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Mã</th>
-<th>Tên kỹ thuật English</th>
-<th>Tên công thức tiếng Việt đầy đủ</th>
-<th>Định nghĩa nghiệp vụ và công thức cốt lõi</th>
-<th>Công thức DAX chính</th>
-<th>Ngưỡng cảnh báo gợi ý</th>
+<th>Tên kỹ thuật EN</th>
+<th>Tên công thức VN</th>
+<th>Định nghĩa &amp; logic</th>
+<th>DAX chính</th>
+<th>Ngưỡng cảnh báo</th>
 </tr>
 </thead>
 <tbody>
@@ -1772,20 +1773,20 @@ a{color:var(--accent);text-decoration:none}
 <td>Green ≤5%; Amber 5–10%; Red &gt;10%</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="23-tien-luong-va-chi-phi-nhan-su-payroll-va-hr-cost">2.3. Tiền lương và chi phí nhân sự (Payroll và HR Cost)</h3>
 <blockquote>
 <p><strong>Ghi chú cho lãnh đạo:</strong> Payroll cần được đọc cùng budget, FTE và employer cost. Chênh lệch quỹ lương có thể đến từ tăng người, thay đổi cơ cấu, thưởng, OT hoặc mapping pay component; vì vậy cần xem waterfall driver trước khi kết luận là vượt kiểm soát.</p>
 </blockquote>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Mã</th>
-<th>Tên kỹ thuật English</th>
-<th>Tên công thức tiếng Việt đầy đủ</th>
-<th>Định nghĩa nghiệp vụ và công thức cốt lõi</th>
-<th>Công thức DAX chính</th>
-<th>Ngưỡng cảnh báo gợi ý</th>
+<th>Tên kỹ thuật EN</th>
+<th>Tên công thức VN</th>
+<th>Định nghĩa &amp; logic</th>
+<th>DAX chính</th>
+<th>Ngưỡng cảnh báo</th>
 </tr>
 </thead>
 <tbody>
@@ -1870,20 +1871,20 @@ a{color:var(--accent);text-decoration:none}
 <td>Green = 0 hoặc có owner/action</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="24-ao-tao-va-nang-luc-training-va-capability">2.4. Đào tạo và năng lực (Training và Capability)</h3>
 <blockquote>
 <p><strong>Ghi chú cho lãnh đạo:</strong> Completion cao chỉ chứng minh hoạt động đào tạo đã hoàn tất, chưa chứng minh năng lực đã tăng. Nên kết hợp training cost, critical skill coverage và performance của cohort để quyết định tiếp tục, điều chỉnh hoặc dừng chương trình.</p>
 </blockquote>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Mã</th>
-<th>Tên kỹ thuật English</th>
-<th>Tên công thức tiếng Việt đầy đủ</th>
-<th>Định nghĩa nghiệp vụ và công thức cốt lõi</th>
-<th>Công thức DAX chính</th>
-<th>Ngưỡng cảnh báo gợi ý</th>
+<th>Tên kỹ thuật EN</th>
+<th>Tên công thức VN</th>
+<th>Định nghĩa &amp; logic</th>
+<th>DAX chính</th>
+<th>Ngưỡng cảnh báo</th>
 </tr>
 </thead>
 <tbody>
@@ -1960,20 +1961,20 @@ a{color:var(--accent);text-decoration:none}
 <td>Red nếu critical certification</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="25-hieu-suat-va-nhan-tai-performance-va-talent">2.5. Hiệu suất và nhân tài (Performance và Talent)</h3>
 <blockquote>
 <p><strong>Ghi chú cho lãnh đạo:</strong> Performance cần được nhìn qua phân bổ rating, mức hoàn thành mục tiêu, retention của nhân tài và độ phủ kỹ năng. Không nên dùng điểm trung bình toàn công ty để che khuất chênh lệch giữa các đơn vị hoặc nhóm vai trò.</p>
 </blockquote>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Mã</th>
-<th>Tên kỹ thuật English</th>
-<th>Tên công thức tiếng Việt đầy đủ</th>
-<th>Định nghĩa nghiệp vụ và công thức cốt lõi</th>
-<th>Công thức DAX chính</th>
-<th>Ngưỡng cảnh báo gợi ý</th>
+<th>Tên kỹ thuật EN</th>
+<th>Tên công thức VN</th>
+<th>Định nghĩa &amp; logic</th>
+<th>DAX chính</th>
+<th>Ngưỡng cảnh báo</th>
 </tr>
 </thead>
 <tbody>
@@ -2042,20 +2043,20 @@ a{color:var(--accent);text-decoration:none}
 <td>Green ≥95%; Amber 85–95%; Red &lt;85%</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="26-chat-luong-va-quan-tri-du-lieu-data-quality-va-governance">2.6. Chất lượng và quản trị dữ liệu (Data Quality và Governance)</h3>
 <blockquote>
 <p><strong>Ghi chú cho lãnh đạo:</strong> DQ là “cổng an toàn” trước khi sử dụng số liệu. Khi có lỗi critical, ưu tiên sửa nguồn, mapping hoặc quy trình nạp dữ liệu; không bù số thủ công trên visual vì sẽ làm mất khả năng truy nguyên.</p>
 </blockquote>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Mã</th>
-<th>Tên kỹ thuật English</th>
-<th>Tên công thức tiếng Việt đầy đủ</th>
-<th>Định nghĩa nghiệp vụ và công thức cốt lõi</th>
-<th>Công thức DAX chính</th>
-<th>Ngưỡng cảnh báo gợi ý</th>
+<th>Tên kỹ thuật EN</th>
+<th>Tên công thức VN</th>
+<th>Định nghĩa &amp; logic</th>
+<th>DAX chính</th>
+<th>Ngưỡng cảnh báo</th>
 </tr>
 </thead>
 <tbody>
@@ -2108,14 +2109,14 @@ a{color:var(--accent);text-decoration:none}
 <td>Green = 0 hoặc có action</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="3-cong-thuc-nen-excel-sql-va-dax">3. Công thức nền Excel, SQL và DAX</h2>
 <h3 id="31-cach-dung-cong-thuc-trong-trien-khai">3.1. Cách dùng công thức trong triển khai</h3>
 <p>Bảng công thức nền là mẫu chuyển đổi giữa Excel, SQL và DAX, không phải phiên bản thay thế cho định nghĩa KPI. Khi triển khai thực tế, cần giữ nguyên filter context, trạng thái <code>Final/Approved</code>, kỳ hiệu lực và quy tắc mẫu số của từng measure.</p>
 <blockquote>
 <p><strong>Ghi chú cho lãnh đạo:</strong> Nếu Excel và Power BI cho kết quả khác nhau, hãy đối chiếu lần lượt phạm vi kỳ, trạng thái dữ liệu, grain, bộ lọc và mẫu số. Không nên sửa công thức trong từng báo cáo để “khớp số” mà chưa xác định nguyên nhân gốc.</p>
 </blockquote>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Kiểu tính</th>
@@ -2162,7 +2163,7 @@ a{color:var(--accent);text-decoration:none}
 <td><code>DIVIDE([Current] - [Prior Year], [Prior Year])</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="32-cac-measure-nen-dax-toi-thieu">3.2. Các measure nền DAX tối thiểu</h3>
 <pre><code class="language-dax">HC EOP =
 VAR _LatestDate = MAX(dim_date[full_date])
@@ -2187,11 +2188,11 @@ HR Data Quality Score =
 </code></pre>
 <h2 id="4-nguong-canh-bao-va-quan-tri-measure">4. Ngưỡng cảnh báo và quản trị measure</h2>
 <h3 id="41-quy-tac-chuyen-canh-bao-thanh-hanh-ong">4.1. Quy tắc chuyển cảnh báo thành hành động</h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Mức</th>
-<th>Ý nghĩa nghiệp vụ</th>
+<th>Ý nghĩa</th>
 <th>Hành động quản trị</th>
 </tr>
 </thead>
@@ -2212,7 +2213,7 @@ HR Data Quality Score =
 <td>Escalate, lập action plan và theo dõi đến khi đóng cảnh báo.</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Tạo <code>cfg_hr_threshold(metric_code, scope_type, scope_id, green_min, green_max, amber_min, amber_max, red_rule, effective_from, effective_to, owner_team, approved_by)</code>. Mỗi measure phải có owner, định nghĩa mẫu số, kỳ tính, nguồn dữ liệu và trạng thái phê duyệt.</p>
 <p>Trạng thái: Green = trong target; Amber = lệch baseline cần phân tích; Red = vượt rủi ro hoặc có lỗi critical. Không dùng threshold minh họa làm policy chính thức.</p>
 <h2 id="5-luong-measure-list-report">5. Luồng Measure List → Report</h2>
@@ -2271,18 +2272,18 @@ HR Data Quality Score =
 <blockquote>
 <p><strong>Ghi chú cho lãnh đạo:</strong> Tần suất refresh phải phù hợp với tốc độ ra quyết định. Báo cáo ngày phục vụ vận hành và cảnh báo; báo cáo tháng/quý phục vụ phân tích xu hướng, ngân sách, năng lực và chính sách nhân sự.</p>
 </blockquote>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th style="text-align: right;">STT</th>
 <th>Mã</th>
-<th>Tên báo cáo English</th>
-<th>Tên báo cáo tiếng Việt đầy đủ</th>
-<th>Nhóm báo cáo</th>
+<th>Báo cáo EN</th>
+<th>Báo cáo VN</th>
+<th>Nhóm</th>
 <th>Tần suất</th>
 <th>Mục tiêu</th>
 <th>KPI chính</th>
-<th>Biểu đồ/Insight chính</th>
+<th>Biểu đồ / Insight</th>
 </tr>
 </thead>
 <tbody>
@@ -2430,7 +2431,7 @@ HR Data Quality Score =
 <td>Tham số trường, cây phân rã, phân tán, small multiples; phân tích cohort theo bộ lọc được duyệt</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="3-blueprint-tung-trang">3. Blueprint từng trang</h2>
 <h3 id="31-layout-chuan-cua-mot-trang">3.1. Layout chuẩn của một trang</h3>
 <p>Mỗi trang nên có một vùng tiêu đề nêu kỳ dữ liệu, thời điểm cập nhật và trạng thái DQ; một dải KPI tóm tắt; khu vực xu hướng/so sánh; khu vực phân tích yếu tố dẫn dắt; và phần chi tiết/drill-through có giới hạn quyền. Trang điều hành ưu tiên tổng hợp và cảnh báo, còn trang nghiệp vụ cho phép phân rã đến đơn vị hoặc nghiệp vụ.</p>
@@ -2611,7 +2612,7 @@ HR Data Quality Score =
 <h2 id="4-khung-phan-tich-insight">4. Khung phân tích insight</h2>
 <h3 id="41-tu-kpi-en-hanh-ong-quan-tri">4.1. Từ KPI đến hành động quản trị</h3>
 <p>Khung phân tích insight giúp chuyển các chỉ tiêu thành câu hỏi quyết định. Mỗi insight cần được đọc cùng nhóm so sánh phù hợp như kế hoạch, kỳ trước, cùng kỳ năm trước, mức tham chiếu nội bộ hoặc nhóm đồng cấp; không nên dùng một ngưỡng chung cho mọi đơn vị nếu đặc thù vận hành khác nhau.</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Nhóm</th>
@@ -2666,14 +2667,14 @@ HR Data Quality Score =
 <td>Điểm chất lượng, độ mới dữ liệu, lỗi nghiêm trọng và người phụ trách phải đạt cổng kiểm soát.</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="5-tuong-tac-phan-quyen-va-van-hanh">5. Tương tác, phân quyền và vận hành</h2>
 <h3 id="51-quyen-xem-va-bao-mat">5.1. Quyền xem và bảo mật</h3>
 <p>Phân quyền theo dòng (RLS) nên được thiết kế theo vai trò và phạm vi tổ chức; dữ liệu tiền lương, hiệu suất, gắn kết và thông tin cá nhân phải có masking hoặc ngưỡng ẩn danh nhóm. Bảo mật là một phần của thiết kế nghiệp vụ: người dùng chỉ xem được dữ liệu cần cho quyết định của mình nhưng vẫn có đủ số liệu tổng hợp để không mất bối cảnh.</p>
 <blockquote>
 <p><strong>Ghi chú cho lãnh đạo:</strong> Phân quyền không chỉ bảo vệ thông tin nhạy cảm mà còn giúp thông tin đến đúng người chịu trách nhiệm. Mọi drill-through đến cấp cá nhân cần được kiểm thử bằng role matrix trước khi phát hành.</p>
 </blockquote>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Tính năng</th>
@@ -2723,7 +2724,7 @@ HR Data Quality Score =
 <td>Thẻ KPI trước, xu hướng ở giữa, chi tiết ở cuối.</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="6-checklist-nghiem-thu">6. Checklist nghiệm thu</h2>
 <h3 id="61-ieu-kien-e-phat-hanh-bao-cao">6.1. Điều kiện để phát hành báo cáo</h3>
 <p>Một trang chỉ được phát hành khi đã kiểm tra định nghĩa KPI, tính đúng của bộ lọc và thời gian, quyền truy cập, trạng thái chất lượng dữ liệu và khả năng truy nguyên về bảng nguồn. Checklist dưới đây là cổng nghiệm thu tối thiểu; các trang tiền lương, hiệu suất và gắn kết cần thêm phê duyệt của người phụ trách nghiệp vụ tương ứng.</p>
@@ -2769,12 +2770,12 @@ HR Data Quality Score =
     SM --&gt; GOV
     SM --&gt; ADHOC[REP-13 phân tích tự phục vụ được chứng nhận]</pre></div></figure>
 <h2 id="8-huong-dan-su-dung-trong-cuoc-hop-ieu-hanh">8. Hướng dẫn sử dụng trong cuộc họp điều hành</h2>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Thời điểm</th>
 <th>Cách sử dụng</th>
-<th>Kết quả mong đợi</th>
+<th>Kết quả</th>
 </tr>
 </thead>
 <tbody>
@@ -2794,7 +2795,7 @@ HR Data Quality Score =
 <td>Biến insight thành việc có thể theo dõi đến khi hoàn tất.</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <blockquote>
 <p><strong>Nguyên tắc điều hành:</strong> Dashboard là công cụ hỗ trợ quyết định; trách nhiệm cuối cùng vẫn thuộc về người phụ trách nghiệp vụ sau khi đã kiểm tra định nghĩa, dữ liệu và bối cảnh vận hành.</p>
 </blockquote></div>
