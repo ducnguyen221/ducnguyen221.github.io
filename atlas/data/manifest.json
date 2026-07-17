@@ -28,17 +28,18 @@
   },
   {
     "slug": "hr-analytics",
-    "title": "HR Analytics · Chuẩn hóa dữ liệu · KPI · Báo cáo (HRA-101) · Atlas",
-    "description": "Bộ tài liệu HR Analytics: Data Dictionary 42 bảng, KPI Dictionary 6 nhóm chỉ tiêu và Report List 13 báo cáo — kèm ERD, mindmap nghiệp vụ và luồng dữ liệu tương tác (zoom, pan, toàn màn hình).",
+    "title": "HR Analytics · Chuẩn hóa dữ liệu · KPI · Báo cáo · Mở rộng AI (HRA-101) · Atlas",
+    "description": "Bộ tài liệu HR Analytics: Data Dictionary 42 bảng, KPI Dictionary 6 nhóm chỉ tiêu, Report List 13 báo cáo và tư vấn mở rộng ứng dụng AI cho nghiệp vụ nhân sự — kèm ERD, mindmap và luồng dữ liệu tương tác (zoom, pan, toàn màn hình).",
     "categories": [
       "da",
       "strategy",
+      "ai",
       "bi"
     ],
     "path": "content/da/hr-analytics.html",
     "thumbnail": "",
-    "lastModified": "2026-07-16",
-    "fileSize": 161389
+    "lastModified": "2026-07-17",
+    "fileSize": 179195
   },
   {
     "slug": "cai-dat-n8n-desktop-1",

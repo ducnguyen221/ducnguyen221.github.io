@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HR Analytics · Chuẩn hóa dữ liệu · KPI · Báo cáo (HRA-101) · Atlas</title>
-<meta name="description" content="Bộ tài liệu HR Analytics: Data Dictionary 42 bảng, KPI Dictionary 6 nhóm chỉ tiêu và Report List 13 báo cáo — kèm ERD, mindmap nghiệp vụ và luồng dữ liệu tương tác (zoom, pan, toàn màn hình).">
+<title>HR Analytics · Chuẩn hóa dữ liệu · KPI · Báo cáo · Mở rộng AI (HRA-101) · Atlas</title>
+<meta name="description" content="Bộ tài liệu HR Analytics: Data Dictionary 42 bảng, KPI Dictionary 6 nhóm chỉ tiêu, Report List 13 báo cáo và tư vấn mở rộng ứng dụng AI cho nghiệp vụ nhân sự — kèm ERD, mindmap và luồng dữ liệu tương tác (zoom, pan, toàn màn hình).">
 <link rel="icon" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -123,7 +123,6 @@ a{color:var(--accent);text-decoration:none}
 .doc-body tbody tr:nth-child(even){background:color-mix(in srgb,var(--surface) 55%,transparent)}
 .doc-body tbody tr:hover{background:var(--accent-soft)}
 .doc-body td code{white-space:nowrap}
-/* ---- interactive diagram ---- */
 .diagram{margin:22px 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--diagram-bg);box-shadow:var(--shadow)}
 .diagram-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 12px;
   background:#0b0d17;border-bottom:1px solid var(--line);font-family:Inter,sans-serif}
@@ -138,7 +137,6 @@ a{color:var(--accent);text-decoration:none}
 .diagram-canvas.grabbing{cursor:grabbing}
 .diagram-canvas .mermaid{position:absolute;top:0;left:0;transform-origin:0 0;margin:0;padding:0;background:none;border:none;line-height:normal}
 .diagram-canvas .mermaid svg{max-width:none!important;height:auto;display:block}
-.diagram-canvas .mermaid[data-processing]{opacity:0}
 .diagram:fullscreen{border-radius:0}
 .diagram:fullscreen .diagram-canvas{height:100vh}
 .diagram .loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--faint);font-family:Inter,sans-serif;font-size:13px;gap:8px}
@@ -183,6 +181,7 @@ a{color:var(--accent);text-decoration:none}
     <a class="nav-item" href="#data-dictionary" data-nav="data-dictionary"><i class="fa-solid fa-database"></i><span class="nl"><b>Data Dictionary</b></span></a>
 <a class="nav-item" href="#kpi-dictionary" data-nav="kpi-dictionary"><i class="fa-solid fa-ruler-combined"></i><span class="nl"><b>KPI Dictionary</b></span></a>
 <a class="nav-item" href="#report-list" data-nav="report-list"><i class="fa-solid fa-table-columns"></i><span class="nl"><b>Report List</b></span></a>
+<a class="nav-item" href="#ai-expansion" data-nav="ai-expansion"><i class="fa-solid fa-robot"></i><span class="nl"><b>Mở rộng &amp; AI</b></span></a>
     <div class="side-foot">
       <a class="back" href="/atlas/"><i class="fa-solid fa-arrow-left-long"></i> Về Atlas</a>
       <span class="by">Nguyễn Quang Đức · KPIM Academy</span>
@@ -198,14 +197,14 @@ a{color:var(--accent);text-decoration:none}
     <div class="wrap">
       <section class="doc on" id="overview" data-doc>
         <div class="hero">
-          <span class="tag"><i class="fa-solid fa-diagram-project"></i> Chuẩn dữ liệu · KPI · Báo cáo</span>
+          <span class="tag"><i class="fa-solid fa-diagram-project"></i> Chuẩn dữ liệu · KPI · Báo cáo · Mở rộng AI</span>
           <h1>HR Analytics — từ dữ liệu đến quyết định</h1>
-          <p class="lead">Bộ tài liệu chuẩn hóa cho khóa <b>HRA-101</b>: mô hình dữ liệu nhân sự, bộ chỉ tiêu KPI và danh mục báo cáo — kèm <b>ERD, mindmap nghiệp vụ và luồng dữ liệu tương tác</b> (kéo, phóng to, toàn màn hình) để lãnh đạo dễ theo dõi mạch từ bảng nguồn → KPI → dashboard.</p>
+          <p class="lead">Bộ tài liệu chuẩn hóa cho khóa <b>HRA-101</b>: mô hình dữ liệu nhân sự, bộ chỉ tiêu KPI, danh mục báo cáo và <b>menu mở rộng ứng dụng AI</b> — kèm <b>ERD, mindmap nghiệp vụ và luồng dữ liệu tương tác</b> (kéo, phóng to, toàn màn hình) để lãnh đạo dễ theo dõi mạch từ bảng nguồn → KPI → dashboard → quyết định.</p>
           <div class="stat-band">
             <div class="stat"><b>42</b><span>bảng dữ liệu chuẩn</span></div>
             <div class="stat"><b>6</b><span>nhóm chỉ tiêu KPI</span></div>
             <div class="stat"><b>13</b><span>báo cáo phân tích</span></div>
-            <div class="stat"><b>5</b><span>sơ đồ tương tác</span></div>
+            <div class="stat"><b>7</b><span>sơ đồ tương tác</span></div>
           </div>
         </div>
         <div class="ov-grid">
@@ -228,6 +227,13 @@ a{color:var(--accent);text-decoration:none}
         <h3>Report List</h3>
         <p>13 báo cáo phân tích: blueprint từng trang, khung insight → hành động, phân quyền/RLS và luồng bảng → KPI → báo cáo.</p>
         <span class="ov-go">Mở tài liệu <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+
+      <a class="ov-card" href="#ai-expansion">
+        <div class="ov-ic"><i class="fa-solid fa-robot"></i></div>
+        <h3>Mở rộng &amp; AI</h3>
+        <p>Menu tính năng mở rộng cho lãnh đạo: nâng cấp phân tích (predictive/prescriptive), AI theo chuỗi nghiệp vụ (tuyển dụng, chính sách, lương thưởng…), nền tảng dùng chung và quản trị tuân thủ AI.</p>
+        <span class="ov-go">Mở tài liệu <i class="fa-solid fa-arrow-right"></i></span>
       </a></div>
         <div class="ov-note"><b>Ghi chú:</b> Tài liệu tư vấn/giảng dạy. Định nghĩa chỉ tiêu, mô hình dữ liệu và ví dụ mang tính tham chiếu; cần đối chiếu quy định và dữ liệu thực tế trước khi dùng cho báo cáo chính thức. Các sơ đồ ERD/mindmap/luồng có thể <b>kéo để di chuyển, cuộn để phóng to</b> và mở <b>toàn màn hình</b>.</div>
       </section>
@@ -235,7 +241,7 @@ a{color:var(--accent);text-decoration:none}
     <section class="doc" id="data-dictionary" data-doc>
       <div class="doc-grid">
         <article class="doc-main">
-          <div class="kicker"><i class="fa-solid fa-database"></i> Tài liệu 1/3</div>
+          <div class="kicker"><i class="fa-solid fa-database"></i> Tài liệu 1/4</div>
           <h1 class="doc-title">HR Analytics Data Dictionary</h1>
           <p class="doc-blurb">42 bảng chuẩn (dim/fact), từ điển cột lõi, grain &amp; quy tắc chất lượng, ERD quan hệ, mindmap nghiệp vụ và luồng công thức dữ liệu.</p>
           <div class="doc-body"><blockquote>
@@ -1493,7 +1499,7 @@ a{color:var(--accent);text-decoration:none}
     <section class="doc" id="kpi-dictionary" data-doc>
       <div class="doc-grid">
         <article class="doc-main">
-          <div class="kicker"><i class="fa-solid fa-ruler-combined"></i> Tài liệu 2/3</div>
+          <div class="kicker"><i class="fa-solid fa-ruler-combined"></i> Tài liệu 2/4</div>
           <h1 class="doc-title">HR Analytics KPI Dictionary</h1>
           <p class="doc-blurb">Measure List 6 nhóm (Headcount, Attendance, Payroll, Training, Performance, Data Quality), công thức Excel/SQL/DAX, ngưỡng cảnh báo và luồng KPI → Report.</p>
           <div class="doc-body"><blockquote>
@@ -2250,7 +2256,7 @@ HR Data Quality Score =
     <section class="doc" id="report-list" data-doc>
       <div class="doc-grid">
         <article class="doc-main">
-          <div class="kicker"><i class="fa-solid fa-table-columns"></i> Tài liệu 3/3</div>
+          <div class="kicker"><i class="fa-solid fa-table-columns"></i> Tài liệu 3/4</div>
           <h1 class="doc-title">HR Analytics Report List</h1>
           <p class="doc-blurb">13 báo cáo phân tích: blueprint từng trang, khung insight → hành động, phân quyền/RLS và luồng bảng → KPI → báo cáo.</p>
           <div class="doc-body"><blockquote>
@@ -2799,9 +2805,304 @@ HR Data Quality Score =
 <blockquote>
 <p><strong>Nguyên tắc điều hành:</strong> Dashboard là công cụ hỗ trợ quyết định; trách nhiệm cuối cùng vẫn thuộc về người phụ trách nghiệp vụ sau khi đã kiểm tra định nghĩa, dữ liệu và bối cảnh vận hành.</p>
 </blockquote></div>
-          <div class="prevnext"><a class="pn prev" href="#kpi-dictionary"><span>← Trước</span><strong>KPI Dictionary</strong></a></div>
+          <div class="prevnext"><a class="pn prev" href="#kpi-dictionary"><span>← Trước</span><strong>KPI Dictionary</strong></a><a class="pn next" href="#ai-expansion"><span>Tiếp →</span><strong>Mở rộng &amp; AI</strong></a></div>
         </article>
         <nav class="toc" aria-label="Mục lục"><p class="toc-h">Trên trang này</p><ul><li><a href="#" data-anchor="1-giai-phap-bao-cao-hr">1. Giải pháp báo cáo HR</a></li><li><a href="#" data-anchor="2-danh-sach-13-bao-cao-phan-tich">2. Danh sách 13 báo cáo phân tích</a></li><li><a href="#" data-anchor="3-blueprint-tung-trang">3. Blueprint từng trang</a></li><li><a href="#" data-anchor="4-khung-phan-tich-insight">4. Khung phân tích insight</a></li><li><a href="#" data-anchor="5-tuong-tac-phan-quyen-va-van-hanh">5. Tương tác, phân quyền và vận hành</a></li><li><a href="#" data-anchor="6-checklist-nghiem-thu">6. Checklist nghiệm thu</a></li><li><a href="#" data-anchor="7-luong-bang-kpi-bao-cao">7. Luồng bảng → KPI → Báo cáo</a></li><li><a href="#" data-anchor="8-huong-dan-su-dung-trong-cuoc-hop-ieu-hanh">8. Hướng dẫn sử dụng trong cuộc họp điều hành</a></li></ul></nav>
+      </div>
+    </section>
+
+    <section class="doc" id="ai-expansion" data-doc>
+      <div class="doc-grid">
+        <article class="doc-main">
+          <div class="kicker"><i class="fa-solid fa-robot"></i> Tài liệu 4/4</div>
+          <h1 class="doc-title">Mở rộng và Ứng dụng AI cho nghiệp vụ nhân sự</h1>
+          <p class="doc-blurb">Menu tính năng mở rộng cho lãnh đạo: nâng cấp phân tích (predictive/prescriptive), AI theo chuỗi nghiệp vụ (tuyển dụng, chính sách, lương thưởng…), nền tảng dùng chung và quản trị tuân thủ AI.</p>
+          <div class="doc-body"><blockquote>
+<p><strong>Mô tả tài liệu:</strong> Tài liệu tư vấn các hướng mở rộng vượt khỏi báo cáo mô tả hiện có, sang phân tích dự báo/khuyến nghị và ứng dụng AI hỗ trợ đa nghiệp vụ nhân sự — từ quản lý nhân sự, tuyển dụng, chính sách đến lương thưởng và gắn kết. Mỗi mục gắn với giá trị điều hành, dữ liệu cần và mức độ rủi ro để lãnh đạo tham khảo trước khi đưa ra yêu cầu triển khai.</p>
+</blockquote>
+<p>Khóa học: Ứng dụng AI và phân tích dữ liệu nhân sự<br />
+Phiên bản: 2026-07-17<br />
+Mục tiêu quản lý: cung cấp một "thực đơn năng lực" để lãnh đạo lựa chọn hướng đầu tư theo ưu tiên kinh doanh, thay vì chạy theo công nghệ.  </p>
+<h2 id="1-inh-vi-bo-tai-lieu-hien-tai">1. Định vị bộ tài liệu hiện tại</h2>
+<p>Ba tài liệu hiện có (Data Dictionary, KPI Dictionary, Report List) tạo thành <strong>lớp phân tích mô tả</strong> — trả lời câu hỏi "chuyện gì đã xảy ra". Đây là nền tảng bắt buộc, nhưng chưa phải đích đến.</p>
+<blockquote>
+<p><strong>Ghi chú cho lãnh đạo:</strong> Theo khảo sát ngành, chỉ khoảng 17% tổ chức đạt tới mức phân tích khuyến nghị (prescriptive), và 2025 là năm đầu tiên "hoạch định nhân lực chiến lược" lọt vào top 3 ưu tiên của giám đốc nhân sự. Phần mở rộng dưới đây là các nấc leo tiếp theo, được xếp theo mức độ sẵn sàng và rủi ro.</p>
+</blockquote>
+<h3 id="11-bon-muc-truong-thanh-phan-tich">1.1. Bốn mức trưởng thành phân tích</h3>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Mức</th>
+<th>Câu hỏi trả lời</th>
+<th>Trạng thái hiện tại</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mô tả (Descriptive)</td>
+<td>Chuyện gì đã xảy ra?</td>
+<td>Đã có (3 tài liệu hiện tại)</td>
+</tr>
+<tr>
+<td>Chẩn đoán (Diagnostic)</td>
+<td>Vì sao xảy ra?</td>
+<td>Một phần, qua drill-through</td>
+</tr>
+<tr>
+<td>Dự báo (Predictive)</td>
+<td>Sắp xảy ra gì?</td>
+<td>Hướng mở rộng — Nhóm A</td>
+</tr>
+<tr>
+<td>Khuyến nghị (Prescriptive)</td>
+<td>Nên làm gì?</td>
+<td>Hướng mở rộng — Nhóm A</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="2-nhom-a-nang-cap-chieu-sau-phan-tich">2. Nhóm A — Nâng cấp chiều sâu phân tích</h2>
+<p>Chuyển từ báo cáo quá khứ sang dự báo và khuyến nghị hành động. Đây là bước tạo giá trị "hành động trước khi vấn đề xảy ra".</p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Tính năng</th>
+<th>Làm được gì</th>
+<th>Giá trị cho LĐ</th>
+<th>Điều kiện dữ liệu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1. Dự báo và cảnh báo sớm</td>
+<td>Dự báo nghỉ việc trước 3–6 tháng; dự báo headcount và định biên; cảnh báo hết hạn hợp đồng, rủi ro mất nhân tài</td>
+<td>Chủ động giữ người thay vì phản ứng khi đã mất</td>
+<td>Lịch sử <code>fact_employee_movement</code>, <code>fact_attendance</code> từ 12–24 tháng</td>
+</tr>
+<tr>
+<td>A2. Khuyến nghị hành động và What-if</td>
+<td>Mô phỏng kịch bản: tăng lương X% giữ được bao nhiêu người; tối ưu định biên và chi phí</td>
+<td>Ra quyết định kèm con số hậu quả, không cảm tính</td>
+<td>A1 cộng tham số chi phí</td>
+</tr>
+<tr>
+<td>A3. Hoạch định nhân lực chiến lược</td>
+<td>Khoảng trống năng lực 1–3 năm; chiến lược tự phát triển, tuyển mới hay thuê ngoài</td>
+<td>Gắn quyết định nhân sự với mục tiêu tài chính</td>
+<td>Dữ liệu kỹ năng (mục B5)</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="3-nhom-b-ai-ho-tro-nghiep-vu-theo-chuoi-gia-tri-nhan-su">3. Nhóm B — AI hỗ trợ nghiệp vụ theo chuỗi giá trị nhân sự</h2>
+<p>Áp dụng AI vào từng khâu nghiệp vụ, từ tuyển dụng đến gắn kết. Ưu tiên các khâu tốn nhiều công thủ công và có sẵn dữ liệu.</p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Tính năng</th>
+<th>Mô tả</th>
+<th>Giá trị / dữ liệu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B1. Tuyển dụng thông minh</td>
+<td>Tự sinh mô tả công việc, sàng lọc hồ sơ, chatbot tương tác ứng viên, tự lên lịch phỏng vấn, phân tích phễu tuyển</td>
+<td>Rủi ro pháp lý cao nhất (xem Nhóm C3); 74% ứng viên vẫn muốn người quyết định cuối</td>
+</tr>
+<tr>
+<td>B2. Onboarding thông minh</td>
+<td>Điều phối cấp tài khoản và thiết bị liên hệ thống, lộ trình ngày đầu cá nhân hóa, tự động check-in nhân sự mới</td>
+<td>Rút ngắn thời gian đạt năng suất, giảm việc thủ công</td>
+</tr>
+<tr>
+<td>B3. Trợ lý chính sách và dịch vụ nhân sự</td>
+<td>Chatbot hỏi đáp chính sách, phúc lợi, quy trình dựa trên tài liệu nội bộ (RAG)</td>
+<td>Quick win rõ nhất: giảm khoảng 70% ticket, 40% thời gian xử lý; tận dụng trực tiếp bộ tài liệu hiện có</td>
+</tr>
+<tr>
+<td>B4. Đào tạo và phát triển năng lực</td>
+<td>Nội dung học cá nhân hóa, đo khoảng trống kỹ năng, đo tác động học tập</td>
+<td>Có sẵn <code>fact_training</code>, <code>dim_skill</code></td>
+</tr>
+<tr>
+<td>B5. Tổ chức theo kỹ năng và chợ nhân tài nội bộ</td>
+<td>Bản đồ kỹ năng, ghép người với cơ hội nội bộ, thúc đẩy luân chuyển nội bộ</td>
+<td>Có case tiết kiệm 21 triệu USD và giảm 30% chi phí tuyển ngoài; xu hướng chuyển một phần ba tuyển dụng sang nội bộ</td>
+</tr>
+<tr>
+<td>B6. Hiệu suất và kế nhiệm</td>
+<td>Ma trận nine-box, phát hiện nhân tài ẩn, cảnh báo rủi ro kế nhiệm</td>
+<td>Có sẵn <code>fact_performance</code>, <code>fact_succession</code></td>
+</tr>
+<tr>
+<td>B7. Lương thưởng và công bằng nội bộ</td>
+<td>Phân tích chênh lệch lương liên tục thay vì một lần mỗi năm, mô phỏng ngân sách lương</td>
+<td>31% tổ chức mất người vì lương thiếu công bằng; xu hướng minh bạch lương ngày càng siết</td>
+</tr>
+<tr>
+<td>B8. Gắn kết, sức khỏe và khối lượng công việc</td>
+<td>Phân tích cảm nhận nhân viên ẩn danh, đo tải công việc, cảnh báo nguy cơ kiệt sức</td>
+<td>Có sẵn <code>fact_engagement_survey</code>, <code>fact_wellbeing_risk</code></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="4-nhom-c-lop-nen-dung-chung-va-quan-tri">4. Nhóm C — Lớp nền dùng chung và quản trị</h2>
+<p>Làm một lần, dùng cho tất cả tính năng phía trên. Đây là phần dễ bị bỏ qua nhưng quyết định độ bền của cả hệ thống.</p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Tính năng</th>
+<th>Mô tả</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1. Lớp ngữ nghĩa và nền dữ liệu HR</td>
+<td>Chính là Data Dictionary đang xây; là điều kiện tiên quyết cho mọi tính năng AI</td>
+</tr>
+<tr>
+<td>C2. Copilot điều hành</td>
+<td>Lãnh đạo hỏi bằng ngôn ngữ tự nhiên, AI trả lời kèm biểu đồ; agent tự chạy quy trình. Dự báo 2026 có 40% ứng dụng doanh nghiệp dùng AI agent</td>
+</tr>
+<tr>
+<td>C3. Quản trị và tuân thủ AI</td>
+<td>AI nhân sự bị xếp nhóm rủi ro cao theo EU AI Act: kiểm thử thiên lệch, giám sát bởi con người thực chất, minh bạch, tài liệu hóa; hạn tuân thủ tháng 8/2026, phạt tới 35 triệu euro hoặc 7% doanh thu. Đã có sẵn <code>fact_ai_usage_log</code> và cơ chế RLS/masking làm nền</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="5-ban-o-nang-luc-ai-cho-nhan-su">5. Bản đồ năng lực AI cho nhân sự</h2>
+<p>Sơ đồ dưới đây gom toàn bộ hướng mở rộng thành một bức tranh: ba lớp năng lực cùng phục vụ mục tiêu ra quyết định nhân sự dựa trên dữ liệu và AI.</p>
+<figure class="diagram" data-diagram><div class="diagram-bar"><span class="diagram-hint"><i class="fa-solid fa-hand-pointer"></i> Kéo để di chuyển · cuộn để phóng to</span><span class="diagram-tools"><button type="button" data-zoom="out" title="Thu nhỏ"><i class="fa-solid fa-minus"></i></button><button type="button" data-zoom="reset" title="Vừa khung"><i class="fa-solid fa-expand"></i> Vừa khung</button><button type="button" data-zoom="in" title="Phóng to"><i class="fa-solid fa-plus"></i></button><button type="button" data-zoom="full" title="Toàn màn hình"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button></span></div><div class="diagram-canvas"><pre class="mermaid">mindmap
+  root((AI cho Nhan su))
+    Phan tich nang cao
+      Du bao nghi viec
+      Prescriptive va What-if
+      Hoach dinh nhan luc SWP
+    Chuoi nghiep vu
+      Tuyen dung thong minh
+      Onboarding thong minh
+      Tro ly chinh sach RAG
+      Dao tao va nang luc
+      Cho nhan tai noi bo
+      Hieu suat va ke nhiem
+      Luong thuong va pay equity
+      Gan ket va suc khoe
+    Nen tang dung chung
+      Semantic layer
+      Copilot dieu hanh
+      Governance AI</pre></div></figure>
+<h2 id="6-lo-trinh-trien-khai-ba-giai-oan">6. Lộ trình triển khai ba giai đoạn</h2>
+<p>Sắp xếp theo nguyên tắc: rủi ro thấp và giá trị nhanh làm trước, tính năng rủi ro cao làm sau khi nền đã vững.</p>
+<figure class="diagram" data-diagram><div class="diagram-bar"><span class="diagram-hint"><i class="fa-solid fa-hand-pointer"></i> Kéo để di chuyển · cuộn để phóng to</span><span class="diagram-tools"><button type="button" data-zoom="out" title="Thu nhỏ"><i class="fa-solid fa-minus"></i></button><button type="button" data-zoom="reset" title="Vừa khung"><i class="fa-solid fa-expand"></i> Vừa khung</button><button type="button" data-zoom="in" title="Phóng to"><i class="fa-solid fa-plus"></i></button><button type="button" data-zoom="full" title="Toàn màn hình"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button></span></div><div class="diagram-canvas"><pre class="mermaid">flowchart LR
+    subgraph G1[Giai doan 1 - 0 den 3 thang]
+      A[Hoan thien descriptive va Data Quality]
+      B[Tro ly chinh sach RAG]
+    end
+    subgraph G2[Giai doan 2 - 3 den 9 thang]
+      C[Du bao nghi viec]
+      D[Hoach dinh nhan luc SWP]
+      E[Ban do ky nang]
+    end
+    subgraph G3[Giai doan 3 - 9 den 18 thang]
+      F[Agentic tuyen dung va onboarding]
+      H[Cho nhan tai noi bo]
+      I[Prescriptive va What-if]
+      J[Governance AI day du]
+    end
+    G1 --&gt; G2 --&gt; G3</pre></div></figure>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Giai đoạn</th>
+<th>Ưu tiên triển khai</th>
+<th>Vì sao chọn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Giai đoạn 1 (0–3 tháng)</td>
+<td>Hoàn thiện báo cáo mô tả, Data Quality, Trợ lý chính sách RAG</td>
+<td>Rủi ro thấp, giá trị thấy ngay, tận dụng tài liệu sẵn có</td>
+</tr>
+<tr>
+<td>Giai đoạn 2 (3–9 tháng)</td>
+<td>Dự báo nghỉ việc, hoạch định nhân lực, bản đồ kỹ năng</td>
+<td>Bắt đầu tạo giá trị hành động trước</td>
+</tr>
+<tr>
+<td>Giai đoạn 3 (9–18 tháng)</td>
+<td>Agentic tuyển dụng/onboarding, chợ nhân tài, khuyến nghị, quản trị AI đầy đủ</td>
+<td>Rủi ro cao hơn, làm sau khi nền vững</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="7-canh-bao-quan-tri-danh-cho-lanh-ao">7. Cảnh báo quản trị dành cho lãnh đạo</h2>
+<blockquote>
+<p><strong>Nguyên tắc điều hành:</strong> AI nhân sự chạm trực tiếp tới quyền lợi con người nên phải kiểm soát chặt ngay từ đầu, không chạy theo tính năng.</p>
+</blockquote>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Rủi ro</th>
+<th>Yêu cầu kiểm soát</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thiên lệch và phân biệt đối xử</td>
+<td>Kiểm thử bias định kỳ; giám sát bởi con người thực chất, không ký duyệt hình thức</td>
+</tr>
+<tr>
+<td>Tuân thủ pháp lý</td>
+<td>HR-AI là nhóm rủi ro cao: tài liệu hóa, minh bạch với ứng viên/nhân viên, có quy trình khiếu nại</td>
+</tr>
+<tr>
+<td>Dữ liệu nhạy cảm</td>
+<td>RLS, masking, ẩn danh theo nhóm; hạn chế dữ liệu cá nhân trên báo cáo tổng hợp</td>
+</tr>
+<tr>
+<td>Phụ thuộc quá mức vào AI</td>
+<td>Con người giữ quyền quyết định cuối; ghi nhật ký sử dụng AI để truy nguyên</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="8-cach-bien-thanh-yeu-cau-trien-khai">8. Cách biến thành yêu cầu triển khai</h2>
+<p>Mỗi tính năng khi đưa vào kế hoạch nên được mô tả đủ năm điểm để có thể giao việc và nghiệm thu.</p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Thành phần yêu cầu</th>
+<th>Nội dung cần làm rõ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Câu hỏi điều hành</td>
+<td>Tính năng này trả lời câu hỏi kinh doanh nào?</td>
+</tr>
+<tr>
+<td>Chủ sở hữu</td>
+<td>Ai chịu trách nhiệm nghiệp vụ và ai chịu trách nhiệm dữ liệu?</td>
+</tr>
+<tr>
+<td>Dữ liệu cần</td>
+<td>Bảng, trường và độ dài lịch sử tối thiểu</td>
+</tr>
+<tr>
+<td>Thước đo hiệu quả</td>
+<td>KPI đo giá trị mang lại, ngưỡng chấp nhận</td>
+</tr>
+<tr>
+<td>Mức rủi ro và giai đoạn</td>
+<td>Rủi ro pháp lý/đạo đức và giai đoạn phù hợp trong lộ trình</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Kết luận:</strong> Bắt đầu từ câu hỏi kinh doanh, chọn tính năng theo ưu tiên và mức sẵn sàng của dữ liệu, kiểm soát rủi ro ngay từ thiết kế. Bộ tài liệu chuẩn hóa hiện có chính là nền để mọi tính năng AI phía trên triển khai được nhanh và đáng tin.</p>
+</blockquote></div>
+          <div class="prevnext"><a class="pn prev" href="#report-list"><span>← Trước</span><strong>Report List</strong></a></div>
+        </article>
+        <nav class="toc" aria-label="Mục lục"><p class="toc-h">Trên trang này</p><ul><li><a href="#" data-anchor="1-inh-vi-bo-tai-lieu-hien-tai">1. Định vị bộ tài liệu hiện tại</a></li><li><a href="#" data-anchor="2-nhom-a-nang-cap-chieu-sau-phan-tich">2. Nhóm A — Nâng cấp chiều sâu phân tích</a></li><li><a href="#" data-anchor="3-nhom-b-ai-ho-tro-nghiep-vu-theo-chuoi-gia-tri-nhan-su">3. Nhóm B — AI hỗ trợ nghiệp vụ theo chuỗi giá trị nhân sự</a></li><li><a href="#" data-anchor="4-nhom-c-lop-nen-dung-chung-va-quan-tri">4. Nhóm C — Lớp nền dùng chung và quản trị</a></li><li><a href="#" data-anchor="5-ban-o-nang-luc-ai-cho-nhan-su">5. Bản đồ năng lực AI cho nhân sự</a></li><li><a href="#" data-anchor="6-lo-trinh-trien-khai-ba-giai-oan">6. Lộ trình triển khai ba giai đoạn</a></li><li><a href="#" data-anchor="7-canh-bao-quan-tri-danh-cho-lanh-ao">7. Cảnh báo quản trị dành cho lãnh đạo</a></li><li><a href="#" data-anchor="8-cach-bien-thanh-yeu-cau-trien-khai">8. Cách biến thành yêu cầu triển khai</a></li></ul></nav>
       </div>
     </section>
     </div>
@@ -2834,9 +3135,8 @@ HR Data Quality Score =
       svg.removeAttribute("width"); svg.removeAttribute("height");
       svg.style.width=w+"px"; svg.style.height=h+"px";
       var both=Math.min(cw/w, ch/h, 1)*0.98;
-      // readability floor: never shrink below what fits the height (so wide diagrams stay legible and pan horizontally)
       st.s=Math.max(both, Math.min(ch/h*0.98, 0.85)) || 1;
-      st.x=(w*st.s<=cw)?(cw-w*st.s)/2:0;   // center if it fits, else start at left
+      st.x=(w*st.s<=cw)?(cw-w*st.s)/2:0;
       st.y=(h*st.s<=ch)?(ch-h*st.s)/2:0; apply();
     }
     function zoom(f,ox,oy){
@@ -2877,8 +3177,8 @@ HR Data Quality Score =
 </script>
 <script>
 (function(){
-  var docs=["overview","data-dictionary","kpi-dictionary","report-list"];
-  var titles={"overview":"Tổng quan","data-dictionary":"Data Dictionary","kpi-dictionary":"KPI Dictionary","report-list":"Report List"};
+  var docs=["overview","data-dictionary","kpi-dictionary","report-list","ai-expansion"];
+  var titles={"overview":"Tổng quan","data-dictionary":"Data Dictionary","kpi-dictionary":"KPI Dictionary","report-list":"Report List","ai-expansion":"Mở rộng & AI"};
   function show(id){
     if(docs.indexOf(id)<0)id="overview";
     var active=null;
