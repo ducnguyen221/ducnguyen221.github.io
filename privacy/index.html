@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Chính sách quyền riêng tư cho website ducnguyen.vn và ứng dụng nội bộ Page Auto Post — dữ liệu nào được xử lý, dùng làm gì, lưu ở đâu và liên hệ với ai.">
+  <title>Chính sách quyền riêng tư | Duc Nguyen</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Chính sách quyền riêng tư | Duc Nguyen">
+  <meta property="og:description" content="Privacy Policy — ducnguyen.vn và ứng dụng Page Auto Post.">
+  <meta property="og:url" content="https://ducnguyen.vn/privacy/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#04060a;--ink:#f8fafc;--muted:#94a3b8;--line:rgba(255,255,255,.14);
+    --line-active:rgba(0,240,255,.45);--cyan:#00f0ff;--purple:#bd00ff;--green:#39ff7a;--amber:#ffb340;
+    --panel:rgba(8,12,22,.96);--radius:12px;
+    --font-body:'Be Vietnam Pro',system-ui,sans-serif;--font-heading:'Plus Jakarta Sans',system-ui,sans-serif;--font-mono:'JetBrains Mono',Consolas,monospace}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{background:var(--bg);scroll-behavior:smooth}
+    body{min-height:100vh;color:var(--ink);font-family:var(--font-body);line-height:1.7;letter-spacing:-.01em;
+    background:radial-gradient(circle at 10% 20%,rgba(0,240,255,.05),transparent 40rem),
+    radial-gradient(circle at 90% 10%,rgba(189,0,255,.04),transparent 35rem),
+    linear-gradient(180deg,#04060a 0%,#080d1a 60%,#030508 100%);padding-bottom:48px}
+    a{color:inherit;text-decoration:none}
+    .site{position:relative;z-index:1;width:min(880px,calc(100% - 40px));margin:0 auto}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px 20px;margin-top:14px;
+    border:1px solid var(--line);border-radius:var(--radius);background:rgba(6,9,16,.93);backdrop-filter:blur(20px)}
+    .brand{display:inline-flex;align-items:center;gap:13px}
+    .brand-mark{width:44px;height:44px;display:grid;place-items:center;flex:0 0 auto;border:1px solid var(--line-active);border-radius:50%;
+    background:radial-gradient(circle,rgba(0,240,255,.22),rgba(189,0,255,.06) 55%,rgba(4,6,10,.95) 78%);box-shadow:0 0 18px rgba(0,240,255,.3)}
+    .brand-name{font-family:var(--font-heading);font-size:1.2rem;font-weight:800}
+    .brand-name b{color:var(--cyan)}
+    .brand-sub{display:block;color:var(--muted);font-size:.66rem;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase}
+    .nav{display:flex;gap:8px}
+    .nav a{padding:8px 14px;border:1px solid var(--line);border-radius:8px;font-size:.84rem;color:var(--muted);transition:.2s}
+    .nav a:hover{color:var(--cyan);border-color:var(--line-active)}
+    .hero{margin-top:32px}
+    .label{font-family:var(--font-mono);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+    .hero h1{font-family:var(--font-heading);font-size:2rem;font-weight:800;line-height:1.15;margin-bottom:10px}
+    .hero p{color:#cbd5e1;font-size:1rem}
+    .meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
+    .chip{font-family:var(--font-mono);font-size:.72rem;color:#a5f3fc;border:1px solid var(--line-active);border-radius:99px;padding:4px 12px;background:rgba(0,240,255,.06)}
+    .card{margin-top:22px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:26px 28px}
+    .card h2{font-family:var(--font-heading);font-size:1.2rem;font-weight:800;margin-bottom:12px;display:flex;align-items:baseline;gap:10px}
+    .card h2 .n{font-family:var(--font-mono);font-size:.8rem;color:var(--green);font-weight:700}
+    .card h3{font-family:var(--font-heading);font-size:.98rem;font-weight:700;margin:18px 0 8px;color:#e2e8f0}
+    .card p{color:#cbd5e1;font-size:.94rem;margin-bottom:10px}
+    .card ul{margin:0 0 10px 20px;color:#cbd5e1;font-size:.94rem}
+    .card li{margin-bottom:7px}
+    .card strong{color:var(--ink)}
+    code{font-family:var(--font-mono);font-size:.86em;color:#a5f3fc;background:rgba(0,240,255,.07);border:1px solid rgba(0,240,255,.18);border-radius:5px;padding:1px 6px}
+    .callout{border:1px solid var(--line-active);border-radius:10px;background:linear-gradient(135deg,rgba(0,240,255,.07),rgba(8,12,22,.9));padding:16px 18px;margin:14px 0}
+    .callout p{margin:0;color:#e2e8f0;font-size:.92rem}
+    table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9rem}
+    th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+    th{background:rgba(0,240,255,.06);color:#a5f3fc;font-family:var(--font-mono);font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+    td{color:#cbd5e1}
+    .tablewrap{overflow-x:auto}
+    .en{margin-top:34px;border-top:1px dashed var(--line);padding-top:26px}
+    .en .label{color:var(--purple)}
+    .mail{color:var(--cyan);border-bottom:1px solid rgba(0,240,255,.35)}
+    .footer{margin-top:44px;text-align:center;font-size:.8rem;color:#4b5563}
+    .footer a{color:#818cf8}
+    @media (max-width:640px){.hero h1{font-size:1.5rem}.nav{order:3;width:100%}.nav a{flex:1;text-align:center}.card{padding:20px 18px}}
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <a class="brand" href="/" title="Về trang chủ">
+        <span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.2-2.9 7.7-7 9-4.1-1.3-7-4.8-7-9V6z"/><path d="M9.5 12.2l1.9 1.9 3.6-3.9"/></svg></span>
+        <span><span class="brand-name">Quyền <b>riêng tư</b></span><span class="brand-sub">Privacy Policy · ducnguyen.vn</span></span>
+      </a>
+      <nav class="nav">
+        <a href="/">← Trang chủ</a>
+        <a href="/data-deletion/">Xóa dữ liệu</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="label">▍Privacy policy</div>
+      <h1>Chính sách quyền riêng tư</h1>
+      <p>Áp dụng cho website <strong>ducnguyen.vn</strong> và ứng dụng nội bộ <strong>Page Auto Post</strong> (Meta App ID <code>1012104197987184</code>).</p>
+      <div class="meta">
+        <span class="chip">Hiệu lực: 05/08/2026</span>
+        <span class="chip">Cập nhật: 05/08/2026</span>
+      </div>
+    </section>
+
+    <div class="card">
+      <h2><span class="n">01</span> Ai vận hành</h2>
+      <p>Website và ứng dụng do cá nhân <strong>Nguyễn Đức</strong> (Duc Nguyen) vận hành, phục vụ mục đích cá nhân và chia sẻ kiến thức về Data &amp; AI.</p>
+      <p>Liên hệ: <a class="mail" href="mailto:ducnguyen.ams@gmail.com">ducnguyen.ams@gmail.com</a></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">02</span> Ứng dụng Page Auto Post làm gì</h2>
+      <p><strong>Page Auto Post</strong> là công cụ tự động hoá cá nhân. Nó đăng bài viết và video ngắn (Reels) lên <strong>chính Trang Facebook do người vận hành sở hữu và quản trị</strong>.</p>
+      <div class="callout">
+        <p>Ứng dụng <strong>không có người dùng bên thứ ba</strong>. Không có chức năng đăng nhập cho người khác, không thu thập dữ liệu của khách truy cập, không phục vụ khách hàng nào.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">03</span> Dữ liệu được xử lý</h2>
+      <p>Ứng dụng chỉ dùng các quyền Facebook tối thiểu để đăng bài lên Trang của chính chủ sở hữu:</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Quyền</th><th>Dùng để làm gì</th></tr></thead>
+          <tbody>
+            <tr><td><code>pages_show_list</code></td><td>Xác định Trang mà chủ tài khoản quản trị</td></tr>
+            <tr><td><code>pages_manage_posts</code></td><td>Tạo bài viết và Reels trên Trang đó</td></tr>
+            <tr><td><code>pages_read_engagement</code></td><td>Đọc lại trạng thái bài vừa đăng để kiểm tra thành công</td></tr>
+            <tr><td><code>pages_read_user_content</code></td><td>Đọc nội dung đã đăng trên chính Trang đó</td></tr>
+            <tr><td><code>business_management</code></td><td>Truy cập Trang thuộc portfolio doanh nghiệp</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Dữ liệu lưu lại</h3>
+      <ul>
+        <li><strong>Page ID</strong>, <strong>tên Trang</strong> và <strong>Page access token</strong> của chính chủ sở hữu.</li>
+        <li>Nhật ký kỹ thuật của lần chạy (thời điểm, ID bài đã đăng, thông báo lỗi).</li>
+      </ul>
+      <h3>Dữ liệu KHÔNG thu thập</h3>
+      <ul>
+        <li>Không thu thập thông tin cá nhân của người theo dõi, người xem hay người bình luận.</li>
+        <li>Không đọc tin nhắn, danh sách bạn bè hay dữ liệu hồ sơ của bất kỳ ai khác.</li>
+        <li>Không dùng cookie theo dõi, không chạy analytics hay quảng cáo trên các trang này.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">04</span> Lưu trữ &amp; bảo mật</h2>
+      <ul>
+        <li>Token và cấu hình được lưu <strong>cục bộ trên máy tính cá nhân của chủ sở hữu</strong>, trong tệp cấu hình không công khai.</li>
+        <li><strong>Không có máy chủ</strong> nào của ứng dụng lưu trữ dữ liệu; không có cơ sở dữ liệu đám mây.</li>
+        <li>Token <strong>không bao giờ</strong> được đưa vào mã nguồn công khai hay kho lưu trữ Git.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">05</span> Chia sẻ với bên thứ ba</h2>
+      <p><strong>Không bán, không cho thuê, không trao đổi</strong> dữ liệu với bất kỳ bên nào. Ứng dụng chỉ giao tiếp với Meta Graph API để thực hiện việc đăng bài, và với YouTube Data API khi tải video lên kênh của chính chủ sở hữu.</p>
+      <p>Dữ liệu chỉ được tiết lộ nếu pháp luật Việt Nam bắt buộc.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">06</span> Thời gian lưu giữ &amp; xoá dữ liệu</h2>
+      <p>Token được giữ chừng nào công cụ còn hoạt động, và bị xoá ngay khi không còn dùng. Nhật ký kỹ thuật được dọn định kỳ.</p>
+      <p>Hướng dẫn yêu cầu xoá dữ liệu: <a class="mail" href="/data-deletion/">ducnguyen.vn/data-deletion/</a></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">07</span> Quyền của bạn</h2>
+      <p>Nếu bạn cho rằng dữ liệu của mình bị xử lý qua công cụ này, bạn có quyền yêu cầu <strong>truy cập</strong>, <strong>đính chính</strong> hoặc <strong>xoá</strong>. Gửi yêu cầu tới <a class="mail" href="mailto:ducnguyen.ams@gmail.com">ducnguyen.ams@gmail.com</a>; phản hồi trong vòng <strong>30 ngày</strong>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">08</span> Trẻ em</h2>
+      <p>Công cụ không hướng tới và không xử lý dữ liệu của người dưới 13 tuổi.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">09</span> Thay đổi chính sách</h2>
+      <p>Mọi thay đổi sẽ được đăng tại chính trang này kèm ngày cập nhật mới.</p>
+    </div>
+
+    <!-- ================= ENGLISH ================= -->
+    <section class="en">
+      <div class="label">▍English version</div>
+      <h1 style="font-family:var(--font-heading);font-size:1.6rem;font-weight:800;margin-bottom:8px">Privacy Policy</h1>
+      <p style="color:#cbd5e1">Applies to the website <strong>ducnguyen.vn</strong> and the internal application <strong>Page Auto Post</strong> (Meta App ID <code>1012104197987184</code>). Effective 5 August 2026.</p>
+
+      <div class="card">
+        <h2><span class="n">01</span> Operator</h2>
+        <p>Operated by <strong>Duc Nguyen</strong>, an individual, for personal use and for sharing Data &amp; AI knowledge. Contact: <a class="mail" href="mailto:ducnguyen.ams@gmail.com">ducnguyen.ams@gmail.com</a></p>
+      </div>
+
+      <div class="card">
+        <h2><span class="n">02</span> What the app does</h2>
+        <p><strong>Page Auto Post</strong> is a personal automation tool. It publishes posts and Reels to a <strong>Facebook Page owned and administered by the operator</strong>.</p>
+        <div class="callout">
+          <p>The app has <strong>no third-party users</strong>. There is no login for other people, no collection of visitor data, and no customers are served.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2><span class="n">03</span> Data processed</h2>
+        <p>The app requests only the minimum Facebook permissions needed to publish to the owner's own Page: <code>pages_show_list</code>, <code>pages_manage_posts</code>, <code>pages_read_engagement</code>, <code>pages_read_user_content</code> and <code>business_management</code>.</p>
+        <h3>Stored</h3>
+        <ul>
+          <li>The owner's own <strong>Page ID</strong>, <strong>Page name</strong> and <strong>Page access token</strong>.</li>
+          <li>Technical run logs (timestamp, published post IDs, error messages).</li>
+        </ul>
+        <h3>Not collected</h3>
+        <ul>
+          <li>No personal information about followers, viewers or commenters.</li>
+          <li>No messages, friend lists or profile data of any other person.</li>
+          <li>No tracking cookies, analytics or advertising on these pages.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2><span class="n">04</span> Storage &amp; security</h2>
+        <ul>
+          <li>Tokens and configuration are stored <strong>locally on the operator's personal computer</strong> in a non-public configuration file.</li>
+          <li><strong>No application server</strong> stores any data; there is no cloud database.</li>
+          <li>Tokens are <strong>never</strong> committed to public source code or Git repositories.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2><span class="n">05</span> Third-party sharing</h2>
+        <p>Data is <strong>never sold, rented or traded</strong>. The app communicates only with the Meta Graph API to publish content, and with the YouTube Data API to upload videos to the operator's own channel. Disclosure occurs only where required by Vietnamese law.</p>
+      </div>
+
+      <div class="card">
+        <h2><span class="n">06</span> Retention &amp; deletion</h2>
+        <p>Tokens are retained while the tool is in use and deleted once it is retired. Technical logs are cleared periodically. Deletion instructions: <a class="mail" href="/data-deletion/">ducnguyen.vn/data-deletion/</a></p>
+      </div>
+
+      <div class="card">
+        <h2><span class="n">07</span> Your rights</h2>
+        <p>If you believe your data has been processed by this tool, you may request <strong>access</strong>, <strong>correction</strong> or <strong>deletion</strong> by emailing <a class="mail" href="mailto:ducnguyen.ams@gmail.com">ducnguyen.ams@gmail.com</a>. Requests are answered within <strong>30 days</strong>.</p>
+      </div>
+
+      <div class="card">
+        <h2><span class="n">08</span> Children</h2>
+        <p>The tool is not directed at, and does not process data of, anyone under 13.</p>
+      </div>
+
+      <div class="card">
+        <h2><span class="n">09</span> Changes</h2>
+        <p>Any changes will be posted on this page with an updated date.</p>
+      </div>
+    </section>
+
+    <div class="footer">© 2026 Duc Nguyen · <a href="/">Trang chủ</a> · <a href="/data-deletion/">Xóa dữ liệu</a> · <a href="/news/ai/">AI News</a> · <a href="/news/data/">Data News</a></div>
+  </div>
+</body>
+</html>

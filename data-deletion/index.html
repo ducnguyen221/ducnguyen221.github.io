@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hướng dẫn yêu cầu xóa dữ liệu người dùng đối với ứng dụng Page Auto Post và website ducnguyen.vn — cách gửi yêu cầu và thời gian xử lý.">
+  <title>Hướng dẫn xóa dữ liệu | Duc Nguyen</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hướng dẫn xóa dữ liệu | Duc Nguyen">
+  <meta property="og:description" content="User Data Deletion Instructions — Page Auto Post &amp; ducnguyen.vn.">
+  <meta property="og:url" content="https://ducnguyen.vn/data-deletion/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#04060a;--ink:#f8fafc;--muted:#94a3b8;--line:rgba(255,255,255,.14);
+    --line-active:rgba(0,240,255,.45);--cyan:#00f0ff;--purple:#bd00ff;--green:#39ff7a;--amber:#ffb340;
+    --panel:rgba(8,12,22,.96);--radius:12px;
+    --font-body:'Be Vietnam Pro',system-ui,sans-serif;--font-heading:'Plus Jakarta Sans',system-ui,sans-serif;--font-mono:'JetBrains Mono',Consolas,monospace}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{background:var(--bg);scroll-behavior:smooth}
+    body{min-height:100vh;color:var(--ink);font-family:var(--font-body);line-height:1.7;letter-spacing:-.01em;
+    background:radial-gradient(circle at 10% 20%,rgba(0,240,255,.05),transparent 40rem),
+    radial-gradient(circle at 90% 10%,rgba(189,0,255,.04),transparent 35rem),
+    linear-gradient(180deg,#04060a 0%,#080d1a 60%,#030508 100%);padding-bottom:48px}
+    a{color:inherit;text-decoration:none}
+    .site{position:relative;z-index:1;width:min(880px,calc(100% - 40px));margin:0 auto}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px 20px;margin-top:14px;
+    border:1px solid var(--line);border-radius:var(--radius);background:rgba(6,9,16,.93);backdrop-filter:blur(20px)}
+    .brand{display:inline-flex;align-items:center;gap:13px}
+    .brand-mark{width:44px;height:44px;display:grid;place-items:center;flex:0 0 auto;border:1px solid var(--line-active);border-radius:50%;
+    background:radial-gradient(circle,rgba(0,240,255,.22),rgba(189,0,255,.06) 55%,rgba(4,6,10,.95) 78%);box-shadow:0 0 18px rgba(0,240,255,.3)}
+    .brand-name{font-family:var(--font-heading);font-size:1.2rem;font-weight:800}
+    .brand-name b{color:var(--cyan)}
+    .brand-sub{display:block;color:var(--muted);font-size:.66rem;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase}
+    .nav{display:flex;gap:8px}
+    .nav a{padding:8px 14px;border:1px solid var(--line);border-radius:8px;font-size:.84rem;color:var(--muted);transition:.2s}
+    .nav a:hover{color:var(--cyan);border-color:var(--line-active)}
+    .hero{margin-top:32px}
+    .label{font-family:var(--font-mono);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+    .hero h1{font-family:var(--font-heading);font-size:2rem;font-weight:800;line-height:1.15;margin-bottom:10px}
+    .hero p{color:#cbd5e1;font-size:1rem}
+    .meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
+    .chip{font-family:var(--font-mono);font-size:.72rem;color:#a5f3fc;border:1px solid var(--line-active);border-radius:99px;padding:4px 12px;background:rgba(0,240,255,.06)}
+    .card{margin-top:22px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:26px 28px}
+    .card h2{font-family:var(--font-heading);font-size:1.2rem;font-weight:800;margin-bottom:12px;display:flex;align-items:baseline;gap:10px}
+    .card h2 .n{font-family:var(--font-mono);font-size:.8rem;color:var(--green);font-weight:700}
+    .card h3{font-family:var(--font-heading);font-size:.98rem;font-weight:700;margin:18px 0 8px;color:#e2e8f0}
+    .card p{color:#cbd5e1;font-size:.94rem;margin-bottom:10px}
+    .card ul,.card ol{margin:0 0 10px 20px;color:#cbd5e1;font-size:.94rem}
+    .card li{margin-bottom:8px}
+    .card strong{color:var(--ink)}
+    code{font-family:var(--font-mono);font-size:.86em;color:#a5f3fc;background:rgba(0,240,255,.07);border:1px solid rgba(0,240,255,.18);border-radius:5px;padding:1px 6px}
+    .callout{border:1px solid var(--line-active);border-radius:10px;background:linear-gradient(135deg,rgba(0,240,255,.07),rgba(8,12,22,.9));padding:16px 18px;margin:14px 0}
+    .callout p{margin:0;color:#e2e8f0;font-size:.92rem}
+    .steps{counter-reset:s;list-style:none;margin-left:0}
+    .steps li{counter-increment:s;position:relative;padding-left:38px;margin-bottom:12px}
+    .steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:26px;height:26px;display:grid;place-items:center;
+    font-family:var(--font-mono);font-size:.78rem;font-weight:700;color:var(--cyan);border:1px solid var(--line-active);border-radius:50%;background:rgba(0,240,255,.07)}
+    .mailbox{margin:16px 0;border:1px solid var(--line-active);border-radius:10px;background:rgba(0,240,255,.05);padding:18px 20px;text-align:center}
+    .mailbox a{font-family:var(--font-mono);font-size:1.05rem;font-weight:600;color:var(--cyan)}
+    .mailbox span{display:block;color:var(--muted);font-size:.78rem;font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+    .en{margin-top:34px;border-top:1px dashed var(--line);padding-top:26px}
+    .en .label{color:var(--purple)}
+    .mail{color:var(--cyan);border-bottom:1px solid rgba(0,240,255,.35)}
+    .footer{margin-top:44px;text-align:center;font-size:.8rem;color:#4b5563}
+    .footer a{color:#818cf8}
+    @media (max-width:640px){.hero h1{font-size:1.5rem}.nav{order:3;width:100%}.nav a{flex:1;text-align:center}.card{padding:20px 18px}}
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header class="topbar">
+      <a class="brand" href="/" title="Về trang chủ">
+        <span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"/><path d="M10 11v6M14 11v6"/></svg></span>
+        <span><span class="brand-name">Xóa <b>dữ liệu</b></span><span class="brand-sub">Data deletion · ducnguyen.vn</span></span>
+      </a>
+      <nav class="nav">
+        <a href="/">← Trang chủ</a>
+        <a href="/privacy/">Quyền riêng tư</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="label">▍Data deletion</div>
+      <h1>Hướng dẫn xóa dữ liệu người dùng</h1>
+      <p>Áp dụng cho ứng dụng <strong>Page Auto Post</strong> (Meta App ID <code>1012104197987184</code>) và website <strong>ducnguyen.vn</strong>.</p>
+      <div class="meta">
+        <span class="chip">Hiệu lực: 05/08/2026</span>
+        <span class="chip">Xử lý trong 30 ngày</span>
+      </div>
+    </section>
+
+    <div class="card">
+      <h2><span class="n">01</span> Trước tiên — dữ liệu nào đang tồn tại</h2>
+      <p><strong>Page Auto Post</strong> là công cụ tự động hoá cá nhân, chỉ đăng bài lên Trang Facebook do chính người vận hành sở hữu.</p>
+      <div class="callout">
+        <p>Ứng dụng <strong>không thu thập và không lưu trữ dữ liệu cá nhân của bất kỳ ai khác</strong> — không của người theo dõi, người xem hay người bình luận. Dữ liệu duy nhất được lưu là Page ID, tên Trang và access token của chính chủ sở hữu, nằm cục bộ trên máy tính cá nhân.</p>
+      </div>
+      <p>Chi tiết đầy đủ: xem <a class="mail" href="/privacy/">Chính sách quyền riêng tư</a>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">02</span> Cách gửi yêu cầu xóa dữ liệu</h2>
+      <p>Nếu bạn cho rằng dữ liệu của mình có liên quan tới ứng dụng này, hãy gửi email theo hướng dẫn sau:</p>
+      <div class="mailbox">
+        <span>Gửi tới</span>
+        <a href="mailto:ducnguyen.ams@gmail.com?subject=Yeu%20cau%20xoa%20du%20lieu%20-%20Page%20Auto%20Post">ducnguyen.ams@gmail.com</a>
+      </div>
+      <ol class="steps">
+        <li><strong>Tiêu đề email:</strong> <code>Yêu cầu xóa dữ liệu — Page Auto Post</code></li>
+        <li><strong>Nội dung cần có:</strong> tên Facebook của bạn, và mô tả ngắn dữ liệu bạn muốn xóa.</li>
+        <li><strong>Xác minh:</strong> có thể cần một bước xác nhận đơn giản để chắc chắn yêu cầu đến từ đúng chủ dữ liệu.</li>
+        <li><strong>Kết quả:</strong> dữ liệu liên quan sẽ được xóa và bạn nhận email xác nhận trong vòng <strong>30 ngày</strong>.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">03</span> Tự thu hồi quyền truy cập trên Facebook</h2>
+      <p>Bạn có thể tự gỡ ứng dụng bất cứ lúc nào — thao tác này thu hồi ngay mọi quyền đã cấp:</p>
+      <ol class="steps">
+        <li>Mở Facebook → <strong>Cài đặt &amp; quyền riêng tư</strong> → <strong>Cài đặt</strong>.</li>
+        <li>Chọn <strong>Ứng dụng và trang web</strong> (Apps and Websites).</li>
+        <li>Tìm <strong>Page Auto Post</strong> trong danh sách.</li>
+        <li>Bấm <strong>Gỡ</strong> (Remove) → tick tùy chọn <strong>xóa các bài đăng do ứng dụng tạo</strong> nếu bạn muốn.</li>
+      </ol>
+      <p>Sau khi gỡ, access token liên quan mất hiệu lực ngay lập tức và ứng dụng không còn truy cập được gì.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">04</span> Website ducnguyen.vn</h2>
+      <p>Website là trang tĩnh, <strong>không có tài khoản người dùng</strong>, không đặt cookie theo dõi và không lưu dữ liệu cá nhân của khách truy cập. Vì vậy không có dữ liệu nào cần xóa.</p>
+      <p>Riêng bản tin qua email: mỗi email đều có link <strong>hủy đăng ký</strong>; bấm vào đó là địa chỉ của bạn được gỡ khỏi danh sách.</p>
+    </div>
+
+    <!-- ================= ENGLISH ================= -->
+    <section class="en">
+      <div class="label">▍English version</div>
+      <h1 style="font-family:var(--font-heading);font-size:1.6rem;font-weight:800;margin-bottom:8px">User Data Deletion Instructions</h1>
+      <p style="color:#cbd5e1">For the application <strong>Page Auto Post</strong> (Meta App ID <code>1012104197987184</code>) and the website <strong>ducnguyen.vn</strong>. Effective 5 August 2026.</p>
+
+      <div class="card">
+        <h2><span class="n">01</span> What data exists</h2>
+        <p><strong>Page Auto Post</strong> is a personal automation tool that publishes only to a Facebook Page owned by the operator.</p>
+        <div class="callout">
+          <p>The app <strong>does not collect or store personal data of any other person</strong> — not of followers, viewers or commenters. The only stored data is the operator's own Page ID, Page name and access token, held locally on a personal computer.</p>
+        </div>
+        <p>Full details: see the <a class="mail" href="/privacy/">Privacy Policy</a>.</p>
+      </div>
+
+      <div class="card">
+        <h2><span class="n">02</span> How to request deletion</h2>
+        <p>If you believe your data is associated with this app, email us:</p>
+        <div class="mailbox">
+          <span>Send to</span>
+          <a href="mailto:ducnguyen.ams@gmail.com?subject=Data%20Deletion%20Request%20-%20Page%20Auto%20Post">ducnguyen.ams@gmail.com</a>
+        </div>
+        <ol class="steps">
+          <li><strong>Subject:</strong> <code>Data Deletion Request — Page Auto Post</code></li>
+          <li><strong>Include:</strong> your Facebook name and a short description of the data you want deleted.</li>
+          <li><strong>Verification:</strong> a simple confirmation step may be required to verify the request comes from the data subject.</li>
+          <li><strong>Outcome:</strong> the relevant data is deleted and you receive a confirmation email within <strong>30 days</strong>.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h2><span class="n">03</span> Revoke access yourself on Facebook</h2>
+        <ol class="steps">
+          <li>Facebook → <strong>Settings &amp; privacy</strong> → <strong>Settings</strong>.</li>
+          <li>Open <strong>Apps and Websites</strong>.</li>
+          <li>Find <strong>Page Auto Post</strong> in the list.</li>
+          <li>Click <strong>Remove</strong>, and tick the option to <strong>delete posts created by the app</strong> if you wish.</li>
+        </ol>
+        <p>Removal invalidates the related access token immediately; the app loses all access.</p>
+      </div>
+
+      <div class="card">
+        <h2><span class="n">04</span> The ducnguyen.vn website</h2>
+        <p>The site is static, has <strong>no user accounts</strong>, sets no tracking cookies and stores no visitor personal data — so there is nothing to delete. For the email newsletter, every message contains an <strong>unsubscribe</strong> link that removes your address from the list.</p>
+      </div>
+    </section>
+
+    <div class="footer">© 2026 Duc Nguyen · <a href="/">Trang chủ</a> · <a href="/privacy/">Quyền riêng tư</a> · <a href="/news/ai/">AI News</a> · <a href="/news/data/">Data News</a></div>
+  </div>
+</body>
+</html>
