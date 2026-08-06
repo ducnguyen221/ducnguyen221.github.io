@@ -285,6 +285,12 @@
   .rv { opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s cubic-bezier(.22,.9,.3,1); }
   .rv.on { opacity:1; transform:none; }
 
+  /* reduce-motion: phong bì vẫn hiện, chỉ bỏ chuyển động rườm rà */
+  .env-scene.reduced .envelope { animation:none; opacity:1; transform:none; }
+  .env-scene.reduced .letter,
+  .env-scene.reduced .env-flap { transition:none; }
+  .env-scene.reduced.opening .env-flap { transform:rotateX(-172deg); }
+
   @media (prefers-reduced-motion: reduce) {
     .rv { opacity:1; transform:none; transition:none; }
     .envelope, .aurora, .orbs i, .embers i, .glints span, .sparks i, .env-sparks i,
@@ -297,6 +303,7 @@
 </style>
 </head>
 <body class="locked">
+<noscript><style>.env-scene{display:none!important}body.locked{overflow:auto!important;height:auto!important}.rv{opacity:1!important;transform:none!important}</style></noscript>
 
 <canvas id="fx"></canvas>
 
@@ -605,23 +612,18 @@
     if (opened) return;
     opened = true;
     scene.classList.add('opening');
-    setTimeout(celebrate, 900);
+    if (!reduced) setTimeout(celebrate, 900);
     setTimeout(function () {
       scene.classList.add('gone');
       document.body.classList.remove('locked');
-      startReveal();
-    }, 1450);
+      if (reduced) { revealAll(); } else { startReveal(); }
+    }, reduced ? 420 : 1450);
   }
   scene.addEventListener('click', open);
   scene.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
   });
-  if (reduced) {
-    scene.classList.add('gone');
-    document.body.classList.remove('locked');
-    revealAll();
-    opened = true;
-  }
+  if (reduced) { scene.classList.add('reduced'); }
 
   document.getElementById('replay').addEventListener('click', celebrate);
 
