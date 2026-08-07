@@ -168,6 +168,9 @@ a{color:var(--accent);text-decoration:none}
 }
 ::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px}
 </style>
+<style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
+html, body { overscroll-behavior-y: none; }
+</style>
 </head>
 <body>
 <div class="shell">

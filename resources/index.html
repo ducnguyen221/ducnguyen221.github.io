@@ -68,6 +68,9 @@
     @media (max-width:920px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media (max-width:640px){.grid{grid-template-columns:1fr}.hero h1{font-size:1.5rem}.nav{order:3;width:100%}.nav a{flex:1;text-align:center}.cta a{width:100%;justify-content:center}}
   </style>
+<style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
+html, body { overscroll-behavior-y: none; }
+</style>
 </head>
 <body>
   <div class="site">

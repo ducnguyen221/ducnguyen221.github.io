@@ -148,6 +148,9 @@
     .no-scrollbar::-webkit-scrollbar { display:none; }
     .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
   </style>
+<style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
+html, body { overscroll-behavior-y: none; }
+</style>
 </head>
 
 <body class="bg-background-light dark:bg-background-dark font-body text-text-main-light dark:text-text-main-dark h-screen flex overflow-hidden selection:bg-primary selection:text-white">

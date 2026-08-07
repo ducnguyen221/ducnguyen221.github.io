@@ -174,7 +174,10 @@
       min-height: max(884px, 100dvh);
     }
   </style>
-  </head><body class="relative h-screen w-full overflow-hidden bg-gradient-to-br from-[var(--bg-start)] to-[var(--bg-end)] selection:bg-[var(--primary-color)] selection:text-white">
+  <style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
+html, body { overscroll-behavior-y: none; }
+</style>
+</head><body class="relative h-screen w-full overflow-hidden bg-gradient-to-br from-[var(--bg-start)] to-[var(--bg-end)] selection:bg-[var(--primary-color)] selection:text-white">
 <div class="relative h-full max-w-[100vw] mx-auto p-4 lg:mx-[50px] lg:px-0 lg:py-4 gap-4 lg:gap-4">
 <canvas class="absolute inset-0 z-0 pointer-events-none opacity-30 rounded-card" id="bgCanvas"></canvas>
 <div class="relative z-10 flex flex-col h-full">

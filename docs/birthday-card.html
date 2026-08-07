@@ -177,6 +177,9 @@ canvas#fx{position:fixed;inset:0;z-index:2;pointer-events:none}
 
 @media (max-width:480px){.inner{padding:32px 22px 30px}.portrait-frame{width:160px;height:200px}}
 </style>
+<style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
+html, body { overscroll-behavior-y: none; }
+</style>
 </head>
 <body>
 <div class="backdrop"></div>

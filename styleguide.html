@@ -28,6 +28,9 @@
   .pageswatch { display: flex; flex-direction: column; gap: var(--s-3); }
   .pageswatch__bar { height: 56px; border-radius: var(--r-md); border: 1px solid var(--page-line); background: linear-gradient(90deg, var(--page), var(--page-strong)); }
 </style>
+<style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
+html, body { overscroll-behavior-y: none; }
+</style>
 </head>
 <body>
 
