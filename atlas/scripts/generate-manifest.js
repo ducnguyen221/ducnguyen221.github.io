@@ -12,7 +12,7 @@ const OUTPUT = path.join(ROOT, "data", "manifest.json");
 const IGNORE_DIRS = new Set(["node_modules",".git",".tmp","assets","scripts","data",".github"]);
 const IGNORE_FILES = new Set(["index.html","404.html"]);
 
-const TOPIC_DIRS = new Set(["strategy","ai","ba","da","de","bi","edtech","coding","other","automation","instruction"]);
+const TOPIC_DIRS = new Set(["strategy","ai","ba","da","de","bi","elearning","coding","other","automation","instruction"]);
 
 const TOPIC_KW = {
   strategy: ["strategy","management","okr","kpi","agile","lean","startup","leadership","roadmap","portfolio","go-to-market"],
@@ -21,7 +21,7 @@ const TOPIC_KW = {
   da: ["da","data analysis","data analytics","analytics","statistics","eda","exploratory data analysis","insight","sql"],
   de: ["de","data engineering","databricks","delta lake","lakehouse","etl","elt","pipeline","spark","warehouse","orchestration"],
   bi: ["bi","business intelligence","power bi","powerbi","dax","dashboard","report","semantic model","fabric"],
-  edtech: ["education","edtech","teaching","learning","curriculum","course","study","flashcard","glossary","certification","exam"],
+  elearning: ["education","elearning","teaching","learning","curriculum","course","study","flashcard","glossary","certification","exam"],
   coding: ["python","javascript","coding","programming","algorithm","api","react","node"],
   automation: ["automation","workflow","n8n","knime","make","zapier","integromat","orchestrator","orchestration"],
   instruction: ["instruction","cài đặt","setup","installation","guide","huong dan","hướng dẫn"],
@@ -63,9 +63,19 @@ function pathCats(rel) {
   return [];
 }
 
+/**
+ * Quy tắc phân loại: MỘT thư mục = MỘT nhóm.
+ * Bài nằm trong content/<topic>/ thì thuộc đúng nhóm <topic>, không gán thêm nhóm nào khác.
+ * Chỉ khi bài KHÔNG nằm trong thư mục nhóm hợp lệ mới suy đoán bằng từ khoá.
+ * (Trước đây lấy hợp của thư mục + từ khoá nên 1 bài rơi vào 3-4 nhóm, gây nhập nhằng
+ *  giữa các thư mục — ví dụ hr-analytics ở content/da/ lại hiện cả ở bi, ai, strategy.)
+ */
 function detectCats(title, desc, rel) {
+  const fromPath = pathCats(rel);
+  if (fromPath.length) return fromPath;
+
   const h = `${title} ${desc}`.toLowerCase();
-  const cats = new Set(pathCats(rel));
+  const cats = new Set();
   Object.entries(TOPIC_KW).forEach(([cat, kws]) => {
     if (kws.some((k) => hasKeyword(h, k))) cats.add(cat);
   });

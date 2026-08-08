@@ -10,7 +10,7 @@
   lấy `<title>` + `<meta description>`). Không sửa tay; chạy lại script để cập nhật.
 - Path trong manifest là **tương đối** (`content/...`) và **đúng** vì `index.html` phục vụ tại
   `/atlas/`. Giữ nguyên — không thêm tiền tố `atlas/`.
-- Category hợp lệ: `strategy, ai, ba, da, de, bi, edtech, coding, automation, instruction, other`
+- Category hợp lệ: `strategy, ai, ba, da, de, bi, elearning, coding, automation, instruction, other`
   (đồng bộ với `404.html` gốc của site cho SPA fallback `/atlas/<cat>/`).
 - Khi sửa thiết kế atlas (hiếm): chỉ trong `assets/styles.css` + `assets/main.js`; giữ topbar/footer.
 

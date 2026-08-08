@@ -8,7 +8,7 @@
 <script>
   // SPA fallback: /atlas/<nhóm>/ -> /atlas/?cat=<nhóm> (main.js lọc theo nhóm).
   (function () {
-    var CATS = ["strategy","ai","ba","da","de","bi","edtech","coding","automation","instruction","other"];
+    var CATS = ["strategy","ai","ba","da","de","bi","elearning","coding","automation","instruction","other"];
     var segs = location.pathname.replace(/\/+$/, "").split("/");
     var cat = (segs[segs.length - 1] || "").toLowerCase();
     if (CATS.indexOf(cat) >= 0) {

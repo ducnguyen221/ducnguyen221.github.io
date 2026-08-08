@@ -4,8 +4,7 @@
     "title": "Báo cáo So sánh Chuyên sâu: n8n vs KNIME",
     "description": "Tài liệu phân tích kiến trúc công nghệ, mô hình vận hành và định hướng ứng dụng n8n vs KNIME trong Ngân hàng, HR & Hệ thống AI Agent.",
     "categories": [
-      "automation",
-      "ai"
+      "automation"
     ],
     "path": "content/automation/n8n-vs-knime.html",
     "thumbnail": "",
@@ -17,9 +16,7 @@
     "title": "Databricks GenAI Engineer · Study Tool",
     "description": "Interactive study tool with glossary, flashcards, and evaluation framework for the Databricks Certified Generative AI Engineer Associate certification.",
     "categories": [
-      "ai",
-      "de",
-      "edtech"
+      "ai"
     ],
     "path": "content/ai/databricks-genai.html",
     "thumbnail": "",
@@ -31,24 +28,19 @@
     "title": "HR Analytics · Chuẩn hóa dữ liệu · KPI · Báo cáo · Mở rộng AI (HRA-101) · Atlas",
     "description": "Bộ tài liệu HR Analytics: Data Dictionary 42 bảng, KPI Dictionary 6 nhóm chỉ tiêu, Report List 13 báo cáo và tư vấn mở rộng ứng dụng AI cho nghiệp vụ nhân sự — kèm ERD, mindmap và luồng dữ liệu tương tác (zoom, pan, toàn màn hình).",
     "categories": [
-      "da",
-      "strategy",
-      "ai",
-      "bi"
+      "elearning"
     ],
-    "path": "content/da/hr-analytics.html",
+    "path": "content/elearning/hr-analytics.html",
     "thumbnail": "",
-    "lastModified": "2026-08-07",
-    "fileSize": 179354
+    "lastModified": "2026-08-08",
+    "fileSize": 179307
   },
   {
     "slug": "cai-dat-n8n-desktop-1",
     "title": "Hướng dẫn Cài đặt n8n chi tiết cho người mới bắt đầu (Non-Tech)",
     "description": "Hướng dẫn từng bước cài đặt n8n trên máy tính cá nhân bằng Node.js và Docker Desktop chi tiết, trực quan và dễ hiểu dành cho người dùng non-tech.",
     "categories": [
-      "instruction",
-      "coding",
-      "automation"
+      "instruction"
     ],
     "path": "content/instruction/cai-dat-n8n-desktop-1.html",
     "thumbnail": "",
@@ -60,9 +52,7 @@
     "title": "Hướng dẫn Cài đặt n8n chi tiết cho người mới bắt đầu (Non-Tech)",
     "description": "Hướng dẫn từng bước cài đặt n8n trên máy tính cá nhân bằng Node.js và Docker Desktop chi tiết, trực quan và dễ hiểu dành cho người dùng non-tech.",
     "categories": [
-      "instruction",
-      "coding",
-      "automation"
+      "instruction"
     ],
     "path": "content/instruction/cai-dat-n8n-desktop.html",
     "thumbnail": "",
@@ -86,22 +76,19 @@
     "title": "MKA-101 · Cheatsheet Ứng dụng AI và Phân tích dữ liệu cho Marketing Ngân hàng",
     "description": "Bộ cheatsheet tra cứu MKA-101: 100 use case campaign, thư viện prompt, bộ câu hỏi phân tích, data dictionary, 73 chỉ số phân tích và 2 quy trình chuẩn cho marketing ngân hàng.",
     "categories": [
-      "edtech",
-      "ai",
-      "ba"
+      "elearning"
     ],
-    "path": "content/edtech/mka-101-digital-marketing.html",
+    "path": "content/elearning/mka-101-digital-marketing.html",
     "thumbnail": "",
     "lastModified": "2026-08-08",
-    "fileSize": 916707
+    "fileSize": 998559
   },
   {
     "slug": "powerbi-glossary-domain-knowledge",
     "title": "Power BI Glossary & Domain Knowledge · Atlas",
     "description": "Interactive Power BI glossary and PL-300 domain knowledge reference with searchable terms, flashcards, lifecycle framework, and exam areas.",
     "categories": [
-      "bi",
-      "edtech"
+      "bi"
     ],
     "path": "content/bi/powerbi-glossary-domain-knowledge.html",
     "thumbnail": "",
@@ -125,8 +112,7 @@
     "title": "Tư duy &quot;người ra đề&quot; thay vì &quot;người làm bài&quot;: Bạn không cần biết nấu, bạn cần biết gọi đúng món · Học cùng Tobi",
     "description": "Bạn không cần biết nấu, bạn cần biết gọi đúng món",
     "categories": [
-      "ai",
-      "bi"
+      "ai"
     ],
     "path": "content/ai/tu-duy-nguoi-ra-de.html",
     "thumbnail": "content/ai/tu-duy-nguoi-ra-de.jpg",
@@ -138,8 +124,7 @@
     "title": "Vibe coding thực ra là gì khi bạn không phải dân code · Học cùng Tobi",
     "description": "Không phải &#x27;lười học code&#x27; mà là đổi vai: bạn mô tả, AI gõ phím",
     "categories": [
-      "ai",
-      "coding"
+      "ai"
     ],
     "path": "content/ai/vibe-coding-thuc-ra-la-gi.html",
     "thumbnail": "content/ai/vibe-coding-thuc-ra-la-gi.jpg",

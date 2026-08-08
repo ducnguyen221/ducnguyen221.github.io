@@ -84,7 +84,7 @@ atlas/
 │   ├── da/                             # Data Analytics HTML tools
 │   ├── de/                             # Data Engineering HTML tools
 │   ├── bi/                             # Business Intelligence HTML tools
-│   ├── edtech/                         # EdTech HTML tools
+│   ├── elearning/                         # EdTech HTML tools
 │   ├── coding/                         # Coding HTML tools
 │   └── other/                          # Miscellaneous HTML tools
 └── README.md

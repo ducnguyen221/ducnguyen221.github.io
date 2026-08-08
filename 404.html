@@ -22,7 +22,7 @@
 
     /* 2) Atlas SPA fallback: /atlas/<cat>/ → /atlas/?cat=<cat> (was atlas/404.html) */
     if (p.indexOf("/atlas/") === 0) {
-      var CATS = ["strategy","ai","ba","da","de","bi","edtech","coding","automation","instruction","other"];
+      var CATS = ["strategy","ai","ba","da","de","bi","elearning","coding","automation","instruction","other"];
       var segs = p.replace(/\/+$/, "").split("/");
       var cat = (segs[segs.length - 1] || "").toLowerCase();
       if (CATS.indexOf(cat) >= 0) location.replace("/atlas/?cat=" + cat);
