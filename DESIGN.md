@@ -286,6 +286,71 @@ Mục tiêu: tự động phản ánh hoạt động GitHub mà vẫn nổi bậ
 
 ---
 
+## 11b. Mobile & trang dài — CÁC LỖI ĐÃ TRẢ GIÁ THẬT
+
+> Mục này viết từ lỗi có thật trên trang `atlas/content/elearning/mka-101-*.html`.
+> Điểm chung của cả bảy lỗi: **desktop nhìn vẫn bình thường**, chỉ hỏng ở mobile hoặc
+> hỏng âm thầm. Đừng nghiệm thu bằng mắt trên màn rộng rồi kết luận đạt.
+
+### M1. Bảng: phần trăm cột KHÔNG đủ, phải có sàn px
+
+Chia cột bằng `%` thì ở màn hẹp cột ngắn co lại còn 20–40px, chữ xuống dòng **từng ký tự một**
+(`C / M / O`). Đo thật: cột "Mức độ" còn **23px**.
+
+- Tính bề rộng lý tưởng mỗi cột theo **số ký tự thật** (dùng **median**, chịu được ô cá biệt),
+  kẹp **sàn ~68px cho cột chữ**, ~44px cho cột số/ký hiệu, **trần ~380px**.
+- Suy `%` **TỪ bề rộng đã kẹp**, không từ trọng số thô.
+- `min-width` của bảng = tổng bề rộng đã kẹp → bảng rộng thì **cuộn ngang trong khung riêng**,
+  không bóp chữ.
+- `table-layout:fixed` là bắt buộc, nếu không trình duyệt vẫn tự chia lại.
+
+### M2. Một bảng chỉ được có MỘT cỡ chữ nền
+`code` nội tuyến mặc định nhỏ hơn nhiều (đo: 10,8px so với 13,3px). Cột nhiều `code` trông
+nhỏ hẳn, người đọc tưởng cột kia "phóng to". Đặt `code` trong ô bảng ở **0.94–0.96em**.
+
+### M3. Khối code phải xuống dòng trên mobile
+`white-space: pre` khiến đoạn văn dài (prompt, câu lệnh) **không đọc được** trên điện thoại —
+phải cuộn ngang từng khối. Ở `@media(max-width:1000px)` dùng `pre-wrap` + `overflow-wrap:anywhere`.
+
+### M4. KHÔNG tạo vùng cuộn lồng nuốt con lăn chuột
+`max-height` + `overflow-y:auto` trên sidebar/mục lục = vùng cuộn riêng. Chuột đặt trên đó thì
+**con lăn cuộn sidebar chứ không cuộn trang**. Kết hợp với `overscroll-behavior-y:none` ở
+`html`/`body` thì chặn luôn chuyển tiếp cuộn → trang đứng im, người dùng tưởng treo.
+
+- Mục lục dài → dùng **nhóm thu/mở**, đừng dùng vùng cuộn.
+- **Không** đặt `overscroll-behavior-y:none` ở `html`/`body`.
+
+### M5. `position:sticky` phải đặt đúng phần tử
+Đặt sticky lên phần tử **ôm sát nội dung** thì nó không có khoảng chạy và **không bao giờ dính**.
+Đặt lên phần tử cha có chiều cao thật (thường là cột lưới), không phải lên cái hộp bên trong.
+
+### M6. Cuộn không được vượt quá cuối nội dung
+Đo `documentElement.scrollHeight` so với chiều cao nội dung thật — chênh quá ~8px là có khoảng
+trống thừa (thường do `margin` cuối thoát ra ngoài, `min-height:100vh` cộng dồn, hoặc
+`padding-bottom` thừa).
+
+### M7. Trùng tên class = hỏng âm thầm
+Đặt class mới trùng tên class đã có sẽ khiến rule cũ bị rule mới đè ở những thuộc tính nó
+không khai. Lỗi thật: nút mũi tên đặt tên `.tw` trùng khung bọc bảng → **mọi bảng biến thành
+hộp flex 26px căn giữa**, nội dung tràn ra ngoài và bị `overflow-x:hidden` cắt mất.
+Trước khi đặt tên class mới: **grep xem đã có chưa**.
+
+### M8. Cách nghiệm thu ĐÚNG (quan trọng nhất)
+
+| Sai | Đúng |
+|---|---|
+| `scrollWidth == clientWidth` ⇒ "không tràn" | Sai — `overflow-x:hidden` **giấu** phần thừa nên hai số vẫn bằng nhau **dù nội dung bị cắt** |
+| Nhìn ảnh chụp desktop | Đo `getBoundingClientRect()` **từng phần tử** so với mép khung nhìn, ở **cả 390px và 1440px** |
+| Kiểm tab đang mở | Tab ẩn (`display:none`) trả rect bằng 0 — phải **mở từng tab** rồi mới đo |
+| Regex `^#{1,6}` để bóc mục lục | Nhặt nhầm heading **trong khối code**. Phải nhận biết fence ``` (đo thật: 25 dòng khớp regex nhưng chỉ 21 heading thật) |
+| Parser HTML tự viết | Nhớ đủ **thẻ rỗng**: `col`, `br`, `hr`, `img`, `input`, `source`, `meta`, `link`. Thiếu `col` từng làm báo giả 680 lỗi |
+
+**Bài học gốc:** kiểm chứng tĩnh có thể **PASS 100%** trong khi trang vẫn hiện cột đen, số làm
+tròn sai, nhãn ký tự rác, bảng mất nửa bên trái. Luôn **mở trình duyệt thật, đo bằng số, và nhìn
+ảnh render** trước khi báo xong.
+
+---
+
 ## 12. Checklist trước khi giao một trang
 
 - [ ] `data-theme` + `data-page` đúng; link đủ 3 file `assets/`.
@@ -296,6 +361,18 @@ Mục tiêu: tự động phản ánh hoạt động GitHub mà vẫn nổi bậ
 - [ ] Có `data-vi`/`data-en` cho text hiển thị.
 - [ ] Ảnh dùng placeholder đúng chuẩn nếu chưa có asset thật.
 - [ ] Futuristic ở mức tinh tế — không lòe loẹt, không emoji ngoài ý đồ.
+
+**Mobile & trang dài (§11b):**
+
+- [ ] Đo ở **390px** và 1440px, **mở từng tab**, không chỉ tab mặc định.
+- [ ] Không cột bảng nào < 44px; cột chữ không < 68px.
+- [ ] Một bảng chỉ một cỡ chữ nền (`td` vs `td code` chênh ≤ 1px).
+- [ ] Khối code **xuống dòng** ở mobile, không phải cuộn ngang từng khối.
+- [ ] Con lăn chuột cuộn được trang khi chuột đặt **bất kỳ đâu**, kể cả trên sidebar.
+- [ ] `scrollHeight` không vượt chiều cao nội dung quá 8px.
+- [ ] Trang **không cuộn ngang** ở cả hai kích thước.
+- [ ] Class mới không trùng tên class đã có (grep trước khi đặt).
+- [ ] Đã **nhìn ảnh render thật**, không chỉ đọc số.
 
 ---
 
