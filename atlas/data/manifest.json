@@ -9,8 +9,8 @@
     ],
     "path": "content/automation/n8n-vs-knime.html",
     "thumbnail": "",
-    "lastModified": "2026-06-23",
-    "fileSize": 82032
+    "lastModified": "2026-08-07",
+    "fileSize": 82191
   },
   {
     "slug": "databricks-genai",
@@ -23,8 +23,8 @@
     ],
     "path": "content/ai/databricks-genai.html",
     "thumbnail": "",
-    "lastModified": "2026-06-23",
-    "fileSize": 93776
+    "lastModified": "2026-08-07",
+    "fileSize": 93935
   },
   {
     "slug": "hr-analytics",
@@ -38,8 +38,8 @@
     ],
     "path": "content/da/hr-analytics.html",
     "thumbnail": "",
-    "lastModified": "2026-07-17",
-    "fileSize": 179195
+    "lastModified": "2026-08-07",
+    "fileSize": 179354
   },
   {
     "slug": "cai-dat-n8n-desktop-1",
@@ -52,8 +52,8 @@
     ],
     "path": "content/instruction/cai-dat-n8n-desktop-1.html",
     "thumbnail": "",
-    "lastModified": "2026-06-23",
-    "fileSize": 60644
+    "lastModified": "2026-08-07",
+    "fileSize": 60803
   },
   {
     "slug": "cai-dat-n8n-desktop",
@@ -66,8 +66,8 @@
     ],
     "path": "content/instruction/cai-dat-n8n-desktop.html",
     "thumbnail": "",
-    "lastModified": "2026-06-23",
-    "fileSize": 56562
+    "lastModified": "2026-08-07",
+    "fileSize": 56721
   },
   {
     "slug": "lasoong-loyalty-os",
@@ -78,8 +78,22 @@
     ],
     "path": "content/strategy/LaSoong_Loyalty_OS.html",
     "thumbnail": "",
-    "lastModified": "2026-06-23",
-    "fileSize": 31643
+    "lastModified": "2026-08-07",
+    "fileSize": 31802
+  },
+  {
+    "slug": "mka-101-digital-marketing",
+    "title": "MKA-101 · Cheatsheet Ứng dụng AI và Phân tích dữ liệu cho Marketing Ngân hàng",
+    "description": "Bộ cheatsheet tra cứu MKA-101: 100 use case campaign, thư viện prompt, bộ câu hỏi phân tích, data dictionary, 73 chỉ số phân tích và 2 quy trình chuẩn cho marketing ngân hàng.",
+    "categories": [
+      "edtech",
+      "ai",
+      "ba"
+    ],
+    "path": "content/edtech/mka-101-digital-marketing.html",
+    "thumbnail": "",
+    "lastModified": "2026-08-08",
+    "fileSize": 916707
   },
   {
     "slug": "powerbi-glossary-domain-knowledge",
@@ -91,8 +105,8 @@
     ],
     "path": "content/bi/powerbi-glossary-domain-knowledge.html",
     "thumbnail": "",
-    "lastModified": "2026-06-23",
-    "fileSize": 140892
+    "lastModified": "2026-08-07",
+    "fileSize": 141051
   },
   {
     "slug": "prompt-nhu-mot-ban-yeu-cau",
@@ -103,8 +117,8 @@
     ],
     "path": "content/ai/prompt-nhu-mot-ban-yeu-cau.html",
     "thumbnail": "content/ai/prompt-nhu-mot-ban-yeu-cau.jpg",
-    "lastModified": "2026-06-23",
-    "fileSize": 36630
+    "lastModified": "2026-08-07",
+    "fileSize": 36789
   },
   {
     "slug": "tu-duy-nguoi-ra-de",
@@ -116,8 +130,8 @@
     ],
     "path": "content/ai/tu-duy-nguoi-ra-de.html",
     "thumbnail": "content/ai/tu-duy-nguoi-ra-de.jpg",
-    "lastModified": "2026-06-23",
-    "fileSize": 37374
+    "lastModified": "2026-08-07",
+    "fileSize": 37533
   },
   {
     "slug": "vibe-coding-thuc-ra-la-gi",
@@ -129,7 +143,7 @@
     ],
     "path": "content/ai/vibe-coding-thuc-ra-la-gi.html",
     "thumbnail": "content/ai/vibe-coding-thuc-ra-la-gi.jpg",
-    "lastModified": "2026-06-23",
-    "fileSize": 26003
+    "lastModified": "2026-08-07",
+    "fileSize": 26162
   }
 ]
