@@ -14,4 +14,6 @@
   `/project`, `/docs`). `news` là **repo riêng**, không gộp.
 - **PROTECTED** (không sửa nội dung/link): `atlas/`, `profile/`, `docs/`.
 - Đổi tên thư mục = đổi URL → thêm redirect ở `404.html` gốc.
-- Static-first, giữ `.nojekyll`. Trước khi giao: chạy local server + link check (AGENTS §6).
+- Static-first, giữ `.nojekyll`. Trước khi giao: chạy local server + link check (AGENTS §7).
+- **Đọc AGENTS §6 "Bẫy đã gặp" trước khi sửa frontend**: khối `dn-scroll-fix` bắt buộc ở mọi
+  trang, bẫy `100vh` trên mobile, `profile/sw.js` cache-first phải bump `CACHE_NAME`.

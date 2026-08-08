@@ -59,14 +59,63 @@ rồi `git push` bài vào atlas. Scripts ở:
 - **Không** hand-edit `atlas/content/*` hay `atlas/data/manifest.json` — do pipeline quản lý.
 Chi tiết & runbook cutover: xem `MIGRATION.md`.
 
-## 6. Trước khi giao (checklist)
+## 6. Bẫy đã gặp — ĐỌC TRƯỚC KHI SỬA FRONTEND
+
+### 6.1 Cuộn tuột quá cuối trang (overscroll / rubber-band) — đã fix toàn site
+**Triệu chứng:** trên iPhone, vuốt mạnh thì trang kéo lố qua khỏi cuối, lòi ra một dải nền
+trống; thanh nav `position:fixed` bị đẩy lên.
+**KHÔNG phải** do trang dư chiều cao — đã đo `document.documentElement.scrollHeight` bằng
+đúng đáy phần tử cuối cùng. Đó là rubber-band của trình duyệt.
+**Fix chuẩn:** MỌI trang phải có khối này trong `<head>` (đã inject vào 74 file, commit `5bb266a`):
+```html
+<style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
+html, body { overscroll-behavior-y: none; }
+</style>
+```
+- Marker `dn-scroll-fix` để script inject **idempotent** — kiểm tra marker trước khi chèn.
+- **Trang mới BẮT BUỘC có khối này.**
+- Cố ý **KHÔNG** thêm `body{padding-bottom}` toàn cục: nhiều trang đặt `display:flex/grid`
+  trên `body`, rule đè sẽ vỡ layout. Cần khoảng thở thì nới **riêng từng trang**.
+
+### 6.2 Bẫy `100vh` trên mobile (dải nền trống dưới đáy)
+Trên mobile `100vh` = chiều cao **khi đã ẩn thanh công cụ**, luôn LỚN HƠN vùng nhìn thấy
+thật → `body{min-height:100vh}` làm trang dư ra ~60–90px và cuộn tuột xuống nền trống.
+`overscroll-behavior` KHÔNG chữa được ca này vì trang thật sự có chỗ để cuộn.
+- Trang thường: `min-height:100vh` rồi đè bằng `@supports (min-height:100dvh){...100dvh}`.
+- Trang **một-màn-hình** (thiệp, splash): ghim cứng bằng JS theo `visualViewport.height`
+  (bỏ qua khi `scale ≠ 1` để không vỡ lúc pinch-zoom), rồi `overflow-y:hidden` khi vừa khít.
+  Mẫu tham chiếu: `lockViewport()/settle()/fitCard()` trong `docs/birthday-card*.html`.
+- Khi buộc phải cho cuộn, đổi `align-items:center` → `flex-start`, nếu không flex centering
+  sẽ **cắt mất phần trên** không cuộn tới được.
+
+### 6.3 Service worker của `/profile/` là cache-first
+`profile/sw.js` precache `./index.html` và trả cache trước. **Mọi thay đổi trong `profile/`
+đều phải bump `CACHE_NAME`** (`nqd-portfolio-v4` hiện tại), nếu không máy đã cài PWA sẽ
+không bao giờ thấy bản mới. Sau khi bump, lần mở đầu vẫn ra bản cũ, lần hai mới ăn bản mới.
+
+### 6.4 "Đã push mà không thấy đổi"
+GitHub Pages cache HTML ~10 phút. Verify bằng tab ẩn danh / hard refresh trước khi kết luận
+deploy hỏng. Kiểm tra nhanh: `curl -s https://ducnguyen.vn/<path> | grep <marker>`.
+
+### 6.5 URL không đuôi
+Muốn `/foo` chạy thì đặt `foo/index.html` (dạng thư mục), không phải `foo.html`.
+
+### 6.6 Trang riêng tư
+Trang chỉ chia sẻ qua link (`profile/company/`, `docs/birthday-card*.html`):
+`<meta name="robots" content="noindex, nofollow">` **và** không link từ hub nào.
+
+## 7. Trước khi giao (checklist)
 - [ ] Không còn link `/my-project` (đã chuyển `/project`).
 - [ ] `python -m http.server` ở gốc → mở `/`, `/atlas/`, `/profile/`, `/project/`, `/docs/`:
       200, không lỗi console (trừ `/news/*` và `favicon.ico` mặc định).
 - [ ] Link checker không báo gãy nội bộ (news là ngoại lệ).
 - [ ] Trang mới: theo `DESIGN.md` §12 checklist.
+- [ ] Trang mới có khối `dn-scroll-fix` (§6.1).
+- [ ] Test ở viewport dọc **và** ngang (320×568, 390×844, 844×390): `scrollHeight` không
+      vượt `innerHeight`, ép `window.scrollTo(0,99999)` xong `scrollY` vẫn = 0 (§6.2).
+- [ ] Có động vào `profile/` → đã bump `CACHE_NAME` trong `profile/sw.js` (§6.3).
 
-## 7. KHÔNG làm
+## 8. KHÔNG làm
 - Không xóa repo standalone đã archive (giữ lịch sử).
 - Không gộp `news` vào đây.
 - Không tạo màu/font mới ngoài hệ token nếu chưa cần.

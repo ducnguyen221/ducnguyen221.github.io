@@ -19,7 +19,7 @@
   --ink:#2A0A0A;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
+html,body{height:100%;overscroll-behavior:none}
 body{
   font-family:'Be Vietnam Pro',sans-serif;
   background:
@@ -32,6 +32,8 @@ body{
   overflow-x:hidden;position:relative;color:var(--ink);
   padding:24px 14px;
 }
+/* dvh = phần nhìn thấy thật, không tính thanh công cụ trình duyệt mobile */
+@supports (min-height:100dvh){html,body{height:100dvh}body{min-height:100dvh}}
 /* faded brand backdrop */
 .backdrop{
   position:fixed;inset:0;z-index:0;
@@ -324,16 +326,46 @@ function openCard(){
     setTimeout(fitCard,400);
   },650);
 }
+/* Khoá chiều cao trang đúng bằng vùng nhìn thấy thật.
+   Trên mobile 100vh = chiều cao KHI đã ẩn thanh công cụ, luôn lớn hơn vùng thấy được
+   => trang dư ra một dải nền trống ở dưới và kéo tuột xuống được. Đo bằng visualViewport
+   (bỏ qua khi đang pinch-zoom) rồi ghim cứng html/body vào đúng con số đó. */
+function viewportH(){
+  const vv=window.visualViewport;
+  if(vv&&Math.abs(vv.scale-1)<.01)return Math.round(vv.height);
+  return Math.round(window.innerHeight);
+}
+function lockViewport(){
+  const h=viewportH();
+  document.documentElement.style.height=h+'px';
+  document.body.style.height=h+'px';
+  document.body.style.minHeight=h+'px';
+  return h;
+}
+/* Vừa khít => khoá cuộn hẳn. Nếu (hiếm) vẫn tràn thì cho cuộn nhưng neo lên đỉnh,
+   tránh flex centering cắt mất phần trên. */
+function settle(h){
+  const over=document.body.scrollHeight>h+1;
+  document.body.style.overflowY=over?'auto':'hidden';
+  document.body.style.alignItems=over?'flex-start':'center';
+}
 /* Auto-fit: thu nhỏ vừa khít viewport, không scroll, không cắt phần trên */
 function fitCard(){
-  if(!cardWrap.classList.contains('show'))return;
+  const h=lockViewport();
+  if(!cardWrap.classList.contains('show')){
+    settle(h);
+    return;
+  }
   cardWrap.style.zoom='1';
   const r=cardWrap.getBoundingClientRect();
-  const s=Math.min(1,(window.innerHeight-14)/r.height,(window.innerWidth-14)/r.width);
+  const s=Math.min(1,(h-14)/r.height,(window.innerWidth-14)/r.width);
   cardWrap.style.zoom=(s<1)?s:1;
+  settle(h);
 }
+fitCard();
 addEventListener('resize',fitCard);
 addEventListener('orientationchange',()=>setTimeout(fitCard,300));
+if(window.visualViewport){visualViewport.addEventListener('resize',fitCard);}
 envelope.addEventListener('click',openCard);
 document.getElementById('replay').addEventListener('click',()=>{
   // re-run reveal + fireworks
