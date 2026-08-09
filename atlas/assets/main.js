@@ -48,6 +48,19 @@
     other: "Other Resources",
   };
 
+  // Ảnh đại diện theo NHÓM — dùng cho thẻ bài chưa có ảnh bìa riêng.
+  // Nguồn: atlas/assets/<Tên>.png (1254px, ~1,6 MB/ảnh) đã được resize về 640px
+  // WebP trong assets/cat/ — 9,7 MB xuống 147 KB. Đừng trỏ thẳng vào file .png
+  // gốc: mười thẻ trên trang chủ sẽ kéo gần 10 MB ảnh mỗi lần mở trang.
+  const CAT_IMAGES = {
+    ai: "assets/cat/ai.webp",
+    automation: "assets/cat/automation.webp",
+    bi: "assets/cat/bi.webp",
+    elearning: "assets/cat/elearning.webp",
+    instruction: "assets/cat/instruction.webp",
+    strategy: "assets/cat/strategy.webp",
+  };
+
   const CAT_ICONS = {
     strategy: "fa-solid fa-chess",
     ai: "fa-solid fa-brain",
@@ -114,8 +127,10 @@
     const cat = (v.categories && v.categories[0]) || "other";
     const icon = CAT_ICONS[cat] || "fa-solid fa-folder";
     const label = CAT_LABELS[cat] || cat;
-    const thumb = v.thumbnail
-      ? `<div class="latest-thumb"><img src="${v.thumbnail}" alt="${escapeHTML(v.title)}" loading="lazy" draggable="false"></div>`
+    // Ảnh bìa riêng của bài → ảnh chung của nhóm → icon (lưới an toàn cuối).
+    const img = v.thumbnail || CAT_IMAGES[cat] || "";
+    const thumb = img
+      ? `<div class="latest-thumb"><img src="${img}" alt="${escapeHTML(v.title)}" loading="lazy" draggable="false"></div>`
       : `<div class="latest-thumb latest-thumb-ph"><i class="${icon}"></i></div>`;
     return `
     <a href="${v.path}" class="latest-card" aria-label="Mở ${escapeHTML(v.title)}">
