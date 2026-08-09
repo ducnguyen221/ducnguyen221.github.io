@@ -736,7 +736,12 @@
     }
   </style>
 <style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
-html, body { overscroll-behavior-y: none; }
+html { overscroll-behavior-y: none; }
+/* KHONG dat len body: body co overflow-x:hidden nen overflow-y tu dong thanh
+   `auto` -> body la mot vung cuon KHONG cuon duoc gi (cao dung bang noi dung).
+   Them overscroll-behavior:none vao do = chan luon viec chuyen tiep cuon sang
+   html => lan chuot tren noi dung khong an, chi lan tren dung thanh cuon moi
+   duoc. Chan keo-tuot chi can dat o html (phan tu cuon that su). */
 </style>
 </head>
 

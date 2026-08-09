@@ -69,13 +69,24 @@ trống; thanh nav `position:fixed` bị đẩy lên.
 **Fix chuẩn:** MỌI trang phải có khối này trong `<head>` (đã inject vào 74 file, commit `5bb266a`):
 ```html
 <style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
-html, body { overscroll-behavior-y: none; }
+html { overscroll-behavior-y: none; }
 </style>
 ```
 - Marker `dn-scroll-fix` để script inject **idempotent** — kiểm tra marker trước khi chèn.
 - **Trang mới BẮT BUỘC có khối này.**
 - Cố ý **KHÔNG** thêm `body{padding-bottom}` toàn cục: nhiều trang đặt `display:flex/grid`
   trên `body`, rule đè sẽ vỡ layout. Cần khoảng thở thì nới **riêng từng trang**.
+
+> ⚠️ **CHỈ đặt lên `html`, TUYỆT ĐỐI KHÔNG đặt lên `body`.** Bản đầu tiên viết
+> `html, body { … }` và đã gây lỗi nặng hơn chính lỗi nó định sửa: **lăn chuột trên nội dung
+> không cuộn được trang, chỉ cuộn khi trỏ đúng vào thanh cuộn.**
+> Cơ chế: `body` có `overflow-x: hidden` → theo spec, `overflow-y` **tự động thành `auto`**,
+> biến body thành một vùng cuộn riêng. Body cao đúng bằng nội dung nên **tự nó không cuộn được
+> gì**; thêm `overscroll-behavior:none` vào đó là chặn nốt việc **chuyển tiếp cuộn** sang `html`
+> — con lăn rơi vào hố đen. Phần tử cuộn thật là `html`, chặn kéo-tuột ở đó là đủ.
+> Cách kiểm: `page.mouse.move(giữa màn hình)` rồi `page.mouse.wheel(0, 700)` và đọc `scrollY`.
+> **Đừng kiểm bằng `window.scrollTo()`** — lệnh đó luôn chạy được kể cả khi con lăn đang chết,
+> nên sẽ báo "bình thường" trong khi người dùng vẫn không cuộn nổi.
 
 ### 6.2 Bẫy `100vh` trên mobile (dải nền trống dưới đáy)
 Trên mobile `100vh` = chiều cao **khi đã ẩn thanh công cụ**, luôn LỚN HƠN vùng nhìn thấy

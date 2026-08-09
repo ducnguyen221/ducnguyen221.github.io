@@ -8,8 +8,8 @@
     ],
     "path": "content/automation/n8n-vs-knime.html",
     "thumbnail": "",
-    "lastModified": "2026-08-07",
-    "fileSize": 82191
+    "lastModified": "2026-08-09",
+    "fileSize": 82574
   },
   {
     "slug": "databricks-genai",
@@ -20,8 +20,8 @@
     ],
     "path": "content/ai/databricks-genai.html",
     "thumbnail": "",
-    "lastModified": "2026-08-07",
-    "fileSize": 93935
+    "lastModified": "2026-08-09",
+    "fileSize": 94318
   },
   {
     "slug": "hr-analytics",
@@ -32,8 +32,8 @@
     ],
     "path": "content/elearning/hr-analytics.html",
     "thumbnail": "",
-    "lastModified": "2026-08-08",
-    "fileSize": 179307
+    "lastModified": "2026-08-09",
+    "fileSize": 179690
   },
   {
     "slug": "cai-dat-n8n-desktop-1",
@@ -44,8 +44,8 @@
     ],
     "path": "content/instruction/cai-dat-n8n-desktop-1.html",
     "thumbnail": "",
-    "lastModified": "2026-08-07",
-    "fileSize": 60803
+    "lastModified": "2026-08-09",
+    "fileSize": 61186
   },
   {
     "slug": "cai-dat-n8n-desktop",
@@ -56,8 +56,8 @@
     ],
     "path": "content/instruction/cai-dat-n8n-desktop.html",
     "thumbnail": "",
-    "lastModified": "2026-08-07",
-    "fileSize": 56721
+    "lastModified": "2026-08-09",
+    "fileSize": 57104
   },
   {
     "slug": "lasoong-loyalty-os",
@@ -68,8 +68,8 @@
     ],
     "path": "content/strategy/LaSoong_Loyalty_OS.html",
     "thumbnail": "",
-    "lastModified": "2026-08-07",
-    "fileSize": 31802
+    "lastModified": "2026-08-09",
+    "fileSize": 32185
   },
   {
     "slug": "mka-101-digital-marketing",
@@ -81,7 +81,7 @@
     "path": "content/elearning/mka-101-digital-marketing.html",
     "thumbnail": "",
     "lastModified": "2026-08-09",
-    "fileSize": 1727350
+    "fileSize": 1730798
   },
   {
     "slug": "powerbi-glossary-domain-knowledge",
@@ -92,8 +92,8 @@
     ],
     "path": "content/bi/powerbi-glossary-domain-knowledge.html",
     "thumbnail": "",
-    "lastModified": "2026-08-07",
-    "fileSize": 141051
+    "lastModified": "2026-08-09",
+    "fileSize": 141434
   },
   {
     "slug": "prompt-nhu-mot-ban-yeu-cau",
@@ -104,8 +104,8 @@
     ],
     "path": "content/ai/prompt-nhu-mot-ban-yeu-cau.html",
     "thumbnail": "content/ai/prompt-nhu-mot-ban-yeu-cau.jpg",
-    "lastModified": "2026-08-07",
-    "fileSize": 36789
+    "lastModified": "2026-08-09",
+    "fileSize": 37172
   },
   {
     "slug": "tu-duy-nguoi-ra-de",
@@ -116,8 +116,8 @@
     ],
     "path": "content/ai/tu-duy-nguoi-ra-de.html",
     "thumbnail": "content/ai/tu-duy-nguoi-ra-de.jpg",
-    "lastModified": "2026-08-07",
-    "fileSize": 37533
+    "lastModified": "2026-08-09",
+    "fileSize": 37916
   },
   {
     "slug": "vibe-coding-thuc-ra-la-gi",
@@ -128,7 +128,7 @@
     ],
     "path": "content/ai/vibe-coding-thuc-ra-la-gi.html",
     "thumbnail": "content/ai/vibe-coding-thuc-ra-la-gi.jpg",
-    "lastModified": "2026-08-07",
-    "fileSize": 26162
+    "lastModified": "2026-08-09",
+    "fileSize": 26545
   }
 ]
