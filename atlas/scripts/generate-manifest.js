@@ -6,6 +6,7 @@
  */
 const fs = require("fs");
 const path = require("path");
+const { execFileSync } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
 const OUTPUT = path.join(ROOT, "data", "manifest.json");
@@ -43,7 +44,38 @@ function extractMeta(fp) {
   const title = tm ? tm[1].replace(/\s+/g, " ").trim() : path.basename(fp, ".html").replace(/[-_]/g, " ");
   const dm = html.match(/<meta\s+name=["']description["']\s+content=["']([\s\S]*?)["']/i);
   const description = dm ? dm[1].trim() : `Interactive visualization: ${title}`;
-  return { title, description };
+  // Cho phép ghi đè ngày đăng bằng <meta name="date" content="YYYY-MM-DD">
+  const pm = html.match(/<meta\s+name=["']date["']\s+content=["'](\d{4}-\d{2}-\d{2})["']/i);
+  return { title, description, metaDate: pm ? pm[1] : "" };
+}
+
+/**
+ * NGÀY ĐĂNG = ngày commit ĐẦU TIÊN thêm file, lấy từ lịch sử git.
+ *
+ * KHÔNG dùng mtime của file làm ngày đăng: mọi thao tác chạm vào file đều
+ * reset mtime, nên chỉ cần một lần sửa hàng loạt (ví dụ vá CSS cho toàn site)
+ * là tất cả bài "vừa đăng hôm nay" — đã dính đúng lỗi này, 11/11 bài cùng hiện
+ * một ngày. Thứ tự ưu tiên: <meta name="date"> → git → mtime (chỉ khi file
+ * chưa được commit).
+ */
+const dateCache = new Map();
+function publishedDate(rel, stat) {
+  const key = rel.replace(/\\/g, "/");
+  if (dateCache.has(key)) return dateCache.get(key);
+  let d = "";
+  try {
+    const out = execFileSync(
+      "git",
+      ["log", "--follow", "--diff-filter=A", "--format=%as", "--", key],
+      { cwd: ROOT, encoding: "utf-8", stdio: ["ignore", "pipe", "ignore"] }
+    ).trim();
+    if (out) d = out.split("\n").filter(Boolean).pop();
+  } catch (e) {
+    /* không có git (CI tối giản, tải zip…) → rơi xuống mtime */
+  }
+  if (!d) d = stat.mtime.toISOString().split("T")[0];
+  dateCache.set(key, d);
+  return d;
 }
 
 function escapeRegExp(s) {
@@ -102,12 +134,21 @@ function main() {
   console.log(`Found ${files.length} HTML file(s)\n`);
   const manifest = files.map(({ abs, rel }) => {
     const stat = fs.statSync(abs);
-    const { title, description } = extractMeta(abs);
+    const { title, description, metaDate } = extractMeta(abs);
     const categories = detectCats(title, description, rel);
     const urlPath = rel.replace(/\\/g, "/");
-    console.log(`  + ${urlPath} => ${categories.join(", ")}`);
-    return { slug: toSlug(rel), title, description, categories, path: urlPath, thumbnail: findThumb(abs, urlPath), lastModified: stat.mtime.toISOString().split("T")[0], fileSize: stat.size };
-  }).sort((a, b) => a.title.localeCompare(b.title));
+    const published = metaDate || publishedDate(rel, stat);
+    console.log(`  + ${published}  ${urlPath} => ${categories.join(", ")}`);
+    return {
+      slug: toSlug(rel), title, description, categories, path: urlPath,
+      thumbnail: findThumb(abs, urlPath),
+      published,
+      lastModified: stat.mtime.toISOString().split("T")[0],
+      fileSize: stat.size,
+    };
+    // sắp xếp: bài mới đăng lên trước, cùng ngày thì theo tên
+  }).sort((a, b) => (b.published || "").localeCompare(a.published || "")
+                    || a.title.localeCompare(b.title));
 
   fs.mkdirSync(path.dirname(OUTPUT), { recursive: true });
   fs.writeFileSync(OUTPUT, JSON.stringify(manifest, null, 2), "utf-8");

@@ -1,5 +1,31 @@
 [
   {
+    "slug": "mka-101-digital-marketing",
+    "title": "MKA-101 · Cheatsheet Ứng dụng AI và Phân tích dữ liệu cho Marketing Ngân hàng",
+    "description": "Bộ cheatsheet tra cứu MKA-101: 100 use case campaign, thư viện prompt, bộ câu hỏi phân tích, data dictionary, 73 chỉ số phân tích và 2 quy trình chuẩn cho marketing ngân hàng.",
+    "categories": [
+      "elearning"
+    ],
+    "path": "content/elearning/mka-101-digital-marketing.html",
+    "thumbnail": "",
+    "published": "2026-08-08",
+    "lastModified": "2026-08-09",
+    "fileSize": 1697207
+  },
+  {
+    "slug": "hr-analytics",
+    "title": "HR Analytics · Chuẩn hóa dữ liệu · KPI · Báo cáo · Mở rộng AI (HRA-101) · Atlas",
+    "description": "Bộ tài liệu HR Analytics: Data Dictionary 42 bảng, KPI Dictionary 6 nhóm chỉ tiêu, Report List 13 báo cáo và tư vấn mở rộng ứng dụng AI cho nghiệp vụ nhân sự — kèm ERD, mindmap và luồng dữ liệu tương tác (zoom, pan, toàn màn hình).",
+    "categories": [
+      "elearning"
+    ],
+    "path": "content/elearning/hr-analytics.html",
+    "thumbnail": "",
+    "published": "2026-07-16",
+    "lastModified": "2026-08-09",
+    "fileSize": 179690
+  },
+  {
     "slug": "n8n-vs-knime",
     "title": "Báo cáo So sánh Chuyên sâu: n8n vs KNIME",
     "description": "Tài liệu phân tích kiến trúc công nghệ, mô hình vận hành và định hướng ứng dụng n8n vs KNIME trong Ngân hàng, HR & Hệ thống AI Agent.",
@@ -8,6 +34,7 @@
     ],
     "path": "content/automation/n8n-vs-knime.html",
     "thumbnail": "",
+    "published": "2026-06-27",
     "lastModified": "2026-08-09",
     "fileSize": 82574
   },
@@ -20,20 +47,9 @@
     ],
     "path": "content/ai/databricks-genai.html",
     "thumbnail": "",
+    "published": "2026-06-27",
     "lastModified": "2026-08-09",
     "fileSize": 94318
-  },
-  {
-    "slug": "hr-analytics",
-    "title": "HR Analytics · Chuẩn hóa dữ liệu · KPI · Báo cáo · Mở rộng AI (HRA-101) · Atlas",
-    "description": "Bộ tài liệu HR Analytics: Data Dictionary 42 bảng, KPI Dictionary 6 nhóm chỉ tiêu, Report List 13 báo cáo và tư vấn mở rộng ứng dụng AI cho nghiệp vụ nhân sự — kèm ERD, mindmap và luồng dữ liệu tương tác (zoom, pan, toàn màn hình).",
-    "categories": [
-      "elearning"
-    ],
-    "path": "content/elearning/hr-analytics.html",
-    "thumbnail": "",
-    "lastModified": "2026-08-09",
-    "fileSize": 179690
   },
   {
     "slug": "cai-dat-n8n-desktop-1",
@@ -44,6 +60,7 @@
     ],
     "path": "content/instruction/cai-dat-n8n-desktop-1.html",
     "thumbnail": "",
+    "published": "2026-06-27",
     "lastModified": "2026-08-09",
     "fileSize": 61186
   },
@@ -56,6 +73,7 @@
     ],
     "path": "content/instruction/cai-dat-n8n-desktop.html",
     "thumbnail": "",
+    "published": "2026-06-27",
     "lastModified": "2026-08-09",
     "fileSize": 57104
   },
@@ -68,20 +86,9 @@
     ],
     "path": "content/strategy/LaSoong_Loyalty_OS.html",
     "thumbnail": "",
+    "published": "2026-06-27",
     "lastModified": "2026-08-09",
     "fileSize": 32185
-  },
-  {
-    "slug": "mka-101-digital-marketing",
-    "title": "MKA-101 · Cheatsheet Ứng dụng AI và Phân tích dữ liệu cho Marketing Ngân hàng",
-    "description": "Bộ cheatsheet tra cứu MKA-101: 100 use case campaign, thư viện prompt, bộ câu hỏi phân tích, data dictionary, 73 chỉ số phân tích và 2 quy trình chuẩn cho marketing ngân hàng.",
-    "categories": [
-      "elearning"
-    ],
-    "path": "content/elearning/mka-101-digital-marketing.html",
-    "thumbnail": "",
-    "lastModified": "2026-08-09",
-    "fileSize": 1697207
   },
   {
     "slug": "powerbi-glossary-domain-knowledge",
@@ -92,6 +99,7 @@
     ],
     "path": "content/bi/powerbi-glossary-domain-knowledge.html",
     "thumbnail": "",
+    "published": "2026-06-27",
     "lastModified": "2026-08-09",
     "fileSize": 141434
   },
@@ -104,6 +112,7 @@
     ],
     "path": "content/ai/prompt-nhu-mot-ban-yeu-cau.html",
     "thumbnail": "content/ai/prompt-nhu-mot-ban-yeu-cau.jpg",
+    "published": "2026-06-27",
     "lastModified": "2026-08-09",
     "fileSize": 37172
   },
@@ -116,6 +125,7 @@
     ],
     "path": "content/ai/tu-duy-nguoi-ra-de.html",
     "thumbnail": "content/ai/tu-duy-nguoi-ra-de.jpg",
+    "published": "2026-06-27",
     "lastModified": "2026-08-09",
     "fileSize": 37916
   },
@@ -128,6 +138,7 @@
     ],
     "path": "content/ai/vibe-coding-thuc-ra-la-gi.html",
     "thumbnail": "content/ai/vibe-coding-thuc-ra-la-gi.jpg",
+    "published": "2026-06-27",
     "lastModified": "2026-08-09",
     "fileSize": 26545
   }

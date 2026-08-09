@@ -19,17 +19,18 @@
   const statCats = document.getElementById("stat-cats");
 
   // ── Category Config ─────────────────────────────────────────────────
+  // Thứ tự hiển thị nhóm — theo mức độ hay dùng, KHÔNG theo bảng chữ cái.
   const CAT_ORDER = [
-    "strategy",
+    "elearning",
     "ai",
+    "bi",
+    "strategy",
+    "automation",
+    "instruction",
     "ba",
     "da",
     "de",
-    "bi",
-    "elearning",
     "coding",
-    "automation",
-    "instruction",
     "other"
   ];
 
@@ -102,7 +103,8 @@
     const row = document.getElementById("latest-row");
     if (!strip || !row || !manifest.length) return;
     const items = [...manifest]
-      .sort((a, b) => String(b.lastModified || "").localeCompare(String(a.lastModified || "")))
+      .sort((a, b) => String(b.published || b.lastModified || "")
+          .localeCompare(String(a.published || a.lastModified || "")))
       .slice(0, LATEST_N);
     row.innerHTML = items.map(latestCardHTML).join("");
     strip.hidden = false;
@@ -121,7 +123,7 @@
       <div class="latest-card-body">
         <div class="latest-card-cat"><i class="${icon}"></i> ${escapeHTML(label)}</div>
         <h3 class="latest-card-title">${escapeHTML(v.title)}</h3>
-        <div class="latest-card-meta"><i class="fa-regular fa-calendar"></i> ${v.lastModified || ""}</div>
+        <div class="latest-card-meta"><i class="fa-regular fa-calendar"></i> ${v.published || v.lastModified || ""}</div>
       </div>
     </a>`;
   }
@@ -206,7 +208,13 @@
     
     CAT_ORDER.forEach((catKey) => {
       if (activeCat && catKey !== activeCat) return; // lọc theo nhóm (URL)
-      const itemsInCat = filtered.filter((v) => v.categories.includes(catKey));
+      // Trong mỗi nhóm: bài mới đăng lên trước. Sắp tường minh ở đây chứ không
+      // dựa vào thứ tự sẵn có của manifest — để đổi cách sinh manifest sau này
+      // không âm thầm làm đảo thứ tự hiển thị.
+      const itemsInCat = filtered
+        .filter((v) => v.categories.includes(catKey))
+        .sort((a, b) => String(b.published || b.lastModified || "")
+            .localeCompare(String(a.published || a.lastModified || "")));
       if (itemsInCat.length === 0) return;
 
       const label = CAT_LABELS[catKey] || catKey;
@@ -268,7 +276,7 @@
         <div class="card-meta">
           <span>
             <i class="fa-regular fa-calendar" style="margin-right: 2px;"></i>
-            ${v.lastModified}
+            ${v.published || v.lastModified}
           </span>
           <span>
             <i class="fa-regular fa-file" style="margin-right: 2px;"></i>
