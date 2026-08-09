@@ -59,6 +59,25 @@ rồi `git push` bài vào atlas. Scripts ở:
 - **Không** hand-edit `atlas/content/*` hay `atlas/data/manifest.json` — do pipeline quản lý.
 Chi tiết & runbook cutover: xem `MIGRATION.md`.
 
+### 5.1 Ngày đăng — MỌI trang trong `atlas/content/` BẮT BUỘC có thẻ này
+```html
+<meta name="date" content="YYYY-MM-DD">
+```
+Đặt ngay sau `<meta name="description">`. Atlas lấy ngày đăng theo thứ tự
+**`<meta name="date">` → lịch sử git → mtime**, và dùng nó để **hiển thị** cũng như
+**sắp xếp** (mới nhất lên trước, cả ở dải "Mới nhất" lẫn trong từng nhóm).
+
+> ⚠️ **KHÔNG để rơi xuống mtime.** Đã trả giá: mtime đổi mỗi lần chạm vào file, nên một
+> lần sửa hàng loạt (vá CSS cho cả site) làm **11/11 bài cùng hiện một ngày** — trông như
+> vừa đăng hết hôm nay. Git đúng hơn mtime nhưng vẫn hỏng nếu CI checkout `--depth=1`
+> (không có lịch sử). Thẻ meta là nguồn duy nhất không phụ thuộc môi trường.
+
+- **Trang sinh tự động** phải sinh luôn thẻ này, đừng chèn tay vào HTML đầu ra — lần dựng
+  lại sau sẽ xoá mất. Ví dụ `mka-101-digital-marketing.html` do `build.py` sinh: ngày ghim
+  ở hằng `PAGE_PUBLISHED`, khuôn `HTML_SHELL` in ra thẻ.
+- Ngày đăng **không đổi** khi sửa bài. Muốn hiện "cập nhật lần cuối" thì dùng trường
+  `lastModified` riêng trong manifest (đang là mtime thật), đừng sửa `<meta name="date">`.
+
 ## 6. Bẫy đã gặp — ĐỌC TRƯỚC KHI SỬA FRONTEND
 
 ### 6.1 Cuộn tuột quá cuối trang (overscroll / rubber-band) — đã fix toàn site
