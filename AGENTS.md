@@ -40,6 +40,12 @@ thành `project/`; link cũ `/my-project/*` được redirect sang `/project/*` 
 5. **Thiết kế**: theo `DESIGN.md`. Home + project dùng chung token (nền `#04060a`, font
    Plus Jakarta Sans / Be Vietnam Pro / JetBrains Mono, dark theme).
 6. **Icon/favicon**: `/favicon.svg` ở gốc; trang mới thêm `<link rel="icon" href="/favicon.svg">`.
+7. **Meta Pixel (từ 17/08/2026)**: mọi trang KHÔNG-PROTECTED phải có khối pixel ID
+   `1717041732866196` ngay trước `</head>` — copy nguyên văn từ `privacy/index.html`. Trang mới
+   thiếu pixel = thủng dữ liệu đo, không ai báo. Thư mục PROTECTED (`atlas/`, `profile/`, `docs/`)
+   **cố ý không gắn** — đừng "sửa cho đồng bộ". Việc gắn pixel đã công bố ở `/privacy/` và
+   `/data-deletion/`; **đổi/bỏ pixel thì phải sửa 2 trang đó cùng lúc**, nếu không trang chính
+   sách thành tuyên bố sai trên chính trang Meta dùng để duyệt app.
 
 ## 4. News tách riêng (cố ý)
 `news/` **không** gộp vào đây vì phình theo file mp3 (audio hằng ngày/tuần). Nó là repo
