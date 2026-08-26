@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Con Người Thực Sự Dùng Gen AI Thế Nào (2026)</title>
+<meta name="description" content="Infographic song ngu Viet - Anh: 100 use case Gen AI pho bien nhat 2026 va bang xep hang Top 10 doi ngoi giua 2025 va 2026. Dung lai tu nghien cuu AI in the Wild dang tren Harvard Business Review.">
+<meta name="date" content="2026-08-27">
+<meta property="og:type" content="article">
+<meta property="og:title" content="100 use case Gen AI pho bien nhat 2026">
+<meta property="og:description" content="Top 100 use case Gen AI 2026 + bang xep hang Top 10 doi ngoi giua 2025 va 2026. Song ngu Viet - Anh, tuong tac loc theo nhom chu de.">
+<meta property="og:url" content="https://ducnguyen.vn/atlas/gen-ai-2026">
+<link rel="icon" href="/favicon.svg">
+<style>/* dn-scroll-fix: chan keo tuot qua cuoi trang (overscroll/rubber-band) tren mobile.
+   CHI dat len html - phan tu cuon that su. KHONG dat len body (xem ../AGENTS.md 6.1). */
+html { overscroll-behavior-y: none; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111417;
+  --ink2:#3d444a;
+  --mut:#6d757c;
+  --rule:#dfe3e6;
+  --paper:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#e9ecef}
+body{
+  font-family:'Inter','Helvetica Neue',Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  color:var(--ink);
+}
+#stage{
+  position:absolute;top:0;left:0;
+  width:1600px;height:900px;
+  transform-origin:top left;
+  background:var(--paper);
+  box-shadow:0 24px 80px rgba(10,15,20,.18);
+  padding:30px 44px 20px;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+
+/* ---------- header ---------- */
+header{flex:0 0 auto;border-bottom:2px solid var(--ink);padding-bottom:12px}
+h1{
+  font-size:33px;line-height:1.05;font-weight:800;letter-spacing:-.022em;
+  opacity:0;transform:translateY(14px);
+  padding-right:230px;
+}
+.alt{
+  margin-top:3px;font-size:12.4px;font-weight:600;color:#9aa1a7;letter-spacing:.005em;
+  opacity:0;transform:translateY(10px);
+}
+.sub{
+  margin-top:8px;max-width:1160px;font-size:13.6px;line-height:1.45;color:var(--ink2);
+  opacity:0;transform:translateY(10px);
+}
+.sub em{font-style:normal;font-weight:600;color:var(--ink)}
+
+/* ---------- legend ---------- */
+.legendRow{
+  flex:0 0 auto;display:flex;align-items:flex-start;gap:22px;
+  padding:11px 0 9px;border-bottom:1px solid var(--rule);
+}
+.legendLabel{font-size:11.5px;font-weight:700;letter-spacing:.02em;padding-top:8px;min-width:76px}
+.chips{display:flex;gap:10px;flex:1}
+.chip{
+  display:flex;flex-direction:column;gap:5px;flex:1;cursor:pointer;
+  opacity:0;transform:translateY(8px);
+  transition:opacity .25s ease, filter .25s ease;
+}
+.chip .dotline{display:flex;align-items:flex-start;gap:6px}
+.chip .dot{width:12px;height:12px;border-radius:50%;flex:0 0 auto;margin-top:1px;transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+.chip .names{display:flex;flex-direction:column;gap:1px;min-width:0}
+.chip .cname{
+  font-size:9.2px;font-weight:700;letter-spacing:.045em;line-height:1.26;
+  text-transform:uppercase;color:var(--ink2);
+}
+.chip .cname2{
+  font-size:8.3px;font-weight:500;letter-spacing:.03em;line-height:1.24;
+  text-transform:uppercase;color:#adb3b8;
+}
+.chip:hover .dot{transform:scale(1.35)}
+.chip.off{opacity:.28;filter:grayscale(1)}
+.chip .bar{height:3px;border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.chip.on .bar{transform:scaleX(1)}
+
+/* ---------- body ---------- */
+.body{flex:1 1 auto;display:flex;gap:30px;padding-top:11px;min-height:0}
+.panel{display:flex;flex-direction:column;min-height:0}
+.left{flex:0 0 464px;border-right:1px solid var(--rule);padding-right:26px}
+.right{flex:1 1 auto;min-width:0}
+.pTitle{
+  font-size:15.5px;font-weight:800;letter-spacing:-.012em;line-height:1.15;
+  opacity:0;transform:translateY(8px);
+}
+.pTitle small{display:block;font-size:10.2px;font-weight:600;color:#a2a9ae;letter-spacing:0;margin-top:2px}
+.pSub{
+  margin-top:5px;font-size:10.9px;line-height:1.4;color:var(--mut);
+  opacity:0;transform:translateY(8px);
+}
+.newKey{
+  margin-top:7px;display:flex;align-items:center;gap:7px;font-size:10px;color:var(--ink2);
+  opacity:0;
+}
+.newKey i{
+  width:12px;height:12px;border-radius:50%;border:1.7px solid var(--ink);display:inline-block;flex:0 0 auto;
+}
+
+/* ---------- slope chart ---------- */
+.yearRow{
+  margin-top:9px;
+  display:grid;grid-template-columns:1fr 26px 126px 26px 1fr;
+  font-size:12px;font-weight:700;color:var(--ink);
+}
+.yearRow span{opacity:0;transform:translateY(6px);text-align:center}
+.slopeWrap{position:relative;flex:1 1 auto;margin-top:3px;min-height:0}
+.slopeGrid{
+  position:absolute;inset:0;display:grid;
+  grid-template-columns:1fr 26px 126px 26px 1fr;
+  grid-auto-rows:1fr;
+  align-items:center;
+}
+.rowRule{
+  position:absolute;left:0;right:0;height:1px;background:var(--rule);
+  transform:scaleX(0);transform-origin:left;
+}
+.lbl{font-size:10.2px;line-height:1.16;color:var(--ink2);opacity:0;position:relative;z-index:4}
+.lbl .sec{display:block;font-size:8.5px;color:#adb3b8;font-weight:400;font-style:normal;margin-top:1px;line-height:1.14}
+.lbl.l{text-align:right;padding-right:8px}
+.lbl.r{text-align:left;padding-left:8px}
+.lbl.isnew .pri{font-style:italic;font-weight:600;color:var(--ink)}
+.node{
+  width:23px;height:23px;border-radius:50%;justify-self:center;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:10.5px;font-weight:700;
+  position:relative;z-index:3;
+  transform:scale(0);
+  transition:filter .25s ease,opacity .25s ease;
+}
+.node.newring{box-shadow:0 0 0 2px #fff,0 0 0 3.6px var(--ink)}
+svg.links{position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:visible}
+svg.links path{fill:none;stroke-linecap:round}
+.stub{
+  position:absolute;width:19px;height:19px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:9px;font-weight:700;z-index:2;
+  transform:translate(-50%,-50%) scale(0);
+  transition:opacity .25s ease;
+}
+.stub.small{width:13px;height:13px;font-size:12px;line-height:1;padding-bottom:5px}
+.foot{margin-top:6px;font-size:9.2px;color:var(--mut);opacity:0}
+
+/* ---------- top 100 grid ---------- */
+.grid100{
+  flex:1 1 auto;margin-top:8px;min-height:0;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  column-gap:16px;grid-auto-flow:column;grid-template-rows:repeat(25,1fr);
+}
+.item{
+  display:flex;align-items:center;gap:7px;
+  opacity:0;transform:translateY(7px);
+  border-bottom:1px solid #f1f3f5;
+  padding-right:4px;
+  transition:opacity .25s ease,filter .25s ease;
+}
+.item .num{
+  width:19px;height:19px;border-radius:50%;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:9.2px;font-weight:700;
+  transition:transform .22s cubic-bezier(.34,1.56,.64,1);
+}
+.item .num.newring{box-shadow:0 0 0 1.6px #fff,0 0 0 3px var(--ink)}
+.item .body2{min-width:0;overflow:hidden}
+.item .txt{
+  font-size:10.4px;line-height:1.12;color:var(--ink2);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  transition:color .2s ease;
+}
+.item .sec{
+  font-size:8.3px;line-height:1.16;color:#b2b8bc;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  transition:color .2s ease;
+}
+.item .txt.isnew{font-style:italic;font-weight:600;color:var(--ink)}
+.item:hover .num{transform:scale(1.32)}
+.item:hover .txt{color:var(--ink);font-weight:700}
+.item:hover .sec{color:var(--mut)}
+.dim{opacity:.12;filter:grayscale(1)}
+
+/* ---------- footer ---------- */
+footer{
+  flex:0 0 auto;display:flex;align-items:flex-end;justify-content:space-between;
+  padding-top:8px;margin-top:4px;border-top:1px solid var(--rule);
+  opacity:0;
+}
+.src{font-size:9.6px;color:var(--mut)}
+.hbr{
+  width:34px;height:22px;background:var(--ink);color:#fff;border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:800;letter-spacing:.04em;flex:0 0 auto;
+}
+
+/* ---------- top-right controls ---------- */
+#ctl{
+  position:fixed;right:18px;top:16px;z-index:99;
+  display:flex;align-items:center;gap:8px;
+}
+.seg{
+  display:flex;align-items:center;padding:3px;gap:2px;
+  border:1px solid rgba(17,20,23,.18);background:rgba(255,255,255,.92);
+  border-radius:999px;backdrop-filter:blur(6px);
+  position:relative;
+}
+.seg button{
+  border:0;background:transparent;cursor:pointer;
+  font:700 11px/1 'Inter',Arial,sans-serif;letter-spacing:.06em;
+  color:var(--mut);padding:7px 14px;border-radius:999px;
+  transition:color .22s ease;position:relative;z-index:2;
+}
+.seg button.on{color:#fff}
+.seg .knob{
+  position:absolute;top:3px;left:3px;height:calc(100% - 6px);width:0;
+  background:var(--ink);border-radius:999px;z-index:1;
+  transition:transform .34s cubic-bezier(.55,.06,.2,1), width .34s cubic-bezier(.55,.06,.2,1);
+}
+#replay{
+  border:1px solid rgba(17,20,23,.18);background:rgba(255,255,255,.92);
+  color:var(--ink);border-radius:999px;padding:8px 15px;cursor:pointer;
+  font:600 11.5px/1 'Inter',Arial,sans-serif;letter-spacing:.03em;
+  backdrop-filter:blur(6px);transition:background .2s,transform .2s;
+}
+#replay:hover{background:#fff;transform:translateY(-1px)}
+
+/* language cross-fade */
+.lang-swap{transition:opacity .18s ease, transform .18s ease}
+body.swapping .lang-swap{opacity:0;transform:translateY(-3px)}
+
+/* ---------- back to atlas + rotate hint ---------- */
+#back{
+  display:flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:999px;text-decoration:none;
+  border:1px solid rgba(17,20,23,.18);background:rgba(255,255,255,.92);
+  color:var(--ink);font-size:15px;line-height:1;
+  backdrop-filter:blur(6px);transition:background .2s,transform .2s;
+}
+#back:hover{background:#fff;transform:translateY(-1px)}
+#rotate{
+  position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:100;
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:10px 16px;border-radius:12px;
+  background:rgba(17,20,23,.9);color:#fff;backdrop-filter:blur(6px);
+  font:600 12px/1.35 'Inter',Arial,sans-serif;text-align:center;
+  box-shadow:0 8px 28px rgba(0,0,0,.28);
+}
+#rotate small{font-weight:400;font-size:10px;opacity:.72}
+#rotate[hidden]{display:none}
+
+/* ---------- keyframes ---------- */
+@keyframes riseIn{to{opacity:1;transform:none}}
+@keyframes popIn{to{transform:scale(1)}}
+@keyframes popStub{to{transform:translate(-50%,-50%) scale(1)}}
+@keyframes ruleIn{to{transform:scaleX(1)}}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes drawIn{to{stroke-dashoffset:0}}
+.anim-rise{animation:riseIn .6s cubic-bezier(.22,.85,.3,1) forwards}
+.anim-pop{animation:popIn .5s cubic-bezier(.34,1.56,.64,1) forwards}
+.anim-stub{animation:popStub .45s cubic-bezier(.34,1.56,.64,1) forwards}
+.anim-rule{animation:ruleIn .5s ease forwards}
+.anim-fade{animation:fadeIn .5s ease forwards}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important;animation-delay:0ms !important}
+}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <header>
+    <h1 id="h1" class="lang-swap"></h1>
+    <div class="alt lang-swap" id="h1alt"></div>
+    <p class="sub lang-swap" id="sub"></p>
+  </header>
+
+  <div class="legendRow">
+    <div class="legendLabel lang-swap" id="themesLabel"></div>
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <div class="body">
+    <section class="panel left">
+      <div class="pTitle lang-swap" id="pT1"></div>
+      <div class="pSub lang-swap" id="pS1"></div>
+      <div class="newKey lang-swap" id="newKey"><i></i> <span></span></div>
+      <div class="yearRow" id="yearRow">
+        <span></span><span>2025</span><span></span><span>2026</span><span></span>
+      </div>
+      <div class="slopeWrap" id="slopeWrap">
+        <svg class="links" id="links" preserveAspectRatio="none"></svg>
+        <div class="slopeGrid" id="slopeGrid"></div>
+      </div>
+      <div class="foot lang-swap" id="foot"></div>
+    </section>
+
+    <section class="panel right">
+      <div class="pTitle lang-swap" id="pT2"></div>
+      <div class="pSub lang-swap" id="pS2"></div>
+      <div class="grid100" id="grid100"></div>
+    </section>
+  </div>
+
+  <footer id="foot2">
+    <div class="src lang-swap" id="src"></div>
+    <div class="hbr">HBR</div>
+  </footer>
+
+</div>
+
+<div id="ctl">
+  <a id="back" href="/atlas/" aria-label="Quay ve trang Atlas" title="Quay ve Atlas">&#8592;</a>
+  <div class="seg" id="seg">
+    <span class="knob" id="knob"></span>
+    <button type="button" data-lang="vi">VI</button>
+    <button type="button" data-lang="en">EN</button>
+  </div>
+  <button id="replay" type="button"></button>
+</div>
+
+<div id="rotate" hidden>Xoay ngang dien thoai de xem ro hon<small>Rotate your phone for a better view</small></div>
+
+<script>
+/* =================== i18n: UI strings =================== */
+var UI = {
+  vi:{
+    docTitle:'Con Người Thực Sự Dùng Gen AI Thế Nào (2026)',
+    h1:'Con Người Thực Sự Dùng Gen AI Thế Nào (2026)',
+    h1alt:'How People Are Using Gen AI (2026)',
+    sub:'Con người đang dùng AI tạo sinh cho một phạm vi công việc ngày càng rộng &mdash; và ngày càng riêng tư. Năm 2026, các use case dẫn đầu trải từ nâng đỡ cảm xúc, trợ giúp thực tế, giải trí cho tới tác vụ tự hành, phản ánh xu hướng tìm đến AI không chỉ để tạo ra, mà để <em>nghĩ, quyết, xoa dịu và hành động</em>. Dựa trên 12.637 use case thu thập từ 3/2025 đến 2/2026.',
+    themes:'Nhóm chủ đề',
+    pT1:'Top 10 Use Case Gen AI (2026)', pT1s:'Top 10 Gen AI Use Cases (2026)',
+    pS1:'Thứ hạng đảo lộn mạnh chỉ trong một năm. Nâng đỡ cảm xúc vẫn trụ vững, nhưng các nhu cầu tự hoàn thiện và chiêm nghiệm &mdash; tìm lẽ sống, sắp xếp cuộc sống, học tập &mdash; rơi hạng sâu, nhường chỗ cho nhu cầu thực dụng, giải trí và tác vụ tự hành.',
+    newKey:'Vòng viền đen = use case mới &nbsp;&middot;&nbsp; vòng tròn nhỏ = thứ hạng ở năm còn lại',
+    foot:'*Không nằm trong top 100 của năm 2025',
+    pT2:'Toàn Bộ Top 100 Use Case', pT2s:'The Top 100 Use Cases, Ranked',
+    pS2:'Bấm vào một nhóm chủ đề phía trên để lọc. 63/100 use case gắn trực tiếp với công việc, hoặc dùng được cả ở nhà lẫn nơi làm.',
+    src:'Nguồn: theaiwild.com &nbsp;&middot;&nbsp; Dựng lại từ infographic của Harvard Business Review, &ldquo;How People Are Really Using AI in 2026&rdquo; (6/2026)',
+    replay:'&#8635; Chạy lại'
+  },
+  en:{
+    docTitle:'How People Are Using Gen AI (2026)',
+    h1:'How People Are Using Gen AI (2026)',
+    h1alt:'Con Người Thực Sự Dùng Gen AI Thế Nào (2026)',
+    sub:'People are using generative AI for an increasingly wide &mdash; and intimate &mdash; range of tasks. In 2026, top use cases span emotional support, practical assistance, entertainment, and autonomous work, reflecting a growing tendency to turn to AI not just to create but to <em>think, decide, cope, and act</em>. Based on 12,637 use cases analysed between March 2025 and February 2026.',
+    themes:'Themes',
+    pT1:'Top 10 Gen AI Use Cases (2026)', pT1s:'Top 10 Use Case Gen AI (2026)',
+    pS1:'The top uses turned over dramatically in a single year. Emotional support endured, but self-improvement and reflective uses &mdash; finding purpose, organizing life, enhanced learning &mdash; fell sharply as practical, entertainment, and agentic uses surged.',
+    newKey:'Black ring = new use case &nbsp;&middot;&nbsp; small circle = rank in the other year',
+    foot:'*Did not make list of top 100 in 2025',
+    pT2:'The Top 100 Use Cases, Ranked', pT2s:'Toàn Bộ Top 100 Use Case',
+    pS2:'Click a theme above to isolate it. Sixty-three of the top 100 are explicitly work-related or apply both at home and at work.',
+    src:'Source: theaiwild.com &nbsp;&middot;&nbsp; Recreation of the Harvard Business Review infographic, &ldquo;How People Are Really Using AI in 2026&rdquo; (June 2026)',
+    replay:'&#8635; Replay'
+  }
+};
+
+/* =================== themes =================== */
+var T = {
+  sup:{c:'#5AA7DC', en:'Personal and professional support',        vi:'Hỗ trợ cá nhân và công việc'},
+  con:{c:'#F5B41F', en:'Content creation and editing',             vi:'Sáng tạo và biên tập nội dung'},
+  lrn:{c:'#F0801F', en:'Learning and education',                   vi:'Học tập và giáo dục'},
+  tec:{c:'#43A25A', en:'Technical assistance and troubleshooting', vi:'Hỗ trợ kỹ thuật và xử lý sự cố'},
+  cre:{c:'#B584CC', en:'Creativity and recreation',                vi:'Sáng tạo và giải trí'},
+  res:{c:'#8C9194', en:'Research, analysis, and decision-making',  vi:'Nghiên cứu, phân tích, ra quyết định'}
+};
+
+/* =================== the 100 use cases — [en, vi, theme, isNew] =================== */
+var USE100 = [
+['Therapy/companionship','Trị liệu / bầu bạn','sup'],
+['Troubleshooting','Xử lý sự cố','tec'],
+['Fun and nonsense','Giải trí vu vơ','cre'],
+['Fan fiction and storytelling','Fan fiction và kể chuyện','cre',1],
+['Technical use of software','Dùng phần mềm kỹ thuật','tec'],
+['Autonomous agentic operations','Tác vụ agent tự hành','tec',1],
+['Relationship advice','Tư vấn chuyện tình cảm','sup'],
+['Work buddy','Bạn đồng hành công việc','sup'],
+['Astrology and tarot readings','Chiêm tinh và bói tarot','sup',1],
+['General advice','Lời khuyên chung','sup'],
+['Fake reality TV','Truyền hình thực tế giả lập','cre',1],
+['Medical advice','Tư vấn y tế','sup'],
+['Enhanced decision-making','Ra quyết định tốt hơn','res'],
+['Organizing my life','Sắp xếp cuộc sống','sup'],
+['Generating relevant images','Tạo ảnh phù hợp','con'],
+['Healthier living','Sống khỏe hơn','sup'],
+['Navigating love lives','Xoay xở chuyện yêu đương','sup'],
+['Specific search','Tìm kiếm chuyên biệt','res'],
+['Creative writing','Viết sáng tạo','con'],
+['Editing text','Biên tập văn bản','con'],
+['Vibe coding','Vibe coding','tec',1],
+['Enhanced learning','Học tập hiệu quả hơn','lrn'],
+['Drafting a document','Soạn thảo tài liệu','con'],
+['Career advice','Tư vấn nghề nghiệp','sup'],
+['For entrepreneurs/startups','Cho người khởi nghiệp','sup'],
+['Reconciling personal disputes','Hòa giải mâu thuẫn cá nhân','sup'],
+['Shopping','Mua sắm','res'],
+['Homework','Bài tập về nhà','lrn'],
+['Breaking the rules','Lách luật, phá rào','res',1],
+['Business advice','Tư vấn kinh doanh','sup'],
+['Personal finance','Tài chính cá nhân','sup'],
+['Safe space to ask','Chỗ an toàn để hỏi','sup'],
+['Writing blog posts','Viết bài blog','con'],
+['Customer service','Chăm sóc khách hàng','sup'],
+['Writing social media copy','Viết nội dung mạng xã hội','con'],
+['Raising/guiding kids','Nuôi dạy con cái','sup'],
+['Writing/editing CV/résumé','Viết / chỉnh sửa CV','con'],
+['Ad/marketing copy','Nội dung quảng cáo, marketing','con'],
+['Building a website/app','Dựng website / ứng dụng','tec'],
+['Writing student essays','Viết bài luận cho sinh viên','lrn'],
+['Jumping to the useful info','Nhảy thẳng vào thông tin cần','res'],
+['Drafting emails','Soạn email','con'],
+['Boosting confidence','Tăng sự tự tin','sup'],
+['Generating video','Tạo video','con',1],
+['Legal research','Tra cứu pháp lý','res'],
+['Understanding sex','Tìm hiểu về tình dục','sup',1],
+['Generating ideas','Nghĩ ý tưởng','con'],
+['Planning workouts','Lên lịch tập luyện','sup'],
+['Enabling better conversations with doctors','Trao đổi tốt hơn với bác sĩ','sup'],
+['Tracking medical symptoms','Theo dõi triệu chứng bệnh','sup'],
+['Fact-checking','Kiểm chứng thông tin','res'],
+['Editing digital images','Chỉnh sửa ảnh số','con'],
+['Critique and counterargument','Phản biện và bắt bẻ','res'],
+['Corporate LLM/copilot','LLM / copilot doanh nghiệp','tec'],
+['Making sense of academic papers','Hiểu bài báo khoa học','res'],
+['Drafting a formal letter','Soạn thư trang trọng','con'],
+['Seeing blind spots','Nhìn ra điểm mù','res'],
+['Adjusting tone of email','Chỉnh giọng điệu email','con'],
+['Disputing a fine','Khiếu nại tiền phạt','res',1],
+['Motivating yourself','Tự tạo động lực','sup'],
+['Deep and meaningful conversations','Trò chuyện sâu sắc','sup'],
+['Exploring religion','Tìm hiểu tôn giáo','res'],
+['Fixing bugs in code','Sửa lỗi code','tec'],
+['Travel itinerary','Lịch trình du lịch','res'],
+['Creativity','Sáng tạo','cre'],
+['Summarizing content','Tóm tắt nội dung','res'],
+['Language learning','Học ngoại ngữ','lrn'],
+['Learning at work','Học trong công việc','lrn'],
+['Improving code (for pros)','Cải thiện code (dân chuyên)','tec'],
+['Exploring topics of interest','Khám phá chủ đề quan tâm','lrn'],
+['Negotiating a deal','Đàm phán thương vụ','sup'],
+['Cooking with what you have','Nấu ăn với đồ sẵn có','res',1],
+['Refining prompts','Tinh chỉnh prompt','tec'],
+['Classifying by criteria','Phân loại theo tiêu chí','res'],
+['Language translation','Dịch thuật','res'],
+['Excel formulas','Công thức Excel','tec'],
+['Dungeons & Dragons','Dungeons & Dragons','cre',1],
+['Generating code (for pros)','Sinh code (dân chuyên)','tec'],
+['Getting past writer’s block','Vượt qua bí ý tưởng','con'],
+['Writing a press release','Viết thông cáo báo chí','con',1],
+['Thinking better','Tư duy tốt hơn','res'],
+['Structured thinking','Tư duy có cấu trúc','res'],
+['Creating a holiday itinerary','Lên lịch trình kỳ nghỉ','res'],
+['Personalized learning','Học cá nhân hóa','lrn'],
+['Finding purpose','Tìm lẽ sống','sup'],
+['Interacting with the deceased','Trò chuyện với người đã khuất','sup'],
+['Evaluating copy','Đánh giá bài viết','con'],
+['Strengthening an argument','Củng cố lập luận','res'],
+['Preparing for interviews','Chuẩn bị phỏng vấn','sup'],
+['Knowledge checks','Kiểm tra kiến thức','lrn',1],
+['Data manipulation','Xử lý dữ liệu','tec'],
+['Generating a lesson plan','Soạn giáo án','lrn'],
+['Replying to emails','Trả lời email','con'],
+['Making a complaint','Viết đơn khiếu nại','sup'],
+['Recommending movies, books, etc.','Gợi ý phim, sách…','cre',1],
+['Building a business plan','Lập kế hoạch kinh doanh','sup'],
+['Explaining legalese','Giải thích ngôn ngữ pháp lý','res'],
+['Coding for amateurs','Lập trình cho người nghiệp dư','tec'],
+['Using MS Office apps','Dùng ứng dụng MS Office','tec'],
+['Writing realistic web copy','Viết web copy tự nhiên','con']
+];
+
+/* =================== slope chart =================== */
+var Y25 = [
+ {en:'Therapy/companionship',      vi:'Trị liệu / bầu bạn',          t:'sup',to:1},
+ {en:'Organizing my life',         vi:'Sắp xếp cuộc sống',           t:'sup',to:14},
+ {en:'Finding purpose',            vi:'Tìm lẽ sống',                 t:'sup',to:85},
+ {en:'Enhanced learning',          vi:'Học tập hiệu quả hơn',        t:'lrn',to:22},
+ {en:'Generating code (for pros)', vi:'Sinh code (dân chuyên)',      t:'tec',to:78},
+ {en:'Generating ideas',           vi:'Nghĩ ý tưởng',                t:'con',to:47},
+ {en:'Fun and nonsense',           vi:'Giải trí vu vơ',              t:'cre',to:3},
+ {en:'Improving code (for pros)',  vi:'Cải thiện code (dân chuyên)', t:'tec',to:69},
+ {en:'Creativity',                 vi:'Sáng tạo',                    t:'cre',to:65},
+ {en:'Healthier living',           vi:'Sống khỏe hơn',               t:'sup',to:16}
+];
+var Y26 = [
+ {en:'Therapy/companionship',         vi:'Trị liệu / bầu bạn',        t:'sup',from:1},
+ {en:'Troubleshooting',               vi:'Xử lý sự cố',               t:'tec',from:16},
+ {en:'Fun and nonsense',              vi:'Giải trí vu vơ',            t:'cre',from:7},
+ {en:'Fan fiction and storytelling',  vi:'Fan fiction và kể chuyện',  t:'cre',from:null,nw:1},
+ {en:'Technical use of software',     vi:'Dùng phần mềm kỹ thuật',    t:'tec',from:null},
+ {en:'Autonomous agentic operations', vi:'Tác vụ agent tự hành',      t:'tec',from:null,nw:1},
+ {en:'Relationship advice',           vi:'Tư vấn chuyện tình cảm',    t:'sup',from:38},
+ {en:'Work buddy',                    vi:'Bạn đồng hành công việc',   t:'sup',from:43},
+ {en:'Astrology and tarot readings',  vi:'Chiêm tinh và bói tarot',   t:'sup',from:null,nw:1},
+ {en:'General advice',                vi:'Lời khuyên chung',          t:'sup',from:null}
+];
+
+/* =================== build =================== */
+function $(s){ return document.querySelector(s); }
+function el(tag, cls, txt){ var e=document.createElement(tag); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e; }
+function other(l){ return l==='vi' ? 'en' : 'vi'; }
+
+var LANG = 'vi';
+try{ var saved = localStorage.getItem('ai2026-lang'); if(saved==='vi'||saved==='en') LANG = saved; }catch(e){}
+
+/* legend chips */
+var chips = $('#chips');
+Object.keys(T).forEach(function(k){
+  var c = el('div','chip'); c.dataset.k=k;
+  var bar = el('div','bar'); bar.style.background=T[k].c;
+  var dl = el('div','dotline');
+  var d = el('span','dot'); d.style.background=T[k].c;
+  var names = el('div','names');
+  names.appendChild(el('span','cname'));
+  names.appendChild(el('span','cname2'));
+  dl.appendChild(d); dl.appendChild(names);
+  c.appendChild(bar); c.appendChild(dl);
+  chips.appendChild(c);
+});
+
+/* slope grid */
+var grid = $('#slopeGrid');
+for(var i=0;i<10;i++){
+  var a=Y25[i], b=Y26[i];
+  var la = el('div','lbl l'); la.dataset.k=a.t; la.dataset.i=i; la.dataset.side='l';
+  la.appendChild(el('span','pri')); la.appendChild(el('span','sec'));
+  var na = el('div','node'); na.textContent=i+1; na.style.background=T[a.t].c; na.dataset.k=a.t; na.dataset.side='l';
+  var mid = el('div');
+  var nb = el('div','node'+(b.nw?' newring':'')); nb.textContent=i+1; nb.style.background=T[b.t].c; nb.dataset.k=b.t; nb.dataset.side='r';
+  var lb = el('div','lbl r'+(b.nw?' isnew':'')); lb.dataset.k=b.t; lb.dataset.i=i; lb.dataset.side='r';
+  lb.appendChild(el('span','pri')); lb.appendChild(el('span','sec'));
+  grid.appendChild(la); grid.appendChild(na); grid.appendChild(mid); grid.appendChild(nb); grid.appendChild(lb);
+}
+
+/* row rules */
+var wrap = $('#slopeWrap');
+for(var r=0;r<11;r++){
+  var rr = el('div','rowRule');
+  rr.style.top = (r*10)+'%';
+  wrap.appendChild(rr);
+}
+
+/* the 100 */
+var g100 = $('#grid100');
+USE100.forEach(function(u,idx){
+  var theme = u[2], isNew = !!u[3];
+  var it = el('div','item'); it.dataset.k=theme; it.dataset.i=idx;
+  var n = el('div','num'+(isNew?' newring':''), String(idx+1));
+  n.style.background = T[theme].c;
+  var b2 = el('div','body2');
+  b2.appendChild(el('div','txt'+(isNew?' isnew':'')));
+  b2.appendChild(el('div','sec'));
+  it.appendChild(n); it.appendChild(b2); g100.appendChild(it);
+});
+
+/* =================== language =================== */
+function applyLang(){
+  var t = UI[LANG], o = other(LANG);
+  document.documentElement.lang = LANG;
+  document.title = t.docTitle;
+
+  $('#h1').textContent          = t.h1;
+  $('#h1alt').textContent       = t.h1alt;
+  $('#sub').innerHTML           = t.sub;
+  $('#themesLabel').textContent = t.themes;
+  $('#pT1').innerHTML           = t.pT1 + '<small>' + t.pT1s + '</small>';
+  $('#pS1').innerHTML           = t.pS1;
+  $('#newKey').querySelector('span').innerHTML = t.newKey;
+  $('#foot').innerHTML          = t.foot;
+  $('#pT2').innerHTML           = t.pT2 + '<small>' + t.pT2s + '</small>';
+  $('#pS2').innerHTML           = t.pS2;
+  $('#src').innerHTML           = t.src;
+  $('#replay').innerHTML        = t.replay;
+
+  Array.prototype.forEach.call(chips.children, function(c){
+    var k = c.dataset.k;
+    c.querySelector('.cname').textContent  = T[k][LANG];
+    c.querySelector('.cname2').textContent = T[k][o];
+  });
+
+  Array.prototype.forEach.call(grid.querySelectorAll('.lbl'), function(l){
+    var src = (l.dataset.side==='l' ? Y25 : Y26)[+l.dataset.i];
+    l.querySelector('.pri').textContent = src[LANG];
+    l.querySelector('.sec').textContent = src[o];
+  });
+
+  Array.prototype.forEach.call(g100.children, function(it){
+    var u = USE100[+it.dataset.i];
+    it.querySelector('.txt').textContent = (LANG==='vi' ? u[1] : u[0]);
+    it.querySelector('.sec').textContent = (LANG==='vi' ? u[0] : u[1]);
+    it.title = u[1] + '  ·  ' + u[0];
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('#seg button'), function(b){
+    b.classList.toggle('on', b.dataset.lang===LANG);
+  });
+  moveKnob();
+}
+
+function moveKnob(){
+  var btn = document.querySelector('#seg button[data-lang="'+LANG+'"]');
+  var knob = $('#knob'), seg = $('#seg');
+  if(!btn || !knob) return;
+  knob.style.width = btn.offsetWidth + 'px';
+  knob.style.transform = 'translateX(' + (btn.offsetLeft - 3) + 'px)';
+}
+
+function setLang(l){
+  if(l===LANG) return;
+  LANG = l;
+  try{ localStorage.setItem('ai2026-lang', l); }catch(e){}
+  document.body.classList.add('swapping');
+  setTimeout(function(){
+    applyLang();
+    document.body.classList.remove('swapping');
+    if(linkRefs) rebuildStatic();
+  }, 180);
+}
+
+$('#seg').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-lang]');
+  if(b) setLang(b.dataset.lang);
+});
+
+/* =================== links =================== */
+function centre(node, host){
+  var a=node.getBoundingClientRect(), b=host.getBoundingClientRect();
+  return { x: a.left-b.left+a.width/2, y: a.top-b.top+a.height/2 };
+}
+
+function buildLinks(){
+  var svg = $('#links');
+  svg.innerHTML='';
+  Array.prototype.forEach.call(wrap.querySelectorAll('.stub'), function(s){ s.remove(); });
+  var W = wrap.clientWidth, H = wrap.clientHeight;
+  svg.setAttribute('viewBox', '0 0 '+W+' '+H);
+  var rowH = H/10;
+  var L = Array.prototype.map.call(grid.querySelectorAll('.node[data-side="l"]'), function(n){ return centre(n,wrap); });
+  var R = Array.prototype.map.call(grid.querySelectorAll('.node[data-side="r"]'), function(n){ return centre(n,wrap); });
+  var paths=[], stubs=[];
+
+  function mk(d){
+    var p = document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d', d); return p;
+  }
+
+  /* full bands: survivors present in both top 10s */
+  Y25.forEach(function(a,i){
+    if(a.to<=10 && Y26[a.to-1] && Y26[a.to-1].en===a.en){
+      var s=L[i], e=R[a.to-1], dx=(e.x-s.x)*0.55;
+      var p = mk('M'+s.x+','+s.y+' C'+(s.x+dx)+','+s.y+' '+(e.x-dx)+','+e.y+' '+e.x+','+e.y);
+      p.setAttribute('stroke', T[a.t].c);
+      p.setAttribute('stroke-width','9');
+      p.setAttribute('opacity','.34');
+      p.dataset.k = a.t;
+      svg.appendChild(p); paths.push(p);
+    }
+  });
+
+  /* 2025 outgoing stubs — fell out of the top 10 */
+  Y25.forEach(function(a,i){
+    if(a.to<=10 && Y26[a.to-1] && Y26[a.to-1].en===a.en) return;
+    var s=L[i];
+    var ex = s.x + 44, ey = Math.min(H-12, s.y + rowH*0.60);
+    var p = mk('M'+s.x+','+s.y+' C'+(s.x+26)+','+s.y+' '+(ex-16)+','+ey+' '+ex+','+ey);
+    p.setAttribute('stroke', T[a.t].c); p.setAttribute('stroke-width','3.4'); p.setAttribute('opacity','.55');
+    p.dataset.k = a.t;
+    svg.appendChild(p); paths.push(p);
+    stubs.push({x:ex,y:ey,c:T[a.t].c,k:a.t,txt:String(a.to)});
+  });
+
+  /* 2026 incoming stubs — climbed in, or brand new */
+  Y26.forEach(function(b,j){
+    if(b.from!=null && b.from<=10) return;
+    if(b.from==null && !b.nw) return;
+    var e=R[j];
+    var sx = e.x - 44, sy = Math.min(H-12, e.y + rowH*0.60);
+    var p = mk('M'+sx+','+sy+' C'+(sx+16)+','+sy+' '+(e.x-26)+','+e.y+' '+e.x+','+e.y);
+    p.setAttribute('stroke', T[b.t].c); p.setAttribute('stroke-width','3.4'); p.setAttribute('opacity','.55');
+    p.dataset.k = b.t;
+    svg.appendChild(p); paths.push(p);
+    stubs.push({x:sx,y:sy,c:T[b.t].c,k:b.t,txt: b.nw ? '*' : String(b.from), small: !!b.nw});
+  });
+
+  stubs.forEach(function(s){
+    var d = el('div','stub'+(s.small?' small':''), s.txt);
+    d.style.left=s.x+'px'; d.style.top=s.y+'px'; d.style.background=s.c;
+    d.dataset.k = s.k;
+    wrap.appendChild(d);
+  });
+  return {paths:paths, stubEls: Array.prototype.slice.call(wrap.querySelectorAll('.stub'))};
+}
+
+/* =================== animation =================== */
+var linkRefs=null;
+function play(){
+  var all = document.querySelectorAll('.anim-rise,.anim-pop,.anim-stub,.anim-rule,.anim-fade');
+  Array.prototype.forEach.call(all, function(n){
+    n.classList.remove('anim-rise','anim-pop','anim-stub','anim-rule','anim-fade');
+  });
+  void document.body.offsetWidth;
+
+  linkRefs = buildLinks();
+  linkRefs.paths.forEach(function(p){
+    var len = p.getTotalLength();
+    p.style.strokeDasharray = len;
+    p.style.strokeDashoffset = len;
+    p.style.animation='none';
+  });
+  void document.body.offsetWidth;
+
+  function go(node, cls, delay){ if(!node) return; node.style.animationDelay = delay+'ms'; node.classList.add(cls); }
+  function each(sel, cls, base, step){
+    Array.prototype.forEach.call(document.querySelectorAll(sel), function(n,i){ go(n, cls, base+i*step); });
+  }
+
+  go($('#h1'),'anim-rise',60);
+  go($('#h1alt'),'anim-rise',150);
+  go($('#sub'),'anim-rise',220);
+  each('.chip','anim-rise',340,70);
+  each('.pTitle','anim-rise',520,90);
+  each('.pSub','anim-rise',600,90);
+  go($('.newKey'),'anim-fade',760);
+  each('#yearRow span','anim-rise',700,40);
+  each('.rowRule','anim-rule',720,38);
+
+  each('.node[data-side="l"]','anim-pop',900,55);
+  each('.lbl.l','anim-fade',930,55);
+
+  linkRefs.paths.forEach(function(p,i){
+    p.style.animation = 'drawIn .85s cubic-bezier(.4,.05,.2,1) '+(1250+i*60)+'ms forwards';
+  });
+
+  each('.node[data-side="r"]','anim-pop',1500,55);
+  each('.lbl.r','anim-fade',1530,55);
+  linkRefs.stubEls.forEach(function(s,i){ go(s,'anim-stub',1900+i*45); });
+
+  each('.item','anim-rise',1150,13);
+  go($('#foot'),'anim-fade',2500);
+  go($('#foot2'),'anim-fade',2600);
+}
+
+/* =================== theme filter =================== */
+var active=null;
+chips.addEventListener('click', function(e){
+  var c = e.target.closest('.chip'); if(!c) return;
+  active = (active===c.dataset.k) ? null : c.dataset.k;
+  Array.prototype.forEach.call(document.querySelectorAll('.chip'), function(x){
+    x.classList.toggle('on', active===x.dataset.k);
+    x.classList.toggle('off', !!active && active!==x.dataset.k);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.item'), function(x){
+    x.classList.toggle('dim', !!active && x.dataset.k!==active);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.node,.lbl'), function(x){
+    x.classList.toggle('dim', !!active && x.dataset.k!==active);
+  });
+  if(linkRefs){
+    linkRefs.paths.forEach(function(p){
+      p.style.opacity = (!active || p.dataset.k===active) ? '' : '.06';
+    });
+    linkRefs.stubEls.forEach(function(s){
+      s.style.opacity = (!active || s.dataset.k===active) ? '1' : '.1';
+    });
+  }
+});
+
+/* =================== fit to one screen =================== */
+var stage = $('#stage');
+var rotateHint = $('#rotate');
+function fit(){
+  var v = window.visualViewport;
+  /* dang pinch-zoom thi khong dung vao transform (AGENTS 6.2) */
+  if(v && Math.abs(v.scale - 1) > 0.01) return;
+  var W = v ? v.width  : window.innerWidth;
+  var H = v ? v.height : window.innerHeight;
+  var s = Math.min(W/1600, H/900);
+  stage.style.transform = 'translate('+((W-1600*s)/2)+'px,'+((H-900*s)/2)+'px) scale('+s+')';
+  if(rotateHint) rotateHint.hidden = !(W < H && W < 760);
+}
+function rebuildStatic(){
+  linkRefs = buildLinks();
+  linkRefs.paths.forEach(function(p){ p.style.strokeDasharray=''; p.style.strokeDashoffset='0'; });
+  linkRefs.stubEls.forEach(function(s){ s.style.transform='translate(-50%,-50%) scale(1)'; });
+}
+window.addEventListener('resize', function(){ fit(); moveKnob(); if(linkRefs) rebuildStatic(); });
+if(window.visualViewport){ window.visualViewport.addEventListener('resize', fit); }
+window.addEventListener('orientationchange', function(){ setTimeout(function(){ fit(); moveKnob(); if(linkRefs) rebuildStatic(); }, 250); });
+
+applyLang();
+fit();
+$('#replay').addEventListener('click', play);
+if(document.fonts && document.fonts.ready){ document.fonts.ready.then(function(){ fit(); moveKnob(); play(); }); }
+else { play(); }
+</script>
+</body>
+</html>
