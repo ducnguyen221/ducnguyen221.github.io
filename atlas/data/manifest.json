@@ -1,5 +1,18 @@
 [
   {
+    "slug": "gpt6-astra-dieu-dang-chu-y",
+    "title": "GPT-6 Astra: điều đáng chú ý không nằm ở điểm benchmark · Học cùng Tobi",
+    "description": "Astra tự thao tác trên giao diện phần mềm — nút thắt tích hợp dời sang quản trị, không biến mất",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/gpt6-astra-dieu-dang-chu-y.html",
+    "thumbnail": "content/ai/gpt6-astra-dieu-dang-chu-y.jpg",
+    "published": "2026-09-04",
+    "lastModified": "2026-09-04",
+    "fileSize": 32978
+  },
+  {
     "slug": "mka-101-digital-marketing",
     "title": "MKA-101 · Cheatsheet Ứng dụng AI và Phân tích dữ liệu cho Marketing Ngân hàng",
     "description": "Bộ cheatsheet tra cứu MKA-101: 100 use case campaign, thư viện prompt, bộ câu hỏi phân tích, data dictionary, 73 chỉ số phân tích và 2 quy trình chuẩn cho marketing ngân hàng.",
