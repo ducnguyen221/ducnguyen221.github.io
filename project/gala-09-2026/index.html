@@ -293,11 +293,11 @@
   .env-scene.reduced .env-flap { transition:none; }
   .env-scene.reduced.opening .env-flap { transform:rotateX(-172deg); }
 
-  @media (prefers-reduced-motion: reduce) {
-    .rv { opacity:1; transform:none; transition:none; }
-    .envelope, .aurora, .orbs i, .embers i, .glints span, .sparks i, .env-sparks i,
-    .hero::after, .gold, .pill, .seal, .env-halo, .env-hint .t { animation:none !important; }
-  }
+  /* Duc chot 07/09/2026: BO nhanh prefers-reduced-motion.
+     Truoc day may bat "Giam chuyen dong" thi CSS tat sach animation phong bi va
+     JS bo qua phao hoa -> cham vao thiep mo ngay, khong co gi bay. Thiep moi can
+     hieu ung cho MOI khach, nen chu dong bo. Cac rule .env-scene.reduced ben tren
+     gio la CSS chet (class do khong bao gio duoc gan nua) - giu lai de de hoan tac. */
   @media (max-width:360px) {
     h1 .l1 { font-size:27px; } h1 .l2 { font-size:24px; }
     .pill span { font-size:12px; }
@@ -479,7 +479,7 @@ html { overscroll-behavior-y: none; }
   fill('img[data-mark]', MARK);
   fill('img[data-word]', WORD);
 
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reduced = false;  /* xem ghi chu o phan CSS ben tren */
 
   /* ---------- nền động ---------- */
   function mulberry32(a){return function(){a|=0;a=(a+0x6D2B79F5)|0;var t=Math.imul(a^(a>>>15),1|a);
