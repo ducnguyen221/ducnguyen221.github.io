@@ -1,0 +1,83 @@
+[
+  {
+    "title": "Microsoft Certified: Power BI Data Analyst Associate",
+    "issuer": "Microsoft",
+    "issue_date": "2021-12-26",
+    "valid_to": "2023-12-26",
+    "status": "expired",
+    "verify_url": "",
+    "description": "Earning the Power BI Data Analyst Associate certification validates the skills and knowledge required to enable businesses to maximize the value of their data assets by using Microsoft Power BI. As a subject matter expert, Data Analysts are responsible for designing and building scalable data models, cleaning and transforming data, and enabling advanced analytic capabilities that provide meaningful business value through easy-to-comprehend data visualizations."
+  },
+  {
+    "title": "Exam 778: Analyzing and Visualizing Data with Power BI",
+    "issuer": "Microsoft",
+    "issue_date": "2018-09-05",
+    "valid_to": "",
+    "status": "active",
+    "verify_url": "",
+    "description": "Passing Exam 778: Analyzing and Visualizing Data with Power BI validates the skills and knowledge necessary to be proficient in connecting to data sources and performing data transformations, modeling and visualizing data by using Microsoft Power BI Desktop, and configuring dashboards by using the Power BI service. Candidates demonstrate implementing direct connectivity to Microsoft SQL Azure and SQL Server Analysis Services (SSAS), and implementing data analysis in Microsoft Excel."
+  },
+  {
+    "title": "Exam 779: Analyzing and Visualizing Data with Microsoft Excel",
+    "issuer": "Microsoft",
+    "issue_date": "2018-09-21",
+    "valid_to": "",
+    "status": "active",
+    "verify_url": "",
+    "description": "Passing Exam 779: Analyzing and Visualizing Data with Microsoft Excel validates the skills and knowledge necessary to consume, transform, model, and visualize data in Excel. Candidates demonstrate the ability to configure and manipulate data in PowerPivot, PivotTables, and PivotCharts"
+  },
+  {
+    "title": "MCSA: BI Reporting - Certified 2018",
+    "issuer": "Microsoft",
+    "issue_date": "2018-09-21",
+    "valid_to": "",
+    "status": "active",
+    "verify_url": "",
+    "description": "Earners of the MCSA: BI Reporting certification demonstrate knowledge relevant to data analysis, data visualization, modeling, dashboards, and direct connectivity to data sources in Excel and Power BI."
+  },
+  {
+    "title": "Tableau Desktop Certified Associate",
+    "issuer": "Tableau",
+    "issue_date": "2019-10-13",
+    "valid_to": "2021-10-13",
+    "status": "expired",
+    "verify_url": "",
+    "description": "Earners of the Tableau Desktop Certified Associate title are proficient users of the features and functionality of Tableau Desktop to analyze data and solve problems. They can apply mapping, data preparation, and calculation skills in more advanced data analysis."
+  },
+  {
+    "title": "Google Certified Educator Level 1",
+    "issuer": "Google for Education",
+    "issue_date": "2025-12-16",
+    "valid_to": "2028-12-16",
+    "status": "active",
+    "verify_url": "https://edu.google.accredible.com/1573db22-4230-4711-9827-58d245164602",
+    "description": "Chứng chỉ ghi nhận năng lực ứng dụng công cụ Google trong dạy và học hiện đại."
+  },
+  {
+    "title": "Google Certified Educator Level 2",
+    "issuer": "Google for Education",
+    "issue_date": "2025-12-16",
+    "valid_to": "2028-12-16",
+    "status": "active",
+    "verify_url": "https://edu.google.accredible.com/7703c5db-6de3-4bbf-aef0-9e0f7468eb4b",
+    "description": "Chứng chỉ nâng cao về tích hợp giải pháp số và tối ưu phương pháp giáo dục của Google."
+  },
+  {
+    "title": "Gemini Certified Educator",
+    "issuer": "Google for Education",
+    "issue_date": "2025-12-16",
+    "valid_to": "2028-12-16",
+    "status": "active",
+    "verify_url": "https://edu.google.accredible.com/19d2cc0d-5a10-40a7-b9f0-f3e4595d11f6",
+    "description": "Chứng nhận năng lực ứng dụng mô hình ngôn ngữ lớn Gemini trong thiết kế bài giảng và giáo dục tương tác."
+  },
+  {
+    "title": "Databricks Certified Generative AI Engineer Associate",
+    "issuer": "Databricks",
+    "issue_date": "2026-05-11",
+    "valid_to": "2028-05-11",
+    "status": "active",
+    "verify_url": "https://credentials.databricks.com/a686afb8-a509-4579-bbac-d3bfaf6b7248",
+    "description": "Chứng nhận chuyên gia thiết kế và triển khai giải pháp LLM trên Databricks (Vector Search, Model Serving, MLflow, RAG)."
+  }
+]
