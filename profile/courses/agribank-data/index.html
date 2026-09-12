@@ -161,6 +161,7 @@ html.force-mobile,html.force-mobile body{overflow:auto}
     <div style="margin-top:22px;font-size:11px;letter-spacing:.2em;color:#D9B46D">BẢN ĐỒ HÀNH TRÌNH</div>
     <div style="position:relative;height:430px;margin-top:10px;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)">
       <vn-map id="vnmapM" style="position:absolute;inset:0;overflow:hidden"></vn-map>
+      <div id="mSlots" style="position:absolute;inset:0;pointer-events:none;z-index:8"></div>
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
@@ -434,6 +435,78 @@ html.force-mobile,html.force-mobile body{overflow:auto}
   }
   renderPhase();
   setInterval(function () { phase = (phase + 1) % PHASES.length; renderPhase(); }, 5000);
+
+  /* ---------- mobile: anh hien KEM ban do, MOI LUOT MOT LOP, 5s doi lop ----------
+     Desktop du cho de bay 3 the mot luc; man doc chi du cho MOT. Thu tu chay theo
+     SO LOP (K01 -> K10), khong theo thu tu dia ly cua GEO. */
+  (function mobileMapCard() {
+    var host = document.getElementById("mSlots");
+    if (!host) return;
+    var CARD_H = 112, THUMB_H = 56, EDGE = 10;
+    function classNo(c) { var m = String(c).match(/K(\d+)/); return m ? +m[1] : 99; }
+    var order = GEO.slice().sort(function (a, b) { return classNo(a.city) - classNo(b.city); });
+    var mIdx = 0;
+
+    /* Doc vi tri cham THANG TU DOM cua ban do mobile. Khong dung window.__vnMapPoints:
+       bien do dung chung cho ca hai ban do, ban nao ve sau thi ghi de — ma hai ban do
+       khac ty le nen phan tram cua chung khac nhau. */
+    function pointOf(city) {
+      var el = host.parentElement.querySelector('#vnmapM [data-city="' + city + '"]');
+      if (!el) return null;
+      var x = parseFloat(el.style.left), y = parseFloat(el.style.top);
+      return isFinite(x) && isFinite(y) ? [x, y] : null;
+    }
+
+    function paintCard() {
+      var box = host.parentElement, BW = box.clientWidth, BH = box.clientHeight;
+      var g = order[mIdx], info = g && LOCS[g.city], pt = g && pointOf(g.city);
+      if (!info || !pt || !BW || !BH) { host.innerHTML = ""; return; }
+
+      var dx = pt[0] / 100 * BW, dy = pt[1] / 100 * BH;
+      var CW = Math.max(120, Math.min(170, Math.round(BW * 0.46)));
+      var flip = dx > BW * 0.5;                       /* cham ben phai -> the ben trai */
+      var cx = flip ? EDGE : BW - EDGE - CW;
+      var cy = Math.max(EDGE, Math.min(BH - EDGE - CARD_H, dy - CARD_H / 2));
+      var ax = flip ? cx + CW : cx;                   /* canh trong cua the */
+      var ay = cy + CARD_H / 2;
+
+      host.innerHTML =
+        '<svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 ' + BW + ' ' + BH + '">' +
+        '<line x1="' + ax + '" y1="' + ay + '" x2="' + dx + '" y2="' + dy + '" stroke="#D9B46D" ' +
+        'stroke-width="1" stroke-opacity=".65" stroke-dasharray="4 5"></line></svg>' +
+        '<div style="position:absolute;left:' + cx + 'px;top:' + cy + 'px;width:' + CW + 'px;height:' + CARD_H + 'px;' +
+        'border-radius:11px;overflow:hidden;background:rgba(255,255,255,.96);color:#2a0810;' +
+        'border:1px solid rgba(217,180,109,.6);box-shadow:0 8px 20px rgba(0,0,0,.45);animation:riseIn .5s ease both">' +
+        '<div style="height:' + THUMB_H + 'px;background-image:url(\'' + info.img + '\');background-size:cover;background-position:center"></div>' +
+        '<div style="padding:5px 7px 7px">' +
+        '<div style="font-size:10.5px;font-weight:700;color:#7C1725;letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + info.label + '</div>' +
+        '<div style="font-size:9.5px;color:#6b5f5a;margin-top:2px;line-height:1.25;max-height:24px;overflow:hidden">' + info.meta + '</div>' +
+        '</div></div>';
+
+      /* Cham dang toi luot thi to hon. Nhan chu bi an trong HAI truong hop: no la
+         cham dang toi luot (da co the thay the), hoac no dam vao the anh — de lo thi
+         chu chong len anh, doc khong ra. Phai bat display truoc khi do, vi phan tu
+         dang an co kich thuoc bang 0. */
+      var cardEl = host.lastElementChild, cr = cardEl.getBoundingClientRect();
+      box.querySelectorAll("#vnmapM [data-city]").forEach(function (el) {
+        var on = el.getAttribute("data-city") === g.city;
+        el.style.zIndex = on ? 9 : 7;
+        var dot = el.children[1];
+        if (dot) { dot.style.transition = "transform .35s ease"; dot.style.transform = on ? "scale(1.6)" : "scale(1)"; }
+        var lab = el.querySelector(".vn-label");
+        if (!lab) return;
+        lab.style.display = "block";
+        var lr = lab.getBoundingClientRect();
+        var hit = !(lr.right < cr.left - 2 || lr.left > cr.right + 2 || lr.bottom < cr.top - 2 || lr.top > cr.bottom + 2);
+        lab.style.display = (on || hit) ? "none" : "block";
+      });
+    }
+
+    paintCard();
+    window.addEventListener("vn-map-ready", paintCard);
+    window.addEventListener("resize", paintCard);
+    setInterval(function () { mIdx = (mIdx + 1) % order.length; paintCard(); }, 5000);
+  })();
 
   /* ---------- photo deck ---------- */
   var deck = document.getElementById("deck");
