@@ -13,6 +13,19 @@
     "fileSize": 33987
   },
   {
+    "slug": "ngay-dau-di-lam-system-prompt-chinh-la-ban-mo-ta-cong-viec-cua-ai",
+    "title": "Ngày đầu đi làm: system prompt chính là bản mô tả công việc của AI · Học cùng Tobi",
+    "description": "explainer",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/ngay-dau-di-lam-system-prompt-chinh-la-ban-mo-ta-cong-viec-cua-ai.html",
+    "thumbnail": "",
+    "published": "2026-09-13",
+    "lastModified": "2026-09-12",
+    "fileSize": 34656
+  },
+  {
     "slug": "nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve",
     "title": "Người thợ khoá và bản vẽ sai: prompt không phải câu thần chú, nó là bản vẽ · Học cùng Tobi",
     "description": "myth_vs_fact",
@@ -26,17 +39,17 @@
     "fileSize": 36291
   },
   {
-    "slug": "ngay-dau-di-lam-system-prompt-chinh-la-ban-mo-ta-cong-viec-cua-ai",
-    "title": "Ngày đầu đi làm: system prompt chính là bản mô tả công việc của AI · Học cùng Tobi",
-    "description": "explainer",
+    "slug": "ong-tho-may-do-ao-gan-vai-role-prompting-that-ra-la-dat-rang-buoc",
+    "title": "Ông thợ may đo áo: gán vai (role prompting) thật ra là đặt ràng buộc · Học cùng Tobi",
+    "description": "myth_vs_fact",
     "categories": [
       "ai"
     ],
-    "path": "content/ai/ngay-dau-di-lam-system-prompt-chinh-la-ban-mo-ta-cong-viec-cua-ai.html",
+    "path": "content/ai/ong-tho-may-do-ao-gan-vai-role-prompting-that-ra-la-dat-rang-buoc.html",
     "thumbnail": "",
     "published": "2026-09-12",
     "lastModified": "2026-09-12",
-    "fileSize": 34656
+    "fileSize": 38105
   },
   {
     "slug": "gpt6-astra-dieu-dang-chu-y",

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ông thợ may đo áo: gán vai (role prompting) thật ra là đặt ràng buộc · Học cùng Tobi</title>
+<meta name="description" content="myth_vs_fact">
+<link rel="canonical" href="https://ducnguyen.vn/atlas/content/ai/ong-tho-may-do-ao-gan-vai-role-prompting-that-ra-la-dat-rang-buoc.html">
+<meta name="author" content="Nguyen Quang Duc">
+<!-- Open Graph — BAT BUOC. Thieu la Facebook/Zalo scrape ra bai TRAN TRUI, mat phan lon suc hut.
+     Ca VC-001/002/003 deu thieu (do 04/09: 0/3 bai co the og:) => bo sung tan goc tai day. -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ông thợ may đo áo: gán vai (role prompting) thật ra là đặt ràng buộc">
+<meta property="og:description" content="myth_vs_fact">
+<meta property="og:url" content="https://ducnguyen.vn/atlas/content/ai/ong-tho-may-do-ao-gan-vai-role-prompting-that-ra-la-dat-rang-buoc.html">
+<meta property="og:image" content="https://ducnguyen.vn/atlas/content/ai/ong-tho-may-do-ao-gan-vai-role-prompting-that-ra-la-dat-rang-buoc.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:site_name" content="Hoc cung Tobi">
+<meta property="article:published_time" content="">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ông thợ may đo áo: gán vai (role prompting) thật ra là đặt ràng buộc">
+<meta name="twitter:description" content="myth_vs_fact">
+<meta name="twitter:image" content="https://ducnguyen.vn/atlas/content/ai/ong-tho-may-do-ao-gan-vai-role-prompting-that-ra-la-dat-rang-buoc.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b1020;--bg-elev:#0f1530;--surface:#151b3d;--surface-2:#1c244d;
+  --border:#2a3470;--border-soft:#1f2654;
+  --accent:#7c83ff;--accent-2:#a5acff;--accent-soft:#3d3e9c;--violet:#c4a8ff;
+  --green:#34d399;--amber:#fbbf24;--sky:#38bdf8;
+  --text:#e8ecff;--text-2:#a8b0d6;--text-3:#6b75a8;
+  --shadow-lg:0 4px 8px rgba(0,0,0,.35),0 24px 48px rgba(0,0,0,.3);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Outfit','Be Vietnam Pro',sans-serif}
+body{font-family:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;
+  background:radial-gradient(1200px 600px at 20% -10%,rgba(124,131,255,.12),transparent 60%),
+             radial-gradient(900px 500px at 90% 10%,rgba(196,168,255,.08),transparent 60%),var(--bg);
+  color:var(--text);min-height:100vh;line-height:1.7;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;overflow-wrap:break-word}
+::selection{background:var(--accent);color:#fff}
+img{max-width:100%}
+a{color:var(--accent-2);text-decoration:none;border-bottom:1px dashed var(--accent-soft)}
+a:hover{border-bottom-style:solid}
+
+.topbar{position:sticky;top:0;z-index:100;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  background:rgba(11,16,32,.78);border-bottom:1px solid var(--border-soft)}
+.topbar-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:14px 28px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;border:none}
+.brand-mark{width:40px;height:40px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,#7c83ff,#c4a8ff);box-shadow:0 4px 16px rgba(124,131,255,.35);
+  display:flex;align-items:center;justify-content:center}
+.brand-mark svg{width:22px;height:22px}
+.brand-text h1{font-size:.95rem;font-weight:800;line-height:1.2}
+.brand-text h1 span{color:var(--accent-2)}
+.brand-text p{font-size:.72rem;color:var(--text-3);font-weight:500;margin-top:1px}
+.topbar .pill{margin-left:auto;font-size:.74rem;font-weight:700;color:var(--accent-2);
+  background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);border-radius:999px;padding:6px 16px}
+
+.container{max-width:920px;margin:0 auto;padding:40px 28px 80px}
+
+.hero{display:grid;grid-template-columns:1fr;gap:28px;margin-bottom:44px;align-items:center}
+.hero.has-art{grid-template-columns:1.1fr .9fr}
+.hero .kick{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--accent-2);background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);
+  border-radius:999px;padding:7px 18px;margin-bottom:18px}
+.hero h1.title{font-size:2.5rem;font-weight:900;letter-spacing:-1px;line-height:1.12;margin-bottom:14px}
+.hero .angle{color:var(--text-2);font-size:1.05rem;line-height:1.6}
+.hero-art{border-radius:20px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg)}
+.hero-art img{display:block;width:100%;height:auto}
+
+.article h2{font-size:1.5rem;font-weight:800;margin:42px 0 14px;padding-bottom:10px;
+  border-bottom:1px solid var(--border-soft);color:var(--text)}
+.article h3{font-size:1.18rem;font-weight:700;margin:30px 0 10px;color:var(--accent-2)}
+.article h4{font-size:1.02rem;font-weight:700;margin:22px 0 8px;color:var(--violet)}
+.article p{color:var(--text-2);margin:14px 0;font-size:1.02rem}
+.article strong{color:var(--text);font-weight:700}
+.article code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--bg-elev);
+  padding:2px 7px;border-radius:5px;color:var(--violet);border:1px solid var(--border-soft)}
+.article ul,.article ol{margin:14px 0 14px 8px;padding-left:22px;color:var(--text-2)}
+.article li{margin:8px 0;font-size:1.02rem}
+.article ul li::marker{color:var(--accent)}
+.callout{background:linear-gradient(180deg,rgba(124,131,255,.08),transparent);
+  border:1px solid var(--border-soft);border-left:4px solid var(--accent);
+  border-radius:4px 14px 14px 4px;padding:16px 20px;margin:22px 0;color:var(--text);font-size:1.02rem}
+.tbl-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--border-soft);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--border-soft)}
+thead th{background:var(--surface);color:var(--text);font-weight:700}
+tbody tr:hover{background:var(--surface)}
+td{color:var(--text-2)}
+
+.author-card{margin-top:54px;background:linear-gradient(135deg,rgba(124,131,255,.06),rgba(196,168,255,.04));
+  border:1px solid var(--border-soft);border-radius:18px;padding:28px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center}
+.author-avatar{width:84px;height:84px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:3px solid var(--accent-soft);box-shadow:0 8px 32px rgba(124,131,255,.3)}
+.author-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.author-info .kicker{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:6px}
+.author-info h3{font-size:1.3rem;font-weight:800;margin-bottom:4px;
+  background:linear-gradient(90deg,var(--accent-2),var(--violet));-webkit-background-clip:text;
+  background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.author-info p{color:var(--text-2);font-size:.88rem;line-height:1.6;max-width:520px}
+.social-grid{display:grid;grid-template-columns:repeat(4,40px);gap:8px}
+.social-btn{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid var(--border-soft);color:var(--text-2);transition:all .15s}
+.social-btn svg{width:18px;height:18px}
+.social-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.3)}
+
+@media(max-width:780px){
+  .hero.has-art{grid-template-columns:1fr}
+  .hero h1.title{font-size:1.9rem}
+}
+.media{margin:0 0 44px}
+.media .media-label{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin:0 0 12px}
+.summary-img{margin:0 0 22px;text-align:center}
+.summary-img img{width:100%;max-width:960px;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,.35);display:block;margin:0 auto}
+.summary-img figcaption{margin-top:8px;font-size:.86rem;color:#8b98ab;letter-spacing:.02em}
+.video-embed{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;
+  border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px;background:#000}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.media.cover{margin:0 0 40px}
+.cover-art{border-radius:18px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px}
+.cover-art img{display:block;width:100%;height:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.audio-embed{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;
+  border:1px solid var(--border-soft);background:var(--surface)}
+.audio-embed .ic{font-size:1.3rem}
+.audio-embed audio{flex:1;width:100%}
+@media (max-width:720px){
+  .hero.has-art{grid-template-columns:1fr}
+  .author-card{grid-template-columns:1fr;text-align:center;gap:18px;padding:22px}
+  .author-avatar{margin:0 auto}.author-info p{margin:0 auto}.social-grid{justify-content:center;margin:0 auto}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="https://ducnguyen.vn/atlas/" target="_blank" rel="noopener">
+      <div class="brand-mark"><svg viewBox="0 0 576 512" fill="#fff"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"/></svg></div>
+      <div class="brand-text"><h1>Học cùng <span>Tobi</span></h1><p>COMPA Class · KPIM Academy</p></div>
+    </a>
+    <span class="pill">ai-foundations</span>
+  </div>
+</header>
+
+<main class="container">
+  <section class="media cover"><h1 class="sr-only">Ông thợ may đo áo: gán vai (role prompting) thật ra là đặt ràng buộc</h1></section>
+  <article class="article">
+    <p><strong>Tiệm may đầu ngõ nhà mình treo tấm biển đã bạc màu: &quot;Nhận may đo — 30 năm tay nghề&quot;. Mình vào, nói đúng một câu: &quot;chú may cho cháu cái áo sơ mi trắng, đẹp đẹp một chút.&quot; Mười ngày sau mình lấy áo. Đường kim thẳng tắp, cổ áo đứng như trong tạp chí. Và mình mặc được đúng một lần.</strong></p>
+<p>Bài này nói về đúng cái sai mà mình vừa mắc — chỉ khác là khi làm việc với máy, nó có tên riêng: <strong>gán vai</strong>, tiếng Anh gọi là <strong>role prompting</strong>.</p>
+<h2>Tấm biển không may nên cái áo</h2>
+<p>Cái áo hỏng không phải vì ông thợ kém. Nó hỏng vì mình cần một cái áo để đứng giảng cả ngày: cổ áo cứng quá thì đeo micro vướng, tay áo may sát thì không xắn lên được, vải bóng thì cứ vào chỗ có đèn là loá.</p>
+<p>Ông thợ không biết gì trong số đó. Mình đâu có nói.</p>
+<p>Năm sau mình may ở một chỗ khác, một bà thợ ngồi trong chợ, không treo biển, không kể chuyện tay nghề. Điều bà làm trước khi cầm thước là hỏi. Mặc đi đâu. Đứng nhiều hay ngồi nhiều. Có đeo micro không. Có chụp ảnh không. Cái áo đang mặc chật chỗ nào, ghét chỗ nào. Bao giờ cần.</p>
+<p>Sáu câu hỏi. Không câu nào nói về bà cả.</p>
+<p>Mỗi câu là một <strong>ràng buộc</strong> — một điều kiện mà cái áo buộc phải thoả. Cộng lại, sáu câu hỏi ấy vẽ ra cái áo trước khi vải được cắt. Tay nghề ba mươi năm chỉ là thứ giúp bà biết phải hỏi gì; nó không thay được câu trả lời của mình.</p>
+<p>Và đây là chỗ mình phải thú nhận: suốt mấy năm giao việc cho máy, mình toàn làm động tác treo biển.</p>
+<h2>Gán vai (role prompting) là gì, và người ta tưởng nó làm gì</h2>
+<p><strong>Gán vai là việc bạn mở đầu lời giao việc bằng một câu khai máy đang đóng vai ai — &quot;bạn là một chuyên gia tài chính với 20 năm kinh nghiệm&quot;, &quot;bạn là một biên tập viên khó tính&quot;, &quot;bạn là luật sư doanh nghiệp&quot;.</strong> Trong tài liệu tiếng Anh, kỹ thuật này được gọi bằng vài cái tên không hoàn toàn trùng nhau — <em>role prompting</em>, <em>persona</em>, <em>role-play prompting</em> — nên nếu bạn đi tra mà thấy mỗi nơi một chữ thì không phải bạn đọc nhầm đâu.</p>
+<p>Đây là mẫu câu được chép lại nhiều nhất trong mọi bộ &quot;prompt mẫu&quot; bạn từng lưu. Và niềm tin đi kèm nó gần như luôn là: gán vai chuyên gia thì máy sẽ trả lời <strong>đúng hơn</strong>, như thể câu đó mở khoá một ngăn kiến thức đang khoá.</p>
+<p>Niềm tin ấy có một chỗ hụt rất lớn. Nếu ở <a href="https://ducnguyen.vn/atlas/content/ai/ngay-dau-di-lam-system-prompt-chinh-la-ban-mo-ta-cong-viec-cua-ai.html" target="_blank" rel="noopener">bài trước về bản mô tả công việc</a> mình nói dòng &quot;vai&quot; là dòng đầu tiên nên có, thì hôm nay là phần mổ kỹ đúng dòng đó — vì viết sai dòng này không chỉ vô ích, mà có lúc còn phải trả giá.</p>
+<div class="callout">💡 Tay nghề ông thợ nằm ở chỗ ông biết phải hỏi gì. Tấm biển chỉ là bản tóm tắt của tay nghề đó. Bạn gõ tấm biển vào ô chat và mong nhận được tay nghề.</div>
+<h2>Chuyện này đã được đem đi đo — nhiều lần, quy mô lớn</h2>
+<p>Phần dễ chịu của câu chuyện là nó không phải chuyện ai cảm thấy thế nào. Có người bỏ tiền đi đo.</p>
+<p><strong>Lần đo thứ nhất.</strong> Theo một công trình công bố tại hội nghị EMNLP 2024 (Zheng và cộng sự), nhóm nghiên cứu dựng 162 vai khác nhau — phủ 6 kiểu quan hệ giữa người với người và 8 lĩnh vực chuyên môn — rồi chạy qua 2.410 câu hỏi sự kiện trên 4 họ model phổ biến. Kết luận nằm ngay trong tiêu đề bài báo: thêm vai vào chỉ dẫn hệ thống <strong>không</strong> cải thiện kết quả so với không gán vai.</p>
+<p>Nhóm này còn tìm thấy một chi tiết đáng nhớ hơn cả kết luận chính. Nếu với mỗi câu hỏi, bạn chọn được đúng cái vai hợp nhất, thì độ chính xác <strong>có</strong> tăng đáng kể. Vấn đề là không ai đoán trước được vai nào là vai hợp. Các cách dự đoán mà họ thử đều không hơn gì chọn bừa, và họ mô tả hiệu ứng của vai là <em>&quot;largely random&quot;</em> — phần lớn là ngẫu nhiên.</p>
+<p>Chỗ này quan trọng, nên mình viết chậm lại: <strong>không phải gán vai chẳng gây ra khác biệt gì.</strong> Nó có gây ra khác biệt. Chỉ là khác biệt ấy không dự đoán được — mà thứ không dự đoán được thì không dùng làm phương pháp.</p>
+<p><strong>Lần đo thứ hai.</strong> Theo Wharton Generative AI Labs (Đại học Pennsylvania), trong báo cáo công bố ngày 07/12/2025, nhóm này chạy lại câu hỏi ấy trên 6 model thương mại đang bán, với hai bộ đề khó: GPQA Diamond (198 câu ở mức tiến sĩ, sinh–lý–hoá) và MMLU-Pro (300 câu kỹ thuật, luật, hoá, mỗi câu 10 lựa chọn). Số lượt chạy họ công bố: 4.950 lượt mỗi model trên bộ thứ nhất, 7.500 lượt trên bộ thứ hai.</p>
+<p>Kết quả: vai chuyên gia không mang lại cải thiện đáng tin cậy trên hầu hết model. Ngay cả vai được may đo đúng theo lĩnh vực của từng câu hỏi cũng không khá hơn bản không gán vai. Có đúng một model cho hiệu ứng dương nhẹ trên một bộ đề, và chính nhóm nghiên cứu diễn giải đó là nét riêng của model ấy, không phải quy luật rút ra được.</p>
+<p>Hai nhóm khác nhau, hai cách thiết kế thí nghiệm khác nhau, cách nhau hơn một năm, cùng một kết luận.</p>
+<h2>Phần ít người kể: gán vai sai còn có giá</h2>
+<p>Đây mới là thứ làm mình đổi cách viết prompt, chứ không phải kết luận &quot;không cải thiện&quot;.</p>
+<p>Cũng theo báo cáo của Wharton, khi gán cho máy những vai <strong>ít hiểu biết</strong> — kiểu &quot;một đứa trẻ&quot;, &quot;một người ngoài ngành&quot; — thì điểm <strong>giảm</strong> một cách nhất quán, và mức giảm tỉ lệ với mức ngây thơ mà cái vai đó hàm ý. Còn khi gán vai chuyên gia <strong>lệch lĩnh vực</strong> so với câu hỏi, một model trong nhóm thử (Gemini 2.5 Flash) thường xuyên <strong>từ chối trả lời</strong>, trung bình 10,56 trên 25 lượt thử cho mỗi câu hỏi.</p>
+<p>Cần phân biệt cho thật rõ một chuyện, vì rất dễ đọc nhầm: đây là <strong>vai gán cho máy</strong>, không phải việc <strong>khai người nghe</strong>. Viết &quot;bạn là một đứa trẻ năm tuổi&quot; khác hẳn viết &quot;giải thích cho một người chưa học ngành này&quot;. Nghiên cứu trên đo cái thứ nhất. Cái thứ hai là chuyện khác, và mình sẽ nói ở phần sau.</p>
+<p>Nên nếu bạn đang giữ thói quen dán sẵn một câu vai chuyên gia vào đầu mọi lời giao việc cho tiện: cái giá không phải là số không.</p>
+<div class="callout">⚠️ Gán vai bừa không phải một thao tác trung tính. Vai ngây thơ kéo điểm xuống, vai lệch lĩnh vực làm máy từ chối trả lời — cả hai đều đã đo được, không phải chuyện cảm tính.</div>
+<h2>Nhưng có một nghiên cứu nói ngược — và đó mới là bài học</h2>
+<p>Nếu mình dừng ở đây thì bài này là bài quảng cáo cho một quan điểm, không phải bài viết tử tế. Vì có một công trình đã bình duyệt kết luận ngược hẳn.</p>
+<p>Theo công trình công bố tại hội nghị NAACL 2024 (Kong và cộng sự), gán vai kiểu nhập vai <strong>cải thiện rõ rệt</strong> khả năng suy luận, đo trên 12 bộ đề. Hai con số họ công bố, đo trên ChatGPT ở thời điểm đó: bộ AQuA từ 53,5% lên 63,8%, và bộ Last Letter từ 23,8% lên 84,2%. Nhóm này còn cho rằng nhập vai là cái mồi kích chuỗi suy luận hiệu quả hơn cả cách nhắc máy &quot;hãy nghĩ từng bước&quot;.</p>
+<p>Hai kết luận ngược nhau. Chọn bên nào?</p>
+<p>Không bên nào cả — vì đọc kỹ thì <strong>chúng không đo cùng một thứ</strong>, và ba chỗ lệch đều nằm ngay trong mô tả của chính hai bên:</p>
+<div class="tbl-wrap"><table><thead><tr><th></th><th>Nhóm nói &quot;không cải thiện&quot;</th><th>Nhóm nói &quot;cải thiện rõ&quot;</th></tr></thead><tbody><tr><td>Đo loại việc gì</td><td>Hỏi đáp sự kiện, trắc nghiệm chuyên sâu</td><td>Suy luận nhiều bước: toán lời văn, ghép chữ cái</td></tr><tr><td>&quot;Vai&quot; ở đây là gì</td><td>Một câu mô tả đặt ở chỉ dẫn hệ thống</td><td>Một màn nhập vai có bối cảnh, có lượt trao đổi qua lại</td></tr><tr><td>Đo trên đời model nào</td><td>Lứa 2024–2025</td><td>Lứa 2023–2024</td></tr></tbody></table></div>
+<p>Chỗ đáng giá nhất nằm ở hàng giữa. Thứ nhóm thứ hai dùng <strong>không phải một cái nhãn</strong> — nó là một quy trình: dựng bối cảnh, để máy nhận vai, rồi mới giao việc. Cái nhãn đi kèm một <strong>cách làm</strong>. Còn thứ chúng ta chép trên mạng chỉ có mỗi cái nhãn.</p>
+<p>Nói cách khác, cả hai nghiên cứu cùng chỉ về một kết luận nếu ta chịu đọc kỹ: <strong>phần có tác dụng là cái được gài kèm cái nhãn, không phải bản thân cái nhãn.</strong> Đúng như tay nghề ông thợ nằm ở bộ câu hỏi, không nằm ở tấm biển.</p>
+<div class="callout">🎯 Câu hỏi đáng hỏi không phải “gán vai có tác dụng không”, mà “cái vai mình vừa gõ có mang theo cách làm nào không”. Không mang theo gì thì nó chỉ là chữ.</div>
+<h2>Vậy gán vai đổi cái gì? Đổi văn phong, không đổi độ đúng</h2>
+<p>Nếu gán vai không nâng độ chính xác, vì sao ai dùng cũng thấy nó &quot;có vẻ hay hơn&quot;?</p>
+<p>Theo một bản in trước công bố tháng 5/2026 (Xiao và cộng sự — lưu ý: bản này <strong>chưa qua bình duyệt</strong>, nên mình dẫn ở mức đó), nhóm nghiên cứu chạy 1.140 câu hỏi mở với 38 vai chuyên gia trên 6 lĩnh vực. Điểm tổng gần như không đổi giữa các điều kiện. Nhưng khi tách nhỏ tiêu chí ra thì hành vi đổi rất rõ: gán vai làm câu trả lời <strong>sâu chuyên môn hơn</strong> một cách có hệ thống, đồng thời <strong>kém rõ ràng hơn</strong>.</p>
+<p>Đó chính là cảm giác &quot;hay hơn&quot; của bạn. Thứ đổi là bề mặt câu chữ — thuật ngữ dày hơn, giọng chắc hơn, câu dài hơn — và bề mặt câu chữ là thứ người đọc cảm nhận được ngay lập tức, trong khi độ đúng thì phải đi kiểm mới biết.</p>
+<p>Cũng nghiên cứu đó tìm ra một ranh giới dùng được: gán vai cho kết quả <strong>tốt nhất</strong> ở nhóm câu hỏi mang tính tư vấn thuộc y khoa và tâm lý, nơi khung chuyên gia và cách nói về rủi ro thật sự có giá trị. Ngược lại, bản <strong>không</strong> gán vai lại tốt hơn ở nhóm câu hỏi giải thích khái niệm thuộc tài chính, pháp lý, khoa học và công nghệ — đúng những chỗ cần diễn đạt dễ hiểu.</p>
+<p>Và đây là chi tiết mình thấy nhiều người bỏ sót nhất. Tài liệu hướng dẫn của chính nhà cung cấp cũng không hề hứa độ chính xác. Theo Anthropic, ở trang thực hành viết prompt của chính hãng, đặt vai trong chỉ dẫn hệ thống là để <em>&quot;focuses Claude&#x27;s behavior and tone for your use case&quot;</em> — tập trung <strong>hành vi và giọng</strong>. Không có chữ nào về việc trả lời đúng hơn.</p>
+<p>Trong khi đó, cũng chính trang ấy, ở mục viết rõ và trực tiếp, khuyên một thứ khác hẳn: hãy <strong>cụ thể về định dạng đầu ra và ràng buộc</strong>.</p>
+<p>Cùng một trang tài liệu, hai lời khuyên khác nhau cho hai mục đích khác nhau. Chúng ta đã gộp chúng làm một suốt bao lâu nay.</p>
+<h2>Sáu câu hỏi của bà thợ may, dịch sang lời giao việc</h2>
+<p>Phần thực hành. Lấy một câu gán vai điển hình và mổ nó ra.</p>
+<p><strong>Bản hay gặp:</strong></p>
+<div class="callout">Bạn là một chuyên gia marketing với 20 năm kinh nghiệm. Hãy viết cho tôi bài giới thiệu sản phẩm.</div>
+<p>Câu này khai đúng một thứ: danh xưng. Nó không khai ai đọc, đọc để làm gì, dài bao nhiêu, tránh gì. Nó là tấm biển.</p>
+<p><strong>Bản đã dịch cái nhãn thành ràng buộc:</strong></p>
+<div class="callout">Viết bài giới thiệu sản phẩm cho chủ cửa hàng bán lẻ chưa từng dùng phần mềm quản lý kho — người đọc trên điện thoại, lúc nghỉ trưa. Bài để dán lên trang bán hàng, mục tiêu là họ bấm nút dùng thử. Bắt buộc có: giá, mất bao lâu để bắt đầu dùng được, và một ví dụ cửa hàng cỡ nhỏ. Không dùng từ chuyên ngành phần mềm; gặp từ nào buộc phải dùng thì giải thích ngay trong ngoặc. Khoảng 400 chữ, chia 4 đoạn, không gạch đầu dòng.</div>
+<p>Dài hơn thật. Nhưng hãy đếm: nó vừa trả lời đúng những câu mà bà thợ may đã hỏi mình.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Bà thợ hỏi</th><th>Trong lời giao việc, nó là</th><th>Trong ví dụ trên</th></tr></thead><tbody><tr><td>Mặc đi đâu, ai nhìn</td><td><strong>Người nghe</strong></td><td>Chủ cửa hàng bán lẻ, chưa từng dùng phần mềm kho, đọc trên điện thoại</td></tr><tr><td>Mặc để làm gì</td><td><strong>Việc này dùng vào đâu</strong></td><td>Dán lên trang bán hàng, để họ bấm dùng thử</td></tr><tr><td>Thích gì, ghét gì</td><td><strong>Thứ phải có, thứ phải tránh</strong></td><td>Phải có giá và ví dụ; tránh từ chuyên ngành</td></tr><tr><td>Tay dài hay tay lỡ, bao giờ cần</td><td><strong>Định dạng và độ dài</strong></td><td>400 chữ, 4 đoạn, không gạch đầu dòng</td></tr></tbody></table></div>
+<p>Bốn ràng buộc. Không ràng buộc nào cần tới chữ &quot;chuyên gia&quot;.</p>
+<div class="callout">✅ Phép thử nhanh trước khi bấm gửi: xoá câu gán vai đi, phần còn lại có đủ để một người lạ làm đúng việc không? Nếu không đủ, chỗ thiếu chính là ràng buộc bạn chưa viết ra.</div>
+<p>Nếu bạn thấy khung này quen, thì đúng là nó quen: ở <a href="https://ducnguyen.vn/atlas/content/ai/goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc.html" target="_blank" rel="noopener">bài về việc tả kết quả thay vì tả từng bước</a>, mình đã nói bạn nên mô tả cái đích chứ đừng kê đường đi. Bốn ràng buộc ở đây chính là cách mô tả cái đích cho đủ chặt.</p>
+<p>Và bạn có thể đang thấy một câu hỏi khó chịu hiện lên: <strong>làm sao biết bài viết ra là đạt hay chưa đạt?</strong> Đó là câu hỏi đúng, nó lớn hơn bài này, và nó là chủ đề của bài ngày mai.</p>
+<h2>Vậy khi nào vẫn nên gán vai?</h2>
+<p>Đừng vứt công cụ, hãy đổi kỳ vọng. Theo mình, ba chỗ gán vai vẫn đáng đồng tiền:</p>
+<ol><li><strong>Khi bạn cần một giọng cụ thể.</strong> Đây đúng là thứ tài liệu nhà cung cấp nói nó làm được, và cũng khớp với kết quả đo về độ sâu chuyên môn. Muốn giọng chắc, dày thuật ngữ, kiểu người trong nghề nói với nhau — gán vai là cách rẻ nhất.</li><li><strong>Khi việc mang tính tư vấn</strong>, nhất là những chỗ cách nói về rủi ro quan trọng ngang nội dung. Đó là nhóm duy nhất nghiên cứu đo thấy gán vai tốt hơn bản không gán vai.</li><li><strong>Khi cái vai kéo theo một quy trình thật</strong> — và bạn viết luôn cái quy trình đó ra. &quot;Bạn là biên tập viên: đọc bản nháp, gạch những câu không có chủ ngữ, đề xuất câu thay thế, không sửa nội dung.&quot; Cái vai ở đây chỉ là nhãn dán lên một danh sách việc; phần có tác dụng là danh sách.</li></ol>
+<p>Và hai chỗ nên bỏ ngay: gán vai chuyên gia cho <strong>câu hỏi cần đúng sự thật</strong> — nó không giúp, mà còn làm câu trả lời khó đọc hơn đúng lúc bạn cần nó dễ đọc nhất. Và gán vai <strong>lệch lĩnh vực</strong> với câu hỏi, vì rủi ro bị từ chối thẳng là có thật và đã đo được.</p>
+<h2>Góc nhìn của mình</h2>
+<p><strong>Theo mình, câu gán vai phổ biến đến thế không phải vì nó hiệu quả, mà vì nó rẻ.</strong> Nó cho người viết cảm giác đã làm một thao tác chuyên nghiệp, trong khi chỉ mất ba giây và không đòi hỏi phải nghĩ. Bốn ràng buộc ở trên thì ngược lại: muốn viết được chúng, bạn phải biết mình muốn gì. Mà phần lớn những lần mình nhận kết quả tệ, sự thật phũ phàng là lúc bấm gửi mình cũng chưa biết mình muốn gì.</p>
+<p><strong>Mình thấy đây là chỗ phân loại người dùng rõ nhất trong các lớp mình dạy.</strong> Người tiến chậm là người đi sưu tầm vai — lưu một thư viện &quot;chuyên gia X&quot;, &quot;chuyên gia Y&quot;, và đổi vai mỗi khi kết quả chưa ưng. Người tiến nhanh là người, khi kết quả chưa ưng, hỏi ngược lại chính mình: mình đã nói cho nó biết ai sẽ đọc chưa? đã nói dùng để làm gì chưa? đã nói thứ nào bắt buộc phải có chưa? Vai là thứ bạn viết cho xong trong ba giây; ràng buộc là thứ buộc bạn phải suy nghĩ. Kết quả tốt lên theo lượng suy nghĩ, không theo độ kêu của danh xưng.</p>
+<p><strong>Và đây là điều mình muốn bạn nhớ nhất, vì nó đi ngược mọi bộ prompt mẫu đang lưu hành.</strong> Nếu phải chọn giữa khai <strong>máy là ai</strong> và khai <strong>ai sẽ đọc</strong>, theo mình hãy chọn vế thứ hai. Danh xưng của máy là thứ bạn đoán; người đọc của bạn là thứ bạn biết chắc. Ràng buộc tốt luôn đến từ thứ bạn biết chắc. Đây là quan điểm rút từ việc dạy và triển khai, không phải kết luận có trong nghiên cứu nào — mình ghi rõ để bạn cân đúng trọng lượng của nó.</p>
+<p>Còn thứ <strong>không</strong> nên làm: đừng đọc bài này rồi kết luận &quot;nghiên cứu đã chứng minh gán vai vô dụng&quot;. Nguồn không nói thế, và có một công trình đã bình duyệt nói ngược lại. Cũng đừng coi kết luận này là vĩnh viễn — các phép đo ở trên chạy trên những đời model tính tới đầu năm nay, và toàn bộ đều đo trên prompt tiếng Anh. Gán vai tác dụng thế nào khi bạn viết bằng tiếng Việt thì hiện chưa ai đo, và mình sẽ không đoán hộ.</p>
+<h2>Kết luận</h2>
+<p>Quay lại cái áo đầu tiên. Ông thợ ba mươi năm tay nghề không hề làm sai gì cả — mình đã đưa cho ông một tấm biển thay vì một bộ số đo. Với máy cũng vậy: <strong>role prompting</strong> không phải công tắc bật chế độ chuyên gia, nó là chỗ bạn nén một bộ ràng buộc vào một chữ, và máy chỉ nhận được đúng phần nào của bộ ấy mà bạn thật sự viết ra.</p>
+<p><strong>Vấn đề không phải bạn gán vai chưa đủ oai, mà là bạn đang gõ tấm biển trong khi thứ cần gõ là bộ số đo.</strong></p>
+<p>Hôm nay thử đúng một việc: mở lại một câu gán vai bạn đang dùng sẵn, xoá phần danh xưng và số năm kinh nghiệm đi, rồi viết vào chỗ đó bốn dòng — ai đọc, dùng để làm gì, bắt buộc có gì và tránh gì, dài bao nhiêu và trình bày kiểu nào. Chạy lại cùng một việc và so hai kết quả. Bài kế tiếp sẽ trả lời câu khó chịu còn treo ở giữa bài: làm sao biết kết quả trả về là đạt hay chưa đạt, khi bạn giao việc mà không kèm ba-rem. Nếu bạn mới ghé series, bắt đầu từ <a href="https://ducnguyen.vn/atlas/content/ai/nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve.html" target="_blank" rel="noopener">bài đầu tiên về chuyện prompt không phải câu thần chú</a> sẽ dễ theo hơn.</p>
+<h2>Nguồn tham khảo</h2>
+<p>Bài này dựa trên năm nguồn, và chúng <strong>không cùng một mức tin cậy</strong> — mình ghi rõ mức của từng nguồn để bạn tự cân trọng lượng thay vì tin đều tay.</p>
+<ol><li>Zheng và cộng sự — <em>When &quot;A Helpful Assistant&quot; Is Not Really Helpful: Personas in System Prompts Do Not Improve Performances of Large Language Models</em>, Findings of EMNLP 2024. <strong>Đã bình duyệt.</strong> 162 vai, 2.410 câu hỏi sự kiện, 4 họ model. <a href="https://aclanthology.org/2024.findings-emnlp.888/" target="_blank" rel="noopener">aclanthology.org/2024.findings-emnlp.888</a></li><li>Kong và cộng sự — <em>Better Zero-Shot Reasoning with Role-Play Prompting</em>, NAACL 2024. <strong>Đã bình duyệt.</strong> Đây là nghiên cứu kết luận ngược, nguồn của hai con số AQuA và Last Letter. <a href="https://aclanthology.org/2024.naacl-long.228/" target="_blank" rel="noopener">aclanthology.org/2024.naacl-long.228</a></li><li>Wharton Generative AI Labs, Đại học Pennsylvania — <em>Prompting Science Report 4: Playing Pretend</em>, 07/12/2025. <strong>Báo cáo kỹ thuật của phòng nghiên cứu đại học</strong>, công bố kèm phương pháp và số lượt chạy, không qua bình duyệt hội nghị. Nguồn của phần GPQA Diamond, MMLU-Pro và tỉ lệ từ chối trả lời. <a href="https://gail.wharton.upenn.edu/research-and-insights/playing-pretend-expert-personas/" target="_blank" rel="noopener">gail.wharton.upenn.edu/research-and-insights/playing-pretend-expert-personas</a></li><li>Xiao và cộng sự — nghiên cứu về tác động của gán vai chuyên gia lên chiều sâu và độ dễ đọc, 28/05/2026. <strong>Bản in trước, CHƯA bình duyệt</strong> — đọc ở đúng mức đó. Nguồn của phần &quot;sâu hơn nhưng khó đọc hơn&quot; và ranh giới theo lĩnh vực. <a href="https://arxiv.org/html/2605.29420" target="_blank" rel="noopener">arxiv.org/html/2605.29420</a></li><li>Anthropic — <em>Prompt engineering best practices</em>. <strong>Tài liệu nhà cung cấp</strong>: nó nói <em>nên làm gì</em>, không phải <em>đo được gì</em>. Nguồn của câu &quot;focuses Claude&#x27;s behavior and tone&quot; và của lời khuyên viết rõ ràng, cụ thể về định dạng và ràng buộc. <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener">platform.claude.com — prompting best practices</a></li></ol>
+<p>Hai giới hạn của toàn bộ số liệu trên, nói thẳng để bạn không đọc quá: tất cả đều đo trên <strong>prompt tiếng Anh</strong>, và đều chạy trên các đời model <strong>tính tới đầu năm nay</strong>. Chưa có nghiên cứu nào mình tìm được đo riêng chuyện này cho tiếng Việt.</p>
+  </article>
+
+  <footer class="author-card" aria-labelledby="author-name">
+    <div class="author-avatar">
+      <img src="https://ducnguyen221.github.io/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức" loading="lazy" width="84" height="84">
+    </div>
+    <div class="author-info">
+      <div class="kicker">Tác giả · Author</div>
+      <h3 id="author-name">Nguyễn Quang Đức (Tobi)</h3>
+      <p>Data &amp; AI Engineer · Trainer tại KPIM Academy &amp; COMPA Class. Trang cá nhân tại
+        <a href="https://ducnguyen.vn" target="_blank" rel="noopener">ducnguyen.vn</a>.</p>
+    </div>
+    <nav class="social-grid" aria-label="Liên kết tác giả">
+      <a class="social-btn" href="https://ducnguyen.vn" target="_blank" rel="noopener" aria-label="Website" title="ducnguyen.vn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.facebook.com/TobiNguyenData/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.youtube.com/@PowerBIHeroVn" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a class="social-btn" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" aria-label="E-Profile" title="E-Profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      </a>
+    </nav>
+  </footer>
+</main>
+</body>
+</html>
