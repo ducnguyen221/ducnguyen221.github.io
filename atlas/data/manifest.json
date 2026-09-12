@@ -1,5 +1,18 @@
 [
   {
+    "slug": "nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve",
+    "title": "Người thợ khoá và bản vẽ sai: prompt không phải câu thần chú, nó là bản vẽ · Học cùng Tobi",
+    "description": "myth_vs_fact",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve.html",
+    "thumbnail": "",
+    "published": "2026-09-12",
+    "lastModified": "2026-09-12",
+    "fileSize": 36291
+  },
+  {
     "slug": "gpt6-astra-dieu-dang-chu-y",
     "title": "GPT-6 Astra: điều đáng chú ý không nằm ở điểm benchmark · Học cùng Tobi",
     "description": "Astra tự thao tác trên giao diện phần mềm — nút thắt tích hợp dời sang quản trị, không biến mất",
