@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài kiểm tra không có ba-rem: tiêu chí chấp nhận (acceptance criteria) trong prompt · Học cùng Tobi</title>
+<meta name="description" content="explainer">
+<link rel="canonical" href="https://ducnguyen.vn/atlas/content/ai/bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt.html">
+<meta name="author" content="Nguyen Quang Duc">
+<!-- Open Graph — BAT BUOC. Thieu la Facebook/Zalo scrape ra bai TRAN TRUI, mat phan lon suc hut.
+     Ca VC-001/002/003 deu thieu (do 04/09: 0/3 bai co the og:) => bo sung tan goc tai day. -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bài kiểm tra không có ba-rem: tiêu chí chấp nhận (acceptance criteria) trong prompt">
+<meta property="og:description" content="explainer">
+<meta property="og:url" content="https://ducnguyen.vn/atlas/content/ai/bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt.html">
+<meta property="og:image" content="https://ducnguyen.vn/atlas/content/ai/bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:site_name" content="Hoc cung Tobi">
+<meta property="article:published_time" content="">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bài kiểm tra không có ba-rem: tiêu chí chấp nhận (acceptance criteria) trong prompt">
+<meta name="twitter:description" content="explainer">
+<meta name="twitter:image" content="https://ducnguyen.vn/atlas/content/ai/bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b1020;--bg-elev:#0f1530;--surface:#151b3d;--surface-2:#1c244d;
+  --border:#2a3470;--border-soft:#1f2654;
+  --accent:#7c83ff;--accent-2:#a5acff;--accent-soft:#3d3e9c;--violet:#c4a8ff;
+  --green:#34d399;--amber:#fbbf24;--sky:#38bdf8;
+  --text:#e8ecff;--text-2:#a8b0d6;--text-3:#6b75a8;
+  --shadow-lg:0 4px 8px rgba(0,0,0,.35),0 24px 48px rgba(0,0,0,.3);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Outfit','Be Vietnam Pro',sans-serif}
+body{font-family:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;
+  background:radial-gradient(1200px 600px at 20% -10%,rgba(124,131,255,.12),transparent 60%),
+             radial-gradient(900px 500px at 90% 10%,rgba(196,168,255,.08),transparent 60%),var(--bg);
+  color:var(--text);min-height:100vh;line-height:1.7;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;overflow-wrap:break-word}
+::selection{background:var(--accent);color:#fff}
+img{max-width:100%}
+a{color:var(--accent-2);text-decoration:none;border-bottom:1px dashed var(--accent-soft)}
+a:hover{border-bottom-style:solid}
+
+.topbar{position:sticky;top:0;z-index:100;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  background:rgba(11,16,32,.78);border-bottom:1px solid var(--border-soft)}
+.topbar-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:14px 28px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;border:none}
+.brand-mark{width:40px;height:40px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,#7c83ff,#c4a8ff);box-shadow:0 4px 16px rgba(124,131,255,.35);
+  display:flex;align-items:center;justify-content:center}
+.brand-mark svg{width:22px;height:22px}
+.brand-text h1{font-size:.95rem;font-weight:800;line-height:1.2}
+.brand-text h1 span{color:var(--accent-2)}
+.brand-text p{font-size:.72rem;color:var(--text-3);font-weight:500;margin-top:1px}
+.topbar .pill{margin-left:auto;font-size:.74rem;font-weight:700;color:var(--accent-2);
+  background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);border-radius:999px;padding:6px 16px}
+
+.container{max-width:920px;margin:0 auto;padding:40px 28px 80px}
+
+.hero{display:grid;grid-template-columns:1fr;gap:28px;margin-bottom:44px;align-items:center}
+.hero.has-art{grid-template-columns:1.1fr .9fr}
+.hero .kick{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--accent-2);background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);
+  border-radius:999px;padding:7px 18px;margin-bottom:18px}
+.hero h1.title{font-size:2.5rem;font-weight:900;letter-spacing:-1px;line-height:1.12;margin-bottom:14px}
+.hero .angle{color:var(--text-2);font-size:1.05rem;line-height:1.6}
+.hero-art{border-radius:20px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg)}
+.hero-art img{display:block;width:100%;height:auto}
+
+.article h2{font-size:1.5rem;font-weight:800;margin:42px 0 14px;padding-bottom:10px;
+  border-bottom:1px solid var(--border-soft);color:var(--text)}
+.article h3{font-size:1.18rem;font-weight:700;margin:30px 0 10px;color:var(--accent-2)}
+.article h4{font-size:1.02rem;font-weight:700;margin:22px 0 8px;color:var(--violet)}
+.article p{color:var(--text-2);margin:14px 0;font-size:1.02rem}
+.article strong{color:var(--text);font-weight:700}
+.article code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--bg-elev);
+  padding:2px 7px;border-radius:5px;color:var(--violet);border:1px solid var(--border-soft)}
+.article ul,.article ol{margin:14px 0 14px 8px;padding-left:22px;color:var(--text-2)}
+.article li{margin:8px 0;font-size:1.02rem}
+.article ul li::marker{color:var(--accent)}
+.callout{background:linear-gradient(180deg,rgba(124,131,255,.08),transparent);
+  border:1px solid var(--border-soft);border-left:4px solid var(--accent);
+  border-radius:4px 14px 14px 4px;padding:16px 20px;margin:22px 0;color:var(--text);font-size:1.02rem}
+.tbl-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--border-soft);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--border-soft)}
+thead th{background:var(--surface);color:var(--text);font-weight:700}
+tbody tr:hover{background:var(--surface)}
+td{color:var(--text-2)}
+
+.author-card{margin-top:54px;background:linear-gradient(135deg,rgba(124,131,255,.06),rgba(196,168,255,.04));
+  border:1px solid var(--border-soft);border-radius:18px;padding:28px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center}
+.author-avatar{width:84px;height:84px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:3px solid var(--accent-soft);box-shadow:0 8px 32px rgba(124,131,255,.3)}
+.author-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.author-info .kicker{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:6px}
+.author-info h3{font-size:1.3rem;font-weight:800;margin-bottom:4px;
+  background:linear-gradient(90deg,var(--accent-2),var(--violet));-webkit-background-clip:text;
+  background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.author-info p{color:var(--text-2);font-size:.88rem;line-height:1.6;max-width:520px}
+.social-grid{display:grid;grid-template-columns:repeat(4,40px);gap:8px}
+.social-btn{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid var(--border-soft);color:var(--text-2);transition:all .15s}
+.social-btn svg{width:18px;height:18px}
+.social-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.3)}
+
+@media(max-width:780px){
+  .hero.has-art{grid-template-columns:1fr}
+  .hero h1.title{font-size:1.9rem}
+}
+.media{margin:0 0 44px}
+.media .media-label{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin:0 0 12px}
+.summary-img{margin:0 0 22px;text-align:center}
+.summary-img img{width:100%;max-width:960px;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,.35);display:block;margin:0 auto}
+.summary-img figcaption{margin-top:8px;font-size:.86rem;color:#8b98ab;letter-spacing:.02em}
+.video-embed{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;
+  border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px;background:#000}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.media.cover{margin:0 0 40px}
+.cover-art{border-radius:18px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px}
+.cover-art img{display:block;width:100%;height:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.audio-embed{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;
+  border:1px solid var(--border-soft);background:var(--surface)}
+.audio-embed .ic{font-size:1.3rem}
+.audio-embed audio{flex:1;width:100%}
+@media (max-width:720px){
+  .hero.has-art{grid-template-columns:1fr}
+  .author-card{grid-template-columns:1fr;text-align:center;gap:18px;padding:22px}
+  .author-avatar{margin:0 auto}.author-info p{margin:0 auto}.social-grid{justify-content:center;margin:0 auto}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="https://ducnguyen.vn/atlas/" target="_blank" rel="noopener">
+      <div class="brand-mark"><svg viewBox="0 0 576 512" fill="#fff"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"/></svg></div>
+      <div class="brand-text"><h1>Học cùng <span>Tobi</span></h1><p>COMPA Class · KPIM Academy</p></div>
+    </a>
+    <span class="pill">ai-foundations</span>
+  </div>
+</header>
+
+<main class="container">
+  <section class="media cover"><h1 class="sr-only">Bài kiểm tra không có ba-rem: tiêu chí chấp nhận (acceptance criteria) trong prompt</h1></section>
+  <article class="article">
+    <p><strong>Có lần mình ra cho lớp một đề rất mở: đọc hồ sơ một cửa hàng, phân tích rồi đề xuất. Ba mươi bài nộp về là ba mươi kiểu. Có bài mười trang, có bài một trang rưỡi. Chấm tới bài thứ hai mươi thì mình phát hiện một chuyện khó chịu hơn nhiều so với việc bài nào dở: mình đang chấm không giống lúc đầu nữa.</strong></p>
+<p>Mình lật lại bài số ba. Nếu đem tiêu chuẩn đang cầm ở bài số hai mươi mà chấm nó, nó phải nhận một điểm khác.</p>
+<p>Cái sai không nằm ở học viên. Ba-rem <em>có</em> tồn tại — nó nằm trong đầu mình, và nó lớn dần lên trong lúc mình đọc từng bài. Chưa bao giờ được viết ra, nên nó vừa không tới được tay người làm bài, vừa không giữ nổi chính nó đứng yên.</p>
+<p>Chuyện đó có một cái tên, mượn từ ngành khác: <strong>tiêu chí chấp nhận</strong>, tiếng Anh là <strong>acceptance criteria</strong>. Và nó chính là ô cuối cùng — ô mà mình gọi là đắt nhất — trong <a href="https://ducnguyen.vn/atlas/content/ai/nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve.html" target="_blank" rel="noopener">bản vẽ năm ô ở bài mở màn chuỗi này</a>.</p>
+<h2>Ba-rem trong đầu thì không phải là ba-rem</h2>
+<p>Giả sử bạn đã mô tả việc rất tốt: nói rõ việc gì, cho ai, đưa đủ dữ liệu, khai cả khuôn đầu ra. Bạn bấm gửi, máy trả về một bản. Bạn đọc.</p>
+<p>Và bạn nói: &quot;chưa được.&quot;</p>
+<p>Đó là lúc mọi thứ tắc. Vì &quot;chưa được&quot; không phải một lời phê — nó là một cảm giác. Bạn sửa vài chữ, gửi lại, vẫn thấy chưa được. Vòng ba, vòng bốn, rồi bạn mệt và ngồi sửa tay. Tuần sau gặp đúng việc đó, cái vòng ấy chạy lại y nguyên — vì thứ duy nhất bạn mang ra khỏi lần trước là một cảm giác, mà cảm giác thì không truyền cho ai được, kể cả cho chính bạn tháng sau.</p>
+<p><strong>Phép thử để biết bạn đã có ba-rem thật hay chưa:</strong> đưa kết quả cho một người thứ ba, kèm mấy dòng tiêu chí của bạn, bảo họ chấm đạt hay không đạt. Họ chấm được mà không phải hỏi lại bạn câu nào, đó là ba-rem. Họ phải hỏi &quot;thế nào là chuyên nghiệp ạ?&quot;, thì thứ bạn viết mới là một lời mong muốn.</p>
+<p>Mình mượn ý này từ tài liệu của Anthropic — ở đó họ khuyên đưa <em>prompt</em> của bạn cho một đồng nghiệp ít biết việc đọc thử, họ thấy rối thì máy cũng rối. Mình soi đúng ý đó vào phía ngược lại: vào <strong>đầu ra</strong>.</p>
+<div class="callout">💡 Cái làm bạn kẹt không phải là bạn chấm sai. Là ba-rem của bạn chưa bao giờ rời khỏi đầu bạn — nên nó không tới tay người làm bài, và nó trôi mỗi lần bạn chấm.</div>
+<h2>Tiêu chí chấp nhận là gì, và vì sao nó không phải phát minh của thời AI</h2>
+<p><strong>Tiêu chí chấp nhận là một danh sách ngắn các điều kiện mà kết quả phải thoả thì mới được tính là xong — viết ra trước khi bắt đầu làm, và viết ở dạng người khác chấm được đúng/sai.</strong> Ba vế đó đều bắt buộc: ngắn, trước, và chấm được.</p>
+<p>Ngành phần mềm đã chuẩn hoá chuyện này thành văn bản từ lâu. Theo Scrum Guide bản 2020, <em>Definition of Done</em> là mô tả chính thức về trạng thái của phần sản phẩm khi nó đạt các thước đo chất lượng mà sản phẩm yêu cầu. Tài liệu đó nói thẳng hệ quả: hạng mục không đạt thì <strong>không được phát hành, thậm chí không được mang ra trình bày</strong> ở buổi tổng kết, mà quay về hàng đợi. Mình thích cái quyết liệt đó — nó biến &quot;thế nào là xong&quot; từ chuyện cảm tính thành một cánh cửa có khoá.</p>
+<p>Về phía những người làm ra mô hình, hướng khuyến nghị cũng vậy. Anthropic có hẳn một trang tài liệu về việc định nghĩa tiêu chí thành công, liệt kê bốn thuộc tính của một tiêu chí tốt: <strong>cụ thể · đo được · khả thi · đúng việc</strong>. Trang đó đưa một cặp ví dụ rất dễ nhớ: &quot;đầu ra an toàn&quot; là tiêu chí <strong>tồi</strong>, còn &quot;dưới 0,1% đầu ra trong 10.000 lượt bị bộ lọc gắn cờ độc hại&quot; mới là tiêu chí <strong>tốt</strong>.</p>
+<p>Trang đó viết cho người đang dựng một ứng dụng, nên con số 10.000 lượt là chuyện của họ — bạn không cần đo gì cả. Bạn chỉ mượn đúng cái tinh thần: <strong>thay một tính từ bằng một thứ đếm được</strong>.</p>
+<h2>Bốn loại tiêu chí, ai cũng viết được</h2>
+<p>Đây là cách mình tự xếp cho dễ nhớ khi đi dạy, không phải chuẩn của tổ chức nào. Cứ lấy làm chỗ bắt đầu rồi tự cắt gọt.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Loại</th><th>Nó trả lời câu gì</th><th>Ví dụ viết được ngay</th></tr></thead><tbody><tr><td><strong>Đếm được</strong></td><td>Nhìn phát biết đạt hay không</td><td>&quot;Đúng 5 đề mục, mỗi mục tối đa 3 câu, toàn bài dưới 400 chữ&quot;</td></tr><tr><td><strong>Bắt buộc có</strong></td><td>Thiếu là trượt, dù phần còn lại hay đến mấy</td><td>&quot;Có đúng một lời đề nghị cụ thể&quot;, &quot;mỗi con số kèm tên nguồn và năm&quot;</td></tr><tr><td><strong>Cấm</strong></td><td>Xuất hiện là trượt ngay</td><td>&quot;Không hứa bồi thường&quot;, &quot;không dùng số nào ngoài dữ liệu mình đưa&quot;</td></tr><tr><td><strong>Ngưỡng</strong></td><td>Đủ tốt là tới đâu, được phép hy sinh cái gì</td><td>&quot;Đúng quan trọng hơn đầy đủ — thiếu ý còn được, sai số liệu thì không&quot;</td></tr></tbody></table></div>
+<p>Ba loại đầu biến tính từ thành thứ đếm được. Loại thứ tư hiếm ai viết mà lại cứu bạn nhiều nhất: nó nói cho người làm bài biết <strong>khi buộc phải chọn thì chọn bên nào</strong>.</p>
+<p>Thêm một dòng nữa nên có trong mọi ba-rem: <strong>không đạt thì làm gì.</strong> Ví dụ: &quot;thiếu dữ liệu để làm phần nào thì ghi rõ là thiếu và hỏi lại, đừng đoán cho đủ chỗ trống.&quot; Không có dòng này thì chỗ trống nào cũng được lấp, và lấp rất trôi chảy.</p>
+<p>Ba-rem của một việc thường chỉ tốn ba đến năm dòng. Đổi lại, nó là thứ duy nhất trong cả cái prompt mà bạn <strong>dùng lại được</strong> cho mọi lần sau.</p>
+<p><strong>Thử trên một việc thật.</strong> Lấy cái việc mà gần như văn phòng nào cũng có: trả lời email khiếu nại của khách.</p>
+<p>Bản mọi người hay viết: <em>&quot;Viết giúp mình email trả lời khách đang phàn nàn giao hàng trễ. Viết cho chuyên nghiệp, lịch sự, đừng dài dòng.&quot;</em> Ba chữ cuối nghe như tiêu chí nhưng không phải — đưa email trả về cho người ngồi cạnh, họ không chấm nổi &quot;chuyên nghiệp&quot; là đạt hay chưa đạt nếu không quay sang hỏi bạn.</p>
+<p>Bản có ba-rem, vẫn chừng đó công gõ phím:</p>
+<ul><li>Dưới 150 chữ, tối đa 4 đoạn. <em>(đếm được)</em></li><li>Có đúng một mốc thời gian cụ thể mình sẽ xử lý xong. <em>(bắt buộc có)</em></li><li>Không nhận lỗi thuộc về bên vận chuyển, không hứa hoàn tiền. <em>(cấm)</em></li><li>Xin lỗi quan trọng hơn giải thích — phải cắt thì cắt phần giải thích nguyên nhân. <em>(ngưỡng)</em></li><li>Thiếu thông tin đơn hàng để ghi mốc thời gian thì hỏi lại mình, đừng ghi &quot;sớm nhất có thể&quot;. <em>(không đạt thì làm gì)</em></li></ul>
+<p>Khác biệt không nằm ở chỗ bản sau dài hơn. Nằm ở chỗ khi email trả về, bạn nói được &quot;trượt dòng 3&quot; thay vì &quot;đọc thấy chưa ổn&quot; — và tháng sau bạn dán lại đúng năm dòng đó, chứ không phải ngồi nhớ lại một cảm giác.</p>
+<div class="callout">✅ Phép thử nhanh cho từng dòng bạn vừa viết: dòng nào bạn không tự tô được thành ô đạt / không đạt thì nó chưa phải tiêu chí, nó là một lời mong muốn. Xoá hoặc viết lại — đừng để nó nằm đó làm bạn tưởng mình đã có ba-rem.</div>
+<h2>Nhưng viết ba-rem vào prompt không có nghĩa là máy sẽ làm theo</h2>
+<p>Dừng ở đây thì bài này bán cho bạn một lời hứa. Có ba lớp bằng chứng đi ngược lại, và mình nêu trước khi ai đó nêu hộ.</p>
+<p><strong>Lớp một: ngay cả chỉ dẫn đếm được bằng máy cũng bị trượt.</strong> Theo nghiên cứu của Zhou và cộng sự công bố năm 2023, nhóm tác giả dựng một bộ đo gồm <strong>25 loại chỉ dẫn kiểm được</strong> — kiểu &quot;viết trên 400 chữ&quot;, &quot;nhắc từ khoá này ít nhất 3 lần&quot; — trên khoảng <strong>500 đề</strong>. Ở thước đo nghiêm nhất, tức <strong>trượt một chỉ dẫn là cả đề bị tính trượt</strong>, mô hình mạnh trong bảng đạt <strong>76,89%</strong>. Nói cách khác, khoảng <strong>một phần tư</strong> số đề vẫn có ít nhất một chỉ dẫn đếm được không được làm theo.</p>
+<p>Điều kiện đo phải ghim kèm, vì đây là chỗ hay bị cắt khi người ta trích: đó là bản mô hình của <strong>tháng 11/2023</strong>, đo trên <strong>bộ đề chuẩn</strong>, không phải trên công việc thật của bạn. Mức độ của nó trên mô hình hôm nay thì <strong>chưa rõ từ chính nguồn đó</strong>, và mình sẽ không đoán hộ. Mình cũng cố tình không đặt con số này cạnh con số của mô hình thứ hai trong cùng bảng — chính bài báo ghi rõ hai mô hình đó không so sánh trực tiếp được.</p>
+<p><strong>Lớp hai: &quot;thì bảo nó tự chấm lại theo ba-rem&quot; không cứu được.</strong> Theo nghiên cứu của Huang và cộng sự công bố tại ICLR 2024, khi mô hình tự sửa câu trả lời <strong>chỉ bằng năng lực của chính nó, không có phản hồi từ bên ngoài</strong>, thì nó chật vật — và có lúc kết quả sau khi tự sửa còn <strong>tệ hơn</strong> trước.</p>
+<p>Đọc kỹ giới hạn của nguồn này: nó xét bài toán suy luận, và xét đúng trường hợp <em>không có phản hồi ngoài</em>. Bạn cầm ba-rem đi chấm rồi chỉ ra chỗ trượt — <strong>đó chính là phản hồi ngoài</strong>. Nên nó không bác việc dùng ba-rem, nó bác việc giao luôn khâu chấm cho máy rồi đi chỗ khác.</p>
+<p><strong>Lớp ba: &quot;vậy cho một mô hình khác chấm&quot;.</strong> Cách này có cơ sở thật, mình không gạt đi. Theo nghiên cứu của Zheng và cộng sự công bố tại NeurIPS 2023, giám khảo là mô hình mạnh khớp với đánh giá của con người <strong>trên 80%</strong>, ngang mức hai người khớp với nhau. Nhưng cùng bài báo đó khảo sát mấy kiểu thiên lệch đã biết tên: thiên lệch theo <strong>vị trí</strong>, theo <strong>độ dài</strong>, và <strong>thiên vị chính mình</strong>. Dịch sang chuyện của bạn: bài dài dòng dễ được chấm đạt hơn bài đúng mà ngắn — trong khi &quot;ngắn gọn&quot; lại thường đúng là thứ bạn muốn.</p>
+<p><strong>Và đây là chỗ ẩn dụ của mình gãy, mình không lấp bằng một câu chuyển ý cho êm:</strong> với học trò, đưa ba-rem trước thì hành vi làm bài đổi khá chắc chắn — người ta nhìn ba-rem mà làm. Với máy, ba-rem chỉ đổi <strong>xác suất</strong>. Nó là lời dặn, không phải cái khoá.</p>
+<div class="callout">⚠️ Đọc ba lớp trên cho đúng liều: chúng không nói &quot;viết ba-rem là vô ích&quot;. Chúng nói ba-rem là <strong>lời dặn gửi cho người làm bài</strong>, không phải <strong>cái khoá chặn bài chưa đạt</strong>. Ai bán cho bạn vế thứ hai là đang bán quá tay.</div>
+<p>Vậy giá trị thật của nó nằm ở đâu? Nằm ở phía <strong>bạn</strong>, và nằm ở đó trước. Ba-rem biến câu &quot;chưa được&quot; thành một danh sách đếm được — &quot;trượt tiêu chí 2 và 4&quot;. Từ đó vòng sửa sau mới là sửa trúng chỗ, thay vì gửi lại kèm hai chữ &quot;hay hơn nữa&quot;.</p>
+<h2>Ba-rem làm thật ở quy mô nghiêm túc trông thế nào</h2>
+<p>Để bạn thấy đây không phải mẹo viết lách. Theo tài liệu HealthBench do nhóm tác giả của OpenAI công bố tháng 5/2025, họ dựng một bộ đánh giá gồm <strong>5.000 cuộc hội thoại y tế</strong>, và điểm đáng chú ý là <strong>mỗi cuộc có một ba-rem riêng do bác sĩ viết</strong> — tổng cộng <strong>48.562 tiêu chí</strong>, do <strong>262 bác sĩ</strong> soạn.</p>
+<p>Ba điều rút ra được: ba-rem <strong>gắn với từng việc</strong> chứ không phải một bản chung treo tường; có <strong>tiêu chí mang điểm âm</strong>, tức nói cả những điều <strong>không được</strong> làm; và khâu chấm ở đó <strong>vẫn do mô hình làm</strong>, nên vẫn dính đúng những thiên lệch vừa nói. Bạn không cần bốn mươi tám nghìn tiêu chí — bạn cần <strong>ba đến năm dòng cho một việc bạn làm đi làm lại</strong>.</p>
+<h2>Góc nhìn của mình</h2>
+<p>Theo mình, lý do ô &quot;thế nào là đạt&quot; hay bị bỏ trống không phải vì nó khó viết. Là vì viết nó ra thì lộ mất một chuyện: chính bạn cũng chưa biết thế nào là đạt.</p>
+<p>Nói &quot;làm cho chuyên nghiệp vào&quot; thì an toàn — sai thì lỗi ở người làm. Còn viết ra ba dòng tiêu chí là tự ràng mình vào đó: bài nộp về đạt đủ ba dòng mà bạn vẫn không ưng, thì lúc ấy phải thừa nhận là ba-rem của bạn viết chưa tới. Mình gặp chuyện này ở doanh nghiệp thường xuyên hơn nhiều so với chuyện công cụ chạy sai. Đây là quan sát nghề của mình, không phải số liệu khảo sát — mình không có con số để đưa bạn, và sẽ không bịa ra một cái.</p>
+<p>Đáng làm nhất là với <strong>việc lặp đi lặp lại</strong>: thư phản hồi khách, tóm tắt biên bản họp, mô tả sản phẩm. Viết một lần, dùng mãi. Còn hỏi cho vui thì ngồi viết tiêu chí là nghi thức thừa.</p>
+<p>Với người quản lý thì có một điểm mình nghĩ đáng để ý: <strong>ba-rem là tài sản của đội, còn prompt hay thì không.</strong> Một câu prompt hay nằm trong lịch sử chat của một người và chết theo người đó khi họ nghỉ. Một cái ba-rem viết ra là thứ người mới đọc phát hiểu ngay ở đây thế nào thì gọi là xong — kể cả khi họ không dùng AI.</p>
+<p>Và một cảnh báo, cũng là bài học của nghề chấm thi: <strong>ba-rem chặt quá thì bạn nhận về đúng thứ đạt ba-rem và không hơn.</strong> Ra đề thế nào thì nhận bài thế ấy. Đang cần một ý bất ngờ thì đừng khoá hết năm tiêu chí rồi trách kết quả nhạt.</p>
+<p>Cuối cùng, hạ kỳ vọng cho rõ: ba-rem tốt <strong>không cứu được</strong> một agent thiếu ngữ cảnh, không có công cụ, không có chỗ kiểm lại việc mình vừa làm. Máy không biết chính sách công ty bạn thì nó vẫn viết ra thứ sai mà đúng khuôn. Đó là chuyện của chặng sau.</p>
+<h2>Kết luận</h2>
+<p>Mình có một bài cũ về <a href="https://ducnguyen.vn/atlas/content/ai/tu-duy-nguoi-ra-de.html" target="_blank" rel="noopener">tư duy người ra đề</a> — bài đó nêu tiêu chí như một trong bốn phần của lời yêu cầu; bài hôm nay đào sâu đúng phần đó và thêm phần bài cũ chưa nói: giới hạn của nó. Còn muốn xem cả lời yêu cầu nên có hình dạng gì thì đọc <a href="https://ducnguyen.vn/atlas/content/ai/prompt-nhu-mot-ban-yeu-cau.html" target="_blank" rel="noopener">prompt như một bản yêu cầu</a>.</p>
+<p>Ba mươi bài nộp về ba mươi kiểu, và người chấm tự mâu thuẫn với chính mình — cái hỏng không nằm ở lớp học. Nó nằm ở chỗ đề bài thì phát ra, còn ba-rem thì giữ lại trong đầu người ra đề.</p>
+<p><strong>&quot;Chưa được&quot; không phải một lời chê, mà là một tiêu chí chấp nhận chưa được viết ra.</strong></p>
+<p>Việc nên làm hôm nay không phải viết một prompt mới. Là chọn một việc bạn giao cho AI nhiều nhất, rồi viết ba dòng: cái gì bắt buộc phải có, cái gì xuất hiện là trượt, và khi phải chọn thì ưu tiên bên nào.</p>
+<p>Bài kế tiếp mình nói về trường hợp bạn tả mãi mà vẫn không ra — có những thứ tả bằng lời thì dở, nhưng đưa ra một bài mẫu đã đạt thì người ta hiểu ngay. Hẹn bạn ngày mai.</p>
+<h2>Nguồn tham khảo</h2>
+<p>Sáu nguồn dưới đây là toàn bộ chỗ dựa cho phần dữ kiện của bài. Chỗ nào là quan sát nghề của mình thì trong bài đã nói rõ bằng &quot;theo mình&quot;. Mình ghi kèm <strong>mức đọc</strong> của từng nguồn, vì &quot;đọc toàn văn&quot; và &quot;chỉ đọc phần tóm tắt do chính tác giả viết&quot; không cùng một trọng lượng. Ngày truy cập: 12/09/2026.</p>
+<ol><li>Anthropic — <em>Define success criteria and build evaluations</em>: <a href="https://platform.claude.com/docs/en/docs/test-and-evaluate/define-success" target="_blank" rel="noopener">platform.claude.com</a>. <strong>Đọc toàn văn.</strong> Nguồn của bốn thuộc tính cụ thể · đo được · khả thi · đúng việc, và của cặp ví dụ đối lập giữa &quot;đầu ra an toàn&quot; và cái ngưỡng 0,1% trên 10.000 lượt. Đọc kèm giới hạn: trang này viết cho người đang dựng một ứng dụng, không phải cho người đi làm dùng chatbot — mình mượn tinh thần, không mượn quy mô.</li><li>Ken Schwaber &amp; Jeff Sutherland — <em>Scrum Guide</em>, bản 11/2020: <a href="https://scrumguides.org/scrum-guide.html" target="_blank" rel="noopener">scrumguides.org</a>. <strong>Đọc toàn văn mục Definition of Done.</strong> Nguồn của định nghĩa Definition of Done và của hệ quả đi kèm: hạng mục chưa đạt thì không được phát hành, thậm chí không được mang ra trình bày, mà quay về hàng đợi.</li><li>Zhou, Lu, Mishra, Brahma, Basu, Luan, Zhou, Hou (Google) — 2023: <a href="https://arxiv.org/abs/2311.07911" target="_blank" rel="noopener">arxiv.org/abs/2311.07911</a>. <strong>Đọc toàn văn bản PDF, có đọc Bảng 3.</strong> Nguồn của 25 loại chỉ dẫn kiểm được, khoảng 500 đề, và con số 76,89% ở thước đo nghiêm nhất. Điều kiện đo, phải đọc kèm: bản mô hình tháng 11/2023, trên bộ đề chuẩn, không phải trên việc thật. Bảng đó còn một mô hình thứ hai nhưng chính bài báo ghi hai mô hình không so sánh trực tiếp được, nên mình không đặt hai con số cạnh nhau.</li><li>Huang, Chen, Mishra, Zheng, Yu, Song, Zhou — ICLR 2024: <a href="https://arxiv.org/abs/2310.01798" target="_blank" rel="noopener">arxiv.org/abs/2310.01798</a>. <strong>Đọc mức tóm tắt.</strong> Nguồn của kết luận: mô hình tự sửa câu trả lời mà không có phản hồi từ bên ngoài thì chật vật, và có lúc còn tệ đi sau khi tự sửa. Phạm vi của nghiên cứu là bài toán suy luận.</li><li>Zheng và cộng sự (LMSYS / UC Berkeley) — NeurIPS 2023: <a href="https://arxiv.org/abs/2306.05685" target="_blank" rel="noopener">arxiv.org/abs/2306.05685</a>. <strong>Đọc mức tóm tắt.</strong> Nguồn của mức khớp trên 80% giữa giám khảo là mô hình mạnh và đánh giá của con người, và của ba kiểu thiên lệch đã được khảo sát: vị trí, độ dài, và thiên vị chính mình.</li><li>Arora, Wei, Soskin Hicks và cộng sự (OpenAI) — <em>HealthBench</em>, 13/05/2025: <a href="https://arxiv.org/abs/2505.08775" target="_blank" rel="noopener">arxiv.org/abs/2505.08775</a>. <strong>Đọc mức tóm tắt.</strong> Nguồn của 5.000 cuộc hội thoại, 48.562 tiêu chí và 262 bác sĩ soạn ba-rem. Trang giới thiệu cùng chủ đề trên openai.com mình <strong>không đọc được</strong> (máy chủ từ chối truy cập), nên mọi con số ở đây lấy từ bản của chính nhóm tác giả.</li></ol>
+<p>Và hai thứ mình đã định viết rồi bỏ — nói ra để bạn biết bài này thiếu chỗ nào thay vì phải tự đoán. Một là <strong>mức cải thiện</strong>: mình không tìm được nghiên cứu nào đo riêng việc thêm tiêu chí chấp nhận vào prompt thì chất lượng lên bao nhiêu, nên cả bài chỉ nói về <strong>cơ chế</strong> — chấm rẻ hơn, sửa trúng hơn — và không đưa một con số phần trăm nào. Hai là <strong>tình trạng hôm nay</strong>: mình cũng chưa tìm được số đo tương đương cho các mô hình đời 2025–2026, nên con số 76,89% ở trên đọc như một mốc của thời điểm đó, đừng đọc như hiện trạng.</p>
+  </article>
+
+  <footer class="author-card" aria-labelledby="author-name">
+    <div class="author-avatar">
+      <img src="https://ducnguyen221.github.io/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức" loading="lazy" width="84" height="84">
+    </div>
+    <div class="author-info">
+      <div class="kicker">Tác giả · Author</div>
+      <h3 id="author-name">Nguyễn Quang Đức (Tobi)</h3>
+      <p>Data &amp; AI Engineer · Trainer tại KPIM Academy &amp; COMPA Class. Trang cá nhân tại
+        <a href="https://ducnguyen.vn" target="_blank" rel="noopener">ducnguyen.vn</a>.</p>
+    </div>
+    <nav class="social-grid" aria-label="Liên kết tác giả">
+      <a class="social-btn" href="https://ducnguyen.vn" target="_blank" rel="noopener" aria-label="Website" title="ducnguyen.vn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.facebook.com/TobiNguyenData/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.youtube.com/@PowerBIHeroVn" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a class="social-btn" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" aria-label="E-Profile" title="E-Profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      </a>
+    </nav>
+  </footer>
+</main>
+</body>
+</html>

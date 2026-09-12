@@ -47,9 +47,22 @@
     ],
     "path": "content/ai/ong-tho-may-do-ao-gan-vai-role-prompting-that-ra-la-dat-rang-buoc.html",
     "thumbnail": "",
-    "published": "2026-09-12",
+    "published": "2026-09-13",
     "lastModified": "2026-09-12",
     "fileSize": 38105
+  },
+  {
+    "slug": "bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt",
+    "title": "Bài kiểm tra không có ba-rem: tiêu chí chấp nhận (acceptance criteria) trong prompt · Học cùng Tobi",
+    "description": "explainer",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt.html",
+    "thumbnail": "",
+    "published": "2026-09-12",
+    "lastModified": "2026-09-12",
+    "fileSize": 36100
   },
   {
     "slug": "gpt6-astra-dieu-dang-chu-y",
