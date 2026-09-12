@@ -146,7 +146,9 @@ html.force-mobile,html.force-mobile body{overflow:auto}
 
 <div id="mobile">
   <div style="max-width:520px;margin:0 auto;padding:20px 16px 40px;font-family:'Be Vietnam Pro',system-ui,sans-serif;color:#F7F3F0;
-    background:radial-gradient(120% 60% at 20% 0%,#8B1E2D 0%,#5d1120 34%,#2a0810 66%,#140507 100%);min-height:100vh">
+    background:radial-gradient(120% 60% at 20% 0%,#8B1E2D 0%,#5d1120 34%,#2a0810 66%,#140507 100%);min-height:100vh;position:relative;z-index:0">
+    <canvas id="neuralBgM" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;opacity:.85;z-index:-1"></canvas>
+    <div id="fireworksM" style="position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5;opacity:.95"></div>
 
     <div style="display:flex;align-items:center;gap:10px">
       <img src="assets/logos/kpim-crop.png" alt="KPIM" style="height:18px;width:auto">
@@ -154,7 +156,7 @@ html.force-mobile,html.force-mobile body{overflow:auto}
       <div style="background:#fff;border-radius:4px;padding:4px 6px;display:flex"><img src="assets/logos/agribank-crop.png" alt="Agribank" style="height:14px;width:auto"></div>
     </div>
     <h1 style="margin:16px 0 4px;font-size:min(19px,calc(4vw - 1.3px));line-height:1.3;font-weight:600;letter-spacing:.02em">SERIES CHƯƠNG TRÌNH ĐÀO TẠO AGRIBANK</h1>
-    <div style="font-size:12px;letter-spacing:.06em;color:#D9B46D">KHOÁ HỌC PHÂN TÍCH DỮ LIỆU VÀ TRỰC QUAN BÁO CÁO</div>
+    <div style="font-size:min(12px,calc(3vw - 1px));letter-spacing:.06em;color:#D9B46D">KHOÁ HỌC PHÂN TÍCH DỮ LIỆU VÀ TRỰC QUAN BÁO CÁO</div>
 
     <div style="margin-top:22px;font-size:11px;letter-spacing:.2em;color:#D9B46D">BẢN ĐỒ HÀNH TRÌNH</div>
     <div style="position:relative;height:430px;margin-top:10px;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)">
@@ -287,8 +289,8 @@ html.force-mobile,html.force-mobile body{overflow:auto}
   requestAnimationFrame(counters);
 
   /* ---------- neural network background ---------- */
-  (function neural() {
-    var cv = document.getElementById("neuralBg");
+  function neural(id) {
+    var cv = document.getElementById(id);
     if (!cv || reduce) return;
     var ctx = cv.getContext("2d");
     function size() { var r = cv.getBoundingClientRect(); cv.width = r.width; cv.height = r.height; }
@@ -301,16 +303,22 @@ html.force-mobile,html.force-mobile body{overflow:auto}
     });
     (function draw() {
       var w = cv.width, h = cv.height;
+      if (!w || !h) { requestAnimationFrame(draw); return; }
       ctx.clearRect(0, 0, w, h);
       nodes.forEach(function (n) {
         n.x += n.vx; n.y += n.vy;
         if (n.x < 0 || n.x > 1) n.vx *= -1;
         if (n.y < 0 || n.y > 1) n.vy *= -1;
       });
+      /* Ban kinh noi = 1.59 lan khoang cach trung binh giua cac nut, tinh theo DIEN TICH.
+         Ban cu dung w*.135: tren man doc hep-cao thi nguong qua nho so voi khoang cach
+         thuc, nen gan het duong noi bien mat - chi con cac cham roi rac. Cong thuc nay
+         giu nguyen mat do duong noi o moi ty le, va tra ve dung 189px o kho desktop cu. */
+      var linkR = 1.59 * Math.sqrt(w * h / N);
       for (var i = 0; i < N; i++) for (var k = i + 1; k < N; k++) {
         var dx = (nodes[i].x - nodes[k].x) * w, dy = (nodes[i].y - nodes[k].y) * h, d = Math.hypot(dx, dy);
-        if (d < w * .135) {
-          ctx.strokeStyle = "rgba(217,180,109," + (.34 * (1 - d / (w * .135))).toFixed(3) + ")";
+        if (d < linkR) {
+          ctx.strokeStyle = "rgba(217,180,109," + (.34 * (1 - d / linkR)).toFixed(3) + ")";
           ctx.lineWidth = .9; ctx.beginPath();
           ctx.moveTo(nodes[i].x * w, nodes[i].y * h); ctx.lineTo(nodes[k].x * w, nodes[k].y * h); ctx.stroke();
         }
@@ -324,7 +332,9 @@ html.force-mobile,html.force-mobile body{overflow:auto}
       });
       requestAnimationFrame(draw);
     })();
-  })();
+  }
+  neural("neuralBg");
+  neural("neuralBgM");
 
   /* ---------- fireworks ---------- */
   function shell(host, originX, originY, dir, seed) {
@@ -341,11 +351,14 @@ html.force-mobile,html.force-mobile body{overflow:auto}
     }
   }
   function fire() {
-    var host = document.getElementById("fireworks");
-    if (!fwOn || reduce) { host.innerHTML = ""; return; }
-    host.innerHTML = "";
-    [["5%", "30%", 1, 0], ["95%", "30%", -1, 0], ["6%", "52%", 1, 1], ["94%", "52%", -1, 1], ["8%", "74%", 1, 2], ["92%", "74%", -1, 2]]
-      .forEach(function (a) { shell(host, a[0], a[1], a[2], a[3]); });
+    ["fireworks", "fireworksM"].forEach(function (id) {
+      var host = document.getElementById(id);
+      if (!host) return;
+      host.innerHTML = "";
+      if (!fwOn || reduce) return;
+      [["5%", "30%", 1, 0], ["95%", "30%", -1, 0], ["6%", "52%", 1, 1], ["94%", "52%", -1, 1], ["8%", "74%", 1, 2], ["92%", "74%", -1, 2]]
+        .forEach(function (a) { shell(host, a[0], a[1], a[2], a[3]); });
+    });
   }
   document.getElementById("fwBtn").addEventListener("click", function () {
     fwOn = !fwOn;
@@ -473,7 +486,8 @@ html.force-mobile,html.force-mobile body{overflow:auto}
         ";animation:confettiFall " + (2.2 + (i % 5) * .22) + "s ease-out " + ((i % 7) * .07) + "s forwards";
       host.appendChild(el);
     }
-    deck.appendChild(host);
+    var deskOn = document.getElementById("stage").offsetParent !== null;
+    (deskOn ? deck : document.getElementById("mSlide")).appendChild(host);
     setTimeout(function () { host.remove(); }, 3500);
   }
   function go(i) { idx = (i + GALLERY.length) % GALLERY.length; renderDeck(); restartProgress(); }
