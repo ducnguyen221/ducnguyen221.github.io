@@ -1,5 +1,18 @@
 [
   {
+    "slug": "goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc",
+    "title": "Gọi món ở quán lạ: viết prompt tả KẾT QUẢ, đừng tả từng bước · Học cùng Tobi",
+    "description": "explainer",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc.html",
+    "thumbnail": "",
+    "published": "2026-09-13",
+    "lastModified": "2026-09-12",
+    "fileSize": 33987
+  },
+  {
     "slug": "nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve",
     "title": "Người thợ khoá và bản vẽ sai: prompt không phải câu thần chú, nó là bản vẽ · Học cùng Tobi",
     "description": "myth_vs_fact",
@@ -13,17 +26,17 @@
     "fileSize": 36291
   },
   {
-    "slug": "goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc",
-    "title": "Gọi món ở quán lạ: viết prompt tả KẾT QUẢ, đừng tả từng bước · Học cùng Tobi",
+    "slug": "ngay-dau-di-lam-system-prompt-chinh-la-ban-mo-ta-cong-viec-cua-ai",
+    "title": "Ngày đầu đi làm: system prompt chính là bản mô tả công việc của AI · Học cùng Tobi",
     "description": "explainer",
     "categories": [
       "ai"
     ],
-    "path": "content/ai/goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc.html",
+    "path": "content/ai/ngay-dau-di-lam-system-prompt-chinh-la-ban-mo-ta-cong-viec-cua-ai.html",
     "thumbnail": "",
     "published": "2026-09-12",
     "lastModified": "2026-09-12",
-    "fileSize": 33987
+    "fileSize": 34656
   },
   {
     "slug": "gpt6-astra-dieu-dang-chu-y",
