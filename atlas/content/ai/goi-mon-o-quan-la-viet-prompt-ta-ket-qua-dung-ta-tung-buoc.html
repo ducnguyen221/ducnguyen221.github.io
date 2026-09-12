@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gọi món ở quán lạ: viết prompt tả KẾT QUẢ, đừng tả từng bước · Học cùng Tobi</title>
+<meta name="description" content="explainer">
+<link rel="canonical" href="https://ducnguyen.vn/atlas/content/ai/goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc.html">
+<meta name="author" content="Nguyen Quang Duc">
+<!-- Open Graph — BAT BUOC. Thieu la Facebook/Zalo scrape ra bai TRAN TRUI, mat phan lon suc hut.
+     Ca VC-001/002/003 deu thieu (do 04/09: 0/3 bai co the og:) => bo sung tan goc tai day. -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gọi món ở quán lạ: viết prompt tả KẾT QUẢ, đừng tả từng bước">
+<meta property="og:description" content="explainer">
+<meta property="og:url" content="https://ducnguyen.vn/atlas/content/ai/goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc.html">
+<meta property="og:image" content="https://ducnguyen.vn/atlas/content/ai/goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:site_name" content="Hoc cung Tobi">
+<meta property="article:published_time" content="">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gọi món ở quán lạ: viết prompt tả KẾT QUẢ, đừng tả từng bước">
+<meta name="twitter:description" content="explainer">
+<meta name="twitter:image" content="https://ducnguyen.vn/atlas/content/ai/goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b1020;--bg-elev:#0f1530;--surface:#151b3d;--surface-2:#1c244d;
+  --border:#2a3470;--border-soft:#1f2654;
+  --accent:#7c83ff;--accent-2:#a5acff;--accent-soft:#3d3e9c;--violet:#c4a8ff;
+  --green:#34d399;--amber:#fbbf24;--sky:#38bdf8;
+  --text:#e8ecff;--text-2:#a8b0d6;--text-3:#6b75a8;
+  --shadow-lg:0 4px 8px rgba(0,0,0,.35),0 24px 48px rgba(0,0,0,.3);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Outfit','Be Vietnam Pro',sans-serif}
+body{font-family:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;
+  background:radial-gradient(1200px 600px at 20% -10%,rgba(124,131,255,.12),transparent 60%),
+             radial-gradient(900px 500px at 90% 10%,rgba(196,168,255,.08),transparent 60%),var(--bg);
+  color:var(--text);min-height:100vh;line-height:1.7;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;overflow-wrap:break-word}
+::selection{background:var(--accent);color:#fff}
+img{max-width:100%}
+a{color:var(--accent-2);text-decoration:none;border-bottom:1px dashed var(--accent-soft)}
+a:hover{border-bottom-style:solid}
+
+.topbar{position:sticky;top:0;z-index:100;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  background:rgba(11,16,32,.78);border-bottom:1px solid var(--border-soft)}
+.topbar-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:14px 28px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;border:none}
+.brand-mark{width:40px;height:40px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,#7c83ff,#c4a8ff);box-shadow:0 4px 16px rgba(124,131,255,.35);
+  display:flex;align-items:center;justify-content:center}
+.brand-mark svg{width:22px;height:22px}
+.brand-text h1{font-size:.95rem;font-weight:800;line-height:1.2}
+.brand-text h1 span{color:var(--accent-2)}
+.brand-text p{font-size:.72rem;color:var(--text-3);font-weight:500;margin-top:1px}
+.topbar .pill{margin-left:auto;font-size:.74rem;font-weight:700;color:var(--accent-2);
+  background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);border-radius:999px;padding:6px 16px}
+
+.container{max-width:920px;margin:0 auto;padding:40px 28px 80px}
+
+.hero{display:grid;grid-template-columns:1fr;gap:28px;margin-bottom:44px;align-items:center}
+.hero.has-art{grid-template-columns:1.1fr .9fr}
+.hero .kick{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--accent-2);background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);
+  border-radius:999px;padding:7px 18px;margin-bottom:18px}
+.hero h1.title{font-size:2.5rem;font-weight:900;letter-spacing:-1px;line-height:1.12;margin-bottom:14px}
+.hero .angle{color:var(--text-2);font-size:1.05rem;line-height:1.6}
+.hero-art{border-radius:20px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg)}
+.hero-art img{display:block;width:100%;height:auto}
+
+.article h2{font-size:1.5rem;font-weight:800;margin:42px 0 14px;padding-bottom:10px;
+  border-bottom:1px solid var(--border-soft);color:var(--text)}
+.article h3{font-size:1.18rem;font-weight:700;margin:30px 0 10px;color:var(--accent-2)}
+.article h4{font-size:1.02rem;font-weight:700;margin:22px 0 8px;color:var(--violet)}
+.article p{color:var(--text-2);margin:14px 0;font-size:1.02rem}
+.article strong{color:var(--text);font-weight:700}
+.article code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--bg-elev);
+  padding:2px 7px;border-radius:5px;color:var(--violet);border:1px solid var(--border-soft)}
+.article ul,.article ol{margin:14px 0 14px 8px;padding-left:22px;color:var(--text-2)}
+.article li{margin:8px 0;font-size:1.02rem}
+.article ul li::marker{color:var(--accent)}
+.callout{background:linear-gradient(180deg,rgba(124,131,255,.08),transparent);
+  border:1px solid var(--border-soft);border-left:4px solid var(--accent);
+  border-radius:4px 14px 14px 4px;padding:16px 20px;margin:22px 0;color:var(--text);font-size:1.02rem}
+.tbl-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--border-soft);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--border-soft)}
+thead th{background:var(--surface);color:var(--text);font-weight:700}
+tbody tr:hover{background:var(--surface)}
+td{color:var(--text-2)}
+
+.author-card{margin-top:54px;background:linear-gradient(135deg,rgba(124,131,255,.06),rgba(196,168,255,.04));
+  border:1px solid var(--border-soft);border-radius:18px;padding:28px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center}
+.author-avatar{width:84px;height:84px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:3px solid var(--accent-soft);box-shadow:0 8px 32px rgba(124,131,255,.3)}
+.author-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.author-info .kicker{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:6px}
+.author-info h3{font-size:1.3rem;font-weight:800;margin-bottom:4px;
+  background:linear-gradient(90deg,var(--accent-2),var(--violet));-webkit-background-clip:text;
+  background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.author-info p{color:var(--text-2);font-size:.88rem;line-height:1.6;max-width:520px}
+.social-grid{display:grid;grid-template-columns:repeat(4,40px);gap:8px}
+.social-btn{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid var(--border-soft);color:var(--text-2);transition:all .15s}
+.social-btn svg{width:18px;height:18px}
+.social-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.3)}
+
+@media(max-width:780px){
+  .hero.has-art{grid-template-columns:1fr}
+  .hero h1.title{font-size:1.9rem}
+}
+.media{margin:0 0 44px}
+.media .media-label{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin:0 0 12px}
+.summary-img{margin:0 0 22px;text-align:center}
+.summary-img img{width:100%;max-width:960px;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,.35);display:block;margin:0 auto}
+.summary-img figcaption{margin-top:8px;font-size:.86rem;color:#8b98ab;letter-spacing:.02em}
+.video-embed{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;
+  border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px;background:#000}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.media.cover{margin:0 0 40px}
+.cover-art{border-radius:18px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px}
+.cover-art img{display:block;width:100%;height:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.audio-embed{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;
+  border:1px solid var(--border-soft);background:var(--surface)}
+.audio-embed .ic{font-size:1.3rem}
+.audio-embed audio{flex:1;width:100%}
+@media (max-width:720px){
+  .hero.has-art{grid-template-columns:1fr}
+  .author-card{grid-template-columns:1fr;text-align:center;gap:18px;padding:22px}
+  .author-avatar{margin:0 auto}.author-info p{margin:0 auto}.social-grid{justify-content:center;margin:0 auto}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="https://ducnguyen.vn/atlas/" target="_blank" rel="noopener">
+      <div class="brand-mark"><svg viewBox="0 0 576 512" fill="#fff"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"/></svg></div>
+      <div class="brand-text"><h1>Học cùng <span>Tobi</span></h1><p>COMPA Class · KPIM Academy</p></div>
+    </a>
+    <span class="pill">ai-foundations</span>
+  </div>
+</header>
+
+<main class="container">
+  <section class="media cover"><h1 class="sr-only">Gọi món ở quán lạ: viết prompt tả KẾT QUẢ, đừng tả từng bước</h1></section>
+  <article class="article">
+    <p><strong>Có lần mình ăn trưa ở một quán bún trong con hẻm lạ, và thấy một ông khách không gọi món. Ông đọc quy trình cho bếp: chần bún đúng ba mươi giây thôi, nước dùng nhớ vớt bọt hai lần, hành trần bỏ vào trước rồi mới chan.</strong></p>
+<p>Bát bún bưng ra. Ông ăn hai đũa rồi để đó.</p>
+<p>Khó chịu ở chỗ bếp <strong>không làm sai một bước nào</strong>. Quán đó nấu nước dùng ngọt xương sẵn, còn quy trình ông đọc là quy trình ông quen ở một quán khác, nơi nước dùng nhạt hơn. Hai thứ đúng riêng lẻ, ghép lại thành một bát bún không ra gì.</p>
+<p>Mình kể chuyện này để mở một hiểu lầm rất phổ biến ở người đã chăm chỉ <strong>viết prompt</strong> cho tử tế: họ nghe lời khuyên &quot;hãy viết cụ thể vào&quot; và làm theo, bằng cách kê ra bước một, bước hai, bước ba.</p>
+<h2>Người đọc công thức và người gọi món</h2>
+<p>Bàn bên cạnh hôm đó có một chị, gọi đúng một câu: <em>&quot;Cho chị tô thanh thôi, ít dầu, không hành, chị đang kiêng. Ăn được thì mai chị lại.&quot;</em> Chị không biết bếp nấu thế nào, và không cần biết. Chị nói <strong>cái phải ra</strong>, rồi nói luôn <strong>thế nào thì coi là đạt</strong> — và bát của chị ngon hơn, dù ông kia bỏ công gấp mười lần.</p>
+<p>Ông khách không dốt. Ông biết một cái bếp, chỉ là không biết <strong>cái bếp này</strong>. Khi bạn đọc quy trình cho một cái bếp chưa từng nhìn thấy, món ăn không thể ngon hơn hiểu biết của bạn về cái bếp đó.</p>
+<p>Đổi cảnh sang văn phòng thì chuyện y hệt. Giả sử bạn cần một email từ chối một nhà cung cấp. Kiểu viết quen thuộc là dặn thật kỹ: mở bằng một câu cảm ơn, đoạn hai nêu ba lý do, đoạn ba xin giữ liên lạc, cuối thư chào bằng đúng mẫu câu này. Viết xong thấy yên tâm, vì rõ ràng là mình đã dặn tới nơi tới chốn. Nhưng đọc lại bốn dòng dặn đó, không dòng nào cho bên kia biết một chuyện quan trọng hơn tất cả: đây là đối tác bạn còn muốn làm việc tiếp, hay một bên bạn muốn dứt hẳn. Hai đích đến ấy cho ra hai lá thư khác nhau từ giọng cho tới độ dài — trong khi cái khung bốn đoạn thì giống hệt nhau ở cả hai trường hợp.</p>
+<p>Đó là chỗ mất mát thật. Bạn tiêu hết công sức vào việc mô tả <strong>hình dáng</strong> của lá thư, và không còn câu nào để mô tả <strong>việc</strong> lá thư phải làm được.</p>
+<p>Ở <a href="https://ducnguyen.vn/atlas/content/ai/nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve.html" target="_blank" rel="noopener">bài trước của chuỗi này</a>, mình nói về căn bệnh viết <strong>quá ít</strong> — đi sưu tầm câu thần chú thay vì mô tả việc. Hôm nay là căn bệnh ngược lại, bệnh của người đã chữa xong bệnh thứ nhất: viết <strong>quá nhiều, nhưng nhiều sai chỗ</strong>.</p>
+<div class="callout">💡 Cụ thể về <strong>kết quả</strong> và chi tiết về <strong>cách làm</strong> là hai thứ khác nhau. Lời khuyên &quot;hãy viết cụ thể&quot; nói về cái thứ nhất. Phần lớn người làm theo lại làm cái thứ hai.</div>
+<h2>Viết prompt là viết tờ đơn gọi món</h2>
+<p><strong>Một cái prompt tốt trông giống tờ đơn gọi món hơn là trang công thức.</strong> Tờ đơn nói món gì, cho ai ăn, kiêng gì, và thế nào thì coi là được. Nó không nói lửa to hay lửa nhỏ.</p>
+<p>Theo Anthropic, trong tài liệu chính thức về cách viết prompt, người viết được khuyên <strong>ưu tiên chỉ dẫn ở mức tổng quát hơn là các bước quy định sẵn</strong>. Lý do trang này nêu thẳng: cách mô hình lập luận <strong>thường vượt quá</strong> thứ một người kê ra trước. Nói kiểu quán ăn: bếp biết về bếp của họ nhiều hơn bạn. Cũng theo Anthropic, ở trang hướng dẫn riêng cho dòng Claude Opus 5, mô hình này <strong>làm tốt nhất khi được đưa nguyên đặc tả công việc lên trước rồi để nó chạy</strong> — không phải đưa nhỏ giọt từng bước và đứng cạnh nhắc.</p>
+<h2>Bước thừa không miễn phí</h2>
+<p>Đây là dữ kiện mình thấy quan trọng nhất, vì nó lật một giả định rất phổ biến: thừa vài bước thì cũng chẳng chết ai.</p>
+<p>Cũng trang hướng dẫn cho dòng Claude Opus 5 nói mô hình này <strong>tự kiểm lại việc của nó mà không cần được bảo</strong>, nên nếu prompt cũ của bạn còn câu &quot;hãy kiểm tra lại kết quả trước khi trả lời&quot; thì lời khuyên là <strong>gỡ đi</strong>. Giữ lại gây <strong>kiểm thừa</strong> — tốn thêm công mà chất lượng không đổi.</p>
+<p>Phải ghim đúng phạm vi, vì đây là chỗ dễ trích sai nhất: đó là trang cho <strong>một dòng mô hình cụ thể</strong>, không phải nguyên tắc chung. Nó <strong>không</strong> cho phép kết luận &quot;mọi AI đều tự kiểm lại nên đừng bao giờ bảo nó kiểm&quot;. Cái nó cho phép kết luận nhỏ hơn mà vẫn đắt: <strong>một bước bạn thêm vào cho chắc ăn là một bước có giá</strong>, và chính người làm ra mô hình nói vậy.</p>
+<p>Cũng trang đó cảnh báo chiều ngược lại: mô hình có thể <strong>tự nới phạm vi</strong>, nên việc hẹp thì phải <strong>ràng buộc phạm vi tường minh</strong>. Tờ đơn thiếu ô &quot;đừng thêm gì khác&quot; cũng là tờ đơn hỏng.</p>
+<p>Hai cảnh báo đó gộp lại cho một cách nhìn mình thấy dễ nhớ: thứ đáng viết thêm vào prompt là <strong>hàng rào</strong>, không phải <strong>đường đi</strong>. Hàng rào nói phạm vi được phép — dài bao nhiêu, đụng tới đâu thì dừng, cái gì tuyệt đối không được tự ý thêm vào. Đường đi nói cách bước chân. Người ta hay tưởng mình đang dựng hàng rào, trong khi thật ra đang vẽ đường đi.</p>
+<div class="callout">⚠️ Mỗi bước bạn thêm vào là một lời khẳng định ngầm rằng bạn biết cách làm tốt hơn bên kia. Có lúc đúng thế thật. Nhưng đó là một lời khẳng định, không phải một cái đệm miễn phí.</div>
+<h2>Ba trường hợp bạn VẪN phải tả từng bước</h2>
+<p>Dừng ở đây thì bài này là bài quảng cáo cho một ẩn dụ đẹp. Có bằng chứng ngược chiều, nó mạnh, và nó đến từ chính những nguồn mình vừa dẫn.</p>
+<p><strong>Một — khi thứ tự hoặc tính đầy đủ là một phần của kết quả.</strong> Chính trang tài liệu Anthropic bảo đừng kê bước cũng dặn: <strong>hãy đưa chỉ dẫn thành các bước đánh số hoặc gạch đầu dòng khi thứ tự hoặc tính đầy đủ của các bước là quan trọng</strong>. Ai đọc bài này rồi đi xoá sạch mọi danh sách trong prompt là đọc sai cả tài liệu lẫn bài.</p>
+<p><strong>Hai — khi việc quá khó để làm một nhát.</strong> Theo Zhou và cộng sự, trong nghiên cứu công bố tại ICLR 2023, chia một bài toán khó thành chuỗi bài toán con giải nối tiếp đưa kết quả từ <strong>16%</strong> lên <strong>trên 99%</strong>. Con số đó phải đi kèm điều kiện đo, và đây là chỗ hay bị cắt khi người ta trích: đo trên <strong>GPT-3 code-davinci-002</strong>, một mô hình năm 2022, trên <strong>một bộ đề chuẩn</strong>, không phải trên công việc văn phòng của bạn.</p>
+<p><strong>Ba — khi bạn đổi sang một dòng mô hình khác.</strong> Theo OpenAI, trong tài liệu API, <strong>các mô hình suy luận cho kết quả tốt hơn với chỉ dẫn ở mức tổng quát</strong>, và trang này ghi rõ điều đó <strong>khác</strong> với dòng GPT vốn hưởng lợi từ chỉ dẫn rất chính xác. Cũng trang đó, ở phần việc dạng agent, lại dặn chia câu hỏi thành mọi yêu cầu con và xác nhận từng cái đã xong.</p>
+<p>Điều này biến &quot;tả kết quả, đừng tả bước&quot; từ một <strong>nguyên tắc</strong> thành một <strong>mặc định cần kiểm lại</strong>. Mình nghĩ đó là cách dùng đúng của bài.</p>
+<h2>Chỗ luận điểm này gãy — nói thẳng</h2>
+<p>Mình có một cách đọc để mấy lời khuyên trên đứng cạnh nhau được, và nói trước: <strong>không nguồn nào phát biểu cách đọc này</strong>, nó là diễn giải của mình. Chữ &quot;bước&quot; đang bị dùng cho hai thứ khác hẳn nhau.</p>
+<div class="tbl-wrap"><table><thead><tr><th></th><th>Bước như <strong>ràng buộc của kết quả</strong></th><th>Bước như <strong>kịch bản thay não</strong></th></tr></thead><tbody><tr><td>Nó mô tả cái gì</td><td>Cái phải giao</td><td>Cách phải nghĩ</td></tr><tr><td>Ví dụ</td><td>&quot;Bản tóm tắt phải có đủ ba mục, theo đúng thứ tự này&quot;</td><td>&quot;Hãy đọc kỹ, rồi gạch ý chính, rồi cân nhắc, rồi viết lại&quot;</td></tr><tr><td>Thuộc về đâu</td><td>Tờ đơn gọi món</td><td>Trang công thức</td></tr><tr><td>Nguồn nói gì</td><td>Nên viết, khi thứ tự hoặc tính đầy đủ quan trọng</td><td>Nên nhường, vì cách nó lập luận thường vượt quá thứ mình kê ra</td></tr></tbody></table></div>
+<p>Cách đọc này gọn, và nó <strong>không giải thích được trường hợp thứ hai</strong>. Ở nghiên cứu kia, việc chia nhỏ đúng là <strong>kê cách nghĩ</strong>, không phải mô tả cái phải giao, mà kết quả vẫn nhảy từ 16% lên trên 99%. Đó là điểm yếu đã biết của luận điểm bài này, và mình không lấp nó bằng một câu chuyển ý cho êm.</p>
+<p>Thứ mình nghĩ là đúng để nói: đó là chia nhỏ <strong>một bài toán</strong> mà bên kia không giải nổi một nhát, chứ không phải kê lại <strong>một quy trình mà bên kia vốn đã biết làm</strong>. Ông khách ở quán bún không chia nhỏ bài toán nào. Ông đọc lại một quy trình mà bếp đã thuộc.</p>
+<p>Và nói cho hết: <strong>mình không viết rằng chia nhỏ từng bước đã lỗi thời</strong> — không nguồn nào nói thế. Cán cân có dịch, nhưng dịch tới đâu trên các mô hình hôm nay thì từ mấy nguồn này là <strong>chưa rõ</strong>.</p>
+<h2>Tờ đơn gọi món bốn ô</h2>
+<p>Đây là khung mình tự tổng hợp để dùng, không phải chuẩn của nhà cung cấp nào. Bốn ô, không cần biết code:</p>
+<ol><li><strong>Món</strong> — cái phải giao, gọi bằng danh từ. &quot;Một email từ chối nhà cung cấp&quot;, không phải &quot;giúp mình xử lý cái email này&quot;.</li><li><strong>Cho ai, để làm gì</strong> — giả sử bạn cần tóm tắt một biên bản họp: tóm cho sếp quyết định khác hẳn tóm cho người vắng mặt bắt kịp.</li><li><strong>Khẩu vị và ràng buộc</strong> — độ dài, giọng, thứ bắt buộc có và bắt buộc không. Hai mẹo trong tài liệu Anthropic mình thấy hiệu quả: <strong>nói cái cần làm thay vì cái không được làm</strong>, và <strong>nêu lý do đằng sau một yêu cầu</strong> — ví dụ của trang đó là thay lệnh cấm dùng dấu ba chấm bằng câu giải thích rằng đầu ra sẽ được đọc thành tiếng.</li><li><strong>Thế nào là đạt</strong> — ô đắt nhất, và hầu như không ai viết.</li></ol>
+<p>Ô bốn khó vì nó bắt bạn nghĩ thật. Nhưng có sẵn thước để tự chấm: theo Anthropic, ở trang nói về xây tiêu chí thành công, một tiêu chí tốt phải <strong>cụ thể · đo được · khả thi · liên quan</strong>. Ví dụ của chính trang đó là thay câu khen chung chung &quot;mô hình nên phân loại cảm xúc tốt&quot; bằng một ngưỡng điểm nêu rõ, trên một bộ dữ liệu kiểm nêu rõ.</p>
+<p>Bạn không cần đi tới mức ngưỡng số. &quot;Ăn được thì mai chị lại&quot; cũng là một tiêu chí đạt — nó cụ thể, và cãi được. So với &quot;làm cho hay vào&quot; thì đó là hai thế giới.</p>
+<h3>Thử trên đúng lá thư lúc nãy</h3>
+<p>Quay lại email từ chối nhà cung cấp. Bản kê bước đọc như thế này: <em>&quot;Viết giúp mình email từ chối. Mở đầu cảm ơn họ đã gửi báo giá. Đoạn hai nêu ba lý do. Đoạn ba nói sẽ giữ liên lạc. Kết thúc lịch sự. Nhớ viết chuyên nghiệp.&quot;</em></p>
+<p>Bản tờ đơn cho đúng việc đó, bốn ô, không dài hơn bao nhiêu:</p>
+<ol><li><strong>Món</strong> — một email từ chối báo giá, gửi một lần, không cần bản nháp thứ hai.</li><li><strong>Cho ai, để làm gì</strong> — gửi một nhà cung cấp đã làm việc cùng ba năm và <strong>vẫn muốn làm tiếp năm sau</strong>; mục đích là từ chối lần này mà không đóng cửa lần sau.</li><li><strong>Khẩu vị và ràng buộc</strong> — dưới hai trăm chữ, xưng hô như giữa hai người đã quen, nói rõ lý do là ngân sách năm nay chứ không phải chất lượng, và <strong>không nêu tên bên trúng thầu</strong> vì chuyện đó chưa công bố.</li><li><strong>Thế nào là đạt</strong> — người nhận đọc xong biết chắc hai điều: lần này không, và lần sau vẫn nên gửi báo giá.</li></ol>
+<p>Khác biệt nằm ở chỗ ô hai và ô bốn <strong>không hề có trong bản cũ</strong>, dù bản cũ dài hơn. Bản cũ dặn bốn câu về bố cục và không câu nào về đích đến; bản mới bỏ hẳn bố cục, và nhờ vậy còn chỗ để nói ra thứ chỉ bạn mới biết. Đây cũng là chỗ dễ tự kiểm nhất: đọc lại yêu cầu của mình, đếm xem có mấy câu tả cái người nhận sẽ cảm thấy, và mấy câu tả thứ tự các đoạn văn.</p>
+<div class="callout">✅ Phép thử một phút cho ô bốn: viết xong, tự hỏi <em>&quot;nếu bên kia làm ra một thứ tệ, mình chỉ vào câu nào để nói là chưa đạt?&quot;</em>. Không chỉ được vào câu nào thì ô bốn đang trống, dù yêu cầu có dài tới đâu.</div>
+<h2>Góc nhìn của mình</h2>
+<p>Theo mình, người ta trượt sang kê bước không phải vì lười. Ngược lại: kê bước là <strong>việc chăm chỉ</strong>. Nó cho cảm giác mình đang kiểm soát, đang không phó mặc. Còn viết ô &quot;thế nào là đạt&quot; thì chẳng cho cảm giác gì — nó chỉ bắt bạn thừa nhận rằng bạn chưa biết mình muốn gì.</p>
+<div class="callout">💡 Kê bước cho cảm giác đang kiểm soát. Viết tiêu chí đạt cho cảm giác đang bị lộ — lộ ra rằng mình chưa nghĩ xong. Phần lớn người ta chọn cái cảm giác dễ chịu hơn, rồi trả giá ở kết quả.</div>
+<p>Mình gặp chuyện này thường xuyên khi đi dạy và khi triển khai cho doanh nghiệp Việt. Người ta đưa mình xem một yêu cầu dài ba trang, đầy bước; mình hỏi lại &quot;thế nào thì anh chị coi là làm xong đúng?&quot; và gần như lần nào cũng có một khoảng im lặng. Đây là quan sát nghề, không phải số liệu khảo sát — mình không có con số để đưa bạn, và sẽ không bịa ra một cái.</p>
+<p>Hồi tháng 6 mình đã viết một bài dùng đúng hình ảnh này: <a href="https://ducnguyen.vn/atlas/content/ai/tu-duy-nguoi-ra-de.html" target="_blank" rel="noopener">tư duy &quot;người ra đề&quot; thay vì &quot;người làm bài&quot;</a>. Bài đó nói về <strong>cú đổi vai</strong> — bạn giữ phần &quot;ý&quot;, giao phần &quot;cách&quot;. Bài hôm nay trả lời câu nó chưa trả lời: nếu bước thừa là vô hại thì cứ kê cho chắc, việc gì phải đổi vai?</p>
+<p>Nói thẳng phần khó, để không ai kỳ vọng sai: tờ đơn viết đẹp không cứu nổi một agent không có ngữ cảnh, không có công cụ, không có chỗ kiểm lại việc nó vừa làm. Prompt là chặng đầu trong bốn chặng.</p>
+<h2>Kết luận</h2>
+<p>Ông khách ở quán bún không thiếu chữ. Ông thiếu đúng một câu mà chị bàn bên nói được trong năm giây: ăn được thì mai chị lại.</p>
+<p><strong>Viết prompt không phải là đọc công thức cho một cái bếp bạn chưa nhìn thấy — mà là viết một tờ đơn gọi món đủ bốn ô.</strong> Món · cho ai để làm gì · khẩu vị và ràng buộc · thế nào là đạt. Ba trường hợp ở trên là ba lúc bạn vẫn phải nói tới bước, và biết ba lúc đó quan trọng đúng bằng biết khi nào nên im.</p>
+<p>Việc nên làm hôm nay không phải viết một prompt mới. Là mở lại một yêu cầu dài bạn từng viết, tô đỏ mọi câu tả <strong>cách làm</strong>, rồi xem còn lại bao nhiêu câu tả <strong>cái cần đạt</strong>.</p>
+<p>Còn thứ lần nào gọi món cũng đúng — bạn ăn kiêng, không ăn hành — thì viết lại mỗi lần là phí. Nó phải nằm ở chỗ khác, và chỗ đó là bài ngày mai.</p>
+<h2>Nguồn tham khảo</h2>
+<p>Năm nguồn dưới đây là toàn bộ chỗ dựa cho phần dữ kiện của bài. Chỗ nào là quan điểm riêng thì trong bài đã nói rõ bằng &quot;theo mình&quot;.</p>
+<ol><li>Anthropic — Claude Platform Docs, <em>Prompting best practices</em>: <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener">platform.claude.com</a>. Ưu tiên chỉ dẫn tổng quát hơn bước quy định sẵn; nói cái cần làm thay vì cái không được làm; và ngoại lệ đánh số bước khi thứ tự hoặc tính đầy đủ là quan trọng.</li><li>Anthropic — Claude Platform Docs, <em>Prompting Claude Opus 5</em>: <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5" target="_blank" rel="noopener">platform.claude.com</a>. Mô hình tự kiểm lại việc của nó, khuyên gỡ chỉ dẫn kiểm-lại vì gây kiểm thừa, đưa nguyên đặc tả lên trước rồi để nó chạy, và cảnh báo nó có thể tự nới phạm vi. <strong>Trang này gắn với một dòng mô hình cụ thể</strong>, không phải nguyên tắc chung cho mọi AI.</li><li>Anthropic — Claude Platform Docs, <em>Define success criteria and build evaluations</em>: <a href="https://platform.claude.com/docs/en/test-and-evaluate/develop-tests" target="_blank" rel="noopener">platform.claude.com</a>. Bốn tính chất của một tiêu chí thành công: cụ thể · đo được · khả thi · liên quan.</li><li>OpenAI — API docs, <em>Prompt engineering</em>: <a href="https://developers.openai.com/api/docs/guides/prompt-engineering" target="_blank" rel="noopener">developers.openai.com</a>. Mô hình suy luận hợp với chỉ dẫn ở mức tổng quát, và trang ghi rõ điều đó khác với dòng GPT; riêng phần việc dạng agent thì lại dặn chia thành các yêu cầu con rồi xác nhận từng cái.</li><li>Zhou và cộng sự, ICLR 2023 — arXiv 2205.10625: <a href="https://arxiv.org/abs/2205.10625" target="_blank" rel="noopener">arxiv.org</a>. Nguồn của cặp số 16% → trên 99%. Mình đọc ở <strong>mức tóm tắt</strong>, không đọc toàn văn; điều kiện đo là GPT-3 code-davinci-002 năm 2022, trên bộ đề chuẩn SCAN.</li></ol>
+  </article>
+
+  <footer class="author-card" aria-labelledby="author-name">
+    <div class="author-avatar">
+      <img src="https://ducnguyen221.github.io/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức" loading="lazy" width="84" height="84">
+    </div>
+    <div class="author-info">
+      <div class="kicker">Tác giả · Author</div>
+      <h3 id="author-name">Nguyễn Quang Đức (Tobi)</h3>
+      <p>Data &amp; AI Engineer · Trainer tại KPIM Academy &amp; COMPA Class. Trang cá nhân tại
+        <a href="https://ducnguyen.vn" target="_blank" rel="noopener">ducnguyen.vn</a>.</p>
+    </div>
+    <nav class="social-grid" aria-label="Liên kết tác giả">
+      <a class="social-btn" href="https://ducnguyen.vn" target="_blank" rel="noopener" aria-label="Website" title="ducnguyen.vn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.facebook.com/TobiNguyenData/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.youtube.com/@PowerBIHeroVn" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a class="social-btn" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" aria-label="E-Profile" title="E-Profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      </a>
+    </nav>
+  </footer>
+</main>
+</body>
+</html>

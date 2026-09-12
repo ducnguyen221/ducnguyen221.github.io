@@ -8,9 +8,22 @@
     ],
     "path": "content/ai/nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve.html",
     "thumbnail": "",
-    "published": "2026-09-12",
+    "published": "2026-09-13",
     "lastModified": "2026-09-12",
     "fileSize": 36291
+  },
+  {
+    "slug": "goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc",
+    "title": "Gọi món ở quán lạ: viết prompt tả KẾT QUẢ, đừng tả từng bước · Học cùng Tobi",
+    "description": "explainer",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc.html",
+    "thumbnail": "",
+    "published": "2026-09-12",
+    "lastModified": "2026-09-12",
+    "fileSize": 33987
   },
   {
     "slug": "gpt6-astra-dieu-dang-chu-y",
