@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agribank × KPIM — Series chương trình đào tạo Data &amp; AI</title>
+<meta name="description" content="Hành trình đào tạo Data &amp; AI của KPIM Academy cùng Agribank: 10 lớp, 9 tỉnh thành, 800+ học viên.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+<style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
+html { overscroll-behavior-y: none; }
+</style>
+<style>
+html,body{margin:0;padding:0;background:#140507;overflow:hidden}
+*{box-sizing:border-box}
+a{color:#D9B46D;text-decoration:none}a:hover{color:#f0d9a6}
+@keyframes pulseRing{0%{transform:translate(-50%,-50%) scale(.4);opacity:.85}70%{opacity:0}100%{transform:translate(-50%,-50%) scale(3.2);opacity:0}}
+@keyframes drawPath{to{stroke-dashoffset:0}}
+@keyframes dashFlow{to{stroke-dashoffset:-800}}
+@keyframes riseIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes sweep{0%{transform:translateX(-120%)}55%,100%{transform:translateX(220%)}}
+@keyframes drift{0%{transform:translateY(12%) rotate(0deg);opacity:0}20%{opacity:.16}100%{transform:translateY(-120%) rotate(160deg);opacity:0}}
+@keyframes progressRun{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes confettiFall{0%{opacity:0;transform:translate(0,0) rotate(0deg)}12%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(420deg)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+#stage{position:relative;width:100%;aspect-ratio:16/9;max-height:100vh;margin:0 auto;container-type:size;overflow:hidden;
+  background:radial-gradient(120% 90% at 18% 8%,#8B1E2D 0%,#5d1120 38%,#2a0810 70%,#140507 100%);
+  font-family:'Be Vietnam Pro',system-ui,sans-serif;color:#F7F3F0;display:flex;flex-direction:column}
+#mobile{display:none}
+html.force-mobile #stage{display:none}
+html.force-mobile #mobile{display:block}
+html.force-mobile,html.force-mobile body{overflow:auto}
+@media (max-width:900px){
+  html,body{overflow:auto;background:#140507}
+  #stage{display:none}
+  #mobile{display:block}
+}
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="neuralBg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.85;z-index:0"></canvas>
+  <div style="position:absolute;inset:0;pointer-events:none;opacity:.45;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:4cqw 4cqw;mask-image:radial-gradient(70% 60% at 30% 45%,#000 0%,transparent 80%)"></div>
+  <div style="position:absolute;inset:0;pointer-events:none">
+    <div style="position:absolute;left:8%;bottom:0;width:1.1cqw;height:1.1cqw;border:1px solid #D9B46D;border-radius:2px;animation:drift 13s linear infinite"></div>
+    <div style="position:absolute;left:24%;bottom:0;width:.9cqw;height:.9cqw;border:1px solid #7fd7e8;border-radius:50%;animation:drift 17s linear 3s infinite"></div>
+    <div style="position:absolute;left:41%;bottom:0;width:1.3cqw;height:1.3cqw;border:1px solid rgba(255,255,255,.6);animation:drift 15s linear 6s infinite"></div>
+    <div style="position:absolute;left:63%;bottom:0;width:1cqw;height:1cqw;border:1px solid #D9B46D;border-radius:50%;animation:drift 19s linear 1.5s infinite"></div>
+    <div style="position:absolute;left:86%;bottom:0;width:1.2cqw;height:1.2cqw;border:1px solid #9b8bd8;border-radius:2px;animation:drift 16s linear 8s infinite"></div>
+  </div>
+  <div id="fireworks" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:6;opacity:.95"></div>
+
+  <header style="position:relative;z-index:7;display:flex;align-items:flex-start;justify-content:space-between;padding:2cqw 3cqw .8cqw;animation:fadeIn .7s ease both">
+    <div style="display:flex;align-items:center;gap:1.4cqw">
+      <div style="display:flex;align-items:center;gap:1.1cqw">
+        <img src="assets/logos/kpim-crop.png" alt="KPIM" style="height:1.5cqw;width:auto;display:block;filter:drop-shadow(0 1px 4px rgba(0,0,0,.35))">
+        <div style="width:1px;height:2.2cqw;background:rgba(255,255,255,.3)"></div>
+        <div style="background:#fff;border-radius:.35cqw;padding:.3cqw .55cqw;display:flex;align-items:center">
+          <img src="assets/logos/agribank-crop.png" alt="Agribank" style="height:1.5cqw;width:auto;display:block">
+        </div>
+      </div>
+      <div style="width:1px;height:2.5cqw;background:rgba(255,255,255,.18)"></div>
+      <div>
+        <div style="display:flex;align-items:center;gap:.7cqw">
+          <div style="font-weight:600;font-size:1.2cqw;letter-spacing:.1em;color:#fff">SERIES CHƯƠNG TRÌNH ĐÀO TẠO AGRIBANK</div>
+          <button id="fwBtn" aria-label="Bật hoặc tắt hiệu ứng pháo hoa" title="Hiệu ứng pháo hoa" style="width:1.9cqw;height:1.9cqw;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(217,180,109,.75);background:rgba(217,180,109,.2);color:#F0D9A6;transition:background .3s ease,border-color .3s ease,color .3s ease"><svg viewBox="0 0 24 24" width="60%" height="60%" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"></circle><line x1="12" y1="2.5" x2="12" y2="6.5"></line><line x1="12" y1="17.5" x2="12" y2="21.5"></line><line x1="2.5" y1="12" x2="6.5" y2="12"></line><line x1="17.5" y1="12" x2="21.5" y2="12"></line><line x1="5.2" y1="5.2" x2="8" y2="8"></line><line x1="16" y1="16" x2="18.8" y2="18.8"></line><line x1="18.8" y1="5.2" x2="16" y2="8"></line><line x1="8" y1="16" x2="5.2" y2="18.8"></line></svg></button>
+        </div>
+        <div style="font-size:.8cqw;letter-spacing:.08em;color:#D9B46D;margin-top:.2cqw">KHOÁ HỌC PHÂN TÍCH DỮ LIỆU VÀ TRỰC QUAN BÁO CÁO</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.3cqw">
+      <div style="font-size:.76cqw;letter-spacing:.22em;color:rgba(255,255,255,.5)">TRAINING JOURNEY</div>
+      <div style="font-size:.96cqw;font-weight:500">Hành trình nâng cao năng lực số và phân tích dữ liệu cùng Agribank</div>
+    </div>
+  </header>
+
+  <div style="position:relative;z-index:2;flex:1;min-height:0;display:grid;grid-template-columns:45fr 55fr;gap:2cqw;padding:.4cqw 3cqw 1.8cqw">
+    <section style="position:relative;display:flex;flex-direction:column;min-height:0;gap:.4cqw">
+      <div id="mapBox" style="position:relative;flex:1;min-height:0">
+        <div style="position:absolute;inset:-4% -8%;background:radial-gradient(50% 45% at 50% 45%,rgba(217,180,109,.2),transparent 70%);pointer-events:none"></div>
+        <vn-map id="vnmap" style="position:absolute;inset:0;overflow:hidden"></vn-map>
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3">
+          <line id="ln1" stroke="#fff" stroke-opacity=".5" stroke-width=".3" stroke-dasharray="1.2 1.2"></line>
+          <line id="ln2" stroke="#fff" stroke-opacity=".5" stroke-width=".3" stroke-dasharray="1.2 1.2"></line>
+          <line id="ln3" stroke="#fff" stroke-opacity=".5" stroke-width=".3" stroke-dasharray="1.2 1.2"></line>
+        </svg>
+        <div id="slots"></div>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:0 .2cqw">
+        <div id="phaseLabel" style="font-size:.7cqw;letter-spacing:.18em;color:rgba(255,255,255,.6)"></div>
+        <div id="mapDots" style="display:flex;align-items:center;gap:.45cqw"></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.8cqw;padding:.8cqw .9cqw;border-radius:.9cqw;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);animation:riseIn .6s ease 2.2s both">
+        <div><div class="kpi" data-to="9" data-pad="2" style="font-size:1.7cqw;font-weight:700;color:#D9B46D;line-height:1">00</div><div style="font-size:.66cqw;letter-spacing:.1em;color:rgba(255,255,255,.66);margin-top:.15cqw">TỈNH THÀNH</div></div>
+        <div><div class="kpi" data-to="10" data-pad="2" style="font-size:1.7cqw;font-weight:700;color:#D9B46D;line-height:1">00</div><div style="font-size:.66cqw;letter-spacing:.1em;color:rgba(255,255,255,.66);margin-top:.15cqw">LỚP ĐÀO TẠO</div></div>
+        <div><div class="kpi" data-to="200" data-suffix="+" style="font-size:1.7cqw;font-weight:700;color:#D9B46D;line-height:1">0</div><div style="font-size:.66cqw;letter-spacing:.1em;color:rgba(255,255,255,.66);margin-top:.15cqw">GIỜ ĐÀO TẠO</div></div>
+        <div><div class="kpi" data-to="800" data-suffix="+" style="font-size:1.7cqw;font-weight:700;color:#D9B46D;line-height:1">0</div><div style="font-size:.66cqw;letter-spacing:.1em;color:rgba(255,255,255,.66);margin-top:.15cqw">HỌC VIÊN</div></div>
+      </div>
+    </section>
+
+    <section style="display:grid;grid-template-rows:auto 1fr;gap:1.1cqw;min-height:0">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1cqw;align-items:center">
+        <div style="position:relative;overflow:hidden;border-radius:1.3cqw;background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.16);padding:.5cqw;transition:transform .42s cubic-bezier(.2,.7,.2,1),box-shadow .42s ease;box-shadow:0 .9cqw 2cqw rgba(0,0,0,.36);animation:riseIn .6s ease 2.4s both">
+          <div style="height:10.4cqw;border-radius:1cqw;background-image:url('assets/photos/product-01.jpg');background-size:cover;background-position:center"></div>
+          <div style="position:absolute;top:0;left:0;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent);animation:sweep 9s ease-in-out 1.5s infinite;pointer-events:none"></div>
+        </div>
+        <div style="position:relative;overflow:hidden;border-radius:1.3cqw;background:linear-gradient(160deg,rgba(255,255,255,.2),rgba(255,255,255,.07));border:1px solid rgba(217,180,109,.45);padding:.5cqw;transform:scale(1.05) translateY(-.5cqw);transition:transform .42s cubic-bezier(.2,.7,.2,1),box-shadow .42s ease;box-shadow:0 .9cqw 2cqw rgba(0,0,0,.36);animation:riseIn .6s ease 2.5s both">
+          <div style="height:10.4cqw;border-radius:1cqw;background-image:url('assets/photos/product-02.jpg');background-size:cover;background-position:center"></div>
+          <div style="position:absolute;top:0;left:0;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent);animation:sweep 9s ease-in-out 3s infinite;pointer-events:none"></div>
+        </div>
+        <div style="position:relative;overflow:hidden;border-radius:1.3cqw;background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.16);padding:.5cqw;transition:transform .42s cubic-bezier(.2,.7,.2,1),box-shadow .42s ease;box-shadow:0 .9cqw 2cqw rgba(0,0,0,.36);animation:riseIn .6s ease 2.6s both">
+          <div style="height:10.4cqw;border-radius:1cqw;background-image:url('assets/photos/product-03.jpg');background-size:cover;background-position:center"></div>
+          <div style="position:absolute;top:0;left:0;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent);animation:sweep 9s ease-in-out 4.5s infinite;pointer-events:none"></div>
+        </div>
+      </div>
+
+      <div id="album" style="position:relative;min-height:0;display:flex;flex-direction:column;padding:.9cqw 1.1cqw;border-radius:1.3cqw;background:rgba(0,0,0,.26);border:1px solid rgba(255,255,255,.12);animation:riseIn .6s ease 2.65s both">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between">
+          <div>
+            <div style="font-size:.74cqw;letter-spacing:.22em;color:#D9B46D">TRAINING MOMENTS</div>
+            <div style="font-size:.78cqw;color:rgba(255,255,255,.62);margin-top:.12cqw">Những khoảnh khắc đáng nhớ trên hành trình chuyển đổi số của Agribank</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.45cqw">
+            <button id="prev" aria-label="Ảnh trước" style="width:1.8cqw;height:1.8cqw;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06);color:#fff;font-size:.8cqw;cursor:pointer">←</button>
+            <button id="next" aria-label="Ảnh tiếp theo" style="width:1.8cqw;height:1.8cqw;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06);color:#fff;font-size:.8cqw;cursor:pointer">→</button>
+          </div>
+        </div>
+        <div id="deck" style="position:relative;flex:1;min-height:0;margin-top:.6cqw;overflow:hidden;padding-right:.2cqw"></div>
+        <div style="display:flex;align-items:center;gap:.7cqw;margin-top:.55cqw">
+          <div id="counter" style="font-family:ui-monospace,Menlo,monospace;font-size:.68cqw;color:#D9B46D;letter-spacing:.06em">01 / 14</div>
+          <div style="position:relative;flex:1;height:2px;background:rgba(255,255,255,.14);border-radius:2px;overflow:hidden">
+            <div id="progress" style="position:absolute;inset:0;transform-origin:left center;background:linear-gradient(90deg,#D9B46D,#e2566e);animation:progressRun 5s linear infinite"></div>
+          </div>
+          <div style="font-size:.64cqw;letter-spacing:.14em;color:rgba(255,255,255,.42)">TỰ CHUYỂN 5 GIÂY · ĐƯA CHUỘT VÀO ĐỂ DỪNG</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div id="mobile">
+  <div style="max-width:520px;margin:0 auto;padding:20px 16px 40px;font-family:'Be Vietnam Pro',system-ui,sans-serif;color:#F7F3F0;
+    background:radial-gradient(120% 60% at 20% 0%,#8B1E2D 0%,#5d1120 34%,#2a0810 66%,#140507 100%);min-height:100vh">
+
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="assets/logos/kpim-crop.png" alt="KPIM" style="height:18px;width:auto">
+      <div style="width:1px;height:20px;background:rgba(255,255,255,.3)"></div>
+      <div style="background:#fff;border-radius:4px;padding:4px 6px;display:flex"><img src="assets/logos/agribank-crop.png" alt="Agribank" style="height:14px;width:auto"></div>
+    </div>
+    <h1 style="margin:16px 0 4px;font-size:19px;line-height:1.3;font-weight:600;letter-spacing:.02em">SERIES CHƯƠNG TRÌNH ĐÀO TẠO AGRIBANK</h1>
+    <div style="font-size:12px;letter-spacing:.06em;color:#D9B46D">KHOÁ HỌC PHÂN TÍCH DỮ LIỆU VÀ TRỰC QUAN BÁO CÁO</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.7);margin-top:8px">Hành trình nâng cao năng lực số và phân tích dữ liệu cùng Agribank</div>
+
+    <div style="margin-top:22px;font-size:11px;letter-spacing:.2em;color:#D9B46D">BẢN ĐỒ HÀNH TRÌNH</div>
+    <div style="position:relative;height:430px;margin-top:10px;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)">
+      <vn-map id="vnmapM" style="position:absolute;inset:0;overflow:hidden"></vn-map>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+      <div style="padding:12px;border-radius:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)"><div class="kpi" data-to="9" data-pad="2" style="font-size:24px;font-weight:700;color:#D9B46D;line-height:1">00</div><div style="font-size:11px;letter-spacing:.08em;color:rgba(255,255,255,.66);margin-top:4px">TỈNH THÀNH</div></div>
+      <div style="padding:12px;border-radius:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)"><div class="kpi" data-to="10" data-pad="2" style="font-size:24px;font-weight:700;color:#D9B46D;line-height:1">00</div><div style="font-size:11px;letter-spacing:.08em;color:rgba(255,255,255,.66);margin-top:4px">LỚP ĐÀO TẠO</div></div>
+      <div style="padding:12px;border-radius:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)"><div class="kpi" data-to="200" data-suffix="+" style="font-size:24px;font-weight:700;color:#D9B46D;line-height:1">0</div><div style="font-size:11px;letter-spacing:.08em;color:rgba(255,255,255,.66);margin-top:4px">GIỜ ĐÀO TẠO</div></div>
+      <div style="padding:12px;border-radius:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)"><div class="kpi" data-to="800" data-suffix="+" style="font-size:24px;font-weight:700;color:#D9B46D;line-height:1">0</div><div style="font-size:11px;letter-spacing:.08em;color:rgba(255,255,255,.66);margin-top:4px">HỌC VIÊN</div></div>
+    </div>
+
+    <div style="margin-top:14px;display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none" id="mLocs"></div>
+
+    <div style="margin-top:26px;font-size:11px;letter-spacing:.2em;color:#D9B46D">SẢN PHẨM ĐÀO TẠO</div>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:10px">
+      <div style="aspect-ratio:16/10;border-radius:14px;background-image:url('assets/photos/product-01.jpg');background-size:cover;background-position:center;border:1px solid rgba(255,255,255,.14)"></div>
+      <div style="aspect-ratio:16/10;border-radius:14px;background-image:url('assets/photos/product-02.jpg');background-size:cover;background-position:center;border:1px solid rgba(217,180,109,.45)"></div>
+      <div style="aspect-ratio:16/10;border-radius:14px;background-image:url('assets/photos/product-03.jpg');background-size:cover;background-position:center;border:1px solid rgba(255,255,255,.14)"></div>
+    </div>
+
+    <div style="margin-top:26px;display:flex;align-items:flex-end;justify-content:space-between">
+      <div>
+        <div style="font-size:11px;letter-spacing:.2em;color:#D9B46D">TRAINING MOMENTS</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.62);margin-top:4px">Những khoảnh khắc đáng nhớ trên hành trình chuyển đổi số của Agribank</div>
+      </div>
+    </div>
+    <div id="mSlide" style="position:relative;margin-top:10px;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background-size:cover;background-position:center;border:1px solid rgba(255,255,255,.2);display:flex;align-items:flex-end">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,5,7,.9) 0%,rgba(20,5,7,.2) 48%,transparent 76%)"></div>
+      <div style="position:relative;padding:14px 14px 16px;width:100%">
+        <div id="mTag" style="font-size:11px;letter-spacing:.16em;color:#D9B46D"></div>
+        <div id="mTitle" style="font-size:17px;font-weight:600;margin-top:4px;line-height:1.25"></div>
+        <div id="mMeta" style="font-size:12px;color:rgba(255,255,255,.75);margin-top:3px"></div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
+      <button id="mPrev" aria-label="Ảnh trước" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.07);color:#fff;font-size:16px">←</button>
+      <div id="mCounter" style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#D9B46D"></div>
+      <button id="mNext" aria-label="Ảnh tiếp theo" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.07);color:#fff;font-size:16px">→</button>
+    </div>
+  </div>
+</div>
+
+<script src="vietnam-map.js"></script>
+<script>
+(function () {
+  var P = "assets/photos/";
+  var LOCS = {
+    "K08 - Lào Cai":        { label: "K08 · LÀO CAI",         img: P+"PTDL-26-08.jpg", meta: "Chuyển đổi số chi nhánh vùng cao" },
+    "K01 - Hà Nội":         { label: "K01 · HÀ NỘI",          img: P+"PTDL-26-01.jpg",  meta: "Khai giảng khoá Phân tích dữ liệu" },
+    "K03 - Hải Phòng":      { label: "K03 · HẢI PHÒNG",       img: P+"Support-01.jpg",  meta: "Trực quan hoá dữ liệu với Power BI" },
+    "K04 · K06 - Ninh Bình":{ label: "K04 · K06 · NINH BÌNH", img: P+"PTDL-26-04.jpg",  meta: "Hai lớp · Ứng dụng AI trong công việc" },
+    "K09 - Thanh Hóa":      { label: "K09 · THANH HÓA",       img: P+"PTDL-26-09.jpg", meta: "Trợ lý AI cho nghiệp vụ ngân hàng" },
+    "K02 - Nghệ An":        { label: "K02 · NGHỆ AN",         img: P+"Support-02.jpg",  meta: "Phân tích dữ liệu nghiệp vụ" },
+    "K10 - Lâm Đồng":       { label: "K10 · LÂM ĐỒNG",        img: P+"PTDL-26-10.jpg", meta: "Lớp tổng kết series PTDL 2026" },
+    "K05 - Long Hải":       { label: "K05 · LONG HẢI",        img: P+"PTDL-26-05.jpg",  meta: "Kể chuyện bằng dữ liệu" },
+    "K07 - Cần Thơ":        { label: "K07 · CẦN THƠ",         img: P+"PTDL-26-07.jpg",  meta: "Thực hành theo nhóm · Tây Nam Bộ" }
+  };
+  var GEO = [
+    { city: "K08 - Lào Cai", lat: 22.486, lon: 103.975 },
+    { city: "K01 - Hà Nội", lat: 21.028, lon: 105.854 },
+    { city: "K03 - Hải Phòng", lat: 20.865, lon: 106.684 },
+    { city: "K04 · K06 - Ninh Bình", lat: 20.254, lon: 105.975 },
+    { city: "K09 - Thanh Hóa", lat: 19.807, lon: 105.777 },
+    { city: "K02 - Nghệ An", lat: 18.679, lon: 105.681 },
+    { city: "K10 - Lâm Đồng", lat: 11.94, lon: 108.438 },
+    { city: "K05 - Long Hải", lat: 10.386, lon: 107.214 },
+    { city: "K07 - Cần Thơ", lat: 10.045, lon: 105.746 }
+  ];
+  var PHASES = [
+    ["K01 - Hà Nội", "K02 - Nghệ An", "K05 - Long Hải"],
+    ["K03 - Hải Phòng", "K09 - Thanh Hóa", "K10 - Lâm Đồng"],
+    ["K08 - Lào Cai", "K04 · K06 - Ninh Bình", "K07 - Cần Thơ"]
+  ];
+  var PHASE_LABELS = ["ĐIỂM ĐÀO TẠO · NHÓM 1/3 · K01 · K02 · K05", "ĐIỂM ĐÀO TẠO · NHÓM 2/3 · K03 · K09 · K10", "ĐIỂM ĐÀO TẠO · NHÓM 3/3 · K08 · K04/K06 · K07"];
+  var GALLERY = [
+    { img: P+"PTDL-26-01.jpg",  tag: "K01 · HÀ NỘI",    title: "Khai giảng khoá Phân tích dữ liệu", meta: "Lớp mở đầu hành trình Data & AI" },
+    { img: P+"Support-02.jpg",  tag: "K02 · NGHỆ AN",   title: "Phân tích dữ liệu nghiệp vụ", meta: "Chi nhánh khu vực Bắc Trung Bộ" },
+    { img: P+"Support-01.jpg",  tag: "K03 · HẢI PHÒNG", title: "Thực hành trực quan hoá dữ liệu", meta: "Buổi thực hành Power BI" },
+    { img: P+"PTDL-26-04.jpg",  tag: "K04 · NINH BÌNH", title: "Ứng dụng AI trong công việc", meta: "Lớp khu vực Đồng bằng Bắc Bộ" },
+    { img: P+"PTDL-26-05.jpg",  tag: "K05 · LONG HẢI",  title: "Kể chuyện bằng dữ liệu", meta: "Lớp khu vực Đông Nam Bộ" },
+    { img: P+"PTDL-26-06.jpg",  tag: "K06 · NINH BÌNH", title: "Tổng kết lớp K06 · Ninh Bình", meta: "Trao chứng nhận hoàn thành", celebrate: true },
+    { img: P+"PTDL-26-07.jpg",  tag: "K07 · CẦN THƠ",   title: "Thực hành theo nhóm", meta: "Lớp khu vực Tây Nam Bộ" },
+    { img: P+"PTDL-26-08.jpg", tag: "K08 · LÀO CAI",   title: "Chuyển đổi số tại chi nhánh vùng cao", meta: "Lớp khu vực Tây Bắc" },
+    { img: P+"PTDL-26-09.jpg", tag: "K09 · THANH HÓA", title: "Trợ lý AI cho nghiệp vụ ngân hàng", meta: "Ảnh chụp toàn lớp", celebrate: true },
+    { img: P+"PTDL-26-10.jpg", tag: "K10 · LÂM ĐỒNG",  title: "Tổng kết series PTDL 2026", meta: "10 lớp · 9 tỉnh thành · 800+ học viên", celebrate: true },
+    { img: P+"Support-00.jpg",  tag: "HỖ TRỢ ĐÀO TẠO",  title: "Đội ngũ vận hành lớp học", meta: "Chuẩn bị hạ tầng và tài liệu lớp học" },
+    { img: P+"Support-03.jpg",  tag: "HỖ TRỢ ĐÀO TẠO",  title: "Hướng dẫn thực hành 1:1", meta: "Trợ giảng đồng hành cùng học viên" },
+    { img: P+"Support-04.jpg",  tag: "HỖ TRỢ ĐÀO TẠO",  title: "Thảo luận nhóm", meta: "Tình huống nghiệp vụ thực tế tại Agribank" },
+    { img: P+"Support-05.jpg",  tag: "HỖ TRỢ ĐÀO TẠO",  title: "Khoảnh khắc kết thúc khoá học", meta: "Ảnh lưu niệm toàn lớp", celebrate: true }
+  ];
+  var CARD_W = 26, CARD_H = 25, GUTTER_L = 0.5, GUTTER_R = 73.5;
+  var FRAMES = [
+    { left: 0, top: 0, w: 62, h: 100, rot: 0, z: 6, op: 1, blur: 0, sh: "0 1.4cqw 2.8cqw rgba(0,0,0,.6)" },
+    { left: 48, top: 8, w: 36, h: 84, rot: 3, z: 5, op: .82, blur: 0, sh: "0 1cqw 2.2cqw rgba(0,0,0,.5)" },
+    { left: 66, top: 16, w: 28, h: 68, rot: 6, z: 4, op: .5, blur: 1.2, sh: "0 .8cqw 1.8cqw rgba(0,0,0,.45)" },
+    { left: 77, top: 23, w: 22, h: 56, rot: 9, z: 3, op: .26, blur: 2.4, sh: "0 .6cqw 1.4cqw rgba(0,0,0,.4)" }
+  ];
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var idx = 0, phase = 0, paused = false, pts = null, fwOn = true;
+
+  document.getElementById("vnmap").setAttribute("locations", JSON.stringify(GEO));
+  document.getElementById("vnmapM").setAttribute("locations", JSON.stringify(GEO));
+
+  (function mobileLocs() {
+    var host = document.getElementById("mLocs");
+    GEO.slice().sort(function (a, b) { return b.lat - a.lat; }).forEach(function (g) {
+      var info = LOCS[g.city];
+      var c = document.createElement("div");
+      c.style.cssText = "flex:0 0 150px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.95);color:#2a0810";
+      c.innerHTML = "<div style=\"height:92px;background-image:url('" + info.img + "');background-size:cover;background-position:center\"></div>" +
+        '<div style="padding:8px 9px 10px"><div style="font-size:11.5px;font-weight:700;color:#7C1725;letter-spacing:.03em">' + info.label + '</div>' +
+        '<div style="font-size:10.5px;color:#6b5f5a;margin-top:3px;line-height:1.3">' + info.meta + '</div></div>';
+      host.appendChild(c);
+    });
+  })();
+
+  /* ---------- KPI count-up ---------- */
+  var t0 = performance.now();
+  function counters(now) {
+    var t = Math.min(1, (now - t0) / 1500);
+    document.querySelectorAll(".kpi").forEach(function (el) {
+      var to = +el.dataset.to, v = Math.round(to * (0.15 + 0.85 * t) * t);
+      var s = el.dataset.pad ? String(v).padStart(+el.dataset.pad, "0") : String(v);
+      el.textContent = s + (t >= 1 && el.dataset.suffix ? el.dataset.suffix : "");
+    });
+    if (t < 1) requestAnimationFrame(counters);
+  }
+  requestAnimationFrame(counters);
+
+  /* ---------- neural network background ---------- */
+  (function neural() {
+    var cv = document.getElementById("neuralBg");
+    if (!cv || reduce) return;
+    var ctx = cv.getContext("2d");
+    function size() { var r = cv.getBoundingClientRect(); cv.width = r.width; cv.height = r.height; }
+    size(); window.addEventListener("resize", size);
+    var N = 78, nodes = [];
+    for (var i = 0; i < N; i++) nodes.push({
+      x: Math.random(), y: Math.random(),
+      vx: (Math.random() - .5) * 0.00022, vy: (Math.random() - .5) * 0.00022,
+      r: 1.1 + Math.random() * 2.1
+    });
+    (function draw() {
+      var w = cv.width, h = cv.height;
+      ctx.clearRect(0, 0, w, h);
+      nodes.forEach(function (n) {
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > 1) n.vx *= -1;
+        if (n.y < 0 || n.y > 1) n.vy *= -1;
+      });
+      for (var i = 0; i < N; i++) for (var k = i + 1; k < N; k++) {
+        var dx = (nodes[i].x - nodes[k].x) * w, dy = (nodes[i].y - nodes[k].y) * h, d = Math.hypot(dx, dy);
+        if (d < w * .135) {
+          ctx.strokeStyle = "rgba(217,180,109," + (.34 * (1 - d / (w * .135))).toFixed(3) + ")";
+          ctx.lineWidth = .9; ctx.beginPath();
+          ctx.moveTo(nodes[i].x * w, nodes[i].y * h); ctx.lineTo(nodes[k].x * w, nodes[k].y * h); ctx.stroke();
+        }
+      }
+      nodes.forEach(function (n, i) {
+        ctx.fillStyle = i % 6 === 0 ? "rgba(127,215,232,.7)" : "rgba(255,240,220,.5)";
+        ctx.beginPath();
+        ctx.shadowColor = i % 6 === 0 ? "rgba(127,215,232,.8)" : "rgba(217,180,109,.7)";
+        ctx.shadowBlur = 6;
+        ctx.arc(n.x * w, n.y * h, n.r, 0, Math.PI * 2); ctx.fill(); ctx.shadowBlur = 0;
+      });
+      requestAnimationFrame(draw);
+    })();
+  })();
+
+  /* ---------- fireworks ---------- */
+  function shell(host, originX, originY, dir, seed) {
+    for (var i = 0; i < 30; i++) {
+      var ang = (i / 30) * Math.PI * 2, r = 150 + (i % 5) * 48, big = i % 4 === 0;
+      var el = document.createElement("span");
+      el.style.cssText = "position:absolute;left:" + originX + ";top:" + originY +
+        ";width:" + (big ? 14 : 8) + "px;height:" + (big ? 6 : 8) + "px;border-radius:" + (big ? "2px" : "50%") +
+        ";background:" + (i % 3 === 0 ? "#fff" : (i % 2 ? "#F0D9A6" : "#e2566e")) +
+        ";box-shadow:0 0 12px " + (i % 2 ? "rgba(240,217,166,.95)" : "rgba(226,86,110,.8)") + ";opacity:0" +
+        ";--dx:" + (Math.cos(ang) * r + dir * 300) + "px;--dy:" + (Math.sin(ang) * r - 120) + "px" +
+        ";animation:confettiFall " + (2.8 + (i % 5) * .28) + "s ease-out " + (seed * .38 + (i % 6) * .05) + "s forwards";
+      host.appendChild(el);
+    }
+  }
+  function fire() {
+    var host = document.getElementById("fireworks");
+    if (!fwOn || reduce) { host.innerHTML = ""; return; }
+    host.innerHTML = "";
+    [["5%", "30%", 1, 0], ["95%", "30%", -1, 0], ["6%", "52%", 1, 1], ["94%", "52%", -1, 1], ["8%", "74%", 1, 2], ["92%", "74%", -1, 2]]
+      .forEach(function (a) { shell(host, a[0], a[1], a[2], a[3]); });
+  }
+  document.getElementById("fwBtn").addEventListener("click", function () {
+    fwOn = !fwOn;
+    this.style.borderColor = fwOn ? "rgba(217,180,109,.75)" : "rgba(255,255,255,.28)";
+    this.style.background = fwOn ? "rgba(217,180,109,.2)" : "rgba(255,255,255,.06)";
+    this.style.color = fwOn ? "#F0D9A6" : "rgba(255,255,255,.55)";
+    fire();
+  });
+  fire();
+  setInterval(fire, 11000);
+
+  /* ---------- map photo cards per phase ---------- */
+  window.addEventListener("vn-map-ready", function (e) { pts = e.detail; renderPhase(); });
+  if (window.__vnMapPoints) { pts = window.__vnMapPoints; }
+
+  function placements() {
+    var group = PHASES[phase];
+    var out = group.map(function (city) {
+      var p = pts && pts[city], mx = p ? p[0] : 50, my = p ? p[1] : 50;
+      var toLeft = mx < 45;
+      return { city: city, mx: mx, my: my, toLeft: toLeft, left: toLeft ? GUTTER_L : GUTTER_R,
+        top: Math.max(0, Math.min(100 - CARD_H, my - CARD_H / 2)) };
+    });
+    ["l", "r"].forEach(function (side) {
+      var col = out.filter(function (o) { return side === "l" ? o.toLeft : !o.toLeft; }).sort(function (a, b) { return a.top - b.top; });
+      for (var k = 1; k < col.length; k++) if (col[k].top - col[k - 1].top < CARD_H + 1) col[k].top = col[k - 1].top + CARD_H + 1;
+      var over = col.length ? col[col.length - 1].top - (100 - CARD_H) : 0;
+      if (over > 0) col.forEach(function (o) { o.top = Math.max(0, o.top - over); });
+    });
+    return out;
+  }
+
+  function renderPhase() {
+    document.getElementById("phaseLabel").textContent = PHASE_LABELS[phase];
+    var host = document.getElementById("slots");
+    host.innerHTML = "";
+    var pl = placements();
+    pl.forEach(function (p, n) {
+      var info = LOCS[p.city];
+      var card = document.createElement("div");
+      card.style.cssText = "position:absolute;left:" + p.left + "%;top:" + p.top + "%;width:" + CARD_W + "%;z-index:2;animation:fadeIn .8s ease " + (n * .12) + "s both";
+      card.innerHTML =
+        '<div style="padding:.5cqw;background:rgba(255,255,255,.95);border-radius:.8cqw;box-shadow:0 1cqw 2.2cqw rgba(0,0,0,.5)">' +
+        '<div style="height:5.2cqw;border-radius:.45cqw;background-image:url(\'' + info.img + '\');background-size:cover;background-position:center"></div>' +
+        '<div style="padding:.4cqw .25cqw .1cqw">' +
+        '<div style="font-weight:700;font-size:.78cqw;letter-spacing:.05em;color:#7C1725">' + info.label + '</div>' +
+        '<div style="font-size:.64cqw;color:#6b5f5a;margin-top:.08cqw">' + info.meta + '</div></div></div>';
+      host.appendChild(card);
+      var ln = document.getElementById("ln" + (n + 1));
+      if (ln) {
+        ln.setAttribute("x1", p.toLeft ? p.left + CARD_W : p.left);
+        ln.setAttribute("y1", p.top + CARD_H / 2);
+        ln.setAttribute("x2", p.mx); ln.setAttribute("y2", p.my);
+      }
+    });
+    var active = PHASES[phase], deskOn = document.getElementById("stage").offsetParent !== null;
+    document.querySelectorAll("#vnmap [data-city] .vn-label").forEach(function (el) {
+      el.style.display = deskOn && active.indexOf(el.parentElement.getAttribute("data-city")) > -1 ? "none" : "block";
+    });
+    if (window.vnLayoutLabels) requestAnimationFrame(function () {
+      window.vnLayoutLabels([].slice.call(host.children));
+    });
+    var dots = document.getElementById("mapDots");
+    dots.innerHTML = "";
+    PHASES.forEach(function (_, i) {
+      var b = document.createElement("button");
+      b.setAttribute("aria-label", "Xem nhóm địa điểm " + (i + 1));
+      b.style.cssText = "width:" + (i === phase ? "1.8cqw" : ".5cqw") + ";height:.5cqw;padding:0;border:none;border-radius:999px;cursor:pointer;background:" +
+        (i === phase ? "#D9B46D" : "rgba(255,255,255,.28)") + ";transition:width .4s ease,background .4s ease";
+      b.onclick = function () { phase = i; renderPhase(); };
+      dots.appendChild(b);
+    });
+  }
+  renderPhase();
+  setInterval(function () { phase = (phase + 1) % PHASES.length; renderPhase(); }, 5000);
+
+  /* ---------- photo deck ---------- */
+  var deck = document.getElementById("deck");
+  function renderDeck() {
+    deck.innerHTML = "";
+    GALLERY.map(function (item, i) { return { item: item, i: i, off: (i - idx + GALLERY.length) % GALLERY.length }; })
+      .filter(function (e) { return e.off <= 3; })
+      .sort(function (a, b) { return b.off - a.off; })
+      .forEach(function (e) {
+        var F = FRAMES[e.off], it = e.item;
+        var d = document.createElement("div");
+        d.style.cssText = "position:absolute;left:" + F.left + "%;top:" + F.top + "%;width:" + F.w + "%;height:" + F.h +
+          "%;border-radius:.9cqw;overflow:hidden;cursor:pointer;display:flex;align-items:flex-end;background-image:url('" + it.img +
+          "');background-size:cover;background-position:center;border:1px solid rgba(255,255,255,.35);transform:rotate(" + F.rot +
+          "deg);opacity:" + F.op + ";z-index:" + F.z + ";filter:blur(" + F.blur + "px);box-shadow:" + F.sh +
+          ";transition:all .8s cubic-bezier(.22,.7,.2,1)";
+        d.innerHTML =
+          '<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,5,7,.9) 0%,rgba(20,5,7,.22) 46%,transparent 72%)"></div>' +
+          '<div style="position:relative;padding:1cqw 1.1cqw;width:100%;opacity:' + (e.off === 0 ? 1 : 0) + ';transition:opacity .6s ease .15s">' +
+          '<div style="font-size:.66cqw;letter-spacing:.18em;color:#D9B46D">' + it.tag + '</div>' +
+          '<div style="font-size:1.12cqw;font-weight:600;color:#fff;margin-top:.1cqw;line-height:1.2">' + it.title + '</div>' +
+          '<div style="font-size:.7cqw;color:rgba(255,255,255,.72);margin-top:.08cqw">' + it.meta + '</div></div>' +
+          '<div style="position:absolute;top:.5cqw;right:.6cqw;font-family:ui-monospace,Menlo,monospace;font-size:.6cqw;padding:.1cqw .35cqw;border-radius:.3cqw;background:' +
+          (e.off === 0 ? "rgba(217,180,109,.9);color:#2a0810" : "rgba(20,5,7,.45);color:rgba(255,255,255,.75)") + '">' +
+          String(e.i + 1).padStart(2, "0") + '</div>';
+        d.onclick = function () { go(e.i); };
+        deck.appendChild(d);
+      });
+    document.getElementById("counter").textContent =
+      String(idx + 1).padStart(2, "0") + " / " + String(GALLERY.length).padStart(2, "0");
+    var m = document.getElementById("mSlide"), it = GALLERY[idx];
+    if (m) {
+      m.style.backgroundImage = "url('" + it.img + "')";
+      document.getElementById("mTag").textContent = it.tag;
+      document.getElementById("mTitle").textContent = it.title;
+      document.getElementById("mMeta").textContent = it.meta;
+      document.getElementById("mCounter").textContent =
+        String(idx + 1).padStart(2, "0") + " / " + String(GALLERY.length).padStart(2, "0");
+    }
+    if (GALLERY[idx].celebrate && !reduce) celebrate();
+  }
+  function celebrate() {
+    var host = document.createElement("div");
+    host.style.cssText = "position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:9";
+    for (var i = 0; i < 20; i++) {
+      var a = (i / 20) * Math.PI * 2, el = document.createElement("span");
+      el.style.cssText = "position:absolute;left:50%;top:45%;width:" + (i % 3 === 0 ? 9 : 5) + "px;height:" + (i % 3 === 0 ? 4 : 5) +
+        "px;border-radius:" + (i % 3 === 0 ? "1px" : "50%") + ";background:" + (i % 2 ? "#D9B46D" : "#c8455c") +
+        ";--dx:" + Math.cos(a) * (100 + (i % 5) * 26) + "px;--dy:" + (Math.sin(a) * 76 - 64 - (i % 4) * 18) + "px" +
+        ";animation:confettiFall " + (2.2 + (i % 5) * .22) + "s ease-out " + ((i % 7) * .07) + "s forwards";
+      host.appendChild(el);
+    }
+    deck.appendChild(host);
+    setTimeout(function () { host.remove(); }, 3500);
+  }
+  function go(i) { idx = (i + GALLERY.length) % GALLERY.length; renderDeck(); restartProgress(); }
+  function restartProgress() {
+    var p = document.getElementById("progress");
+    p.style.animation = "none"; void p.offsetWidth;
+    p.style.animation = "progressRun 5s linear infinite";
+  }
+  document.getElementById("mPrev").onclick = function () { go(idx - 1); };
+  document.getElementById("mNext").onclick = function () { go(idx + 1); };
+  document.getElementById("prev").onclick = function () { go(idx - 1); };
+  document.getElementById("next").onclick = function () { go(idx + 1); };
+  var album = document.getElementById("album");
+  album.addEventListener("mouseenter", function () { paused = true; document.getElementById("progress").style.animationPlayState = "paused"; });
+  album.addEventListener("mouseleave", function () { paused = false; document.getElementById("progress").style.animationPlayState = "running"; });
+  renderDeck();
+  setInterval(function () { if (!paused) go(idx + 1); }, 5000);
+})();
+</script>
+</body>
+</html>

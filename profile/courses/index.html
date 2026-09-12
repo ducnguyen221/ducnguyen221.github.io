@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <link href="./assets/css/subpage-shell.css" rel="stylesheet" />
+    <link href="../assets/css/subpage-shell.css" rel="stylesheet" />
 <style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
 html { overscroll-behavior-y: none; }
 /* KHONG dat len body: body co overflow-x:hidden nen overflow-y tu dong thanh
@@ -26,31 +26,31 @@ html { overscroll-behavior-y: none; }
 
     <div class="site-shell">
         <header class="site-header">
-            <a class="brand" href="./index.html">
-                <img alt="Nguyen Quang Duc" src="./assets/images/KPIM-Duc-Nguyen.png" />
+            <a class="brand" href="../index.html">
+                <img alt="Nguyen Quang Duc" src="../assets/images/KPIM-Duc-Nguyen.png" />
                 <span class="brand-title t-lang" data-en="E-Profile" data-vi="Hồ sơ điện tử">E-Profile</span>
             </a>
 
             <nav class="top-nav">
-                <a class="nav-link" data-page-link="profile" href="./index.html"><span
+                <a class="nav-link" data-page-link="profile" href="../index.html"><span
                         class="material-symbols-outlined">person</span><span class="t-lang" data-en="Profile"
                         data-vi="Hồ sơ">Profile</span></a>
-                <a class="nav-link" data-page-link="experience" href="./experience.html"><span
+                <a class="nav-link" data-page-link="experience" href="../experience.html"><span
                         class="material-symbols-outlined">work_history</span><span class="t-lang" data-en="Experience"
                         data-vi="Kinh nghiệm">Experience</span></a>
-                <a class="nav-link" data-page-link="projects" href="./projects.html"><span
+                <a class="nav-link" data-page-link="projects" href="../projects.html"><span
                         class="material-symbols-outlined">workspaces</span><span class="t-lang" data-en="Projects"
                         data-vi="Dự án">Projects</span></a>
-                <a class="nav-link" data-page-link="courses" href="./courses.html"><span
+                <a class="nav-link" data-page-link="courses" href="../courses/"><span
                         class="material-symbols-outlined">school</span><span class="t-lang" data-en="Courses"
                         data-vi="Khóa học">Courses</span></a>
-                <a class="nav-link" data-page-link="socials" href="./socials.html"><span
+                <a class="nav-link" data-page-link="socials" href="../socials.html"><span
                         class="material-symbols-outlined">subscriptions</span><span class="t-lang" data-en="Socials"
                         data-vi="Xã hội">Socials</span></a>
-                <a class="nav-link" data-page-link="solutions" href="./solutions.html"><span
+                <a class="nav-link" data-page-link="solutions" href="../solutions.html"><span
                         class="material-symbols-outlined">widgets</span><span class="t-lang" data-en="Solutions"
                         data-vi="Giải pháp">Solutions</span></a>
-                <a class="nav-link" data-page-link="powerbi" href="./powerbi.html"><span
+                <a class="nav-link" data-page-link="powerbi" href="../powerbi.html"><span
                         class="material-symbols-outlined">bar_chart</span><span class="t-lang"
                         data-en="PowerBI Demo" data-vi="PowerBI Demo">PowerBI Demo</span></a>
             </nav>
@@ -97,6 +97,46 @@ html { overscroll-behavior-y: none; }
                 </div>
             </section>
 
+            <section class="glass-panel hero-panel" id="series">
+                <div class="section-head">
+                    <div>
+                        <h2 class="section-title"><span class="material-symbols-outlined">library_books</span><span
+                                class="t-lang" data-en="Training Program Series"
+                                data-vi="Series chương trình đào tạo">Training Program Series</span></h2>
+                        <p class="section-subtitle t-lang"
+                            data-en="Each series is its own page recapping one enterprise training journey. New programs are added to this grid over time."
+                            data-vi="Mỗi series là một trang riêng tổng kết một hành trình đào tạo doanh nghiệp. Các chương trình mới sẽ được bổ sung dần vào lưới này.">
+                            Each series is its own page recapping one enterprise training journey. New programs are
+                            added to this grid over time.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="series-grid">
+                    <!-- SERIES ITEM: sao chép nguyên khối <a> này cho chương trình kế tiếp.
+                         Ảnh đại diện đặt trong ./assets/images/, trang con đặt trong thư mục riêng. -->
+                    <a class="series-card" href="./agribank-data/">
+                        <img alt="Agribank - Phân tích dữ liệu và lập báo cáo"
+                            src="./assets/images/series-agribank-data.webp" />
+                        <p class="series-meta"><span>Agribank</span><span class="t-lang" data-en="10 classes"
+                                data-vi="10 lớp">10 classes</span><span class="t-lang" data-en="9 provinces"
+                                data-vi="9 tỉnh thành">9 provinces</span><span class="t-lang" data-en="800+ learners"
+                                data-vi="800+ học viên">800+ learners</span></p>
+                        <h3 class="t-lang" data-en="Data Analytics &amp; Reporting"
+                            data-vi="Phân tích dữ liệu và lập báo cáo">Data Analytics &amp; Reporting</h3>
+                        <p class="muted t-lang"
+                            data-en="Full recap of the Agribank journey: route map, class timeline, classroom photos and outcomes."
+                            data-vi="Tổng kết trọn hành trình cùng Agribank: bản đồ hành trình, dòng thời gian các lớp, hình ảnh lớp học và kết quả.">
+                            Full recap of the Agribank journey: route map, class timeline, classroom photos and
+                            outcomes.
+                        </p>
+                        <span class="series-cta"><span class="t-lang" data-en="View series"
+                                data-vi="Xem series">View series</span><span
+                                class="material-symbols-outlined">arrow_forward</span></span>
+                    </a>
+                </div>
+            </section>
+
             <section class="glass-panel hero-panel">
                 <div class="section-head">
                     <div>
@@ -114,7 +154,7 @@ html { overscroll-behavior-y: none; }
 
                 <div class="channel-grid">
                     <article class="social-card">
-                        <img alt="Power BI Basic" src="./assets/images/powerbi_coban_compaclass.jpg" />
+                        <img alt="Power BI Basic" src="../assets/images/powerbi_coban_compaclass.jpg" />
                         <h3>Power BI Basic</h3>
                         <p class="muted t-lang"
                             data-en="Structured onboarding track focused on modeling, visuals, and report thinking."
@@ -123,7 +163,7 @@ html { overscroll-behavior-y: none; }
                         </p>
                     </article>
                     <article class="social-card">
-                        <img alt="Data Analytics Fundamental" src="./assets/images/data-analytics-fundamental.webp" />
+                        <img alt="Data Analytics Fundamental" src="../assets/images/data-analytics-fundamental.webp" />
                         <h3>Data Analytics Fundamental</h3>
                         <p class="muted t-lang"
                             data-en="Foundational path for analytics thinking, business questions, and data storytelling."
@@ -132,7 +172,7 @@ html { overscroll-behavior-y: none; }
                         </p>
                     </article>
                     <article class="social-card">
-                        <img alt="AI in Data Analytics" src="./assets/images/ai-data-analytics.webp" />
+                        <img alt="AI in Data Analytics" src="../assets/images/ai-data-analytics.webp" />
                         <h3>AI in Data Analytics</h3>
                         <p class="muted t-lang"
                             data-en="Applied AI layer for analysts who want faster workflows, synthesis, and insight generation."
@@ -141,7 +181,7 @@ html { overscroll-behavior-y: none; }
                         </p>
                     </article>
                     <article class="social-card">
-                        <img alt="Microsoft Fabric" src="./assets/images/ms-fabric-basic.webp" />
+                        <img alt="Microsoft Fabric" src="../assets/images/ms-fabric-basic.webp" />
                         <h3>Microsoft Fabric Basic</h3>
                         <p class="muted t-lang"
                             data-en="Introductory program for unified analytics stacks and modern Microsoft data workflows."
@@ -154,31 +194,31 @@ html { overscroll-behavior-y: none; }
         </main>
 
         <nav class="bottom-nav">
-            <a class="bottom-link" data-page-link="profile" href="./index.html"><span
+            <a class="bottom-link" data-page-link="profile" href="../index.html"><span
                     class="material-symbols-outlined">person</span><span class="t-lang" data-en="Profile"
                     data-vi="Hồ sơ">Profile</span></a>
-            <a class="bottom-link" data-page-link="experience" href="./experience.html"><span
+            <a class="bottom-link" data-page-link="experience" href="../experience.html"><span
                     class="material-symbols-outlined">work_history</span><span class="t-lang" data-en="Exp"
                     data-vi="KN">Exp</span></a>
-            <a class="bottom-link" data-page-link="projects" href="./projects.html"><span
+            <a class="bottom-link" data-page-link="projects" href="../projects.html"><span
                     class="material-symbols-outlined">workspaces</span><span class="t-lang" data-en="Projects"
                     data-vi="Dự án">Projects</span></a>
-            <a class="bottom-link" data-page-link="courses" href="./courses.html"><span
+            <a class="bottom-link" data-page-link="courses" href="../courses/"><span
                     class="material-symbols-outlined">school</span><span class="t-lang" data-en="Courses"
                     data-vi="Khóa học">Courses</span></a>
-            <a class="bottom-link" data-page-link="socials" href="./socials.html"><span
+            <a class="bottom-link" data-page-link="socials" href="../socials.html"><span
                     class="material-symbols-outlined">subscriptions</span><span class="t-lang" data-en="Social"
                     data-vi="XH">Social</span></a>
-            <a class="bottom-link" data-page-link="solutions" href="./solutions.html"><span
+            <a class="bottom-link" data-page-link="solutions" href="../solutions.html"><span
                     class="material-symbols-outlined">widgets</span><span class="t-lang" data-en="Solutions"
                     data-vi="Giải pháp">Solutions</span></a>
-            <a class="bottom-link" data-page-link="powerbi" href="./powerbi.html"><span
+            <a class="bottom-link" data-page-link="powerbi" href="../powerbi.html"><span
                     class="material-symbols-outlined">bar_chart</span><span class="t-lang" data-en="PowerBI"
                     data-vi="PowerBI">PowerBI</span></a>
         </nav>
     </div>
 
-    <script src="./assets/js/subpage-shell.js"></script>
+    <script src="../assets/js/subpage-shell.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const frame = document.getElementById("discoveryFrame");

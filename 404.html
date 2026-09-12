@@ -29,6 +29,13 @@
       else location.replace("/atlas/");
       return;
     }
+
+    /* 3) Legacy /profile/courses.html -> /profile/courses/ (trang khoa hoc chuyen
+       thanh thu muc de chua cac series chuong trinh dao tao) */
+    if (p === "/profile/courses.html") {
+      location.replace("/profile/courses/" + location.search + location.hash);
+      return;
+    }
   })();
 </script>
 <style>

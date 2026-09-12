@@ -1275,6 +1275,78 @@ html:not(.dark) .project-role-chart::after {
     font-size: 1rem;
 }
 
+/* Series chương trình đào tạo (dùng ở /profile/courses/) — thẻ-là-link, tự giãn cột */
+.series-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+}
+
+.series-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.03);
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.series-card:hover,
+.series-card:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(198, 151, 73, 0.55);
+    background: rgba(198, 151, 73, 0.08);
+}
+
+.series-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.series-card h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.series-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.75rem;
+    margin: 0;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-color);
+}
+
+.series-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: auto;
+    padding-top: 0.15rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.series-card:hover .series-cta .material-symbols-outlined {
+    transform: translateX(3px);
+}
+
+.series-cta .material-symbols-outlined {
+    font-size: 1.15rem;
+    transition: transform 0.2s ease;
+}
+
 .section-head--compact {
     margin-bottom: 0.9rem;
 }
