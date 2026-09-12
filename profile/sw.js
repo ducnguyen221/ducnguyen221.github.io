@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nqd-portfolio-v11';
+const CACHE_NAME = 'nqd-portfolio-v12';
 const ASSETS = [
   './',
   './index.html',
