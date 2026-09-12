@@ -420,7 +420,7 @@ html.force-mobile,html.force-mobile body{overflow:auto}
       el.style.display = deskOn && active.indexOf(el.parentElement.getAttribute("data-city")) > -1 ? "none" : "block";
     });
     if (window.vnLayoutLabels) requestAnimationFrame(function () {
-      window.vnLayoutLabels([].slice.call(host.children));
+      window.vnLayoutLabels([].slice.call(host.children), document.getElementById("vnmap"));
     });
     var dots = document.getElementById("mapDots");
     dots.innerHTML = "";
@@ -487,7 +487,15 @@ html.force-mobile,html.force-mobile body{overflow:auto}
          cham dang toi luot (da co the thay the), hoac no dam vao the anh — de lo thi
          chu chong len anh, doc khong ra. Phai bat display truoc khi do, vi phan tu
          dang an co kich thuoc bang 0. */
-      var cardEl = host.lastElementChild, cr = cardEl.getBoundingClientRect();
+      /* Do khung the bang TOA DO DA TINH, khong dung getBoundingClientRect: the dang
+         chay animation riseIn nen luc do no con lech xuong 18px so voi cho dung cuoi
+         cung — do bang rect se ra mot hinh chu nhat sai vi tri, va nhan chu ngay phia
+         tren the se lot luoi roi bi che mot nua. */
+      var boxRect = box.getBoundingClientRect();
+      var cr = {
+        left: boxRect.left + cx, right: boxRect.left + cx + CW,
+        top: boxRect.top + cy, bottom: boxRect.top + cy + CARD_H
+      };
       box.querySelectorAll("#vnmapM [data-city]").forEach(function (el) {
         var on = el.getAttribute("data-city") === g.city;
         el.style.zIndex = on ? 9 : 7;

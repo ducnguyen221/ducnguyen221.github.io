@@ -163,7 +163,11 @@
 
   // Keep city labels readable: flip / nudge / hide any label that would land on a
   // floating photo card or on another label. Called by the host after cards render.
-  window.vnLayoutLabels = function (cardEls) {
+  // `root` gioi han pham vi vao DUNG mot ban do. Truoc day ham nay quet
+  // document.querySelectorAll("[data-city]") — tuc no sua ca nhan chu cua ban do
+  // KIA. Tren dien thoai, vong lap chang cua desktop van chay va cu 5 giay lai bo
+  // tri lai nhan cua ban do mobile, xoa sach viec an nhan ma the anh vua quyet dinh.
+  window.vnLayoutLabels = function (cardEls, root) {
     var cards = (cardEls || []).map(function (el) { return el.getBoundingClientRect(); });
     var placed = [];
     var hit = function (r) {
@@ -174,7 +178,7 @@
       }
       return false;
     };
-    var markers = [].slice.call(document.querySelectorAll("[data-city]"))
+    var markers = [].slice.call((root || document).querySelectorAll("[data-city]"))
       .filter(function (m) { var l = m.querySelector(".vn-label"); return l && l.style.display !== "none"; })
       .sort(function (a, b) { return a.getBoundingClientRect().top - b.getBoundingClientRect().top; });
 
