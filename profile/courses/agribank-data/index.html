@@ -18,7 +18,7 @@ html,body{margin:0;padding:0;background:#140507;overflow:hidden}
 *{box-sizing:border-box}
 a{color:#D9B46D;text-decoration:none}a:hover{color:#f0d9a6}
 @keyframes pulseRing{0%{transform:translate(-50%,-50%) scale(.4);opacity:.85}70%{opacity:0}100%{transform:translate(-50%,-50%) scale(3.2);opacity:0}}
-@keyframes drawPath{to{stroke-dashoffset:0}}
+@keyframes drawPath{from{stroke-dashoffset:6000}to{stroke-dashoffset:0}}
 @keyframes dashFlow{to{stroke-dashoffset:-800}}
 @keyframes riseIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -26,7 +26,12 @@ a{color:#D9B46D;text-decoration:none}a:hover{color:#f0d9a6}
 @keyframes drift{0%{transform:translateY(12%) rotate(0deg);opacity:0}20%{opacity:.16}100%{transform:translateY(-120%) rotate(160deg);opacity:0}}
 @keyframes progressRun{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes confettiFall{0%{opacity:0;transform:translate(0,0) rotate(0deg)}12%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(420deg)}}
-@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+/* CO Y KHONG tat hieu ung theo prefers-reduced-motion (Duc chot 12/09/2026).
+   Truoc day co rule *{animation:none!important} cho che do giam chuyen dong. No
+   khong chi lam trang dung yen — no lam MAT HAN vien ban do: vien duoc ve bang
+   stroke-dashoffset chay tu 6000 ve 0, khong chay animation thi dashoffset dung
+   nguyen 6000 va vien khong he xuat hien. Kem theo do la mat nen mang no-ron,
+   mat phao hoa, mat phao giay. May bat Low Power Mode se thay mot trang tro tron. */
 #stage{position:relative;width:100%;aspect-ratio:16/9;max-height:100vh;margin:0 auto;container-type:size;overflow:hidden;
   background:radial-gradient(120% 90% at 18% 8%,#8B1E2D 0%,#5d1120 38%,#2a0810 70%,#140507 100%);
   font-family:'Be Vietnam Pro',system-ui,sans-serif;color:#F7F3F0;display:flex;flex-direction:column}
@@ -202,7 +207,7 @@ html.force-mobile,html.force-mobile body{overflow:auto}
   </div>
 </div>
 
-<script src="vietnam-map.js?v=2"></script>
+<script src="vietnam-map.js?v=3"></script>
 <script>
 (function () {
   var P = "assets/photos/";
@@ -257,7 +262,6 @@ html.force-mobile,html.force-mobile body{overflow:auto}
     { left: 66, top: 16, w: 28, h: 68, rot: 6, z: 4, op: .5, blur: 1.2, sh: "0 .8cqw 1.8cqw rgba(0,0,0,.45)" },
     { left: 77, top: 23, w: 22, h: 56, rot: 9, z: 3, op: .26, blur: 2.4, sh: "0 .6cqw 1.4cqw rgba(0,0,0,.4)" }
   ];
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var idx = 0, phase = 0, paused = false, pts = null, fwOn = true;
 
   document.getElementById("vnmap").setAttribute("locations", JSON.stringify(GEO));
@@ -292,7 +296,7 @@ html.force-mobile,html.force-mobile body{overflow:auto}
   /* ---------- neural network background ---------- */
   function neural(id) {
     var cv = document.getElementById(id);
-    if (!cv || reduce) return;
+    if (!cv) return;
     var ctx = cv.getContext("2d");
     function size() { var r = cv.getBoundingClientRect(); cv.width = r.width; cv.height = r.height; }
     size(); window.addEventListener("resize", size);
@@ -356,7 +360,7 @@ html.force-mobile,html.force-mobile body{overflow:auto}
       var host = document.getElementById(id);
       if (!host) return;
       host.innerHTML = "";
-      if (!fwOn || reduce) return;
+      if (!fwOn) return;
       [["5%", "30%", 1, 0], ["95%", "30%", -1, 0], ["6%", "52%", 1, 1], ["94%", "52%", -1, 1], ["8%", "74%", 1, 2], ["92%", "74%", -1, 2]]
         .forEach(function (a) { shell(host, a[0], a[1], a[2], a[3]); });
     });
@@ -513,7 +517,7 @@ html.force-mobile,html.force-mobile body{overflow:auto}
     paintCard();
     window.addEventListener("vn-map-ready", paintCard);
     window.addEventListener("resize", paintCard);
-    setInterval(function () { mIdx = (mIdx + 1) % order.length; paintCard(); }, 5000);
+    setInterval(function () { mIdx = (mIdx + 1) % order.length; paintCard(); }, 3000);
   })();
 
   /* ---------- photo deck ---------- */
@@ -554,7 +558,7 @@ html.force-mobile,html.force-mobile body{overflow:auto}
       document.getElementById("mCounter").textContent =
         String(idx + 1).padStart(2, "0") + " / " + String(GALLERY.length).padStart(2, "0");
     }
-    if (GALLERY[idx].celebrate && !reduce) celebrate();
+    if (GALLERY[idx].celebrate) celebrate();
   }
   function celebrate() {
     var host = document.createElement("div");
@@ -585,7 +589,14 @@ html.force-mobile,html.force-mobile body{overflow:auto}
   album.addEventListener("mouseenter", function () { paused = true; document.getElementById("progress").style.animationPlayState = "paused"; });
   album.addEventListener("mouseleave", function () { paused = false; document.getElementById("progress").style.animationPlayState = "running"; });
   renderDeck();
-  setInterval(function () { if (!paused) go(idx + 1); }, 5000);
+  function albumGap() {
+    /* Thanh tien do #progress chay 5s va chi co o ban desktop, nen giu 5s o do cho
+       khop; ban mobile khong co thanh nay nen rut xuong 3s duoc. */
+    return document.getElementById("stage").offsetParent !== null ? 5000 : 3000;
+  }
+  (function albumTick() {
+    setTimeout(function () { if (!paused) go(idx + 1); albumTick(); }, albumGap());
+  })();
 })();
 </script>
 </body>

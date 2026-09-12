@@ -91,7 +91,7 @@
         add("path", {
           d: path(geo.vn), fill: "url(#vnfill2)", stroke: "#f0b6c0",
           "stroke-width": 1.6, "stroke-linejoin": "round",
-          "stroke-dasharray": 6000, "stroke-dashoffset": 6000
+          "stroke-dasharray": 6000, "stroke-dashoffset": 0
         }, { animation: "drawPath 2.1s ease .25s forwards", filter: "drop-shadow(0 0 10px rgba(240,182,192,.5))" });
 
         const ordered = locs.slice().sort((a, b) => b.lat - a.lat);
