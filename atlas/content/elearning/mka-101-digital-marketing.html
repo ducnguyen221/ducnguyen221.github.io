@@ -108,6 +108,7 @@ a{color:var(--accent-2)}
 .nav-item.active{background:var(--accent-soft);color:var(--text);border-color:var(--accent)}
 .nav-item.active .ni-ic svg{color:var(--accent)}
 .ngrp{display:flex;flex-direction:column}
+.nav-cap{margin:14px 10px 4px;padding-top:12px;border-top:1px solid var(--border-soft);font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3)}
 .nrow{display:flex;align-items:flex-start;gap:2px}
 .nchev{background:none;border:none;color:var(--text-3);cursor:pointer;padding:8px 6px;
   line-height:0;border-radius:8px;flex-shrink:0;align-self:flex-start;margin-top:3px}
@@ -420,7 +421,7 @@ a{color:var(--accent-2)}
 .cb pre{margin:0;padding:13px 15px;overflow-x:auto;scrollbar-width:thin}
 .cb pre::-webkit-scrollbar{height:8px}
 .cb pre::-webkit-scrollbar-thumb{background:var(--border);border-radius:8px}
-.cb code{font-family:var(--mono);font-size:.79rem;line-height:1.68;color:#d7defb;white-space:pre;
+.cb code{font-family:var(--mono);font-size:.79rem;line-height:1.68;color:var(--text);white-space:pre;
   background:none;border:none;padding:0;display:block}
 /* [BAN VA 8] Tren dien thoai, prompt PHAI tu xuong dong.
    Do that o 390px: mot khoi prompt rong 781px trong khung 345px -> moi khoi mot
@@ -610,7 +611,7 @@ footer{max-width:1440px;margin:0 auto;padding:26px 22px 40px;border-top:1px soli
     </div>
     <button type="button" class="sb-x" id="sbclose" aria-label="Đóng menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
   </div>
-  <nav class="sitenav" aria-label="Điều hướng tài liệu"><a class="nav-item active" data-nav="home" href="#home"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V21H3zM9 21v-7h6v7"/></svg></span><span class="nl"><b>Tổng quan</b><i>Bắt đầu ở đây · từ điển thuật ngữ</i></span></a><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc1" href="#doc1"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h13M6 12h13M6 16h13M3 8h.01M3 12h.01M3 16h.01"/></svg></span><span class="nl"><b>Use case</b><i>100 use case campaign theo 9 nhóm mục tiêu</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#d1-muc-luc" data-goto="doc1#d1-muc-luc">Mục lục</a><a href="#d1-1-thu-hut-khach-hang-moi-acquisition-12-use-case" data-goto="doc1#d1-1-thu-hut-khach-hang-moi-acquisition-12-use-case">1. Thu hút khách hàng mới – Acquisition (12 use case)</a><a href="#d1-2-chuyen-doi-lead-conversion-10-use-case" data-goto="doc1#d1-2-chuyen-doi-lead-conversion-10-use-case">2. Chuyển đổi lead – Conversion (10 use case)</a><a href="#d1-3-kich-hoat-khach-hang-activation-10-use-case" data-goto="doc1#d1-3-kich-hoat-khach-hang-activation-10-use-case">3. Kích hoạt khách hàng – Activation (10 use case)</a><a href="#d1-4-tang-tuong-tac-engagement-12-use-case" data-goto="doc1#d1-4-tang-tuong-tac-engagement-12-use-case">4. Tăng tương tác – Engagement (12 use case)</a><a href="#d1-5-ban-cheo-ban-them-cross-sell-upsell-17-use-case" data-goto="doc1#d1-5-ban-cheo-ban-them-cross-sell-upsell-17-use-case">5. Bán chéo &amp; bán thêm – Cross-sell/Upsell (17 use case)</a><a href="#d1-6-giu-chan-tai-kich-hoat-retention-14-use-case" data-goto="doc1#d1-6-giu-chan-tai-kich-hoat-retention-14-use-case">6. Giữ chân &amp; tái kích hoạt – Retention (14 use case)</a><a href="#d1-7-marketing-theo-su-kien-event-life-stage-13-use-case" data-goto="doc1#d1-7-marketing-theo-su-kien-event-life-stage-13-use-case">7. Marketing theo sự kiện – Event/Life-stage (13 use case)</a><a href="#d1-8-mass-media-thuong-hieu-brand-content-7-use-case" data-goto="doc1#d1-8-mass-media-thuong-hieu-brand-content-7-use-case">8. Mass media &amp; Thương hiệu – Brand/Content (7 use case)</a><a href="#d1-9-thanh-toan-so-merchant-payment-sme-5-use-case" data-goto="doc1#d1-9-thanh-toan-so-merchant-payment-sme-5-use-case">9. Thanh toán số &amp; Merchant – Payment/SME (5 use case)</a><a href="#d1-10-cach-dung-bang" data-goto="doc1#d1-10-cach-dung-bang">10. Cách dùng bảng</a><a href="#d1-11-ma-tran-tra-cuu-use-case-kpi-du-lieu" data-goto="doc1#d1-11-ma-tran-tra-cuu-use-case-kpi-du-lieu">11. Ma trận tra cứu: use case × KPI × dữ liệu</a></div></div><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc2" href="#doc2"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6M12 19h8"/></svg></span><span class="nl"><b>Prompt</b><i>Thư viện prompt RARCS cho nội dung, ảnh, video + benchmark ngành</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#d2-1-prompt-van-hanh-campaign" data-goto="doc2#d2-1-prompt-van-hanh-campaign">1. Prompt vận hành campaign</a><a href="#d2-2-prompt-email-tin-nhan" data-goto="doc2#d2-2-prompt-email-tin-nhan">2. Prompt Email &amp; tin nhắn</a><a href="#d2-3-prompt-hoi-thoai-voi-khach-hang" data-goto="doc2#d2-3-prompt-hoi-thoai-voi-khach-hang">3. Prompt hội thoại với khách hàng</a><a href="#d2-4-prompt-bai-dang-social-profile" data-goto="doc2#d2-4-prompt-bai-dang-social-profile">4. Prompt bài đăng Social &amp; Profile</a><a href="#d2-5-prompt-anh-poster-quang-cao" data-goto="doc2#d2-5-prompt-anh-poster-quang-cao">5. Prompt ảnh poster quảng cáo</a><a href="#d2-6-prompt-anh-su-kien-livestream-media" data-goto="doc2#d2-6-prompt-anh-su-kien-livestream-media">6. Prompt ảnh sự kiện / livestream / media</a><a href="#d2-7-prompt-video-ngan-video-quang-ba" data-goto="doc2#d2-7-prompt-video-ngan-video-quang-ba">7. Prompt video ngắn &amp; video quảng bá</a><a href="#d2-8-vi-du-input-output-that" data-goto="doc2#d2-8-vi-du-input-output-that">8. Ví dụ input → output thật</a><a href="#d2-9-khung-chuan-rarcs" data-goto="doc2#d2-9-khung-chuan-rarcs">9. Khung chuẩn RARCS</a><a href="#d2-10-danh-muc-cong-cu-ai-2026" data-goto="doc2#d2-10-danh-muc-cong-cu-ai-2026">10. Danh mục công cụ AI 2026</a></div></div><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc3" href="#doc3"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17h.01M9.1 9a3 3 0 1 1 4.5 3.5c-.8.6-1.6 1.2-1.6 2.5"/></svg></span><span class="nl"><b>Câu hỏi &amp; Báo cáo</b><i>42 câu hỏi phân tích và khung chủ đề báo cáo</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#d3-1-bo-cau-hoi-then-chot-6-nhom-42-cau" data-goto="doc3#d3-1-bo-cau-hoi-then-chot-6-nhom-42-cau">1. Bộ câu hỏi then chốt — 6 nhóm, 42 câu</a><a href="#d3-2-bai-hoc-cau-hoi-khong-tra-loi-duoc-va-vi-sao" data-goto="doc3#d3-2-bai-hoc-cau-hoi-khong-tra-loi-duoc-va-vi-sao">2. Bài học: câu hỏi KHÔNG trả lời được và vì sao</a><a href="#d3-3-y-tuong-chu-de-bao-cao" data-goto="doc3#d3-3-y-tuong-chu-de-bao-cao">3. Ý tưởng chủ đề báo cáo</a><a href="#d3-4-khung-bao-cao-phan-tich-chien-dich-14-muc" data-goto="doc3#d3-4-khung-bao-cao-phan-tich-chien-dich-14-muc">4. Khung báo cáo phân tích chiến dịch — 14 mục</a><a href="#d3-5-cach-dung-tu-cau-hoi-nghiep-vu-den-visual" data-goto="doc3#d3-5-cach-dung-tu-cau-hoi-nghiep-vu-den-visual">5. Cách dùng: từ câu hỏi nghiệp vụ đến visual</a><a href="#d3-6-nguyen-tac-trinh-bay-ket-qua-phan-tich" data-goto="doc3#d3-6-nguyen-tac-trinh-bay-ket-qua-phan-tich">6. Nguyên tắc trình bày kết quả phân tích</a><a href="#d3-7-nam-truy-van-dax-mau-tra-loi-cau-hoi-truc-tiep" data-goto="doc3#d3-7-nam-truy-van-dax-mau-tra-loi-cau-hoi-truc-tiep">7. Năm truy vấn DAX mẫu trả lời câu hỏi trực tiếp</a></div></div><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc4" href="#doc4"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c4.4 0 8-1.3 8-3s-3.6-3-8-3-8 1.3-8 3 3.6 3 8 3zM4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span class="nl"><b>Data Dictionary</b><i>Mô hình 10 bảng, ERD, 16 vấn đề chất lượng dữ liệu</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#d4-1-tong-quan-mo-hinh-10-bang-vi-du-du-an-ngan-hang" data-goto="doc4#d4-1-tong-quan-mo-hinh-10-bang-vi-du-du-an-ngan-hang">1. Tổng quan mô hình 10 bảng (ví dụ dự án [Ngân hàng])</a><a href="#d4-2-chi-tiet-10-bang" data-goto="doc4#d4-2-chi-tiet-10-bang">2. Chi tiết 10 bảng</a><a href="#d4-3-tong-quat-hoa-tu-dien-chi-so-export-social-chuan" data-goto="doc4#d4-3-tong-quat-hoa-tu-dien-chi-so-export-social-chuan">3. Tổng quát hoá: từ điển chỉ số export social chuẩn</a><a href="#d4-4-cach-doc-cach-lam-mot-data-dictionary" data-goto="doc4#d4-4-cach-doc-cach-lam-mot-data-dictionary">4. Cách đọc &amp; cách LÀM một data dictionary</a><a href="#d4-5-erd-quan-he-that-cua-model" data-goto="doc4#d4-5-erd-quan-he-that-cua-model">5. ERD — quan hệ thật của model</a><a href="#d4-6-cot-phai-an-khoi-truong-nhin-thay" data-goto="doc4#d4-6-cot-phai-an-khoi-truong-nhin-thay">6. Cột phải ẨN khỏi trường nhìn thấy</a><a href="#d4-7-ba-nhom-loi-du-lieu-hay-gap" data-goto="doc4#d4-7-ba-nhom-loi-du-lieu-hay-gap">7. Ba nhóm lỗi dữ liệu hay gặp</a></div></div><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc5" href="#doc5"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h4"/></svg></span><span class="nl"><b>Bộ chỉ số</b><i>73 chỉ số: phân loại, ý nghĩa, 8 bẫy — DAX ở Phụ lục A</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#d5-1-danh-muc-73-chi-so-khai-niem-y-nghia" data-goto="doc5#d5-1-danh-muc-73-chi-so-khai-niem-y-nghia">1. Danh mục 73 chỉ số — khái niệm &amp; ý nghĩa</a><a href="#d5-2-chi-so-khong-lam-duoc-va-vi-sao" data-goto="doc5#d5-2-chi-so-khong-lam-duoc-va-vi-sao">2. Chỉ số KHÔNG làm được và vì sao</a><a href="#d5-3-chieu-phan-tich-chinh-hai-phan-cap-tu-nhien" data-goto="doc5#d5-3-chieu-phan-tich-chinh-hai-phan-cap-tu-nhien">3. Chiều phân tích chính &amp; hai phân cấp tự nhiên</a><a href="#d5-4-quy-uoc-nen-tang" data-goto="doc5#d5-4-quy-uoc-nen-tang">4. Quy ước nền tảng</a><a href="#d5-5-phan-loai-chi-so-bon-lang-kinh-va-mot-luat" data-goto="doc5#d5-5-phan-loai-chi-so-bon-lang-kinh-va-mot-luat">5. Phân loại chỉ số — bốn lăng kính và một luật</a><a href="#d5-6-tam-bay-khi-tinh-chi-so" data-goto="doc5#d5-6-tam-bay-khi-tinh-chi-so">6. Tám bẫy khi tính chỉ số</a><a href="#d5-7-checklist-nghiem-thu-so-lieu" data-goto="doc5#d5-7-checklist-nghiem-thu-so-lieu">7. Checklist nghiệm thu số liệu</a><a href="#d5-8-quy-uoc-trinh-bay-so-lieu-tren-bao-cao" data-goto="doc5#d5-8-quy-uoc-trinh-bay-so-lieu-tren-bao-cao">8. Quy ước trình bày số liệu trên báo cáo</a><a href="#d5-phu-luc-a-ban-dax-tham-chieu-power-bi" data-goto="doc5#d5-phu-luc-a-ban-dax-tham-chieu-power-bi">Phụ lục A — Bản DAX tham chiếu (Power BI)</a></div></div><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc6" href="#doc6"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/></svg></span><span class="nl"><b>Skill · Campaign</b><i>Quy trình 8 bước campaign → content → media</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#d6-1-tham-so-dau-vao-bat-buoc-thu-du-truoc-khi-chay-buoc-1" data-goto="doc6#d6-1-tham-so-dau-vao-bat-buoc-thu-du-truoc-khi-chay-buoc-1">1. Tham số đầu vào bắt buộc — thu đủ TRƯỚC khi chạy bước 1</a><a href="#d6-2-quy-trinh-8-buoc-tuan-tu-cong-kiem-moi-buoc" data-goto="doc6#d6-2-quy-trinh-8-buoc-tuan-tu-cong-kiem-moi-buoc">2. Quy trình 8 bước tuần tự (cổng kiểm mỗi bước)</a><a href="#d6-3-kich-hoat-ban-mau" data-goto="doc6#d6-3-kich-hoat-ban-mau">3. Kích hoạt &amp; bản mẫu</a><a href="#d6-4-vai-tro-tong-giong" data-goto="doc6#d6-4-vai-tro-tong-giong">4. Vai trò &amp; tông giọng</a><a href="#d6-5-nguyen-tac-tao-noi-dung" data-goto="doc6#d6-5-nguyen-tac-tao-noi-dung">5. Nguyên tắc tạo NỘI DUNG</a><a href="#d6-6-nguyen-tac-tao-anh-media" data-goto="doc6#d6-6-nguyen-tac-tao-anh-media">6. Nguyên tắc tạo ẢNH / MEDIA</a><a href="#d6-7-guardrails-bat-buoc-muc-song-con-vi-pham-la-dung-khong-pha" data-goto="doc6#d6-7-guardrails-bat-buoc-muc-song-con-vi-pham-la-dung-khong-pha">7. GUARDRAILS BẮT BUỘC (mức sống còn — vi phạm là dừng, không phải cảnh báo)</a><a href="#d6-8-tieu-chi-hoan-thanh-agent-tu-kiem-truoc-khi-bao-xong" data-goto="doc6#d6-8-tieu-chi-hoan-thanh-agent-tu-kiem-truoc-khi-bao-xong">8. Tiêu chí hoàn thành (agent tự kiểm trước khi báo xong)</a><a href="#d6-9-dung-cung-bo-tai-lieu-day-du-tuy-chon" data-goto="doc6#d6-9-dung-cung-bo-tai-lieu-day-du-tuy-chon">9. Dùng cùng bộ tài liệu đầy đủ (tuỳ chọn)</a></div></div><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc7" href="#doc7"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l3-4 3 3 5-7"/></svg></span><span class="nl"><b>Skill · Analytics</b><i>Quy trình phân tích dữ liệu và dựng báo cáo Power BI</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#d7-1-quy-trinh-4-buoc-cho-moi-bai-toan-phan-tich" data-goto="doc7#d7-1-quy-trinh-4-buoc-cho-moi-bai-toan-phan-tich">1. Quy trình 4 bước cho MỖI bài toán phân tích</a><a href="#d7-2-quy-trinh-du-an-tron-goi" data-goto="doc7#d7-2-quy-trinh-du-an-tron-goi">2. Quy trình dự án trọn gói</a><a href="#d7-3-chuan-dau-ra" data-goto="doc7#d7-3-chuan-dau-ra">3. Chuẩn đầu ra</a><a href="#d7-4-vai-tro-tong-giong" data-goto="doc7#d7-4-vai-tro-tong-giong">4. Vai trò &amp; tông giọng</a><a href="#d7-5-bai-hoc-bat-buoc-bay-nghiep-vu-da-tra-gia-that" data-goto="doc7#d7-5-bai-hoc-bat-buoc-bay-nghiep-vu-da-tra-gia-that">5. Bài học bắt buộc — bẫy nghiệp vụ đã trả giá thật</a><a href="#d7-6-guardrails-bat-buoc" data-goto="doc7#d7-6-guardrails-bat-buoc">6. GUARDRAILS BẮT BUỘC</a><a href="#d7-7-tool-template-kha-dung" data-goto="doc7#d7-7-tool-template-kha-dung">7. Tool &amp; template khả dụng</a><a href="#d7-8-tieu-chi-hoan-thanh-agent-tu-kiem-truoc-khi-bao-xong" data-goto="doc7#d7-8-tieu-chi-hoan-thanh-agent-tu-kiem-truoc-khi-bao-xong">8. Tiêu chí hoàn thành (agent tự kiểm trước khi báo xong)</a><a href="#d7-9-dung-cung-bo-tai-lieu-day-du-tuy-chon" data-goto="doc7#d7-9-dung-cung-bo-tai-lieu-day-du-tuy-chon">9. Dùng cùng bộ tài liệu đầy đủ (tuỳ chọn)</a></div></div></nav>
+  <nav class="sitenav" aria-label="Điều hướng tài liệu"><a class="nav-item active" data-nav="home" href="#home"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V21H3zM9 21v-7h6v7"/></svg></span><span class="nl"><b>Tổng quan</b><i>Bắt đầu ở đây · từ điển thuật ngữ</i></span></a><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc1" href="#doc1"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h13M6 12h13M6 16h13M3 8h.01M3 12h.01M3 16h.01"/></svg></span><span class="nl"><b>Use case</b><i>100 use case campaign theo 9 nhóm mục tiêu</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#d1-muc-luc" data-goto="doc1#d1-muc-luc">Mục lục</a><a href="#d1-1-thu-hut-khach-hang-moi-acquisition-12-use-case" data-goto="doc1#d1-1-thu-hut-khach-hang-moi-acquisition-12-use-case">1. Thu hút khách hàng mới – Acquisition (12 use case)</a><a href="#d1-2-chuyen-doi-lead-conversion-10-use-case" data-goto="doc1#d1-2-chuyen-doi-lead-conversion-10-use-case">2. Chuyển đổi lead – Conversion (10 use case)</a><a href="#d1-3-kich-hoat-khach-hang-activation-10-use-case" data-goto="doc1#d1-3-kich-hoat-khach-hang-activation-10-use-case">3. Kích hoạt khách hàng – Activation (10 use case)</a><a href="#d1-4-tang-tuong-tac-engagement-12-use-case" data-goto="doc1#d1-4-tang-tuong-tac-engagement-12-use-case">4. Tăng tương tác – Engagement (12 use case)</a><a href="#d1-5-ban-cheo-ban-them-cross-sell-upsell-17-use-case" data-goto="doc1#d1-5-ban-cheo-ban-them-cross-sell-upsell-17-use-case">5. Bán chéo &amp; bán thêm – Cross-sell/Upsell (17 use case)</a><a href="#d1-6-giu-chan-tai-kich-hoat-retention-14-use-case" data-goto="doc1#d1-6-giu-chan-tai-kich-hoat-retention-14-use-case">6. Giữ chân &amp; tái kích hoạt – Retention (14 use case)</a><a href="#d1-7-marketing-theo-su-kien-event-life-stage-13-use-case" data-goto="doc1#d1-7-marketing-theo-su-kien-event-life-stage-13-use-case">7. Marketing theo sự kiện – Event/Life-stage (13 use case)</a><a href="#d1-8-mass-media-thuong-hieu-brand-content-7-use-case" data-goto="doc1#d1-8-mass-media-thuong-hieu-brand-content-7-use-case">8. Mass media &amp; Thương hiệu – Brand/Content (7 use case)</a><a href="#d1-9-thanh-toan-so-merchant-payment-sme-5-use-case" data-goto="doc1#d1-9-thanh-toan-so-merchant-payment-sme-5-use-case">9. Thanh toán số &amp; Merchant – Payment/SME (5 use case)</a><a href="#d1-10-cach-dung-bang" data-goto="doc1#d1-10-cach-dung-bang">10. Cách dùng bảng</a><a href="#d1-11-ma-tran-tra-cuu-use-case-kpi-du-lieu" data-goto="doc1#d1-11-ma-tran-tra-cuu-use-case-kpi-du-lieu">11. Ma trận tra cứu: use case × KPI × dữ liệu</a></div></div><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc2" href="#doc2"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6M12 19h8"/></svg></span><span class="nl"><b>Prompt</b><i>Thư viện prompt RARCS cho nội dung, ảnh, video + benchmark ngành</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#d2-1-prompt-van-hanh-campaign" data-goto="doc2#d2-1-prompt-van-hanh-campaign">1. Prompt vận hành campaign</a><a href="#d2-2-prompt-email-tin-nhan" data-goto="doc2#d2-2-prompt-email-tin-nhan">2. Prompt Email &amp; tin nhắn</a><a href="#d2-3-prompt-hoi-thoai-voi-khach-hang" data-goto="doc2#d2-3-prompt-hoi-thoai-voi-khach-hang">3. Prompt hội thoại với khách hàng</a><a href="#d2-4-prompt-bai-dang-social-profile" data-goto="doc2#d2-4-prompt-bai-dang-social-profile">4. Prompt bài đăng Social &amp; Profile</a><a href="#d2-5-prompt-anh-poster-quang-cao" data-goto="doc2#d2-5-prompt-anh-poster-quang-cao">5. Prompt ảnh poster quảng cáo</a><a href="#d2-6-prompt-anh-su-kien-livestream-media" data-goto="doc2#d2-6-prompt-anh-su-kien-livestream-media">6. Prompt ảnh sự kiện / livestream / media</a><a href="#d2-7-prompt-video-ngan-video-quang-ba" data-goto="doc2#d2-7-prompt-video-ngan-video-quang-ba">7. Prompt video ngắn &amp; video quảng bá</a><a href="#d2-8-vi-du-input-output-that" data-goto="doc2#d2-8-vi-du-input-output-that">8. Ví dụ input → output thật</a><a href="#d2-9-khung-chuan-rarcs" data-goto="doc2#d2-9-khung-chuan-rarcs">9. Khung chuẩn RARCS</a><a href="#d2-10-danh-muc-cong-cu-ai-2026" data-goto="doc2#d2-10-danh-muc-cong-cu-ai-2026">10. Danh mục công cụ AI 2026</a></div></div><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc3" href="#doc3"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17h.01M9.1 9a3 3 0 1 1 4.5 3.5c-.8.6-1.6 1.2-1.6 2.5"/></svg></span><span class="nl"><b>Câu hỏi &amp; Báo cáo</b><i>42 câu hỏi phân tích và khung chủ đề báo cáo</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#d3-1-bo-cau-hoi-then-chot-6-nhom-42-cau" data-goto="doc3#d3-1-bo-cau-hoi-then-chot-6-nhom-42-cau">1. Bộ câu hỏi then chốt — 6 nhóm, 42 câu</a><a href="#d3-2-bai-hoc-cau-hoi-khong-tra-loi-duoc-va-vi-sao" data-goto="doc3#d3-2-bai-hoc-cau-hoi-khong-tra-loi-duoc-va-vi-sao">2. Bài học: câu hỏi KHÔNG trả lời được và vì sao</a><a href="#d3-3-y-tuong-chu-de-bao-cao" data-goto="doc3#d3-3-y-tuong-chu-de-bao-cao">3. Ý tưởng chủ đề báo cáo</a><a href="#d3-4-khung-bao-cao-phan-tich-chien-dich-14-muc" data-goto="doc3#d3-4-khung-bao-cao-phan-tich-chien-dich-14-muc">4. Khung báo cáo phân tích chiến dịch — 14 mục</a><a href="#d3-5-cach-dung-tu-cau-hoi-nghiep-vu-den-visual" data-goto="doc3#d3-5-cach-dung-tu-cau-hoi-nghiep-vu-den-visual">5. Cách dùng: từ câu hỏi nghiệp vụ đến visual</a><a href="#d3-6-nguyen-tac-trinh-bay-ket-qua-phan-tich" data-goto="doc3#d3-6-nguyen-tac-trinh-bay-ket-qua-phan-tich">6. Nguyên tắc trình bày kết quả phân tích</a><a href="#d3-7-nam-truy-van-dax-mau-tra-loi-cau-hoi-truc-tiep" data-goto="doc3#d3-7-nam-truy-van-dax-mau-tra-loi-cau-hoi-truc-tiep">7. Năm truy vấn DAX mẫu trả lời câu hỏi trực tiếp</a></div></div><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc4" href="#doc4"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c4.4 0 8-1.3 8-3s-3.6-3-8-3-8 1.3-8 3 3.6 3 8 3zM4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span class="nl"><b>Data Dictionary</b><i>Mô hình 10 bảng, ERD, 16 vấn đề chất lượng dữ liệu</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#d4-1-tong-quan-mo-hinh-10-bang-vi-du-du-an-ngan-hang" data-goto="doc4#d4-1-tong-quan-mo-hinh-10-bang-vi-du-du-an-ngan-hang">1. Tổng quan mô hình 10 bảng (ví dụ dự án [Ngân hàng])</a><a href="#d4-2-chi-tiet-10-bang" data-goto="doc4#d4-2-chi-tiet-10-bang">2. Chi tiết 10 bảng</a><a href="#d4-3-tong-quat-hoa-tu-dien-chi-so-export-social-chuan" data-goto="doc4#d4-3-tong-quat-hoa-tu-dien-chi-so-export-social-chuan">3. Tổng quát hoá: từ điển chỉ số export social chuẩn</a><a href="#d4-4-cach-doc-cach-lam-mot-data-dictionary" data-goto="doc4#d4-4-cach-doc-cach-lam-mot-data-dictionary">4. Cách đọc &amp; cách LÀM một data dictionary</a><a href="#d4-5-erd-quan-he-that-cua-model" data-goto="doc4#d4-5-erd-quan-he-that-cua-model">5. ERD — quan hệ thật của model</a><a href="#d4-6-cot-phai-an-khoi-truong-nhin-thay" data-goto="doc4#d4-6-cot-phai-an-khoi-truong-nhin-thay">6. Cột phải ẨN khỏi trường nhìn thấy</a><a href="#d4-7-ba-nhom-loi-du-lieu-hay-gap" data-goto="doc4#d4-7-ba-nhom-loi-du-lieu-hay-gap">7. Ba nhóm lỗi dữ liệu hay gặp</a></div></div><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc5" href="#doc5"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h4"/></svg></span><span class="nl"><b>Bộ chỉ số</b><i>73 chỉ số: phân loại, ý nghĩa, 8 bẫy — DAX ở Phụ lục A</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#d5-1-danh-muc-73-chi-so-khai-niem-y-nghia" data-goto="doc5#d5-1-danh-muc-73-chi-so-khai-niem-y-nghia">1. Danh mục 73 chỉ số — khái niệm &amp; ý nghĩa</a><a href="#d5-2-chi-so-khong-lam-duoc-va-vi-sao" data-goto="doc5#d5-2-chi-so-khong-lam-duoc-va-vi-sao">2. Chỉ số KHÔNG làm được và vì sao</a><a href="#d5-3-chieu-phan-tich-chinh-hai-phan-cap-tu-nhien" data-goto="doc5#d5-3-chieu-phan-tich-chinh-hai-phan-cap-tu-nhien">3. Chiều phân tích chính &amp; hai phân cấp tự nhiên</a><a href="#d5-4-quy-uoc-nen-tang" data-goto="doc5#d5-4-quy-uoc-nen-tang">4. Quy ước nền tảng</a><a href="#d5-5-phan-loai-chi-so-bon-lang-kinh-va-mot-luat" data-goto="doc5#d5-5-phan-loai-chi-so-bon-lang-kinh-va-mot-luat">5. Phân loại chỉ số — bốn lăng kính và một luật</a><a href="#d5-6-tam-bay-khi-tinh-chi-so" data-goto="doc5#d5-6-tam-bay-khi-tinh-chi-so">6. Tám bẫy khi tính chỉ số</a><a href="#d5-7-checklist-nghiem-thu-so-lieu" data-goto="doc5#d5-7-checklist-nghiem-thu-so-lieu">7. Checklist nghiệm thu số liệu</a><a href="#d5-8-quy-uoc-trinh-bay-so-lieu-tren-bao-cao" data-goto="doc5#d5-8-quy-uoc-trinh-bay-so-lieu-tren-bao-cao">8. Quy ước trình bày số liệu trên báo cáo</a><a href="#d5-phu-luc-a-ban-dax-tham-chieu-power-bi" data-goto="doc5#d5-phu-luc-a-ban-dax-tham-chieu-power-bi">Phụ lục A — Bản DAX tham chiếu (Power BI)</a></div></div><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc6" href="#doc6"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/></svg></span><span class="nl"><b>Skill · Campaign</b><i>Quy trình 8 bước campaign → content → media</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#d6-1-tham-so-dau-vao-bat-buoc-thu-du-truoc-khi-chay-buoc-1" data-goto="doc6#d6-1-tham-so-dau-vao-bat-buoc-thu-du-truoc-khi-chay-buoc-1">1. Tham số đầu vào bắt buộc — thu đủ TRƯỚC khi chạy bước 1</a><a href="#d6-2-quy-trinh-8-buoc-tuan-tu-cong-kiem-moi-buoc" data-goto="doc6#d6-2-quy-trinh-8-buoc-tuan-tu-cong-kiem-moi-buoc">2. Quy trình 8 bước tuần tự (cổng kiểm mỗi bước)</a><a href="#d6-3-kich-hoat-ban-mau" data-goto="doc6#d6-3-kich-hoat-ban-mau">3. Kích hoạt &amp; bản mẫu</a><a href="#d6-4-vai-tro-tong-giong" data-goto="doc6#d6-4-vai-tro-tong-giong">4. Vai trò &amp; tông giọng</a><a href="#d6-5-nguyen-tac-tao-noi-dung" data-goto="doc6#d6-5-nguyen-tac-tao-noi-dung">5. Nguyên tắc tạo NỘI DUNG</a><a href="#d6-6-nguyen-tac-tao-anh-media" data-goto="doc6#d6-6-nguyen-tac-tao-anh-media">6. Nguyên tắc tạo ẢNH / MEDIA</a><a href="#d6-7-guardrails-bat-buoc-muc-song-con-vi-pham-la-dung-khong-pha" data-goto="doc6#d6-7-guardrails-bat-buoc-muc-song-con-vi-pham-la-dung-khong-pha">7. GUARDRAILS BẮT BUỘC (mức sống còn — vi phạm là dừng, không phải cảnh báo)</a><a href="#d6-8-tieu-chi-hoan-thanh-agent-tu-kiem-truoc-khi-bao-xong" data-goto="doc6#d6-8-tieu-chi-hoan-thanh-agent-tu-kiem-truoc-khi-bao-xong">8. Tiêu chí hoàn thành (agent tự kiểm trước khi báo xong)</a><a href="#d6-9-dung-cung-bo-tai-lieu-day-du-tuy-chon" data-goto="doc6#d6-9-dung-cung-bo-tai-lieu-day-du-tuy-chon">9. Dùng cùng bộ tài liệu đầy đủ (tuỳ chọn)</a></div></div><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc7" href="#doc7"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l3-4 3 3 5-7"/></svg></span><span class="nl"><b>Skill · Analytics</b><i>Quy trình phân tích dữ liệu và dựng báo cáo Power BI</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#d7-1-quy-trinh-4-buoc-cho-moi-bai-toan-phan-tich" data-goto="doc7#d7-1-quy-trinh-4-buoc-cho-moi-bai-toan-phan-tich">1. Quy trình 4 bước cho MỖI bài toán phân tích</a><a href="#d7-2-quy-trinh-du-an-tron-goi" data-goto="doc7#d7-2-quy-trinh-du-an-tron-goi">2. Quy trình dự án trọn gói</a><a href="#d7-3-chuan-dau-ra" data-goto="doc7#d7-3-chuan-dau-ra">3. Chuẩn đầu ra</a><a href="#d7-4-vai-tro-tong-giong" data-goto="doc7#d7-4-vai-tro-tong-giong">4. Vai trò &amp; tông giọng</a><a href="#d7-5-bai-hoc-bat-buoc-bay-nghiep-vu-da-tra-gia-that" data-goto="doc7#d7-5-bai-hoc-bat-buoc-bay-nghiep-vu-da-tra-gia-that">5. Bài học bắt buộc — bẫy nghiệp vụ đã trả giá thật</a><a href="#d7-6-guardrails-bat-buoc" data-goto="doc7#d7-6-guardrails-bat-buoc">6. GUARDRAILS BẮT BUỘC</a><a href="#d7-7-tool-template-kha-dung" data-goto="doc7#d7-7-tool-template-kha-dung">7. Tool &amp; template khả dụng</a><a href="#d7-8-tieu-chi-hoan-thanh-agent-tu-kiem-truoc-khi-bao-xong" data-goto="doc7#d7-8-tieu-chi-hoan-thanh-agent-tu-kiem-truoc-khi-bao-xong">8. Tiêu chí hoàn thành (agent tự kiểm trước khi báo xong)</a><a href="#d7-9-dung-cung-bo-tai-lieu-day-du-tuy-chon" data-goto="doc7#d7-9-dung-cung-bo-tai-lieu-day-du-tuy-chon">9. Dùng cùng bộ tài liệu đầy đủ (tuỳ chọn)</a></div></div><div class="nav-cap">Bài viết chia sẻ · AI Agent</div><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc8" href="#doc8"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/><circle cx="19" cy="6" r="2.5"/></svg></span><span class="nl"><b>AI Agent × Power BI</b><i>Bài viết · hỏi đáp dữ liệu bằng ngôn ngữ tự nhiên</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#b1-tu-dashboard-tinh-den-phan-tich-hoi-thoai" data-goto="doc8#b1-tu-dashboard-tinh-den-phan-tich-hoi-thoai">Từ dashboard tĩnh đến phân tích hội thoại</a><a href="#b1-ai-agent-trong-power-bi-thuc-su-lam-gi" data-goto="doc8#b1-ai-agent-trong-power-bi-thuc-su-lam-gi">AI Agent trong Power BI thực sự làm gì</a><a href="#b1-hai-huong-trien-khai" data-goto="doc8#b1-hai-huong-trien-khai">Hai hướng triển khai</a><a href="#b1-kien-truc-de-xuat-cho-ai-agent-tuy-bien" data-goto="doc8#b1-kien-truc-de-xuat-cho-ai-agent-tuy-bien">Kiến trúc đề xuất cho AI Agent tùy biến</a><a href="#b1-mot-vi-du-minh-hoa" data-goto="doc8#b1-mot-vi-du-minh-hoa">Một ví dụ minh họa</a><a href="#b1-bon-nguyen-tac-quyet-dinh-chat-luong" data-goto="doc8#b1-bon-nguyen-tac-quyet-dinh-chat-luong">Bốn nguyên tắc quyết định chất lượng</a><a href="#b1-lo-trinh-pilot-trong-bon-tuan" data-goto="doc8#b1-lo-trinh-pilot-trong-bon-tuan">Lộ trình pilot trong bốn tuần</a><a href="#b1-nen-lam-va-khong-nen-lam" data-goto="doc8#b1-nen-lam-va-khong-nen-lam">Nên làm và không nên làm</a><a href="#b1-ket-luan" data-goto="doc8#b1-ket-luan">Kết luận</a><a href="#b1-nguon-tham-khao" data-goto="doc8#b1-nguon-tham-khao">Nguồn tham khảo</a></div></div><div class="ngrp closed"><div class="nrow"><a class="nav-item" data-nav="doc9" href="#doc9"><span class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 12l2 2-2 2M13 16h3"/></svg></span><span class="nl"><b>ChatGPT Desktop · Codex</b><i>Hướng dẫn · biến folder máy tính thành không gian làm việc với AI</i></span></a><button type="button" class="nchev" aria-expanded="false" aria-label="Mở/thu gọn mục"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="nsub"><a href="#b2-chatgpt-va-ai-agent-khac-nhau-the-nao" data-goto="doc9#b2-chatgpt-va-ai-agent-khac-nhau-the-nao">ChatGPT và AI Agent khác nhau thế nào</a><a href="#b2-buoc-1-tao-mot-folder-rieng-cho-tung-du-an" data-goto="doc9#b2-buoc-1-tao-mot-folder-rieng-cho-tung-du-an">Bước 1 — Tạo một folder riêng cho từng dự án</a><a href="#b2-buoc-2-viet-readme-de-mo-ta-du-an" data-goto="doc9#b2-buoc-2-viet-readme-de-mo-ta-du-an">Bước 2 — Viết README để mô tả dự án</a><a href="#b2-buoc-3-tao-so-tay-lam-viec-agents-md" data-goto="doc9#b2-buoc-3-tao-so-tay-lam-viec-agents-md">Bước 3 — Tạo sổ tay làm việc AGENTS.md</a><a href="#b2-buoc-4-mo-folder-trong-chatgpt-desktop" data-goto="doc9#b2-buoc-4-mo-folder-trong-chatgpt-desktop">Bước 4 — Mở folder trong ChatGPT Desktop</a><a href="#b2-buoc-5-giao-viec-theo-bon-thanh-phan" data-goto="doc9#b2-buoc-5-giao-viec-theo-bon-thanh-phan">Bước 5 — Giao việc theo bốn thành phần</a><a href="#b2-buoc-6-yeu-cau-ke-hoach-vua-du" data-goto="doc9#b2-buoc-6-yeu-cau-ke-hoach-vua-du">Bước 6 — Yêu cầu kế hoạch vừa đủ</a><a href="#b2-buoc-7-phan-hoi-bang-thay-doi-cu-the" data-goto="doc9#b2-buoc-7-phan-hoi-bang-thay-doi-cu-the">Bước 7 — Phản hồi bằng thay đổi cụ thể</a><a href="#b2-buoc-8-yeu-cau-kiem-tra-va-ban-giao" data-goto="doc9#b2-buoc-8-yeu-cau-kiem-tra-va-ban-giao">Bước 8 — Yêu cầu kiểm tra và bàn giao</a><a href="#b2-quyen-truy-cap-va-an-toan-du-lieu" data-goto="doc9#b2-quyen-truy-cap-va-an-toan-du-lieu">Quyền truy cập và an toàn dữ liệu</a><a href="#b2-nhung-sai-lam-pho-bien" data-goto="doc9#b2-nhung-sai-lam-pho-bien">Những sai lầm phổ biến</a><a href="#b2-checklist-thiet-lap-trong-15-phut" data-goto="doc9#b2-checklist-thiet-lap-trong-15-phut">Checklist thiết lập trong 15 phút</a><a href="#b2-ket-luan" data-goto="doc9#b2-ket-luan">Kết luận</a><a href="#b2-nguon-tham-khao" data-goto="doc9#b2-nguon-tham-khao">Nguồn tham khảo</a></div></div></nav>
 </aside>
 
 <div class="shell">
@@ -625,7 +626,7 @@ footer{max-width:1440px;margin:0 auto;padding:26px 22px 40px;border-top:1px soli
       </div>
       <div class="gsearch" id="gs">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input id="q" type="search" placeholder="Tìm trong cả 7 tài liệu — gõ không dấu cũng được…" autocomplete="off" spellcheck="false" aria-label="Tìm kiếm toàn văn">
+        <input id="q" type="search" placeholder="Tìm trong 7 tài liệu và 2 bài viết — gõ không dấu cũng được…" autocomplete="off" spellcheck="false" aria-label="Tìm kiếm toàn văn">
         <span class="kbd">/</span>
         <button type="button" class="clr" id="clr" aria-label="Xoá tìm kiếm">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -634,7 +635,7 @@ footer{max-width:1440px;margin:0 auto;padding:26px 22px 40px;border-top:1px soli
       <button type="button" class="iconbtn tglbtn" id="theme" aria-label="Đổi giao diện sáng/tối"><span class="i-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span class="i-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span></button>
       <a class="iconbtn" id="tolas" href="/atlas/" aria-label="Quay về trang Atlas" title="Quay về Atlas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21V12h6v9"/></svg></a>
     </div>
-    <nav class="tabs" hidden><button type="button" class="tab active" data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V21H3zM9 21v-7h6v7"/></svg> Tổng quan</button><button type="button" class="tab" data-tab="doc1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h13M6 12h13M6 16h13M3 8h.01M3 12h.01M3 16h.01"/></svg> Use case</button><button type="button" class="tab" data-tab="doc2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6M12 19h8"/></svg> Prompt</button><button type="button" class="tab" data-tab="doc3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17h.01M9.1 9a3 3 0 1 1 4.5 3.5c-.8.6-1.6 1.2-1.6 2.5"/></svg> Câu hỏi &amp; Báo cáo</button><button type="button" class="tab" data-tab="doc4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c4.4 0 8-1.3 8-3s-3.6-3-8-3-8 1.3-8 3 3.6 3 8 3zM4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg> Data Dictionary</button><button type="button" class="tab" data-tab="doc5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h4"/></svg> Bộ chỉ số</button><button type="button" class="tab" data-tab="doc6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/></svg> Skill · Campaign</button><button type="button" class="tab" data-tab="doc7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l3-4 3 3 5-7"/></svg> Skill · Analytics</button></nav>
+    <nav class="tabs" hidden><button type="button" class="tab active" data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V21H3zM9 21v-7h6v7"/></svg> Tổng quan</button><button type="button" class="tab" data-tab="doc1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h13M6 12h13M6 16h13M3 8h.01M3 12h.01M3 16h.01"/></svg> Use case</button><button type="button" class="tab" data-tab="doc2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6M12 19h8"/></svg> Prompt</button><button type="button" class="tab" data-tab="doc3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17h.01M9.1 9a3 3 0 1 1 4.5 3.5c-.8.6-1.6 1.2-1.6 2.5"/></svg> Câu hỏi &amp; Báo cáo</button><button type="button" class="tab" data-tab="doc4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c4.4 0 8-1.3 8-3s-3.6-3-8-3-8 1.3-8 3 3.6 3 8 3zM4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg> Data Dictionary</button><button type="button" class="tab" data-tab="doc5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h4"/></svg> Bộ chỉ số</button><button type="button" class="tab" data-tab="doc6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/></svg> Skill · Campaign</button><button type="button" class="tab" data-tab="doc7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l3-4 3 3 5-7"/></svg> Skill · Analytics</button><button type="button" class="tab" data-tab="doc8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/><circle cx="19" cy="6" r="2.5"/></svg> AI Agent × Power BI</button><button type="button" class="tab" data-tab="doc9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 12l2 2-2 2M13 16h3"/></svg> ChatGPT Desktop · Codex</button></nav>
   </div>
 </header>
 
@@ -643,7 +644,7 @@ footer{max-width:1440px;margin:0 auto;padding:26px 22px 40px;border-top:1px soli
     <div class="rhead"><h2>Kết quả tìm kiếm</h2><span class="cnt" id="rcount"></span></div>
     <div id="rbody"></div>
   </section>
-<section class="pane active" id="home" data-doc="Từ điển thuật ngữ" data-di="7"><div class="hero"><div class="eyebrow">MKA-101 · Marketing Analytics</div><h2>Cheatsheet ứng dụng AI &amp; phân tích dữ liệu cho marketing ngân hàng</h2><p>Bảy tài liệu tra cứu gộp trong một trang: từ <b>ý tưởng chiến dịch</b> → <b>câu lệnh AI sản xuất nội dung</b> → <b>câu hỏi phân tích</b> → <b>mô hình dữ liệu</b> → <b>bộ chỉ số &amp; công thức DAX</b> → <b>quy trình chuẩn</b>. Không cần đọc tuần tự — dùng như từ điển: có việc gì, tra mục đó.</p></div><div class="stats"><div class="stat"><div class="n">7</div><div class="l">tài liệu</div></div><div class="stat"><div class="n">232</div><div class="l">mục tra cứu</div></div><div class="stat"><div class="n">145</div><div class="l">bảng dữ liệu</div></div><div class="stat"><div class="n">62</div><div class="l">khối code copy được</div></div><div class="stat"><div class="n">100</div><div class="l">use case</div></div><div class="stat"><div class="n">73</div><div class="l">chỉ số</div></div></div><div class="allxls"><div class="ax-t"><h4>Tải toàn bộ bảng dữ liệu về Excel</h4><p>Một file <code>.xlsx</code> gộp <b>mọi bảng danh sách</b> của cả bảy tài liệu — mỗi tài liệu một sheet, xếp đúng thứ tự trong trang. Dùng khi cần lọc, sắp xếp hoặc ghép với dữ liệu của ngân hàng bạn.</p></div><button type="button" class="dlbtn big" id="dlall"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span>Tải Excel tổng hợp</span></button></div><h3 class="sec-h">Dùng thế nào</h3><div class="howto"><div class="step"><div class="num">1</div><h4>Bắt đầu từ câu hỏi thật</h4><p>Xác định bạn đang cần <b>ý tưởng</b>, <b>câu chữ</b>, <b>con số</b> hay <b>quy trình</b> — rồi mở đúng tab ở bảng bên dưới.</p></div><div class="step"><div class="num">2</div><h4>Tìm bằng ô tìm kiếm</h4><p>Ô tìm kiếm quét <b>cả 7 tài liệu cùng lúc</b> và <b>bỏ dấu tiếng Việt</b>: gõ <code>khach hang</code> vẫn ra <i>khách hàng</i>. Nhấn <code>/</code> để nhảy vào ô tìm kiếm, <code>Esc</code> để xoá.</p></div><div class="step"><div class="num">3</div><h4>Copy thẳng khối code</h4><p>Mọi prompt và mọi công thức DAX đều có nút <b>Copy</b> ở góc phải — dán thẳng vào ChatGPT hoặc Power BI, không gõ lại.</p></div><div class="step"><div class="num">4</div><h4>Đọc phần “Bẫy” trước khi dùng</h4><p>Mỗi tài liệu đều có mục riêng liệt kê những chỗ dễ dùng sai — trùng tên cột, lệch đơn vị, cột tổng bị cộng lại lần nữa. Phần lớn lỗi báo cáo đến từ việc bỏ qua mục này.</p></div><div class="step"><div class="num">5</div><h4>Gặp chữ tiếng Anh lạ thì tra ngay</h4><p>Cuối trang này có <b><a href="#tu-dien">Từ điển thuật ngữ Anh – Việt</a></b> — mọi chữ tiếng Anh hay lặp lại trong bảy tài liệu đều được dịch và giải thích bằng lời thường ở đó.</p></div></div><h3 class="sec-h">Bảy tài liệu</h3><div class="cards"><button type="button" class="card a1" data-goto="doc1"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h13M6 12h13M6 16h13M3 8h.01M3 12h.01M3 16h.01"/></svg></div><div><h4>Use case</h4><div class="fname">01-USE-CASE-CAMPAIGN.md</div></div></div><p>100 use case campaign theo 9 nhóm mục tiêu</p><div class="foot"><span class="pill">19 mục</span><span class="pill">15 bảng</span><span class="pill">1 khối code</span></div></button><button type="button" class="card a2" data-goto="doc2"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6M12 19h8"/></svg></div><div><h4>Prompt</h4><div class="fname">02-PROMPT-LIBRARY.md</div></div></div><p>Thư viện prompt RARCS cho nội dung, ảnh, video + benchmark ngành</p><div class="foot"><span class="pill">63 mục</span><span class="pill">45 bảng</span><span class="pill">31 khối code</span></div></button><button type="button" class="card a3" data-goto="doc3"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17h.01M9.1 9a3 3 0 1 1 4.5 3.5c-.8.6-1.6 1.2-1.6 2.5"/></svg></div><div><h4>Câu hỏi &amp; Báo cáo</h4><div class="fname">03-ANALYTICS-QUESTIONS-REPORT-IDEAS.md</div></div></div><p>42 câu hỏi phân tích và khung chủ đề báo cáo</p><div class="foot"><span class="pill">35 mục</span><span class="pill">22 bảng</span><span class="pill">7 khối code</span></div></button><button type="button" class="card a4" data-goto="doc4"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c4.4 0 8-1.3 8-3s-3.6-3-8-3-8 1.3-8 3 3.6 3 8 3zM4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><div><h4>Data Dictionary</h4><div class="fname">04-DATA-DICTIONARY-DIGITAL-MARKETING.md</div></div></div><p>Mô hình 10 bảng, ERD, 16 vấn đề chất lượng dữ liệu</p><div class="foot"><span class="pill">26 mục</span><span class="pill">18 bảng</span><span class="pill">1 khối code</span></div></button><button type="button" class="card a5" data-goto="doc5"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h4"/></svg></div><div><h4>Bộ chỉ số</h4><div class="fname">05-MEASURES-FORMULAS.md</div></div></div><p>73 chỉ số: phân loại, ý nghĩa, 8 bẫy — DAX ở Phụ lục A</p><div class="foot"><span class="pill">46 mục</span><span class="pill">29 bảng</span><span class="pill">18 khối code</span></div></button><button type="button" class="card a6" data-goto="doc6"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/></svg></div><div><h4>Skill · Campaign</h4><div class="fname">06-SKILL-CAMPAIGN-CONTENT-MEDIA.md</div></div></div><p>Quy trình 8 bước campaign → content → media</p><div class="foot"><span class="pill">20 mục</span><span class="pill">6 bảng</span><span class="pill">2 khối code</span></div></button><button type="button" class="card a7" data-goto="doc7"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l3-4 3 3 5-7"/></svg></div><div><h4>Skill · Analytics</h4><div class="fname">07-SKILL-DATA-ANALYTICS-POWERBI.md</div></div></div><p>Quy trình phân tích dữ liệu và dựng báo cáo Power BI</p><div class="foot"><span class="pill">23 mục</span><span class="pill">10 bảng</span><span class="pill">2 khối code</span></div></button></div><h3 class="sec-h">Đi đâu để tìm gì</h3><div class="find"><table><thead><tr><th>Bạn đang cần…</th><th>Mở tài liệu</th></tr></thead><tbody><tr><td>Cần ý tưởng chiến dịch, biết chọn KPI và dữ liệu nào</td><td><button type="button" class="go" data-goto="doc1">Use case →</button></td></tr><tr><td>Cần câu lệnh AI viết email, bài đăng, kịch bản video, prompt ảnh</td><td><button type="button" class="go" data-goto="doc2">Prompt →</button></td></tr><tr><td>Cần biết nên hỏi gì trước dữ liệu, và báo cáo nên có trang nào</td><td><button type="button" class="go" data-goto="doc3">Câu hỏi &amp; Báo cáo →</button></td></tr><tr><td>Cần hiểu bảng nào chứa cột gì, quan hệ ra sao, dữ liệu bẩn ở đâu</td><td><button type="button" class="go" data-goto="doc4">Data Dictionary →</button></td></tr><tr><td>Cần hiểu một chỉ số đo gì, chọn mẫu số nào, và công thức DAX</td><td><button type="button" class="go" data-goto="doc5">Bộ chỉ số →</button></td></tr><tr><td>Cần quy trình chuẩn chạy trọn một chiến dịch có cổng kiểm duyệt</td><td><button type="button" class="go" data-goto="doc6">Skill · Campaign →</button></td></tr><tr><td>Cần quy trình chuẩn phân tích dữ liệu và dựng báo cáo Power BI</td><td><button type="button" class="go" data-goto="doc7">Skill · Analytics →</button></td></tr></tbody></table></div><h3 class="sec-h" id="tu-dien">Từ điển thuật ngữ Anh – Việt <span class="glo-count">6 nhóm</span></h3><div class="glo"><div class="glo-nav"><button type="button" class="go" data-goto="home#d8-nhom-1-chien-dich-va-pheu-khach-hang">Nhóm 1 — Chiến dịch và phễu khách hàng</button><button type="button" class="go" data-goto="home#d8-nhom-2-kenh-va-noi-dung">Nhóm 2 — Kênh và nội dung</button><button type="button" class="go" data-goto="home#d8-nhom-3-do-luong-va-chi-so">Nhóm 3 — Đo lường và chỉ số</button><button type="button" class="go" data-goto="home#d8-nhom-4-du-lieu-va-bao-cao">Nhóm 4 — Dữ liệu và báo cáo</button><button type="button" class="go" data-goto="home#d8-nhom-5-ai-va-cau-lenh-cho-ai">Nhóm 5 — AI và câu lệnh cho AI</button><button type="button" class="go" data-goto="home#d8-nhom-6-tuan-thu-va-du-lieu-ca-nhan">Nhóm 6 — Tuân thủ và dữ liệu cá nhân</button><button type="button" class="go" data-goto="home#d8-ba-nham-lan-hay-gap-nhat">Ba nhầm lẫn hay gặp nhất</button></div><div class="sec" id="d8-tu-dien-thuat-ngu-tieng-anh-sang-tieng-viet" data-h="Từ điển thuật ngữ — tiếng Anh sang tiếng Việt"><div class="body"><p>Bộ cheatsheet này viết bằng tiếng Việt. Nhưng có những chữ tiếng Anh không thể bỏ hẳn: chúng là tên cột trong hệ thống, tên nút bấm trên phần mềm, hoặc chữ mà cả ngành đang dùng. Trang này dịch sẵn những chữ đó, để khi đọc bảy tài liệu còn lại bạn không phải đoán.</p>
+<section class="pane active" id="home" data-doc="Từ điển thuật ngữ" data-di="7"><div class="hero"><div class="eyebrow">MKA-101 · Marketing Analytics</div><h2>Cheatsheet ứng dụng AI &amp; phân tích dữ liệu cho marketing ngân hàng</h2><p>Bảy tài liệu tra cứu gộp trong một trang: từ <b>ý tưởng chiến dịch</b> → <b>câu lệnh AI sản xuất nội dung</b> → <b>câu hỏi phân tích</b> → <b>mô hình dữ liệu</b> → <b>bộ chỉ số &amp; công thức DAX</b> → <b>quy trình chuẩn</b>. Không cần đọc tuần tự — dùng như từ điển: có việc gì, tra mục đó.</p></div><div class="stats"><div class="stat"><div class="n">7</div><div class="l">tài liệu</div></div><div class="stat"><div class="n">232</div><div class="l">mục tra cứu</div></div><div class="stat"><div class="n">145</div><div class="l">bảng dữ liệu</div></div><div class="stat"><div class="n">62</div><div class="l">khối code copy được</div></div><div class="stat"><div class="n">100</div><div class="l">use case</div></div><div class="stat"><div class="n">73</div><div class="l">chỉ số</div></div></div><div class="allxls"><div class="ax-t"><h4>Tải toàn bộ bảng dữ liệu về Excel</h4><p>Một file <code>.xlsx</code> gộp <b>mọi bảng danh sách</b> của cả bảy tài liệu — mỗi tài liệu một sheet, xếp đúng thứ tự trong trang. Dùng khi cần lọc, sắp xếp hoặc ghép với dữ liệu của ngân hàng bạn.</p></div><button type="button" class="dlbtn big" id="dlall"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span>Tải Excel tổng hợp</span></button></div><h3 class="sec-h">Dùng thế nào</h3><div class="howto"><div class="step"><div class="num">1</div><h4>Bắt đầu từ câu hỏi thật</h4><p>Xác định bạn đang cần <b>ý tưởng</b>, <b>câu chữ</b>, <b>con số</b> hay <b>quy trình</b> — rồi mở đúng tab ở bảng bên dưới.</p></div><div class="step"><div class="num">2</div><h4>Tìm bằng ô tìm kiếm</h4><p>Ô tìm kiếm quét <b>cả 7 tài liệu cùng lúc</b> và <b>bỏ dấu tiếng Việt</b>: gõ <code>khach hang</code> vẫn ra <i>khách hàng</i>. Nhấn <code>/</code> để nhảy vào ô tìm kiếm, <code>Esc</code> để xoá.</p></div><div class="step"><div class="num">3</div><h4>Copy thẳng khối code</h4><p>Mọi prompt và mọi công thức DAX đều có nút <b>Copy</b> ở góc phải — dán thẳng vào ChatGPT hoặc Power BI, không gõ lại.</p></div><div class="step"><div class="num">4</div><h4>Đọc phần “Bẫy” trước khi dùng</h4><p>Mỗi tài liệu đều có mục riêng liệt kê những chỗ dễ dùng sai — trùng tên cột, lệch đơn vị, cột tổng bị cộng lại lần nữa. Phần lớn lỗi báo cáo đến từ việc bỏ qua mục này.</p></div><div class="step"><div class="num">5</div><h4>Gặp chữ tiếng Anh lạ thì tra ngay</h4><p>Cuối trang này có <b><a href="#tu-dien">Từ điển thuật ngữ Anh – Việt</a></b> — mọi chữ tiếng Anh hay lặp lại trong bảy tài liệu đều được dịch và giải thích bằng lời thường ở đó.</p></div></div><h3 class="sec-h">Bảy tài liệu</h3><div class="cards"><button type="button" class="card a1" data-goto="doc1"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h13M6 12h13M6 16h13M3 8h.01M3 12h.01M3 16h.01"/></svg></div><div><h4>Use case</h4><div class="fname">01-USE-CASE-CAMPAIGN.md</div></div></div><p>100 use case campaign theo 9 nhóm mục tiêu</p><div class="foot"><span class="pill">19 mục</span><span class="pill">15 bảng</span><span class="pill">1 khối code</span></div></button><button type="button" class="card a2" data-goto="doc2"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6M12 19h8"/></svg></div><div><h4>Prompt</h4><div class="fname">02-PROMPT-LIBRARY.md</div></div></div><p>Thư viện prompt RARCS cho nội dung, ảnh, video + benchmark ngành</p><div class="foot"><span class="pill">63 mục</span><span class="pill">45 bảng</span><span class="pill">31 khối code</span></div></button><button type="button" class="card a3" data-goto="doc3"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17h.01M9.1 9a3 3 0 1 1 4.5 3.5c-.8.6-1.6 1.2-1.6 2.5"/></svg></div><div><h4>Câu hỏi &amp; Báo cáo</h4><div class="fname">03-ANALYTICS-QUESTIONS-REPORT-IDEAS.md</div></div></div><p>42 câu hỏi phân tích và khung chủ đề báo cáo</p><div class="foot"><span class="pill">35 mục</span><span class="pill">22 bảng</span><span class="pill">7 khối code</span></div></button><button type="button" class="card a4" data-goto="doc4"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c4.4 0 8-1.3 8-3s-3.6-3-8-3-8 1.3-8 3 3.6 3 8 3zM4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><div><h4>Data Dictionary</h4><div class="fname">04-DATA-DICTIONARY-DIGITAL-MARKETING.md</div></div></div><p>Mô hình 10 bảng, ERD, 16 vấn đề chất lượng dữ liệu</p><div class="foot"><span class="pill">26 mục</span><span class="pill">18 bảng</span><span class="pill">1 khối code</span></div></button><button type="button" class="card a5" data-goto="doc5"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h4"/></svg></div><div><h4>Bộ chỉ số</h4><div class="fname">05-MEASURES-FORMULAS.md</div></div></div><p>73 chỉ số: phân loại, ý nghĩa, 8 bẫy — DAX ở Phụ lục A</p><div class="foot"><span class="pill">46 mục</span><span class="pill">29 bảng</span><span class="pill">18 khối code</span></div></button><button type="button" class="card a6" data-goto="doc6"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/></svg></div><div><h4>Skill · Campaign</h4><div class="fname">06-SKILL-CAMPAIGN-CONTENT-MEDIA.md</div></div></div><p>Quy trình 8 bước campaign → content → media</p><div class="foot"><span class="pill">20 mục</span><span class="pill">6 bảng</span><span class="pill">2 khối code</span></div></button><button type="button" class="card a7" data-goto="doc7"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l3-4 3 3 5-7"/></svg></div><div><h4>Skill · Analytics</h4><div class="fname">07-SKILL-DATA-ANALYTICS-POWERBI.md</div></div></div><p>Quy trình phân tích dữ liệu và dựng báo cáo Power BI</p><div class="foot"><span class="pill">23 mục</span><span class="pill">10 bảng</span><span class="pill">2 khối code</span></div></button></div><h3 class="sec-h">Bài viết chia sẻ</h3><div class="cards"><button type="button" class="card a4" data-goto="doc8"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/><circle cx="19" cy="6" r="2.5"/></svg></div><div><h4>AI Agent trong phân tích dữ liệu với Power BI</h4><div class="fname">08-BLOG-AI-AGENT-POWER-BI.md</div></div></div><p>Kiến trúc 6 lớp, 4 nguyên tắc chất lượng và lộ trình pilot 4 tuần để đưa AI Agent vào Power BI</p><div class="foot"><span class="pill">Bài viết</span><span class="pill">23 mục</span></div></button><button type="button" class="card a6" data-goto="doc9"><div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 12l2 2-2 2M13 16h3"/></svg></div><div><h4>Làm việc với folder máy tính bằng ChatGPT Desktop và AI Agent</h4><div class="fname">09-HUONG-DAN-CHATGPT-DESKTOP-CODEX.md</div></div></div><p>8 bước tổ chức folder, README, AGENTS.md và cách giao việc để ChatGPT Desktop (Codex) làm việc có kỷ luật</p><div class="foot"><span class="pill">Bài viết</span><span class="pill">20 mục</span><span class="pill">8 khối code</span></div></button></div><h3 class="sec-h">Đi đâu để tìm gì</h3><div class="find"><table><thead><tr><th>Bạn đang cần…</th><th>Mở tài liệu</th></tr></thead><tbody><tr><td>Cần ý tưởng chiến dịch, biết chọn KPI và dữ liệu nào</td><td><button type="button" class="go" data-goto="doc1">Use case →</button></td></tr><tr><td>Cần câu lệnh AI viết email, bài đăng, kịch bản video, prompt ảnh</td><td><button type="button" class="go" data-goto="doc2">Prompt →</button></td></tr><tr><td>Cần biết nên hỏi gì trước dữ liệu, và báo cáo nên có trang nào</td><td><button type="button" class="go" data-goto="doc3">Câu hỏi &amp; Báo cáo →</button></td></tr><tr><td>Cần hiểu bảng nào chứa cột gì, quan hệ ra sao, dữ liệu bẩn ở đâu</td><td><button type="button" class="go" data-goto="doc4">Data Dictionary →</button></td></tr><tr><td>Cần hiểu một chỉ số đo gì, chọn mẫu số nào, và công thức DAX</td><td><button type="button" class="go" data-goto="doc5">Bộ chỉ số →</button></td></tr><tr><td>Cần quy trình chuẩn chạy trọn một chiến dịch có cổng kiểm duyệt</td><td><button type="button" class="go" data-goto="doc6">Skill · Campaign →</button></td></tr><tr><td>Cần quy trình chuẩn phân tích dữ liệu và dựng báo cáo Power BI</td><td><button type="button" class="go" data-goto="doc7">Skill · Analytics →</button></td></tr><tr><td>Muốn hiểu cách đưa AI Agent hỏi đáp dữ liệu vào Power BI một cách an toàn</td><td><button type="button" class="go" data-goto="doc8">AI Agent × Power BI →</button></td></tr><tr><td>Muốn dùng ChatGPT Desktop / Codex làm việc trực tiếp với folder trên máy tính</td><td><button type="button" class="go" data-goto="doc9">ChatGPT Desktop · Codex →</button></td></tr></tbody></table></div><h3 class="sec-h" id="tu-dien">Từ điển thuật ngữ Anh – Việt <span class="glo-count">6 nhóm</span></h3><div class="glo"><div class="glo-nav"><button type="button" class="go" data-goto="home#d8-nhom-1-chien-dich-va-pheu-khach-hang">Nhóm 1 — Chiến dịch và phễu khách hàng</button><button type="button" class="go" data-goto="home#d8-nhom-2-kenh-va-noi-dung">Nhóm 2 — Kênh và nội dung</button><button type="button" class="go" data-goto="home#d8-nhom-3-do-luong-va-chi-so">Nhóm 3 — Đo lường và chỉ số</button><button type="button" class="go" data-goto="home#d8-nhom-4-du-lieu-va-bao-cao">Nhóm 4 — Dữ liệu và báo cáo</button><button type="button" class="go" data-goto="home#d8-nhom-5-ai-va-cau-lenh-cho-ai">Nhóm 5 — AI và câu lệnh cho AI</button><button type="button" class="go" data-goto="home#d8-nhom-6-tuan-thu-va-du-lieu-ca-nhan">Nhóm 6 — Tuân thủ và dữ liệu cá nhân</button><button type="button" class="go" data-goto="home#d8-ba-nham-lan-hay-gap-nhat">Ba nhầm lẫn hay gặp nhất</button></div><div class="sec" id="d8-tu-dien-thuat-ngu-tieng-anh-sang-tieng-viet" data-h="Từ điển thuật ngữ — tiếng Anh sang tiếng Việt"><div class="body"><p>Bộ cheatsheet này viết bằng tiếng Việt. Nhưng có những chữ tiếng Anh không thể bỏ hẳn: chúng là tên cột trong hệ thống, tên nút bấm trên phần mềm, hoặc chữ mà cả ngành đang dùng. Trang này dịch sẵn những chữ đó, để khi đọc bảy tài liệu còn lại bạn không phải đoán.</p>
 <p><strong>Cách dùng:</strong> đọc lướt một lần cho quen mặt chữ. Khi gặp một từ lạ trong tài liệu, quay lại đây tra. Trong các tài liệu khác, lần đầu một thuật ngữ xuất hiện sẽ có tiếng Anh trong ngoặc — ví dụ <em>phễu chuyển đổi (funnel)</em> — những lần sau chỉ còn tiếng Việt.</p>
 <p><strong>Ba loại chữ tiếng Anh được giữ nguyên có chủ ý:</strong></p>
 <ol><li><strong>Viết tắt cả ngành ngân hàng Việt Nam đang dùng</strong> — KPI, ROI, CTR, CPL, CAC, PII, CASA, eKYC. Dịch ra tiếng Việt còn khó hiểu hơn giữ nguyên.</li><li><strong>Tên riêng của dữ liệu thật</strong> — giá trị trong hệ thống như <code>acquisition</code>, <code>cross_sell</code>, <code>app_push</code>, <code>facebook_reel</code>, <code>scheduled</code>, <code>published</code>, <code>primary</code>, <code>derivative</code>, và mọi tên bảng, tên cột. Đổi những chữ này là làm sai dữ liệu.</li><li><strong>Chữ nằm trong khối câu lệnh và công thức</strong> — mọi thứ trong khung code giữ nguyên từng ký tự, vì phải chép nguyên văn vào công cụ AI hoặc Power BI mới chạy được.</li></ol>
@@ -2559,7 +2560,189 @@ STEPS:   1) Khoá bảng màu [Màu_Thương_Hiệu_1] + [Màu_Thương_Hiệu_2
 <hr></div></div><div class="sec" id="d7-8-tieu-chi-hoan-thanh-agent-tu-kiem-truoc-khi-bao-xong" data-h="8. Tiêu chí hoàn thành (agent tự kiểm trước khi báo xong)" data-up=""><div class="body"><h2>8. Tiêu chí hoàn thành (agent tự kiểm trước khi báo xong)</h2><p>Đây là phiếu nghiệm thu báo cáo. Người đặt hàng dùng chính danh sách này để trả bài — không cần đọc lại toàn bộ quy trình, chỉ cần hỏi từng dòng. Hai dòng đáng hỏi nhất: <strong>mọi con số truy được về một truy vấn cụ thể</strong> và <strong>đã có người nhìn bản báo cáo hiện lên màn hình</strong>.</p>
 <ul><li>[ ] Đã đọc <strong>schema thật</strong> (không chỉ tài liệu) trước khi viết công thức đầu tiên.</li><li>[ ] Nêu được <strong>mức chi tiết</strong> của mọi bảng tham gia công thức.</li><li>[ ] Mọi chỉ số đã chạy <code>EVALUATE</code> và <strong>đối chiếu ít nhất 1 con số biết trước</strong>.</li><li>[ ] Mọi con số trong câu trả lời truy được về một truy vấn cụ thể.</li><li>[ ] Đã kiểm 4 bẫy hay gặp nhất: cộng trùng theo mức chi tiết · mẫu số đúng tập · quan hệ ngày đúng ngữ nghĩa · chỉ số cảnh báo có <code>ISBLANK</code>.</li><li>[ ] Mọi bình quân/tỷ lệ hiển thị kèm <strong>n</strong>; ngôn ngữ ở mức <strong>mô tả</strong>, không nhân quả.</li><li>[ ] Đã nêu <strong>giới hạn dữ liệu</strong> và danh sách câu hỏi <strong>chưa trả lời được</strong>.</li><li>[ ] Đã <strong>phân lớp L1–L4</strong> mọi cột khách hàng; L1/L2 đã ẩn; không có truy vấn dump bảng thô; không danh sách/định danh khách hàng trong đầu ra (output); chỉ số L3 có ngưỡng cỡ nhóm.</li><li>[ ] Cột ngày nối vào bảng lịch đã <strong>profiling phần giờ</strong> (cột <code>datetime</code> còn phần giờ sẽ không khớp khoá ngày và làm rơi dòng), và row count <strong>trước = sau</strong> khi cộng qua bảng lịch.</li><li>[ ] Mọi giá trị kỳ vọng trong tài liệu nghiệm thu ghi <strong>cả giá trị thô lẫn giá trị hiển thị</strong> sau format string.</li><li>[ ] Chỉ số cảnh báo phân biệt được <strong>&quot;đã kiểm và sạch&quot;</strong> với <strong>&quot;chưa kiểm được&quot;</strong>; có quy trình xử lý khi đèn đỏ bật (§5.13), không chỉ có màu.</li><li>[ ] Report chỉ được sửa khi file <strong>đóng</strong>; đã rà G1–G3 (màu, formatString, <code>labelDisplayUnits</code>).</li><li>[ ] <strong>User đã nhìn bản render</strong> và xác nhận — chưa nhìn thì chưa xong.</li><li>[ ] Mỗi chỉ số đã trả lời đủ <strong>6 câu hỏi suy chỉ số</strong> ở §1 bước 2 và <strong>3 câu hỏi kiểm mẫu số</strong> ở §5.0; lý do chọn mẫu số được ghi vào tài liệu, không chỉ nằm trong đầu người viết.</li><li>[ ] Kết dự án: đủ 4 artifact (PLAN · CHANGESET · VERIFICATION · HANDOFF) + timeline + bài học mới.</li></ul>
 <hr></div></div><div class="sec" id="d7-9-dung-cung-bo-tai-lieu-day-du-tuy-chon" data-h="9. Dùng cùng bộ tài liệu đầy đủ (tuỳ chọn)" data-up=""><div class="body"><h2>9. Dùng cùng bộ tài liệu đầy đủ (tuỳ chọn)</h2><p>Skill này <strong>tự chạy được một mình</strong> — mục này chỉ dành cho trường hợp bạn đang làm việc trong khoá MKA-101 và có sẵn bộ cheatsheet 7 file bên cạnh. Không có chúng thì bỏ qua mục này; §1 bước 2 và §5.0 đã đủ để tự dựng chỉ số trên mô hình dữ liệu bất kỳ.</p>
-<ul><li><strong>Danh mục chỉ số của khoá</strong> có sẵn 73 chỉ số đã dựng cho bộ dữ liệu thực hành, kèm công thức và quy ước định dạng. Dùng để <strong>đối chiếu</strong> sau khi đã tự suy ra chỉ số, không dùng để chép mù: mô hình mỗi dự án mỗi khác.</li><li><strong>Từ điển dữ liệu của khoá</strong> mô tả 10 bảng của bộ thực hành, phân lớp cột L1–L4 và các bẫy khi nối cột ngày vào bảng lịch.</li><li><strong>Tài liệu câu hỏi nghiệp vụ &amp; ý tưởng báo cáo</strong> có 42 câu hỏi phân tích kèm gợi ý trang báo cáo — hữu ích ở pha <em>Key Information</em> của §2.</li><li><strong>Skill campaign &amp; nội dung</strong> là nơi sinh ra yêu cầu đo lường mà skill này nhận; hai skill dùng chung được, dùng riêng cũng được.</li><li><strong>Từ điển thuật ngữ của khoá</strong> giải nghĩa các chữ tiếng Anh; trong file này mỗi thuật ngữ đã được dịch ngay lần đầu xuất hiện.</li></ul></div></div></div></div></section>
+<ul><li><strong>Danh mục chỉ số của khoá</strong> có sẵn 73 chỉ số đã dựng cho bộ dữ liệu thực hành, kèm công thức và quy ước định dạng. Dùng để <strong>đối chiếu</strong> sau khi đã tự suy ra chỉ số, không dùng để chép mù: mô hình mỗi dự án mỗi khác.</li><li><strong>Từ điển dữ liệu của khoá</strong> mô tả 10 bảng của bộ thực hành, phân lớp cột L1–L4 và các bẫy khi nối cột ngày vào bảng lịch.</li><li><strong>Tài liệu câu hỏi nghiệp vụ &amp; ý tưởng báo cáo</strong> có 42 câu hỏi phân tích kèm gợi ý trang báo cáo — hữu ích ở pha <em>Key Information</em> của §2.</li><li><strong>Skill campaign &amp; nội dung</strong> là nơi sinh ra yêu cầu đo lường mà skill này nhận; hai skill dùng chung được, dùng riêng cũng được.</li><li><strong>Từ điển thuật ngữ của khoá</strong> giải nghĩa các chữ tiếng Anh; trong file này mỗi thuật ngữ đã được dịch ngay lần đầu xuất hiện.</li></ul></div></div></div></div></section><section class="pane" id="doc8" data-doc="AI Agent × Power BI" data-di="8"><div class="layout"><details class="toc-wrap"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> Mục lục trang này · 23 mục</summary><aside class="toc"><div class="toc-h">Mục lục <span>23 mục</span></div><a class="lv1" href="#b1-ai-agent-trong-phan-tich-du-lieu-voi-power-bi">AI Agent trong phân tích dữ liệu với Power BI</a><div class="tgrp"><div class="trow"><a class="lv2" href="#b1-tu-dashboard-tinh-den-phan-tich-hoi-thoai">Từ dashboard tĩnh đến phân tích hội thoại</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b1-ai-agent-trong-power-bi-thuc-su-lam-gi">AI Agent trong Power BI thực sự làm gì</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b1-hai-huong-trien-khai">Hai hướng triển khai</a></div></div><div class="tgrp closed"><div class="trow"><a class="lv2" href="#b1-kien-truc-de-xuat-cho-ai-agent-tuy-bien">Kiến trúc đề xuất cho AI Agent tùy biến</a><button type="button" class="tchev" aria-expanded="false" aria-label="Mở/thu gọn nhóm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="tsub"><a class="lv3" href="#b1-lop-mot-nhan-dien-nguoi-dung-va-quyen-truy-cap">Lớp một — Nhận diện người dùng và quyền truy cập</a><a class="lv3" href="#b1-lop-hai-lay-ngu-canh-tu-bao-cao">Lớp hai — Lấy ngữ cảnh từ báo cáo</a><a class="lv3" href="#b1-lop-ba-tao-tu-dien-ngu-nghia">Lớp ba — Tạo từ điển ngữ nghĩa</a><a class="lv3" href="#b1-lop-bon-lap-ke-hoach-va-tao-truy-van">Lớp bốn — Lập kế hoạch và tạo truy vấn</a><a class="lv3" href="#b1-lop-nam-thuc-thi-co-kiem-soat">Lớp năm — Thực thi có kiểm soát</a><a class="lv3" href="#b1-lop-sau-tra-loi-co-bang-chung">Lớp sáu — Trả lời có bằng chứng</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b1-mot-vi-du-minh-hoa">Một ví dụ minh họa</a></div></div><div class="tgrp closed"><div class="trow"><a class="lv2" href="#b1-bon-nguyen-tac-quyet-dinh-chat-luong">Bốn nguyên tắc quyết định chất lượng</a><button type="button" class="tchev" aria-expanded="false" aria-label="Mở/thu gọn nhóm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="tsub"><a class="lv3" href="#b1-semantic-model-quan-trong-hon-prompt">Semantic model quan trọng hơn prompt</a><a class="lv3" href="#b1-bao-mat-phai-nam-duoi-lop-ai">Bảo mật phải nằm dưới lớp AI</a><a class="lv3" href="#b1-cau-tra-loi-phai-co-kha-nang-truy-nguyen">Câu trả lời phải có khả năng truy nguyên</a><a class="lv3" href="#b1-agent-phai-biet-luc-nao-nen-dung">Agent phải biết lúc nào nên dừng</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b1-lo-trinh-pilot-trong-bon-tuan">Lộ trình pilot trong bốn tuần</a></div></div><div class="tgrp closed"><div class="trow"><a class="lv2" href="#b1-nen-lam-va-khong-nen-lam">Nên làm và không nên làm</a><button type="button" class="tchev" aria-expanded="false" aria-label="Mở/thu gọn nhóm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="tsub"><a class="lv3" href="#b1-nen-lam">Nên làm</a><a class="lv3" href="#b1-khong-nen-lam">Không nên làm</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b1-ket-luan">Kết luận</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b1-nguon-tham-khao">Nguồn tham khảo</a></div></div></aside></details><div class="panebody"><div class="sec" id="b1-ai-agent-trong-phan-tich-du-lieu-voi-power-bi" data-h="AI Agent trong phân tích dữ liệu với Power BI"><div class="dochead"><h2>AI Agent trong phân tích dữ liệu với Power BI</h2><div class="meta"><span class="pill k">08-BLOG-AI-AGENT-POWER-BI.md</span><span class="pill">Bài viết chia sẻ</span><span class="pill">Nguyễn Quang Đức Tobi</span><span class="pill">15 tháng 9 năm 2026</span><span class="pill">23 mục</span></div><div class="dltools"><button type="button" class="dlbtn" data-dl="md" data-pane="doc8" data-fn="08-BLOG-AI-AGENT-POWER-BI.md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span>Tải .md</span></button><button type="button" class="dlbtn" data-copyall="doc8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Sao chép toàn bài</span></button></div></div><div class="body"><p>Từ dashboard tĩnh đến trải nghiệm hỏi đáp dữ liệu bằng ngôn ngữ tự nhiên</p>
+<blockquote class="callout"><p><strong>Người dùng không thiếu dashboard. Họ thiếu một cách nhanh để biến câu hỏi kinh doanh thành câu trả lời có dữ liệu, đúng ngữ cảnh và đúng quyền truy cập.</strong></p></blockquote>
+<p>Đó là khoảng trống mà AI Agent có thể lấp đầy trong Power BI. Thay vì yêu cầu người dùng nhớ báo cáo nào, trang nào, slicer nào và measure nào, chúng ta cho phép họ hỏi bằng ngôn ngữ tự nhiên: Doanh thu miền Bắc tháng này thế nào, nhóm sản phẩm nào kéo biên lợi nhuận đi xuống, hay khách hàng nào có rủi ro rời bỏ cao nhất. Agent tiếp nhận câu hỏi, hiểu ngữ cảnh đang xem trong báo cáo, tạo truy vấn hợp lệ tới semantic model, kiểm tra kết quả rồi trả lời bằng ngôn ngữ dễ hiểu.</p>
+<p>Nhưng có một điểm cần nói thẳng: gắn hộp chat vào dashboard chưa tạo ra một AI Agent tốt. Giá trị thật nằm ở kiến trúc dữ liệu, semantic model, quyền truy cập và cơ chế kiểm chứng. AI chỉ làm rõ chất lượng đã có; mô hình dữ liệu lộn xộn thì câu trả lời cũng lộn xộn, chỉ là lộn xộn với tốc độ nhanh hơn.</p></div></div><div class="sec" id="b1-tu-dashboard-tinh-den-phan-tich-hoi-thoai" data-h="Từ dashboard tĩnh đến phân tích hội thoại" data-up=""><div class="body"><h2>Từ dashboard tĩnh đến phân tích hội thoại</h2><p>Dashboard truyền thống được thiết kế theo logic người làm báo cáo: chọn KPI, dựng visual, sắp xếp trang và tạo bộ lọc. Người dùng phải học cách đi trong cấu trúc đó. Conversational analytics đảo chiều trải nghiệm: người dùng bắt đầu bằng câu hỏi của họ, còn hệ thống chịu trách nhiệm tìm đường tới dữ liệu.</p>
+<p>Microsoft hiện hỗ trợ trải nghiệm hỏi dữ liệu trong Power BI Copilot. Copilot có thể dùng metadata của trang báo cáo hiện tại, schema của semantic model, mô tả, kiểu dữ liệu và linguistic schema để hiểu câu hỏi; nếu visual hiện có chưa trả lời được, hệ thống có thể sử dụng semantic model để tạo kết quả mới. Microsoft cũng lưu ý rằng kết quả AI mang tính không xác định và vẫn có thể sai, đặc biệt khi tên trường mơ hồ, mô hình kém hoặc ngữ cảnh hội thoại gây nhiễu [1][5].</p>
+<p>Vì vậy, câu hỏi đúng không phải là có nên thêm AI vào Power BI hay không. Câu hỏi đúng là chúng ta cần mức độ tự chủ nào, dùng dữ liệu nào, ai được hỏi gì và bằng chứng nào đi kèm câu trả lời.</p></div></div><div class="sec" id="b1-ai-agent-trong-power-bi-thuc-su-lam-gi" data-h="AI Agent trong Power BI thực sự làm gì" data-up=""><div class="body"><h2>AI Agent trong Power BI thực sự làm gì</h2><p>Một chatbot thường nhận câu hỏi và sinh câu trả lời. Một AI Agent tốt hơn ở chỗ nó có thể quan sát bối cảnh, lập kế hoạch, gọi công cụ, đánh giá kết quả và quyết định bước tiếp theo. Trong bài toán Power BI, vòng lặp này có thể được hiểu qua sáu hành động:</p>
+<ol><li><strong>Nhận câu hỏi</strong> và xác định người dùng đang muốn xem KPI, xu hướng, nguyên nhân hay so sánh.</li><li><strong>Đọc bối cảnh</strong> gồm danh tính người dùng, report, page, visual và các filter đang có.</li><li><strong>Ánh xạ ngôn ngữ kinh doanh</strong> sang measure, dimension, thời gian và quan hệ trong semantic model.</li><li><strong>Lập kế hoạch truy vấn</strong> rồi tạo DAX trong phạm vi cho phép.</li><li><strong>Thực thi và kiểm tra</strong> bao gồm quyền truy cập, giới hạn dữ liệu, tính hợp lệ và độ đầy đủ của kết quả.</li><li><strong>Giải thích</strong> bằng câu trả lời ngắn, nêu rõ filter, kỳ dữ liệu, nguồn và giới hạn cần lưu ý.</li></ol>
+<blockquote class="callout"><p><strong>Câu hỏi → Ngữ cảnh báo cáo → Semantic model → DAX có kiểm soát → Kết quả → Giải thích</strong></p></blockquote>
+<p>Điểm quan trọng nhất là agent không nên đọc dashboard như một bức ảnh. Nó phải truy vấn semantic model đứng sau báo cáo. Semantic model mới là nơi định nghĩa measure, quan hệ, hierarchy, format và logic kinh doanh. Báo cáo là lớp trình bày; semantic model là hợp đồng dữ liệu.</p></div></div><div class="sec" id="b1-hai-huong-trien-khai" data-h="Hai hướng triển khai" data-up=""><div class="body"><h2>Hai hướng triển khai</h2><p>Doanh nghiệp thường có hai con đường. Hướng thứ nhất là dùng trải nghiệm Copilot có sẵn trong Power BI. Hướng thứ hai là xây một agent riêng và nhúng cùng báo cáo. Không có lựa chọn nào luôn tốt hơn; điều quan trọng là chọn đúng độ phức tạp cho bài toán.</p>
+<div class="tw"><table><thead><tr><th>Tiêu chí</th><th>Power BI Copilot</th><th>AI Agent tùy biến</th></tr></thead><tbody><tr><td>Tốc độ</td><td>Nhanh nếu tenant và capacity đáp ứng điều kiện</td><td>Cần phát triển ứng dụng và tích hợp</td></tr><tr><td>Trải nghiệm</td><td>Nằm trong hệ sinh thái Power BI</td><td>Có thể nhúng vào portal, Teams hoặc ứng dụng nghiệp vụ</td></tr><tr><td>Ngữ cảnh</td><td>Khai thác report metadata và semantic model</td><td>Chủ động lấy filter, lịch sử hội thoại và dữ liệu nghiệp vụ bổ sung</td></tr><tr><td>Kiểm soát</td><td>Theo khả năng và cấu hình của Microsoft</td><td>Tùy biến guardrail, workflow, định dạng và bước phê duyệt</td></tr><tr><td>Vận hành</td><td>Ít thành phần tự quản hơn</td><td>Phải theo dõi prompt, truy vấn, chi phí, latency và chất lượng</td></tr><tr><td>Phù hợp</td><td>Tổ chức đã dùng Power BI và muốn thử nhanh</td><td>Sản phẩm cần UX riêng hoặc quy trình phân tích nhiều bước</td></tr></tbody></table></div></div></div><div class="sec" id="b1-kien-truc-de-xuat-cho-ai-agent-tuy-bien" data-h="Kiến trúc đề xuất cho AI Agent tùy biến" data-up=""><div class="body"><h2>Kiến trúc đề xuất cho AI Agent tùy biến</h2></div></div><div class="sec" id="b1-lop-mot-nhan-dien-nguoi-dung-va-quyen-truy-cap" data-h="Lớp một — Nhận diện người dùng và quyền truy cập" data-up="Kiến trúc đề xuất cho AI Agent tùy biến"><div class="body"><h3>Lớp một — Nhận diện người dùng và quyền truy cập</h3><p>Agent phải biết người hỏi là ai trước khi biết họ hỏi gì. RLS trong Power BI giới hạn dữ liệu theo người dùng hoặc vai trò tại semantic model. Trong kịch bản embedded, danh tính hiệu lực cần được truyền đúng khi tạo embed token; quyền không được suy ra từ nội dung prompt. Microsoft cũng lưu ý RLS áp dụng khác nhau theo vai trò workspace, vì vậy kiểm thử phải dùng đúng loại tài khoản và token thực tế [3].</p></div></div><div class="sec" id="b1-lop-hai-lay-ngu-canh-tu-bao-cao" data-h="Lớp hai — Lấy ngữ cảnh từ báo cáo" data-up="Kiến trúc đề xuất cho AI Agent tùy biến"><div class="body"><h3>Lớp hai — Lấy ngữ cảnh từ báo cáo</h3><p>Nếu người dùng đang đứng ở trang Doanh thu, đã lọc năm 2026 và khu vực miền Bắc, agent phải kế thừa ngữ cảnh đó. Power BI JavaScript API cho phép lấy hoặc cập nhật filter ở cấp report, page và visual thông qua <code>getFilters</code> và <code>updateFilters</code> [4]. Đây là cầu nối giúp câu hỏi ngắn như Còn theo kênh online thì sao vẫn được hiểu đúng.</p></div></div><div class="sec" id="b1-lop-ba-tao-tu-dien-ngu-nghia" data-h="Lớp ba — Tạo từ điển ngữ nghĩa" data-up="Kiến trúc đề xuất cho AI Agent tùy biến"><div class="body"><h3>Lớp ba — Tạo từ điển ngữ nghĩa</h3><p>LLM không nên tự đoán gross margin là cột nào. Hãy cung cấp một semantic dictionary gồm tên business, measure chuẩn, mô tả, công thức, đơn vị, quan hệ, synonym và ví dụ câu hỏi. Những field kỹ thuật hoặc nhạy cảm không cần thiết phải được ẩn khỏi bối cảnh. Model càng rõ, agent càng ít phải đoán.</p></div></div><div class="sec" id="b1-lop-bon-lap-ke-hoach-va-tao-truy-van" data-h="Lớp bốn — Lập kế hoạch và tạo truy vấn" data-up="Kiến trúc đề xuất cho AI Agent tùy biến"><div class="body"><h3>Lớp bốn — Lập kế hoạch và tạo truy vấn</h3><p>Từ câu hỏi, agent tạo một kế hoạch trung gian: KPI nào, chiều phân tích nào, filter nào, khoảng thời gian nào và cần so sánh với mốc nào. Chỉ sau khi kế hoạch rõ mới sinh DAX. Cách làm này giúp kiểm tra logic trước khi tốn thời gian truy vấn và dễ giải thích khi người dùng phản hồi.</p></div></div><div class="sec" id="b1-lop-nam-thuc-thi-co-kiem-soat" data-h="Lớp năm — Thực thi có kiểm soát" data-up="Kiến trúc đề xuất cho AI Agent tùy biến"><div class="body"><h3>Lớp năm — Thực thi có kiểm soát</h3><p>Power BI REST API có endpoint Execute Queries để chạy DAX trên dataset hoặc semantic model [2]. Tuy nhiên, đây không phải giấy phép cho agent chạy bất kỳ câu lệnh nào nó nghĩ ra. Nên dùng allowlist measure và dimension, giới hạn số dòng, timeout, chặn truy vấn quá rộng, ghi log và bắt buộc xác nhận khi câu hỏi có nguy cơ lộ dữ liệu chi tiết. Cần đặc biệt kiểm tra các giới hạn về RLS, SSO và service principal trước khi chọn phương án xác thực [2].</p></div></div><div class="sec" id="b1-lop-sau-tra-loi-co-bang-chung" data-h="Lớp sáu — Trả lời có bằng chứng" data-up="Kiến trúc đề xuất cho AI Agent tùy biến"><div class="body"><h3>Lớp sáu — Trả lời có bằng chứng</h3><p>Câu trả lời tốt không chỉ có một con số. Nó nên nói rõ đang dùng kỳ nào, filter nào, measure nào, dữ liệu cập nhật lúc nào và có điểm nào chưa chắc chắn. Với câu hỏi phân tích nguyên nhân, agent nên trả cả bảng đóng góp hoặc visual nhỏ để người dùng kiểm tra. Nếu câu hỏi mơ hồ, agent phải hỏi lại thay vì tự chọn một định nghĩa rồi trình bày như sự thật.</p></div></div><div class="sec" id="b1-mot-vi-du-minh-hoa" data-h="Một ví dụ minh họa" data-up=""><div class="body"><h2>Một ví dụ minh họa</h2><p>Giả sử người dùng đang xem trang Hiệu quả bán hàng với filter Khu vực bằng Miền Bắc và Thời gian bằng Quý hiện tại. Họ hỏi: Vì sao biên lợi nhuận giảm so với quý trước.</p>
+<p>Agent không nên trả lời ngay. Nó cần xác định measure Biên lợi nhuận chuẩn, lấy filter hiện tại, thêm kỳ so sánh, phân rã chênh lệch theo nhóm sản phẩm hoặc kênh bán, sau đó kiểm tra liệu tổng các đóng góp có khớp mức thay đổi chung hay không. Một phản hồi hợp lý có cấu trúc như sau:</p>
+<ul><li>Kết luận ngắn về hướng tăng hoặc giảm, không tự điền số nếu truy vấn chưa trả đủ dữ liệu.</li><li>Ba yếu tố đóng góp lớn nhất, kèm giá trị và tỷ trọng từ kết quả truy vấn.</li><li>Ngữ cảnh đã dùng: Miền Bắc, quý hiện tại so với quý trước và measure Biên lợi nhuận chuẩn.</li><li>Một câu hỏi gợi mở: Có muốn xem sâu theo sản phẩm, khách hàng hay kênh bán không.</li></ul>
+<p>Khác biệt nằm ở chỗ agent biến câu hỏi mở thành chuỗi thao tác phân tích có thể kiểm tra, chứ không chỉ biến bảng dữ liệu thành một đoạn văn trôi chảy.</p></div></div><div class="sec" id="b1-bon-nguyen-tac-quyet-dinh-chat-luong" data-h="Bốn nguyên tắc quyết định chất lượng" data-up=""><div class="body"><h2>Bốn nguyên tắc quyết định chất lượng</h2></div></div><div class="sec" id="b1-semantic-model-quan-trong-hon-prompt" data-h="Semantic model quan trọng hơn prompt" data-up="Bốn nguyên tắc quyết định chất lượng"><div class="body"><h3>Semantic model quan trọng hơn prompt</h3><p>Một prompt hay không cứu được model có measure trùng nghĩa, tên cột khó hiểu và quan hệ sai. Microsoft cũng khuyến nghị chuẩn bị model cho Copilot bằng cách cải thiện cấu trúc, mô tả và linguistic model; mô hình sao và tên gọi rõ ràng giúp giảm câu trả lời không mong muốn [1].</p></div></div><div class="sec" id="b1-bao-mat-phai-nam-duoi-lop-ai" data-h="Bảo mật phải nằm dưới lớp AI" data-up="Bốn nguyên tắc quyết định chất lượng"><div class="body"><h3>Bảo mật phải nằm dưới lớp AI</h3><p>Đừng để agent tự quyết ai được xem dữ liệu nào. RLS, OLS, quyền Build và cơ chế identity phải được thiết kế ở Power BI và lớp ứng dụng. Nếu agent trả lời đúng câu hỏi nhưng vượt quyền dữ liệu, hệ thống vẫn thất bại.</p></div></div><div class="sec" id="b1-cau-tra-loi-phai-co-kha-nang-truy-nguyen" data-h="Câu trả lời phải có khả năng truy nguyên" data-up="Bốn nguyên tắc quyết định chất lượng"><div class="body"><h3>Câu trả lời phải có khả năng truy nguyên</h3><p>Tối thiểu cần lưu câu hỏi, ngữ cảnh filter, kế hoạch truy vấn, DAX đã chạy, thời gian thực thi, số dòng trả về và câu trả lời cuối. Khi người dùng nói số này không đúng, nhóm BI phải lần ngược được vì sao, không tranh luận dựa trên cảm giác.</p></div></div><div class="sec" id="b1-agent-phai-biet-luc-nao-nen-dung" data-h="Agent phải biết lúc nào nên dừng" data-up="Bốn nguyên tắc quyết định chất lượng"><div class="body"><h3>Agent phải biết lúc nào nên dừng</h3><p>Không phải câu hỏi nào cũng cần agent tự xử lý. Những yêu cầu thiếu định nghĩa KPI, đòi dữ liệu ngoài semantic model, yêu cầu xuất danh sách chi tiết nhạy cảm hoặc có kết quả mâu thuẫn cần được chuyển sang hỏi lại hay nhờ chuyên gia dữ liệu xác nhận. Sự tin cậy đến từ khả năng từ chối đúng lúc, không đến từ việc trả lời mọi thứ.</p></div></div><div class="sec" id="b1-lo-trinh-pilot-trong-bon-tuan" data-h="Lộ trình pilot trong bốn tuần" data-up=""><div class="body"><h2>Lộ trình pilot trong bốn tuần</h2><p>Tôi khuyến nghị bắt đầu bằng một semantic model đã ổn định và một nhóm người dùng thật, thay vì mở agent cho toàn bộ kho dữ liệu ngay từ đầu.</p>
+<ol><li><strong>Tuần một — chọn use case.</strong> Chọn 15 đến 20 câu hỏi lặp lại nhiều, có giá trị kinh doanh rõ và đáp án kiểm chứng được. Chốt KPI, người dùng, dữ liệu và tiêu chí thành công.</li><li><strong>Tuần hai — làm sạch semantic model.</strong> Chuẩn hóa measure, mô tả, synonym, format, quan hệ và RLS. Ẩn field không dùng và tạo bộ câu hỏi kiểm thử chuẩn.</li><li><strong>Tuần ba — dựng agent.</strong> Kết nối identity, report context, metadata, lớp sinh DAX, Execute Queries, logging và định dạng câu trả lời. Thiết lập giới hạn truy vấn ngay từ đầu.</li><li><strong>Tuần bốn — kiểm thử với người dùng.</strong> Chạy UAT theo vai trò, test câu hỏi mơ hồ và câu hỏi vượt quyền, đo độ chính xác, tốc độ, tỷ lệ phải hỏi lại và mức độ người dùng quay lại.</li></ol>
+<p>Bộ KPI pilot nên gồm độ chính xác của câu trả lời, tỷ lệ câu hỏi cần làm rõ, tỷ lệ truy vấn lỗi, thời gian phản hồi, tỷ lệ người dùng xác nhận hữu ích và số câu hỏi chuyển sang chuyên gia. Đừng chỉ đo số lượt chat; lượt chat cao có thể là dấu hiệu người dùng phải hỏi đi hỏi lại vì agent chưa hiểu.</p></div></div><div class="sec" id="b1-nen-lam-va-khong-nen-lam" data-h="Nên làm và không nên làm" data-up=""><div class="body"><h2>Nên làm và không nên làm</h2></div></div><div class="sec" id="b1-nen-lam" data-h="Nên làm" data-up="Nên làm và không nên làm"><div class="body"><h3>Nên làm</h3><ul><li>Bắt đầu từ câu hỏi kinh doanh có đáp án chuẩn và tần suất cao.</li><li>Xem semantic model là sản phẩm dữ liệu có owner, tài liệu và bộ kiểm thử.</li><li>Kế thừa đúng filter của report, page và visual khi câu hỏi phụ thuộc ngữ cảnh.</li><li>Trả lời kèm measure, phạm vi thời gian, filter và thời điểm dữ liệu được cập nhật.</li><li>Giới hạn công cụ của agent theo nguyên tắc quyền tối thiểu và ghi log đầy đủ.</li></ul></div></div><div class="sec" id="b1-khong-nen-lam" data-h="Không nên làm" data-up="Nên làm và không nên làm"><div class="body"><h3>Không nên làm</h3><ul><li>Để LLM truy cập trực tiếp toàn bộ database và tự viết truy vấn không giới hạn.</li><li>Dùng prompt để thay thế RLS hoặc kiểm soát quyền truy cập.</li><li>Mở rộng cho mọi báo cáo trước khi có bộ câu hỏi chuẩn và người chịu trách nhiệm dữ liệu.</li><li>Che giấu sự không chắc chắn hoặc tự bịa số khi truy vấn lỗi hay thiếu dữ liệu.</li><li>Đánh giá thành công bằng độ hay của câu văn thay vì độ đúng và khả năng truy nguyên.</li></ul></div></div><div class="sec" id="b1-ket-luan" data-h="Kết luận" data-up=""><div class="body"><h2>Kết luận</h2><p>AI Agent có thể biến Power BI từ nơi xem báo cáo thành nơi đối thoại với dữ liệu. Nhưng đây không phải câu chuyện thêm một mô hình ngôn ngữ vào giao diện. Nó là bài toán thiết kế lại trải nghiệm phân tích trên nền semantic model, identity, filter context, truy vấn có kiểm soát và cơ chế kiểm chứng.</p>
+<p>Nếu doanh nghiệp đã có model tốt và nhu cầu hỏi đáp phổ biến, Power BI Copilot là con đường đáng thử trước. Nếu cần trải nghiệm riêng, kết nối nhiều quy trình hoặc mức kiểm soát cao hơn, custom agent là hướng phù hợp. Dù chọn cách nào, hãy pilot nhỏ, đo bằng câu hỏi thật và coi tính đúng đắn là tính năng cốt lõi.</p>
+<blockquote class="callout"><p><strong>AI không thay semantic model tốt. Nó làm cho giá trị hoặc khiếm khuyết của semantic model lộ ra nhanh hơn.</strong></p></blockquote></div></div><div class="sec" id="b1-nguon-tham-khao" data-h="Nguồn tham khảo" data-up=""><div class="body"><h2>Nguồn tham khảo</h2><ol><li><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/copilot-semantic-models" target="_blank" rel="noopener">Microsoft Learn — Use Copilot with Semantic Models in Power BI</a></li><li><a href="https://learn.microsoft.com/en-us/rest/api/power-bi/datasets/execute-queries" target="_blank" rel="noopener">Microsoft Learn — Datasets Execute Queries REST API</a></li><li><a href="https://learn.microsoft.com/en-us/fabric/security/service-admin-row-level-security" target="_blank" rel="noopener">Microsoft Learn — Row level security with Power BI</a></li><li><a href="https://learn.microsoft.com/en-us/javascript/api/overview/powerbi/control-report-filters" target="_blank" rel="noopener">Microsoft Learn — Use filters in a Power BI embedded analytics report</a></li><li><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/copilot-reports-overview" target="_blank" rel="noopener">Microsoft Learn — Use Copilot with Power BI reports and semantic models</a></li></ol>
+<p>Ngày truy cập 15 tháng 9 năm 2026</p></div></div></div></div></section><section class="pane" id="doc9" data-doc="ChatGPT Desktop · Codex" data-di="9"><div class="layout"><details class="toc-wrap"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> Mục lục trang này · 20 mục</summary><aside class="toc"><div class="toc-h">Mục lục <span>20 mục</span></div><a class="lv1" href="#b2-lam-viec-voi-folder-may-tinh-bang-chatgpt-desktop-va-ai-agen">Làm việc với folder máy tính bằng ChatGPT Desktop và AI Agent</a><div class="tgrp"><div class="trow"><a class="lv2" href="#b2-chatgpt-va-ai-agent-khac-nhau-the-nao">ChatGPT và AI Agent khác nhau thế nào</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b2-buoc-1-tao-mot-folder-rieng-cho-tung-du-an">Bước 1 — Tạo một folder riêng cho từng dự án</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b2-buoc-2-viet-readme-de-mo-ta-du-an">Bước 2 — Viết README để mô tả dự án</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b2-buoc-3-tao-so-tay-lam-viec-agents-md">Bước 3 — Tạo sổ tay làm việc AGENTS.md</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b2-buoc-4-mo-folder-trong-chatgpt-desktop">Bước 4 — Mở folder trong ChatGPT Desktop</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b2-buoc-5-giao-viec-theo-bon-thanh-phan">Bước 5 — Giao việc theo bốn thành phần</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b2-buoc-6-yeu-cau-ke-hoach-vua-du">Bước 6 — Yêu cầu kế hoạch vừa đủ</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b2-buoc-7-phan-hoi-bang-thay-doi-cu-the">Bước 7 — Phản hồi bằng thay đổi cụ thể</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b2-buoc-8-yeu-cau-kiem-tra-va-ban-giao">Bước 8 — Yêu cầu kiểm tra và bàn giao</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b2-quyen-truy-cap-va-an-toan-du-lieu">Quyền truy cập và an toàn dữ liệu</a></div></div><div class="tgrp closed"><div class="trow"><a class="lv2" href="#b2-nhung-sai-lam-pho-bien">Những sai lầm phổ biến</a><button type="button" class="tchev" aria-expanded="false" aria-label="Mở/thu gọn nhóm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><div class="tsub"><a class="lv3" href="#b2-gom-moi-thu-vao-mot-folder">Gom mọi thứ vào một folder</a><a class="lv3" href="#b2-viet-agents-md-qua-dai">Viết AGENTS.md quá dài</a><a class="lv3" href="#b2-dung-quy-tac-mo-ho">Dùng quy tắc mơ hồ</a><a class="lv3" href="#b2-cho-ai-quyen-xoa-hoac-ghi-de-qua-som">Cho AI quyền xóa hoặc ghi đè quá sớm</a><a class="lv3" href="#b2-nghi-rang-agents-md-thay-the-moi-prompt">Nghĩ rằng AGENTS.md thay thế mọi prompt</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b2-checklist-thiet-lap-trong-15-phut">Checklist thiết lập trong 15 phút</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b2-ket-luan">Kết luận</a></div></div><div class="tgrp"><div class="trow"><a class="lv2" href="#b2-nguon-tham-khao">Nguồn tham khảo</a></div></div></aside></details><div class="panebody"><div class="sec" id="b2-lam-viec-voi-folder-may-tinh-bang-chatgpt-desktop-va-ai-agen" data-h="Làm việc với folder máy tính bằng ChatGPT Desktop và AI Agent"><div class="dochead"><h2>Làm việc với folder máy tính bằng ChatGPT Desktop và AI Agent</h2><div class="meta"><span class="pill k">09-HUONG-DAN-CHATGPT-DESKTOP-CODEX.md</span><span class="pill">Bài viết chia sẻ</span><span class="pill">20 mục</span><span class="pill">8 khối code</span></div><div class="dltools"><button type="button" class="dlbtn" data-dl="md" data-pane="doc9" data-fn="09-HUONG-DAN-CHATGPT-DESKTOP-CODEX.md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span>Tải .md</span></button><button type="button" class="dlbtn" data-copyall="doc9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Sao chép toàn bài</span></button></div></div><div class="body"><p><strong>Hướng dẫn thực hành</strong> tổ chức một folder cá nhân để ChatGPT Desktop và Codex có thể đọc bối cảnh, tạo file, kiểm tra kết quả và phối hợp với người dùng theo quy trình rõ ràng.</p>
+<p>Phần lớn chúng ta đang dùng ChatGPT như một ô chat: đặt câu hỏi, nhận câu trả lời, sau đó tự sao chép kết quả về máy. Cách làm này hữu ích, nhưng mới khai thác một phần nhỏ năng lực của AI.</p>
+<p>Với ChatGPT Desktop, đặc biệt khi sử dụng chế độ Codex, bạn có thể mở trực tiếp một folder trên máy tính và biến nó thành không gian làm việc chung giữa người và AI. Trong không gian đó, AI có thể đọc tài liệu, tạo file, chỉnh sửa nội dung và kiểm tra kết quả ngay tại chỗ.</p>
+<p>Điểm quan trọng không nằm ở một câu prompt thật dài. Bạn cần tổ chức folder để AI hiểu dự án, phạm vi quyền, vị trí đầu vào, nơi lưu kết quả và tiêu chuẩn hoàn thành.</p>
+<blockquote class="callout"><p><strong>AI Agent làm việc tốt không chỉ nhờ model mạnh. Nó làm việc tốt vì được đặt trong một môi trường có cấu trúc và luật chơi rõ ràng.</strong></p></blockquote></div></div><div class="sec" id="b2-chatgpt-va-ai-agent-khac-nhau-the-nao" data-h="ChatGPT và AI Agent khác nhau thế nào" data-up=""><div class="body"><h2>ChatGPT và AI Agent khác nhau thế nào</h2><p>Trong một cuộc chat thông thường, ChatGPT chủ yếu phản hồi từng yêu cầu. Người dùng phải liên tục cung cấp lại tài liệu, bối cảnh và tiêu chuẩn đầu ra.</p>
+<p>Khi làm việc theo kiểu AI Agent trong một folder, AI có thể đọc nhiều file liên quan, hiểu cấu trúc dự án, lập kế hoạch, tạo hoặc chỉnh sửa file và kiểm tra kết quả trước khi bàn giao.</p>
+<div class="tw"><table><thead><tr><th>Cách sử dụng</th><th>Phù hợp khi</th></tr></thead><tbody><tr><td>Chat thông thường</td><td>Hỏi nhanh, viết nháp hoặc giải thích một vấn đề</td></tr><tr><td>Đính kèm vài file</td><td>Phân tích một nhóm tài liệu nhỏ</td></tr><tr><td>Mở folder với Codex</td><td>Làm dự án nhiều bước, tạo và sửa nhiều file</td></tr><tr><td>Folder có <code>AGENTS.md</code></td><td>Muốn AI tuân thủ quy trình ổn định qua nhiều phiên</td></tr></tbody></table></div>
+<p>Theo tài liệu chính thức, ChatGPT Desktop cho phép người dùng bắt đầu một cuộc trò chuyện, tạo project hoặc mở một folder. ChatGPT có thể sử dụng file và bối cảnh tại vị trí được chọn.</p></div></div><div class="sec" id="b2-buoc-1-tao-mot-folder-rieng-cho-tung-du-an" data-h="Bước 1 — Tạo một folder riêng cho từng dự án" data-up=""><div class="body"><h2>Bước 1 — Tạo một folder riêng cho từng dự án</h2><p>Không nên mở toàn bộ Documents, Desktop hoặc ổ đĩa cá nhân cho AI chỉ vì muốn tiện. Hãy bắt đầu với một folder nhỏ, có phạm vi rõ ràng.</p>
+<div class="cb" data-lang="cấu trúc"><div class="cb-bar"><span class="cb-lang">CẤU TRÚC</span><button type="button" class="cb-copy" aria-label="Sao chép khối này"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button></div><pre><code>AI_Content_Project/
+├── AGENTS.md
+├── README.md
+├── input/
+├── working/
+├── output/
+└── archive/</code></pre></div>
+<ul><li><code>AGENTS.md</code>: hướng dẫn cách AI phải làm việc.</li><li><code>README.md</code>: giới thiệu dự án cho cả người và AI.</li><li><code>input/</code>: tài liệu gốc và dữ liệu đầu vào.</li><li><code>working/</code>: bản nháp và nội dung đang xử lý.</li><li><code>output/</code>: sản phẩm hoàn chỉnh.</li><li><code>archive/</code>: phiên bản cũ cần giữ lại.</li></ul>
+<p>Cấu trúc này giúp AI không trộn lẫn nguồn, bản nháp và sản phẩm bàn giao.</p></div></div><div class="sec" id="b2-buoc-2-viet-readme-de-mo-ta-du-an" data-h="Bước 2 — Viết README để mô tả dự án" data-up=""><div class="body"><h2>Bước 2 — Viết README để mô tả dự án</h2><p><code>README.md</code> trả lời câu hỏi dự án đang làm gì. Một bản mô tả ngắn có thể bắt đầu như sau.</p>
+<div class="cb" data-lang="markdown"><div class="cb-bar"><span class="cb-lang">MARKDOWN</span><button type="button" class="cb-copy" aria-label="Sao chép khối này"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button></div><pre><code># Dự án xây dựng nội dung AI ứng dụng
+
+## Mục tiêu
+
+Xây dựng các bài blog và tài liệu hướng dẫn giúp người đi làm
+ứng dụng AI vào công việc hằng ngày.
+
+## Độc giả
+
+- Người đi làm không chuyên về công nghệ
+- Quản lý nhóm
+- Giảng viên và người làm nội dung
+
+## Phong cách
+
+- Tiếng Việt dễ hiểu
+- Thực tế, có ví dụ
+- Không cường điệu hoặc tạo FOMO
+- Thuật ngữ tiếng Anh phải được giải thích khi xuất hiện lần đầu
+
+## Cấu trúc folder
+
+- input/: tài liệu nguồn
+- working/: bản nháp
+- output/: bản hoàn chỉnh
+- archive/: phiên bản cũ</code></pre></div>
+<p>README mô tả dự án. File này chưa thay thế hướng dẫn vận hành dành cho AI Agent.</p></div></div><div class="sec" id="b2-buoc-3-tao-so-tay-lam-viec-agents-md" data-h="Bước 3 — Tạo sổ tay làm việc AGENTS.md" data-up=""><div class="body"><h2>Bước 3 — Tạo sổ tay làm việc AGENTS.md</h2><p><code>AGENTS.md</code> là file hướng dẫn dành cho Codex. Codex đọc file này trước khi làm việc và có thể kết hợp hướng dẫn chung với hướng dẫn riêng của từng project.</p>
+<div class="cb" data-lang="markdown"><div class="cb-bar"><span class="cb-lang">MARKDOWN</span><button type="button" class="cb-copy" aria-label="Sao chép khối này"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button></div><pre><code># AGENTS.md
+
+## 1. Vai trò
+
+Bạn là AI Agent hỗ trợ nghiên cứu, viết và quản lý nội dung
+cho dự án này.
+
+Ưu tiên tính chính xác, rõ ràng và khả năng áp dụng thực tế.
+
+## 2. Phạm vi làm việc
+
+Bạn được phép:
+- Đọc các file trong folder dự án.
+- Tạo bản nháp trong working/.
+- Tạo sản phẩm hoàn chỉnh trong output/.
+- Chỉnh sửa file khi người dùng yêu cầu rõ.
+- Kiểm tra lại kết quả trước khi bàn giao.
+
+Bạn không được:
+- Đọc hoặc sửa file ngoài folder dự án.
+- Xóa file gốc trong input/.
+- Ghi đè sản phẩm hoàn chỉnh nếu chưa tạo bản sao.
+- Đưa mật khẩu, token hoặc thông tin bí mật vào đầu ra.
+- Gửi email hoặc xuất bản khi người dùng chưa yêu cầu rõ.
+
+## 3. Quy trình bắt buộc
+
+1. Plan: hiểu yêu cầu, kiểm tra đầu vào và lập kế hoạch ngắn.
+2. Implement: tạo hoặc chỉnh sửa nội dung.
+3. Verify: kiểm tra tính đầy đủ, chính xác và định dạng.
+4. Handoff: báo file đã tạo, vị trí lưu và điểm cần duyệt.
+
+Nếu thiếu thông tin, hãy nêu giả định rõ ràng.
+Chỉ hỏi lại khi câu trả lời có thể làm thay đổi đáng kể kết quả.
+
+## 4. Quy tắc quản lý file
+
+- Tài liệu gốc luôn nằm trong input/.
+- Bản đang làm nằm trong working/.
+- Chỉ đưa file vào output/ sau khi đã kiểm tra.
+- Không tạo file tạm ở thư mục gốc.
+- Không tự ý đổi tên hoặc di chuyển tài liệu gốc.
+- Không xóa file nếu người dùng chưa yêu cầu rõ.
+
+## 5. Tiêu chuẩn nội dung
+
+- Viết bằng tiếng Việt rõ ràng.
+- Có cấu trúc dễ đọc.
+- Giải thích thuật ngữ cho người mới.
+- Không bịa số liệu, nguồn hoặc trải nghiệm.
+- Phân biệt sự thật, giả định và khuyến nghị.
+- Có ví dụ cụ thể khi phù hợp.
+- Có bước hành động tiếp theo.
+
+## 6. Tiêu chuẩn hoàn thành
+
+- Sản phẩm được lưu đúng folder.
+- Không thay đổi tài liệu ngoài phạm vi.
+- Nội dung đã được tự kiểm.
+- Các giả định và hạn chế đã được ghi rõ.
+- Người dùng nhận được đường dẫn file và tóm tắt thay đổi.</code></pre></div>
+<p>Đây là hợp đồng làm việc giữa người dùng và AI. Hãy giữ file đủ ngắn để các quy tắc không trùng hoặc mâu thuẫn.</p></div></div><div class="sec" id="b2-buoc-4-mo-folder-trong-chatgpt-desktop" data-h="Bước 4 — Mở folder trong ChatGPT Desktop" data-up=""><div class="body"><h2>Bước 4 — Mở folder trong ChatGPT Desktop</h2><ol><li>Mở ChatGPT Desktop và đăng nhập.</li><li>Chọn nơi làm việc.</li><li>Chọn Open folder.</li><li>Chọn folder dự án vừa tạo.</li><li>Chọn Codex nếu muốn AI đọc, tạo hoặc chỉnh sửa file trong folder.</li><li>Bắt đầu một task mới.</li><li>Yêu cầu AI xác nhận phạm vi trước khi giao công việc lớn.</li></ol>
+<blockquote class="callout"><p><strong>Prompt kiểm tra đầu tiên:</strong></p></blockquote>
+<div class="cb" data-lang="prompt"><div class="cb-bar"><span class="cb-lang">PROMPT</span><button type="button" class="cb-copy" aria-label="Sao chép khối này"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button></div><pre><code>Hãy đọc README.md và AGENTS.md trong folder này.
+
+Chưa chỉnh sửa file nào.
+
+Hãy cho tôi biết:
+1. Mục tiêu của dự án.
+2. Cấu trúc folder.
+3. Những việc bạn được phép làm.
+4. Những việc bạn không được phép làm.
+5. Quy trình bạn sẽ áp dụng khi nhận nhiệm vụ.</code></pre></div>
+<p>Nếu AI tóm tắt đúng, môi trường đã sẵn sàng. Sau khi thay đổi đáng kể <code>AGENTS.md</code>, nên mở một task mới để hướng dẫn được nạp đầy đủ.</p></div></div><div class="sec" id="b2-buoc-5-giao-viec-theo-bon-thanh-phan" data-h="Bước 5 — Giao việc theo bốn thành phần" data-up=""><div class="body"><h2>Bước 5 — Giao việc theo bốn thành phần</h2><p>Một yêu cầu tốt nên nêu kết quả, nguồn, ràng buộc và cách kiểm tra.</p>
+<div class="cb" data-lang="prompt"><div class="cb-bar"><span class="cb-lang">PROMPT</span><button type="button" class="cb-copy" aria-label="Sao chép khối này"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button></div><pre><code>Hãy viết một bài blog hướng dẫn người đi làm sử dụng AI
+để chuẩn bị báo cáo tuần.
+
+Kết quả:
+- Một bài blog khoảng 1.500 từ.
+- Lưu tại output/bao-cao-tuan-voi-ai.md.
+
+Nguồn:
+- Sử dụng các tài liệu trong input/.
+- Nếu cần thông tin mới, hãy nói rõ nội dung nào cần kiểm chứng.
+
+Ràng buộc:
+- Độc giả không chuyên kỹ thuật.
+- Giọng gần gũi, thực chiến.
+- Không bịa số liệu hoặc trải nghiệm.
+- Không thay đổi file trong input/.
+
+Kiểm tra:
+- Có tiêu đề và mở bài rõ.
+- Có hướng dẫn từng bước.
+- Có một ví dụ hoàn chỉnh.
+- Có phần nên làm và không nên làm.
+- Kiểm tra lại file trước khi bàn giao.</code></pre></div></div></div><div class="sec" id="b2-buoc-6-yeu-cau-ke-hoach-vua-du" data-h="Bước 6 — Yêu cầu kế hoạch vừa đủ" data-up=""><div class="body"><h2>Bước 6 — Yêu cầu kế hoạch vừa đủ</h2><p>Với nhiệm vụ nhỏ, AI có thể làm ngay. Với nhiệm vụ có nhiều file hoặc nhiều bước, hãy yêu cầu một kế hoạch ngắn.</p>
+<div class="cb" data-lang="prompt"><div class="cb-bar"><span class="cb-lang">PROMPT</span><button type="button" class="cb-copy" aria-label="Sao chép khối này"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button></div><pre><code>Trước khi thực hiện, hãy kiểm tra các file liên quan và đưa ra
+kế hoạch tối đa 5 bước.
+
+Nếu không có thiếu sót nào làm thay đổi đáng kể kết quả,
+hãy tiếp tục triển khai luôn sau phần kế hoạch.</code></pre></div></div></div><div class="sec" id="b2-buoc-7-phan-hoi-bang-thay-doi-cu-the" data-h="Bước 7 — Phản hồi bằng thay đổi cụ thể" data-up=""><div class="body"><h2>Bước 7 — Phản hồi bằng thay đổi cụ thể</h2><p>Khi cần chỉnh sửa, hãy chỉ rõ chỗ cần sửa, thay đổi mong muốn, phần phải giữ nguyên và tiêu chí mới.</p>
+<div class="cb" data-lang="prompt"><div class="cb-bar"><span class="cb-lang">PROMPT</span><button type="button" class="cb-copy" aria-label="Sao chép khối này"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button></div><pre><code>Hãy sửa phần Rủi ro khi dùng AI.
+
+Giữ nguyên các phần còn lại.
+
+Yêu cầu:
+- Rút còn khoảng 300 từ.
+- Thêm rủi ro lộ dữ liệu nội bộ.
+- Thêm một ví dụ cho nhân viên văn phòng.
+- Không dùng giọng hù dọa.</code></pre></div>
+<p>ChatGPT Desktop có thể xem trước nhiều loại file. Khi phản hồi, hãy nêu rõ trang, bảng, đoạn hoặc phần cần chỉnh và chỉ ra nội dung phải giữ nguyên.</p></div></div><div class="sec" id="b2-buoc-8-yeu-cau-kiem-tra-va-ban-giao" data-h="Bước 8 — Yêu cầu kiểm tra và bàn giao" data-up=""><div class="body"><h2>Bước 8 — Yêu cầu kiểm tra và bàn giao</h2><p>Một AI Agent không nên chỉ nói đã xong. Hãy yêu cầu nó kiểm tra và báo cáo rõ đầu ra.</p>
+<div class="cb" data-lang="prompt"><div class="cb-bar"><span class="cb-lang">PROMPT</span><button type="button" class="cb-copy" aria-label="Sao chép khối này"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button></div><pre><code>Trước khi kết thúc:
+
+1. Kiểm tra lại sản phẩm theo yêu cầu ban đầu.
+2. Cho biết file nào đã được tạo hoặc chỉnh sửa.
+3. Nêu các giả định đã sử dụng.
+4. Nêu phần nào chưa thể kiểm chứng.
+5. Cho biết cách hoàn tác nếu tôi không muốn giữ thay đổi.</code></pre></div></div></div><div class="sec" id="b2-quyen-truy-cap-va-an-toan-du-lieu" data-h="Quyền truy cập và an toàn dữ liệu" data-up=""><div class="body"><h2>Quyền truy cập và an toàn dữ liệu</h2><p>Khi làm việc trong folder cục bộ, AI có thể đọc file, chỉnh sửa nội dung và chạy một số thao tác trong phạm vi được cấp. Chế độ Auto cho phép Codex làm việc trong workspace; hành động ngoài workspace hoặc cần quyền mạng có thể yêu cầu phê duyệt. Khi chỉ muốn phân tích, người dùng có thể chọn chế độ chỉ đọc.</p>
+<ul><li>Bắt đầu bằng một folder dự án riêng.</li><li>Dùng chế độ chỉ đọc khi khám phá dữ liệu lạ.</li><li>Không đặt mật khẩu, token hoặc file nhạy cảm trong folder.</li><li>Không cấp quyền toàn bộ ổ đĩa chỉ để tiết kiệm vài lần chọn file.</li><li>Giữ tài liệu gốc trong <code>input/</code> và kết quả mới trong <code>output/</code>.</li><li>Kiểm tra thay đổi trước khi gửi, đăng hoặc xuất bản.</li></ul></div></div><div class="sec" id="b2-nhung-sai-lam-pho-bien" data-h="Những sai lầm phổ biến" data-up=""><div class="body"><h2>Những sai lầm phổ biến</h2></div></div><div class="sec" id="b2-gom-moi-thu-vao-mot-folder" data-h="Gom mọi thứ vào một folder" data-up="Những sai lầm phổ biến"><div class="body"><h3>Gom mọi thứ vào một folder</h3><p>AI sẽ khó phân biệt đâu là nguồn, đâu là bản nháp và đâu là sản phẩm cuối.</p></div></div><div class="sec" id="b2-viet-agents-md-qua-dai" data-h="Viết AGENTS.md quá dài" data-up="Những sai lầm phổ biến"><div class="body"><h3>Viết AGENTS.md quá dài</h3><p>Nhiều quy tắc trùng hoặc mâu thuẫn có thể khiến AI chậm và khó xác định ưu tiên.</p></div></div><div class="sec" id="b2-dung-quy-tac-mo-ho" data-h="Dùng quy tắc mơ hồ" data-up="Những sai lầm phổ biến"><div class="body"><h3>Dùng quy tắc mơ hồ</h3><p>Các câu như làm thật tốt hoặc viết chuyên nghiệp khó kiểm chứng. Hãy thay bằng độ dài, độc giả, cấu trúc, file đầu ra và checklist nghiệm thu.</p></div></div><div class="sec" id="b2-cho-ai-quyen-xoa-hoac-ghi-de-qua-som" data-h="Cho AI quyền xóa hoặc ghi đè quá sớm" data-up="Những sai lầm phổ biến"><div class="body"><h3>Cho AI quyền xóa hoặc ghi đè quá sớm</h3><p>Trong giai đoạn đầu, nên yêu cầu AI tạo file mới. Chỉ mở rộng quyền khi quy trình đã ổn định.</p></div></div><div class="sec" id="b2-nghi-rang-agents-md-thay-the-moi-prompt" data-h="Nghĩ rằng AGENTS.md thay thế mọi prompt" data-up="Những sai lầm phổ biến"><div class="body"><h3>Nghĩ rằng AGENTS.md thay thế mọi prompt</h3><p>README nói dự án là gì. AGENTS nói AI phải làm việc thế nào. Prompt nói hôm nay cần làm việc gì.</p></div></div><div class="sec" id="b2-checklist-thiet-lap-trong-15-phut" data-h="Checklist thiết lập trong 15 phút" data-up=""><div class="body"><h2>Checklist thiết lập trong 15 phút</h2><ul><li>Tạo một folder riêng cho dự án.</li><li>Tạo input, working, output và archive.</li><li>Viết mục tiêu dự án trong <code>README.md</code>.</li><li>Tạo <code>AGENTS.md</code> từ mẫu hướng dẫn.</li><li>Không đưa secret hoặc dữ liệu nhạy cảm vào folder.</li><li>Mở folder bằng ChatGPT Desktop.</li><li>Chọn Codex cho nhiệm vụ cần thao tác file.</li><li>Yêu cầu AI đọc và tóm tắt hướng dẫn.</li><li>Giao một nhiệm vụ nhỏ để thử.</li><li>Kiểm tra file đầu ra trước khi mở rộng quyền.</li></ul></div></div><div class="sec" id="b2-ket-luan" data-h="Kết luận" data-up=""><div class="body"><h2>Kết luận</h2><p>Bước tiến quan trọng là chuyển từ việc hỏi AI từng câu sang thiết kế một môi trường để người và AI cùng làm việc. Một folder được tổ chức tốt giúp AI hiểu bối cảnh, không làm lẫn tài liệu gốc với bản nháp và biết tự kiểm tra trước khi bàn giao.</p>
+<p>Hãy bắt đầu với một dự án nhỏ, một folder riêng và một file <code>AGENTS.md</code> khoảng một trang. Khi quy trình chạy ổn, bạn mới bổ sung thêm tiêu chuẩn, công cụ và mức tự động hóa.</p>
+<blockquote class="callout"><p><strong>Đừng bắt đầu bằng cách trao cho AI thật nhiều quyền. Hãy bắt đầu bằng cách trao cho AI một không gian làm việc rõ ràng.</strong></p></blockquote></div></div><div class="sec" id="b2-nguon-tham-khao" data-h="Nguồn tham khảo" data-up=""><div class="body"><h2>Nguồn tham khảo</h2><ol><li><a href="https://learn.chatgpt.com/docs/app" target="_blank" rel="noopener">OpenAI Docs — ChatGPT Desktop</a></li><li><a href="https://learn.chatgpt.com/docs/agent-configuration/agents-md" target="_blank" rel="noopener">OpenAI Docs — Custom instructions with AGENTS.md</a></li><li><a href="https://learn.chatgpt.com/docs/artifacts-viewer" target="_blank" rel="noopener">OpenAI Docs — Work with files</a></li><li><a href="https://learn.chatgpt.com/docs/agent-approvals-security" target="_blank" rel="noopener">OpenAI Docs — Agent approvals and security</a></li></ol></div></div></div></div></section>
 </main>
 
 <footer>
@@ -8735,7 +8918,488 @@ MKA-101 và có sẵn bộ cheatsheet 7 file bên cạnh. Không có chúng thì
 - **Từ điển thuật ngữ của khoá** giải nghĩa các chữ tiếng Anh; trong file này mỗi thuật ngữ đã được
   dịch ngay lần đầu xuất hiện.
 </template>
-<script>window.__DOCS__ = [{label:"Use case",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 8h13M6 12h13M6 16h13M3 8h.01M3 12h.01M3 16h.01\"/></svg>"},{label:"Prompt",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 17l6-6-6-6M12 19h8\"/></svg>"},{label:"Câu hỏi & Báo cáo",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 17h.01M9.1 9a3 3 0 1 1 4.5 3.5c-.8.6-1.6 1.2-1.6 2.5\"/></svg>"},{label:"Data Dictionary",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 8c4.4 0 8-1.3 8-3s-3.6-3-8-3-8 1.3-8 3 3.6 3 8 3zM4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3\"/></svg>"},{label:"Bộ chỉ số",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4h16v16H4zM8 8h8M8 12h8M8 16h4\"/></svg>"},{label:"Skill · Campaign",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z\"/></svg>"},{label:"Skill · Analytics",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 3v18h18M7 15l3-4 3 3 5-7\"/></svg>"},{label:"Từ điển thuật ngữ",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 6.5C10.4 5.2 8.4 4.5 6 4.5H3v14h3c2.4 0 4.4.7 6 2 1.6-1.3 3.6-2 6-2h3v-14h-3c-2.4 0-4.4.7-6 2zM12 6.5v12\"/></svg>"}];</script>
+<template id="md-doc8">---
+title: AI Agent trong phân tích dữ liệu với Power BI
+course: MKA-101
+type: blog
+---
+
+# AI Agent trong phân tích dữ liệu với Power BI
+
+*Nguyễn Quang Đức Tobi · 15 tháng 9 năm 2026*
+
+Từ dashboard tĩnh đến trải nghiệm hỏi đáp dữ liệu bằng ngôn ngữ tự nhiên
+
+&gt; **Người dùng không thiếu dashboard. Họ thiếu một cách nhanh để biến câu hỏi kinh doanh thành câu trả lời có dữ liệu, đúng ngữ cảnh và đúng quyền truy cập.**
+
+Đó là khoảng trống mà AI Agent có thể lấp đầy trong Power BI. Thay vì yêu cầu người dùng nhớ báo cáo nào, trang nào, slicer nào và measure nào, chúng ta cho phép họ hỏi bằng ngôn ngữ tự nhiên: Doanh thu miền Bắc tháng này thế nào, nhóm sản phẩm nào kéo biên lợi nhuận đi xuống, hay khách hàng nào có rủi ro rời bỏ cao nhất. Agent tiếp nhận câu hỏi, hiểu ngữ cảnh đang xem trong báo cáo, tạo truy vấn hợp lệ tới semantic model, kiểm tra kết quả rồi trả lời bằng ngôn ngữ dễ hiểu.
+
+Nhưng có một điểm cần nói thẳng: gắn hộp chat vào dashboard chưa tạo ra một AI Agent tốt. Giá trị thật nằm ở kiến trúc dữ liệu, semantic model, quyền truy cập và cơ chế kiểm chứng. AI chỉ làm rõ chất lượng đã có; mô hình dữ liệu lộn xộn thì câu trả lời cũng lộn xộn, chỉ là lộn xộn với tốc độ nhanh hơn.
+
+## Từ dashboard tĩnh đến phân tích hội thoại
+
+Dashboard truyền thống được thiết kế theo logic người làm báo cáo: chọn KPI, dựng visual, sắp xếp trang và tạo bộ lọc. Người dùng phải học cách đi trong cấu trúc đó. Conversational analytics đảo chiều trải nghiệm: người dùng bắt đầu bằng câu hỏi của họ, còn hệ thống chịu trách nhiệm tìm đường tới dữ liệu.
+
+Microsoft hiện hỗ trợ trải nghiệm hỏi dữ liệu trong Power BI Copilot. Copilot có thể dùng metadata của trang báo cáo hiện tại, schema của semantic model, mô tả, kiểu dữ liệu và linguistic schema để hiểu câu hỏi; nếu visual hiện có chưa trả lời được, hệ thống có thể sử dụng semantic model để tạo kết quả mới. Microsoft cũng lưu ý rằng kết quả AI mang tính không xác định và vẫn có thể sai, đặc biệt khi tên trường mơ hồ, mô hình kém hoặc ngữ cảnh hội thoại gây nhiễu [1][5].
+
+Vì vậy, câu hỏi đúng không phải là có nên thêm AI vào Power BI hay không. Câu hỏi đúng là chúng ta cần mức độ tự chủ nào, dùng dữ liệu nào, ai được hỏi gì và bằng chứng nào đi kèm câu trả lời.
+
+## AI Agent trong Power BI thực sự làm gì
+
+Một chatbot thường nhận câu hỏi và sinh câu trả lời. Một AI Agent tốt hơn ở chỗ nó có thể quan sát bối cảnh, lập kế hoạch, gọi công cụ, đánh giá kết quả và quyết định bước tiếp theo. Trong bài toán Power BI, vòng lặp này có thể được hiểu qua sáu hành động:
+
+1. **Nhận câu hỏi** và xác định người dùng đang muốn xem KPI, xu hướng, nguyên nhân hay so sánh.
+2. **Đọc bối cảnh** gồm danh tính người dùng, report, page, visual và các filter đang có.
+3. **Ánh xạ ngôn ngữ kinh doanh** sang measure, dimension, thời gian và quan hệ trong semantic model.
+4. **Lập kế hoạch truy vấn** rồi tạo DAX trong phạm vi cho phép.
+5. **Thực thi và kiểm tra** bao gồm quyền truy cập, giới hạn dữ liệu, tính hợp lệ và độ đầy đủ của kết quả.
+6. **Giải thích** bằng câu trả lời ngắn, nêu rõ filter, kỳ dữ liệu, nguồn và giới hạn cần lưu ý.
+
+&gt; **Câu hỏi → Ngữ cảnh báo cáo → Semantic model → DAX có kiểm soát → Kết quả → Giải thích**
+
+Điểm quan trọng nhất là agent không nên đọc dashboard như một bức ảnh. Nó phải truy vấn semantic model đứng sau báo cáo. Semantic model mới là nơi định nghĩa measure, quan hệ, hierarchy, format và logic kinh doanh. Báo cáo là lớp trình bày; semantic model là hợp đồng dữ liệu.
+
+## Hai hướng triển khai
+
+Doanh nghiệp thường có hai con đường. Hướng thứ nhất là dùng trải nghiệm Copilot có sẵn trong Power BI. Hướng thứ hai là xây một agent riêng và nhúng cùng báo cáo. Không có lựa chọn nào luôn tốt hơn; điều quan trọng là chọn đúng độ phức tạp cho bài toán.
+
+| Tiêu chí | Power BI Copilot | AI Agent tùy biến |
+|---|---|---|
+| Tốc độ | Nhanh nếu tenant và capacity đáp ứng điều kiện | Cần phát triển ứng dụng và tích hợp |
+| Trải nghiệm | Nằm trong hệ sinh thái Power BI | Có thể nhúng vào portal, Teams hoặc ứng dụng nghiệp vụ |
+| Ngữ cảnh | Khai thác report metadata và semantic model | Chủ động lấy filter, lịch sử hội thoại và dữ liệu nghiệp vụ bổ sung |
+| Kiểm soát | Theo khả năng và cấu hình của Microsoft | Tùy biến guardrail, workflow, định dạng và bước phê duyệt |
+| Vận hành | Ít thành phần tự quản hơn | Phải theo dõi prompt, truy vấn, chi phí, latency và chất lượng |
+| Phù hợp | Tổ chức đã dùng Power BI và muốn thử nhanh | Sản phẩm cần UX riêng hoặc quy trình phân tích nhiều bước |
+
+## Kiến trúc đề xuất cho AI Agent tùy biến
+
+### Lớp một — Nhận diện người dùng và quyền truy cập
+
+Agent phải biết người hỏi là ai trước khi biết họ hỏi gì. RLS trong Power BI giới hạn dữ liệu theo người dùng hoặc vai trò tại semantic model. Trong kịch bản embedded, danh tính hiệu lực cần được truyền đúng khi tạo embed token; quyền không được suy ra từ nội dung prompt. Microsoft cũng lưu ý RLS áp dụng khác nhau theo vai trò workspace, vì vậy kiểm thử phải dùng đúng loại tài khoản và token thực tế [3].
+
+### Lớp hai — Lấy ngữ cảnh từ báo cáo
+
+Nếu người dùng đang đứng ở trang Doanh thu, đã lọc năm 2026 và khu vực miền Bắc, agent phải kế thừa ngữ cảnh đó. Power BI JavaScript API cho phép lấy hoặc cập nhật filter ở cấp report, page và visual thông qua `getFilters` và `updateFilters` [4]. Đây là cầu nối giúp câu hỏi ngắn như Còn theo kênh online thì sao vẫn được hiểu đúng.
+
+### Lớp ba — Tạo từ điển ngữ nghĩa
+
+LLM không nên tự đoán gross margin là cột nào. Hãy cung cấp một semantic dictionary gồm tên business, measure chuẩn, mô tả, công thức, đơn vị, quan hệ, synonym và ví dụ câu hỏi. Những field kỹ thuật hoặc nhạy cảm không cần thiết phải được ẩn khỏi bối cảnh. Model càng rõ, agent càng ít phải đoán.
+
+### Lớp bốn — Lập kế hoạch và tạo truy vấn
+
+Từ câu hỏi, agent tạo một kế hoạch trung gian: KPI nào, chiều phân tích nào, filter nào, khoảng thời gian nào và cần so sánh với mốc nào. Chỉ sau khi kế hoạch rõ mới sinh DAX. Cách làm này giúp kiểm tra logic trước khi tốn thời gian truy vấn và dễ giải thích khi người dùng phản hồi.
+
+### Lớp năm — Thực thi có kiểm soát
+
+Power BI REST API có endpoint Execute Queries để chạy DAX trên dataset hoặc semantic model [2]. Tuy nhiên, đây không phải giấy phép cho agent chạy bất kỳ câu lệnh nào nó nghĩ ra. Nên dùng allowlist measure và dimension, giới hạn số dòng, timeout, chặn truy vấn quá rộng, ghi log và bắt buộc xác nhận khi câu hỏi có nguy cơ lộ dữ liệu chi tiết. Cần đặc biệt kiểm tra các giới hạn về RLS, SSO và service principal trước khi chọn phương án xác thực [2].
+
+### Lớp sáu — Trả lời có bằng chứng
+
+Câu trả lời tốt không chỉ có một con số. Nó nên nói rõ đang dùng kỳ nào, filter nào, measure nào, dữ liệu cập nhật lúc nào và có điểm nào chưa chắc chắn. Với câu hỏi phân tích nguyên nhân, agent nên trả cả bảng đóng góp hoặc visual nhỏ để người dùng kiểm tra. Nếu câu hỏi mơ hồ, agent phải hỏi lại thay vì tự chọn một định nghĩa rồi trình bày như sự thật.
+
+## Một ví dụ minh họa
+
+Giả sử người dùng đang xem trang Hiệu quả bán hàng với filter Khu vực bằng Miền Bắc và Thời gian bằng Quý hiện tại. Họ hỏi: Vì sao biên lợi nhuận giảm so với quý trước.
+
+Agent không nên trả lời ngay. Nó cần xác định measure Biên lợi nhuận chuẩn, lấy filter hiện tại, thêm kỳ so sánh, phân rã chênh lệch theo nhóm sản phẩm hoặc kênh bán, sau đó kiểm tra liệu tổng các đóng góp có khớp mức thay đổi chung hay không. Một phản hồi hợp lý có cấu trúc như sau:
+
+- Kết luận ngắn về hướng tăng hoặc giảm, không tự điền số nếu truy vấn chưa trả đủ dữ liệu.
+- Ba yếu tố đóng góp lớn nhất, kèm giá trị và tỷ trọng từ kết quả truy vấn.
+- Ngữ cảnh đã dùng: Miền Bắc, quý hiện tại so với quý trước và measure Biên lợi nhuận chuẩn.
+- Một câu hỏi gợi mở: Có muốn xem sâu theo sản phẩm, khách hàng hay kênh bán không.
+
+Khác biệt nằm ở chỗ agent biến câu hỏi mở thành chuỗi thao tác phân tích có thể kiểm tra, chứ không chỉ biến bảng dữ liệu thành một đoạn văn trôi chảy.
+
+## Bốn nguyên tắc quyết định chất lượng
+
+### Semantic model quan trọng hơn prompt
+
+Một prompt hay không cứu được model có measure trùng nghĩa, tên cột khó hiểu và quan hệ sai. Microsoft cũng khuyến nghị chuẩn bị model cho Copilot bằng cách cải thiện cấu trúc, mô tả và linguistic model; mô hình sao và tên gọi rõ ràng giúp giảm câu trả lời không mong muốn [1].
+
+### Bảo mật phải nằm dưới lớp AI
+
+Đừng để agent tự quyết ai được xem dữ liệu nào. RLS, OLS, quyền Build và cơ chế identity phải được thiết kế ở Power BI và lớp ứng dụng. Nếu agent trả lời đúng câu hỏi nhưng vượt quyền dữ liệu, hệ thống vẫn thất bại.
+
+### Câu trả lời phải có khả năng truy nguyên
+
+Tối thiểu cần lưu câu hỏi, ngữ cảnh filter, kế hoạch truy vấn, DAX đã chạy, thời gian thực thi, số dòng trả về và câu trả lời cuối. Khi người dùng nói số này không đúng, nhóm BI phải lần ngược được vì sao, không tranh luận dựa trên cảm giác.
+
+### Agent phải biết lúc nào nên dừng
+
+Không phải câu hỏi nào cũng cần agent tự xử lý. Những yêu cầu thiếu định nghĩa KPI, đòi dữ liệu ngoài semantic model, yêu cầu xuất danh sách chi tiết nhạy cảm hoặc có kết quả mâu thuẫn cần được chuyển sang hỏi lại hay nhờ chuyên gia dữ liệu xác nhận. Sự tin cậy đến từ khả năng từ chối đúng lúc, không đến từ việc trả lời mọi thứ.
+
+## Lộ trình pilot trong bốn tuần
+
+Tôi khuyến nghị bắt đầu bằng một semantic model đã ổn định và một nhóm người dùng thật, thay vì mở agent cho toàn bộ kho dữ liệu ngay từ đầu.
+
+1. **Tuần một — chọn use case.** Chọn 15 đến 20 câu hỏi lặp lại nhiều, có giá trị kinh doanh rõ và đáp án kiểm chứng được. Chốt KPI, người dùng, dữ liệu và tiêu chí thành công.
+2. **Tuần hai — làm sạch semantic model.** Chuẩn hóa measure, mô tả, synonym, format, quan hệ và RLS. Ẩn field không dùng và tạo bộ câu hỏi kiểm thử chuẩn.
+3. **Tuần ba — dựng agent.** Kết nối identity, report context, metadata, lớp sinh DAX, Execute Queries, logging và định dạng câu trả lời. Thiết lập giới hạn truy vấn ngay từ đầu.
+4. **Tuần bốn — kiểm thử với người dùng.** Chạy UAT theo vai trò, test câu hỏi mơ hồ và câu hỏi vượt quyền, đo độ chính xác, tốc độ, tỷ lệ phải hỏi lại và mức độ người dùng quay lại.
+
+Bộ KPI pilot nên gồm độ chính xác của câu trả lời, tỷ lệ câu hỏi cần làm rõ, tỷ lệ truy vấn lỗi, thời gian phản hồi, tỷ lệ người dùng xác nhận hữu ích và số câu hỏi chuyển sang chuyên gia. Đừng chỉ đo số lượt chat; lượt chat cao có thể là dấu hiệu người dùng phải hỏi đi hỏi lại vì agent chưa hiểu.
+
+## Nên làm và không nên làm
+
+### Nên làm
+
+- Bắt đầu từ câu hỏi kinh doanh có đáp án chuẩn và tần suất cao.
+- Xem semantic model là sản phẩm dữ liệu có owner, tài liệu và bộ kiểm thử.
+- Kế thừa đúng filter của report, page và visual khi câu hỏi phụ thuộc ngữ cảnh.
+- Trả lời kèm measure, phạm vi thời gian, filter và thời điểm dữ liệu được cập nhật.
+- Giới hạn công cụ của agent theo nguyên tắc quyền tối thiểu và ghi log đầy đủ.
+
+### Không nên làm
+
+- Để LLM truy cập trực tiếp toàn bộ database và tự viết truy vấn không giới hạn.
+- Dùng prompt để thay thế RLS hoặc kiểm soát quyền truy cập.
+- Mở rộng cho mọi báo cáo trước khi có bộ câu hỏi chuẩn và người chịu trách nhiệm dữ liệu.
+- Che giấu sự không chắc chắn hoặc tự bịa số khi truy vấn lỗi hay thiếu dữ liệu.
+- Đánh giá thành công bằng độ hay của câu văn thay vì độ đúng và khả năng truy nguyên.
+
+## Kết luận
+
+AI Agent có thể biến Power BI từ nơi xem báo cáo thành nơi đối thoại với dữ liệu. Nhưng đây không phải câu chuyện thêm một mô hình ngôn ngữ vào giao diện. Nó là bài toán thiết kế lại trải nghiệm phân tích trên nền semantic model, identity, filter context, truy vấn có kiểm soát và cơ chế kiểm chứng.
+
+Nếu doanh nghiệp đã có model tốt và nhu cầu hỏi đáp phổ biến, Power BI Copilot là con đường đáng thử trước. Nếu cần trải nghiệm riêng, kết nối nhiều quy trình hoặc mức kiểm soát cao hơn, custom agent là hướng phù hợp. Dù chọn cách nào, hãy pilot nhỏ, đo bằng câu hỏi thật và coi tính đúng đắn là tính năng cốt lõi.
+
+&gt; **AI không thay semantic model tốt. Nó làm cho giá trị hoặc khiếm khuyết của semantic model lộ ra nhanh hơn.**
+
+## Nguồn tham khảo
+
+1. [Microsoft Learn — Use Copilot with Semantic Models in Power BI](https://learn.microsoft.com/en-us/power-bi/create-reports/copilot-semantic-models)
+2. [Microsoft Learn — Datasets Execute Queries REST API](https://learn.microsoft.com/en-us/rest/api/power-bi/datasets/execute-queries)
+3. [Microsoft Learn — Row level security with Power BI](https://learn.microsoft.com/en-us/fabric/security/service-admin-row-level-security)
+4. [Microsoft Learn — Use filters in a Power BI embedded analytics report](https://learn.microsoft.com/en-us/javascript/api/overview/powerbi/control-report-filters)
+5. [Microsoft Learn — Use Copilot with Power BI reports and semantic models](https://learn.microsoft.com/en-us/power-bi/create-reports/copilot-reports-overview)
+
+Ngày truy cập 15 tháng 9 năm 2026
+</template>
+<template id="md-doc9">---
+title: Làm việc với folder máy tính bằng ChatGPT Desktop và AI Agent
+course: MKA-101
+type: blog
+---
+
+# Làm việc với folder máy tính bằng ChatGPT Desktop và AI Agent
+
+**Hướng dẫn thực hành** tổ chức một folder cá nhân để ChatGPT Desktop và Codex có thể đọc bối cảnh, tạo file, kiểm tra kết quả và phối hợp với người dùng theo quy trình rõ ràng.
+
+Phần lớn chúng ta đang dùng ChatGPT như một ô chat: đặt câu hỏi, nhận câu trả lời, sau đó tự sao chép kết quả về máy. Cách làm này hữu ích, nhưng mới khai thác một phần nhỏ năng lực của AI.
+
+Với ChatGPT Desktop, đặc biệt khi sử dụng chế độ Codex, bạn có thể mở trực tiếp một folder trên máy tính và biến nó thành không gian làm việc chung giữa người và AI. Trong không gian đó, AI có thể đọc tài liệu, tạo file, chỉnh sửa nội dung và kiểm tra kết quả ngay tại chỗ.
+
+Điểm quan trọng không nằm ở một câu prompt thật dài. Bạn cần tổ chức folder để AI hiểu dự án, phạm vi quyền, vị trí đầu vào, nơi lưu kết quả và tiêu chuẩn hoàn thành.
+
+&gt; **AI Agent làm việc tốt không chỉ nhờ model mạnh. Nó làm việc tốt vì được đặt trong một môi trường có cấu trúc và luật chơi rõ ràng.**
+
+## ChatGPT và AI Agent khác nhau thế nào
+
+Trong một cuộc chat thông thường, ChatGPT chủ yếu phản hồi từng yêu cầu. Người dùng phải liên tục cung cấp lại tài liệu, bối cảnh và tiêu chuẩn đầu ra.
+
+Khi làm việc theo kiểu AI Agent trong một folder, AI có thể đọc nhiều file liên quan, hiểu cấu trúc dự án, lập kế hoạch, tạo hoặc chỉnh sửa file và kiểm tra kết quả trước khi bàn giao.
+
+| Cách sử dụng | Phù hợp khi |
+|---|---|
+| Chat thông thường | Hỏi nhanh, viết nháp hoặc giải thích một vấn đề |
+| Đính kèm vài file | Phân tích một nhóm tài liệu nhỏ |
+| Mở folder với Codex | Làm dự án nhiều bước, tạo và sửa nhiều file |
+| Folder có AGENTS.md | Muốn AI tuân thủ quy trình ổn định qua nhiều phiên |
+
+Theo tài liệu chính thức, ChatGPT Desktop cho phép người dùng bắt đầu một cuộc trò chuyện, tạo project hoặc mở một folder. ChatGPT có thể sử dụng file và bối cảnh tại vị trí được chọn.
+
+## Bước 1 — Tạo một folder riêng cho từng dự án
+
+Không nên mở toàn bộ Documents, Desktop hoặc ổ đĩa cá nhân cho AI chỉ vì muốn tiện. Hãy bắt đầu với một folder nhỏ, có phạm vi rõ ràng.
+
+```text
+AI_Content_Project/
+├── AGENTS.md
+├── README.md
+├── input/
+├── working/
+├── output/
+└── archive/
+```
+
+- `AGENTS.md`: hướng dẫn cách AI phải làm việc.
+- `README.md`: giới thiệu dự án cho cả người và AI.
+- `input/`: tài liệu gốc và dữ liệu đầu vào.
+- `working/`: bản nháp và nội dung đang xử lý.
+- `output/`: sản phẩm hoàn chỉnh.
+- `archive/`: phiên bản cũ cần giữ lại.
+
+Cấu trúc này giúp AI không trộn lẫn nguồn, bản nháp và sản phẩm bàn giao.
+
+## Bước 2 — Viết README để mô tả dự án
+
+`README.md` trả lời câu hỏi dự án đang làm gì. Một bản mô tả ngắn có thể bắt đầu như sau.
+
+```markdown
+# Dự án xây dựng nội dung AI ứng dụng
+
+## Mục tiêu
+
+Xây dựng các bài blog và tài liệu hướng dẫn giúp người đi làm
+ứng dụng AI vào công việc hằng ngày.
+
+## Độc giả
+
+- Người đi làm không chuyên về công nghệ
+- Quản lý nhóm
+- Giảng viên và người làm nội dung
+
+## Phong cách
+
+- Tiếng Việt dễ hiểu
+- Thực tế, có ví dụ
+- Không cường điệu hoặc tạo FOMO
+- Thuật ngữ tiếng Anh phải được giải thích khi xuất hiện lần đầu
+
+## Cấu trúc folder
+
+- input/: tài liệu nguồn
+- working/: bản nháp
+- output/: bản hoàn chỉnh
+- archive/: phiên bản cũ
+```
+
+README mô tả dự án. File này chưa thay thế hướng dẫn vận hành dành cho AI Agent.
+
+## Bước 3 — Tạo sổ tay làm việc AGENTS.md
+
+`AGENTS.md` là file hướng dẫn dành cho Codex. Codex đọc file này trước khi làm việc và có thể kết hợp hướng dẫn chung với hướng dẫn riêng của từng project.
+
+```markdown
+# AGENTS.md
+
+## 1. Vai trò
+
+Bạn là AI Agent hỗ trợ nghiên cứu, viết và quản lý nội dung
+cho dự án này.
+
+Ưu tiên tính chính xác, rõ ràng và khả năng áp dụng thực tế.
+
+## 2. Phạm vi làm việc
+
+Bạn được phép:
+- Đọc các file trong folder dự án.
+- Tạo bản nháp trong working/.
+- Tạo sản phẩm hoàn chỉnh trong output/.
+- Chỉnh sửa file khi người dùng yêu cầu rõ.
+- Kiểm tra lại kết quả trước khi bàn giao.
+
+Bạn không được:
+- Đọc hoặc sửa file ngoài folder dự án.
+- Xóa file gốc trong input/.
+- Ghi đè sản phẩm hoàn chỉnh nếu chưa tạo bản sao.
+- Đưa mật khẩu, token hoặc thông tin bí mật vào đầu ra.
+- Gửi email hoặc xuất bản khi người dùng chưa yêu cầu rõ.
+
+## 3. Quy trình bắt buộc
+
+1. Plan: hiểu yêu cầu, kiểm tra đầu vào và lập kế hoạch ngắn.
+2. Implement: tạo hoặc chỉnh sửa nội dung.
+3. Verify: kiểm tra tính đầy đủ, chính xác và định dạng.
+4. Handoff: báo file đã tạo, vị trí lưu và điểm cần duyệt.
+
+Nếu thiếu thông tin, hãy nêu giả định rõ ràng.
+Chỉ hỏi lại khi câu trả lời có thể làm thay đổi đáng kể kết quả.
+
+## 4. Quy tắc quản lý file
+
+- Tài liệu gốc luôn nằm trong input/.
+- Bản đang làm nằm trong working/.
+- Chỉ đưa file vào output/ sau khi đã kiểm tra.
+- Không tạo file tạm ở thư mục gốc.
+- Không tự ý đổi tên hoặc di chuyển tài liệu gốc.
+- Không xóa file nếu người dùng chưa yêu cầu rõ.
+
+## 5. Tiêu chuẩn nội dung
+
+- Viết bằng tiếng Việt rõ ràng.
+- Có cấu trúc dễ đọc.
+- Giải thích thuật ngữ cho người mới.
+- Không bịa số liệu, nguồn hoặc trải nghiệm.
+- Phân biệt sự thật, giả định và khuyến nghị.
+- Có ví dụ cụ thể khi phù hợp.
+- Có bước hành động tiếp theo.
+
+## 6. Tiêu chuẩn hoàn thành
+
+- Sản phẩm được lưu đúng folder.
+- Không thay đổi tài liệu ngoài phạm vi.
+- Nội dung đã được tự kiểm.
+- Các giả định và hạn chế đã được ghi rõ.
+- Người dùng nhận được đường dẫn file và tóm tắt thay đổi.
+```
+
+Đây là hợp đồng làm việc giữa người dùng và AI. Hãy giữ file đủ ngắn để các quy tắc không trùng hoặc mâu thuẫn.
+
+## Bước 4 — Mở folder trong ChatGPT Desktop
+
+1. Mở ChatGPT Desktop và đăng nhập.
+2. Chọn nơi làm việc.
+3. Chọn Open folder.
+4. Chọn folder dự án vừa tạo.
+5. Chọn Codex nếu muốn AI đọc, tạo hoặc chỉnh sửa file trong folder.
+6. Bắt đầu một task mới.
+7. Yêu cầu AI xác nhận phạm vi trước khi giao công việc lớn.
+
+&gt; **Prompt kiểm tra đầu tiên:**
+
+```text
+Hãy đọc README.md và AGENTS.md trong folder này.
+
+Chưa chỉnh sửa file nào.
+
+Hãy cho tôi biết:
+1. Mục tiêu của dự án.
+2. Cấu trúc folder.
+3. Những việc bạn được phép làm.
+4. Những việc bạn không được phép làm.
+5. Quy trình bạn sẽ áp dụng khi nhận nhiệm vụ.
+```
+
+Nếu AI tóm tắt đúng, môi trường đã sẵn sàng. Sau khi thay đổi đáng kể `AGENTS.md`, nên mở một task mới để hướng dẫn được nạp đầy đủ.
+
+## Bước 5 — Giao việc theo bốn thành phần
+
+Một yêu cầu tốt nên nêu kết quả, nguồn, ràng buộc và cách kiểm tra.
+
+```text
+Hãy viết một bài blog hướng dẫn người đi làm sử dụng AI
+để chuẩn bị báo cáo tuần.
+
+Kết quả:
+- Một bài blog khoảng 1.500 từ.
+- Lưu tại output/bao-cao-tuan-voi-ai.md.
+
+Nguồn:
+- Sử dụng các tài liệu trong input/.
+- Nếu cần thông tin mới, hãy nói rõ nội dung nào cần kiểm chứng.
+
+Ràng buộc:
+- Độc giả không chuyên kỹ thuật.
+- Giọng gần gũi, thực chiến.
+- Không bịa số liệu hoặc trải nghiệm.
+- Không thay đổi file trong input/.
+
+Kiểm tra:
+- Có tiêu đề và mở bài rõ.
+- Có hướng dẫn từng bước.
+- Có một ví dụ hoàn chỉnh.
+- Có phần nên làm và không nên làm.
+- Kiểm tra lại file trước khi bàn giao.
+```
+
+## Bước 6 — Yêu cầu kế hoạch vừa đủ
+
+Với nhiệm vụ nhỏ, AI có thể làm ngay. Với nhiệm vụ có nhiều file hoặc nhiều bước, hãy yêu cầu một kế hoạch ngắn.
+
+```text
+Trước khi thực hiện, hãy kiểm tra các file liên quan và đưa ra
+kế hoạch tối đa 5 bước.
+
+Nếu không có thiếu sót nào làm thay đổi đáng kể kết quả,
+hãy tiếp tục triển khai luôn sau phần kế hoạch.
+```
+
+## Bước 7 — Phản hồi bằng thay đổi cụ thể
+
+Khi cần chỉnh sửa, hãy chỉ rõ chỗ cần sửa, thay đổi mong muốn, phần phải giữ nguyên và tiêu chí mới.
+
+```text
+Hãy sửa phần Rủi ro khi dùng AI.
+
+Giữ nguyên các phần còn lại.
+
+Yêu cầu:
+- Rút còn khoảng 300 từ.
+- Thêm rủi ro lộ dữ liệu nội bộ.
+- Thêm một ví dụ cho nhân viên văn phòng.
+- Không dùng giọng hù dọa.
+```
+
+ChatGPT Desktop có thể xem trước nhiều loại file. Khi phản hồi, hãy nêu rõ trang, bảng, đoạn hoặc phần cần chỉnh và chỉ ra nội dung phải giữ nguyên.
+
+## Bước 8 — Yêu cầu kiểm tra và bàn giao
+
+Một AI Agent không nên chỉ nói đã xong. Hãy yêu cầu nó kiểm tra và báo cáo rõ đầu ra.
+
+```text
+Trước khi kết thúc:
+
+1. Kiểm tra lại sản phẩm theo yêu cầu ban đầu.
+2. Cho biết file nào đã được tạo hoặc chỉnh sửa.
+3. Nêu các giả định đã sử dụng.
+4. Nêu phần nào chưa thể kiểm chứng.
+5. Cho biết cách hoàn tác nếu tôi không muốn giữ thay đổi.
+```
+
+## Quyền truy cập và an toàn dữ liệu
+
+Khi làm việc trong folder cục bộ, AI có thể đọc file, chỉnh sửa nội dung và chạy một số thao tác trong phạm vi được cấp. Chế độ Auto cho phép Codex làm việc trong workspace; hành động ngoài workspace hoặc cần quyền mạng có thể yêu cầu phê duyệt. Khi chỉ muốn phân tích, người dùng có thể chọn chế độ chỉ đọc.
+
+- Bắt đầu bằng một folder dự án riêng.
+- Dùng chế độ chỉ đọc khi khám phá dữ liệu lạ.
+- Không đặt mật khẩu, token hoặc file nhạy cảm trong folder.
+- Không cấp quyền toàn bộ ổ đĩa chỉ để tiết kiệm vài lần chọn file.
+- Giữ tài liệu gốc trong `input/` và kết quả mới trong `output/`.
+- Kiểm tra thay đổi trước khi gửi, đăng hoặc xuất bản.
+
+## Những sai lầm phổ biến
+
+### Gom mọi thứ vào một folder
+
+AI sẽ khó phân biệt đâu là nguồn, đâu là bản nháp và đâu là sản phẩm cuối.
+
+### Viết AGENTS.md quá dài
+
+Nhiều quy tắc trùng hoặc mâu thuẫn có thể khiến AI chậm và khó xác định ưu tiên.
+
+### Dùng quy tắc mơ hồ
+
+Các câu như làm thật tốt hoặc viết chuyên nghiệp khó kiểm chứng. Hãy thay bằng độ dài, độc giả, cấu trúc, file đầu ra và checklist nghiệm thu.
+
+### Cho AI quyền xóa hoặc ghi đè quá sớm
+
+Trong giai đoạn đầu, nên yêu cầu AI tạo file mới. Chỉ mở rộng quyền khi quy trình đã ổn định.
+
+### Nghĩ rằng AGENTS.md thay thế mọi prompt
+
+README nói dự án là gì. AGENTS nói AI phải làm việc thế nào. Prompt nói hôm nay cần làm việc gì.
+
+## Checklist thiết lập trong 15 phút
+
+- Tạo một folder riêng cho dự án.
+- Tạo input, working, output và archive.
+- Viết mục tiêu dự án trong `README.md`.
+- Tạo `AGENTS.md` từ mẫu hướng dẫn.
+- Không đưa secret hoặc dữ liệu nhạy cảm vào folder.
+- Mở folder bằng ChatGPT Desktop.
+- Chọn Codex cho nhiệm vụ cần thao tác file.
+- Yêu cầu AI đọc và tóm tắt hướng dẫn.
+- Giao một nhiệm vụ nhỏ để thử.
+- Kiểm tra file đầu ra trước khi mở rộng quyền.
+
+## Kết luận
+
+Bước tiến quan trọng là chuyển từ việc hỏi AI từng câu sang thiết kế một môi trường để người và AI cùng làm việc. Một folder được tổ chức tốt giúp AI hiểu bối cảnh, không làm lẫn tài liệu gốc với bản nháp và biết tự kiểm tra trước khi bàn giao.
+
+Hãy bắt đầu với một dự án nhỏ, một folder riêng và một file `AGENTS.md` khoảng một trang. Khi quy trình chạy ổn, bạn mới bổ sung thêm tiêu chuẩn, công cụ và mức tự động hóa.
+
+&gt; **Đừng bắt đầu bằng cách trao cho AI thật nhiều quyền. Hãy bắt đầu bằng cách trao cho AI một không gian làm việc rõ ràng.**
+
+## Nguồn tham khảo
+
+1. [OpenAI Docs — ChatGPT Desktop](https://learn.chatgpt.com/docs/app)
+2. [OpenAI Docs — Custom instructions with AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
+3. [OpenAI Docs — Work with files](https://learn.chatgpt.com/docs/artifacts-viewer)
+4. [OpenAI Docs — Agent approvals and security](https://learn.chatgpt.com/docs/agent-approvals-security)
+</template>
+<script>window.__DOCS__ = [{label:"Use case",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 8h13M6 12h13M6 16h13M3 8h.01M3 12h.01M3 16h.01\"/></svg>"},{label:"Prompt",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 17l6-6-6-6M12 19h8\"/></svg>"},{label:"Câu hỏi & Báo cáo",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 17h.01M9.1 9a3 3 0 1 1 4.5 3.5c-.8.6-1.6 1.2-1.6 2.5\"/></svg>"},{label:"Data Dictionary",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 8c4.4 0 8-1.3 8-3s-3.6-3-8-3-8 1.3-8 3 3.6 3 8 3zM4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3\"/></svg>"},{label:"Bộ chỉ số",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4h16v16H4zM8 8h8M8 12h8M8 16h4\"/></svg>"},{label:"Skill · Campaign",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z\"/></svg>"},{label:"Skill · Analytics",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 3v18h18M7 15l3-4 3 3 5-7\"/></svg>"},{label:"Từ điển thuật ngữ",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 6.5C10.4 5.2 8.4 4.5 6 4.5H3v14h3c2.4 0 4.4.7 6 2 1.6-1.3 3.6-2 6-2h3v-14h-3c-2.4 0-4.4.7-6 2zM12 6.5v12\"/></svg>"},{label:"AI Agent × Power BI",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 20V10M10 20V4M16 20v-7M22 20H2\"/><circle cx=\"19\" cy=\"6\" r=\"2.5\"/></svg>"},{label:"ChatGPT Desktop · Codex",icon:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/><path d=\"M8 12l2 2-2 2M13 16h3\"/></svg>"}];</script>
 <script>
 (function(){
 'use strict';
@@ -9462,7 +10126,7 @@ function search(qs){
     rhead.innerHTML = 'không có kết quả';
     rbody.innerHTML = '<div class="rempty">' +
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>' +
-      '<p>Không tìm thấy “' + esc(qs) + '” trong 7 tài liệu và từ điển thuật ngữ.</p>' +
+      '<p>Không tìm thấy “' + esc(qs) + '” trong 7 tài liệu, 2 bài viết và từ điển thuật ngữ.</p>' +
       '<div class="tips">Gõ không dấu vẫn tìm được — thử <code>khach hang</code>, <code>dong thuan</code>, <code>DAX</code>, <code>CTR</code>.</div></div>';
     open_();
     return;
