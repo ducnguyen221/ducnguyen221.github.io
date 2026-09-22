@@ -140,6 +140,50 @@ Muốn `/foo` chạy thì đặt `foo/index.html` (dạng thư mục), không ph
 Trang chỉ chia sẻ qua link (`profile/company/`, `docs/birthday-card*.html`):
 `<meta name="robots" content="noindex, nofollow">` **và** không link từ hub nào.
 
+### 6.7 `prefers-reduced-motion` giết sạch hiệu ứng trang thiệp/lễ hội — ĐÃ TÁI DIỄN 3 LẦN
+**Triệu chứng:** trên điện thoại, mở thiệp ra **không có pháo hoa, không confetti, không
+lấp lánh**; chạm vào là thiệp hiện ngay, phẳng lì. Trên máy tính của người làm thì vẫn đẹp
+→ rất dễ tưởng đã xong.
+
+**Nguyên nhân:** điện thoại **rất hay bật sẵn** giảm chuyển động, không phải trường hợp hiếm:
+- iOS: Cài đặt → Trợ năng → Chuyển động → **Giảm chuyển động**
+- Android: Tuỳ chọn nhà phát triển / Trợ năng → **Tắt hoạt ảnh**
+- Nhiều máy bật kèm khi vào **Chế độ tiết kiệm pin**
+
+Khi đó mẫu thiệp kế thừa từ `digital-marketing-gala/` tắt hiệu ứng ở **hai tầng**, phải gỡ cả hai:
+
+| Tầng | Code | Hậu quả |
+|---|---|---|
+| CSS | `@media (prefers-reduced-motion: reduce) { … animation:none !important }` | chết aurora, đốm sáng, tàn lửa, chữ vàng, dấu niêm, phong bì |
+| JS | `var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches` | `celebrate()` return sớm → **0 pháo hoa**; `open()` đi nhánh 420ms, gọi `revealAll()` |
+
+**Quyết định của Đức (chốt 07/09/2026, nhắc lại 14/09 và 22/09):** với trang thiệp mời /
+lễ hội thì **hiệu ứng CHÍNH LÀ nội dung**, nên **bỏ hẳn cả hai nhánh** — không dò
+`prefers-reduced-motion` nữa. Trang thông tin/đọc bình thường thì vẫn tôn trọng thiết lập này.
+
+**Fix chuẩn — xoá, không phải thêm:**
+1. Xoá khối `@media (prefers-reduced-motion: reduce) { … }` và các rule `.env-scene.reduced …`
+2. Xoá `var reduced = …` và mọi chỗ dùng: `if (reduced) return;` trong `celebrate()`,
+   `if (!reduced) setTimeout(celebrate, …)`, `reduced ? 420 : 1450`,
+   `if (reduced) { revealAll(); } else { startReveal(); }`, `scene.classList.add('reduced')`
+
+**Cách kiểm (bắt buộc, đừng tin mắt trên desktop):** Playwright mở page với
+`reduced_motion='reduce'`, mở thiệp rồi **đếm pixel không trong suốt trên canvas `#fx`** —
+phải > 0, và `getComputedStyle(.aurora).animationName` phải khác `none`:
+```python
+pg = b.new_page(viewport={'width':390,'height':844}, reduced_motion='reduce')
+pg.goto(URL); pg.click('#envScene'); pg.wait_for_timeout(1800)
+px = pg.evaluate("""() => { const c=document.getElementById('fx'), g=c.getContext('2d');
+  const d=g.getImageData(0,0,c.width,c.height).data; let n=0;
+  for (let i=3;i<d.length;i+=4) if (d[i]>8) n++; return n; }""")
+assert px > 0, 'pháo hoa bị tắt khi bật Reduce Motion'
+```
+Chụp ảnh màn hình **không đủ** — canvas có thể đúng lúc trống giữa hai loạt bắn.
+
+> ⚠️ **Khi nhân bản thiệp mới: copy từ `digital-marketing-gala2/` hoặc `gala-09-2026/`**
+> (đã sạch). Copy xong luôn `grep -c "prefers-reduced-motion\|var reduced" index.html`
+> → phải ra **0**.
+
 ## 7. Trước khi giao (checklist)
 - [ ] Không còn link `/my-project` (đã chuyển `/project`).
 - [ ] `python -m http.server` ở gốc → mở `/`, `/atlas/`, `/profile/`, `/project/`, `/docs/`:
@@ -150,6 +194,8 @@ Trang chỉ chia sẻ qua link (`profile/company/`, `docs/birthday-card*.html`):
 - [ ] Test ở viewport dọc **và** ngang (320×568, 390×844, 844×390): `scrollHeight` không
       vượt `innerHeight`, ép `window.scrollTo(0,99999)` xong `scrollY` vẫn = 0 (§6.2).
 - [ ] Có động vào `profile/` → đã bump `CACHE_NAME` trong `profile/sw.js` (§6.3).
+- [ ] Trang thiệp/lễ hội: `grep -c "prefers-reduced-motion\|var reduced"` = **0**, và test
+      Playwright với `reduced_motion='reduce'` thấy pháo hoa vẫn chạy (§6.7).
 
 ## 8. KHÔNG làm
 - Không xóa repo standalone đã archive (giữ lịch sử).
