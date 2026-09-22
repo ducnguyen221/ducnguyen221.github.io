@@ -181,8 +181,18 @@ assert px > 0, 'pháo hoa bị tắt khi bật Reduce Motion'
 Chụp ảnh màn hình **không đủ** — canvas có thể đúng lúc trống giữa hai loạt bắn.
 
 > ⚠️ **Khi nhân bản thiệp mới: copy từ `digital-marketing-gala2/` hoặc `gala-09-2026/`**
-> (đã sạch). Copy xong luôn `grep -c "prefers-reduced-motion\|var reduced" index.html`
-> → phải ra **0**.
+> (đã sạch). Copy xong chạy ngay:
+> ```bash
+> grep -nE '^[[:space:]]*@media ?\(prefers-reduced-motion|matchMedia\([^)]*prefers-reduced-motion' index.html
+> ```
+> → phải **không ra dòng nào**.
+>
+> Cố ý neo `^[[:space:]]*@media` và `matchMedia(` chứ **không** grep trơn chuỗi
+> `prefers-reduced-motion`: bản grep trơn dính cả dòng chú thích giải thích bẫy này
+> (có ở 3/4 trang gala), nên lần nào cũng đỏ → phép kiểm bị bỏ qua, đúng loại
+> "check chào đời đã chết". `gala-09-2026` cũng cố ý giữ `var reduced = false;` cùng
+> nhánh chết để dễ hoàn tác — đó là code chết vô hại, không phải lỗi, và grep có neo
+> không bắt nó.
 
 ## 7. Trước khi giao (checklist)
 - [ ] Không còn link `/my-project` (đã chuyển `/project`).
@@ -194,8 +204,8 @@ Chụp ảnh màn hình **không đủ** — canvas có thể đúng lúc trốn
 - [ ] Test ở viewport dọc **và** ngang (320×568, 390×844, 844×390): `scrollHeight` không
       vượt `innerHeight`, ép `window.scrollTo(0,99999)` xong `scrollY` vẫn = 0 (§6.2).
 - [ ] Có động vào `profile/` → đã bump `CACHE_NAME` trong `profile/sw.js` (§6.3).
-- [ ] Trang thiệp/lễ hội: `grep -c "prefers-reduced-motion\|var reduced"` = **0**, và test
-      Playwright với `reduced_motion='reduce'` thấy pháo hoa vẫn chạy (§6.7).
+- [ ] Trang thiệp/lễ hội: `grep -cE '^[[:space:]]*@media ?\(prefers-reduced-motion|matchMedia\([^)]*prefers-reduced-motion' index.html`
+      = **0**, và test Playwright với `reduced_motion='reduce'` thấy pháo hoa vẫn chạy (§6.7).
 
 ## 8. KHÔNG làm
 - Không xóa repo standalone đã archive (giữ lịch sử).
