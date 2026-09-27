@@ -36,6 +36,16 @@
       location.replace("/profile/courses/" + location.search + location.hash);
       return;
     }
+
+    /* 4) Legacy /powerbi-agent/* -> /agent-data-studio/* (san pham doi ten; route
+       con giu nguyen 1:1, ke ca INSTALL.html). GitHub Pages khong co 301 that nen
+       day la chuyen huong phia client, giu path + query + hash; trang dich tu khai
+       rel=canonical. Dich nam ngoai /powerbi-agent nen khong the lap vong. */
+    if (p === "/powerbi-agent" || p.indexOf("/powerbi-agent/") === 0) {
+      var restPA = p.replace(/^\/powerbi-agent\/?/, "");
+      location.replace("/agent-data-studio/" + restPA + location.search + location.hash);
+      return;
+    }
   })();
 </script>
 <style>
