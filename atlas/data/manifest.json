@@ -1,5 +1,70 @@
 [
   {
+    "slug": "claude-code-cho-nguoi-moi",
+    "title": "Claude Code cho người mới: Cài đặt, tạo bối cảnh và làm việc an toàn · Học cùng Tobi",
+    "description": "Người không chuyên kỹ thuật có thể bắt đầu với Claude Code bằng Desktop, folder cục bộ và một quy trình review rõ ràng.",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/claude-code-cho-nguoi-moi.html",
+    "thumbnail": "content/ai/claude-code-cho-nguoi-moi.jpg",
+    "published": "2026-09-28",
+    "lastModified": "2026-09-27",
+    "fileSize": 270598
+  },
+  {
+    "slug": "codex-cho-nguoi-moi",
+    "title": "Codex cho người mới: Cài đặt, mở folder và hoàn thành tác vụ đầu tiên · Học cùng Tobi",
+    "description": "Bắt đầu với Codex bằng một folder nhỏ, prompt kiểm tra quyền và tác vụ 15 phút trước khi học Skill hoặc Plugin.",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/codex-cho-nguoi-moi.html",
+    "thumbnail": "content/ai/codex-cho-nguoi-moi.jpg",
+    "published": "2026-09-28",
+    "lastModified": "2026-09-27",
+    "fileSize": 261335
+  },
+  {
+    "slug": "google-antigravity-cho-nguoi-moi",
+    "title": "Google Antigravity cho người mới: Cài đặt, tạo Project và làm việc với Agent · Học cùng Tobi",
+    "description": "Bắt đầu với Antigravity IDE theo hướng review-driven: mở project local, kiểm tra quyền, tạo tác vụ nhỏ rồi mới mở rộng Skill và Plugin.",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/google-antigravity-cho-nguoi-moi.html",
+    "thumbnail": "content/ai/google-antigravity-cho-nguoi-moi.jpg",
+    "published": "2026-09-28",
+    "lastModified": "2026-09-27",
+    "fileSize": 324680
+  },
+  {
+    "slug": "skill-va-prompt",
+    "title": "Skill là gì? Khi nào nên dùng Skill thay vì một Prompt thật dài? · Học cùng Tobi",
+    "description": "Prompt là lời giao việc; Skill là quy trình tái sử dụng. Bài viết giúp người mới biết khi nào nên đóng gói và khi nào chưa cần.",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/skill-va-prompt.html",
+    "thumbnail": "content/ai/skill-va-prompt.jpg",
+    "published": "2026-09-28",
+    "lastModified": "2026-09-27",
+    "fileSize": 202371
+  },
+  {
+    "slug": "ai-agent-folder-may-tinh",
+    "title": "Từ ô chat đến AI Agent: Biến một folder trên máy tính thành không gian làm việc chung · Học cùng Tobi",
+    "description": "Hướng dẫn người mới tổ chức folder, quyền và quy trình để AI Agent làm việc an toàn, có đầu ra kiểm tra được thay vì chỉ trả lời trong ô chat.",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/ai-agent-folder-may-tinh.html",
+    "thumbnail": "content/ai/ai-agent-folder-may-tinh.jpg",
+    "published": "2026-09-28",
+    "lastModified": "2026-09-27",
+    "fileSize": 222869
+  },
+  {
     "slug": "bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt",
     "title": "Bài kiểm tra không có ba-rem: tiêu chí chấp nhận (acceptance criteria) trong prompt · Học cùng Tobi",
     "description": "explainer",
