@@ -82,6 +82,11 @@ a:hover{border-bottom-style:solid}
 .article strong{color:var(--text);font-weight:700}
 .article code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--bg-elev);
   padding:2px 7px;border-radius:5px;color:var(--violet);border:1px solid var(--border-soft)}
+.article pre{margin:18px 0;padding:18px 20px;overflow-x:auto;background:#0b1020;
+  border:1px solid var(--border-soft);border-radius:12px;color:#e8ecf8;line-height:1.55;
+  white-space:pre-wrap;word-break:break-word}
+.article pre code{display:block;font-family:'JetBrains Mono',monospace;font-size:.9rem;
+  background:transparent;border:0;border-radius:0;padding:0;color:inherit;white-space:inherit}
 .article ul,.article ol{margin:14px 0 14px 8px;padding-left:22px;color:var(--text-2)}
 .article li{margin:8px 0;font-size:1.02rem}
 .article ul li::marker{color:var(--accent)}
@@ -170,13 +175,19 @@ td{color:var(--text-2)}
 <p>Tài liệu Anthropic hiện cho biết Claude Desktop Code hỗ trợ làm việc với phiên local, Skill, Connector và Plugin thông qua giao diện. Một số khả năng khác nhau giữa Desktop, CLI và phiên remote, nên đừng giả định tính năng xuất hiện ở một nơi sẽ giống hệt nơi khác.</p>
 <h3>Phương án B: Claude Code CLI trên Windows</h3>
 <p>Anthropic hiện khuyến nghị bản cài native. Trên Windows, có thể cài bằng PowerShell, CMD hoặc WinGet theo tài liệu chính thức. Sau khi cài, mở terminal mới và kiểm tra:</p>
-<p>``<code>text claude --version claude doctor </code>``</p>
+<pre><code>claude --version
+claude doctor</code></pre>
 <p><code>claude --version</code> cho biết công cụ có được nhận diện hay không. <code>claude doctor</code> chạy chẩn đoán chỉ đọc về bản cài và cấu hình.</p>
 <p>Nếu bạn chưa từng dùng terminal, đừng dán lệnh từ một bài blog cũ rồi hy vọng nó còn đúng. Hãy mở <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">trang cài đặt chính thức của Claude Code</a> và chọn đúng tab Windows/PowerShell, Windows/CMD hoặc WinGet.</p>
 <div class="callout">⚠️ Lệnh cài đặt là thứ có thể thay đổi theo phiên bản. Bài này giữ nguyên tắc và đường dẫn chính thức; trang tài liệu của nhà cung cấp mới là nguồn cần kiểm tra trước khi chạy.</div>
 <h2>Bước 2 — Tạo một project “sạch” để học</h2>
 <p>Tạo folder local:</p>
-<p>``<code>text Claude_First_Project/ ├── CLAUDE.md ├── README.md ├── input/ ├── working/ └── output/ </code>``</p>
+<pre><code>Claude_First_Project/
+├── CLAUDE.md
+├── README.md
+├── input/
+├── working/
+└── output/</code></pre>
 <p><code>CLAUDE.md</code> là file bối cảnh lâu dài mà Claude Code đọc trong project. Nó tương tự một cuốn sổ bàn giao đặt tại văn phòng: nhân sự mới vào dự án đọc để biết luật và quy ước.</p>
 <h3>README.md mẫu</h3>
 <p>```markdown</p>
@@ -204,55 +215,94 @@ td{color:var(--text-2)}
 <p>Khi Claude Code khởi động, nó sẽ dùng bối cảnh trong project và các file hướng dẫn liên quan. Với nhiều tầng <code>CLAUDE.md</code>, chỉ dẫn ở project và thư mục con có thể cùng tham gia vào bối cảnh. Vì vậy, quy tắc nên ngắn, cụ thể và đặt đúng nơi.</p>
 <h2>Bước 4 — Để Claude giải thích phiên làm việc của chính nó</h2>
 <p>Prompt đầu tiên:</p>
-<p>```text Trước khi thực hiện bất kỳ thay đổi nào, hãy giải thích phiên Claude Code hiện tại:</p>
-<ol><li>Folder làm việc hiện tại là gì?</li><li>Những file hướng dẫn nào đang ảnh hưởng tới phiên này?</li><li>Bạn có thể đọc, tạo, sửa và chạy công cụ nào?</li><li>Hành động nào cần tôi phê duyệt?</li><li>Bạn không thể xác minh điều gì ở thời điểm này?</li></ol>
-<p>Chưa chỉnh sửa file. Không suy đoán về quyền nếu chưa kiểm tra được. ```</p>
+<pre><code>Trước khi thực hiện bất kỳ thay đổi nào, hãy giải thích phiên Claude Code hiện tại:
+
+1. Folder làm việc hiện tại là gì?
+2. Những file hướng dẫn nào đang ảnh hưởng tới phiên này?
+3. Bạn có thể đọc, tạo, sửa và chạy công cụ nào?
+4. Hành động nào cần tôi phê duyệt?
+5. Bạn không thể xác minh điều gì ở thời điểm này?
+
+Chưa chỉnh sửa file.
+Không suy đoán về quyền nếu chưa kiểm tra được.</code></pre>
 <p>Prompt này có hai lợi ích. Một là giúp bạn hiểu công cụ. Hai là buộc Agent nói rõ giới hạn trước khi khoe khả năng.</p>
 <h2>Bước 5 — Yêu cầu Claude đọc bối cảnh dự án</h2>
-<p>```text Hãy đọc README.md và CLAUDE.md.</p>
-<p>Không chỉnh sửa file.</p>
-<p>Hãy tóm tắt:</p>
-<ul><li>Mục tiêu dự án.</li><li>Đầu vào và đầu ra.</li><li>Những điều được phép và không được phép.</li><li>Quy trình bạn sẽ dùng.</li><li>Điểm nào trong hướng dẫn còn mơ hồ hoặc mâu thuẫn.</li></ul>
-<p>```</p>
+<pre><code>Hãy đọc README.md và CLAUDE.md.
+
+Không chỉnh sửa file.
+
+Hãy tóm tắt:
+- Mục tiêu dự án.
+- Đầu vào và đầu ra.
+- Những điều được phép và không được phép.
+- Quy trình bạn sẽ dùng.
+- Điểm nào trong hướng dẫn còn mơ hồ hoặc mâu thuẫn.</code></pre>
 <p>Nếu Claude phát hiện quy tắc mâu thuẫn, hãy sửa bối cảnh trước. Đừng bù một bối cảnh tệ bằng một prompt dài hơn.</p>
 <h2>Bước 6 — Khảo sát folder ở chế độ chỉ đọc</h2>
-<p>```text Hãy khảo sát folder này ở chế độ chỉ đọc.</p>
-<p>Không tạo, sửa, di chuyển, đổi tên hoặc xóa file.</p>
-<p>Trả về:</p>
-<ol><li>Cây folder rút gọn.</li><li>Các nhóm tài liệu đang có.</li><li>File nào có vẻ là nguồn chính.</li><li>File nào có dấu hiệu trùng hoặc không rõ phiên bản.</li><li>Tối đa ba đề xuất cải thiện cấu trúc, nhưng chưa thực hiện.</li></ol>
-<p>```</p>
+<pre><code>Hãy khảo sát folder này ở chế độ chỉ đọc.
+
+Không tạo, sửa, di chuyển, đổi tên hoặc xóa file.
+
+Trả về:
+1. Cây folder rút gọn.
+2. Các nhóm tài liệu đang có.
+3. File nào có vẻ là nguồn chính.
+4. File nào có dấu hiệu trùng hoặc không rõ phiên bản.
+5. Tối đa ba đề xuất cải thiện cấu trúc, nhưng chưa thực hiện.</code></pre>
 <p>Đây là bước <strong>read-only survey – khảo sát chỉ đọc</strong>. Nó đặc biệt hữu ích với folder công việc cũ vì bạn có thể xem cách Agent hiểu dữ liệu trước khi cho sửa.</p>
 <h2>Bước 7 — Yêu cầu phương án, chưa yêu cầu hành động</h2>
-<p>```text Dựa trên folder hiện tại, hãy đề xuất ba tác vụ nhỏ giúp tôi thấy giá trị của Claude Code trong 15 phút.</p>
-<p>Mỗi phương án phải nêu:</p>
-<ul><li>File đầu vào.</li><li>File đầu ra.</li><li>Rủi ro.</li><li>Cách kiểm tra.</li></ul>
-<p>Chưa chỉnh sửa file. Hãy khuyến nghị một phương án phù hợp nhất cho người mới. ```</p>
+<pre><code>Dựa trên folder hiện tại, hãy đề xuất ba tác vụ nhỏ giúp tôi thấy giá trị của Claude Code trong 15 phút.
+
+Mỗi phương án phải nêu:
+- File đầu vào.
+- File đầu ra.
+- Rủi ro.
+- Cách kiểm tra.
+
+Chưa chỉnh sửa file.
+Hãy khuyến nghị một phương án phù hợp nhất cho người mới.</code></pre>
 <p>Agent nên tham gia vào việc thiết kế công việc. Nhưng bạn vẫn là người chọn đích.</p>
 <h2>Bước 8 — Hoàn thành một tác vụ nhỏ</h2>
 <p>Ví dụ trong <code>input/</code> có một tài liệu hướng dẫn dài:</p>
-<p>```text Hãy đọc các file Markdown trong input/ và tạo một checklist dành cho người mới.</p>
-<p>Kết quả:</p>
-<ul><li>Tạo output/checklist-nguoi-moi.md.</li><li>Tối đa 30 mục.</li><li>Chia thành Trước khi bắt đầu / Trong khi làm / Trước khi bàn giao.</li></ul>
-<p>Ràng buộc:</p>
-<ul><li>Không thay đổi file trong input/.</li><li>Không thêm yêu cầu không có trong nguồn.</li><li>Điểm nào là khuyến nghị của bạn phải gắn nhãn “Đề xuất”.</li></ul>
-<p>Kiểm tra:</p>
-<ul><li>Mở lại file sau khi tạo.</li><li>Đối chiếu mỗi mục bắt buộc với nguồn.</li><li>Báo điểm nào chưa chắc chắn.</li></ul>
-<p>```</p>
+<pre><code>Hãy đọc các file Markdown trong input/ và tạo một checklist dành cho người mới.
+
+Kết quả:
+- Tạo output/checklist-nguoi-moi.md.
+- Tối đa 30 mục.
+- Chia thành Trước khi bắt đầu / Trong khi làm / Trước khi bàn giao.
+
+Ràng buộc:
+- Không thay đổi file trong input/.
+- Không thêm yêu cầu không có trong nguồn.
+- Điểm nào là khuyến nghị của bạn phải gắn nhãn “Đề xuất”.
+
+Kiểm tra:
+- Mở lại file sau khi tạo.
+- Đối chiếu mỗi mục bắt buộc với nguồn.
+- Báo điểm nào chưa chắc chắn.</code></pre>
 <p>Tác vụ đầu tiên nên nhỏ, nhưng không nên vô nghĩa. “Tạo một file hello.txt” chỉ chứng minh Agent có quyền ghi. Một checklist có truy vết tới nguồn chứng minh được khả năng đọc, tổng hợp, phân loại và kiểm tra.</p>
 <h2>Bước 9 — Học cách phản hồi để Agent sửa đúng chỗ</h2>
 <p>Đừng chỉ nói “chưa hay, làm lại”. Hãy chỉ rõ vị trí, thay đổi mong muốn và phần phải giữ nguyên.</p>
-<p>```text Hãy sửa mục “Trong khi làm” trong output/checklist-nguoi-moi.md.</p>
-<p>Giữ nguyên các mục còn lại.</p>
-<p>Yêu cầu:</p>
-<ul><li>Gộp các ý trùng nhau.</li><li>Mỗi checklist bắt đầu bằng động từ.</li><li>Không thêm nội dung mới ngoài nguồn.</li><li>Sau khi sửa, báo chính xác số dòng hoặc mục đã thay đổi.</li></ul>
-<p>```</p>
+<pre><code>Hãy sửa mục “Trong khi làm” trong output/checklist-nguoi-moi.md.
+
+Giữ nguyên các mục còn lại.
+
+Yêu cầu:
+- Gộp các ý trùng nhau.
+- Mỗi checklist bắt đầu bằng động từ.
+- Không thêm nội dung mới ngoài nguồn.
+- Sau khi sửa, báo chính xác số dòng hoặc mục đã thay đổi.</code></pre>
 <p>Phản hồi tốt cũng là một năng lực quản trị. AI chỉ làm lộ rõ điều mà đội nhóm con người đã biết từ lâu: giao việc mơ hồ thì sửa đi sửa lại.</p>
 <h2>Bước 10 — Kiểm tra và phục hồi</h2>
 <p>Trước khi kết thúc, dùng prompt:</p>
-<p>```text Hãy kiểm tra lại kết quả theo yêu cầu ban đầu.</p>
-<p>Sau đó báo cáo:</p>
-<ul><li>File đã tạo hoặc chỉnh sửa.</li><li>Thay đổi chính.</li><li>Bước kiểm tra đã chạy.</li><li>Hạn chế hoặc phần chưa xác minh.</li><li>Cách hoàn tác thay đổi của lượt này.</li></ul>
-<p>```</p>
+<pre><code>Hãy kiểm tra lại kết quả theo yêu cầu ban đầu.
+
+Sau đó báo cáo:
+- File đã tạo hoặc chỉnh sửa.
+- Thay đổi chính.
+- Bước kiểm tra đã chạy.
+- Hạn chế hoặc phần chưa xác minh.
+- Cách hoàn tác thay đổi của lượt này.</code></pre>
 <p>Nếu project có Git, xem <code>diff</code> trước khi chấp nhận. Nếu không có Git, ít nhất giữ file gốc, tạo file mới và dùng lịch sử phiên bản của dịch vụ lưu trữ khi phù hợp.</p>
 <h2>Skill, Plugin, Connector và MCP: đừng gom thành một cục</h2>
 <p>Người mới hay nghe bốn từ này cùng lúc rồi thấy mọi thứ như một nồi lẩu công nghệ.</p>

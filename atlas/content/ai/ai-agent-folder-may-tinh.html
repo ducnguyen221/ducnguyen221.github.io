@@ -82,6 +82,11 @@ a:hover{border-bottom-style:solid}
 .article strong{color:var(--text);font-weight:700}
 .article code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--bg-elev);
   padding:2px 7px;border-radius:5px;color:var(--violet);border:1px solid var(--border-soft)}
+.article pre{margin:18px 0;padding:18px 20px;overflow-x:auto;background:#0b1020;
+  border:1px solid var(--border-soft);border-radius:12px;color:#e8ecf8;line-height:1.55;
+  white-space:pre-wrap;word-break:break-word}
+.article pre code{display:block;font-family:'JetBrains Mono',monospace;font-size:.9rem;
+  background:transparent;border:0;border-radius:0;padding:0;color:inherit;white-space:inherit}
 .article ul,.article ol{margin:14px 0 14px 8px;padding-left:22px;color:var(--text-2)}
 .article li{margin:8px 0;font-size:1.02rem}
 .article ul li::marker{color:var(--accent)}
@@ -176,7 +181,13 @@ td{color:var(--text-2)}
 <p>Vì thế, trước khi tối ưu prompt, hãy tối ưu môi trường.</p>
 <h2>Một cấu trúc folder đủ tốt cho người mới</h2>
 <p>Bạn không cần một hệ thống phức tạp. Bắt đầu với sáu thành phần:</p>
-<p>``<code>text AI_Content_Project/ ├── AGENTS.md ├── README.md ├── input/ ├── working/ ├── output/ └── archive/ </code>``</p>
+<pre><code>AI_Content_Project/
+├── AGENTS.md
+├── README.md
+├── input/
+├── working/
+├── output/
+└── archive/</code></pre>
 <ul><li><code>README.md</code>: dự án này là gì, phục vụ ai và kết quả mong muốn ra sao.</li><li><code>AGENTS.md</code>: Agent phải làm việc theo nguyên tắc nào.</li><li><code>input/</code>: tài liệu gốc, dữ liệu đầu vào, file khách hàng gửi.</li><li><code>working/</code>: bản nháp, nội dung đang xử lý.</li><li><code>output/</code>: sản phẩm đã kiểm tra và sẵn sàng bàn giao.</li><li><code>archive/</code>: phiên bản cũ cần giữ để truy vết.</li></ul>
 <p>Cấu trúc này giống một căn bếp có khu nguyên liệu, bàn sơ chế, quầy ra món và kho lưu. Không gian không cần lớn. Chỉ cần mỗi thứ có chỗ của nó.</p>
 <div class="callout">🎯 Mục tiêu không phải làm folder “đẹp”. Mục tiêu là để cả người và AI đều biết tài liệu đang ở trạng thái nào.</div>
@@ -223,44 +234,69 @@ td{color:var(--text-2)}
 <div class="callout">🧠 AI Agent không nên chỉ “làm”. Nó phải để lại đủ bằng chứng để người dùng biết việc đã được làm đúng.</div>
 <h2>Prompt đầu tiên: đừng vội giao việc</h2>
 <p>Sau khi mở folder trong công cụ Agent, đừng giao ngay một dự án lớn. Hãy kiểm tra xem Agent hiểu môi trường chưa.</p>
-<p>```text Hãy đọc README.md và AGENTS.md trong folder này.</p>
-<p>Chưa chỉnh sửa file nào.</p>
-<p>Hãy cho tôi biết:</p>
-<ol><li>Mục tiêu của dự án.</li><li>Cấu trúc folder.</li><li>Những việc bạn được phép làm.</li><li>Những việc bạn không được phép làm.</li><li>Quy trình bạn sẽ áp dụng khi nhận nhiệm vụ.</li></ol>
-<p>```</p>
+<pre><code>Hãy đọc README.md và AGENTS.md trong folder này.
+
+Chưa chỉnh sửa file nào.
+
+Hãy cho tôi biết:
+1. Mục tiêu của dự án.
+2. Cấu trúc folder.
+3. Những việc bạn được phép làm.
+4. Những việc bạn không được phép làm.
+5. Quy trình bạn sẽ áp dụng khi nhận nhiệm vụ.</code></pre>
 <p>Nếu Agent tóm tắt đúng, bạn mới chuyển sang bước tiếp theo.</p>
 <h2>Prompt thứ hai: khảo sát folder ở chế độ chỉ đọc</h2>
-<p>```text Hãy khảo sát folder này ở chế độ chỉ đọc.</p>
-<p>Không tạo, sửa, đổi tên hoặc xóa file.</p>
-<p>Hãy báo cáo:</p>
-<ul><li>Các nhóm tài liệu đang có.</li><li>File nào có vẻ là nguồn chính.</li><li>File nào có dấu hiệu trùng phiên bản.</li><li>Cấu trúc nào đang khiến việc tìm kiếm khó khăn.</li><li>Ba đề xuất cải thiện, nhưng chưa thực hiện.</li></ul>
-<p>```</p>
+<pre><code>Hãy khảo sát folder này ở chế độ chỉ đọc.
+
+Không tạo, sửa, đổi tên hoặc xóa file.
+
+Hãy báo cáo:
+- Các nhóm tài liệu đang có.
+- File nào có vẻ là nguồn chính.
+- File nào có dấu hiệu trùng phiên bản.
+- Cấu trúc nào đang khiến việc tìm kiếm khó khăn.
+- Ba đề xuất cải thiện, nhưng chưa thực hiện.</code></pre>
 <p>Prompt này giúp bạn thấy Agent suy luận thế nào trước khi cho quyền thay đổi.</p>
 <h2>Prompt thứ ba: giao một chiến thắng nhỏ</h2>
 <p>Đừng bắt đầu bằng “hãy tổ chức lại toàn bộ Documents”. Hãy giao một việc có thể kiểm tra trong 10–15 phút.</p>
-<p>```text Hãy đọc các file trong input/ và tạo một bản tóm tắt tối đa 800 từ.</p>
-<p>Kết quả:</p>
-<ul><li>Lưu tại output/tom-tat.md.</li></ul>
-<p>Ràng buộc:</p>
-<ul><li>Không thay đổi file trong input/.</li><li>Phân biệt dữ kiện từ nguồn và nhận định của bạn.</li><li>Nếu có điểm mâu thuẫn giữa các file, liệt kê riêng.</li></ul>
-<p>Kiểm tra:</p>
-<ul><li>Mở lại file sau khi tạo.</li><li>Xác nhận file có tiêu đề, ba ý chính và mục điểm chưa chắc chắn.</li></ul>
-<p>```</p>
+<pre><code>Hãy đọc các file trong input/ và tạo một bản tóm tắt tối đa 800 từ.
+
+Kết quả:
+- Lưu tại output/tom-tat.md.
+
+Ràng buộc:
+- Không thay đổi file trong input/.
+- Phân biệt dữ kiện từ nguồn và nhận định của bạn.
+- Nếu có điểm mâu thuẫn giữa các file, liệt kê riêng.
+
+Kiểm tra:
+- Mở lại file sau khi tạo.
+- Xác nhận file có tiêu đề, ba ý chính và mục điểm chưa chắc chắn.</code></pre>
 <p>Một chiến thắng nhỏ cho bạn ba thứ: niềm tin, hiểu biết về công cụ và một mẫu quy trình có thể lặp lại.</p>
 <h2>Công thức prompt bốn phần</h2>
 <p>Prompt tốt không cần hoa mỹ. Nó cần đủ bốn phần:</p>
 <ol><li><strong>Kết quả:</strong> bạn muốn nhận được sản phẩm gì.</li><li><strong>Nguồn:</strong> Agent được dùng tài liệu nào.</li><li><strong>Ràng buộc:</strong> điều gì phải giữ nguyên hoặc không được làm.</li><li><strong>Kiểm tra:</strong> dựa vào đâu để kết luận đã hoàn thành.</li></ol>
 <p>Ví dụ:</p>
-<p>```text Hãy viết một bài hướng dẫn người đi làm dùng AI để chuẩn bị báo cáo tuần.</p>
-<p>Kết quả:</p>
-<ul><li>Một bài khoảng 1.500 từ.</li><li>Lưu tại output/bao-cao-tuan-voi-ai.md.</li></ul>
-<p>Nguồn:</p>
-<ul><li>Dùng tài liệu trong input/.</li><li>Thông tin mới phải có nguồn chính thức.</li></ul>
-<p>Ràng buộc:</p>
-<ul><li>Độc giả không chuyên kỹ thuật.</li><li>Không bịa số liệu hoặc trải nghiệm.</li><li>Không thay đổi file trong input/.</li></ul>
-<p>Kiểm tra:</p>
-<ul><li>Có hướng dẫn từng bước.</li><li>Có một ví dụ hoàn chỉnh.</li><li>Có phần nên và không nên.</li><li>Mở lại file trước khi bàn giao.</li></ul>
-<p>```</p>
+<pre><code>Hãy viết một bài hướng dẫn người đi làm dùng AI để chuẩn bị báo cáo tuần.
+
+Kết quả:
+- Một bài khoảng 1.500 từ.
+- Lưu tại output/bao-cao-tuan-voi-ai.md.
+
+Nguồn:
+- Dùng tài liệu trong input/.
+- Thông tin mới phải có nguồn chính thức.
+
+Ràng buộc:
+- Độc giả không chuyên kỹ thuật.
+- Không bịa số liệu hoặc trải nghiệm.
+- Không thay đổi file trong input/.
+
+Kiểm tra:
+- Có hướng dẫn từng bước.
+- Có một ví dụ hoàn chỉnh.
+- Có phần nên và không nên.
+- Mở lại file trước khi bàn giao.</code></pre>
 <p>Điểm nhiều người hay hiểu sai là prompt càng dài thì càng tốt. Không hẳn. Một prompt dài nhưng thiếu tiêu chí kiểm tra vẫn giống bản giao việc “làm cho hay nhé” — nghe thân thiện nhưng không thể nghiệm thu.</p>
 <h2>Khi nào không nên dùng Agent với folder?</h2>
 <p>Agent không phải lúc nào cũng là lựa chọn tốt nhất.</p>

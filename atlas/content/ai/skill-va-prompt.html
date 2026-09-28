@@ -82,6 +82,11 @@ a:hover{border-bottom-style:solid}
 .article strong{color:var(--text);font-weight:700}
 .article code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--bg-elev);
   padding:2px 7px;border-radius:5px;color:var(--violet);border:1px solid var(--border-soft)}
+.article pre{margin:18px 0;padding:18px 20px;overflow-x:auto;background:#0b1020;
+  border:1px solid var(--border-soft);border-radius:12px;color:#e8ecf8;line-height:1.55;
+  white-space:pre-wrap;word-break:break-word}
+.article pre code{display:block;font-family:'JetBrains Mono',monospace;font-size:.9rem;
+  background:transparent;border:0;border-radius:0;padding:0;color:inherit;white-space:inherit}
 .article ul,.article ol{margin:14px 0 14px 8px;padding-left:22px;color:var(--text-2)}
 .article li{margin:8px 0;font-size:1.02rem}
 .article ul li::marker{color:var(--accent)}
@@ -166,21 +171,33 @@ td{color:var(--text-2)}
 <p>Một prompt tốt thường có bốn phần:</p>
 <ol><li><strong>Kết quả:</strong> cần tạo sản phẩm gì.</li><li><strong>Nguồn:</strong> được dùng thông tin nào.</li><li><strong>Ràng buộc:</strong> điều gì phải giữ nguyên hoặc không được làm.</li><li><strong>Kiểm tra:</strong> dựa vào đâu để biết đã hoàn thành.</li></ol>
 <p>Ví dụ:</p>
-<p>```text Hãy viết một bài hướng dẫn người mới sử dụng AI Agent.</p>
-<p>Kết quả:</p>
-<ul><li>Một bài Markdown khoảng 1.500 từ.</li><li>Lưu tại output/huong-dan-ai-agent.md.</li></ul>
-<p>Nguồn:</p>
-<ul><li>Dùng tài liệu trong input/.</li><li>Thông tin sản phẩm phải lấy từ tài liệu chính thức.</li></ul>
-<p>Ràng buộc:</p>
-<ul><li>Giải thích cho người không chuyên kỹ thuật.</li><li>Không bịa tính năng hoặc trải nghiệm.</li></ul>
-<p>Kiểm tra:</p>
-<ul><li>Có ví dụ prompt hoàn chỉnh.</li><li>Có phần nên và không nên.</li><li>Kiểm tra lại link trước khi bàn giao.</li></ul>
-<p>```</p>
+<pre><code>Hãy viết một bài hướng dẫn người mới sử dụng AI Agent.
+
+Kết quả:
+- Một bài Markdown khoảng 1.500 từ.
+- Lưu tại output/huong-dan-ai-agent.md.
+
+Nguồn:
+- Dùng tài liệu trong input/.
+- Thông tin sản phẩm phải lấy từ tài liệu chính thức.
+
+Ràng buộc:
+- Giải thích cho người không chuyên kỹ thuật.
+- Không bịa tính năng hoặc trải nghiệm.
+
+Kiểm tra:
+- Có ví dụ prompt hoàn chỉnh.
+- Có phần nên và không nên.
+- Kiểm tra lại link trước khi bàn giao.</code></pre>
 <p>Prompt này đủ tốt cho một tác vụ. Nhưng nếu bạn cần làm 30 bài với cùng quy trình, việc dán lại toàn bộ hướng dẫn sẽ tạo ra ba vấn đề: tốn thời gian, dễ lệch phiên bản và khó bảo trì.</p>
 <h2>Skill là gì?</h2>
 <p>Theo cách hiểu chung trong các hệ Agent hiện đại, <strong>Skill là một gói hướng dẫn và tài nguyên dành cho một loại công việc có thể tái sử dụng</strong>.</p>
 <p>Một Skill thường là một folder có file bắt buộc <code>SKILL.md</code>. File này chứa metadata – thông tin định tuyến như tên và mô tả – cùng hướng dẫn thực hiện. Skill có thể có thêm script, tài liệu tham khảo, template hoặc tài sản.</p>
-<p>``<code>text blog-writing/ ├── SKILL.md ├── scripts/ ├── references/ └── assets/ </code>``</p>
+<pre><code>blog-writing/
+├── SKILL.md
+├── scripts/
+├── references/
+└── assets/</code></pre>
 <ul><li><code>SKILL.md</code>: khi nào dùng Skill, quy trình chính, đầu vào, đầu ra và rào an toàn.</li><li><code>scripts/</code>: bước có thể tự động hóa và kiểm tra bằng máy.</li><li><code>references/</code>: kiến thức sâu, checklist hoặc quy chuẩn chỉ đọc khi cần.</li><li><code>assets/</code>: template, hình, font hoặc file mẫu dùng để tạo đầu ra.</li></ul>
 <p>Điểm quan trọng là <strong>progressive disclosure – nạp dần theo nhu cầu</strong>. Agent thường chỉ thấy tên và mô tả Skill để biết nó tồn tại. Khi nhiệm vụ khớp, Agent mới đọc hướng dẫn đầy đủ và tài nguyên liên quan. Nhờ vậy, mình không phải nhét mọi quy trình vào bối cảnh của mọi cuộc trò chuyện.</p>
 <h2>Prompt và Skill khác nhau ở đâu?</h2>
@@ -244,7 +261,7 @@ td{color:var(--text-2)}
 <p>Vì Plugin có thể mang nhiều thành phần, rủi ro và phạm vi quyền cũng lớn hơn Skill thuần hướng dẫn. Đừng cài Plugin chỉ vì tên hấp dẫn.</p>
 <h2>Một ví dụ chuyển từ prompt thành Skill</h2>
 <h3>Giai đoạn 1 — Prompt dùng một lần</h3>
-<p>``<code>text Hãy review bài blog này. Kiểm tra giọng văn, nguồn, SEO, thuật ngữ và CTA. </code>``</p>
+<pre><code>Hãy review bài blog này. Kiểm tra giọng văn, nguồn, SEO, thuật ngữ và CTA.</code></pre>
 <p>Kết quả chưa ổn vì “giọng văn tốt” và “SEO tốt” đều mơ hồ.</p>
 <h3>Giai đoạn 2 — Prompt có checklist</h3>
 <p>Bạn thêm độc giả, các lỗi cần tìm, meta description, nguồn, định dạng và tiêu chuẩn pass/fail. Kết quả tốt hơn, nhưng prompt dài và bị sao chép ở mọi bài.</p>
@@ -252,7 +269,8 @@ td{color:var(--text-2)}
 <p>Bạn đóng gói:</p>
 <ul><li><code>SKILL.md</code>: workflow review.</li><li><code>references/voice.md</code>: giọng thương hiệu.</li><li><code>references/seo.md</code>: checklist SEO.</li><li><code>scripts/check_links.py</code>: kiểm link.</li><li><code>assets/blog-template.md</code>: mẫu bài.</li></ul>
 <p>Prompt hôm nay chỉ còn:</p>
-<p>``<code>text Hãy dùng Skill blog-review để kiểm tra bài trong output/bai-moi.md. Giữ nguyên luận điểm; sửa lỗi nguồn, cấu trúc và meta description. </code>``</p>
+<pre><code>Hãy dùng Skill blog-review để kiểm tra bài trong output/bai-moi.md.
+Giữ nguyên luận điểm; sửa lỗi nguồn, cấu trúc và meta description.</code></pre>
 <p>Đây là giá trị thật của Skill: <strong>nén tri thức vận hành thành một năng lực gọi lại được</strong>, chứ không phải làm prompt trông chuyên nghiệp hơn.</p>
 <h2>Những sai lầm phổ biến khi tạo Skill</h2>
 <h3>Mô tả quá rộng</h3>

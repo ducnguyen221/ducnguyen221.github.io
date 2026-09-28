@@ -82,6 +82,11 @@ a:hover{border-bottom-style:solid}
 .article strong{color:var(--text);font-weight:700}
 .article code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--bg-elev);
   padding:2px 7px;border-radius:5px;color:var(--violet);border:1px solid var(--border-soft)}
+.article pre{margin:18px 0;padding:18px 20px;overflow-x:auto;background:#0b1020;
+  border:1px solid var(--border-soft);border-radius:12px;color:#e8ecf8;line-height:1.55;
+  white-space:pre-wrap;word-break:break-word}
+.article pre code{display:block;font-family:'JetBrains Mono',monospace;font-size:.9rem;
+  background:transparent;border:0;border-radius:0;padding:0;color:inherit;white-space:inherit}
 .article ul,.article ol{margin:14px 0 14px 8px;padding-left:22px;color:var(--text-2)}
 .article li{margin:8px 0;font-size:1.02rem}
 .article ul li::marker{color:var(--accent)}
@@ -177,7 +182,12 @@ td{color:var(--text-2)}
 <p>Đừng bắt mình học terminal chỉ để chứng minh là đang dùng AI “chuyên nghiệp”. Công cụ đúng là công cụ giúp mình hoàn thành việc, không phải công cụ làm mình thấy oai.</p>
 <h2>Bước 2 — Tạo một folder thử nghiệm an toàn</h2>
 <p>Tạo một folder local, ví dụ:</p>
-<p>``<code>text Codex_First_Project/ ├── README.md ├── AGENTS.md ├── input/ ├── working/ └── output/ </code>``</p>
+<pre><code>Codex_First_Project/
+├── README.md
+├── AGENTS.md
+├── input/
+├── working/
+└── output/</code></pre>
 <p>Không dùng folder Desktop lớn, toàn bộ Documents hoặc ổ đĩa công ty cho lần thử đầu. Không đặt file chứa mật khẩu, token, dữ liệu khách hàng hoặc thông tin cá nhân nhạy cảm vào đây.</p>
 <p>Trong <code>input/</code>, đặt hai hoặc ba tài liệu vô hại: một bản ghi chú, một file Markdown và một bảng CSV nhỏ. Nếu file nằm trên OneDrive hoặc Google Drive, hãy chắc chắn nó đã nằm thật trên máy; đừng bắt đầu bằng một folder toàn placeholder cloud.</p>
 <h3>README.md tối thiểu</h3>
@@ -206,50 +216,87 @@ td{color:var(--text-2)}
 <div class="callout">⚠️ Quyền truy cập là ranh giới kỹ thuật, không phải giấy phép đạo đức. Codex có thể làm được không có nghĩa là bạn nên cho nó làm ngay.</div>
 <h2>Bước 4 — Dùng prompt để Codex giải thích chính nó</h2>
 <p>Trước khi giao việc, hãy yêu cầu Codex mô tả khả năng trong đúng phiên hiện tại. Tính năng có thể khác theo tài khoản, phiên bản ứng dụng và quyền của project.</p>
-<p>```text Trước khi làm việc, hãy giải thích ngắn gọn về phiên Codex hiện tại:</p>
-<ol><li>Bạn đang nhìn thấy folder nào?</li><li>Bạn có thể đọc, tạo và sửa loại file nào trong folder này?</li><li>Bạn có thể chạy những công cụ nào?</li><li>Hành động nào sẽ cần tôi phê duyệt?</li><li>Bạn không thể làm hoặc không nên làm điều gì?</li></ol>
-<p>Chưa chỉnh sửa file nào. Nếu có điểm không chắc chắn, hãy nói rõ là chưa kiểm tra thay vì suy đoán. ```</p>
+<pre><code>Trước khi làm việc, hãy giải thích ngắn gọn về phiên Codex hiện tại:
+
+1. Bạn đang nhìn thấy folder nào?
+2. Bạn có thể đọc, tạo và sửa loại file nào trong folder này?
+3. Bạn có thể chạy những công cụ nào?
+4. Hành động nào sẽ cần tôi phê duyệt?
+5. Bạn không thể làm hoặc không nên làm điều gì?
+
+Chưa chỉnh sửa file nào.
+Nếu có điểm không chắc chắn, hãy nói rõ là chưa kiểm tra thay vì suy đoán.</code></pre>
 <p>Đây không phải bài kiểm tra xem AI “biết nói về mình” hay không. Mục tiêu là kiểm tra <strong>capability boundary – ranh giới năng lực và quyền</strong> của phiên làm việc.</p>
 <h2>Bước 5 — Yêu cầu Codex đọc hướng dẫn dự án</h2>
-<p>```text Hãy đọc README.md và AGENTS.md.</p>
-<p>Chưa thay đổi file.</p>
-<p>Hãy tóm tắt:</p>
-<ul><li>Mục tiêu dự án.</li><li>Nguồn đầu vào.</li><li>Nơi lưu bản nháp và sản phẩm hoàn chỉnh.</li><li>Việc bạn được phép làm.</li><li>Việc bạn không được phép làm.</li><li>Quy trình kiểm tra trước khi bàn giao.</li></ul>
-<p>```</p>
+<pre><code>Hãy đọc README.md và AGENTS.md.
+
+Chưa thay đổi file.
+
+Hãy tóm tắt:
+- Mục tiêu dự án.
+- Nguồn đầu vào.
+- Nơi lưu bản nháp và sản phẩm hoàn chỉnh.
+- Việc bạn được phép làm.
+- Việc bạn không được phép làm.
+- Quy trình kiểm tra trước khi bàn giao.</code></pre>
 <p>Nếu bản tóm tắt sai, hãy sửa file hướng dẫn hoặc giải thích lại. Đừng cố “cứ làm trước rồi tính”. Một sai lệch nhỏ ở đầu quy trình có thể thành năm file sai ở cuối quy trình.</p>
 <h2>Bước 6 — Khảo sát folder ở chế độ chỉ đọc</h2>
-<p>```text Hãy khảo sát folder này ở chế độ chỉ đọc.</p>
-<p>Không tạo, sửa, đổi tên, di chuyển hoặc xóa file.</p>
-<p>Hãy cho tôi một báo cáo ngắn gồm:</p>
-<ol><li>Cây folder hiện tại.</li><li>Loại tài liệu đang có.</li><li>File nào có vẻ là nguồn chính.</li><li>Rủi ro về tên file, phiên bản hoặc dữ liệu trùng.</li><li>Ba đề xuất sắp xếp lại, nhưng chưa thực hiện.</li></ol>
-<p>```</p>
+<pre><code>Hãy khảo sát folder này ở chế độ chỉ đọc.
+
+Không tạo, sửa, đổi tên, di chuyển hoặc xóa file.
+
+Hãy cho tôi một báo cáo ngắn gồm:
+1. Cây folder hiện tại.
+2. Loại tài liệu đang có.
+3. File nào có vẻ là nguồn chính.
+4. Rủi ro về tên file, phiên bản hoặc dữ liệu trùng.
+5. Ba đề xuất sắp xếp lại, nhưng chưa thực hiện.</code></pre>
 <p>Đây là cách cho Agent “đi tham quan văn phòng” trước khi trao chìa khóa kho.</p>
 <h2>Bước 7 — Yêu cầu đề xuất cách làm, chưa sửa file</h2>
-<p>```text Dựa trên README.md, AGENTS.md và các file trong input/, hãy đề xuất một tác vụ nhỏ có thể hoàn thành trong 15 phút.</p>
-<p>Yêu cầu:</p>
-<ul><li>Chưa chỉnh sửa file.</li><li>Đầu ra phải kiểm tra được.</li><li>Không dùng mạng nếu không cần.</li><li>Nêu rõ file đầu vào, file đầu ra và tiêu chí hoàn thành.</li></ul>
-<p>Đưa tối đa ba phương án và khuyến nghị một phương án. ```</p>
+<pre><code>Dựa trên README.md, AGENTS.md và các file trong input/, hãy đề xuất một tác vụ nhỏ có thể hoàn thành trong 15 phút.
+
+Yêu cầu:
+- Chưa chỉnh sửa file.
+- Đầu ra phải kiểm tra được.
+- Không dùng mạng nếu không cần.
+- Nêu rõ file đầu vào, file đầu ra và tiêu chí hoàn thành.
+
+Đưa tối đa ba phương án và khuyến nghị một phương án.</code></pre>
 <p>Prompt này giúp Codex tham gia vào việc thiết kế công việc, nhưng quyền quyết định vẫn ở bạn.</p>
 <h2>Bước 8 — Hoàn thành tác vụ đầu tiên</h2>
 <p>Giả sử folder có vài ghi chú họp. Bạn có thể giao:</p>
-<p>```text Hãy tổng hợp các file văn bản trong input/ thành một biên bản ngắn.</p>
-<p>Kết quả:</p>
-<ul><li>Tạo output/bien-ban-tong-hop.md.</li><li>Độ dài tối đa 1.000 từ.</li></ul>
-<p>Nội dung bắt buộc:</p>
-<ul><li>Bối cảnh.</li><li>Các quyết định đã được ghi rõ trong nguồn.</li><li>Việc cần làm tiếp theo.</li><li>Điểm còn mâu thuẫn hoặc chưa xác minh.</li></ul>
-<p>Ràng buộc:</p>
-<ul><li>Không sửa file trong input/.</li><li>Không tự biến đề xuất thành quyết định.</li><li>Không bịa tên người, thời hạn hoặc cam kết.</li></ul>
-<p>Kiểm tra:</p>
-<ul><li>Mở lại file sau khi tạo.</li><li>Đối chiếu từng quyết định với nguồn.</li><li>Báo file đã tạo và điểm chưa chắc chắn.</li></ul>
-<p>```</p>
+<pre><code>Hãy tổng hợp các file văn bản trong input/ thành một biên bản ngắn.
+
+Kết quả:
+- Tạo output/bien-ban-tong-hop.md.
+- Độ dài tối đa 1.000 từ.
+
+Nội dung bắt buộc:
+- Bối cảnh.
+- Các quyết định đã được ghi rõ trong nguồn.
+- Việc cần làm tiếp theo.
+- Điểm còn mâu thuẫn hoặc chưa xác minh.
+
+Ràng buộc:
+- Không sửa file trong input/.
+- Không tự biến đề xuất thành quyết định.
+- Không bịa tên người, thời hạn hoặc cam kết.
+
+Kiểm tra:
+- Mở lại file sau khi tạo.
+- Đối chiếu từng quyết định với nguồn.
+- Báo file đã tạo và điểm chưa chắc chắn.</code></pre>
 <p>Một prompt có <strong>kết quả, nguồn, ràng buộc và kiểm tra</strong> gần như luôn tốt hơn một đoạn văn dài chỉ mô tả mong muốn.</p>
 <h2>Bước 9 — Xem thay đổi thay vì tin lời báo cáo</h2>
 <p>Sau khi Codex hoàn thành:</p>
 <ol><li>Mở file đầu ra.</li><li>Đọc phần quan trọng nhất.</li><li>Xem danh sách file đã thay đổi.</li><li>Nếu project dùng Git, xem <code>diff</code> – phần khác biệt giữa trước và sau.</li><li>Yêu cầu Codex sửa đúng đoạn, không viết lại toàn bộ nếu không cần.</li></ol>
 <p>Prompt bàn giao:</p>
-<p>```text Trước khi kết thúc:</p>
-<ul><li>Liệt kê file đã tạo hoặc chỉnh sửa.</li><li>Tóm tắt thay đổi chính.</li><li>Cho biết đã kiểm tra bằng cách nào.</li><li>Nêu phần chưa thể xác minh.</li><li>Chỉ ra cách hoàn tác thay đổi của lượt này.</li></ul>
-<p>```</p>
+<pre><code>Trước khi kết thúc:
+- Liệt kê file đã tạo hoặc chỉnh sửa.
+- Tóm tắt thay đổi chính.
+- Cho biết đã kiểm tra bằng cách nào.
+- Nêu phần chưa thể xác minh.
+- Chỉ ra cách hoàn tác thay đổi của lượt này.</code></pre>
 <div class="callout">💡 Với người mới, thói quen xem file và xem diff quan trọng hơn việc thuộc nhiều câu lệnh.</div>
 <h2>Bước 10 — Hiểu Skill và Plugin ở mức đủ dùng</h2>
 <p>Sau khi đã hoàn thành một việc cơ bản, bạn mới nên tìm hiểu mở rộng.</p>

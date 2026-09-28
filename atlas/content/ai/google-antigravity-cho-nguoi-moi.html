@@ -82,6 +82,11 @@ a:hover{border-bottom-style:solid}
 .article strong{color:var(--text);font-weight:700}
 .article code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--bg-elev);
   padding:2px 7px;border-radius:5px;color:var(--violet);border:1px solid var(--border-soft)}
+.article pre{margin:18px 0;padding:18px 20px;overflow-x:auto;background:#0b1020;
+  border:1px solid var(--border-soft);border-radius:12px;color:#e8ecf8;line-height:1.55;
+  white-space:pre-wrap;word-break:break-word}
+.article pre code{display:block;font-family:'JetBrains Mono',monospace;font-size:.9rem;
+  background:transparent;border:0;border-radius:0;padding:0;color:inherit;white-space:inherit}
 .article ul,.article ol{margin:14px 0 14px 8px;padding-left:22px;color:var(--text-2)}
 .article li{margin:8px 0;font-size:1.02rem}
 .article ul li::marker{color:var(--accent)}
@@ -173,7 +178,12 @@ td{color:var(--text-2)}
 <div class="callout">⚠️ Giao diện và điều kiện tài khoản có thể thay đổi. Hãy dùng trang Codelab chính thức để kiểm tra bản cài và yêu cầu mới nhất.</div>
 <h2>Bước 2 — Tạo một folder thực hành</h2>
 <p>Tạo folder local:</p>
-<p>``<code>text Antigravity_First_Project/ ├── README.md ├── AGENTS.md ├── input/ ├── working/ └── output/ </code>``</p>
+<pre><code>Antigravity_First_Project/
+├── README.md
+├── AGENTS.md
+├── input/
+├── working/
+└── output/</code></pre>
 <p>Antigravity hỗ trợ Skill ở cấp project trong <code>.agents/skills/</code>, nhưng chưa cần tạo ngay. Đầu tiên hãy làm cho project cơ bản chạy ổn.</p>
 <h3>README.md mẫu</h3>
 <p>```markdown</p>
@@ -199,55 +209,97 @@ td{color:var(--text-2)}
 <ol><li>Khởi động Antigravity IDE.</li><li>Chọn mở một local folder.</li><li>Chọn <code>Antigravity_First_Project</code>.</li><li>Mở Agent Panel.</li><li>Kiểm tra Settings, terminal execution policy, review policy và quyền file system.</li></ol>
 <p>Google khuyến nghị người dùng xem kỹ security mode và chọn mức tự do phù hợp với project. Đây là chỗ cần dừng lại vài phút. Một chính sách quyền đúng giúp bạn đỡ phải xử lý một buổi chiều “Ơ kìa, mình đã thống nhất với nhau thế này đâu?”.</p>
 <h2>Bước 4 — Để Agent giải thích chính môi trường của nó</h2>
-<p>```text Trước khi thay đổi bất kỳ file nào, hãy giải thích môi trường Antigravity hiện tại:</p>
-<ol><li>Project và folder làm việc hiện tại là gì?</li><li>Bạn đang thấy các file hướng dẫn nào?</li><li>Bạn có thể đọc, tạo, sửa và chạy loại công cụ nào?</li><li>Chính sách review hiện tại yêu cầu tôi duyệt ở những bước nào?</li><li>Bạn không thể xác minh điều gì trong phiên này?</li></ol>
-<p>Chưa chỉnh sửa file. Không suy đoán quyền nếu chưa có bằng chứng. ```</p>
+<pre><code>Trước khi thay đổi bất kỳ file nào, hãy giải thích môi trường Antigravity hiện tại:
+
+1. Project và folder làm việc hiện tại là gì?
+2. Bạn đang thấy các file hướng dẫn nào?
+3. Bạn có thể đọc, tạo, sửa và chạy loại công cụ nào?
+4. Chính sách review hiện tại yêu cầu tôi duyệt ở những bước nào?
+5. Bạn không thể xác minh điều gì trong phiên này?
+
+Chưa chỉnh sửa file.
+Không suy đoán quyền nếu chưa có bằng chứng.</code></pre>
 <p>Người dùng thường hỏi Agent “bạn làm được gì?”. Câu hỏi tốt hơn là “trong project này, với chính sách hiện tại, bạn được phép làm gì?”. Cùng một Agent nhưng ranh giới có thể khác theo project và cấu hình.</p>
 <h2>Bước 5 — Đọc và phản hồi về bối cảnh</h2>
-<p>```text Hãy đọc README.md và AGENTS.md.</p>
-<p>Không chỉnh sửa file.</p>
-<p>Hãy cho tôi biết:</p>
-<ul><li>Mục tiêu project.</li><li>Folder nào chứa đầu vào, bản nháp và đầu ra.</li><li>Việc được phép và không được phép.</li><li>Quy trình hoàn thành một tác vụ.</li><li>Điểm nào còn mơ hồ hoặc có thể gây hiểu sai.</li></ul>
-<p>```</p>
+<pre><code>Hãy đọc README.md và AGENTS.md.
+
+Không chỉnh sửa file.
+
+Hãy cho tôi biết:
+- Mục tiêu project.
+- Folder nào chứa đầu vào, bản nháp và đầu ra.
+- Việc được phép và không được phép.
+- Quy trình hoàn thành một tác vụ.
+- Điểm nào còn mơ hồ hoặc có thể gây hiểu sai.</code></pre>
 <p>Nếu Agent hiểu sai, hãy sửa bối cảnh. Đừng tiếp tục chỉ vì màn hình trông “đã kết nối”. Kết nối thành công không đồng nghĩa với hiểu đúng công việc.</p>
 <h2>Bước 6 — Khảo sát folder chỉ đọc</h2>
-<p>```text Hãy khảo sát project ở chế độ chỉ đọc.</p>
-<p>Không tạo, sửa, di chuyển, đổi tên hoặc xóa file.</p>
-<p>Trả về:</p>
-<ol><li>Cây folder rút gọn.</li><li>Các loại file đang có.</li><li>File nào có vẻ là nguồn chính.</li><li>Rủi ro về file trùng, tên mơ hồ hoặc thiếu cấu trúc.</li><li>Ba cải tiến có thể làm, nhưng chưa thực hiện.</li></ol>
-<p>```</p>
+<pre><code>Hãy khảo sát project ở chế độ chỉ đọc.
+
+Không tạo, sửa, di chuyển, đổi tên hoặc xóa file.
+
+Trả về:
+1. Cây folder rút gọn.
+2. Các loại file đang có.
+3. File nào có vẻ là nguồn chính.
+4. Rủi ro về file trùng, tên mơ hồ hoặc thiếu cấu trúc.
+5. Ba cải tiến có thể làm, nhưng chưa thực hiện.</code></pre>
 <p>Đây là bước mình luôn khuyến nghị với project cũ. Nó cho bạn thấy Agent phân loại thế nào, đồng thời không tạo thay đổi.</p>
 <h2>Bước 7 — Nhờ Agent đề xuất cách làm</h2>
-<p>```text Dựa trên project hiện tại, hãy đề xuất tối đa ba tác vụ nhỏ có thể hoàn thành trong 15 phút.</p>
-<p>Mỗi tác vụ phải có:</p>
-<ul><li>Kết quả cụ thể.</li><li>File đầu vào.</li><li>File đầu ra.</li><li>Ràng buộc.</li><li>Cách kiểm tra.</li></ul>
-<p>Chưa chỉnh sửa file. Hãy khuyến nghị một phương án và giải thích ngắn gọn. ```</p>
+<pre><code>Dựa trên project hiện tại, hãy đề xuất tối đa ba tác vụ nhỏ có thể hoàn thành trong 15 phút.
+
+Mỗi tác vụ phải có:
+- Kết quả cụ thể.
+- File đầu vào.
+- File đầu ra.
+- Ràng buộc.
+- Cách kiểm tra.
+
+Chưa chỉnh sửa file.
+Hãy khuyến nghị một phương án và giải thích ngắn gọn.</code></pre>
 <p>Mục tiêu không phải để Agent tự chọn mọi thứ. Mục tiêu là dùng Agent như một người cùng thiết kế workflow – quy trình làm việc.</p>
 <h2>Bước 8 — Giao tác vụ đầu tiên</h2>
 <p>Giả sử <code>input/</code> có vài ghi chú về một buổi đào tạo:</p>
-<p>```text Hãy tổng hợp các file trong input/ thành một hướng dẫn chuẩn bị buổi học.</p>
-<p>Kết quả:</p>
-<ul><li>Tạo output/huong-dan-chuan-bi.md.</li><li>Độc giả là trợ giảng mới.</li></ul>
-<p>Cấu trúc:</p>
-<ul><li>Trước buổi học.</li><li>Trong buổi học.</li><li>Sau buổi học.</li><li>Điểm cần hỏi lại giảng viên.</li></ul>
-<p>Ràng buộc:</p>
-<ul><li>Không sửa file gốc.</li><li>Không tự thêm lịch, tên người hoặc cam kết không có trong nguồn.</li><li>Khuyến nghị của Agent phải gắn nhãn “Đề xuất”.</li></ul>
-<p>Kiểm tra:</p>
-<ul><li>Mở lại file sau khi tạo.</li><li>Đối chiếu các mục bắt buộc với nguồn.</li><li>Báo phần nào chưa thể xác minh.</li></ul>
-<p>```</p>
+<pre><code>Hãy tổng hợp các file trong input/ thành một hướng dẫn chuẩn bị buổi học.
+
+Kết quả:
+- Tạo output/huong-dan-chuan-bi.md.
+- Độc giả là trợ giảng mới.
+
+Cấu trúc:
+- Trước buổi học.
+- Trong buổi học.
+- Sau buổi học.
+- Điểm cần hỏi lại giảng viên.
+
+Ràng buộc:
+- Không sửa file gốc.
+- Không tự thêm lịch, tên người hoặc cam kết không có trong nguồn.
+- Khuyến nghị của Agent phải gắn nhãn “Đề xuất”.
+
+Kiểm tra:
+- Mở lại file sau khi tạo.
+- Đối chiếu các mục bắt buộc với nguồn.
+- Báo phần nào chưa thể xác minh.</code></pre>
 <p>Đây là một bài tập đủ nhỏ nhưng vẫn có giá trị thật. Nó kiểm tra khả năng đọc nhiều file, phân loại, viết cho một đối tượng và tách dữ kiện khỏi đề xuất.</p>
 <h2>Bước 9 — Dùng Artifact và review như bằng chứng</h2>
 <p>Agent có thể trình bày kế hoạch, thay đổi hoặc kết quả dưới dạng artifact. Hãy xem artifact như hồ sơ bàn giao, không phải huy hiệu “AI đã làm xong”.</p>
 <p>Kiểm tra:</p>
 <ul><li>File có được tạo đúng nơi không?</li><li>Nội dung có bám nguồn không?</li><li>Có phần nào bị tự suy diễn không?</li><li>Có thay đổi ngoài phạm vi không?</li><li>Có thể phục hồi phiên bản trước không?</li></ul>
 <p>Prompt bàn giao:</p>
-<p>```text Trước khi kết thúc, hãy kiểm tra lại tác vụ và báo cáo:</p>
-<ul><li>File đã tạo hoặc chỉnh sửa.</li><li>Nội dung chính đã thay đổi.</li><li>Bằng chứng kiểm tra.</li><li>Hạn chế hoặc phần chưa xác minh.</li><li>Cách hoàn tác thay đổi.</li></ul>
-<p>```</p>
+<pre><code>Trước khi kết thúc, hãy kiểm tra lại tác vụ và báo cáo:
+- File đã tạo hoặc chỉnh sửa.
+- Nội dung chính đã thay đổi.
+- Bằng chứng kiểm tra.
+- Hạn chế hoặc phần chưa xác minh.
+- Cách hoàn tác thay đổi.</code></pre>
 <h2>Bước 10 — Hiểu Skill trong Antigravity</h2>
 <p>Theo Google Codelabs, Skill là gói năng lực chuyên biệt được tải khi nhiệm vụ phù hợp, thay vì nhồi mọi hướng dẫn vào context – bối cảnh – ngay từ đầu.</p>
 <p>Một Skill thường có cấu trúc:</p>
-<p>``<code>text my-skill/ ├── SKILL.md ├── scripts/ ├── references/ └── assets/ </code>``</p>
+<pre><code>my-skill/
+├── SKILL.md
+├── scripts/
+├── references/
+└── assets/</code></pre>
 <ul><li><code>SKILL.md</code>: tên, mô tả và quy trình chính.</li><li><code>scripts/</code>: công cụ thực thi lặp lại.</li><li><code>references/</code>: tài liệu chuyên sâu chỉ đọc khi cần.</li><li><code>assets/</code>: template, hình hoặc tài nguyên đầu ra.</li></ul>
 <p>Antigravity hiện mô tả hai phạm vi chính:</p>
 <ul><li>Global Skill: dùng ở nhiều project.</li><li>Project Skill trong <code>&lt;project-root&gt;/.agents/skills/</code>: chỉ áp dụng cho project đó.</li></ul>
