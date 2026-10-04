@@ -376,7 +376,7 @@ footer.site{border-top:1px solid var(--border);background:var(--bg-tint);padding
 /* infographic */
 .figure{margin:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
   box-shadow:var(--shadow-md);padding:14px;overflow:hidden}
-.figure img{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:var(--radius-sm);background:var(--surface-2)}
+.figure img{display:block;width:100%;height:auto;aspect-ratio:1672/941;border-radius:var(--radius-sm);background:var(--surface-2)}
 .fig-tools{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap;margin-top:10px;padding:0 4px}
 .fig-hint{display:none;font-size:13px;color:var(--faint);margin-right:auto}
 .fig-open{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--accent);min-height:44px}
