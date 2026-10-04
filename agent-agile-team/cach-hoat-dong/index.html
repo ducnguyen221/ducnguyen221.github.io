@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cách hoạt động · agent-agile-team</title>
+<meta name="description" content="Cách agent-agile-team chạy một sprint: sáu bước, hai cổng người, vai và tier, kiểm định độc lập.">
+<meta name="theme-color" content="#2f6df6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e0f13" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Cách hoạt động · agent-agile-team">
+<meta property="og:description" content="Cách agent-agile-team chạy một sprint: sáu bước, hai cổng người, vai và tier, kiểm định độc lập.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:url" content="https://ducnguyen.vn/agent-agile-team/cach-hoat-dong/">
+<meta property="og:image" content="https://ducnguyen.vn/agent-agile-team/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="agent-agile-team — Giao việc bằng lời thường. Bạn chỉ quyết ở hai cổng.">
+<link rel="canonical" href="https://ducnguyen.vn/agent-agile-team/cach-hoat-dong/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ducnguyen.vn/agent-agile-team/assets/og-image.png">
+<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
+html { overscroll-behavior-y: none; }
+</style>
+<!-- Meta Pixel (ID 1717041732866196) - do tuong tac tu Facebook. Cong bo tai /privacy/.
+     Chi chay tren ducnguyen.vn; ban doc offline (file://) va ban xem thu cuc bo khong gui gi. -->
+<script>if(location.hostname==='ducnguyen.vn'){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1717041732866196');fbq('track','PageView');}</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=1717041732866196&amp;ev=PageView&amp;noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+</head>
+<body>
+<canvas id="netbg" aria-hidden="true"></canvas>
+
+<header class="site" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html" aria-label="agent-agile-team — trang chủ">
+      <img src="../assets/logo.svg" width="30" height="30" alt="">
+      agent-agile-team
+    </a>
+    <nav class="nav-links" id="siteNav" aria-label="Các trang">
+      <a href="../tinh-nang/index.html">Tính năng</a>
+      <a href="../cach-hoat-dong/index.html" class="active" aria-current="page">Cách hoạt động</a>
+      <a href="../cau-truc/index.html">Cấu trúc</a>
+      <a href="../ho-so/index.html">Hồ sơ</a>
+      <a href="../cai-dat/index.html">Cài đặt</a>
+      <a href="../hoi-dap/index.html">Hỏi đáp</a>
+    </nav>
+    <a class="btn btn-ghost btn-sm gh" href="https://github.com/ducnguyen221/agent-agile-team" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.59.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+      <span class="gh-t">GitHub</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Mở menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="crumb"><a href="../index.html">Trang chủ</a> / Cách hoạt động</p>
+    <h1>Cách hoạt động</h1>
+    <p class="lead">Sáu bước, hai cổng người, sáu vai và ba tier, kiểm định độc lập — kèm một ví dụ từ lời giao tới đóng sprint.</p>
+  </div>
+</section>
+
+<section id="sau-buoc">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Sáu bước</span>
+      <h2>Một sprint = một mục tiêu</h2>
+      <p>Bạn chỉ quyết ở hai cổng. Các bước còn lại agent tự chạy và tự ghi lại.</p>
+    </div>
+    <div class="pipe-wrap reveal">
+      <div class="pipe">
+        <div class="pstep"><span class="pnum">1</span><h3>Tiếp nhận</h3><p>Ghi yêu cầu, định cỡ việc, ghi giả định.</p><p class="you">Bạn: không gì</p></div>
+        <div class="pstep gate"><span class="pnum">2 · Cổng 1</span><h3>SPEC rồi PLAN</h3><p>Làm gì, làm thế nào, kiểm ra sao, hoàn tác thế nào.</p><p class="you">Bạn: duyệt / điều chỉnh</p></div>
+        <div class="pstep"><span class="pnum">3</span><h3>Thực thi</h3><p>Code trên nhánh riêng; nhật ký kèm bằng chứng.</p><p class="you">Bạn: không gì</p></div>
+        <div class="pstep"><span class="pnum">4</span><h3>Kiểm định</h3><p>Agent khác kiểm. Còn lỗi thì quay lại bước 3 (khuyến nghị 3 vòng).</p><p class="you">Bạn: không gì</p></div>
+        <div class="pstep gate"><span class="pnum">5 · Cổng 2</span><h3>REPORT</h3><p>Kết luận, kết quả kiểm, cách dùng, cách hoàn tác.</p><p class="you">Bạn: nghiệm thu</p></div>
+        <div class="pstep"><span class="pnum">6</span><h3>Bài học</h3><p>Bài học tái dùng; nợ để lại thành yêu cầu mới.</p><p class="you">Bạn: có nâng thành luật?</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dung-hoi" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Hai cổng</span>
+      <h2>Ngoài hai cổng, agent chỉ dừng hỏi ở bốn điều kiện</h2>
+    </div>
+    <div class="qgrid q4 reveal">
+      <div class="q"><p class="want">Không hoàn tác được</p><p class="open">Hành động không đảo ngược.</p></div>
+      <div class="q"><p class="want">Chạm bảo mật</p><p class="open">Bảo mật hay secret.</p></div>
+      <div class="q"><p class="want">Ra ngoài phạm vi</p><p class="open">Push, deploy, gửi tin.</p></div>
+      <div class="q"><p class="want">Kế hoạch hỏng</p><p class="open">Vì giả định sai.</p></div>
+    </div>
+    <div class="note info reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01"/><path d="M11 12h1v4h1"/></svg>
+      <p>Chỗ kế hoạch chưa nói tới: agent tự quyết, ghi một dòng <code class="inline">Phán quyết: &lt;gì&gt; — &lt;vì sao&gt; — &lt;sai thì tốn gì&gt;</code>, không hỏi. <b>Không</b> viết code trước Cổng 1. <b>Không</b> push, không gộp nhánh chính trước Cổng 2 và khi bạn chưa gật.</p>
+    </div>
+  </div>
+</section>
+
+<section id="vi-du" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Ví dụ</span>
+      <h2>Từ một câu giao việc tới đóng sprint</h2>
+      <p>Bạn nói với agent trong thư mục dự án: <i>“Dùng agent-agile-team: thêm chức năng tra cứu đơn theo mã cho dự án này.”</i></p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <colgroup><col style="width:14%"><col style="width:20%"><col style="width:42%"><col style="width:24%"></colgroup>
+        <thead><tr><th scope="col">Bước</th><th scope="col">Ai làm</th><th scope="col">Tạo ra gì</th><th scope="col">Bạn làm gì</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl">1. Tiếp nhận</td><td data-label="Ai làm">Analyst</td><td data-label="Tạo ra gì">dòng yêu cầu <code>RQ-001</code> trong sổ REQUESTS; cỡ việc (ở đây: <b>vừa</b> — hành vi mới); giả định ghi nhãn ASSUMPTION; điểm chưa rõ gom thành câu hỏi</td><td data-label="Bạn làm gì">không gì — agent không dừng ở bước này</td></tr>
+          <tr><td class="lbl">2. SPEC rồi PLAN</td><td data-label="Ai làm">Analyst viết SPEC; Architect viết PLAN; Tech Reviewer soát PLAN</td><td data-label="Tạo ra gì">thư mục sprint <code>docs/plans/&lt;ngày&gt;-order-lookup/</code>: SPEC (cần gì, kịch bản KHI… THÌ…, tiêu chí thành công) và PLAN (từng việc: ai làm, kiểm ra sao, hoàn tác thế nào)</td><td data-label="Bạn làm gì"><b>Cổng 1:</b> đọc tóm tắt vài dòng, trả lời “duyệt” hoặc “điều chỉnh: …”</td></tr>
+          <tr><td class="lbl">3. Thực thi</td><td data-label="Ai làm">Implementer (code, test), QA (chạy test)</td><td data-label="Tạo ra gì">code trên nhánh riêng; PROGRESS ghi từng việc kèm bằng chứng và các dòng <code>Phán quyết:</code></td><td data-label="Bạn làm gì">không gì</td></tr>
+          <tr><td class="lbl">4. Kiểm định</td><td data-label="Ai làm">Business Reviewer, Tech Reviewer — agent <b>khác</b> người làm</td><td data-label="Tạo ra gì">phát hiện có mức và bằng chứng; còn Chặn / Phải sửa thì quay lại bước 3 (một vòng)</td><td data-label="Bạn làm gì">không gì; sau 3 vòng còn lỗi thì chọn làm tiếp hay dừng</td></tr>
+          <tr><td class="lbl">5. REPORT</td><td data-label="Ai làm">Analyst</td><td data-label="Tạo ra gì">REPORT: kết luận một câu, tóm tắt cho người không chuyên, kết quả kiểm, cách dùng, cách hoàn tác, việc để lại; sau kết luận: spec sống cập nhật, sprint đóng trong sổ SPRINTS</td><td data-label="Bạn làm gì"><b>Cổng 2:</b> Đạt / Đạt có điều kiện / Không đạt; rồi chọn gộp nhánh, push + PR, hay giữ nguyên</td></tr>
+          <tr><td class="lbl">6. Bài học</td><td data-label="Ai làm">Analyst</td><td data-label="Tạo ra gì">bài học tái dùng trong REPORT và nơi môi trường quy định; nợ để lại thành dòng <code>RQ-</code> mới</td><td data-label="Bạn làm gì">quyết có nâng bài học thành luật hay skill không</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="reveal" style="margin-top:18px;color:var(--muted);font-size:15px">Hồ sơ thật của đúng ví dụ này nằm ở <code class="inline">samples/order-desk/</code>: bốn sprint (một cỡ vừa, một cỡ nhỏ, hai cỡ rất nhỏ), ba sổ gốc, một spec sống.</p>
+  </div>
+</section>
+
+<section id="vai-tier" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Vai và tier</span>
+      <h2>Giao theo năng lực, không theo tên model</h2>
+      <p>Sáu vai chia hai nhóm; mỗi vai có tier. Repo không chứa tên model thật.</p>
+    </div>
+    <div class="layers reveal">
+      <div class="layer"><span class="lnum">T1</span><div><h3>Analyst · Thực thi</h3><p>Điều phối. Tiếp nhận, viết SPEC, REPORT và bài học.</p></div></div>
+      <div class="layer"><span class="lnum">T1</span><div><h3>Architect · Thực thi</h3><p>Viết PLAN.</p></div></div>
+      <div class="layer"><span class="lnum">T2</span><div><h3>Implementer · Thực thi</h3><p>Viết code và test.</p></div></div>
+      <div class="layer"><span class="lnum">T3</span><div><h3>QA · Thực thi</h3><p>Chạy test.</p></div></div>
+      <div class="layer dele"><span class="lnum">T1</span><div><h3>Business Reviewer · Kiểm định</h3><p>Kiểm định từ cỡ vừa — agent khác người làm.</p></div></div>
+      <div class="layer dele"><span class="lnum">T1</span><div><h3>Tech Reviewer · Kiểm định</h3><p>Soát PLAN và kiểm định; kéo thêm 4 thẻ chuyên đề security · data · backend · frontend khi rủi ro cao.</p></div></div>
+    </div>
+    <div class="grid-3 reveal" style="margin-top:20px">
+      <div class="card"><h3>Ba tier</h3><p><b>T1</b> tư duy · <b>T2</b> thực thi · <b>T3</b> việc vặt và chạy test.</p></div>
+      <div class="card"><h3>Bảng tier → model</h3><p>Nằm <b>ngoài repo</b>, trỏ bằng biến <code class="inline">AGENT_AGILE_TIERS</code>. Thiếu bảng: agent dùng chỉ định của bạn trong chat, không đoán.</p></div>
+      <div class="card"><h3>Cạn hạn mức</h3><p>Dừng tier đó, ghi vướng mắc, báo bạn — <b>không</b> tự hạ tier. Mỗi lần giao việc, hồ sơ ghi đủ vai · tier · model thực tế.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="kiem-dinh" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Kiểm định</span>
+      <h2>Đạt chỉ đến từ bằng chứng mới chạy, do agent khác ghi</h2>
+    </div>
+    <div class="bento">
+      <div class="feat wide reveal">
+        <h3>Reviewer độc lập</h3>
+        <ul>
+          <li>Nhận ngữ cảnh soạn riêng, không dán lịch sử phiên.</li>
+          <li>Được trả 0 phát hiện, nhưng phải ghi phần không đánh giá.</li>
+          <li>“Chưa chạy”, “chắc chạy được”, “đã test” không kèm lệnh — <b>không bao giờ</b> là Đạt.</li>
+        </ul>
+      </div>
+      <div class="feat wide reveal">
+        <h3>Một thang chung</h3>
+        <ul>
+          <li>Mức phát hiện: <b>Chặn / Phải sửa / Nên sửa / Ghi chú</b>.</li>
+          <li>Kết luận: <b>Đạt / Đạt có điều kiện / Không đạt</b>.</li>
+          <li>Thang cũ của mọi nguồn quy về một bảng duy nhất.</li>
+        </ul>
+      </div>
+      <div class="feat wide reveal">
+        <h3>Hai reviewer khi chạm chỗ nhạy</h3>
+        <p>Việc chạm file luật, secret hay xác thực → <code class="inline">dual-review</code>: hai reviewer độc lập cùng rubric, cả hai Đạt mới Đạt.</p>
+      </div>
+      <div class="feat wide reveal">
+        <h3>Cổng review bốn pha (từ cỡ vừa)</h3>
+        <p>Review song song theo khía cạnh → gộp theo bằng chứng → kiểm đối kháng từng phát hiện Chặn / Phải sửa → <b>lỗi thì đóng</b>: khía cạnh nào không chạy thì không ghi Đạt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="pager-sec" aria-label="Chuyển trang">
+  <div class="wrap pager">
+    <a class="prev" href="../tinh-nang/index.html"><span>← Trước</span><b>Tính năng</b></a>
+    <a class="next" href="../cau-truc/index.html"><span>Tiếp →</span><b>Cấu trúc repo</b></a>
+  </div>
+</nav>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="../index.html" aria-label="agent-agile-team — trang chủ">
+          <img src="../assets/logo.svg" width="30" height="30" alt="">
+          agent-agile-team
+        </a>
+        <p class="foot-tag">Phương pháp làm phần mềm cho đội AI agent: hai cổng người, kiểm định độc lập, hồ sơ tra được.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <b>Các trang</b>
+          <a href="../index.html">Trang chủ</a>
+          <a href="../tinh-nang/index.html">Tính năng</a>
+          <a href="../cach-hoat-dong/index.html">Cách hoạt động</a>
+          <a href="../cau-truc/index.html">Cấu trúc</a>
+          <a href="../ho-so/index.html">Hồ sơ</a>
+          <a href="../cai-dat/index.html">Cài đặt</a>
+          <a href="../hoi-dap/index.html">Hỏi đáp</a>
+        </div>
+        <div class="foot-col">
+          <b>Tài nguyên</b>
+          <a href="https://github.com/ducnguyen221/agent-agile-team" target="_blank" rel="noopener">GitHub (cần quyền truy cập)</a>
+          <a href="../cai-dat/index.html">Hướng dẫn cài</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>agent-agile-team · bản 0.3.0-dev</span>
+      <span class="lic">Repo private · giấy phép chưa chọn</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

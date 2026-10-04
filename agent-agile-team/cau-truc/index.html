@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cấu trúc repo · agent-agile-team</title>
+<meta name="description" content="Cấu trúc thư mục của agent-agile-team và ý nghĩa từng file khi dùng.">
+<meta name="theme-color" content="#2f6df6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e0f13" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Cấu trúc repo · agent-agile-team">
+<meta property="og:description" content="Cấu trúc thư mục của agent-agile-team và ý nghĩa từng file khi dùng.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:url" content="https://ducnguyen.vn/agent-agile-team/cau-truc/">
+<meta property="og:image" content="https://ducnguyen.vn/agent-agile-team/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="agent-agile-team — Giao việc bằng lời thường. Bạn chỉ quyết ở hai cổng.">
+<link rel="canonical" href="https://ducnguyen.vn/agent-agile-team/cau-truc/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ducnguyen.vn/agent-agile-team/assets/og-image.png">
+<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
+html { overscroll-behavior-y: none; }
+</style>
+<!-- Meta Pixel (ID 1717041732866196) - do tuong tac tu Facebook. Cong bo tai /privacy/.
+     Chi chay tren ducnguyen.vn; ban doc offline (file://) va ban xem thu cuc bo khong gui gi. -->
+<script>if(location.hostname==='ducnguyen.vn'){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1717041732866196');fbq('track','PageView');}</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=1717041732866196&amp;ev=PageView&amp;noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+</head>
+<body>
+<canvas id="netbg" aria-hidden="true"></canvas>
+
+<header class="site" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html" aria-label="agent-agile-team — trang chủ">
+      <img src="../assets/logo.svg" width="30" height="30" alt="">
+      agent-agile-team
+    </a>
+    <nav class="nav-links" id="siteNav" aria-label="Các trang">
+      <a href="../tinh-nang/index.html">Tính năng</a>
+      <a href="../cach-hoat-dong/index.html">Cách hoạt động</a>
+      <a href="../cau-truc/index.html" class="active" aria-current="page">Cấu trúc</a>
+      <a href="../ho-so/index.html">Hồ sơ</a>
+      <a href="../cai-dat/index.html">Cài đặt</a>
+      <a href="../hoi-dap/index.html">Hỏi đáp</a>
+    </nav>
+    <a class="btn btn-ghost btn-sm gh" href="https://github.com/ducnguyen221/agent-agile-team" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.59.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+      <span class="gh-t">GitHub</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Mở menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="crumb"><a href="../index.html">Trang chủ</a> / Cấu trúc</p>
+    <h1>Cấu trúc repo</h1>
+    <p class="lead">Cây thư mục đầy đủ, ý nghĩa từng file khi dùng, và bảng tra “tôi muốn … thì mở file …”.</p>
+  </div>
+</section>
+
+<section id="cau-truc">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Cấu trúc thư mục</span>
+      <h2>Luật lõi ở một chỗ, chi tiết tách theo thư mục</h2>
+      <p>Mỗi thư mục có <code class="inline">README.md</code> riêng. Đây là những gì bạn thấy khi mở bản clone.</p>
+    </div>
+    <ul class="tree reveal" aria-label="Cây thư mục của repo">
+      <li class="root"><span class="nm">agent-agile-team/</span><span class="ds">gốc repo</span></li>
+      <li><span class="nm">AGENTS.md</span><span class="ds">luật lõi — agent đọc mỗi phiên (≤120 dòng, ≤10 KB)</span></li>
+      <li><span class="nm">CLAUDE.md</span><span class="ds">một dòng <code class="inline">@AGENTS.md</code> cho Claude Code</span></li>
+      <li><span class="nm">GEMINI.md</span><span class="ds">con trỏ tới <code class="inline">AGENTS.md</code> cho Antigravity</span></li>
+      <li><span class="nm">README.md · README.vi.md</span><span class="ds">giới thiệu ngắn (Anh · Việt)</span></li>
+      <li><span class="nm">GUIDE.md</span><span class="ds">sprint đầu tiên — bạn làm gì, agent làm gì</span></li>
+      <li><span class="nm">INSTALL.md</span><span class="ds">hướng dẫn cài dành cho AI agent (prompt dán ở cuối)</span></li>
+      <li><span class="nm">method/</span><span class="ds">luật chơi: process, sizing, severity, evidence, review-gate, conventions</span></li>
+      <li class="child"><span class="nm">standards/</span><span class="ds">chuẩn code chung và theo ngôn ngữ</span></li>
+      <li><span class="nm">roles/</span><span class="ds">thẻ vai: <code class="inline">executor/</code> (4) · <code class="inline">verifier/</code> (2 + dual-review + 4 chuyên đề)</span></li>
+      <li><span class="nm">tiers/</span><span class="ds">ba tier và hợp đồng bảng tier → model (<code class="inline">tiers.example.json</code>)</span></li>
+      <li><span class="nm">skills/</span><span class="ds">32 skill, mỗi skill một thư mục <code class="inline">skills/&lt;tên&gt;/SKILL.md</code></span></li>
+      <li><span class="nm">agents/</span><span class="ds">13 agent chuyên đề, mỗi agent một file</span></li>
+      <li><span class="nm">templates/</span><span class="ds">khuôn hồ sơ: <code class="inline">sprint/</code> (6) · <code class="inline">registry/</code> (5) · <code class="inline">project/agile.json</code></span></li>
+      <li><span class="nm">scripts/</span><span class="ds"><code class="inline">init.py</code> · <code class="inline">check.py</code> · <code class="inline">index.py</code> (+ <code class="inline">_common.py</code>)</span></li>
+      <li><span class="nm">tests/</span><span class="ds">bộ test pytest và fixture</span></li>
+      <li><span class="nm">samples/order-desk/</span><span class="ds">một dự án mẫu đã dùng thật, kết quả kỳ vọng cố định</span></li>
+      <li><span class="nm">hosts/</span><span class="ds">cài và nạp theo harness: claude · codex · antigravity · claude-desktop</span></li>
+      <li><span class="nm">docs/</span><span class="ds">OVERVIEW · MIGRATION · standardization · troubleshooting · updating-from-upstream</span></li>
+      <li><span class="nm">UPSTREAM.md · NOTICE · THIRD_PARTY.md · LICENSE</span><span class="ds">nguồn gốc, bản quyền, giấy phép</span></li>
+      <li><span class="nm">CHANGELOG.md</span><span class="ds">mục mới nhất đứng đầu, trùng version của manifest</span></li>
+      <li><span class="nm">.claude-plugin/ · .codex-plugin/</span><span class="ds">manifest plugin cho Claude Code và Codex</span></li>
+    </ul>
+
+    <div class="sub-head reveal">
+      <h3>Ý nghĩa khi dùng</h3>
+      <p>Khi nào bạn hoặc agent chạm tới từng thư mục, file.</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <colgroup><col style="width:38%"><col style="width:62%"></colgroup>
+        <thead><tr><th scope="col">Thư mục / file</th><th scope="col">Khi nào bạn hoặc agent chạm tới</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl"><code>AGENTS.md</code></td><td data-label="Khi nào">nạp đầu <b>mọi</b> phiên; là bản rút gọn của <code>method/</code> — khác nhau thì <code>method/</code> thắng</td></tr>
+          <tr><td class="lbl"><code>method/process.md</code> · <code>sizing.md</code> · <code>severity.md</code> · <code>evidence.md</code></td><td data-label="Khi nào">khi phân vân có được hỏi người dùng không, chọn cỡ việc, gán mức phát hiện, ghi kết quả kiểm</td></tr>
+          <tr><td class="lbl"><code>method/review-gate.md</code> · <code>roles/verifier/dual-review.md</code></td><td data-label="Khi nào">khi review diff cỡ vừa trở lên, hoặc việc chạm luật / secret / xác thực</td></tr>
+          <tr><td class="lbl"><code>roles/executor/*.md</code> · <code>roles/verifier/*.md</code></td><td data-label="Khi nào">khi giao vai cho một agent: mục đích, đầu vào, đầu ra, được làm, không được làm, khi nào dừng</td></tr>
+          <tr><td class="lbl"><code>skills/&lt;tên&gt;/SKILL.md</code></td><td data-label="Khi nào">agent tự gọi theo tình huống; <code>tests/pressure.md</code> hay <code>tests/retrieval.md</code> là bằng chứng skill đã thử</td></tr>
+          <tr><td class="lbl"><code>agents/&lt;tên&gt;.md</code></td><td data-label="Khi nào">Tech Reviewer kéo theo trigger; trên Codex / Antigravity đọc như thẻ vai trong brief</td></tr>
+          <tr><td class="lbl"><code>templates/sprint/</code> · <code>templates/registry/</code></td><td data-label="Khi nào"><code>init</code> chép ra dự án của bạn; <code>templates/README.md</code> là hợp đồng khoá, tiêu đề, trạng thái mà <code>check</code> dựa vào</td></tr>
+          <tr><td class="lbl"><code>templates/project/agile.json</code> → <code>.agile.json</code></td><td data-label="Khi nào">đường dẫn hồ sơ, ngưỡng coverage, sổ tập trung của từng dự án</td></tr>
+          <tr><td class="lbl"><code>scripts/</code></td><td data-label="Khi nào">agent chạy trước mỗi cổng; bạn chỉ đọc dòng cuối</td></tr>
+          <tr><td class="lbl"><code>samples/order-desk/</code></td><td data-label="Khi nào">xem hồ sơ thật trông thế nào trước khi mở sprint đầu tiên</td></tr>
+          <tr><td class="lbl"><code>hosts/&lt;harness&gt;/README.md</code></td><td data-label="Khi nào">cài, kiểm, cập nhật, gỡ trên harness của bạn</td></tr>
+          <tr><td class="lbl"><code>docs/troubleshooting.md</code></td><td data-label="Khi nào">triệu chứng → nguyên nhân → cách xử lý khi cài và dùng lần đầu</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-head reveal">
+      <h3>Tra nhanh: tôi muốn … thì mở file …</h3>
+    </div>
+    <div class="qgrid reveal">
+      <div class="q"><p class="want">Hiểu bộ này trong 5 phút</p><p class="open"><code class="inline">docs/OVERVIEW.md</code>, rồi <code class="inline">README.vi.md</code></p></div>
+      <div class="q"><p class="want">Cài lên máy</p><p class="open"><code class="inline">INSTALL.md</code> (dán prompt cho agent) hoặc <code class="inline">hosts/&lt;harness&gt;/README.md</code> (tự gõ)</p></div>
+      <div class="q"><p class="want">Chạy sprint đầu tiên</p><p class="open"><code class="inline">GUIDE.md</code></p></div>
+      <div class="q"><p class="want">Biết agent được phép làm gì, dừng khi nào</p><p class="open"><code class="inline">AGENTS.md</code>, rồi <code class="inline">method/process.md</code></p></div>
+      <div class="q"><p class="want">Biết việc này cỡ nào, có cần ADR không</p><p class="open"><code class="inline">method/sizing.md</code>, <code class="inline">method/conventions.md</code></p></div>
+      <div class="q"><p class="want">Xem một hồ sơ sprint mẫu</p><p class="open"><code class="inline">samples/order-desk/docs/plans/</code></p></div>
+      <div class="q"><p class="want">Biết mỗi mã (<code class="inline">FR</code>, <code class="inline">TK</code>, <code class="inline">VR</code>…) nghĩa gì</p><p class="open"><code class="inline">skills/id-convention/SKILL.md</code></p></div>
+      <div class="q"><p class="want">Biết <code class="inline">check</code> báo lỗi gì, vì sao</p><p class="open"><code class="inline">scripts/README.md</code> mục “Luật của <code class="inline">check</code>”</p></div>
+      <div class="q"><p class="want">Sửa hay thêm skill</p><p class="open"><code class="inline">skills/writing-skills/SKILL.md</code>, <code class="inline">skills/README.md</code></p></div>
+      <div class="q"><p class="want">Biết skill này lấy từ đâu, giấy phép gì</p><p class="open">frontmatter của skill, <code class="inline">UPSTREAM.md</code>, <code class="inline">THIRD_PARTY.md</code></p></div>
+      <div class="q"><p class="want">Gặp tên skill cũ trong hồ sơ lịch sử</p><p class="open"><code class="inline">docs/MIGRATION.md</code></p></div>
+      <div class="q"><p class="want">Cài rồi mà agent không biết luật</p><p class="open"><code class="inline">docs/troubleshooting.md</code></p></div>
+    </div>
+  </div>
+</section>
+
+<nav class="pager-sec" aria-label="Chuyển trang">
+  <div class="wrap pager">
+    <a class="prev" href="../cach-hoat-dong/index.html"><span>← Trước</span><b>Cách hoạt động</b></a>
+    <a class="next" href="../ho-so/index.html"><span>Tiếp →</span><b>Hồ sơ một sprint</b></a>
+  </div>
+</nav>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="../index.html" aria-label="agent-agile-team — trang chủ">
+          <img src="../assets/logo.svg" width="30" height="30" alt="">
+          agent-agile-team
+        </a>
+        <p class="foot-tag">Phương pháp làm phần mềm cho đội AI agent: hai cổng người, kiểm định độc lập, hồ sơ tra được.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <b>Các trang</b>
+          <a href="../index.html">Trang chủ</a>
+          <a href="../tinh-nang/index.html">Tính năng</a>
+          <a href="../cach-hoat-dong/index.html">Cách hoạt động</a>
+          <a href="../cau-truc/index.html">Cấu trúc</a>
+          <a href="../ho-so/index.html">Hồ sơ</a>
+          <a href="../cai-dat/index.html">Cài đặt</a>
+          <a href="../hoi-dap/index.html">Hỏi đáp</a>
+        </div>
+        <div class="foot-col">
+          <b>Tài nguyên</b>
+          <a href="https://github.com/ducnguyen221/agent-agile-team" target="_blank" rel="noopener">GitHub (cần quyền truy cập)</a>
+          <a href="../cai-dat/index.html">Hướng dẫn cài</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>agent-agile-team · bản 0.3.0-dev</span>
+      <span class="lic">Repo private · giấy phép chưa chọn</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

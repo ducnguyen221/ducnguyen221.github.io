@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hồ sơ một sprint · agent-agile-team</title>
+<meta name="description" content="Hồ sơ một sprint trong agent-agile-team: SPEC, PLAN, PROGRESS, REPORT, ba sổ gốc và mã định danh.">
+<meta name="theme-color" content="#2f6df6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e0f13" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Hồ sơ một sprint · agent-agile-team">
+<meta property="og:description" content="Hồ sơ một sprint trong agent-agile-team: SPEC, PLAN, PROGRESS, REPORT, ba sổ gốc và mã định danh.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:url" content="https://ducnguyen.vn/agent-agile-team/ho-so/">
+<meta property="og:image" content="https://ducnguyen.vn/agent-agile-team/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="agent-agile-team — Giao việc bằng lời thường. Bạn chỉ quyết ở hai cổng.">
+<link rel="canonical" href="https://ducnguyen.vn/agent-agile-team/ho-so/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ducnguyen.vn/agent-agile-team/assets/og-image.png">
+<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
+html { overscroll-behavior-y: none; }
+</style>
+<!-- Meta Pixel (ID 1717041732866196) - do tuong tac tu Facebook. Cong bo tai /privacy/.
+     Chi chay tren ducnguyen.vn; ban doc offline (file://) va ban xem thu cuc bo khong gui gi. -->
+<script>if(location.hostname==='ducnguyen.vn'){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1717041732866196');fbq('track','PageView');}</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=1717041732866196&amp;ev=PageView&amp;noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+</head>
+<body>
+<canvas id="netbg" aria-hidden="true"></canvas>
+
+<header class="site" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html" aria-label="agent-agile-team — trang chủ">
+      <img src="../assets/logo.svg" width="30" height="30" alt="">
+      agent-agile-team
+    </a>
+    <nav class="nav-links" id="siteNav" aria-label="Các trang">
+      <a href="../tinh-nang/index.html">Tính năng</a>
+      <a href="../cach-hoat-dong/index.html">Cách hoạt động</a>
+      <a href="../cau-truc/index.html">Cấu trúc</a>
+      <a href="../ho-so/index.html" class="active" aria-current="page">Hồ sơ</a>
+      <a href="../cai-dat/index.html">Cài đặt</a>
+      <a href="../hoi-dap/index.html">Hỏi đáp</a>
+    </nav>
+    <a class="btn btn-ghost btn-sm gh" href="https://github.com/ducnguyen221/agent-agile-team" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.59.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+      <span class="gh-t">GitHub</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Mở menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="crumb"><a href="../index.html">Trang chủ</a> / Hồ sơ</p>
+    <h1>Hồ sơ một sprint</h1>
+    <p class="lead">Bốn tài liệu SPEC · PLAN · PROGRESS · REPORT, ba sổ gốc và mã định danh hai chữ cái.</p>
+  </div>
+</section>
+
+<section id="ho-so">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Quy trình và hồ sơ</span>
+      <h2>Hồ sơ một sprint</h2>
+      <p>Mỗi sprint là một thư mục; cỡ vừa và lớn có bốn tài liệu, cỡ nhỏ và rất nhỏ gộp vào một <code class="inline">SPRINT.md</code>.</p>
+    </div>
+    <div class="layers reveal">
+      <div class="layer"><span class="lnum">SPEC</span><div><h3>Làm <em>cái gì</em>, cho ai, thế nào là xong</h3><p>Analyst viết · mã: <code class="inline">US</code> <code class="inline">FR</code> <code class="inline">SC</code> <code class="inline">CQ</code></p></div></div>
+      <div class="layer"><span class="lnum">PLAN</span><div><h3>Làm <em>thế nào</em>, ai làm, kiểm ra sao</h3><p>Architect viết · mã: <code class="inline">TK</code> <code class="inline">RK</code> <code class="inline">DN</code></p></div></div>
+      <div class="layer"><span class="lnum">PROGRESS</span><div><h3>Đang <em>ở đâu</em>, vướng gì, đã quyết gì</h3><p>Vai thực thi cập nhật sau mỗi việc; nhật ký chỉ thêm, không sửa · mã: <code class="inline">BR</code></p></div></div>
+      <div class="layer"><span class="lnum">REPORT</span><div><h3><em>Kết quả</em>: kiểm được gì, phát hiện gì, dùng thế nào, hoàn tác thế nào</h3><p>Analyst viết · mã: <code class="inline">VR</code> <code class="inline">RF</code> <code class="inline">LN</code> <code class="inline">CO</code></p></div></div>
+      <div class="layer dele"><span class="lnum">SPRINT.md</span><div><h3>Cả bốn phần (cỡ nhỏ) hoặc hai phần Kế hoạch · Kết quả (cỡ rất nhỏ)</h3><p>Viết như trên · mọi mã của chính nó</p></div></div>
+    </div>
+
+    <div class="sub-head reveal">
+      <h3>Ba sổ gốc sống lâu hơn sprint</h3>
+      <p>Mỗi sổ có khối “Đang mở” ở đầu do <code class="inline">index</code> sinh. Nợ để lại của một sprint thành một dòng <code class="inline">RQ-</code> mới — không ai phải mở REPORT cũ để tìm nợ.</p>
+    </div>
+    <div class="grid-3 reveal">
+      <div class="card"><h3>REQUESTS <span class="tag">RQ-</span></h3><p>Mọi yêu cầu của bạn, theo thời gian.</p></div>
+      <div class="card"><h3>SPRINTS <span class="tag">SPR-</span></h3><p>Mọi sprint; một sprint = một mục tiêu.</p></div>
+      <div class="card"><h3>SPECS <span class="tag">FS-</span></h3><p>Spec sống của từng tính năng đang chạy.</p></div>
+    </div>
+
+    <div class="sub-head reveal">
+      <h3>Mã định danh</h3>
+      <p>Mã có tiền tố <b>hai chữ cái</b> lấy từ tên tiếng Anh, luôn đi kèm tên ngắn trong chat (“<code class="inline">FR3</code> (tra theo mã đơn)”). Bảng dưới liệt kê các <b>mã</b> chính:</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <colgroup><col style="width:12%"><col style="width:22%"><col style="width:46%"><col style="width:20%"></colgroup>
+        <thead><tr><th scope="col">Mã</th><th scope="col">Tên</th><th scope="col">Nghĩa</th><th scope="col">Ở tài liệu</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl"><code>RQ-</code></td><td data-label="Tên">request</td><td data-label="Nghĩa">một yêu cầu của bạn, theo thời gian (<code>RQ-001</code>)</td><td data-label="Ở tài liệu">sổ REQUESTS</td></tr>
+          <tr><td class="lbl"><code>SPR-</code></td><td data-label="Tên">sprint</td><td data-label="Nghĩa">một sprint = một mục tiêu (<code>SPR-01</code>)</td><td data-label="Ở tài liệu">sổ SPRINTS</td></tr>
+          <tr><td class="lbl"><code>FS-</code></td><td data-label="Tên">feature spec</td><td data-label="Nghĩa">spec sống của một tính năng đang chạy (<code>FS-001</code>)</td><td data-label="Ở tài liệu">sổ SPECS</td></tr>
+          <tr><td class="lbl"><code>US</code></td><td data-label="Tên">user story</td><td data-label="Nghĩa">ai cần gì, vì sao</td><td data-label="Ở tài liệu">SPEC</td></tr>
+          <tr><td class="lbl"><code>FR</code></td><td data-label="Tên">functional requirement</td><td data-label="Nghĩa">hành vi phải có; <code>FR1.2</code> là một kịch bản KHI… THÌ…</td><td data-label="Ở tài liệu">SPEC</td></tr>
+          <tr><td class="lbl"><code>SC</code></td><td data-label="Tên">success criterion</td><td data-label="Nghĩa">thế nào là xong, đo được</td><td data-label="Ở tài liệu">SPEC</td></tr>
+          <tr><td class="lbl"><code>CQ</code></td><td data-label="Tên">clarifying question</td><td data-label="Nghĩa">điều chưa rõ, hỏi một lần ở Cổng 1</td><td data-label="Ở tài liệu">SPEC</td></tr>
+          <tr><td class="lbl"><code>TK</code></td><td data-label="Tên">task</td><td data-label="Nghĩa">một việc: vai, tier, cách kiểm, hoàn tác; <code>TK2.3</code> là việc con</td><td data-label="Ở tài liệu">PLAN</td></tr>
+          <tr><td class="lbl"><code>RK</code></td><td data-label="Tên">risk</td><td data-label="Nghĩa">rủi ro và cách giảm</td><td data-label="Ở tài liệu">PLAN</td></tr>
+          <tr><td class="lbl"><code>DN</code></td><td data-label="Tên">decision</td><td data-label="Nghĩa">quyết định cần bạn</td><td data-label="Ở tài liệu">PLAN</td></tr>
+          <tr><td class="lbl"><code>BR</code></td><td data-label="Tên">blocker</td><td data-label="Nghĩa">vướng mắc khiến agent dừng hỏi</td><td data-label="Ở tài liệu">PROGRESS</td></tr>
+          <tr><td class="lbl"><code>VR</code></td><td data-label="Tên">verification result</td><td data-label="Nghĩa">kết quả một phép kiểm: Đạt · Không đạt · Chưa chạy · Không áp dụng</td><td data-label="Ở tài liệu">REPORT</td></tr>
+          <tr><td class="lbl"><code>RF</code></td><td data-label="Tên">review finding</td><td data-label="Nghĩa">phát hiện của reviewer, mang mức Chặn / Phải sửa / Nên sửa / Ghi chú</td><td data-label="Ở tài liệu">REPORT</td></tr>
+          <tr><td class="lbl"><code>LN</code></td><td data-label="Tên">lesson</td><td data-label="Nghĩa">bài học tái dùng</td><td data-label="Ở tài liệu">REPORT</td></tr>
+          <tr><td class="lbl"><code>CO</code></td><td data-label="Tên">carry-over</td><td data-label="Nghĩa">việc để lại, có chủ và mốc</td><td data-label="Ở tài liệu">REPORT</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="reveal" style="margin-top:18px;color:var(--muted);font-size:15px">Frontmatter của mỗi tài liệu (khối khoá–giá trị ở đầu file, tiếng Anh) ghi cỡ, rủi ro, vai và nhãn agent, trạng thái cổng kèm <b>câu duyệt nguyên văn</b> của bạn — <code class="inline">check</code> đọc chúng để bắt hồ sơ lệch.</p>
+  </div>
+</section>
+
+<nav class="pager-sec" aria-label="Chuyển trang">
+  <div class="wrap pager">
+    <a class="prev" href="../cau-truc/index.html"><span>← Trước</span><b>Cấu trúc repo</b></a>
+    <a class="next" href="../cai-dat/index.html"><span>Tiếp →</span><b>Cài đặt và dùng</b></a>
+  </div>
+</nav>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="../index.html" aria-label="agent-agile-team — trang chủ">
+          <img src="../assets/logo.svg" width="30" height="30" alt="">
+          agent-agile-team
+        </a>
+        <p class="foot-tag">Phương pháp làm phần mềm cho đội AI agent: hai cổng người, kiểm định độc lập, hồ sơ tra được.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <b>Các trang</b>
+          <a href="../index.html">Trang chủ</a>
+          <a href="../tinh-nang/index.html">Tính năng</a>
+          <a href="../cach-hoat-dong/index.html">Cách hoạt động</a>
+          <a href="../cau-truc/index.html">Cấu trúc</a>
+          <a href="../ho-so/index.html">Hồ sơ</a>
+          <a href="../cai-dat/index.html">Cài đặt</a>
+          <a href="../hoi-dap/index.html">Hỏi đáp</a>
+        </div>
+        <div class="foot-col">
+          <b>Tài nguyên</b>
+          <a href="https://github.com/ducnguyen221/agent-agile-team" target="_blank" rel="noopener">GitHub (cần quyền truy cập)</a>
+          <a href="../cai-dat/index.html">Hướng dẫn cài</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>agent-agile-team · bản 0.3.0-dev</span>
+      <span class="lic">Repo private · giấy phép chưa chọn</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

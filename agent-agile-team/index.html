@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>agent-agile-team · Quy trình làm phần mềm cho đội AI agent</title>
+<meta name="description" content="agent-agile-team là phương pháp làm phần mềm cho đội AI agent: bạn giao việc bằng lời thường, chỉ quyết ở hai cổng, đội agent làm phần còn lại, ghi sổ và nhờ agent khác kiểm. Cài được trên Claude Code, Codex và Antigravity.">
+<meta name="theme-color" content="#2f6df6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e0f13" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="agent-agile-team · Quy trình làm phần mềm cho đội AI agent">
+<meta property="og:description" content="agent-agile-team là phương pháp làm phần mềm cho đội AI agent: bạn giao việc bằng lời thường, chỉ quyết ở hai cổng, đội agent làm phần còn lại, ghi sổ và nhờ agent khác kiểm. Cài được trên Claude Code, Codex và Antigravity.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:url" content="https://ducnguyen.vn/agent-agile-team/">
+<meta property="og:image" content="https://ducnguyen.vn/agent-agile-team/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="agent-agile-team — Giao việc bằng lời thường. Bạn chỉ quyết ở hai cổng.">
+<link rel="canonical" href="https://ducnguyen.vn/agent-agile-team/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ducnguyen.vn/agent-agile-team/assets/og-image.png">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
+html { overscroll-behavior-y: none; }
+</style>
+<!-- Meta Pixel (ID 1717041732866196) - do tuong tac tu Facebook. Cong bo tai /privacy/.
+     Chi chay tren ducnguyen.vn; ban doc offline (file://) va ban xem thu cuc bo khong gui gi. -->
+<script>if(location.hostname==='ducnguyen.vn'){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1717041732866196');fbq('track','PageView');}</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=1717041732866196&amp;ev=PageView&amp;noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+</head>
+<body>
+<canvas id="netbg" aria-hidden="true"></canvas>
+
+<header class="site" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="agent-agile-team — trang chủ">
+      <img src="assets/logo.svg" width="30" height="30" alt="">
+      agent-agile-team
+    </a>
+    <nav class="nav-links" id="siteNav" aria-label="Các trang">
+      <a href="tinh-nang/index.html">Tính năng</a>
+      <a href="cach-hoat-dong/index.html">Cách hoạt động</a>
+      <a href="cau-truc/index.html">Cấu trúc</a>
+      <a href="ho-so/index.html">Hồ sơ</a>
+      <a href="cai-dat/index.html">Cài đặt</a>
+      <a href="hoi-dap/index.html">Hỏi đáp</a>
+    </nav>
+    <a class="btn btn-ghost btn-sm gh" href="https://github.com/ducnguyen221/agent-agile-team" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.59.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+      <span class="gh-t">GitHub</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Mở menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ======= HERO ======= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="hero-badge">
+          <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></span>
+          <span>Phương pháp cho đội AI agent &nbsp;·&nbsp; <b>bản 0.3.0-dev</b></span>
+        </span>
+        <h1>Giao việc bằng lời thường.<br><span class="hl">Bạn chỉ quyết ở hai cổng.</span></h1>
+        <p class="lead">agent-agile-team biến “nhờ AI viết code” thành một quy trình có kế hoạch, có kiểm định độc lập và có hồ sơ.</p>
+        <p class="sub">Repo đang <b>private</b> — cần quyền truy cập repo để cài.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="cai-dat/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg>
+            Cài đặt
+          </a>
+          <a class="btn btn-ghost" href="cach-hoat-dong/index.html">Xem cách hoạt động</a>
+        </div>
+        <div class="tech-badges">
+          <span class="tb"><span class="g"></span>Claude Code · Codex · Antigravity</span>
+          <span class="tb local"><span class="g"></span>Git + Python 3.9+</span>
+        </div>
+      </div>
+      <ul class="benefits reveal" aria-label="Lợi ích">
+        <li><span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span><b>Nói lời thường.</b> Không cần biết thuật ngữ.</span></li>
+        <li><span class="bi gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v18"/><path d="M18 3v18"/><path d="m9 12 2 2 4-4"/></svg></span><span><b>Chỉ bị hỏi hai lần:</b> duyệt kế hoạch, nghiệm thu kết quả.</span></li>
+        <li><span class="bi ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/></svg></span><span><b>Người làm không tự chấm.</b> Agent khác kiểm, ghi bằng chứng.</span></li>
+        <li><span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span><span><b>Mọi việc có dấu vết.</b> Tháng sau mở lại vẫn biết vì sao.</span></li>
+        <li><span class="bi gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span><span><b>Việc nhỏ đi đường nhẹ.</b> Hồ sơ dày mỏng theo cỡ việc.</span></li>
+      </ul>
+    </div>
+
+    <div class="stats reveal" aria-label="Con số của bản 0.3.0-dev">
+      <div class="stat"><b>6</b><span>bước</span></div>
+      <div class="stat"><b>2</b><span>cổng người</span></div>
+      <div class="stat"><b>6</b><span>vai</span></div>
+      <div class="stat"><b>3</b><span>tier</span></div>
+      <div class="stat"><b>32</b><span>skill</span></div>
+      <div class="stat"><b>13</b><span>agent</span></div>
+      <div class="stat"><b>3</b><span>công cụ Python</span></div>
+      <div class="stat"><b>3</b><span>harness được hỗ trợ</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= INFOGRAPHIC QUY TRÌNH ======= -->
+<section id="quy-trinh" style="padding-top:24px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Quy trình</span>
+      <h2>Sáu bước, hai lần bạn quyết</h2>
+      <p>Một sprint = một mục tiêu. Đội agent làm, ghi sổ và nhờ agent khác kiểm.</p>
+    </div>
+    <figure class="figure reveal">
+      <div class="fig-scroll" tabindex="0" role="region" aria-label="Infographic quy trình — vuốt ngang để xem hết">
+        <img src="assets/infographic.svg" width="1600" height="900" loading="lazy" decoding="async"
+          alt="Quy trình sáu bước: Tiếp nhận, SPEC và PLAN (Cổng 1 — bạn duyệt), Thực thi và Kiểm định lặp lại, REPORT (Cổng 2 — bạn nghiệm thu), Bài học.">
+      </div>
+      <div class="fig-tools">
+        <span class="fig-hint" aria-hidden="true">Vuốt ngang để xem →</span>
+        <a class="fig-open" href="assets/infographic.svg" target="_blank" rel="noopener">Mở ảnh khổ lớn<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4 10 14"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a>
+      </div>
+      <figcaption><b>Tiếp nhận → SPEC + PLAN (Cổng 1) → Thực thi ↔ Kiểm định → REPORT (Cổng 2) → Bài học.</b> Ngoài hai cổng, agent chỉ dừng hỏi ở bốn điều kiện. <a href="cach-hoat-dong/index.html">Xem từng bước</a>.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ======= CẤU TRÚC TỔNG QUÁT ======= -->
+<section id="cau-truc" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Cấu trúc repo</span>
+      <h2>Luật ở một chỗ, chi tiết tách theo thư mục</h2>
+      <p>Mỗi thư mục có <code class="inline">README.md</code> riêng. <a href="cau-truc/index.html">Xem cây đầy đủ</a>.</p>
+    </div>
+    <div class="blocks reveal">
+      <div class="block">
+        <h3>Luật chơi</h3>
+        <ul>
+          <li><code>AGENTS.md</code><span>luật lõi, agent đọc mỗi phiên</span></li>
+          <li><code>method/</code><span>quy trình, cỡ việc, thang mức, bằng chứng, chuẩn code</span></li>
+          <li><code>roles/</code><span>thẻ vai thực thi và kiểm định</span></li>
+          <li><code>tiers/</code><span>ba tier, bảng tier → model</span></li>
+        </ul>
+      </div>
+      <div class="block gold">
+        <h3>Năng lực</h3>
+        <ul>
+          <li><code>skills/</code><span>32 skill, agent tự gọi theo tình huống</span></li>
+          <li><code>agents/</code><span>13 agent chuyên đề</span></li>
+          <li><code>templates/</code><span>khuôn hồ sơ sprint và sổ gốc</span></li>
+        </ul>
+      </div>
+      <div class="block ok">
+        <h3>Công cụ và cài đặt</h3>
+        <ul>
+          <li><code>scripts/</code><span>init · check · index</span></li>
+          <li><code>tests/</code><span>bộ test pytest</span></li>
+          <li><code>samples/order-desk/</code><span>dự án mẫu đã dùng thật</span></li>
+          <li><code>hosts/</code><span>cài theo harness</span></li>
+          <li><code>docs/</code><span>tổng quan, xử lý sự cố, chuyển đổi</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= TÌM HIỂU THÊM ======= -->
+<section id="kham-pha" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Tìm hiểu thêm</span>
+      <h2>Đọc tiếp theo nhu cầu</h2>
+    </div>
+    <div class="links reveal">
+      <a class="lcard" href="tinh-nang/index.html"><h3>Tính năng</h3><p>Skill, agent, máy kiểm, sổ tập trung, chuẩn code, phiên bản, bậc việc.</p><span class="go">Xem tính năng →</span></a>
+      <a class="lcard" href="cach-hoat-dong/index.html"><h3>Cách hoạt động</h3><p>Sáu bước, hai cổng, vai và tier, kiểm định độc lập — kèm một ví dụ.</p><span class="go">Xem quy trình →</span></a>
+      <a class="lcard" href="cau-truc/index.html"><h3>Cấu trúc repo</h3><p>Cây thư mục đầy đủ, ý nghĩa từng file, bảng “tôi muốn … mở file …”.</p><span class="go">Xem cấu trúc →</span></a>
+      <a class="lcard" href="ho-so/index.html"><h3>Hồ sơ một sprint</h3><p>SPEC · PLAN · PROGRESS · REPORT, ba sổ gốc và mã định danh.</p><span class="go">Xem hồ sơ →</span></a>
+      <a class="lcard" href="cai-dat/index.html"><h3>Cài đặt và dùng</h3><p>Để agent cài, hoặc tự làm trên Claude Code, Codex, Antigravity.</p><span class="go">Xem cách cài →</span></a>
+      <a class="lcard" href="hoi-dap/index.html"><h3>Hỏi đáp và giới hạn</h3><p>Câu hỏi thường gặp và những chỗ còn chưa tới.</p><span class="go">Xem hỏi đáp →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= KẾT ======= -->
+<section class="final">
+  <div class="wrap reveal">
+    <h2>Sẵn sàng cho sprint đầu tiên?</h2>
+    <p>Cần Git, Python 3.9+ và quyền đọc repo (đang private). Cài xong, giao việc bằng lời thường.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="cai-dat/index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg>
+        Cài đặt
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/ducnguyen221/agent-agile-team" target="_blank" rel="noopener">Repo trên GitHub</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="index.html" aria-label="agent-agile-team — trang chủ">
+          <img src="assets/logo.svg" width="30" height="30" alt="">
+          agent-agile-team
+        </a>
+        <p class="foot-tag">Phương pháp làm phần mềm cho đội AI agent: hai cổng người, kiểm định độc lập, hồ sơ tra được.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <b>Các trang</b>
+          <a href="index.html">Trang chủ</a>
+          <a href="tinh-nang/index.html">Tính năng</a>
+          <a href="cach-hoat-dong/index.html">Cách hoạt động</a>
+          <a href="cau-truc/index.html">Cấu trúc</a>
+          <a href="ho-so/index.html">Hồ sơ</a>
+          <a href="cai-dat/index.html">Cài đặt</a>
+          <a href="hoi-dap/index.html">Hỏi đáp</a>
+        </div>
+        <div class="foot-col">
+          <b>Tài nguyên</b>
+          <a href="https://github.com/ducnguyen221/agent-agile-team" target="_blank" rel="noopener">GitHub (cần quyền truy cập)</a>
+          <a href="cai-dat/index.html">Hướng dẫn cài</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>agent-agile-team · bản 0.3.0-dev</span>
+      <span class="lic">Repo private · giấy phép chưa chọn</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

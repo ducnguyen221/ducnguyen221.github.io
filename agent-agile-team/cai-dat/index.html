@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cài đặt và dùng · agent-agile-team</title>
+<meta name="description" content="Cách cài agent-agile-team trên Claude Code, Codex và Antigravity, kiểm sau khi cài và dùng lần đầu trong dự án.">
+<meta name="theme-color" content="#2f6df6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e0f13" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Cài đặt và dùng · agent-agile-team">
+<meta property="og:description" content="Cách cài agent-agile-team trên Claude Code, Codex và Antigravity, kiểm sau khi cài và dùng lần đầu trong dự án.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:url" content="https://ducnguyen.vn/agent-agile-team/cai-dat/">
+<meta property="og:image" content="https://ducnguyen.vn/agent-agile-team/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="agent-agile-team — Giao việc bằng lời thường. Bạn chỉ quyết ở hai cổng.">
+<link rel="canonical" href="https://ducnguyen.vn/agent-agile-team/cai-dat/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ducnguyen.vn/agent-agile-team/assets/og-image.png">
+<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
+html { overscroll-behavior-y: none; }
+</style>
+<!-- Meta Pixel (ID 1717041732866196) - do tuong tac tu Facebook. Cong bo tai /privacy/.
+     Chi chay tren ducnguyen.vn; ban doc offline (file://) va ban xem thu cuc bo khong gui gi. -->
+<script>if(location.hostname==='ducnguyen.vn'){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1717041732866196');fbq('track','PageView');}</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=1717041732866196&amp;ev=PageView&amp;noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+</head>
+<body>
+<canvas id="netbg" aria-hidden="true"></canvas>
+
+<header class="site" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html" aria-label="agent-agile-team — trang chủ">
+      <img src="../assets/logo.svg" width="30" height="30" alt="">
+      agent-agile-team
+    </a>
+    <nav class="nav-links" id="siteNav" aria-label="Các trang">
+      <a href="../tinh-nang/index.html">Tính năng</a>
+      <a href="../cach-hoat-dong/index.html">Cách hoạt động</a>
+      <a href="../cau-truc/index.html">Cấu trúc</a>
+      <a href="../ho-so/index.html">Hồ sơ</a>
+      <a href="../cai-dat/index.html" class="active" aria-current="page">Cài đặt</a>
+      <a href="../hoi-dap/index.html">Hỏi đáp</a>
+    </nav>
+    <a class="btn btn-ghost btn-sm gh" href="https://github.com/ducnguyen221/agent-agile-team" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.59.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+      <span class="gh-t">GitHub</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Mở menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="crumb"><a href="../index.html">Trang chủ</a> / Cài đặt</p>
+    <h1>Cài đặt và dùng</h1>
+    <p class="lead">Để agent cài giúp, hoặc tự làm trên Claude Code, Codex, Antigravity. Cần Git, Python 3.9+ và quyền đọc repo (đang private).</p>
+  </div>
+</section>
+
+<section id="cai-dat" class="install">
+  <div class="wrap">
+    <div class="install-grid">
+      <div class="install-copy reveal">
+        <span class="eyebrow"><span class="dot"></span>Cài đặt và dùng</span>
+        <h2>Cài trên máy của bạn</h2>
+        <div class="req"><ul>
+          <li><span class="ic">1</span><span><b>Cần:</b> Git và Python 3.9+. Ba script không cần cài gói nào (chỉ <code class="inline">pytest</code> khi muốn chạy bộ test của repo).</span></li>
+          <li><span class="ic">2</span><span><b>Harness:</b> Claude Code, Codex hoặc Antigravity.</span></li>
+          <li><span class="ic">3</span><span><b>Quyền:</b> quyền đọc repo trên GitHub (repo đang private).</span></li>
+        </ul></div>
+        <div class="note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+          <p><b>Repo đang private.</b> Bạn cần quyền đọc <a href="https://github.com/ducnguyen221/agent-agile-team" target="_blank" rel="noopener">github.com/ducnguyen221/agent-agile-team</a> mới clone được; chưa có quyền thì phần cài dưới đây chưa dùng được.</p>
+        </div>
+        <h3>Cách nhanh nhất: để agent cài</h3>
+        <p>Dán prompt ở cuối <code class="inline">INSTALL.md</code> vào Claude Code, Codex hoặc Antigravity. Agent đọc file đó, làm lần lượt, và <b>hỏi trước</b> mỗi lần cài phần mềm, sửa file luật của harness hay đặt biến môi trường. Cài xong agent chép nguyên dòng cuối của <code class="inline">check.py --self</code> cho bạn.</p>
+        <h3>Tự làm — bước chung</h3>
+        <p>Clone repo về thư mục nhà. Windows PowerShell 5.1 không mở <code class="inline">~</code> cho <code class="inline">git</code>, <code class="inline">python</code>, <code class="inline">claude</code> — dùng <code class="inline">"$HOME\agent-agile-team"</code>. Trên macOS mọi lệnh <code class="inline">python</code> là <code class="inline">python3</code>.</p>
+        <h3>Kiểm sau khi cài</h3>
+        <p>Dòng cuối có <code class="inline">→ Đạt</code> là lõi nguyên vẹn. Rồi mở <b>phiên mới</b> và hỏi agent: <i>“luật lõi agent-agile-team nói gì về hai cổng?”</i> — trả lời đúng là luật đã nạp.</p>
+      </div>
+      <div class="reveal">
+        <div class="code-card">
+          <div class="code-top"><span class="fn">macOS · bash</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span class="lbl">Sao chép</span></button></div>
+          <div class="code-scroll"><pre><code>git clone https://github.com/ducnguyen221/agent-agile-team ~/agent-agile-team</code></pre></div>
+        </div>
+        <div class="code-card">
+          <div class="code-top"><span class="fn">Windows · PowerShell</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span class="lbl">Sao chép</span></button></div>
+          <div class="code-scroll"><pre><code>git clone https://github.com/ducnguyen221/agent-agile-team "$HOME\agent-agile-team"</code></pre></div>
+        </div>
+        <div class="code-card">
+          <div class="code-top"><span class="fn">Kiểm sau khi cài · macOS</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span class="lbl">Sao chép</span></button></div>
+          <div class="code-scroll"><pre><code>cd ~/agent-agile-team &amp;&amp; python3 scripts/check.py --self</code></pre></div>
+        </div>
+        <div class="code-card">
+          <div class="code-top"><span class="fn">Kiểm sau khi cài · Windows</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span class="lbl">Sao chép</span></button></div>
+          <div class="code-scroll"><pre><code>python "$HOME\agent-agile-team\scripts\check.py" --self --root "$HOME\agent-agile-team"</code></pre></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-head reveal">
+      <h3>Theo harness</h3>
+      <p>Trên Codex và Antigravity, 13 agent trong <code class="inline">agents/</code> là thẻ vai Markdown: brief của agent con ghi “đọc <code class="inline">agents/&lt;tên&gt;.md</code> rồi làm theo”.</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <colgroup><col style="width:19%"><col style="width:39%"><col style="width:27%"><col style="width:15%"></colgroup>
+        <thead><tr><th scope="col">Harness</th><th scope="col">Skill và agent</th><th scope="col">Luật lõi cho mọi dự án</th><th scope="col">Chi tiết</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl">Claude Code <span style="font-weight:500;color:var(--muted)">(terminal, IDE, tab Code của ứng dụng Claude)</span></td><td data-label="Skill và agent"><code>claude plugin marketplace add ~/agent-agile-team</code> rồi <code>claude plugin install agent-agile-team@agent-agile-team</code>; skill hiện với tiền tố <code>agent-agile-team:</code></td><td data-label="Luật lõi cho mọi dự án">thêm một dòng <code>@~/agent-agile-team/AGENTS.md</code> vào <code>~/.claude/CLAUDE.md</code></td><td data-label="Chi tiết"><code>hosts/claude/</code></td></tr>
+          <tr><td class="lbl">Codex <span style="font-weight:500;color:var(--muted)">(CLI hoặc desktop)</span></td><td data-label="Skill và agent">cài plugin từ <code>.codex-plugin/plugin.json</code> theo <code>codex plugin --help</code>, hoặc mở thẳng thư mục repo</td><td data-label="Luật lõi cho mọi dự án">ghép <code>AGENTS.md</code> vào <code>~/.codex/AGENTS.md</code> bằng một script sinh của môi trường, không chép tay</td><td data-label="Chi tiết"><code>hosts/codex/</code></td></tr>
+          <tr><td class="lbl">Antigravity</td><td data-label="Skill và agent">mỗi skill một liên kết thư mục từ <code>~/.gemini/antigravity/skills/&lt;tên&gt;</code> về <code>skills/&lt;tên&gt;/</code> của bản clone</td><td data-label="Luật lõi cho mọi dự án">ghép vào <code>~/.gemini/GEMINI.md</code> như Codex</td><td data-label="Chi tiết"><code>hosts/antigravity/</code></td></tr>
+          <tr><td class="lbl">Claude Desktop, tab chat</td><td data-label="Skill và agent"><b>chưa hỗ trợ</b> — dùng tab Code</td><td data-label="Luật lõi cho mọi dự án">—</td><td data-label="Chi tiết"><code>hosts/claude-desktop/</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-head reveal">
+      <h3>Điểm cắm (tuỳ chọn)</h3>
+      <p>Không đặt gì repo vẫn chạy. Muốn cố định thì đặt biến ở mức tài khoản, trỏ file <b>ngoài repo</b>, rồi mở phiên mới.</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <colgroup><col style="width:27%"><col style="width:35%"><col style="width:38%"></colgroup>
+        <thead><tr><th scope="col">Biến</th><th scope="col">Trỏ tới</th><th scope="col">Thiếu thì</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl"><code>AGENT_AGILE_TIERS</code></td><td data-label="Trỏ tới">file JSON bảng tier → model (hình dạng: <code>tiers/tiers.example.json</code>)</td><td data-label="Thiếu thì">agent dùng chỉ định tier → model bạn nêu trong chat; chưa có thì hỏi ở Cổng 1</td></tr>
+          <tr><td class="lbl"><code>AGENT_AGILE_DENYLIST</code></td><td data-label="Trỏ tới">file văn bản từ cấm, một từ một dòng</td><td data-label="Thiếu thì"><code>check --self</code> báo luật chống rò <b>Chưa chạy</b> (<code>NOT_CONFIGURED</code>) — không phải lỗi</td></tr>
+          <tr><td class="lbl"><code>AGENT_AGILE_LEDGER</code></td><td data-label="Trỏ tới">mẫu đường file sổ tập trung, chứa <code>{project}</code></td><td data-label="Thiếu thì">chỉ dự án khai <code>ledger.project</code> mới dùng</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-head reveal">
+      <h3>Dùng lần đầu trong dự án của bạn</h3>
+      <p>Chạy trong thư mục dự án. <code class="inline">init</code> không ghi đè file có sẵn; chạy lại không đổi gì.</p>
+    </div>
+    <div class="code-card reveal">
+      <div class="code-top"><span class="fn">Thư mục dự án · bash</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span class="lbl">Sao chép</span></button></div>
+      <div class="code-scroll"><pre><code>python3 ~/agent-agile-team/scripts/init.py .            <span class="cm"># chạy thử: in sẽ tạo gì, không ghi</span>
+python3 ~/agent-agile-team/scripts/init.py . --apply    <span class="cm"># tạo .agile.json + REQUESTS, SPRINTS, SPECS</span>
+python3 ~/agent-agile-team/scripts/check.py docs/plans  <span class="cm"># kiểm hồ sơ sprint</span>
+python3 ~/agent-agile-team/scripts/index.py .           <span class="cm"># sinh lại khối "Đang mở"</span></code></pre></div>
+    </div>
+    <p class="reveal" style="margin-top:18px;color:var(--muted);font-size:15px;max-width:860px">Sau đó giao việc bằng lời thường — ví dụ <i>“Dùng agent-agile-team: thêm chức năng tra cứu đơn theo mã cho dự án này.”</i> — và đọc tiếp <code class="inline">GUIDE.md</code>. Cập nhật: <code class="inline">git pull --ff-only</code> trong bản clone (Claude Code thêm <code class="inline">claude plugin marketplace update agent-agile-team</code> và <code class="inline">claude plugin update agent-agile-team@agent-agile-team</code>). Gỡ không xoá sổ gốc hay hồ sơ sprint của dự án.</p>
+  </div>
+</section>
+
+<nav class="pager-sec" aria-label="Chuyển trang">
+  <div class="wrap pager">
+    <a class="prev" href="../ho-so/index.html"><span>← Trước</span><b>Hồ sơ một sprint</b></a>
+    <a class="next" href="../hoi-dap/index.html"><span>Tiếp →</span><b>Hỏi đáp và giới hạn</b></a>
+  </div>
+</nav>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="../index.html" aria-label="agent-agile-team — trang chủ">
+          <img src="../assets/logo.svg" width="30" height="30" alt="">
+          agent-agile-team
+        </a>
+        <p class="foot-tag">Phương pháp làm phần mềm cho đội AI agent: hai cổng người, kiểm định độc lập, hồ sơ tra được.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <b>Các trang</b>
+          <a href="../index.html">Trang chủ</a>
+          <a href="../tinh-nang/index.html">Tính năng</a>
+          <a href="../cach-hoat-dong/index.html">Cách hoạt động</a>
+          <a href="../cau-truc/index.html">Cấu trúc</a>
+          <a href="../ho-so/index.html">Hồ sơ</a>
+          <a href="../cai-dat/index.html">Cài đặt</a>
+          <a href="../hoi-dap/index.html">Hỏi đáp</a>
+        </div>
+        <div class="foot-col">
+          <b>Tài nguyên</b>
+          <a href="https://github.com/ducnguyen221/agent-agile-team" target="_blank" rel="noopener">GitHub (cần quyền truy cập)</a>
+          <a href="../cai-dat/index.html">Hướng dẫn cài</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>agent-agile-team · bản 0.3.0-dev</span>
+      <span class="lic">Repo private · giấy phép chưa chọn</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

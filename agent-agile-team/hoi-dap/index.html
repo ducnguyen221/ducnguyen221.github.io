@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hỏi đáp và giới hạn · agent-agile-team</title>
+<meta name="description" content="Câu hỏi thường gặp về agent-agile-team và giới hạn hiện tại của bản 0.3.0-dev.">
+<meta name="theme-color" content="#2f6df6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e0f13" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Hỏi đáp và giới hạn · agent-agile-team">
+<meta property="og:description" content="Câu hỏi thường gặp về agent-agile-team và giới hạn hiện tại của bản 0.3.0-dev.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:url" content="https://ducnguyen.vn/agent-agile-team/hoi-dap/">
+<meta property="og:image" content="https://ducnguyen.vn/agent-agile-team/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="agent-agile-team — Giao việc bằng lời thường. Bạn chỉ quyết ở hai cổng.">
+<link rel="canonical" href="https://ducnguyen.vn/agent-agile-team/hoi-dap/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ducnguyen.vn/agent-agile-team/assets/og-image.png">
+<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
+html { overscroll-behavior-y: none; }
+</style>
+<!-- Meta Pixel (ID 1717041732866196) - do tuong tac tu Facebook. Cong bo tai /privacy/.
+     Chi chay tren ducnguyen.vn; ban doc offline (file://) va ban xem thu cuc bo khong gui gi. -->
+<script>if(location.hostname==='ducnguyen.vn'){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1717041732866196');fbq('track','PageView');}</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=1717041732866196&amp;ev=PageView&amp;noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+</head>
+<body>
+<canvas id="netbg" aria-hidden="true"></canvas>
+
+<header class="site" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html" aria-label="agent-agile-team — trang chủ">
+      <img src="../assets/logo.svg" width="30" height="30" alt="">
+      agent-agile-team
+    </a>
+    <nav class="nav-links" id="siteNav" aria-label="Các trang">
+      <a href="../tinh-nang/index.html">Tính năng</a>
+      <a href="../cach-hoat-dong/index.html">Cách hoạt động</a>
+      <a href="../cau-truc/index.html">Cấu trúc</a>
+      <a href="../ho-so/index.html">Hồ sơ</a>
+      <a href="../cai-dat/index.html">Cài đặt</a>
+      <a href="../hoi-dap/index.html" class="active" aria-current="page">Hỏi đáp</a>
+    </nav>
+    <a class="btn btn-ghost btn-sm gh" href="https://github.com/ducnguyen221/agent-agile-team" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.59.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+      <span class="gh-t">GitHub</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Mở menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="crumb"><a href="../index.html">Trang chủ</a> / Hỏi đáp</p>
+    <h1>Hỏi đáp và giới hạn</h1>
+    <p class="lead">Câu hỏi thường gặp, và những chỗ bản 0.3.0-dev còn chưa tới.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Hỏi đáp</span>
+      <h2>Câu hỏi thường gặp</h2>
+    </div>
+    <div class="faq reveal">
+      <details><summary>Tôi không phải lập trình viên, dùng được không?</summary><p>Được ở vai người giao việc và nghiệm thu: bạn nói lời thường, đọc bản tóm tắt vài dòng ở hai cổng, và được quyền hỏi “<code class="inline">FR3</code> là gì?”. Phần kỹ thuật agent làm và tự ghi.</p></details>
+      <details><summary>Agent có tự push code hay deploy không?</summary><p>Không. Push, PR, gộp nhánh chính, deploy là tác động ra ngoài — chỉ sau Cổng 2 và khi bạn gật. Agent cũng không bỏ hook, không force-push, không hạ ngưỡng test để qua kiểm.</p></details>
+      <details><summary>Việc nhỏ có phải viết đủ bốn tài liệu?</summary><p>Không. Rất nhỏ: một <code class="inline">SPRINT.md</code> hai phần, Cổng 1 là “đạt theo lời giao”. Nhỏ: một <code class="inline">SPRINT.md</code> bốn phần. Từ cỡ vừa mới dùng bốn file.</p></details>
+      <details><summary>Repo có chứa tên model, giá tiền hay tài khoản nào không?</summary><p>Không. Repo chỉ biết ba tier; bảng tier → model, danh sách từ cấm và nơi lưu bài học nằm ngoài repo, cắm vào qua biến môi trường. <code class="inline">check --self</code> bảo đảm lõi không lộ dấu riêng của máy nào.</p></details>
+      <details><summary>Có cần Node, Docker hay dịch vụ ngoài không?</summary><p>Không. Chỉ Git và Python 3.9+. Hai công cụ đo token (<code class="inline">ccusage</code>, <code class="inline">repomix</code>) trong skill <code class="inline">token-economy</code> gọi qua <code class="inline">npx</code> khi bạn muốn, không bắt buộc.</p></details>
+      <details><summary>Chạy trên Windows được không?</summary><p>Được. Bộ test chạy trên Ubuntu, Windows, macOS × Python 3.9 và 3.13 ở CI. Lưu ý duy nhất: Windows PowerShell 5.1 không mở <code class="inline">~</code> cho chương trình ngoài.</p></details>
+      <details><summary>Hồ sơ sprint có bắt buộc nằm trong repo dự án không?</summary><p>Không. Repo công khai thì đặt <code class="inline">visibility: public</code> và <code class="inline">artifact_root</code> trỏ ra ngoài trong <code class="inline">.agile.json</code>; <code class="inline">check</code> chặn nếu hồ sơ nội bộ lại nằm trong repo công khai.</p></details>
+      <details><summary>Dùng cho việc không phải viết code được không?</summary><p>Phương pháp và luật lõi viết cho phát triển phần mềm (code, test, review, nhánh git); bộ mẫu tài liệu và ba công cụ không đòi code, nhưng phần lớn skill kỹ thuật và agent reviewer là cho phần mềm.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="gioi-han" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Nói thẳng</span>
+      <h2>Giới hạn hiện tại</h2>
+      <p>Trung thực về chỗ chưa tới.</p>
+    </div>
+    <div class="sw reveal">
+      <h3><span class="sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg></span>Chưa tới đâu</h3>
+      <ul>
+        <li><b>Repo private, giấy phép chưa chọn.</b> Người ngoài chưa clone được; chưa có bản phát hành, version đứng ở <code class="inline">0.3.0-dev</code>.</li>
+        <li><b>12/13 skill tham chiếu chưa đạt ngưỡng truy xuất</b> (chỉ <code class="inline">adr</code> đạt): agent tìm đúng chỗ nhưng nội dung còn thiếu để trả lời hẳn; đang bổ sung và sẽ đổi cách đo trước khi vá tiếp. Trong 91 câu thử chỉ 1 câu Không đạt.</li>
+        <li><b>Tệp thử skill chạy trên một dòng model</b> (tier T3); kết quả có thể khác trên model khác.</li>
+        <li><b>Claude Desktop tab chat chưa hỗ trợ</b>; Codex và Antigravity không nạp <code class="inline">agents/</code> như agent riêng — đọc như thẻ vai.</li>
+        <li><b><code class="inline">check</code> chứng minh hồ sơ nhất quán, không chứng minh nội dung đúng</b>: bằng chứng vẫn do agent khác chạy; <code class="inline">check</code> không mở link, không đọc kết quả thật trong ô bằng chứng.</li>
+        <li><b>Sổ tập trung:</b> <code class="inline">init</code> và <code class="inline">index</code> chưa tự ghi dòng sổ; so ngày theo ngày nên hai lần đổi trạng thái trong cùng ngày chỉ bắt được qua trạng thái.</li>
+        <li><b>Luật chống rò chỉ chạy khi có danh sách từ cấm</b> (biến <code class="inline">AGENT_AGILE_DENYLIST</code>); ở CI không có danh sách nên luật báo <code class="inline">NOT_CONFIGURED</code> và một test skip có lý do — không tính là Đạt.</li>
+        <li><b>Chưa có bản tiếng Anh</b> của skill, phương pháp và trang giới thiệu; frontmatter và <code class="inline">README.md</code> là tiếng Anh.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<nav class="pager-sec" aria-label="Chuyển trang">
+  <div class="wrap pager">
+    <a class="prev" href="../cai-dat/index.html"><span>← Trước</span><b>Cài đặt và dùng</b></a>
+    <a class="next" href="../index.html"><span>Tiếp →</span><b>Trang chủ</b></a>
+  </div>
+</nav>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="../index.html" aria-label="agent-agile-team — trang chủ">
+          <img src="../assets/logo.svg" width="30" height="30" alt="">
+          agent-agile-team
+        </a>
+        <p class="foot-tag">Phương pháp làm phần mềm cho đội AI agent: hai cổng người, kiểm định độc lập, hồ sơ tra được.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <b>Các trang</b>
+          <a href="../index.html">Trang chủ</a>
+          <a href="../tinh-nang/index.html">Tính năng</a>
+          <a href="../cach-hoat-dong/index.html">Cách hoạt động</a>
+          <a href="../cau-truc/index.html">Cấu trúc</a>
+          <a href="../ho-so/index.html">Hồ sơ</a>
+          <a href="../cai-dat/index.html">Cài đặt</a>
+          <a href="../hoi-dap/index.html">Hỏi đáp</a>
+        </div>
+        <div class="foot-col">
+          <b>Tài nguyên</b>
+          <a href="https://github.com/ducnguyen221/agent-agile-team" target="_blank" rel="noopener">GitHub (cần quyền truy cập)</a>
+          <a href="../cai-dat/index.html">Hướng dẫn cài</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>agent-agile-team · bản 0.3.0-dev</span>
+      <span class="lic">Repo private · giấy phép chưa chọn</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>
