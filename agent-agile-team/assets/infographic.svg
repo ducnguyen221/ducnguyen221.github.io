@@ -79,8 +79,8 @@
     <rect x="834" y="232" width="46" height="46" rx="13" fill="#e6f0fa"/>
     <text x="857" y="264" text-anchor="middle" class="blue" font-size="25" font-weight="800">4</text>
     <text x="834" y="318" class="ink step-title">Kiểm định</text>
-    <text x="834" y="354" class="blue step-body" font-weight="700">QA + Reviewer</text>
-    <text x="834" y="380" class="muted" font-size="16">(agent khác người làm)</text>
+    <text x="834" y="354" class="blue step-body" font-weight="700">Business + Tech</text>
+    <text x="834" y="380" class="muted" font-size="16">Reviewer độc lập</text>
     <path d="M834 396h188" stroke="#dbe6f0" stroke-width="2"/>
     <text x="834" y="428" class="muted step-body">Chạy lại phép kiểm</text>
     <text x="834" y="459" class="muted step-body">Review</text>
