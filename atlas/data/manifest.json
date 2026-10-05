@@ -1,5 +1,70 @@
 [
   {
+    "slug": "bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt",
+    "title": "Bài kiểm tra không có ba-rem: tiêu chí chấp nhận (acceptance criteria) trong prompt · Học cùng Tobi",
+    "description": "explainer",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt.html",
+    "thumbnail": "content/ai/bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt.jpg",
+    "published": "2026-10-15",
+    "lastModified": "2026-10-05",
+    "fileSize": 36576
+  },
+  {
+    "slug": "ong-tho-may-do-ao-gan-vai-role-prompting-that-ra-la-dat-rang-buoc",
+    "title": "Ông thợ may đo áo: gán vai (role prompting) thật ra là đặt ràng buộc · Học cùng Tobi",
+    "description": "myth_vs_fact",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/ong-tho-may-do-ao-gan-vai-role-prompting-that-ra-la-dat-rang-buoc.html",
+    "thumbnail": "content/ai/ong-tho-may-do-ao-gan-vai-role-prompting-that-ra-la-dat-rang-buoc.jpg",
+    "published": "2026-10-13",
+    "lastModified": "2026-10-05",
+    "fileSize": 38554
+  },
+  {
+    "slug": "ngay-dau-di-lam-system-prompt-chinh-la-ban-mo-ta-cong-viec-cua-ai",
+    "title": "Ngày đầu đi làm: system prompt chính là bản mô tả công việc của AI · Học cùng Tobi",
+    "description": "explainer",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/ngay-dau-di-lam-system-prompt-chinh-la-ban-mo-ta-cong-viec-cua-ai.html",
+    "thumbnail": "content/ai/ngay-dau-di-lam-system-prompt-chinh-la-ban-mo-ta-cong-viec-cua-ai.jpg",
+    "published": "2026-10-11",
+    "lastModified": "2026-10-05",
+    "fileSize": 35102
+  },
+  {
+    "slug": "goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc",
+    "title": "Gọi món ở quán lạ: viết prompt tả KẾT QUẢ, đừng tả từng bước · Học cùng Tobi",
+    "description": "explainer",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc.html",
+    "thumbnail": "content/ai/goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc.jpg",
+    "published": "2026-10-09",
+    "lastModified": "2026-10-05",
+    "fileSize": 34419
+  },
+  {
+    "slug": "nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve",
+    "title": "Người thợ khoá và bản vẽ sai: prompt không phải câu thần chú, nó là bản vẽ · Học cùng Tobi",
+    "description": "myth_vs_fact",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve.html",
+    "thumbnail": "content/ai/nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve.jpg",
+    "published": "2026-10-07",
+    "lastModified": "2026-10-05",
+    "fileSize": 36754
+  },
+  {
     "slug": "claude-code-cho-nguoi-moi",
     "title": "Claude Code cho người mới: Cài đặt, tạo bối cảnh và làm việc an toàn · Học cùng Tobi",
     "description": "Người không chuyên kỹ thuật có thể bắt đầu với Claude Code bằng Desktop, folder cục bộ và một quy trình review rõ ràng.",
@@ -9,8 +74,8 @@
     "path": "content/ai/claude-code-cho-nguoi-moi.html",
     "thumbnail": "content/ai/claude-code-cho-nguoi-moi.jpg",
     "published": "2026-09-28",
-    "lastModified": "2026-09-27",
-    "fileSize": 270598
+    "lastModified": "2026-09-30",
+    "fileSize": 270292
   },
   {
     "slug": "codex-cho-nguoi-moi",
@@ -22,8 +87,8 @@
     "path": "content/ai/codex-cho-nguoi-moi.html",
     "thumbnail": "content/ai/codex-cho-nguoi-moi.jpg",
     "published": "2026-09-28",
-    "lastModified": "2026-09-27",
-    "fileSize": 261335
+    "lastModified": "2026-09-30",
+    "fileSize": 261049
   },
   {
     "slug": "google-antigravity-cho-nguoi-moi",
@@ -35,8 +100,8 @@
     "path": "content/ai/google-antigravity-cho-nguoi-moi.html",
     "thumbnail": "content/ai/google-antigravity-cho-nguoi-moi.jpg",
     "published": "2026-09-28",
-    "lastModified": "2026-09-27",
-    "fileSize": 324680
+    "lastModified": "2026-09-30",
+    "fileSize": 324390
   },
   {
     "slug": "skill-va-prompt",
@@ -48,8 +113,8 @@
     "path": "content/ai/skill-va-prompt.html",
     "thumbnail": "content/ai/skill-va-prompt.jpg",
     "published": "2026-09-28",
-    "lastModified": "2026-09-27",
-    "fileSize": 202371
+    "lastModified": "2026-09-30",
+    "fileSize": 202321
   },
   {
     "slug": "ai-agent-folder-may-tinh",
@@ -61,73 +126,8 @@
     "path": "content/ai/ai-agent-folder-may-tinh.html",
     "thumbnail": "content/ai/ai-agent-folder-may-tinh.jpg",
     "published": "2026-09-28",
-    "lastModified": "2026-09-27",
-    "fileSize": 222869
-  },
-  {
-    "slug": "bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt",
-    "title": "Bài kiểm tra không có ba-rem: tiêu chí chấp nhận (acceptance criteria) trong prompt · Học cùng Tobi",
-    "description": "explainer",
-    "categories": [
-      "ai"
-    ],
-    "path": "content/ai/bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt.html",
-    "thumbnail": "",
-    "published": "2026-09-13",
-    "lastModified": "2026-09-12",
-    "fileSize": 36100
-  },
-  {
-    "slug": "goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc",
-    "title": "Gọi món ở quán lạ: viết prompt tả KẾT QUẢ, đừng tả từng bước · Học cùng Tobi",
-    "description": "explainer",
-    "categories": [
-      "ai"
-    ],
-    "path": "content/ai/goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc.html",
-    "thumbnail": "",
-    "published": "2026-09-13",
-    "lastModified": "2026-09-12",
-    "fileSize": 33987
-  },
-  {
-    "slug": "ngay-dau-di-lam-system-prompt-chinh-la-ban-mo-ta-cong-viec-cua-ai",
-    "title": "Ngày đầu đi làm: system prompt chính là bản mô tả công việc của AI · Học cùng Tobi",
-    "description": "explainer",
-    "categories": [
-      "ai"
-    ],
-    "path": "content/ai/ngay-dau-di-lam-system-prompt-chinh-la-ban-mo-ta-cong-viec-cua-ai.html",
-    "thumbnail": "",
-    "published": "2026-09-13",
-    "lastModified": "2026-09-12",
-    "fileSize": 34656
-  },
-  {
-    "slug": "nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve",
-    "title": "Người thợ khoá và bản vẽ sai: prompt không phải câu thần chú, nó là bản vẽ · Học cùng Tobi",
-    "description": "myth_vs_fact",
-    "categories": [
-      "ai"
-    ],
-    "path": "content/ai/nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve.html",
-    "thumbnail": "",
-    "published": "2026-09-13",
-    "lastModified": "2026-09-12",
-    "fileSize": 36291
-  },
-  {
-    "slug": "ong-tho-may-do-ao-gan-vai-role-prompting-that-ra-la-dat-rang-buoc",
-    "title": "Ông thợ may đo áo: gán vai (role prompting) thật ra là đặt ràng buộc · Học cùng Tobi",
-    "description": "myth_vs_fact",
-    "categories": [
-      "ai"
-    ],
-    "path": "content/ai/ong-tho-may-do-ao-gan-vai-role-prompting-that-ra-la-dat-rang-buoc.html",
-    "thumbnail": "",
-    "published": "2026-09-13",
-    "lastModified": "2026-09-12",
-    "fileSize": 38105
+    "lastModified": "2026-09-30",
+    "fileSize": 222619
   },
   {
     "slug": "gpt6-astra-dieu-dang-chu-y",
@@ -139,8 +139,8 @@
     "path": "content/ai/gpt6-astra-dieu-dang-chu-y.html",
     "thumbnail": "content/ai/gpt6-astra-dieu-dang-chu-y.jpg",
     "published": "2026-09-04",
-    "lastModified": "2026-09-04",
-    "fileSize": 32978
+    "lastModified": "2026-09-30",
+    "fileSize": 32734
   },
   {
     "slug": "mka-101-digital-marketing",
@@ -152,8 +152,8 @@
     "path": "content/elearning/mka-101-digital-marketing.html",
     "thumbnail": "",
     "published": "2026-08-08",
-    "lastModified": "2026-08-09",
-    "fileSize": 1515226
+    "lastModified": "2026-09-30",
+    "fileSize": 1603210
   },
   {
     "slug": "hr-analytics",
@@ -165,8 +165,8 @@
     "path": "content/elearning/hr-analytics.html",
     "thumbnail": "",
     "published": "2026-07-16",
-    "lastModified": "2026-08-09",
-    "fileSize": 179828
+    "lastModified": "2026-09-30",
+    "fileSize": 176587
   },
   {
     "slug": "n8n-vs-knime",
@@ -178,8 +178,8 @@
     "path": "content/automation/n8n-vs-knime.html",
     "thumbnail": "",
     "published": "2026-06-27",
-    "lastModified": "2026-08-09",
-    "fileSize": 82712
+    "lastModified": "2026-09-30",
+    "fileSize": 80507
   },
   {
     "slug": "databricks-genai",
@@ -191,8 +191,8 @@
     "path": "content/ai/databricks-genai.html",
     "thumbnail": "",
     "published": "2026-06-27",
-    "lastModified": "2026-08-09",
-    "fileSize": 94456
+    "lastModified": "2026-09-30",
+    "fileSize": 93315
   },
   {
     "slug": "cai-dat-n8n-desktop-1",
@@ -204,8 +204,8 @@
     "path": "content/instruction/cai-dat-n8n-desktop-1.html",
     "thumbnail": "",
     "published": "2026-06-27",
-    "lastModified": "2026-08-09",
-    "fileSize": 61324
+    "lastModified": "2026-09-30",
+    "fileSize": 59995
   },
   {
     "slug": "cai-dat-n8n-desktop",
@@ -217,8 +217,8 @@
     "path": "content/instruction/cai-dat-n8n-desktop.html",
     "thumbnail": "",
     "published": "2026-06-27",
-    "lastModified": "2026-08-09",
-    "fileSize": 57242
+    "lastModified": "2026-09-30",
+    "fileSize": 55952
   },
   {
     "slug": "lasoong-loyalty-os",
@@ -230,8 +230,8 @@
     "path": "content/strategy/LaSoong_Loyalty_OS.html",
     "thumbnail": "",
     "published": "2026-06-27",
-    "lastModified": "2026-08-09",
-    "fileSize": 32323
+    "lastModified": "2026-09-30",
+    "fileSize": 31971
   },
   {
     "slug": "powerbi-glossary-domain-knowledge",
@@ -243,8 +243,8 @@
     "path": "content/bi/powerbi-glossary-domain-knowledge.html",
     "thumbnail": "",
     "published": "2026-06-27",
-    "lastModified": "2026-08-09",
-    "fileSize": 141572
+    "lastModified": "2026-09-30",
+    "fileSize": 140739
   },
   {
     "slug": "prompt-nhu-mot-ban-yeu-cau",
@@ -256,8 +256,8 @@
     "path": "content/ai/prompt-nhu-mot-ban-yeu-cau.html",
     "thumbnail": "content/ai/prompt-nhu-mot-ban-yeu-cau.jpg",
     "published": "2026-06-27",
-    "lastModified": "2026-08-09",
-    "fileSize": 37310
+    "lastModified": "2026-09-30",
+    "fileSize": 37075
   },
   {
     "slug": "tu-duy-nguoi-ra-de",
@@ -269,8 +269,8 @@
     "path": "content/ai/tu-duy-nguoi-ra-de.html",
     "thumbnail": "content/ai/tu-duy-nguoi-ra-de.jpg",
     "published": "2026-06-27",
-    "lastModified": "2026-08-09",
-    "fileSize": 38054
+    "lastModified": "2026-09-30",
+    "fileSize": 37814
   },
   {
     "slug": "vibe-coding-thuc-ra-la-gi",
@@ -282,7 +282,7 @@
     "path": "content/ai/vibe-coding-thuc-ra-la-gi.html",
     "thumbnail": "content/ai/vibe-coding-thuc-ra-la-gi.jpg",
     "published": "2026-06-27",
-    "lastModified": "2026-08-09",
-    "fileSize": 26683
+    "lastModified": "2026-09-30",
+    "fileSize": 26459
   }
 ]
