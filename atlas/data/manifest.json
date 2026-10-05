@@ -1,5 +1,70 @@
 [
   {
+    "slug": "hoi-duong-o-nga-tu-hoi-mot-luot-hay-nhieu-luot-single-turn-va-multi-turn",
+    "title": "Hỏi đường ở ngã tư: hỏi một lượt hay nhiều lượt — single-turn và multi-turn · Học cùng Tobi",
+    "description": "comparison",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/hoi-duong-o-nga-tu-hoi-mot-luot-hay-nhieu-luot-single-turn-va-multi-turn.html",
+    "thumbnail": "content/ai/hoi-duong-o-nga-tu-hoi-mot-luot-hay-nhieu-luot-single-turn-va-multi-turn.jpg",
+    "published": "2026-10-25",
+    "lastModified": "2026-10-05",
+    "fileSize": 21557
+  },
+  {
+    "slug": "nhan-vien-khong-dam-noi-em-khong-biet-ao-giac-hallucination-den-tu-dau",
+    "title": "Nhân viên không dám nói em không biết: ảo giác (hallucination) đến từ đâu · Học cùng Tobi",
+    "description": "explainer",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/nhan-vien-khong-dam-noi-em-khong-biet-ao-giac-hallucination-den-tu-dau.html",
+    "thumbnail": "content/ai/nhan-vien-khong-dam-noi-em-khong-biet-ao-giac-hallucination-den-tu-dau.jpg",
+    "published": "2026-10-23",
+    "lastModified": "2026-10-05",
+    "fileSize": 21110
+  },
+  {
+    "slug": "tam-ban-do-thieu-ti-le-vi-sao-rang-buoc-phu-dinh-negative-constraint-hay-truot",
+    "title": "Tấm bản đồ thiếu tỉ lệ: vì sao ràng buộc phủ định (negative constraint) hay trượt · Học cùng Tobi",
+    "description": "myth_vs_fact",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/tam-ban-do-thieu-ti-le-vi-sao-rang-buoc-phu-dinh-negative-constraint-hay-truot.html",
+    "thumbnail": "content/ai/tam-ban-do-thieu-ti-le-vi-sao-rang-buoc-phu-dinh-negative-constraint-hay-truot.jpg",
+    "published": "2026-10-21",
+    "lastModified": "2026-10-05",
+    "fileSize": 20685
+  },
+  {
+    "slug": "nguoi-ke-chuyen-bi-ngat-loi-khai-output-format-va-do-dai-ngay-trong-prompt",
+    "title": "Người kể chuyện bị ngắt lời: khai output format và độ dài ngay trong prompt · Học cùng Tobi",
+    "description": "how_to",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/nguoi-ke-chuyen-bi-ngat-loi-khai-output-format-va-do-dai-ngay-trong-prompt.html",
+    "thumbnail": "content/ai/nguoi-ke-chuyen-bi-ngat-loi-khai-output-format-va-do-dai-ngay-trong-prompt.jpg",
+    "published": "2026-10-19",
+    "lastModified": "2026-10-05",
+    "fileSize": 20435
+  },
+  {
+    "slug": "day-nguoi-nuoc-ngoai-phan-biet-co-va-vang-suc-manh-cua-few-shot-cho-vi-du-mau",
+    "title": "Dạy người nước ngoài phân biệt có và vâng: sức mạnh của few-shot (cho ví dụ mẫu) · Học cùng Tobi",
+    "description": "explainer",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/day-nguoi-nuoc-ngoai-phan-biet-co-va-vang-suc-manh-cua-few-shot-cho-vi-du-mau.html",
+    "thumbnail": "content/ai/day-nguoi-nuoc-ngoai-phan-biet-co-va-vang-suc-manh-cua-few-shot-cho-vi-du-mau.jpg",
+    "published": "2026-10-17",
+    "lastModified": "2026-10-05",
+    "fileSize": 22742
+  },
+  {
     "slug": "bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt",
     "title": "Bài kiểm tra không có ba-rem: tiêu chí chấp nhận (acceptance criteria) trong prompt · Học cùng Tobi",
     "description": "explainer",

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hỏi đường ở ngã tư: hỏi một lượt hay nhiều lượt — single-turn và multi-turn · Học cùng Tobi</title>
+<meta name="description" content="comparison">
+<link rel="canonical" href="https://ducnguyen.vn/atlas/content/ai/hoi-duong-o-nga-tu-hoi-mot-luot-hay-nhieu-luot-single-turn-va-multi-turn.html">
+<meta name="author" content="Nguyễn Quang Đức">
+<!-- Open Graph — BAT BUOC. Thieu la Facebook/Zalo scrape ra bai TRAN TRUI, mat phan lon suc hut.
+     Ca VC-001/002/003 deu thieu (do 04/09: 0/3 bai co the og:) => bo sung tan goc tai day. -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hỏi đường ở ngã tư: hỏi một lượt hay nhiều lượt — single-turn và multi-turn">
+<meta property="og:description" content="comparison">
+<meta property="og:url" content="https://ducnguyen.vn/atlas/content/ai/hoi-duong-o-nga-tu-hoi-mot-luot-hay-nhieu-luot-single-turn-va-multi-turn.html">
+<meta property="og:image" content="https://ducnguyen.vn/atlas/content/ai/hoi-duong-o-nga-tu-hoi-mot-luot-hay-nhieu-luot-single-turn-va-multi-turn.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:site_name" content="Học cùng Tobi">
+<meta property="article:published_time" content="2026-10-25">
+<meta name="date" content="2026-10-25">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hỏi đường ở ngã tư: hỏi một lượt hay nhiều lượt — single-turn và multi-turn">
+<meta name="twitter:description" content="comparison">
+<meta name="twitter:image" content="https://ducnguyen.vn/atlas/content/ai/hoi-duong-o-nga-tu-hoi-mot-luot-hay-nhieu-luot-single-turn-va-multi-turn.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b1020;--bg-elev:#0f1530;--surface:#151b3d;--surface-2:#1c244d;
+  --border:#2a3470;--border-soft:#1f2654;
+  --accent:#7c83ff;--accent-2:#a5acff;--accent-soft:#3d3e9c;--violet:#c4a8ff;
+  --green:#34d399;--amber:#fbbf24;--sky:#38bdf8;
+  --text:#e8ecff;--text-2:#a8b0d6;--text-3:#6b75a8;
+  --shadow-lg:0 4px 8px rgba(0,0,0,.35),0 24px 48px rgba(0,0,0,.3);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Outfit','Be Vietnam Pro',sans-serif}
+body{font-family:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;
+  background:radial-gradient(1200px 600px at 20% -10%,rgba(124,131,255,.12),transparent 60%),
+             radial-gradient(900px 500px at 90% 10%,rgba(196,168,255,.08),transparent 60%),var(--bg);
+  color:var(--text);min-height:100vh;line-height:1.7;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;overflow-wrap:break-word}
+::selection{background:var(--accent);color:#fff}
+img{max-width:100%}
+a{color:var(--accent-2);text-decoration:none;border-bottom:1px dashed var(--accent-soft)}
+a:hover{border-bottom-style:solid}
+
+.topbar{position:sticky;top:0;z-index:100;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  background:rgba(11,16,32,.78);border-bottom:1px solid var(--border-soft)}
+.topbar-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:14px 28px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;border:none}
+.brand-mark{width:40px;height:40px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,#7c83ff,#c4a8ff);box-shadow:0 4px 16px rgba(124,131,255,.35);
+  display:flex;align-items:center;justify-content:center}
+.brand-mark svg{width:22px;height:22px}
+.brand-text h1{font-size:.95rem;font-weight:800;line-height:1.2}
+.brand-text h1 span{color:var(--accent-2)}
+.brand-text p{font-size:.72rem;color:var(--text-3);font-weight:500;margin-top:1px}
+.topbar .pill{margin-left:auto;font-size:.74rem;font-weight:700;color:var(--accent-2);
+  background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);border-radius:999px;padding:6px 16px}
+
+.container{max-width:920px;margin:0 auto;padding:40px 28px 80px}
+
+.hero{display:grid;grid-template-columns:1fr;gap:28px;margin-bottom:44px;align-items:center}
+.hero.has-art{grid-template-columns:1.1fr .9fr}
+.hero .kick{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--accent-2);background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);
+  border-radius:999px;padding:7px 18px;margin-bottom:18px}
+.hero h1.title{font-size:2.5rem;font-weight:900;letter-spacing:-1px;line-height:1.12;margin-bottom:14px}
+.hero .angle{color:var(--text-2);font-size:1.05rem;line-height:1.6}
+.hero-art{border-radius:20px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg)}
+.hero-art img{display:block;width:100%;height:auto}
+
+.article h2{font-size:1.5rem;font-weight:800;margin:42px 0 14px;padding-bottom:10px;
+  border-bottom:1px solid var(--border-soft);color:var(--text)}
+.article h3{font-size:1.18rem;font-weight:700;margin:30px 0 10px;color:var(--accent-2)}
+.article h4{font-size:1.02rem;font-weight:700;margin:22px 0 8px;color:var(--violet)}
+.article p{color:var(--text-2);margin:14px 0;font-size:1.02rem}
+.article strong{color:var(--text);font-weight:700}
+.article code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--bg-elev);
+  padding:2px 7px;border-radius:5px;color:var(--violet);border:1px solid var(--border-soft)}
+.article ul,.article ol{margin:14px 0 14px 8px;padding-left:22px;color:var(--text-2)}
+.article li{margin:8px 0;font-size:1.02rem}
+.article ul li::marker{color:var(--accent)}
+.callout{background:linear-gradient(180deg,rgba(124,131,255,.08),transparent);
+  border:1px solid var(--border-soft);border-left:4px solid var(--accent);
+  border-radius:4px 14px 14px 4px;padding:16px 20px;margin:22px 0;color:var(--text);font-size:1.02rem}
+.tbl-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--border-soft);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--border-soft)}
+thead th{background:var(--surface);color:var(--text);font-weight:700}
+tbody tr:hover{background:var(--surface)}
+td{color:var(--text-2)}
+
+.author-card{margin-top:54px;background:linear-gradient(135deg,rgba(124,131,255,.06),rgba(196,168,255,.04));
+  border:1px solid var(--border-soft);border-radius:18px;padding:28px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center}
+.author-avatar{width:84px;height:84px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:3px solid var(--accent-soft);box-shadow:0 8px 32px rgba(124,131,255,.3)}
+.author-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.author-info .kicker{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:6px}
+.author-info h3{font-size:1.3rem;font-weight:800;margin-bottom:4px;
+  background:linear-gradient(90deg,var(--accent-2),var(--violet));-webkit-background-clip:text;
+  background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.author-info p{color:var(--text-2);font-size:.88rem;line-height:1.6;max-width:520px}
+.social-grid{display:grid;grid-template-columns:repeat(4,40px);gap:8px}
+.social-btn{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid var(--border-soft);color:var(--text-2);transition:all .15s}
+.social-btn svg{width:18px;height:18px}
+.social-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.3)}
+
+@media(max-width:780px){
+  .hero.has-art{grid-template-columns:1fr}
+  .hero h1.title{font-size:1.9rem}
+}
+.media{margin:0 0 44px}
+.media .media-label{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin:0 0 12px}
+.summary-img{margin:0 0 22px;text-align:center}
+.summary-img img{width:100%;max-width:960px;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,.35);display:block;margin:0 auto}
+.summary-img figcaption{margin-top:8px;font-size:.86rem;color:#8b98ab;letter-spacing:.02em}
+.video-embed{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;
+  border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px;background:#000}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.media.cover{margin:0 0 40px}
+.cover-art{border-radius:18px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px}
+.cover-art img{display:block;width:100%;height:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.audio-embed{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;
+  border:1px solid var(--border-soft);background:var(--surface)}
+.audio-embed .ic{font-size:1.3rem}
+.audio-embed audio{flex:1;width:100%}
+@media (max-width:720px){
+  .hero.has-art{grid-template-columns:1fr}
+  .author-card{grid-template-columns:1fr;text-align:center;gap:18px;padding:22px}
+  .author-avatar{margin:0 auto}.author-info p{margin:0 auto}.social-grid{justify-content:center;margin:0 auto}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="https://ducnguyen.vn/atlas/" target="_blank" rel="noopener">
+      <div class="brand-mark"><svg viewBox="0 0 576 512" fill="#fff"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"/></svg></div>
+      <div class="brand-text"><h1>Học cùng <span>Tobi</span></h1><p>COMPA Class · KPIM Academy</p></div>
+    </a>
+    <span class="pill">ai-prompt</span>
+  </div>
+</header>
+
+<main class="container">
+  <section class="media cover"><h1 class="sr-only">Hỏi đường ở ngã tư: hỏi một lượt hay nhiều lượt — single-turn và multi-turn</h1><figure class="summary-img"><img src="hoi-duong-o-nga-tu-hoi-mot-luot-hay-nhieu-luot-single-turn-va-multi-turn-1.png" loading="lazy" alt="comparison"><figcaption>Tóm tắt cả bài trong một hình</figcaption></figure><div class="audio-embed"><span class="ic">🎧</span><audio controls preload="none" src="hoi-duong-o-nga-tu-hoi-mot-luot-hay-nhieu-luot-single-turn-va-multi-turn.mp3"></audio></div></section>
+  <article class="article">
+    <p>Có hai người cùng đi lạc trong một khu phố cổ lạ lẫm với hàng chục ngõ ngách đan xen.</p>
+<p>Người thứ nhất tấp xe vào hỏi một bác bảo vệ: <em>&quot;Bác chỉ giúp cháu đường đi từ đây ra bờ hồ với ạ&quot;</em>. Bác bảo vệ nhiệt tình đọc một tràng: <em>&quot;Đi thẳng 100 mét rẽ trái vào ngõ thứ hai, gặp cây bàng rẽ phải, qua hai ngã tư rẽ chếch sang đường tàu, thấy cái chợ cóc thì rẽ trái tiếp là ra&quot;</em>. Người thứ nhất gật đầu cảm ơn, phóng xe đi. Nhưng chỉ sau hai ngã rẽ đầu tiên, anh ấy bắt đầu hoang mang không biết cây bàng nằm ở bên nào, và cuối cùng lại lạc sâu hơn vào trong ngõ.</p>
+<p>Người thứ hai chọn cách khác. Anh ấy hỏi: <em>&quot;Bác cho cháu hỏi đi ra ngã tư lớn có đèn đỏ gần nhất thì rẽ ngõ nào ạ?&quot;</em>. Bác bảo vệ chỉ: <em>&quot;Cứ đi thẳng ngõ này 100 mét là ra ngã tư&quot;</em>. Anh ấy đi đúng 100 mét ra ngã tư lớn. Tại đó, anh nhìn thấy biển báo và lại hỏi tiếp một người khác để đi tới mốc tiếp theo. Anh ấy tới bờ hồ an toàn và đúng giờ.</p>
+<p>Trong thế giới ứng dụng AI Agent, hai cách tiếp cận này đại diện cho hai trường phái tư duy cốt lõi: <strong>Single-turn Prompting (Hỏi một chạm)</strong> và <strong>Multi-turn Interaction (Tương tác chuỗi nhiều lượt)</strong>.</p>
+<p>Hiểu khi nào nên dùng cái nào là kỹ năng phân biệt giữa một người viết prompt nghiệp dư và một kiến trúc sư giải pháp tự động hoá thực thụ.</p>
+<h2>Single-turn Prompting: Khi nào một chạm là đủ?</h2>
+<p><strong>Single-turn là tương tác dạng một lượt khép kín: bạn đưa vào toàn bộ yêu cầu, dữ liệu và ngữ cảnh trong một prompt duy nhất; mô hình xử lý và trả về kết quả cuối cùng.</strong></p>
+<p>Ví dụ: dịch một đoạn văn, sửa lỗi chính tả, trích xuất thông tin từ một hoá đơn, viết lại tiêu đề bài báo.</p>
+<h3>Ưu điểm:</h3>
+<ul><li>Tốc độ nhanh nhất, chỉ tốn đúng 1 lượt gọi API (Latency thấp).</li><li>Chi phí token rẻ nhất vì không phải mang vác lịch sử trò chuyện qua nhiều vòng.</li><li>Dễ triển khai trong các tác vụ độc lập, phi trạng thái (Stateless).</li></ul>
+<h3>Nhược điểm chí mạng:</h3>
+<p>Nếu tác vụ đòi hỏi suy luận nhiều tầng, mô hình rất dễ bị &quot;trôi mục tiêu&quot; hoặc vấp ngã ở một bước trung gian mà không có cơ hội sửa sai. Toàn bộ chuỗi suy luận sụp đổ như hiệu ứng domino.</p>
+<h2>Multi-turn Chaining: Sức mạnh của việc chia nhỏ và kiểm soát</h2>
+<p><strong>Multi-turn là quy trình chia nhỏ một bài toán phức tạp thành một chuỗi các bước tuần tự (Chain of Prompts / Multi-step Workflow), trong đó đầu ra của bước trước trở thành đầu vào có kiểm duyệt của bước sau.</strong></p>
+<p>Năm 2023, một nghiên cứu mang tính cột mốc từ Google Research và Princeton mang tên <em>ReAct: Synergizing Reasoning and Acting in Language Models</em> (Yao và cộng sự, ICLR 2023) đã chứng minh: khi kết hợp luân phiên giữa suy luận (Reasoning) và hành động (Acting) qua nhiều bước nhỏ, AI giải quyết được các bài toán hóc búa vượt trội hoàn toàn so với việc cố gắng giải trong một lượt duy nhất.</p>
+<h3>Một ví dụ thực tế trong Marketing Studio:</h3>
+<p>Thay vì viết một prompt dài 5 trang: <em>&quot;Hãy nghiên cứu thị trường, viết bài blog 2000 từ, tự kiểm tra lỗi chính tả và chuyển đổi sang post Facebook&quot;</em>, hệ thống chia thành chuỗi 4 lượt:</p>
+<ul><li><strong>Lượt 1 (Research):</strong> Tìm kiếm và trích xuất 5 luận điểm cốt lõi kèm nguồn chính thống. ➔ <em>Máy dừng lại, ghi file <code>research.md</code>.</em></li><li><strong>Lượt 2 (Drafting):</strong> Lấy 5 luận điểm trên viết thành bài blog hoàn chỉnh. ➔ <em>Máy ghi file <code>blog.md</code>.</em></li><li><strong>Lượt 3 (Self-QA):</strong> Chạy checklist 24 tiêu chí kiểm tra giọng văn, rà soát claim chưa có nguồn. ➔ <em>Máy ghi file <code>gates.json</code>.</em></li><li><strong>Lượt 4 (Repurposing):</strong> Đọc bài blog đã qua kiểm duyệt để chuyển hoá thành bài đăng Facebook native. ➔ <em>Máy ghi file <code>facebook/post.txt</code>.</em></li></ul>
+<h2>Bảng so sánh chiến lược: Chọn Single-turn hay Multi-turn?</h2>
+<div class="tbl-wrap"><table><thead><tr><th>Tiêu chí</th><th>Single-turn (Một chạm)</th><th>Multi-turn (Chuỗi nhiều lượt)</th></tr></thead><tbody><tr><td><strong>Độ phức tạp bài toán</strong></td><td>Đơn giản, tuyến tính, 1 bước xong</td><td>Phức tạp, nhiều tầng suy luận, cần đối chiếu</td></tr><tr><td><strong>Khả năng kiểm soát lỗi</strong></td><td>Kém: sai 1 chỗ là hỏng cả bài</td><td>Xuất sắc: bắt được lỗi ở từng trạm dừng</td></tr><tr><td><strong>Độ trễ (Latency)</strong></td><td>Rất nhanh (1–3 giây)</td><td>Chậm hơn (mỗi bước tốn một lượt gọi)</td></tr><tr><td><strong>Chi phí Token</strong></td><td>Rẻ</td><td>Tốn hơn (do duy trì ngữ cảnh hoặc gọi nhiều lần)</td></tr><tr><td><strong>Sự can thiệp của con người</strong></td><td>Không có (Black box)</td><td>Dễ dàng chèn cổng duyệt Human-in-the-loop</td></tr></tbody></table></div>
+<h2>Lời khuyên thực chiến</h2>
+<p>Quy tắc ngón tay cái của mình khi thiết kế hệ thống cho doanh nghiệp:</p>
+<div class="callout"><strong>Nếu một công việc mà con người không thể làm xong trong 5 phút mà không cần dừng lại kiểm tra, đừng bao giờ bắt AI làm nó trong một câu prompt duy nhất.</strong></div>
+<p>Hãy chia nhỏ quy trình. Thiết lập các trạm dừng chân. Ở mỗi trạm, hãy để máy tự kiểm tra (Self-QA) hoặc kéo con người vào duyệt (Human Gate). Đó chính là nền tảng triết lý của hệ thống Agentic Workflow mà chúng ta sẽ khám phá sâu hơn ở chặng 3.</p>
+<h2>Khép lại Chặng 1</h2>
+<p>Với 10 bài viết vừa qua, chúng ta đã đi trọn vẹn những nguyên lý nền tảng nhất của <strong>Chặng 1: Prompt Engineering</strong> — từ việc nhìn prompt như bản vẽ giao việc, cho ví dụ mẫu few-shot, ép khuôn đầu ra, tránh bẫy lệnh cấm, cho tới việc điều phối chuỗi tương tác.</p>
+<p>Prompt tốt là điều kiện cần. Nhưng nó chưa bao giờ là điều kiện đủ. Một người thợ dù có bản vẽ xuất sắc đến đâu, nhưng nếu bị nhốt trong căn phòng tối không có tài liệu và dữ liệu của công ty, thì vẫn không thể làm việc được.</p>
+<p>Chào mừng bạn chuẩn bị bước sang <strong>Chặng 2: Context Engineering — Máy cần biết những gì, và biết từ đâu?</strong></p>
+<h2>Nguồn tham khảo</h2>
+<ol><li>Yao, S., Zhao, J., Yu, D., et al. (ICLR 2023) — <em>ReAct: Synergizing Reasoning and Acting in Language Models</em>.</li><li>Wu, Q., Bansal, G., Zhang, J., et al. (2023) — <em>AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation</em>.</li><li>LangChain &amp; LlamaIndex Documentation — <em>Chains and Sequential Workflows Guide</em>.</li></ol>
+  </article>
+
+  <footer class="author-card" aria-labelledby="author-name">
+    <div class="author-avatar">
+      <img src="https://ducnguyen221.github.io/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức" loading="lazy" width="84" height="84">
+    </div>
+    <div class="author-info">
+      <div class="kicker">Tác giả · Author</div>
+      <h3 id="author-name">Nguyễn Quang Đức (Tobi)</h3>
+      <p>Data &amp; AI Engineer · Trainer tại KPIM Academy &amp; COMPA Class. Trang cá nhân tại
+        <a href="https://ducnguyen.vn" target="_blank" rel="noopener">ducnguyen.vn</a>.</p>
+    </div>
+    <nav class="social-grid" aria-label="Liên kết tác giả">
+      <a class="social-btn" href="https://ducnguyen.vn" target="_blank" rel="noopener" aria-label="Website" title="ducnguyen.vn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.facebook.com/TobiNguyenData/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.youtube.com/@PowerBIHeroVn" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a class="social-btn" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" aria-label="E-Profile" title="E-Profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      </a>
+    </nav>
+  </footer>
+</main>
+</body>
+</html>

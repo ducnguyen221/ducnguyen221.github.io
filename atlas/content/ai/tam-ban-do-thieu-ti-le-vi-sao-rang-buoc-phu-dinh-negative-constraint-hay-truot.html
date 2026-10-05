@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tấm bản đồ thiếu tỉ lệ: vì sao ràng buộc phủ định (negative constraint) hay trượt · Học cùng Tobi</title>
+<meta name="description" content="myth_vs_fact">
+<link rel="canonical" href="https://ducnguyen.vn/atlas/content/ai/tam-ban-do-thieu-ti-le-vi-sao-rang-buoc-phu-dinh-negative-constraint-hay-truot.html">
+<meta name="author" content="Nguyễn Quang Đức">
+<!-- Open Graph — BAT BUOC. Thieu la Facebook/Zalo scrape ra bai TRAN TRUI, mat phan lon suc hut.
+     Ca VC-001/002/003 deu thieu (do 04/09: 0/3 bai co the og:) => bo sung tan goc tai day. -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tấm bản đồ thiếu tỉ lệ: vì sao ràng buộc phủ định (negative constraint) hay trượt">
+<meta property="og:description" content="myth_vs_fact">
+<meta property="og:url" content="https://ducnguyen.vn/atlas/content/ai/tam-ban-do-thieu-ti-le-vi-sao-rang-buoc-phu-dinh-negative-constraint-hay-truot.html">
+<meta property="og:image" content="https://ducnguyen.vn/atlas/content/ai/tam-ban-do-thieu-ti-le-vi-sao-rang-buoc-phu-dinh-negative-constraint-hay-truot.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:site_name" content="Học cùng Tobi">
+<meta property="article:published_time" content="2026-10-21">
+<meta name="date" content="2026-10-21">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tấm bản đồ thiếu tỉ lệ: vì sao ràng buộc phủ định (negative constraint) hay trượt">
+<meta name="twitter:description" content="myth_vs_fact">
+<meta name="twitter:image" content="https://ducnguyen.vn/atlas/content/ai/tam-ban-do-thieu-ti-le-vi-sao-rang-buoc-phu-dinh-negative-constraint-hay-truot.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b1020;--bg-elev:#0f1530;--surface:#151b3d;--surface-2:#1c244d;
+  --border:#2a3470;--border-soft:#1f2654;
+  --accent:#7c83ff;--accent-2:#a5acff;--accent-soft:#3d3e9c;--violet:#c4a8ff;
+  --green:#34d399;--amber:#fbbf24;--sky:#38bdf8;
+  --text:#e8ecff;--text-2:#a8b0d6;--text-3:#6b75a8;
+  --shadow-lg:0 4px 8px rgba(0,0,0,.35),0 24px 48px rgba(0,0,0,.3);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Outfit','Be Vietnam Pro',sans-serif}
+body{font-family:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;
+  background:radial-gradient(1200px 600px at 20% -10%,rgba(124,131,255,.12),transparent 60%),
+             radial-gradient(900px 500px at 90% 10%,rgba(196,168,255,.08),transparent 60%),var(--bg);
+  color:var(--text);min-height:100vh;line-height:1.7;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;overflow-wrap:break-word}
+::selection{background:var(--accent);color:#fff}
+img{max-width:100%}
+a{color:var(--accent-2);text-decoration:none;border-bottom:1px dashed var(--accent-soft)}
+a:hover{border-bottom-style:solid}
+
+.topbar{position:sticky;top:0;z-index:100;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  background:rgba(11,16,32,.78);border-bottom:1px solid var(--border-soft)}
+.topbar-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:14px 28px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;border:none}
+.brand-mark{width:40px;height:40px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,#7c83ff,#c4a8ff);box-shadow:0 4px 16px rgba(124,131,255,.35);
+  display:flex;align-items:center;justify-content:center}
+.brand-mark svg{width:22px;height:22px}
+.brand-text h1{font-size:.95rem;font-weight:800;line-height:1.2}
+.brand-text h1 span{color:var(--accent-2)}
+.brand-text p{font-size:.72rem;color:var(--text-3);font-weight:500;margin-top:1px}
+.topbar .pill{margin-left:auto;font-size:.74rem;font-weight:700;color:var(--accent-2);
+  background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);border-radius:999px;padding:6px 16px}
+
+.container{max-width:920px;margin:0 auto;padding:40px 28px 80px}
+
+.hero{display:grid;grid-template-columns:1fr;gap:28px;margin-bottom:44px;align-items:center}
+.hero.has-art{grid-template-columns:1.1fr .9fr}
+.hero .kick{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--accent-2);background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);
+  border-radius:999px;padding:7px 18px;margin-bottom:18px}
+.hero h1.title{font-size:2.5rem;font-weight:900;letter-spacing:-1px;line-height:1.12;margin-bottom:14px}
+.hero .angle{color:var(--text-2);font-size:1.05rem;line-height:1.6}
+.hero-art{border-radius:20px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg)}
+.hero-art img{display:block;width:100%;height:auto}
+
+.article h2{font-size:1.5rem;font-weight:800;margin:42px 0 14px;padding-bottom:10px;
+  border-bottom:1px solid var(--border-soft);color:var(--text)}
+.article h3{font-size:1.18rem;font-weight:700;margin:30px 0 10px;color:var(--accent-2)}
+.article h4{font-size:1.02rem;font-weight:700;margin:22px 0 8px;color:var(--violet)}
+.article p{color:var(--text-2);margin:14px 0;font-size:1.02rem}
+.article strong{color:var(--text);font-weight:700}
+.article code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--bg-elev);
+  padding:2px 7px;border-radius:5px;color:var(--violet);border:1px solid var(--border-soft)}
+.article ul,.article ol{margin:14px 0 14px 8px;padding-left:22px;color:var(--text-2)}
+.article li{margin:8px 0;font-size:1.02rem}
+.article ul li::marker{color:var(--accent)}
+.callout{background:linear-gradient(180deg,rgba(124,131,255,.08),transparent);
+  border:1px solid var(--border-soft);border-left:4px solid var(--accent);
+  border-radius:4px 14px 14px 4px;padding:16px 20px;margin:22px 0;color:var(--text);font-size:1.02rem}
+.tbl-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--border-soft);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--border-soft)}
+thead th{background:var(--surface);color:var(--text);font-weight:700}
+tbody tr:hover{background:var(--surface)}
+td{color:var(--text-2)}
+
+.author-card{margin-top:54px;background:linear-gradient(135deg,rgba(124,131,255,.06),rgba(196,168,255,.04));
+  border:1px solid var(--border-soft);border-radius:18px;padding:28px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center}
+.author-avatar{width:84px;height:84px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:3px solid var(--accent-soft);box-shadow:0 8px 32px rgba(124,131,255,.3)}
+.author-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.author-info .kicker{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:6px}
+.author-info h3{font-size:1.3rem;font-weight:800;margin-bottom:4px;
+  background:linear-gradient(90deg,var(--accent-2),var(--violet));-webkit-background-clip:text;
+  background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.author-info p{color:var(--text-2);font-size:.88rem;line-height:1.6;max-width:520px}
+.social-grid{display:grid;grid-template-columns:repeat(4,40px);gap:8px}
+.social-btn{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid var(--border-soft);color:var(--text-2);transition:all .15s}
+.social-btn svg{width:18px;height:18px}
+.social-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.3)}
+
+@media(max-width:780px){
+  .hero.has-art{grid-template-columns:1fr}
+  .hero h1.title{font-size:1.9rem}
+}
+.media{margin:0 0 44px}
+.media .media-label{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin:0 0 12px}
+.summary-img{margin:0 0 22px;text-align:center}
+.summary-img img{width:100%;max-width:960px;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,.35);display:block;margin:0 auto}
+.summary-img figcaption{margin-top:8px;font-size:.86rem;color:#8b98ab;letter-spacing:.02em}
+.video-embed{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;
+  border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px;background:#000}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.media.cover{margin:0 0 40px}
+.cover-art{border-radius:18px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px}
+.cover-art img{display:block;width:100%;height:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.audio-embed{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;
+  border:1px solid var(--border-soft);background:var(--surface)}
+.audio-embed .ic{font-size:1.3rem}
+.audio-embed audio{flex:1;width:100%}
+@media (max-width:720px){
+  .hero.has-art{grid-template-columns:1fr}
+  .author-card{grid-template-columns:1fr;text-align:center;gap:18px;padding:22px}
+  .author-avatar{margin:0 auto}.author-info p{margin:0 auto}.social-grid{justify-content:center;margin:0 auto}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="https://ducnguyen.vn/atlas/" target="_blank" rel="noopener">
+      <div class="brand-mark"><svg viewBox="0 0 576 512" fill="#fff"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"/></svg></div>
+      <div class="brand-text"><h1>Học cùng <span>Tobi</span></h1><p>COMPA Class · KPIM Academy</p></div>
+    </a>
+    <span class="pill">ai-prompt</span>
+  </div>
+</header>
+
+<main class="container">
+  <section class="media cover"><h1 class="sr-only">Tấm bản đồ thiếu tỉ lệ: vì sao ràng buộc phủ định (negative constraint) hay trượt</h1><figure class="summary-img"><img src="tam-ban-do-thieu-ti-le-vi-sao-rang-buoc-phu-dinh-negative-constraint-hay-truot-1.png" loading="lazy" alt="myth_vs_fact"><figcaption>Tóm tắt cả bài trong một hình</figcaption></figure><div class="audio-embed"><span class="ic">🎧</span><audio controls preload="none" src="tam-ban-do-thieu-ti-le-vi-sao-rang-buoc-phu-dinh-negative-constraint-hay-truot.mp3"></audio></div></section>
+  <article class="article">
+    <p>Hãy thử làm một thí nghiệm nhỏ trong ba giây:</p>
+<p><strong>Bạn tuyệt đối KHÔNG ĐƯỢC nghĩ đến một con voi màu hồng đang đeo kính râm.</strong></p>
+<p>Khả năng rất cao là ngay khi đọc xong câu trên, tâm trí bạn đã kịp vẽ ra hình ảnh con voi màu hồng đó trước khi bạn kịp ngăn nó lại.</p>
+<p>Tâm lý học gọi đây là hiện tượng <em>Hiệu ứng chú ý mỉa mai</em> (Ironic Process Theory) được giáo sư Daniel Wegner nghiên cứu từ năm 1987: nỗ lực đè nén một ý nghĩ thường vô tình làm ý nghĩ đó trở nên nổi bật hơn trong não bộ.</p>
+<p>Và điều đáng ngạc nhiên là: các mô hình ngôn ngữ lớn (LLM) hiện nay cũng mắc phải một hội chứng gần như tương tự khi nhận các <strong>ràng buộc phủ định (Negative Constraints)</strong>.</p>
+<p>Bạn càng dặn: <em>&quot;Tuyệt đối không được dùng từ ngữ hoa mỹ&quot;</em>, <em>&quot;Đừng nhắc đến tên đối thủ X&quot;</em>, <em>&quot;Không được viết câu dài&quot;</em> — thì y như rằng trong văn bản sinh ra, những lỗi đó vẫn xuất hiện với tần suất đáng kinh ngạc.</p>
+<p>Tại sao lại như vậy? Và làm sao để kiểm soát hành vi của AI một cách đáng tin cậy?</p>
+<h2>Cơ chế sinh từ tự hồi quy: Vì sao lệnh cấm hay phản tác dụng?</h2>
+<p>Mô hình AI hiện đại như GPT-4 hay Claude không &quot;suy nghĩ&quot; như một triết gia có ý thức phản tỉnh. Chúng là các mô hình sinh từ tự hồi quy (Autoregressive Token Generation): chúng tính toán phân phối xác suất để chọn ra từ tiếp theo dựa trên toàn bộ các từ đã xuất hiện trước đó.</p>
+<p>Khi bạn viết vào prompt:</p>
+<div class="callout"><em>&quot;Viết bài giới thiệu phần mềm kế toán. Cấm không được nhắc đến phần mềm SAP.&quot;</em></div>
+<p>Trong ma trận chú ý (Attention Mechanism) của mô hình, token &quot;SAP&quot; đã được nhúng vào ngữ cảnh với trọng số kích hoạt cao. Mô hình chú ý đến từ đó để cố gắng &quot;né&quot; nó. Nhưng trong quá trình sinh từ, nếu ngữ cảnh đẩy xác suất của các từ liên quan đến hệ thống ERP lên cao, token bị cấm rất dễ dàng vượt qua rào cản và xuất hiện trong văn bản đầu ra.</p>
+<p>Nói một cách hình ảnh: <strong>bạn đưa cho tài xế một tấm bản đồ chỉ toàn những biển cấm đi, nhưng không hề vẽ cho họ con đường nào được phép đi.</strong></p>
+<h2>Nguyên tắc vàng: Chuyển từ &quot;CẤM&quot; sang &quot;HƯỚNG DẪN TÍCH CỰC&quot;</h2>
+<p>Trong tài liệu hướng dẫn kỹ thuật của Anthropic, có một nguyên tắc được nhắc đi nhắc lại:</p>
+<div class="callout"><em>&quot;Tell Claude what to do, not just what not to do.&quot;</em> (Hãy bảo Claude phải làm gì, thay vì chỉ bảo nó không được làm gì).</div>
+<p>Thay vì đưa ra lệnh cấm tiêu cực, hãy chuyển hoá nó thành <strong>hành vi thay thế tích cực (Positive Alternative)</strong>:</p>
+<div class="tbl-wrap"><table><thead><tr><th>Lệnh cấm tiêu cực (Dễ trượt)</th><th>Hướng dẫn tích cực thay thế (Tin cậy cao)</th></tr></thead><tbody><tr><td>&quot;Không được trả lời dài dòng.&quot;</td><td>&quot;Trả lời tối đa trong đúng 3 câu ngắn.&quot;</td></tr><tr><td>&quot;Đừng nhắc đến giá cả hay khuyến mãi.&quot;</td><td>&quot;Chỉ tập trung phân tích 3 tính năng kỹ thuật cốt lõi của sản phẩm.&quot;</td></tr><tr><td>&quot;Không được bịa thông tin khi không biết.&quot;</td><td>&quot;Nếu thông tin không có trong tài liệu đính kèm, hãy trả lời chính xác câu: &#x27;Dữ liệu chưa có trong tài liệu&#x27;.&quot;</td></tr><tr><td>&quot;Đừng dùng giọng văn quảng cáo sáo rỗng.&quot;</td><td>&quot;Dùng văn phong kỹ thuật khách quan, trích dẫn số liệu định lượng, xưng hô anh/em thân mật.&quot;</td></tr></tbody></table></div>
+<h2>Kỹ thuật &quot;Đóng hộp hành vi&quot; (Negative Constraints with Fallback)</h2>
+<p>Nếu bắt buộc phải có điều cấm (ví dụ: các điều khoản tuân thủ pháp lý, bảo mật dữ liệu, ranh giới an toàn), hãy áp dụng kỹ thuật <strong>Đóng hộp hành vi kèm lối thoát an toàn</strong>:</p>
+<ol><li><strong>Nêu rõ điều kiện kích hoạt</strong>: Khi nào thì rơi vào vùng cấm?</li><li><strong>Cung cấp mẫu phản hồi bắt buộc</strong>: Khi gặp vùng cấm thì nói chính xác câu gì?</li><li><strong>Đưa ví dụ minh hoạ (Few-shot)</strong>: Cho thấy một trường hợp từ chối mẫu đúng chuẩn.</li></ol>
+<p>Ví dụ trong chăm sóc khách hàng: ```text RÀNG BUỘC CHÍNH SÁCH: Bạn không có thẩm quyền xử lý yêu cầu hoàn tiền trực tiếp. NẾU khách hàng yêu cầu hoàn tiền:</p>
+<div class="callout">➔ KHÔNG giải thích lý do từ chối.</div>
+<div class="callout">➔ HÃY trả lời nguyên văn: &quot;Yêu cầu hoàn tiền của anh/chị đã được chuyển sang bộ phận Tài chính. Chuyên viên phụ trách sẽ liên hệ lại qua email trong vòng 24 giờ làm việc.&quot;</div>
+<p>```</p>
+<p>Khi được cung cấp một kịch bản hành vi thay thế rõ ràng, AI sẽ chọn đường đi an toàn đó thay vì rơi vào tình trạng lúng túng giữa việc cấm và việc trả lời.</p>
+<h2>Kết luận</h2>
+<p>Một nhà quản lý giỏi không lãnh đạo nhân viên bằng danh sách dài dặc những điều cấm đoán. Họ chỉ rõ mục tiêu, vẽ ra hành lang an toàn và cung cấp các lựa chọn hành động đúng đắn.</p>
+<p>Khi giao việc cho AI, hãy nhớ: <strong>loại bỏ một hành vi xấu bằng cách lấp đầy khoảng trống đó bằng một hành vi tốt.</strong></p>
+<p>Bài tiếp theo, chúng ta sẽ đào sâu vào căn bệnh nan y khiến nhiều người mất niềm tin vào AI nhất: hiện tượng ảo giác (Hallucination) — vì sao nhân viên AI rất hay tự tin bịa chuyện khi không biết câu trả lời?</p>
+<h2>Nguồn tham khảo</h2>
+<ol><li>Anthropic Documentation — <em>Prompt Engineering: Tell Claude what to do</em>.</li><li>Wegner, D. M. (1987) — <em>Ironic processes of mental control</em> (Cơ sở tâm lý học về hiệu ứng chú ý mỉa mai).</li><li>Vaswani et al. (NeurIPS 2017) — <em>Attention Is All You Need</em> (Cơ chế Self-Attention và sự kích hoạt token trong Transformer).</li></ol>
+  </article>
+
+  <footer class="author-card" aria-labelledby="author-name">
+    <div class="author-avatar">
+      <img src="https://ducnguyen221.github.io/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức" loading="lazy" width="84" height="84">
+    </div>
+    <div class="author-info">
+      <div class="kicker">Tác giả · Author</div>
+      <h3 id="author-name">Nguyễn Quang Đức (Tobi)</h3>
+      <p>Data &amp; AI Engineer · Trainer tại KPIM Academy &amp; COMPA Class. Trang cá nhân tại
+        <a href="https://ducnguyen.vn" target="_blank" rel="noopener">ducnguyen.vn</a>.</p>
+    </div>
+    <nav class="social-grid" aria-label="Liên kết tác giả">
+      <a class="social-btn" href="https://ducnguyen.vn" target="_blank" rel="noopener" aria-label="Website" title="ducnguyen.vn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.facebook.com/TobiNguyenData/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.youtube.com/@PowerBIHeroVn" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a class="social-btn" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" aria-label="E-Profile" title="E-Profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      </a>
+    </nav>
+  </footer>
+</main>
+</body>
+</html>

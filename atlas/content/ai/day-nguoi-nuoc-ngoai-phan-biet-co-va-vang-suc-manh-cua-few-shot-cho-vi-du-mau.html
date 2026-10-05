@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dạy người nước ngoài phân biệt có và vâng: sức mạnh của few-shot (cho ví dụ mẫu) · Học cùng Tobi</title>
+<meta name="description" content="explainer">
+<link rel="canonical" href="https://ducnguyen.vn/atlas/content/ai/day-nguoi-nuoc-ngoai-phan-biet-co-va-vang-suc-manh-cua-few-shot-cho-vi-du-mau.html">
+<meta name="author" content="Nguyễn Quang Đức">
+<!-- Open Graph — BAT BUOC. Thieu la Facebook/Zalo scrape ra bai TRAN TRUI, mat phan lon suc hut.
+     Ca VC-001/002/003 deu thieu (do 04/09: 0/3 bai co the og:) => bo sung tan goc tai day. -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dạy người nước ngoài phân biệt có và vâng: sức mạnh của few-shot (cho ví dụ mẫu)">
+<meta property="og:description" content="explainer">
+<meta property="og:url" content="https://ducnguyen.vn/atlas/content/ai/day-nguoi-nuoc-ngoai-phan-biet-co-va-vang-suc-manh-cua-few-shot-cho-vi-du-mau.html">
+<meta property="og:image" content="https://ducnguyen.vn/atlas/content/ai/day-nguoi-nuoc-ngoai-phan-biet-co-va-vang-suc-manh-cua-few-shot-cho-vi-du-mau.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:site_name" content="Học cùng Tobi">
+<meta property="article:published_time" content="2026-10-17">
+<meta name="date" content="2026-10-17">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dạy người nước ngoài phân biệt có và vâng: sức mạnh của few-shot (cho ví dụ mẫu)">
+<meta name="twitter:description" content="explainer">
+<meta name="twitter:image" content="https://ducnguyen.vn/atlas/content/ai/day-nguoi-nuoc-ngoai-phan-biet-co-va-vang-suc-manh-cua-few-shot-cho-vi-du-mau.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b1020;--bg-elev:#0f1530;--surface:#151b3d;--surface-2:#1c244d;
+  --border:#2a3470;--border-soft:#1f2654;
+  --accent:#7c83ff;--accent-2:#a5acff;--accent-soft:#3d3e9c;--violet:#c4a8ff;
+  --green:#34d399;--amber:#fbbf24;--sky:#38bdf8;
+  --text:#e8ecff;--text-2:#a8b0d6;--text-3:#6b75a8;
+  --shadow-lg:0 4px 8px rgba(0,0,0,.35),0 24px 48px rgba(0,0,0,.3);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Outfit','Be Vietnam Pro',sans-serif}
+body{font-family:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;
+  background:radial-gradient(1200px 600px at 20% -10%,rgba(124,131,255,.12),transparent 60%),
+             radial-gradient(900px 500px at 90% 10%,rgba(196,168,255,.08),transparent 60%),var(--bg);
+  color:var(--text);min-height:100vh;line-height:1.7;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;overflow-wrap:break-word}
+::selection{background:var(--accent);color:#fff}
+img{max-width:100%}
+a{color:var(--accent-2);text-decoration:none;border-bottom:1px dashed var(--accent-soft)}
+a:hover{border-bottom-style:solid}
+
+.topbar{position:sticky;top:0;z-index:100;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  background:rgba(11,16,32,.78);border-bottom:1px solid var(--border-soft)}
+.topbar-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:14px 28px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;border:none}
+.brand-mark{width:40px;height:40px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,#7c83ff,#c4a8ff);box-shadow:0 4px 16px rgba(124,131,255,.35);
+  display:flex;align-items:center;justify-content:center}
+.brand-mark svg{width:22px;height:22px}
+.brand-text h1{font-size:.95rem;font-weight:800;line-height:1.2}
+.brand-text h1 span{color:var(--accent-2)}
+.brand-text p{font-size:.72rem;color:var(--text-3);font-weight:500;margin-top:1px}
+.topbar .pill{margin-left:auto;font-size:.74rem;font-weight:700;color:var(--accent-2);
+  background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);border-radius:999px;padding:6px 16px}
+
+.container{max-width:920px;margin:0 auto;padding:40px 28px 80px}
+
+.hero{display:grid;grid-template-columns:1fr;gap:28px;margin-bottom:44px;align-items:center}
+.hero.has-art{grid-template-columns:1.1fr .9fr}
+.hero .kick{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--accent-2);background:rgba(124,131,255,.12);border:1px solid var(--accent-soft);
+  border-radius:999px;padding:7px 18px;margin-bottom:18px}
+.hero h1.title{font-size:2.5rem;font-weight:900;letter-spacing:-1px;line-height:1.12;margin-bottom:14px}
+.hero .angle{color:var(--text-2);font-size:1.05rem;line-height:1.6}
+.hero-art{border-radius:20px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg)}
+.hero-art img{display:block;width:100%;height:auto}
+
+.article h2{font-size:1.5rem;font-weight:800;margin:42px 0 14px;padding-bottom:10px;
+  border-bottom:1px solid var(--border-soft);color:var(--text)}
+.article h3{font-size:1.18rem;font-weight:700;margin:30px 0 10px;color:var(--accent-2)}
+.article h4{font-size:1.02rem;font-weight:700;margin:22px 0 8px;color:var(--violet)}
+.article p{color:var(--text-2);margin:14px 0;font-size:1.02rem}
+.article strong{color:var(--text);font-weight:700}
+.article code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--bg-elev);
+  padding:2px 7px;border-radius:5px;color:var(--violet);border:1px solid var(--border-soft)}
+.article ul,.article ol{margin:14px 0 14px 8px;padding-left:22px;color:var(--text-2)}
+.article li{margin:8px 0;font-size:1.02rem}
+.article ul li::marker{color:var(--accent)}
+.callout{background:linear-gradient(180deg,rgba(124,131,255,.08),transparent);
+  border:1px solid var(--border-soft);border-left:4px solid var(--accent);
+  border-radius:4px 14px 14px 4px;padding:16px 20px;margin:22px 0;color:var(--text);font-size:1.02rem}
+.tbl-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--border-soft);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--border-soft)}
+thead th{background:var(--surface);color:var(--text);font-weight:700}
+tbody tr:hover{background:var(--surface)}
+td{color:var(--text-2)}
+
+.author-card{margin-top:54px;background:linear-gradient(135deg,rgba(124,131,255,.06),rgba(196,168,255,.04));
+  border:1px solid var(--border-soft);border-radius:18px;padding:28px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center}
+.author-avatar{width:84px;height:84px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:3px solid var(--accent-soft);box-shadow:0 8px 32px rgba(124,131,255,.3)}
+.author-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.author-info .kicker{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:6px}
+.author-info h3{font-size:1.3rem;font-weight:800;margin-bottom:4px;
+  background:linear-gradient(90deg,var(--accent-2),var(--violet));-webkit-background-clip:text;
+  background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.author-info p{color:var(--text-2);font-size:.88rem;line-height:1.6;max-width:520px}
+.social-grid{display:grid;grid-template-columns:repeat(4,40px);gap:8px}
+.social-btn{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid var(--border-soft);color:var(--text-2);transition:all .15s}
+.social-btn svg{width:18px;height:18px}
+.social-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.3)}
+
+@media(max-width:780px){
+  .hero.has-art{grid-template-columns:1fr}
+  .hero h1.title{font-size:1.9rem}
+}
+.media{margin:0 0 44px}
+.media .media-label{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin:0 0 12px}
+.summary-img{margin:0 0 22px;text-align:center}
+.summary-img img{width:100%;max-width:960px;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,.35);display:block;margin:0 auto}
+.summary-img figcaption{margin-top:8px;font-size:.86rem;color:#8b98ab;letter-spacing:.02em}
+.video-embed{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;
+  border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px;background:#000}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.media.cover{margin:0 0 40px}
+.cover-art{border-radius:18px;overflow:hidden;border:1px solid var(--border-soft);box-shadow:var(--shadow-lg);margin-bottom:20px}
+.cover-art img{display:block;width:100%;height:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.audio-embed{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;
+  border:1px solid var(--border-soft);background:var(--surface)}
+.audio-embed .ic{font-size:1.3rem}
+.audio-embed audio{flex:1;width:100%}
+@media (max-width:720px){
+  .hero.has-art{grid-template-columns:1fr}
+  .author-card{grid-template-columns:1fr;text-align:center;gap:18px;padding:22px}
+  .author-avatar{margin:0 auto}.author-info p{margin:0 auto}.social-grid{justify-content:center;margin:0 auto}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="https://ducnguyen.vn/atlas/" target="_blank" rel="noopener">
+      <div class="brand-mark"><svg viewBox="0 0 576 512" fill="#fff"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"/></svg></div>
+      <div class="brand-text"><h1>Học cùng <span>Tobi</span></h1><p>COMPA Class · KPIM Academy</p></div>
+    </a>
+    <span class="pill">ai-prompt</span>
+  </div>
+</header>
+
+<main class="container">
+  <section class="media cover"><h1 class="sr-only">Dạy người nước ngoài phân biệt có và vâng: sức mạnh của few-shot (cho ví dụ mẫu)</h1><figure class="summary-img"><img src="day-nguoi-nuoc-ngoai-phan-biet-co-va-vang-suc-manh-cua-few-shot-cho-vi-du-mau-1.png" loading="lazy" alt="explainer"><figcaption>Tóm tắt cả bài trong một hình</figcaption></figure><div class="audio-embed"><span class="ic">🎧</span><audio controls preload="none" src="day-nguoi-nuoc-ngoai-phan-biet-co-va-vang-suc-manh-cua-few-shot-cho-vi-du-mau.mp3"></audio></div></section>
+  <article class="article">
+    <p>Có một người bạn Mỹ từng hỏi mình: làm sao để phân biệt khi nào người Việt nói &quot;có&quot;, khi nào nói &quot;vâng&quot;, và khi nào nói &quot;dạ&quot;?</p>
+<p>Mình ngồi xuống, lôi hết vốn ngữ pháp ra giải thích: &quot;dạ&quot; là kính ngữ bậc cao dùng với bề trên, &quot;vâng&quot; là đồng ý mang tính tôn trọng công việc, còn &quot;có&quot; là xác nhận sự hiện diện hoặc sở hữu. Anh bạn nghe rất chăm chú, gật đầu liên tục. Nhưng tối hôm đó đi ăn cùng nhóm bạn, khi người phục vụ hỏi &quot;anh uống trà đá không?&quot;, anh ấy dõng dạc trả lời: &quot;Dạ, vâng, có!&quot;.</p>
+<p>Tất cả chúng ta đều phì cười. Sai lầm của mình lúc đó là cố dùng <strong>định nghĩa trừu tượng</strong> để dạy một thứ vốn sống bằng <strong>ngữ cảnh và thói quen</strong>.</p>
+<p>Cách mình sửa vào ngày hôm sau đơn giản hơn nhiều: mình không nói một chữ ngữ pháp nào nữa. Mình đưa cho anh ấy đúng ba cặp ví dụ:</p>
+<ol><li>Mẹ gọi: &quot;Cơm chưa con?&quot; ➔ Trả lời: &quot;Dạ, con ăn rồi ạ.&quot;</li><li>Sếp hỏi trong cuộc họp: &quot;Đức gửi báo cáo chưa?&quot; ➔ Trả lời: &quot;Vâng, em vừa gửi email rồi anh.&quot;</li><li>Bạn hỏi: &quot;Tối nay đi cà phê không?&quot; ➔ Trả lời: &quot;Có chứ, mấy giờ?&quot;</li></ol>
+<p>Anh ấy đọc ba cặp đó trong mười giây. Và từ hôm đó trở đi, anh ấy không bao giờ nhầm nữa.</p>
+<p>Chuyện bạn giao việc cho trí tuệ nhân tạo mỗi ngày cũng y hệt như vậy. Kỹ thuật đưa ví dụ mẫu đó trong ngành AI có một cái tên chính thức: <strong>Few-shot Prompting</strong> (hoặc In-Context Learning).</p>
+<h2>Few-shot là gì, nói cho gọn</h2>
+<p><strong>Few-shot prompting là kỹ thuật chèn từ hai đến năm ví dụ mẫu hoàn chỉnh (gồm cả đầu vào và đầu ra mong muốn) ngay bên trong lời nhắc trước khi đưa dữ liệu thật cho máy xử lý.</strong></p>
+<p>Đối lập với Few-shot là <strong>Zero-shot</strong> — tức là bạn chỉ mô tả yêu cầu bằng lời rồi ném dữ liệu vào và cầu nguyện máy hiểu đúng ý mình.</p>
+<p>Năm 2020, OpenAI công bố bài báo khoa học mang tính bước ngoặt đưa tên tuổi GPT-3 ra toàn thế giới: <em>&quot;Language Models are Few-Shot Learners&quot;</em> (Brown và cộng sự, NeurIPS 2020). Luận điểm chấn động của bài báo này là: mô hình ngôn ngữ lớn không cần phải huấn luyện lại (fine-tune) trọng số cho từng tác vụ riêng biệt. Chúng có khả năng học ngay trong ngữ cảnh (In-Context Learning) chỉ bằng vài ví dụ mẫu được cung cấp trong prompt.</p>
+<p>Trong tài liệu kỹ thuật của Anthropic về Claude Prompting Best Practices, các kỹ sư cũng khẳng định: việc thêm ví dụ mẫu là phương pháp hiệu quả và ổn định nhất để kiểm soát văn phong, cấu trúc và định dạng dữ liệu đầu ra.</p>
+<h2>Vì sao mô tả bằng lời thường thua ví dụ mẫu?</h2>
+<p>Khi bạn dùng lời nói để mô tả một tiêu chuẩn phức tạp — ví dụ: <em>&quot;hãy viết một đoạn email từ chối khéo léo, đồng cảm nhưng dứt khoát, không hứa hẹn&quot;</em> — thì trong đầu bạn và trong không gian xác suất của AI là hai bức tranh hoàn toàn khác nhau.</p>
+<ul><li>Thế nào là &quot;khéo léo&quot;?</li><li>Mức độ nào thì gọi là &quot;đồng cảm&quot;?</li><li>Từ ngữ nào thể hiện sự &quot;dứt khoát&quot;?</li></ul>
+<p>Từ ngữ trừu tượng luôn có độ dung sai rất lớn. Nhưng khi bạn đưa ra một đoạn email mẫu do chính bạn từng viết:</p>
+<div class="callout"><strong>Khách:</strong> &quot;Anh muốn bên em giảm giá 20% cho hợp đồng này được không?&quot; <strong>Mẫu trả lời:</strong> &quot;Cảm ơn anh Tuấn đã tin tưởng giải pháp của bên em. Mức giá hiện tại đã được tối ưu cho toàn bộ đội ngũ kỹ sư hỗ trợ 24/7 trong 12 tháng tới nên bên em không thể giảm thêm. Em có thể linh hoạt chia kỳ thanh toán thành 3 đợt để thuận tiện cho dòng tiền bên mình, anh xem phương án này có ổn không nhé.&quot;</div>
+<p>Ngay lập tức, AI &quot;bắt được tần số&quot;:</p>
+<ol><li>Nó thấy độ dài: khoảng 3 câu.</li><li>Nó thấy cấu trúc: Cảm ơn ➔ Từ chối lịch sự nêu lý do giá trị ➔ Đưa phương án bù đắp thực tế.</li><li>Nó thấy giọng điệu: xưng em - gọi anh, thẳng thắn, không nịnh nọt.</li></ol>
+<p>Ví dụ mẫu truyền đạt lượng thông tin về ngữ cảnh gấp mười lần những câu mệnh lệnh chung chung.</p>
+<h2>Ba bài toán doanh nghiệp mà Few-shot giải quyết cực ngọt</h2>
+<p>Trong các dự án tự động hoá dữ liệu và AI mà mình triển khai cho doanh nghiệp, Few-shot là &quot;vũ khí&quot; được dùng nhiều nhất ở ba bài toán:</p>
+<h3>1. Phân loại cảm xúc và ý định khách hàng (Intent Classification)</h3>
+<p>Thay vì ngồi viết một ma trận quy tắc nếu có từ này thì phân loại là khiếu nại, chỉ cần 4 ví dụ:</p>
+<ul><li>&quot;Giao hàng lâu quá, gọi mãi không ai nghe!&quot; ➔ <code>URGENT_COMPLAINT</code></li><li>&quot;Sản phẩm dùng tốt, cho mình hỏi có bản màu đen không?&quot; ➔ <code>PRODUCT_INQUIRY</code></li><li>&quot;Cho xin báo giá gói doanh nghiệp 50 người.&quot; ➔ <code>SALES_LEAD</code></li><li>&quot;Ok cảm ơn shop.&quot; ➔ <code>GENERAL_FEEDBACK</code></li></ul>
+<h3>2. Chuẩn hoá dữ liệu địa chỉ và thông tin bán cấu trúc</h3>
+<p>Khách hàng gõ địa chỉ trên form web đủ kiểu: &quot;sn 12 ngo 45 chua boc dong da hn&quot;, &quot;số 10 nguyễn huệ q1 hcm&quot;. Đưa 3 ví dụ chuyển đổi sang JSON chuẩn có trường Số nhà, Phường/Xã, Quận/Huyện, Tỉnh/Thành phố. Mô hình sẽ chuẩn hoá chính xác hàng nghìn dòng tiếp theo mà không cần viết regex phức tạp.</p>
+<h3>3. Đồng bộ giọng văn thương hiệu (Brand Voice)</h3>
+<p>Đưa 2 bài viết mẫu đạt điểm 10 về phong cách của người sáng lập. Mô hình sẽ tự động bắt chước cách dùng từ, cách ngắt nhịp câu và cách đặt dấu câu mà bạn không cần phải giải thích nguyên tắc hành văn.</p>
+<h2>Những cạm bẫy cần tránh khi dùng Few-shot</h2>
+<p>Few-shot rất mạnh, nhưng có ba cái bẫy bạn cần biết:</p>
+<ol><li><strong>Ví dụ thiên kiến (Label Bias):</strong> Nếu bạn đưa 3 ví dụ đều có nhãn là &quot;Tích cực&quot;, mô hình sẽ có xu hướng đoán các câu sau là &quot;Tích cực&quot;. Hãy đảm bảo các ví dụ phân bổ đều các trường hợp.</li><li><strong>Ví dụ quá dài ngốn Context Window:</strong> Đưa 10 ví dụ mỗi ví dụ một trang giấy sẽ làm đầy bộ nhớ ngữ cảnh và tăng chi phí token không cần thiết. Thường từ <strong>2 đến 5 ví dụ ngắn, sắc nét</strong> là điểm tối ưu nhất.</li><li><strong>Ví dụ mâu thuẫn nhau:</strong> Hai ví dụ có trường hợp giống nhau nhưng đầu ra quy ước khác nhau sẽ khiến mô hình bị bối rối và sinh kết quả ngẫu nhiên.</li></ol>
+<h2>Kết luận</h2>
+<p>Dạy máy cũng giống như dạy người. Nếu bạn nói mãi mà AI vẫn làm sai, đừng cố tìm thêm những tính từ hoa mỹ hay gõ capslock để ra lệnh to hơn.</p>
+<p><strong>Hãy đưa cho nó xem một bài mẫu điểm 10.</strong></p>
+<p>Bài kế tiếp, chúng ta sẽ xử lý một tai nạn nghề nghiệp rất phổ biến: bạn nhờ AI tóm tắt ngắn, nhưng nó trả về một bài luận mười trang khiến cả hệ thống bị treo — bài toán kiểm soát khuôn dạng và độ dài đầu ra (Output Format).</p>
+<h2>Nguồn tham khảo</h2>
+<ol><li>Brown, T., Mann, B., Ryder, N., Subbiah, M., et al. (NeurIPS 2020) — <em>Language Models are Few-Shot Learners</em> (Bài báo nền tảng về In-Context Learning trên GPT-3).</li><li>Anthropic Claude Platform Documentation — <em>Prompt Engineering: Use examples (Few-shot prompting)</em>.</li><li>Zhao, Z., Wallace, E., Feng, S., Klein, D., Singh, S. (ICML 2021) — <em>Calibrate Before Use: Improving Few-Shot Performance of Language Models</em> (Nghiên cứu về các thiên kiến khi dùng ví dụ mẫu).</li></ol>
+  </article>
+
+  <footer class="author-card" aria-labelledby="author-name">
+    <div class="author-avatar">
+      <img src="https://ducnguyen221.github.io/profile/assets/images/KPIM-Duc-Nguyen.png" alt="Nguyễn Quang Đức" loading="lazy" width="84" height="84">
+    </div>
+    <div class="author-info">
+      <div class="kicker">Tác giả · Author</div>
+      <h3 id="author-name">Nguyễn Quang Đức (Tobi)</h3>
+      <p>Data &amp; AI Engineer · Trainer tại KPIM Academy &amp; COMPA Class. Trang cá nhân tại
+        <a href="https://ducnguyen.vn" target="_blank" rel="noopener">ducnguyen.vn</a>.</p>
+    </div>
+    <nav class="social-grid" aria-label="Liên kết tác giả">
+      <a class="social-btn" href="https://ducnguyen.vn" target="_blank" rel="noopener" aria-label="Website" title="ducnguyen.vn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.facebook.com/TobiNguyenData/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.youtube.com/@PowerBIHeroVn" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a class="social-btn" href="https://ducnguyen221.github.io/profile/" target="_blank" rel="noopener" aria-label="E-Profile" title="E-Profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      </a>
+    </nav>
+  </footer>
+</main>
+</body>
+</html>
