@@ -1,5 +1,135 @@
 [
   {
+    "slug": "vali-qua-can-nhoi-het-tai-lieu-vao-khong-phai-la-tot-context-stuffing",
+    "title": "Vali quá cân: nhồi hết tài liệu vào không phải là tốt — context stuffing · Học cùng Tobi",
+    "description": "myth_vs_fact",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/vali-qua-can-nhoi-het-tai-lieu-vao-khong-phai-la-tot-context-stuffing.html",
+    "thumbnail": "content/ai/vali-qua-can-nhoi-het-tai-lieu-vao-khong-phai-la-tot-context-stuffing.jpg",
+    "published": "2026-11-14",
+    "lastModified": "2026-10-05",
+    "fileSize": 19328
+  },
+  {
+    "slug": "nguoi-truc-dien-thoai-ca-dem-vi-sao-ai-quen-token-va-gioi-han-cua-so",
+    "title": "Người trực điện thoại ca đêm: vì sao AI quên — token và giới hạn cửa sổ · Học cùng Tobi",
+    "description": "explainer",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/nguoi-truc-dien-thoai-ca-dem-vi-sao-ai-quen-token-va-gioi-han-cua-so.html",
+    "thumbnail": "content/ai/nguoi-truc-dien-thoai-ca-dem-vi-sao-ai-quen-token-va-gioi-han-cua-so.jpg",
+    "published": "2026-11-12",
+    "lastModified": "2026-10-05",
+    "fileSize": 19499
+  },
+  {
+    "slug": "cai-ban-lam-viec-va-cai-kho-cua-so-ngu-canh-context-window-rong-bao-nhieu",
+    "title": "Cái bàn làm việc và cái kho: cửa sổ ngữ cảnh (context window) rộng bao nhiêu · Học cùng Tobi",
+    "description": "explainer",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/cai-ban-lam-viec-va-cai-kho-cua-so-ngu-canh-context-window-rong-bao-nhieu.html",
+    "thumbnail": "content/ai/cai-ban-lam-viec-va-cai-kho-cua-so-ngu-canh-context-window-rong-bao-nhieu.jpg",
+    "published": "2026-11-10",
+    "lastModified": "2026-10-05",
+    "fileSize": 18340
+  },
+  {
+    "slug": "bac-si-khong-co-benh-an-context-engineering-la-gi-khac-prompt-cho-nao",
+    "title": "Bác sĩ không có bệnh án: context engineering là gì, khác prompt chỗ nào · Học cùng Tobi",
+    "description": "explainer",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/bac-si-khong-co-benh-an-context-engineering-la-gi-khac-prompt-cho-nao.html",
+    "thumbnail": "content/ai/bac-si-khong-co-benh-an-context-engineering-la-gi-khac-prompt-cho-nao.jpg",
+    "published": "2026-11-08",
+    "lastModified": "2026-10-05",
+    "fileSize": 18996
+  },
+  {
+    "slug": "chot-chang-1-prompt-gioi-khong-cuu-noi-agent-toi-gioi-han-cua-prompt-engineering",
+    "title": "[Chốt chặng 1] Prompt giỏi không cứu nổi agent tồi: giới hạn của prompt engineering · Học cùng Tobi",
+    "description": "opinion",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/chot-chang-1-prompt-gioi-khong-cuu-noi-agent-toi-gioi-han-cua-prompt-engineering.html",
+    "thumbnail": "content/ai/chot-chang-1-prompt-gioi-khong-cuu-noi-agent-toi-gioi-han-cua-prompt-engineering.jpg",
+    "published": "2026-11-06",
+    "lastModified": "2026-10-05",
+    "fileSize": 19859
+  },
+  {
+    "slug": "quan-pho-doi-cong-thuc-ma-khong-ai-nem-lai-do-prompt-bang-bo-thu-prompt-testing",
+    "title": "Quán phở đổi công thức mà không ai nếm lại: đo prompt bằng bộ thử (prompt testing) · Học cùng Tobi",
+    "description": "how_to",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/quan-pho-doi-cong-thuc-ma-khong-ai-nem-lai-do-prompt-bang-bo-thu-prompt-testing.html",
+    "thumbnail": "content/ai/quan-pho-doi-cong-thuc-ma-khong-ai-nem-lai-do-prompt-bang-bo-thu-prompt-testing.jpg",
+    "published": "2026-11-04",
+    "lastModified": "2026-10-05",
+    "fileSize": 18959
+  },
+  {
+    "slug": "nguoi-phien-dich-gioi-tach-chi-dan-khoi-du-lieu-instruction-vs-data-trong-prompt",
+    "title": "Người phiên dịch giỏi: tách chỉ dẫn khỏi dữ liệu (instruction vs data) trong prompt · Học cùng Tobi",
+    "description": "explainer",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/nguoi-phien-dich-gioi-tach-chi-dan-khoi-du-lieu-instruction-vs-data-trong-prompt.html",
+    "thumbnail": "content/ai/nguoi-phien-dich-gioi-tach-chi-dan-khoi-du-lieu-instruction-vs-data-trong-prompt.jpg",
+    "published": "2026-11-02",
+    "lastModified": "2026-10-05",
+    "fileSize": 18973
+  },
+  {
+    "slug": "bieu-mau-o-phuong-khi-nao-nen-bien-cau-hoi-thanh-prompt-template",
+    "title": "Biểu mẫu ở phường: khi nào nên biến câu hỏi thành prompt template · Học cùng Tobi",
+    "description": "how_to",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/bieu-mau-o-phuong-khi-nao-nen-bien-cau-hoi-thanh-prompt-template.html",
+    "thumbnail": "content/ai/bieu-mau-o-phuong-khi-nao-nen-bien-cau-hoi-thanh-prompt-template.jpg",
+    "published": "2026-10-31",
+    "lastModified": "2026-10-05",
+    "fileSize": 19009
+  },
+  {
+    "slug": "cai-can-lech-prompt-dung-ma-ket-qua-van-khac-nhau-temperature-va-tinh-ngau-nhien",
+    "title": "Cái cân lệch: prompt đúng mà kết quả vẫn khác nhau — temperature và tính ngẫu nhiên · Học cùng Tobi",
+    "description": "explainer",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/cai-can-lech-prompt-dung-ma-ket-qua-van-khac-nhau-temperature-va-tinh-ngau-nhien.html",
+    "thumbnail": "content/ai/cai-can-lech-prompt-dung-ma-ket-qua-van-khac-nhau-temperature-va-tinh-ngau-nhien.jpg",
+    "published": "2026-10-29",
+    "lastModified": "2026-10-05",
+    "fileSize": 18654
+  },
+  {
+    "slug": "cai-nhau-voi-ai-noi-to-hon-vo-ich-bay-nhan-hoa-anthropomorphism",
+    "title": "Cãi nhau với AI: nói to hơn vô ích — bẫy nhân hoá (anthropomorphism) · Học cùng Tobi",
+    "description": "opinion",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/cai-nhau-voi-ai-noi-to-hon-vo-ich-bay-nhan-hoa-anthropomorphism.html",
+    "thumbnail": "content/ai/cai-nhau-voi-ai-noi-to-hon-vo-ich-bay-nhan-hoa-anthropomorphism.jpg",
+    "published": "2026-10-27",
+    "lastModified": "2026-10-05",
+    "fileSize": 19373
+  },
+  {
     "slug": "hoi-duong-o-nga-tu-hoi-mot-luot-hay-nhieu-luot-single-turn-va-multi-turn",
     "title": "Hỏi đường ở ngã tư: hỏi một lượt hay nhiều lượt — single-turn và multi-turn · Học cùng Tobi",
     "description": "comparison",
