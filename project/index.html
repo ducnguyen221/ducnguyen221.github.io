@@ -294,6 +294,32 @@
     .product-cta p { color: #cbd5e1; font-size: 0.84rem; line-height: 1.55; flex: 1; }
     .product-cta .pc-btn { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: 0.84rem; color: var(--cyan); }
     .product-cta .pc-btn svg { width: 14px; height: 14px; }
+    .product-category { margin-top: 28px; }
+    .product-category:first-of-type { margin-top: 8px; }
+    .product-category-head { margin-bottom: 14px; }
+    .product-category-head h3 {
+      margin: 4px 0 0;
+      font-family: var(--font-heading);
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .product-category-head p { margin: 4px 0 0; color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+    .product-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--cyan);
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.28);
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+    }
+    .product-cta .pc-logo svg { display: block; max-width: 40px; max-height: 40px; }
 
     .hero {
       display: grid;
@@ -918,39 +944,95 @@ html { overscroll-behavior-y: none; }
     <section class="products-section" id="products" aria-labelledby="products-title">
       <div class="products-head">
         <h2 id="products-title">Sản phẩm</h2>
-        <p>Các sản phẩm mình quản lý và vibe-code — nhấn để khám phá.</p>
+        <p>Danh sách các sản phẩm và repo mã nguồn mở mình xây dựng, quản lý và vibe-code — nhấn để khám phá.</p>
       </div>
-      <div class="product-row">
-        <a class="product-cta" href="https://ducnguyen.vn/ai-record/" target="_blank" rel="noopener">
-          <span class="pc-logo"><img src="/ai-record-logo.png" alt="AI Record" loading="lazy"></span>
-          <h3>AI Record — Meeting Scribe</h3>
-          <p>Thu âm họp &amp; đọc-chép giọng nói: transcribe realtime, dịch, tách người nói, tóm tắt AI. 100% local, mã nguồn mở.</p>
-          <span class="pc-btn">Khám phá <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
-        <a class="product-cta" href="https://ducnguyen.vn/agent-data-studio/" target="_blank" rel="noopener">
-          <span class="pc-logo"><img src="/powerbi-agent-logo.png" alt="agent-data-studio" loading="lazy"></span>
-          <h3>agent-data-studio — AI × Power BI</h3>
-          <p>MCP server biến AI Agent thành chuyên gia phân tích Power BI: DAX với policy an toàn dữ liệu, dựng báo cáo theo template, pipeline 9 khâu. Mã nguồn mở.</p>
-          <span class="pc-btn">Khám phá <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
-        <a class="product-cta" href="https://compaclass.com" target="_blank" rel="noopener">
-          <span class="pc-logo"><img src="/profile/assets/images/COMPA-CLASS.jpg" alt="COMPA CLASS" loading="lazy"></span>
-          <h3>Sản phẩm EduTech COMPA CLASS</h3>
-          <p>Sản phẩm LMS ứng dụng AI trong tạo và quản lý tài liệu, kiến thức học tập.</p>
-          <span class="pc-btn">Truy cập <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
-        <a class="product-cta" href="https://edp.vn/" target="_blank" rel="noopener">
-          <span class="pc-logo edp">EDP.vn</span>
-          <h3>EDP.vn</h3>
-          <p>Quản lý giải pháp dữ liệu và ứng dụng AI trong DA, DE, BI và quản lý dữ liệu doanh nghiệp.</p>
-          <span class="pc-btn">Truy cập <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
-        <a class="product-cta" href="https://bi.edp.vn/auth/signin" target="_blank" rel="noopener">
-          <span class="pc-logo"><img src="/profile/assets/images/powerbi-logo.svg" alt="Power BI" loading="lazy"></span>
-          <h3>Giải pháp PowerBI Embedded</h3>
-          <p>Nhúng và quản lý các báo cáo PowerBI Service trên giải pháp của bạn.</p>
-          <span class="pc-btn">Truy cập <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+
+      <!-- Phân loại 1: Hệ sinh thái AI Agent & Mã nguồn mở -->
+      <div class="product-category">
+        <div class="product-category-head">
+          <span class="product-badge">AI AGENTS &amp; REPOS</span>
+          <h3>Hệ sinh thái AI Agent &amp; Mã nguồn mở</h3>
+          <p>Các studio AI agent, MCP server và console điều phối đa tác vụ phục vụ cộng đồng &amp; nhà phát triển.</p>
+        </div>
+        <div class="product-row">
+          <a class="product-cta" href="https://ducnguyen.vn/ai-record/" target="_blank" rel="noopener">
+            <span class="pc-logo"><img src="/ai-record-logo.png" alt="AI Record" loading="lazy"></span>
+            <h3>AI Record — Meeting Scribe</h3>
+            <p>Thu âm họp &amp; đọc-chép giọng nói: transcribe realtime, dịch, tách người nói, tóm tắt AI. 100% local, mã nguồn mở.</p>
+            <span class="pc-btn">Khám phá <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="product-cta" href="https://ducnguyen.vn/opcos-orbit/" target="_blank" rel="noopener">
+            <span class="pc-logo"><img src="/opcos-orbit-logo.png" alt="OpcOS Orbit" loading="lazy"></span>
+            <h3>OpcOS Orbit — Multi-Agent Console</h3>
+            <p>Console thoại điều phối Claude, Codex, Gemini, Antigravity và Ollama như một tổ đội. Dashboard realtime blocked/working/done, mã nguồn mở.</p>
+            <span class="pc-btn">Khám phá <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="product-cta" href="https://ducnguyen.vn/agent-data-studio/" target="_blank" rel="noopener">
+            <span class="pc-logo"><img src="/powerbi-agent-logo.png" alt="agent-data-studio" loading="lazy"></span>
+            <h3>agent-data-studio — AI × Power BI</h3>
+            <p>MCP server biến AI Agent thành chuyên gia phân tích Power BI: DAX với policy an toàn dữ liệu, dựng báo cáo theo template, pipeline 9 khâu. Mã nguồn mở.</p>
+            <span class="pc-btn">Khám phá <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="product-cta" href="https://ducnguyen.vn/agent-marketing-studio/" target="_blank" rel="noopener">
+            <span class="pc-logo"><img src="/marketing-agent-logo.svg" alt="agent-marketing-studio" loading="lazy"></span>
+            <h3>agent-marketing-studio — Campaign end-to-end</h3>
+            <p>Chạy một chiến dịch marketing từ brief tới báo cáo bằng AI, người vẫn cầm cương: cổng duyệt là cột trong Excel, chưa tick thì agent không đi tiếp. Mã nguồn mở.</p>
+            <span class="pc-btn">Khám phá <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="product-cta" href="https://ducnguyen.vn/agent-design-studio/" target="_blank" rel="noopener">
+            <span class="pc-logo"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="33" height="33" rx="7" stroke="#0f172a" stroke-width="2.4"/><path d="M11 14h8M11 20h8M11 26h5" stroke="#94a3b8" stroke-width="2.4" stroke-linecap="round"/><path d="M23 12h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6z" fill="#06b6d4"/></svg></span>
+            <h3>agent-design-studio — Quy trình thiết kế 7 bước</h3>
+            <p>Bộ quy trình UI/UX cho AI coding agent: từ brief tới giao diện hoàn thiện qua 7 bước, mỗi bước một artifact, hai cổng người duyệt. Chạy trên Claude, Codex và Antigravity. Mã nguồn mở.</p>
+            <span class="pc-btn">Khám phá <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="product-cta" href="https://ducnguyen.vn/agent-writing-studio/" target="_blank" rel="noopener">
+            <span class="pc-logo"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="33" height="33" rx="7" stroke="#0f172a" stroke-width="2.4"/><path d="M10.5 13h13M10.5 19h13M10.5 25h7" stroke="#94a3b8" stroke-width="2.4" stroke-linecap="round"/><path d="m19.6 30.4 8.3-8.3 2.7 2.7-8.3 8.3-3.5.8z" fill="#c0433a"/></svg></span>
+            <h3>agent-writing-studio — Xưởng viết tiếng Việt</h3>
+            <p>Bộ kỹ năng cho AI agent viết, phản biện, biên tập và giám định nguồn gốc chữ tiếng Việt: 5 trục quy trình × 9 hồ sơ thể loại, nối nhau bằng file. Mã nguồn mở.</p>
+            <span class="pc-btn">Khám phá <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="product-cta" href="https://ducnguyen.vn/agent-voice-studio/" target="_blank" rel="noopener">
+            <span class="pc-logo"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="33" height="33" rx="7" stroke="#0f172a" stroke-width="2.4"/><path d="M11 17v6M16 13.5v13M26 13.5v13M31 17v6" stroke="#94a3b8" stroke-width="2.4" stroke-linecap="round"/><rect x="19.6" y="9.5" width="2.8" height="21" rx="1.4" fill="#e08a24"/></svg></span>
+            <h3>agent-voice-studio — Xưởng giọng đọc</h3>
+            <p>Quy trình dựng giọng đọc cho AI agent: từ bản ghi thô tới giọng qua sáu cổng kiểm tự động, sắc thái do marker trong kịch bản quyết định. Năng lực cài thêm khi cần, không phải bộ cài đủ. Mã nguồn mở.</p>
+            <span class="pc-btn">Khám phá <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="product-cta" href="https://ducnguyen.vn/agent-video-studio/" target="_blank" rel="noopener">
+            <span class="pc-logo"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="33" height="33" rx="7" stroke="#0f172a" stroke-width="2.4"/><path d="M10.5 12.5h19M10.5 27.5h19" stroke="#94a3b8" stroke-width="2.4" stroke-linecap="round"/><path d="M17 15.4 26.8 20 17 24.6z" fill="#7c5cf0"/></svg></span>
+            <h3>agent-video-studio — Xưởng dựng video</h3>
+            <p>Engine dựng video cho AI agent: bố cục HTML/CSS render ra MP4, ghép lời đọc, cắt footage quay thật — tất cả qua một CLI. Năng lực cài thêm khi cần, bản tiền phát hành. Mã nguồn mở.</p>
+            <span class="pc-btn">Khám phá <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Phân loại 2: Nền tảng & Sản phẩm Doanh nghiệp -->
+      <div class="product-category">
+        <div class="product-category-head">
+          <span class="product-badge">ENTERPRISE PLATFORMS</span>
+          <h3>Nền tảng &amp; Sản phẩm Doanh nghiệp</h3>
+          <p>Sản phẩm EdTech, nền tảng dữ liệu và giải pháp phân tích quản trị nghiệp vụ cho tổ chức.</p>
+        </div>
+        <div class="product-row">
+          <a class="product-cta" href="https://compaclass.com" target="_blank" rel="noopener">
+            <span class="pc-logo"><img src="/profile/assets/images/COMPA-CLASS.jpg" alt="COMPA CLASS" loading="lazy"></span>
+            <h3>Sản phẩm EduTech COMPA CLASS</h3>
+            <p>Sản phẩm LMS ứng dụng AI trong tạo và quản lý tài liệu, kiến thức học tập.</p>
+            <span class="pc-btn">Truy cập <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="product-cta" href="https://edp.vn/" target="_blank" rel="noopener">
+            <span class="pc-logo edp">EDP.vn</span>
+            <h3>EDP.vn</h3>
+            <p>Quản lý giải pháp dữ liệu và ứng dụng AI trong DA, DE, BI và quản lý dữ liệu doanh nghiệp.</p>
+            <span class="pc-btn">Truy cập <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="product-cta" href="https://bi.edp.vn/auth/signin" target="_blank" rel="noopener">
+            <span class="pc-logo"><img src="/profile/assets/images/powerbi-logo.svg" alt="Power BI" loading="lazy"></span>
+            <h3>Giải pháp PowerBI Embedded</h3>
+            <p>Nhúng và quản lý các báo cáo PowerBI Service trên giải pháp của bạn.</p>
+            <span class="pc-btn">Truy cập <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+        </div>
       </div>
     </section>
 
