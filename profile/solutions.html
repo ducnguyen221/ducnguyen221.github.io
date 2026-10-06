@@ -5,10 +5,12 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Solutions | Nguyen Quang Duc</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
         rel="stylesheet" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block"
         rel="stylesheet" />
     <link href="./assets/css/subpage-shell.css" rel="stylesheet" />
 <style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
@@ -62,80 +64,318 @@ html { overscroll-behavior-y: none; }
 
         <main class="shell-main">
             <section class="glass-panel hero-panel solution-actions-panel">
-                <div class="solution-actions-grid">
-                    <a class="solution-action-tile" href="https://compaclass.com" rel="noreferrer" target="_blank">
-                        <img alt="COMPA Class" src="./assets/images/COMPA-CLASS.jpg" />
-                        <div class="solution-action-copy">
-                            <strong>COMPA Class</strong>
-                            <span class="t-lang" data-en="Training and enablement layer for analytics and AI workflows."
-                                data-vi="Lớp đào tạo và enablement cho analytics và workflow AI.">Training and
-                                enablement layer for analytics and AI workflows.</span>
-                        </div>
-                        <span class="solution-action-meta">
-                            <span class="solution-action-badge">Live</span>
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </span>
-                    </a>
+                <!-- Group 1: AI Agent & Open-Source Ecosystem -->
+                <div class="solution-category-block">
+                    <div class="solution-section-header">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">smart_toy</span>
+                            <span class="t-lang" data-en="AI Agents &amp; Open-Source Ecosystem" data-vi="Hệ sinh thái AI Agent &amp; Mã nguồn mở">Hệ sinh thái AI Agent &amp; Mã nguồn mở</span>
+                        </h2>
+                        <p class="section-subtitle t-lang"
+                            data-en="Open-source agent frameworks, specialized MCP servers, and automation pipelines built to empower AI practitioners."
+                            data-vi="Các repo agent AI mã nguồn mở, MCP server chuyên biệt và công cụ tự động hóa giúp AI hỗ trợ công việc hiệu quả.">
+                            Các repo agent AI mã nguồn mở, MCP server chuyên biệt và công cụ tự động hóa giúp AI hỗ trợ công việc hiệu quả.
+                        </p>
+                    </div>
+                    <div class="solution-actions-grid">
+                        <a class="solution-action-tile" href="https://ducnguyen.vn/ai-record/" rel="noreferrer" target="_blank">
+                            <span class="solution-tile-icon"><img alt="AI Record" src="/ai-record-logo.png" /></span>
+                            <div class="solution-action-copy">
+                                <strong>AI Record — Meeting Scribe</strong>
+                                <span class="t-lang"
+                                    data-en="Local meeting speech-to-text: realtime transcribe, translate, diarization &amp; AI summary. 100% private."
+                                    data-vi="Thu âm họp &amp; đọc-chép giọng nói: transcribe realtime, dịch, tách người nói, tóm tắt AI. 100% local, mã nguồn mở.">
+                                    Thu âm họp &amp; đọc-chép giọng nói: transcribe realtime, dịch, tách người nói, tóm tắt AI. 100% local, mã nguồn mở.
+                                </span>
+                            </div>
+                            <span class="solution-action-meta">
+                                <span class="solution-action-badge">Live</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </a>
 
-                    <a class="solution-action-tile" href="./projects.html">
-                        <img alt="KPIM Delivery" src="./assets/images/KPI.png" />
-                        <div class="solution-action-copy">
-                            <strong>KPIM Delivery</strong>
-                            <span class="t-lang" data-en="Execution-focused reporting and analytics delivery."
-                                data-vi="Khối delivery báo cáo và analytics theo hướng triển khai.">Execution-focused
-                                reporting and analytics delivery.</span>
-                        </div>
-                        <span class="solution-action-meta">
-                            <span class="solution-action-badge">Projects</span>
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </span>
-                    </a>
+                        <a class="solution-action-tile" href="https://ducnguyen.vn/opcos-orbit/" rel="noreferrer" target="_blank">
+                            <span class="solution-tile-icon"><img alt="OpcOS Orbit" src="/opcos-orbit-logo.png" /></span>
+                            <div class="solution-action-copy">
+                                <strong>OpcOS Orbit — Multi-Agent Console</strong>
+                                <span class="t-lang"
+                                    data-en="Conversational console orchestrating Claude, Codex, Gemini, Antigravity &amp; Ollama as a team. Realtime status dashboard."
+                                    data-vi="Console thoại điều phối Claude, Codex, Gemini, Antigravity và Ollama như một tổ đội. Dashboard realtime blocked/working/done.">
+                                    Console thoại điều phối Claude, Codex, Gemini, Antigravity và Ollama như một tổ đội. Dashboard realtime blocked/working/done.
+                                </span>
+                            </div>
+                            <span class="solution-action-meta">
+                                <span class="solution-action-badge">Console</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </a>
 
-                    <a class="solution-action-tile"
-                        href="https://chatgpt.com/g/g-68c3c734d148819184c20b1e658ac81d-kpim-data-coach" rel="noreferrer"
-                        target="_blank">
-                        <img alt="Data Coach" src="./assets/images/chatgpt-logo.svg" />
-                        <div class="solution-action-copy">
-                            <strong>Data Coach</strong>
-                            <span class="t-lang"
-                                data-en="Conversational support for data questions and structured analysis."
-                                data-vi="Công cụ hỗ trợ hỏi đáp dữ liệu và phân tích có cấu trúc.">Conversational support
-                                for data questions and structured analysis.</span>
-                        </div>
-                        <span class="solution-action-meta">
-                            <span class="solution-action-badge">Launch</span>
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </span>
-                    </a>
+                        <a class="solution-action-tile" href="https://ducnguyen.vn/agent-data-studio/" rel="noreferrer" target="_blank">
+                            <span class="solution-tile-icon"><img alt="agent-data-studio" src="/powerbi-agent-logo.png" /></span>
+                            <div class="solution-action-copy">
+                                <strong>agent-data-studio — AI x Power BI</strong>
+                                <span class="t-lang"
+                                    data-en="MCP server turning AI Agents into Power BI analysts: secure DAX policies, template reporting, 9-stage pipeline."
+                                    data-vi="MCP server biến AI Agent thành chuyên gia phân tích Power BI: DAX với policy an toàn dữ liệu, dựng báo cáo theo template, pipeline 9 khâu.">
+                                    MCP server biến AI Agent thành chuyên gia phân tích Power BI: DAX với policy an toàn dữ liệu, dựng báo cáo theo template, pipeline 9 khâu.
+                                </span>
+                            </div>
+                            <span class="solution-action-meta">
+                                <span class="solution-action-badge">MCP Tool</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </a>
 
-                    <a class="solution-action-tile" href="./powerbi.html">
-                        <img alt="PowerBI Demo Hub" src="./assets/images/power-bi-icon.png" />
-                        <div class="solution-action-copy">
-                            <strong>PowerBI Demo Hub</strong>
-                            <span class="t-lang"
-                                data-en="Gallery entry point for report demos and portfolio samples."
-                                data-vi="Điểm vào dạng gallery cho demo báo cáo và portfolio Power BI.">Gallery entry
-                                point for report demos and portfolio samples.</span>
-                        </div>
-                        <span class="solution-action-meta">
-                            <span class="solution-action-badge">Explore</span>
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </span>
-                    </a>
+                        <a class="solution-action-tile" href="https://ducnguyen.vn/agent-marketing-studio/" rel="noreferrer" target="_blank">
+                            <span class="solution-tile-icon"><img alt="agent-marketing-studio" src="/marketing-agent-logo.svg" /></span>
+                            <div class="solution-action-copy">
+                                <strong>agent-marketing-studio — Campaign End-to-End</strong>
+                                <span class="t-lang"
+                                    data-en="End-to-end AI marketing campaigns with human approval gates inside Excel. Deterministic workflow."
+                                    data-vi="Chạy một chiến dịch marketing từ brief tới báo cáo bằng AI, người vẫn cầm cương: cổng duyệt là cột trong Excel, an toàn &amp; chuẩn chỉ.">
+                                    Chạy một chiến dịch marketing từ brief tới báo cáo bằng AI, người vẫn cầm cương: cổng duyệt là cột trong Excel, an toàn &amp; chuẩn chỉ.
+                                </span>
+                            </div>
+                            <span class="solution-action-meta">
+                                <span class="solution-action-badge">Marketing</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </a>
 
-                    <a class="solution-action-tile" href="./courses/">
-                        <img alt="Course Discovery" src="./assets/images/data-analytics-fundamental.webp" />
-                        <div class="solution-action-copy">
-                            <strong>Course Discovery</strong>
-                            <span class="t-lang" data-en="Fast route from profile context into course products."
-                                data-vi="Đi thẳng từ hồ sơ sang nhóm sản phẩm đào tạo.">Fast route from profile context
-                                into course products.</span>
-                        </div>
-                        <span class="solution-action-meta">
-                            <span class="solution-action-badge">Open</span>
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </span>
-                    </a>
+                        <a class="solution-action-tile" href="https://ducnguyen.vn/agent-design-studio/" rel="noreferrer" target="_blank">
+                            <span class="solution-tile-icon">
+                                <svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                                    <rect x="3.5" y="3.5" width="33" height="33" rx="7" stroke="rgba(255,255,255,0.2)" stroke-width="2.4"/>
+                                    <path d="M11 14h8M11 20h8M11 26h5" stroke="#94a3b8" stroke-width="2.4" stroke-linecap="round"/>
+                                    <path d="M23 12h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6z" fill="#06b6d4"/>
+                                </svg>
+                            </span>
+                            <div class="solution-action-copy">
+                                <strong>agent-design-studio — Quy trình thiết kế 7 bước</strong>
+                                <span class="t-lang"
+                                    data-en="UI/UX design workflow for AI coding agents: from brief to finished interface across 7 steps with 2 human review gates."
+                                    data-vi="Bộ quy trình UI/UX cho AI coding agent: từ brief tới giao diện hoàn thiện qua 7 bước, mỗi bước một artifact, hai cổng người duyệt.">
+                                    Bộ quy trình UI/UX cho AI coding agent: từ brief tới giao diện hoàn thiện qua 7 bước, mỗi bước một artifact, hai cổng người duyệt.
+                                </span>
+                            </div>
+                            <span class="solution-action-meta">
+                                <span class="solution-action-badge">UI/UX</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </a>
+
+                        <a class="solution-action-tile" href="https://ducnguyen.vn/agent-writing-studio/" rel="noreferrer" target="_blank">
+                            <span class="solution-tile-icon">
+                                <svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                                    <rect x="3.5" y="3.5" width="33" height="33" rx="7" stroke="rgba(255,255,255,0.2)" stroke-width="2.4"/>
+                                    <path d="M10.5 13h13M10.5 19h13M10.5 25h7" stroke="#94a3b8" stroke-width="2.4" stroke-linecap="round"/>
+                                    <path d="m19.6 30.4 8.3-8.3 2.7 2.7-8.3 8.3-3.5.8z" fill="#c0433a"/>
+                                </svg>
+                            </span>
+                            <div class="solution-action-copy">
+                                <strong>agent-writing-studio — Xưởng viết tiếng Việt</strong>
+                                <span class="t-lang"
+                                    data-en="Skills suite for AI agents to write, critique, edit and authenticate Vietnamese text: 5 workflow axes x 9 genre profiles."
+                                    data-vi="Bộ kỹ năng cho AI agent viết, phản biện, biên tập và giám định nguồn gốc chữ tiếng Việt: 5 trục quy trình × 9 hồ sơ thể loại.">
+                                    Bộ kỹ năng cho AI agent viết, phản biện, biên tập và giám định nguồn gốc chữ tiếng Việt: 5 trục quy trình × 9 hồ sơ thể loại.
+                                </span>
+                            </div>
+                            <span class="solution-action-meta">
+                                <span class="solution-action-badge">Writing</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </a>
+
+                        <a class="solution-action-tile" href="https://ducnguyen.vn/agent-voice-studio/" rel="noreferrer" target="_blank">
+                            <span class="solution-tile-icon">
+                                <svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                                    <rect x="3.5" y="3.5" width="33" height="33" rx="7" stroke="rgba(255,255,255,0.2)" stroke-width="2.4"/>
+                                    <path d="M11 17v6M16 13.5v13M26 13.5v13M31 17v6" stroke="#94a3b8" stroke-width="2.4" stroke-linecap="round"/>
+                                    <rect x="19.6" y="9.5" width="2.8" height="21" rx="1.4" fill="#e08a24"/>
+                                </svg>
+                            </span>
+                            <div class="solution-action-copy">
+                                <strong>agent-voice-studio — Xưởng giọng đọc</strong>
+                                <span class="t-lang"
+                                    data-en="Voice production workflow for AI agents: raw audio to refined speech via 6 automated quality gates and script markers."
+                                    data-vi="Quy trình dựng giọng đọc cho AI agent: từ bản ghi thô tới giọng qua sáu cổng kiểm tự động, sắc thái do marker trong kịch bản quyết định.">
+                                    Quy trình dựng giọng đọc cho AI agent: từ bản ghi thô tới giọng qua sáu cổng kiểm tự động, sắc thái do marker trong kịch bản quyết định.
+                                </span>
+                            </div>
+                            <span class="solution-action-meta">
+                                <span class="solution-action-badge">Voice</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </a>
+
+                        <a class="solution-action-tile" href="https://ducnguyen.vn/agent-video-studio/" rel="noreferrer" target="_blank">
+                            <span class="solution-tile-icon">
+                                <svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                                    <rect x="3.5" y="3.5" width="33" height="33" rx="7" stroke="rgba(255,255,255,0.2)" stroke-width="2.4"/>
+                                    <path d="M10.5 12.5h19M10.5 27.5h19" stroke="#94a3b8" stroke-width="2.4" stroke-linecap="round"/>
+                                    <path d="M17 15.4 26.8 20 17 24.6z" fill="#7c5cf0"/>
+                                </svg>
+                            </span>
+                            <div class="solution-action-copy">
+                                <strong>agent-video-studio — Xưởng dựng video</strong>
+                                <span class="t-lang"
+                                    data-en="Video composition engine for AI agents: HTML/CSS compositions rendered to MP4, voiceover pairing, real footage recut via CLI."
+                                    data-vi="Engine dựng video cho AI agent: bố cục HTML/CSS render ra MP4, ghép lời đọc, cắt footage quay thật — tất cả qua một CLI.">
+                                    Engine dựng video cho AI agent: bố cục HTML/CSS render ra MP4, ghép lời đọc, cắt footage quay thật — tất cả qua một CLI.
+                                </span>
+                            </div>
+                            <span class="solution-action-meta">
+                                <span class="solution-action-badge">Video</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Group 2: Enterprise Platforms & Products -->
+                <div class="solution-category-block">
+                    <div class="solution-section-header">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">corporate_fare</span>
+                            <span class="t-lang" data-en="Enterprise Platforms &amp; Products" data-vi="Nền tảng &amp; Sản phẩm Doanh nghiệp">Nền tảng &amp; Sản phẩm Doanh nghiệp</span>
+                        </h2>
+                        <p class="section-subtitle t-lang"
+                            data-en="Production-ready business platforms, EdTech LMS, and enterprise BI solutions."
+                            data-vi="Các giải pháp LMS đào tạo, nền tảng dữ liệu doanh nghiệp và hệ thống phân tích quản trị nghiệp vụ.">
+                            Các giải pháp LMS đào tạo, nền tảng dữ liệu doanh nghiệp và hệ thống phân tích quản trị nghiệp vụ.
+                        </p>
+                    </div>
+                    <div class="solution-actions-grid">
+                        <a class="solution-action-tile" href="https://compaclass.com" rel="noreferrer" target="_blank">
+                            <span class="solution-tile-icon"><img alt="COMPA CLASS" src="./assets/images/COMPA-CLASS.jpg" /></span>
+                            <div class="solution-action-copy">
+                                <strong>Sản phẩm EduTech COMPA CLASS</strong>
+                                <span class="t-lang"
+                                    data-en="AI-enhanced LMS platform for training content generation, curriculum structuring, and learner analytics."
+                                    data-vi="Sản phẩm LMS ứng dụng AI trong tạo và quản lý tài liệu, kiến thức học tập và tối ưu hành trình học viên.">
+                                    Sản phẩm LMS ứng dụng AI trong tạo và quản lý tài liệu, kiến thức học tập và tối ưu hành trình học viên.
+                                </span>
+                            </div>
+                            <span class="solution-action-meta">
+                                <span class="solution-action-badge">Live</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </a>
+
+                        <a class="solution-action-tile" href="https://edp.vn/" rel="noreferrer" target="_blank">
+                            <span class="solution-tile-icon edp-icon">EDP.vn</span>
+                            <div class="solution-action-copy">
+                                <strong>EDP.vn — Enterprise Data Platform</strong>
+                                <span class="t-lang"
+                                    data-en="Enterprise data solutions and AI adoption across Data Analytics, Data Engineering, and BI governance."
+                                    data-vi="Quản lý giải pháp dữ liệu và ứng dụng AI trong DA, DE, BI và quản trị dữ liệu toàn diện cho doanh nghiệp.">
+                                    Quản lý giải pháp dữ liệu và ứng dụng AI trong DA, DE, BI và quản trị dữ liệu toàn diện cho doanh nghiệp.
+                                </span>
+                            </div>
+                            <span class="solution-action-meta">
+                                <span class="solution-action-badge">Platform</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </a>
+
+                        <a class="solution-action-tile" href="https://bi.edp.vn/auth/signin" rel="noreferrer" target="_blank">
+                            <span class="solution-tile-icon"><img alt="PowerBI Embedded" src="./assets/images/powerbi-logo.svg" /></span>
+                            <div class="solution-action-copy">
+                                <strong>Giải pháp PowerBI Embedded</strong>
+                                <span class="t-lang"
+                                    data-en="Embed and manage PowerBI Service reports securely within your internal solutions with tenant governance."
+                                    data-vi="Nhúng và quản lý các báo cáo PowerBI Service trên giải pháp nội bộ của bạn với phân quyền an toàn.">
+                                    Nhúng và quản lý các báo cáo PowerBI Service trên giải pháp nội bộ của bạn với phân quyền an toàn.
+                                </span>
+                            </div>
+                            <span class="solution-action-meta">
+                                <span class="solution-action-badge">Portal</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </a>
+
+                        <a class="solution-action-tile" href="./projects.html">
+                            <span class="solution-tile-icon"><img alt="KPIM Delivery" src="./assets/images/KPI.png" /></span>
+                            <div class="solution-action-copy">
+                                <strong>KPIM Delivery</strong>
+                                <span class="t-lang"
+                                    data-en="Execution-focused reporting, data architecture and analytics delivery for organizations."
+                                    data-vi="Khối delivery báo cáo và analytics theo hướng triển khai thực chiến, chuẩn xác cho doanh nghiệp.">
+                                    Khối delivery báo cáo và analytics theo hướng triển khai thực chiến, chuẩn xác cho doanh nghiệp.
+                                </span>
+                            </div>
+                            <span class="solution-action-meta">
+                                <span class="solution-action-badge">Projects</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Group 3: Interactive Tools & Discovery -->
+                <div class="solution-category-block">
+                    <div class="solution-section-header">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">explore</span>
+                            <span class="t-lang" data-en="Interactive Tools &amp; Discovery" data-vi="Công cụ Trợ lực &amp; Khám phá">Công cụ Trợ lực &amp; Khám phá</span>
+                        </h2>
+                        <p class="section-subtitle t-lang"
+                            data-en="Interactive conversational AI mentors, report demo galleries, and academic training pathways."
+                            data-vi="Trợ lý AI đàm thoại, thư viện demo báo cáo Power BI và lộ trình khám phá các chương trình đào tạo.">
+                            Trợ lý AI đàm thoại, thư viện demo báo cáo Power BI và lộ trình khám phá các chương trình đào tạo.
+                        </p>
+                    </div>
+                    <div class="solution-actions-grid">
+                        <a class="solution-action-tile"
+                            href="https://chatgpt.com/g/g-68c3c734d148819184c20b1e658ac81d-kpim-data-coach" rel="noreferrer"
+                            target="_blank">
+                            <span class="solution-tile-icon"><img alt="Data Coach" src="./assets/images/chatgpt-logo.svg" /></span>
+                            <div class="solution-action-copy">
+                                <strong>Data Coach (Custom GPT)</strong>
+                                <span class="t-lang"
+                                    data-en="Conversational support for structured data questions, model design, and analytical frameworks."
+                                    data-vi="Công cụ hỗ trợ hỏi đáp dữ liệu và phân tích có cấu trúc, tư vấn giải pháp DAX và thiết kế model.">
+                                    Công cụ hỗ trợ hỏi đáp dữ liệu và phân tích có cấu trúc, tư vấn giải pháp DAX và thiết kế model.
+                                </span>
+                            </div>
+                            <span class="solution-action-meta">
+                                <span class="solution-action-badge">Launch</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </a>
+
+                        <a class="solution-action-tile" href="./powerbi.html">
+                            <span class="solution-tile-icon"><img alt="PowerBI Demo Hub" src="./assets/images/power-bi-icon.png" /></span>
+                            <div class="solution-action-copy">
+                                <strong>PowerBI Demo Hub</strong>
+                                <span class="t-lang"
+                                    data-en="Gallery entry point for report demos, financial templates, and portfolio samples."
+                                    data-vi="Điểm vào dạng gallery cho demo báo cáo, mô hình mẫu và portfolio Power BI chuyên sâu.">
+                                    Điểm vào dạng gallery cho demo báo cáo, mô hình mẫu và portfolio Power BI chuyên sâu.
+                                </span>
+                            </div>
+                            <span class="solution-action-meta">
+                                <span class="solution-action-badge">Explore</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </a>
+
+                        <a class="solution-action-tile" href="./courses/">
+                            <span class="solution-tile-icon"><img alt="Course Discovery" src="./assets/images/data-analytics-fundamental.webp" /></span>
+                            <div class="solution-action-copy">
+                                <strong>Course Discovery</strong>
+                                <span class="t-lang"
+                                    data-en="Fast route from profile context into comprehensive data and AI course offerings."
+                                    data-vi="Đi thẳng từ hồ sơ sang nhóm sản phẩm đào tạo chuyên gia dữ liệu, Power BI và AI thực chiến.">
+                                    Đi thẳng từ hồ sơ sang nhóm sản phẩm đào tạo chuyên gia dữ liệu, Power BI và AI thực chiến.
+                                </span>
+                            </div>
+                            <span class="solution-action-meta">
+                                <span class="solution-action-badge">Open</span>
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </section>
         </main>
