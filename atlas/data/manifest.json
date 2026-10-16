@@ -260,6 +260,19 @@
     "fileSize": 36754
   },
   {
+    "slug": "tesla-roadster-spacex-demo",
+    "title": "Tesla Roadster & Gói SpaceX: Leo Dốc Dựng Ngược, Gắn Tên Lửa Bay & Đáp Hoàn Hảo · Học cùng Tobi",
+    "description": "Giải mã màn trình diễn gây sốc của Tesla Roadster thế hệ mới tại McGregor: hệ thống quạt hút 2G bám trần dốc ngược, động cơ phản lực khí nén SpaceX bay qua dàn xe và cú chạm đất hoàn hảo.",
+    "categories": [
+      "ai"
+    ],
+    "path": "content/ai/tesla-roadster-spacex-demo.html",
+    "thumbnail": "content/ai/tesla-roadster-spacex-demo.jpg",
+    "published": "2026-10-16",
+    "lastModified": "2026-10-16",
+    "fileSize": 23196
+  },
+  {
     "slug": "claude-code-cho-nguoi-moi",
     "title": "Claude Code cho người mới: Cài đặt, tạo bối cảnh và làm việc an toàn · Học cùng Tobi",
     "description": "Người không chuyên kỹ thuật có thể bắt đầu với Claude Code bằng Desktop, folder cục bộ và một quy trình review rõ ràng.",
