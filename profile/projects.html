@@ -2998,7 +2998,7 @@ html { overscroll-behavior-y: none; }
                                 ${project.category ? `<span class="project-cat-badge">${escapeHtml(project.category)}</span>` : ''}
                             </div>
                             <strong style="color:var(--text-color); font-size:0.88rem;">${escapeHtml(project.projectName)}</strong>
-                            ${oText ? `<p class="muted" style="font-size:0.75rem; margin:2px 0 0; line-height:1.35; max-width:340px;">${escapeHtml(oText)}</p>` : ''}
+                            ${oText ? `<p class="muted" style="font-size:0.75rem; margin:3px 0 0; line-height:1.45;">${escapeHtml(oText)}</p>` : ''}
                         </div>
                     </td>
                     <td>
@@ -3012,10 +3012,10 @@ html { overscroll-behavior-y: none; }
                         </div>
                     </td>
                     <td>
-                        <div style="display:flex; flex-direction:column; gap:4px;">
-                            <span style="font-size:0.75rem; font-weight:600; color:var(--accent-color);">${escapeHtml(sText)}</span>
-                            <div class="chip-list" style="margin-top:2px;">
-                                ${domains.map(d => `<span class="chip" style="font-size:0.68rem;">${escapeHtml(d)}</span>`).join('')}
+                        <div style="display:flex; flex-direction:column; gap:3px;">
+                            <span style="font-size:0.74rem; font-weight:700; color:var(--accent-color); line-height:1.25;">${escapeHtml(sText)}</span>
+                            <div class="chip-list" style="margin-top:2px; gap:3px;">
+                                ${domains.map(d => `<span class="chip" style="font-size:0.65rem; padding:1px 5px;">${escapeHtml(d)}</span>`).join('')}
                             </div>
                         </div>
                     </td>
