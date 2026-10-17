@@ -2673,6 +2673,7 @@ html { overscroll-behavior-y: none; }
         }
 
         function filterByClient(clientName) {
+            hideClientPopover();
             if (selectedClient === clientName) {
                 selectedClient = "";
             } else {
@@ -2775,13 +2776,32 @@ html { overscroll-behavior-y: none; }
             };
         }
 
-        function clientDirectoryMarkup(client) {
-            const logo = client.logo
-                ? `<img class="client-directory-logo" alt="${escapeHtml(client.name)}" src="${escapeHtml(client.logo)}" onerror="this.style.display='none'" />`
-                : `<span class="project-client-fallback">${escapeHtml(client.name.slice(0, 2).toUpperCase())}</span>`;
+        let currentSummaryClients = [];
+        let clientPopoverEl = null;
+
+        function getOrCreateClientPopover() {
+            if (!clientPopoverEl) {
+                clientPopoverEl = document.getElementById("clientHoverPopover");
+                if (!clientPopoverEl) {
+                    clientPopoverEl = document.createElement("div");
+                    clientPopoverEl.id = "clientHoverPopover";
+                    clientPopoverEl.className = "client-floating-popover";
+                    document.body.appendChild(clientPopoverEl);
+                }
+            }
+            return clientPopoverEl;
+        }
+
+        function showClientPopover(targetEl, client) {
+            const popover = getOrCreateClientPopover();
+            if (!popover || !client) return;
+
+            const logoHtml = client.logo
+                ? `<img class="client-popover-logo-img" alt="${escapeHtml(client.name)}" src="${escapeHtml(client.logo)}" onerror="this.style.display='none'" />`
+                : `<span class="client-logo-fallback">${escapeHtml(client.name.slice(0, 2).toUpperCase())}</span>`;
 
             const legalText = client.legalName && client.legalName !== client.name
-                ? `<div class="client-legal-name" title="${escapeHtml(client.legalName)}">${escapeHtml(client.legalName)}</div>`
+                ? `<div class="client-legal-name">${escapeHtml(client.legalName)}</div>`
                 : '';
 
             const mstPill = client.taxCode && !['N/A', 'Quốc tế'].includes(client.taxCode) && !client.taxCode.startsWith('Hoa Kỳ')
@@ -2800,25 +2820,73 @@ html { overscroll-behavior-y: none; }
                 `<span class="client-project-chip">${escapeHtml(code)}</span>`
             ).join("");
 
+            popover.innerHTML = `
+                <div class="client-card-head">
+                    <div class="client-popover-logo-box">
+                        ${logoHtml}
+                    </div>
+                    <div class="client-card-info">
+                        <div class="client-brand-name">${escapeHtml(client.name)}</div>
+                        ${legalText}
+                    </div>
+                    <span class="client-project-badge">${client.count} ${summaryText("projects", "dự án")}</span>
+                </div>
+                <div class="client-meta-pills">
+                    ${sectorPill}
+                    ${mstPill}
+                </div>
+                ${summaryMarkup}
+                ${projectTags ? `<div class="client-projects-chips">${projectTags}</div>` : ''}
+                <div class="client-popover-hint t-lang" data-en="Click logo to filter projects" data-vi="Bấm logo để lọc dự án">Bấm logo để lọc dự án</div>
+            `;
+
+            const rect = targetEl.getBoundingClientRect();
+            const popoverWidth = Math.min(290, window.innerWidth - 24);
+            popover.style.width = `${popoverWidth}px`;
+
+            popover.classList.add("visible");
+            const popoverHeight = popover.offsetHeight || 140;
+
+            let left = rect.left + rect.width / 2 - popoverWidth / 2;
+            if (left < 10) left = 10;
+            if (left + popoverWidth > window.innerWidth - 10) {
+                left = window.innerWidth - popoverWidth - 10;
+            }
+
+            let top = rect.top - popoverHeight - 8;
+            if (top < 10) {
+                top = rect.bottom + 8;
+            }
+
+            popover.style.left = `${left}px`;
+            popover.style.top = `${top}px`;
+        }
+
+        function hideClientPopover() {
+            if (clientPopoverEl) {
+                clientPopoverEl.classList.remove("visible");
+            }
+        }
+
+        function clientLogoItemMarkup(client) {
+            const logoHtml = client.logo
+                ? `<img class="client-logo-img" alt="${escapeHtml(client.name)}" src="${escapeHtml(client.logo)}" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';" />
+                   <span class="client-logo-fallback" style="display:none;">${escapeHtml(client.name.slice(0, 2).toUpperCase())}</span>`
+                : `<span class="client-logo-fallback">${escapeHtml(client.name.slice(0, 2).toUpperCase())}</span>`;
+
             const isActive = selectedClient === client.name ? " active" : "";
 
             return `
-                <article class="client-directory-card${isActive}" onclick="filterByClient('${escapeHtml(client.name)}')" title="Bấm để lọc dự án của ${escapeHtml(client.name)}">
-                    <div class="client-card-head">
-                        ${logo}
-                        <div class="client-card-info">
-                            <div class="client-brand-name">${escapeHtml(client.name)}</div>
-                            ${legalText}
-                        </div>
-                        <span class="client-project-badge">${client.count} ${summaryText("projects", "dự án")}</span>
+                <div class="client-logo-item${isActive}" 
+                     data-client-name="${escapeHtml(client.name)}" 
+                     onclick="filterByClient('${escapeHtml(client.name)}')" 
+                     role="button" 
+                     tabindex="0"
+                     title="${escapeHtml(client.name)}">
+                    <div class="client-logo-box">
+                        ${logoHtml}
                     </div>
-                    <div class="client-meta-pills">
-                        ${sectorPill}
-                        ${mstPill}
-                    </div>
-                    ${summaryMarkup}
-                    ${projectTags ? `<div class="client-projects-chips">${projectTags}</div>` : ''}
-                </article>
+                </div>
             `;
         }
 
@@ -2882,7 +2950,8 @@ html { overscroll-behavior-y: none; }
                 }).join("");
             }
 
-            clientDirectoryEl.innerHTML = `<div class="client-directory-grid">${summary.clients.map(clientDirectoryMarkup).join("")}</div>`;
+            currentSummaryClients = summary.clients;
+            clientDirectoryEl.innerHTML = `<div class="client-logo-grid">${summary.clients.map(clientLogoItemMarkup).join("")}</div>`;
         }
 
         function renderHead() {
@@ -3011,6 +3080,33 @@ html { overscroll-behavior-y: none; }
                 el.addEventListener("change", render);
             }
         });
+
+        if (clientDirectoryEl) {
+            clientDirectoryEl.addEventListener("mouseover", (e) => {
+                const item = e.target.closest(".client-logo-item");
+                if (!item) return;
+                const clientName = item.getAttribute("data-client-name");
+                if (!clientName) return;
+                const client = currentSummaryClients.find((c) => c.name === clientName);
+                if (client) {
+                    showClientPopover(item, client);
+                }
+            });
+
+            clientDirectoryEl.addEventListener("mouseout", (e) => {
+                const item = e.target.closest(".client-logo-item");
+                if (!item) return;
+                hideClientPopover();
+            });
+
+            clientDirectoryEl.addEventListener("scroll", () => {
+                hideClientPopover();
+            }, { passive: true });
+        }
+
+        window.addEventListener("scroll", () => {
+            hideClientPopover();
+        }, { passive: true });
 
         const langToggleBtn = document.getElementById("lang-toggle-btn");
         if (langToggleBtn) {

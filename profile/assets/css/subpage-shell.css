@@ -935,47 +935,8 @@ html:not(.dark) .project-role-chart::after {
 }
 
 .project-client-directory {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.42rem;
-    align-items: flex-start;
-    align-content: flex-start;
-}
-
-.project-client-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.42rem;
-    padding: 0.38rem 0.58rem;
-    border-radius: 999px;
-    border: 1px solid var(--border-color);
-    background: rgba(255, 255, 255, 0.03);
-}
-
-.project-client-item img,
-.project-client-fallback {
-    width: 1.55rem;
-    height: 1.55rem;
-    border-radius: 0.55rem;
-    object-fit: cover;
-    border: 1px solid var(--border-color);
-    background: rgba(255, 255, 255, 0.06);
-}
-
-.project-client-fallback {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent-color);
-    font-size: 0.72rem;
-    font-weight: 800;
-}
-
-.project-client-item strong {
-    display: block;
-    font-size: 0.74rem;
-    line-height: 1.2;
-    white-space: nowrap;
+    position: relative;
+    width: 100%;
 }
 
 .project-empty {
@@ -2425,42 +2386,167 @@ html:not(.dark) .project-role-chart::after {
 }
 
 /* ==========================================================================
-   ENHANCED CLIENT DIRECTORY CARDS (PROJECTS PAGE)
+   CLIENT DIRECTORY LOGO GRID & FLOATING HOVER CARD (PROJECTS PAGE)
    ========================================================================== */
-.client-directory-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 12px;
-    width: 100%;
-    max-height: 520px;
+.project-client-directory {
+    height: 180px;
+    max-height: 180px;
     overflow-y: auto;
-    padding: 4px;
+    overflow-x: hidden;
+    padding: 3px 6px 6px 2px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(198, 151, 73, 0.4) transparent;
 }
 
-.client-directory-card {
-    display: flex;
-    flex-direction: column;
+.project-client-directory::-webkit-scrollbar {
+    width: 5px;
+}
+
+.project-client-directory::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 999px;
+}
+
+.project-client-directory::-webkit-scrollbar-thumb {
+    background: rgba(198, 151, 73, 0.35);
+    border-radius: 999px;
+}
+
+.project-client-directory::-webkit-scrollbar-thumb:hover {
+    background: rgba(198, 151, 73, 0.7);
+}
+
+.client-logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
     gap: 8px;
+    width: 100%;
+}
+
+.client-logo-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.18s ease, z-index 0.18s ease;
+    user-select: none;
+}
+
+.client-logo-item:hover {
+    transform: translateY(-2px) scale(1.08);
+    z-index: 5;
+}
+
+.client-logo-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+
+.client-logo-item:hover .client-logo-box {
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 14px rgba(198, 151, 73, 0.4);
+}
+
+.client-logo-item.active .client-logo-box {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 12px 2px rgba(198, 151, 73, 0.65);
+    background: rgba(198, 151, 73, 0.15);
+}
+
+.client-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #ffffff;
+}
+
+.client-logo-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: var(--bg-start);
+    color: var(--accent-color);
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/* Floating Hover Popover - Fixed Position, Zero Overflow Clipping */
+.client-floating-popover {
+    position: fixed;
+    z-index: 99999;
+    width: 290px;
+    max-width: 90vw;
     padding: 12px 14px;
     border-radius: 12px;
     border: 1px solid var(--border-color);
-    background: var(--card-bg);
-    transition: all 0.2s ease;
-    cursor: pointer;
-    text-align: left;
-    backdrop-filter: blur(8px);
+    background: rgba(15, 23, 42, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(198, 151, 73, 0.25);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.client-directory-card:hover {
-    border-color: var(--accent-color);
-    background: var(--card-hover-bg);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 14px var(--shadow-color);
+html:not(.dark) .client-floating-popover {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(198, 151, 73, 0.3);
 }
 
-.client-directory-card.active {
-    border-color: var(--accent-color);
-    background: rgba(198, 151, 73, 0.14);
+.client-floating-popover.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.client-popover-logo-box {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.client-popover-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.client-popover-hint {
+    font-size: 0.68rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    text-align: right;
+    margin-top: 2px;
+    opacity: 0.85;
 }
 
 .client-card-head {
