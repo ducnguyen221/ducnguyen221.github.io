@@ -2906,17 +2906,32 @@ html:not(.dark) .client-floating-popover {
     font-weight: 700;
     text-decoration: none !important;
     letter-spacing: 0.02em;
+    animation: atlasPulseEmerald 2.2s infinite ease-in-out;
     transition: all 0.2s ease;
     cursor: pointer;
     vertical-align: middle;
 }
 
 .atlas-pill-btn:hover {
-    background: rgba(16, 185, 129, 0.32);
+    background: rgba(16, 185, 129, 0.38);
     color: #ffffff !important;
     border-color: #6ee7b7;
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
-    transform: translateY(-1px);
+    box-shadow: 0 0 14px rgba(16, 185, 129, 0.85);
+    transform: translateY(-1px) scale(1.05);
+}
+
+@keyframes atlasPulseEmerald {
+    0%, 100% {
+        box-shadow: 0 0 3px rgba(16, 185, 129, 0.25);
+        border-color: rgba(16, 185, 129, 0.55);
+        background: rgba(16, 185, 129, 0.14);
+    }
+    50% {
+        box-shadow: 0 0 12px 2px rgba(16, 185, 129, 0.75);
+        border-color: #6ee7b7;
+        background: rgba(16, 185, 129, 0.32);
+        color: #ffffff !important;
+    }
 }
 
 .post-platform-badge {
