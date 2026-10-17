@@ -4144,7 +4144,7 @@ html { overscroll-behavior-y: none; }
             grid.innerHTML = standaloneCourses.map(course => {
                 const thumb = course.image_url || "../assets/images/powerbi_coban_compaclass.jpg";
                 const ctaBtn = course.compa_link
-                    ? `<a class="featured-course-cta" href="${course.compa_link}" target="_blank" rel="noreferrer">
+                    ? `<a class="featured-course-cta compa-pill-btn" href="${course.compa_link}" target="_blank" rel="noreferrer">
                         <span>COMPA</span>
                         <span class="material-symbols-outlined text-[13px]">open_in_new</span>
                        </a>`
@@ -4289,7 +4289,7 @@ html { overscroll-behavior-y: none; }
                 const year = (c.start_date || "").slice(0, 4);
                 const thumb = c.image_url || "../assets/images/powerbi_coban_compaclass.jpg";
                 const logo = c.logo_url || "";
-                const compaLink = c.compa_link ? `<a href="${c.compa_link}" target="_blank" rel="noreferrer" class="text-xs text-[var(--accent-color)] font-semibold inline-flex items-center gap-1 hover:underline">COMPA <span class="material-symbols-outlined text-[12px]">open_in_new</span></a>` : '';
+                const compaLink = c.compa_link ? `<a href="${c.compa_link}" target="_blank" rel="noreferrer" class="compa-pill-btn" title="Mở khóa học trên COMPA Class"><span>COMPA</span><span class="material-symbols-outlined text-[12px]">open_in_new</span></a>` : '';
 
                 return `
                     <tr>
@@ -4349,7 +4349,7 @@ html { overscroll-behavior-y: none; }
                 const year = (c.start_date || "").slice(0, 4);
                 const thumb = c.image_url || "../assets/images/powerbi_coban_compaclass.jpg";
                 const logo = c.logo_url || "";
-                const compaLink = c.compa_link ? `<a href="${c.compa_link}" target="_blank" rel="noreferrer" class="text-xs text-[var(--accent-color)] font-semibold inline-flex items-center gap-1 hover:underline">COMPA Class <span class="material-symbols-outlined text-[12px]">open_in_new</span></a>` : '';
+                const compaLink = c.compa_link ? `<a href="${c.compa_link}" target="_blank" rel="noreferrer" class="compa-pill-btn" title="Mở khóa học trên COMPA Class"><span>COMPA</span><span class="material-symbols-outlined text-[12px]">open_in_new</span></a>` : '';
 
                 return `
                     <article class="mobile-card">

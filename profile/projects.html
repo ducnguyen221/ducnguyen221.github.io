@@ -106,8 +106,8 @@ html { overscroll-behavior-y: none; }
                                         <strong id="roleChartTotal">70</strong>
                                         <span class="t-lang" data-en="Projects" data-vi="Dự án">Projects</span>
                                     </div>
-                                    <div class="project-role-labels" id="roleLabels"></div>
                                 </div>
+                                <div class="project-role-legend" id="roleLegend"></div>
                             </div>
                         </article>
 
@@ -2792,7 +2792,7 @@ html { overscroll-behavior-y: none; }
                 ? `<span class="client-meta-pill">${escapeHtml(client.sector)}</span>`
                 : '';
 
-            const summaryText = client.summary
+            const summaryMarkup = client.summary
                 ? `<p class="client-summary-text">${escapeHtml(client.summary)}</p>`
                 : '';
 
@@ -2816,10 +2816,17 @@ html { overscroll-behavior-y: none; }
                         ${sectorPill}
                         ${mstPill}
                     </div>
-                    ${summaryText}
+                    ${summaryMarkup}
                     ${projectTags ? `<div class="client-projects-chips">${projectTags}</div>` : ''}
                 </article>
             `;
+        }
+
+        function filterByRole(roleName) {
+            if (roleFilter) {
+                roleFilter.value = roleFilter.value === roleName ? "" : roleName;
+                render();
+            }
         }
 
         function renderSummary(rows) {
@@ -2831,9 +2838,11 @@ html { overscroll-behavior-y: none; }
             clientCountBadgeEl.textContent = summary.companyCount;
             roleChartEl.setAttribute("aria-label", summaryText("Project distribution by role", "Phân bổ dự án theo role"));
 
+            const roleLegendEl = document.getElementById("roleLegend") || document.getElementById("roleLabels");
+
             if (!summary.projectCount) {
                 roleChartEl.style.background = "conic-gradient(rgba(255,255,255,0.08) 0 100%)";
-                roleLabelsEl.innerHTML = "";
+                if (roleLegendEl) roleLegendEl.innerHTML = "";
                 clientDirectoryEl.innerHTML = `<div class="project-empty">${summaryText("No clients match the current filters.", "Không có khách hàng phù hợp với bộ lọc hiện tại.")}</div>`;
                 return;
             }
@@ -2843,12 +2852,10 @@ html { overscroll-behavior-y: none; }
                 const color = rolePalette[index % rolePalette.length];
                 const next = cursor + (item.count / summary.projectCount) * 100;
                 const segment = `${color} ${cursor.toFixed(2)}% ${next.toFixed(2)}%`;
-                const midAngle = ((cursor + next) / 2 / 100) * Math.PI * 2 - Math.PI / 2;
                 cursor = next;
                 return {
                     color,
                     segment,
-                    midAngle,
                     role: item.role,
                     count: item.count
                 };
@@ -2856,22 +2863,24 @@ html { overscroll-behavior-y: none; }
 
             roleChartEl.style.background = `conic-gradient(${segments.map((item) => item.segment).join(", ")})`;
 
-            roleLabelsEl.innerHTML = segments.map((item) => {
-                const xVector = Math.cos(item.midAngle);
-                const yVector = Math.sin(item.midAngle);
-                const x = Math.min(92, Math.max(8, 50 + xVector * 46));
-                const y = Math.min(88, Math.max(12, 50 + yVector * 46));
-                const anchor = xVector > 0.22 ? "right" : xVector < -0.22 ? "left" : "center";
-                const countLabel = currentLang() === "vi"
-                    ? `${item.count} dự án`
-                    : `${item.count} projects`;
-                return `
-                    <div class="project-role-label project-role-label--${anchor}" style="left:${x.toFixed(2)}%; top:${y.toFixed(2)}%; --label-color:${item.color};">
-                        <span>${escapeHtml(item.role)}</span>
-                        <strong>${countLabel}</strong>
-                    </div>
-                `;
-            }).join("");
+            if (roleLegendEl) {
+                roleLegendEl.innerHTML = segments.map((item) => {
+                    const pct = ((item.count / summary.projectCount) * 100).toFixed(1);
+                    const isSelected = roleFilter && roleFilter.value === item.role ? " active" : "";
+                    return `
+                        <div class="role-legend-item${isSelected}" onclick="filterByRole('${escapeHtml(item.role)}')" title="Lọc theo vai trò ${escapeHtml(item.role)}">
+                            <div class="role-legend-left">
+                                <span class="role-legend-color" style="background:${item.color};"></span>
+                                <span class="role-legend-name">${escapeHtml(item.role)}</span>
+                            </div>
+                            <div class="role-legend-count">
+                                <strong>${item.count}</strong>
+                                <span class="role-legend-pct">(${pct}%)</span>
+                            </div>
+                        </div>
+                    `;
+                }).join("");
+            }
 
             clientDirectoryEl.innerHTML = `<div class="client-directory-grid">${summary.clients.map(clientDirectoryMarkup).join("")}</div>`;
         }
