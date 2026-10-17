@@ -2890,6 +2890,30 @@ html:not(.dark) .client-floating-popover {
     text-overflow: ellipsis;
 }
 
+.post-card-topic--atlas {
+    background: rgba(16, 185, 129, 0.14) !important;
+    color: #34d399 !important;
+    border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+.post-card-topic--compa {
+    background: rgba(234, 179, 8, 0.14) !important;
+    color: #facc15 !important;
+    border-color: rgba(234, 179, 8, 0.4) !important;
+}
+
+.post-card-topic--youtube {
+    background: rgba(239, 68, 68, 0.14) !important;
+    color: #f87171 !important;
+    border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.post-card-topic--facebook {
+    background: rgba(24, 119, 242, 0.14) !important;
+    color: #60a5fa !important;
+    border-color: rgba(24, 119, 242, 0.4) !important;
+}
+
 .post-card-date {
     font-size: 0.72rem;
     color: var(--soft-text-color);
@@ -2969,6 +2993,7 @@ html:not(.dark) .client-floating-popover {
 .post-chips {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
     gap: 4px;
     max-width: 170px;
 }

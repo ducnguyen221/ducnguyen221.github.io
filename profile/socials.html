@@ -67,9 +67,9 @@ html { overscroll-behavior-y: none; }
             <section class="glass-panel hero-panel post-scroll-section" id="atlasSection">
                 <div class="post-scroll-header">
                     <div>
-                        <h2 class="section-title">
+                        <h2 class="section-title" style="color:#34d399 !important;">
                             <span class="material-symbols-outlined" style="color:#34d399;">map</span>
-                            <span class="t-lang" data-en="Website Atlas Knowledge Feed" data-vi="Bài viết trên Website Atlas">Bài viết trên Website Atlas</span>
+                            <span class="t-lang" style="color:#34d399;" data-en="Website Atlas Knowledge Feed" data-vi="Bài viết trên Website Atlas">Bài viết trên Website Atlas</span>
                             <span class="badge" style="background:rgba(16,185,129,0.18); border:1px solid rgba(16,185,129,0.4); color:#34d399; font-size:0.75rem; padding:2px 8px; border-radius:999px; margin-left:6px;" id="atlasCountBadge">36 bài</span>
                         </h2>
                         <p class="section-subtitle t-lang"
@@ -97,9 +97,9 @@ html { overscroll-behavior-y: none; }
             <section class="glass-panel hero-panel post-scroll-section" id="compaSection">
                 <div class="post-scroll-header">
                     <div>
-                        <h2 class="section-title">
+                        <h2 class="section-title" style="color:#facc15 !important;">
                             <span class="material-symbols-outlined" style="color:#facc15;">school</span>
-                            <span class="t-lang" data-en="COMPA Class Practical Blog" data-vi="Bài viết trên COMPA Class">Bài viết trên COMPA Class</span>
+                            <span class="t-lang" style="color:#facc15;" data-en="COMPA Class Practical Blog" data-vi="Bài viết trên COMPA Class">Bài viết trên COMPA Class</span>
                             <span class="badge" style="background:rgba(234,179,8,0.18); border:1px solid rgba(234,179,8,0.4); color:#facc15; font-size:0.75rem; padding:2px 8px; border-radius:999px; margin-left:6px;" id="compaCountBadge">18 bài</span>
                         </h2>
                         <p class="section-subtitle t-lang"
@@ -127,9 +127,9 @@ html { overscroll-behavior-y: none; }
             <section class="glass-panel hero-panel post-scroll-section" id="youtubeSection">
                 <div class="post-scroll-header">
                     <div>
-                        <h2 class="section-title">
+                        <h2 class="section-title" style="color:#ef4444 !important;">
                             <span class="material-symbols-outlined" style="color:#ef4444;">smart_display</span>
-                            <span class="t-lang" data-en="Videos on YouTube" data-vi="Video trên YouTube">Video trên YouTube</span>
+                            <span class="t-lang" style="color:#ef4444;" data-en="Videos on YouTube" data-vi="Video trên YouTube">Video trên YouTube</span>
                             <span class="badge" style="background:rgba(239,68,68,0.18); border:1px solid rgba(239,68,68,0.4); color:#ef4444; font-size:0.75rem; padding:2px 8px; border-radius:999px; margin-left:6px;" id="youtubeCountBadge">15 video</span>
                         </h2>
                         <p class="section-subtitle t-lang"
@@ -157,9 +157,9 @@ html { overscroll-behavior-y: none; }
             <section class="glass-panel hero-panel post-scroll-section" id="facebookSection">
                 <div class="post-scroll-header">
                     <div>
-                        <h2 class="section-title">
+                        <h2 class="section-title" style="color:#3b82f6 !important;">
                             <span class="material-symbols-outlined" style="color:#3b82f6;">public</span>
-                            <span class="t-lang" data-en="Posts on Facebook" data-vi="Bài viết trên Facebook">Bài viết trên Facebook</span>
+                            <span class="t-lang" style="color:#3b82f6;" data-en="Posts on Facebook" data-vi="Bài viết trên Facebook">Bài viết trên Facebook</span>
                             <span class="badge" style="background:rgba(24,119,242,0.18); border:1px solid rgba(24,119,242,0.4); color:#3b82f6; font-size:0.75rem; padding:2px 8px; border-radius:999px; margin-left:6px;" id="facebookCountBadge">8 bài</span>
                         </h2>
                         <p class="section-subtitle t-lang"
@@ -2171,12 +2171,11 @@ html { overscroll-behavior-y: none; }
                     <article class="post-scroll-card">
                         <a href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" class="post-card-thumb-wrap" tabindex="-1" aria-hidden="true">
                             <img src="${escapeHtml(thumbUrl)}" alt="${escapeHtml(p.title)}" class="post-card-thumb" loading="lazy" onerror="this.onerror=null; this.src='../atlas/assets/AI.png';">
-                            <span class="post-card-thumb-badge"><span class="material-symbols-outlined text-[12px]">map</span> Atlas</span>
                         </a>
                         <div class="post-card-body">
                             <div>
                                 <div class="post-card-kicker">
-                                    <span class="post-card-topic" title="${escapeHtml(p.topic)}">${escapeHtml(p.topic || 'Atlas')}</span>
+                                    <span class="post-card-topic post-card-topic--atlas" title="${escapeHtml(p.topic)}">${escapeHtml(p.topic || 'Atlas')}</span>
                                     <span class="post-card-date">${escapeHtml(p.post_date)}</span>
                                 </div>
                                 <h3 class="post-card-title">
@@ -2185,11 +2184,11 @@ html { overscroll-behavior-y: none; }
                                 ${p.detail ? `<p class="post-card-desc" title="${escapeHtml(p.detail)}">${escapeHtml(p.detail)}</p>` : ''}
                             </div>
                             <div class="post-card-footer">
-                                <div class="post-chips">${chips}</div>
-                                <a class="atlas-pill-btn" href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer">
+                                <a class="atlas-pill-btn" href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" style="flex-shrink:0;">
+                                    <span class="material-symbols-outlined text-[14px]">map</span>
                                     <span>Đọc trên Atlas</span>
-                                    <span class="material-symbols-outlined text-[13px]">open_in_new</span>
                                 </a>
+                                <div class="post-chips">${chips}</div>
                             </div>
                         </div>
                     </article>
@@ -2207,12 +2206,11 @@ html { overscroll-behavior-y: none; }
                     <article class="post-scroll-card">
                         <a href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" class="post-card-thumb-wrap" tabindex="-1" aria-hidden="true">
                             <img src="${escapeHtml(thumbUrl)}" alt="${escapeHtml(p.title)}" class="post-card-thumb" loading="lazy" onerror="this.onerror=null; this.src='../atlas/assets/AI.png';">
-                            <span class="post-card-thumb-badge post-card-thumb-badge--compa"><span class="material-symbols-outlined text-[12px]">school</span> COMPA</span>
                         </a>
                         <div class="post-card-body">
                             <div>
                                 <div class="post-card-kicker">
-                                    <span class="post-card-topic" title="${escapeHtml(p.topic)}">${escapeHtml(p.topic || 'COMPA')}</span>
+                                    <span class="post-card-topic post-card-topic--compa" title="${escapeHtml(p.topic)}">${escapeHtml(p.topic || 'COMPA')}</span>
                                     <span class="post-card-date">${escapeHtml(p.post_date)}</span>
                                 </div>
                                 <h3 class="post-card-title">
@@ -2221,11 +2219,11 @@ html { overscroll-behavior-y: none; }
                                 ${p.detail ? `<p class="post-card-desc" title="${escapeHtml(p.detail)}">${escapeHtml(p.detail)}</p>` : ''}
                             </div>
                             <div class="post-card-footer">
-                                <div class="post-chips">${chips}</div>
-                                <a class="compa-pill-btn" href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer">
+                                <a class="compa-pill-btn" href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" style="flex-shrink:0;">
+                                    <span class="material-symbols-outlined text-[14px]">school</span>
                                     <span>Đọc trên COMPA</span>
-                                    <span class="material-symbols-outlined text-[13px]">open_in_new</span>
                                 </a>
+                                <div class="post-chips">${chips}</div>
                             </div>
                         </div>
                     </article>
@@ -2242,12 +2240,11 @@ html { overscroll-behavior-y: none; }
                     <article class="post-scroll-card">
                         <a href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" class="post-card-thumb-wrap" tabindex="-1" aria-hidden="true">
                             <img src="${escapeHtml(p.thumbnail)}" alt="${escapeHtml(p.title)}" class="post-card-thumb" loading="lazy">
-                            <span class="post-card-thumb-badge post-card-thumb-badge--youtube"><span class="material-symbols-outlined text-[12px]">smart_display</span> YouTube</span>
                         </a>
                         <div class="post-card-body">
                             <div>
                                 <div class="post-card-kicker">
-                                    <span class="post-card-topic" style="color:#ef4444;" title="${escapeHtml(p.topic)}">${escapeHtml(p.topic || 'YouTube')}</span>
+                                    <span class="post-card-topic post-card-topic--youtube" title="${escapeHtml(p.topic)}">${escapeHtml(p.topic || 'YouTube')}</span>
                                     <span class="post-card-date">${escapeHtml(p.post_date)}</span>
                                 </div>
                                 <h3 class="post-card-title">
@@ -2256,11 +2253,11 @@ html { overscroll-behavior-y: none; }
                                 ${p.detail ? `<p class="post-card-desc" title="${escapeHtml(p.detail)}">${escapeHtml(p.detail)}</p>` : ''}
                             </div>
                             <div class="post-card-footer">
-                                <div class="post-chips">${chips}</div>
-                                <a class="youtube-pill-btn" href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer">
+                                <a class="youtube-pill-btn" href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" style="flex-shrink:0;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                                     <span>Xem trên YouTube</span>
-                                    <span class="material-symbols-outlined text-[13px]">open_in_new</span>
                                 </a>
+                                <div class="post-chips">${chips}</div>
                             </div>
                         </div>
                     </article>
@@ -2277,12 +2274,11 @@ html { overscroll-behavior-y: none; }
                     <article class="post-scroll-card">
                         <a href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" class="post-card-thumb-wrap" tabindex="-1" aria-hidden="true">
                             <img src="${escapeHtml(p.thumbnail)}" alt="${escapeHtml(p.title)}" class="post-card-thumb" loading="lazy">
-                            <span class="post-card-thumb-badge post-card-thumb-badge--facebook"><span class="material-symbols-outlined text-[12px]">public</span> Facebook</span>
                         </a>
                         <div class="post-card-body">
                             <div>
                                 <div class="post-card-kicker">
-                                    <span class="post-card-topic" style="color:#3b82f6;" title="${escapeHtml(p.topic)}">${escapeHtml(p.topic || 'Facebook')}</span>
+                                    <span class="post-card-topic post-card-topic--facebook" title="${escapeHtml(p.topic)}">${escapeHtml(p.topic || 'Facebook')}</span>
                                     <span class="post-card-date">${escapeHtml(p.post_date)}</span>
                                 </div>
                                 <h3 class="post-card-title">
@@ -2291,11 +2287,11 @@ html { overscroll-behavior-y: none; }
                                 ${p.detail ? `<p class="post-card-desc" title="${escapeHtml(p.detail)}">${escapeHtml(p.detail)}</p>` : ''}
                             </div>
                             <div class="post-card-footer">
-                                <div class="post-chips">${chips}</div>
-                                <a class="facebook-pill-btn" href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer">
+                                <a class="facebook-pill-btn" href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" style="flex-shrink:0;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                                     <span>Xem trên Facebook</span>
-                                    <span class="material-symbols-outlined text-[13px]">open_in_new</span>
                                 </a>
+                                <div class="post-chips">${chips}</div>
                             </div>
                         </div>
                     </article>
@@ -2404,15 +2400,15 @@ html { overscroll-behavior-y: none; }
         function getPostCta(p) {
             if (!p.target_url) return '<span style="font-size:0.75rem; color:var(--soft-text-color);">N/A</span>';
             if (p.platform === "Atlas") {
-                return `<a href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" class="atlas-pill-btn" title="Đọc bài viết trên Website Atlas"><span>Atlas</span><span class="material-symbols-outlined text-[12px]">open_in_new</span></a>`;
+                return `<a href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" class="atlas-pill-btn" title="Đọc bài viết trên Website Atlas"><span class="material-symbols-outlined text-[13px]">map</span><span>Atlas</span></a>`;
             } else if (p.platform === "COMPA Class") {
-                return `<a href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" class="compa-pill-btn" title="Đọc bài viết trên COMPA Class"><span>COMPA</span><span class="material-symbols-outlined text-[12px]">open_in_new</span></a>`;
+                return `<a href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" class="compa-pill-btn" title="Đọc bài viết trên COMPA Class"><span class="material-symbols-outlined text-[13px]">school</span><span>COMPA</span></a>`;
             } else if (p.platform === "YouTube") {
-                return `<a href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" class="youtube-pill-btn" title="Xem video trên YouTube"><span>YouTube</span><span class="material-symbols-outlined text-[12px]">open_in_new</span></a>`;
+                return `<a href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" class="youtube-pill-btn" title="Xem video trên YouTube"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span>YouTube</span></a>`;
             } else if (p.platform === "Facebook") {
-                return `<a href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" class="facebook-pill-btn" title="Xem bài đăng trên Facebook"><span>Facebook</span><span class="material-symbols-outlined text-[12px]">open_in_new</span></a>`;
+                return `<a href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" class="facebook-pill-btn" title="Xem bài đăng trên Facebook"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg><span>Facebook</span></a>`;
             }
-            return `<a href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" class="button-link" style="padding:3px 8px; font-size:0.7rem;" title="Xem nội dung"><span>Xem</span><span class="material-symbols-outlined text-[12px]">open_in_new</span></a>`;
+            return `<a href="${escapeHtml(p.target_url)}" target="_blank" rel="noreferrer" class="button-link" style="padding:3px 8px; font-size:0.7rem;" title="Xem nội dung"><span>Xem</span></a>`;
         }
 
         function renderPosts() {
@@ -2430,6 +2426,10 @@ html { overscroll-behavior-y: none; }
                 const ctaBtn = getPostCta(p);
                 const chips = (p.keywords || []).slice(0, 3).map(k => `<span class="post-chip">#${escapeHtml(k)}</span>`).join("");
                 const thumbUrl = (p.thumbnail || "../atlas/assets/AI.png").replace(/^https?:\/\/ducnguyen\.vn\/atlas\//, "../atlas/");
+                const topicClass = p.platform === "Atlas" ? "post-card-topic--atlas"
+                    : p.platform === "COMPA Class" ? "post-card-topic--compa"
+                    : p.platform === "YouTube" ? "post-card-topic--youtube"
+                    : "post-card-topic--facebook";
 
                 return `
                     <tr>
@@ -2454,9 +2454,9 @@ html { overscroll-behavior-y: none; }
                             ${platformBadge}
                         </td>
                         <td>
-                            <div style="display:flex; flex-direction:column; gap:3px;">
-                                <span class="featured-course-skill-pill" style="font-size:0.65rem; width:fit-content;">${escapeHtml(p.topic || p.category)}</span>
-                                <div class="post-chips">${chips}</div>
+                            <div style="display:flex; flex-direction:column; gap:4px; align-items:flex-start;">
+                                <span class="post-card-topic ${topicClass}" style="font-size:0.65rem; width:fit-content; margin-bottom:3px;">${escapeHtml(p.topic || p.category)}</span>
+                                <div class="post-chips" style="justify-content:flex-start;">${chips}</div>
                             </div>
                         </td>
                         <td>
@@ -2474,6 +2474,10 @@ html { overscroll-behavior-y: none; }
                 const platformBadge = getPlatformBadge(p.platform);
                 const ctaBtn = getPostCta(p);
                 const thumbUrl = (p.thumbnail || "../atlas/assets/AI.png").replace(/^https?:\/\/ducnguyen\.vn\/atlas\//, "../atlas/");
+                const topicClass = p.platform === "Atlas" ? "post-card-topic--atlas"
+                    : p.platform === "COMPA Class" ? "post-card-topic--compa"
+                    : p.platform === "YouTube" ? "post-card-topic--youtube"
+                    : "post-card-topic--facebook";
 
                 return `
                     <article class="mobile-card">
@@ -2492,7 +2496,7 @@ html { overscroll-behavior-y: none; }
                             ${p.detail ? `<p style="font-size:0.76rem; color:var(--soft-text-color); line-height:1.4; margin:0; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">${escapeHtml(p.detail)}</p>` : ''}
                         </div>
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px; padding-top:8px; border-top:1px solid var(--border-color); font-size:0.75rem;">
-                            <span class="featured-course-skill-pill" style="font-size:0.65rem;">${escapeHtml(p.topic || p.category)}</span>
+                            <span class="post-card-topic ${topicClass}" style="font-size:0.65rem;">${escapeHtml(p.topic || p.category)}</span>
                             ${ctaBtn}
                         </div>
                     </article>
