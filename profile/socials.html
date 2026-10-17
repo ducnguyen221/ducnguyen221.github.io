@@ -183,74 +183,128 @@ html { overscroll-behavior-y: none; }
                 </div>
             </section>
 
-            <!-- 5. Dual Social Embed Section (YouTube & Facebook Rộng Rãi) -->
+            <!-- 5. 4-Column Interactive Portals & Channels Section -->
             <section class="glass-panel hero-panel" id="socialEmbedSection">
                 <div class="section-head">
                     <div>
                         <h2 class="section-title">
-                            <span class="material-symbols-outlined" style="color:var(--accent-color);">live_tv</span>
-                            <span class="t-lang" data-en="Interactive Social Channels" data-vi="Kênh Trực Tuyến &amp; Mạng Xã Hội">Kênh Trực Tuyến &amp; Mạng Xã Hội</span>
+                            <span class="material-symbols-outlined" style="color:var(--accent-color);">hub</span>
+                            <span class="t-lang" data-en="Interactive Portals &amp; Channels" data-vi="Hệ Thống Nền Tảng &amp; Kênh Trực Tuyến">Hệ Thống Nền Tảng &amp; Kênh Trực Tuyến</span>
                         </h2>
                         <p class="section-subtitle t-lang"
-                            data-en="Direct interactive window into YouTube channel @ducnguyen-ai and Facebook Fanpage Tobi Nguyen."
-                            data-vi="Cửa sổ tương tác trực tiếp tới Kênh YouTube @ducnguyen-ai và Trang Facebook Tobi Nguyen.">
-                            Cửa sổ tương tác trực tiếp tới Kênh YouTube @ducnguyen-ai và Trang Facebook Tobi Nguyen.
+                            data-en="Direct interactive window into Website Atlas, COMPA Class Blog, YouTube channel @ducnguyen-ai, and Facebook Fanpage."
+                            data-vi="Cửa sổ kết nối và tương tác trực tiếp tới Website Atlas, Blog COMPA Class, Kênh YouTube @ducnguyen-ai và Trang Facebook Tobi Nguyen.">
+                            Cửa sổ kết nối và tương tác trực tiếp tới Website Atlas, Blog COMPA Class, Kênh YouTube @ducnguyen-ai và Trang Facebook Tobi Nguyen.
                         </p>
                     </div>
                 </div>
 
                 <div class="social-embed-grid">
-                    <!-- YouTube Panel -->
-                    <article class="social-embed-card">
+                    <!-- 1. Atlas Panel -->
+                    <article class="social-embed-card" data-group="atlas">
                         <div class="social-embed-card-head">
-                            <div>
-                                <h3 style="margin:0; font-size:1.05rem; display:flex; align-items:center; gap:8px;">
-                                    <span class="material-symbols-outlined" style="color:#ef4444;">smart_display</span>
-                                    <span>Kênh YouTube @ducnguyen-ai</span>
-                                </h3>
-                                <p class="muted t-lang" style="margin:4px 0 0; font-size:0.8rem;"
-                                    data-en="Official YouTube channel for AI &amp; Data analytics tutorials and news."
-                                    data-vi="Kênh YouTube chính thức chia sẻ video kiến thức AI, Data News và thực hành Vibe Coding.">
-                                    Kênh YouTube chính thức chia sẻ video kiến thức AI, Data News và thực hành Vibe Coding.
-                                </p>
+                            <h3 class="card-header-title" style="color:#34d399;">
+                                <span class="material-symbols-outlined">map</span>
+                                <span class="t-lang" data-en="Website Atlas" data-vi="Website Atlas">Website Atlas</span>
+                            </h3>
+                            <p class="card-header-desc t-lang"
+                                data-en="Interactive knowledge hub on Prompt, Context &amp; AI Engineering at ducnguyen.vn/atlas."
+                                data-vi="Thư viện tri thức tương tác về Prompt, Context &amp; AI Engineering tại ducnguyen.vn/atlas.">
+                                Thư viện tri thức tương tác về Prompt, Context &amp; AI Engineering tại ducnguyen.vn/atlas.
+                            </p>
+                        </div>
+                        <a class="site-embed-frame" href="https://ducnguyen.vn/atlas/" target="_blank" rel="noreferrer" title="Truy cập Website Atlas">
+                            <img src="assets/images/sites/site_atlas_preview.png" alt="Website Atlas Knowledge Hub" loading="lazy">
+                            <div class="site-embed-overlay">
+                                <span class="material-symbols-outlined">open_in_new</span>
+                                <span class="t-lang" data-en="Visit Atlas" data-vi="Truy cập Atlas">Truy cập Atlas</span>
                             </div>
-                            <a class="button-link primary" href="https://www.youtube.com/@ducnguyen-ai?sub_confirmation=1" rel="noreferrer" target="_blank" style="padding:5px 12px; font-size:0.75rem;">
-                                <span class="material-symbols-outlined text-[14px]">open_in_new</span>
-                                <span class="t-lang" data-en="Open Channel" data-vi="Mở Kênh YouTube">Mở Kênh YouTube</span>
+                        </a>
+                        <div class="social-embed-card-footer">
+                            <a class="button-link" href="https://ducnguyen.vn/atlas/" target="_blank" rel="noreferrer" style="background:rgba(16,185,129,0.14); border:1px solid rgba(16,185,129,0.4); color:#34d399; width:100%; justify-content:center; padding:7px 12px; font-size:0.78rem; font-weight:600;">
+                                <span class="material-symbols-outlined text-[15px]">open_in_new</span>
+                                <span class="t-lang" data-en="Open Atlas Website" data-vi="Mở Website Atlas">Mở Website Atlas</span>
                             </a>
+                        </div>
+                    </article>
+
+                    <!-- 2. COMPA Class Panel -->
+                    <article class="social-embed-card" data-group="compa">
+                        <div class="social-embed-card-head">
+                            <h3 class="card-header-title" style="color:#facc15;">
+                                <span class="material-symbols-outlined">school</span>
+                                <span class="t-lang" data-en="COMPA Class Blog" data-vi="Blog COMPA Class">Blog COMPA Class</span>
+                            </h3>
+                            <p class="card-header-desc t-lang"
+                                data-en="Practical insights on Vibe Coding, Data Analytics &amp; AI at compaclass.com/blog."
+                                data-vi="Bài viết thực chiến về Vibe Coding, Data Analytics &amp; AI tại compaclass.com/blog.">
+                                Bài viết thực chiến về Vibe Coding, Data Analytics &amp; AI tại compaclass.com/blog.
+                            </p>
+                        </div>
+                        <a class="site-embed-frame" href="https://compaclass.com/blog" target="_blank" rel="noreferrer" title="Truy cập Blog COMPA Class">
+                            <img src="assets/images/sites/site_compa_preview.png" alt="COMPA Class Blog" loading="lazy">
+                            <div class="site-embed-overlay">
+                                <span class="material-symbols-outlined">open_in_new</span>
+                                <span class="t-lang" data-en="Visit COMPA Blog" data-vi="Truy cập COMPA Blog">Truy cập COMPA Blog</span>
+                            </div>
+                        </a>
+                        <div class="social-embed-card-footer">
+                            <a class="button-link" href="https://compaclass.com/blog" target="_blank" rel="noreferrer" style="background:rgba(234,179,8,0.14); border:1px solid rgba(234,179,8,0.4); color:#facc15; width:100%; justify-content:center; padding:7px 12px; font-size:0.78rem; font-weight:600;">
+                                <span class="material-symbols-outlined text-[15px]">open_in_new</span>
+                                <span class="t-lang" data-en="Open COMPA Blog" data-vi="Mở Blog COMPA">Mở Blog COMPA</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- 3. YouTube Panel -->
+                    <article class="social-embed-card" data-group="youtube">
+                        <div class="social-embed-card-head">
+                            <h3 class="card-header-title" style="color:#ef4444;">
+                                <span class="material-symbols-outlined">smart_display</span>
+                                <span class="t-lang" data-en="YouTube @ducnguyen-ai" data-vi="Kênh YouTube @ducnguyen-ai">Kênh YouTube @ducnguyen-ai</span>
+                            </h3>
+                            <p class="card-header-desc t-lang"
+                                data-en="Tech analysis videos, Data News &amp; practical AI Agent tutorials."
+                                data-vi="Kênh video công nghệ, Data News &amp; thực hành AI Agent, Vibe Coding.">
+                                Kênh video công nghệ, Data News &amp; thực hành AI Agent, Vibe Coding.
+                            </p>
                         </div>
                         <div class="youtube-embed-frame">
                             <iframe src="https://www.youtube-nocookie.com/embed/LGqKHzKLpJA?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
+                        <div class="social-embed-card-footer">
+                            <a class="button-link" href="https://www.youtube.com/@ducnguyen-ai?sub_confirmation=1" target="_blank" rel="noreferrer" style="background:rgba(239,68,68,0.14); border:1px solid rgba(239,68,68,0.4); color:#ef4444; width:100%; justify-content:center; padding:7px 12px; font-size:0.78rem; font-weight:600;">
+                                <span class="material-symbols-outlined text-[15px]">open_in_new</span>
+                                <span class="t-lang" data-en="Open YouTube Channel" data-vi="Mở Kênh YouTube">Mở Kênh YouTube</span>
+                            </a>
+                        </div>
                     </article>
 
-                    <!-- Facebook Panel -->
-                    <article class="social-embed-card">
+                    <!-- 4. Facebook Panel -->
+                    <article class="social-embed-card" data-group="facebook">
                         <div class="social-embed-card-head">
-                            <div>
-                                <h3 style="margin:0; font-size:1.05rem; display:flex; align-items:center; gap:8px;">
-                                    <span class="material-symbols-outlined" style="color:#1877f2;">public</span>
-                                    <span>Trang Facebook Tobi Nguyen</span>
-                                </h3>
-                                <p class="muted t-lang" style="margin:4px 0 0; font-size:0.8rem;"
-                                    data-en="Public presence and updates on Facebook Fanpage and Personal Profile."
-                                    data-vi="Cửa sổ trực tiếp vào Fanpage Tobi Nguyen Data &amp; AI khi plugin Facebook được phép hiển thị.">
-                                    Cửa sổ trực tiếp vào Fanpage Tobi Nguyen Data &amp; AI khi plugin Facebook được phép hiển thị.
-                                </p>
-                            </div>
-                            <div style="display:flex; gap:8px;">
-                                <a class="button-link" href="https://www.facebook.com/TobiNguyenData/" rel="noreferrer" target="_blank" style="padding:5px 10px; font-size:0.75rem;">
-                                    <span class="material-symbols-outlined text-[14px]">open_in_new</span>
-                                    <span class="t-lang" data-en="Page" data-vi="Mở Page">Mở Page</span>
-                                </a>
-                                <a class="button-link primary" href="https://www.facebook.com/tobinguyen221" rel="noreferrer" target="_blank" style="padding:5px 10px; font-size:0.75rem;">
-                                    <span class="material-symbols-outlined text-[14px]">account_circle</span>
-                                    <span class="t-lang" data-en="Profile" data-vi="Account">Account</span>
-                                </a>
-                            </div>
+                            <h3 class="card-header-title" style="color:#3b82f6;">
+                                <span class="material-symbols-outlined">public</span>
+                                <span class="t-lang" data-en="Facebook Tobi Nguyen" data-vi="Trang Facebook Tobi Nguyen">Trang Facebook Tobi Nguyen</span>
+                            </h3>
+                            <p class="card-header-desc t-lang"
+                                data-en="Community updates &amp; insights on Fanpage Tobi Nguyen Data &amp; AI."
+                                data-vi="Cửa sổ trực tiếp vào Fanpage Tobi Nguyen Data &amp; AI cập nhật cộng đồng.">
+                                Cửa sổ trực tiếp vào Fanpage Tobi Nguyen Data &amp; AI cập nhật cộng đồng.
+                            </p>
                         </div>
                         <div class="facebook-embed-frame">
-                            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FTobiNguyenData%2F&tabs=timeline&width=500&height=380&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" title="Facebook Page Embed"></iframe>
+                            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FTobiNguyenData%2F&tabs=timeline&width=360&height=190&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId" title="Facebook Page Embed"></iframe>
+                        </div>
+                        <div class="social-embed-card-footer">
+                            <a class="button-link" href="https://www.facebook.com/TobiNguyenData/" target="_blank" rel="noreferrer" style="background:rgba(24,119,242,0.14); border:1px solid rgba(24,119,242,0.4); color:#3b82f6; flex:1; justify-content:center; padding:7px 10px; font-size:0.78rem; font-weight:600;">
+                                <span class="material-symbols-outlined text-[15px]">open_in_new</span>
+                                <span class="t-lang" data-en="Open Fanpage" data-vi="Mở Fanpage">Mở Fanpage</span>
+                            </a>
+                            <a class="button-link" href="https://www.facebook.com/tobinguyen221" target="_blank" rel="noreferrer" style="background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:var(--text-color); flex:0 0 auto; justify-content:center; padding:7px 10px; font-size:0.78rem; font-weight:600;" title="Trang cá nhân Tobi Nguyen">
+                                <span class="material-symbols-outlined text-[15px]">account_circle</span>
+                                <span class="t-lang" data-en="Profile" data-vi="Account">Account</span>
+                            </a>
                         </div>
                     </article>
                 </div>
