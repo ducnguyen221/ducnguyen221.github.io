@@ -1,0 +1,1591 @@
+[
+  {
+    "schedule_date": "2025-05-12",
+    "post_date": "2025-05-12",
+    "status": "1. Planning",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu",
+      "Hiệu quả công việc"
+    ],
+    "title": "10 cách tối ưu dữ liệu trong SharePoint List để quản lý dễ dàng hơn.",
+    "article_link": "../../../../:w:/s/MyProfile/Ec5Y0Vhngb5Du1dCtEBUNxYBQfGfrDDNeqpbNgQ45-YtfA?e=OCocKj",
+    "compa_link": "",
+    "website_link": "",
+    "detail": "Tổng hợp 10 kỹ thuật chuẩn hóa cấu trúc cột, thiết lập chỉ mục (indexing) và phân nhóm dữ liệu giúp tăng tốc truy vấn, quản lý danh sách lớn mượt mà trên SharePoint.",
+    "channel": "sharepoint_draft"
+  },
+  {
+    "schedule_date": "2025-05-08",
+    "post_date": "2025-05-08",
+    "status": "1. Planning",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Kết nối SharePoint List với Power BI: Tạo báo cáo từ dữ liệu thời gian thực.",
+    "article_link": "../Social%20Media%20Post/SharePoint%20List/K%E1%BA%BFt%20n%E1%BB%91i%20SharePoint%20List%20v%E1%BB%9Bi%20Power%20BI.docx?web=1",
+    "compa_link": "",
+    "website_link": "",
+    "detail": "Hướng dẫn từng bước kết nối nguồn dữ liệu SharePoint List vào Power BI Desktop, làm sạch qua Power Query và xây dựng báo cáo quản trị tự động cập nhật theo thời gian thực.",
+    "channel": "sharepoint_draft"
+  },
+  {
+    "schedule_date": "2025-05-05",
+    "post_date": "2025-05-05",
+    "status": "1. Planning",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Doanh nghiệp giảm 50% thời gian xử lý dữ liệu nhờ SharePoint List!",
+    "article_link": "../../../../:w:/s/MyProfile/ETkf1AByRPNJkZ4zrznrtp4B3pxEczhyVj_NoiGCqr6txg?e=RtqKvw",
+    "compa_link": "",
+    "website_link": "",
+    "detail": "Phân tích case study thực tế về việc số hóa quy trình thu thập dữ liệu nội bộ qua SharePoint List, giúp doanh nghiệp cắt giảm một nửa thời gian đối chiếu và loại bỏ sai lệch thủ công.",
+    "channel": "sharepoint_draft"
+  },
+  {
+    "schedule_date": "2025-05-01",
+    "post_date": "2025-05-01",
+    "status": "1. Planning",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Tích hợp dữ liệu từ nhiều nguồn vào SharePoint List dễ dàng.",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "",
+    "detail": "Phương pháp đồng bộ và tổng hợp dữ liệu đa nguồn từ Excel, Forms và SQL vào trung tâm lưu trữ SharePoint List bằng Power Automate và cổng kết nối đám mây an toàn.",
+    "channel": "sharepoint_draft"
+  },
+  {
+    "schedule_date": "2025-04-28",
+    "post_date": "2025-04-28",
+    "status": "2. Ready to post",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "Phân tích dữ liệu",
+      "Quản lý dữ liệu",
+      "SharePoint"
+    ],
+    "title": "Tích hợp SharePoint List và hệ thống bán hàng trực tuyến.",
+    "article_link": "../../../../:w:/s/MyProfile/EY9OjRyGEoBNgsXeOAndK_IBEw8iB-OCeurkOUWOJXL4SA?e=1dmiPV",
+    "compa_link": "",
+    "website_link": "",
+    "detail": "Giải pháp kết nối SharePoint List với website bán hàng và sàn thương mại điện tử qua Webhook/API để tự động ghi nhận đơn hàng, quản lý trạng thái xử lý và tồn kho.",
+    "channel": "sharepoint_draft"
+  },
+  {
+    "schedule_date": "2025-04-24",
+    "post_date": "2025-04-24",
+    "status": "2. Ready to post",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Tại sao tôi chọn SharePoint List để thay đổi cách làm việc?",
+    "article_link": "../../../../:w:/s/MyProfile/ETJkeV5CoIdItZvZKxK2xBkBDYfMv5qc1w6-eFwlHGH3QQ?e=hfU6sD",
+    "compa_link": "",
+    "website_link": "",
+    "detail": "Góc nhìn và trải nghiệm thực tế của tác giả về bước chuyển đổi từ bảng tính phân mảnh sang cơ sở dữ liệu cộng tác SharePoint List, tối ưu năng suất làm việc cá nhân và đội ngũ.",
+    "channel": "sharepoint_draft"
+  },
+  {
+    "schedule_date": "2025-04-21",
+    "post_date": "2025-04-21",
+    "status": "2. Ready to post",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Giới thiệu Power Platform và khả năng tích hợp với SharePoint List.",
+    "article_link": "../../../../:w:/s/MyProfile/ESOHmFwJVJ5EjqdIhQFHiB0BWLyAlNxodTlTTltTXx4yFA?e=efinN2",
+    "compa_link": "",
+    "website_link": "",
+    "detail": "Tổng quan hệ sinh thái Microsoft Power Platform và sức mạnh phối hợp giữa SharePoint List, Power Apps, Power Automate và Power BI trong tự động hóa vận hành doanh nghiệp.",
+    "channel": "sharepoint_draft"
+  },
+  {
+    "schedule_date": "2025-04-17",
+    "post_date": "2025-04-17",
+    "status": "2. Ready to post",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Tạo bảng dữ liệu 'Employee Directory' lưu trữ thông tin nhân viên.",
+    "article_link": "../../../../:w:/s/MyProfile/EZ-m9mzjTPdEnVMxLMdKvdcBd2h77EEhYeMIHEtKx13TZw?e=j723Nd",
+    "compa_link": "",
+    "website_link": "",
+    "detail": "Hướng dẫn thiết kế bảng danh bạ nhân sự điện tử trên SharePoint List với các trường thông tin phòng ban, chức vụ, liên hệ và phân quyền truy cập hồ sơ nội bộ bảo mật.",
+    "channel": "sharepoint_draft"
+  },
+  {
+    "schedule_date": "2025-04-14",
+    "post_date": "2025-04-14",
+    "status": "2. Ready to post",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Theo dõi tài sản văn phòng với SharePoint List.",
+    "article_link": "../../../../:w:/s/MyProfile/EeripmjNgatHrFMZBrfBtCABaZ2PgdyuBXs_O7Kk2r1QWA?e=pGYYFx",
+    "compa_link": "",
+    "website_link": "",
+    "detail": "Xây dựng ứng dụng quản lý trang thiết bị văn phòng bằng SharePoint List: theo dõi mã tài sản, trạng thái cấp phát, người sử dụng và lịch sử bảo trì định kỳ trực quan.",
+    "channel": "sharepoint_draft"
+  },
+  {
+    "schedule_date": "2025-04-10",
+    "post_date": "2025-04-10",
+    "status": "2. Ready to post",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Tạo và quản lý danh sách liên hệ khách hàng như CRM",
+    "article_link": "../../../../:w:/s/MyProfile/EQ-_5p9rGHFPuEknUdQGQX0B_rbL30CeyeJTM0jFDOHhag?e=LTgpza",
+    "compa_link": "",
+    "website_link": "",
+    "detail": "Hướng dẫn tùy biến SharePoint List thành hệ thống mini-CRM quản lý thông tin khách hàng, lịch sử tương tác, phân loại tiềm năng và thiết lập quy trình theo dõi bán hàng hiệu quả.",
+    "channel": "sharepoint_draft"
+  },
+  {
+    "schedule_date": "2025-04-07",
+    "post_date": "2025-04-07",
+    "status": "2. Ready to post",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Tạo danh sách 'To-Do List' cho nhóm làm việc trên SharePoint.",
+    "article_link": "../../../../:w:/s/MyProfile/EVFkhY6SQTxEvw4tsYGpT5sBIRstCuhCHwBH2An1R7ZUBw?e=Lgx9h0",
+    "compa_link": "",
+    "website_link": "",
+    "detail": "Cách tạo và cấu hình bảng quản lý công việc nhóm trên SharePoint List với chế độ xem Kanban/Grid, gán người phụ trách, gắn hạn chót và theo dõi tiến độ hoàn thành.",
+    "channel": "sharepoint_draft"
+  },
+  {
+    "schedule_date": "2025-03-31",
+    "post_date": "2025-03-31",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Hướng dẫn xuất dữ liệu từ SharePoint List sang Excel.",
+    "article_link": "../../../../:w:/s/MyProfile/EZqGcKDDySZMt0sd2clLGTkBOaVN8yu4b968QPClbZx2rw?e=8D27aU",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/?p=25744&preview=true",
+    "detail": "Hướng dẫn chi tiết thao tác trích xuất dữ liệu từ SharePoint List sang Microsoft Excel dưới dạng bảng liên kết động, phục vụ nhu cầu tính toán nâng cao và sao lưu dự phòng.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-03-27",
+    "post_date": "2025-03-27",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Hướng dẫn tạo SharePoint List từ file Excel và các lưu ý quan trọng",
+    "article_link": "../../../../:w:/s/MyProfile/EbqIqzwPQ4tHoyP4GiQ21o4B-Oz6EG6aLCvWG6XceKq0dQ?e=PzYBM2",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/?p=25740&preview=true",
+    "detail": "Các bước chuẩn hóa định dạng bảng Excel trước khi tải lên tạo danh sách SharePoint List tự động, xử lý lỗi kiểu dữ liệu và lưu ý bảo toàn tính toàn vẹn của tập dữ liệu.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-03-24",
+    "post_date": "2025-03-24",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Phân biệt giữa SharePoint List và Excel: Khi nào nên chọn công cụ nào?",
+    "article_link": "../../../../:w:/s/MyProfile/EbE-BG5_NCNGvNW8En8kBDQBRlSlZDzNgd5e_jRkjWGEjA?e=ja0MTo",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/phan-biet-giua-sharepoint-list-va-excel-khi-nao-nen-chon-cong-cu-nao/",
+    "detail": "So sánh chi tiết ưu nhược điểm giữa bảng tính Excel và SharePoint List về khả năng phân quyền, lịch sử phiên bản, cộng tác đa người dùng và tiêu chí chọn lựa công cụ phù hợp.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-03-20",
+    "post_date": "2025-03-20",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Thực hành nhập liệu vào Share Point List",
+    "article_link": "../../../../:w:/s/MyProfile/EVauLaYZLudDnOUAgpQ6cdUBjE26L5OUJOzBR9u9xyI15w?e=gBaE0Y",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/thuc-hanh-nhap-lieu-vao-share-point-list/",
+    "detail": "Hướng dẫn các phương thức nhập liệu nhanh vào SharePoint List qua giao diện biểu mẫu tiêu chuẩn, chế độ Grid View tương tự bảng tính và phím tắt thao tác dữ liệu thuận tiện.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-03-17",
+    "post_date": "2025-03-17",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Thực hành tạo các cột trong Share Point List",
+    "article_link": "../../../../:w:/s/MyProfile/EWswIJJfq9hCuOvPz-GZ-hcByZGscefKj6BpEb1n6NmXwA?e=tfZwuE",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/thuc-hanh-tao-cac-cot-trong-share-point-list/",
+    "detail": "Thao tác thực hành tạo và thiết lập các loại cột dữ liệu cốt lõi trong SharePoint List: Single line text, Number, Date and Time, Choice, Yes/No và quy tắc đặt tên cột chuẩn.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-03-13",
+    "post_date": "2025-02-13",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Hướng dẫn phân loại cột và định dạng dữ liệu trong SharePoint List.",
+    "article_link": "../../../../:w:/s/MyProfile/EZcAXg6eccFIpi7klbVuTq0Bw56b_Oy9D_uvId5IHUhtpA?e=zSeOD2",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/huong-dan-phan-loai-cot-va-dinh-dang-du-lieu-trong-sharepoint-list/",
+    "detail": "Tìm hiểu sâu về các kiểu dữ liệu nâng cao trong SharePoint List như Lookup, Person, Currency, Calculated Column và cách áp dụng định dạng có điều kiện (Conditional Formatting).",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-03-10",
+    "post_date": "2025-03-10",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "5 trường hợp ứng dụng SharePoint List trong doanh nghiệp.",
+    "article_link": "../../../../:w:/s/MyProfile/EepfgakzbpxIli9Cxx8pzIQBscRArZdrNDKiYANa6iz3mg?e=a3eCGW",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/5-truong-hop-ung-dung-sharepoint-list-trong-doanh-nghiep/",
+    "detail": "Khám phá 5 bài toán thực tế áp dụng thành công SharePoint List: phê duyệt nghỉ phép, yêu cầu cấp phát vật tư, quản lý tài liệu dự án, kiểm kê tài sản và danh bạ đối tác.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-03-09",
+    "post_date": "2025-03-09",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Tạo bảng thông tin liên hệ",
+    "article_link": "../../../../:w:/s/MyProfile/Edm6VeGSxRNJr_kzSZnOfN8BmyoY9LGgdKGPER9jPiP79w?e=1QDkQ8",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/tao-bang-thong-tin-lien-he/",
+    "detail": "Hướng dẫn thiết lập bảng lưu trữ liên lạc đối tác và nội bộ chuẩn hóa trên SharePoint List, tích hợp tìm kiếm nhanh theo phòng ban và đồng bộ thông tin lên thiết bị di động.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-03-07",
+    "post_date": "2025-03-07",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Tạo bảng danh sách hoạt động cộng đồng",
+    "article_link": "../../../../:w:/s/MyProfile/EVUHp0b7XkBNh49YlPMDdloBl_Y-UgT17Cwz1_eUBsqpCQ?e=q7WbuP",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/tao-bang-danh-sach-hoat-dong-cong-dong/",
+    "detail": "Cách xây dựng bảng theo dõi hoạt động tình nguyện, sự kiện CSR và phong trào cộng đồng trên SharePoint List, quản lý thành viên tham gia và thống kê đóng góp trực quan.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-03-05",
+    "post_date": "2025-03-05",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Tạo bảng danh sách chứng chỉ chuyên môn",
+    "article_link": "../../../../:w:/s/MyProfile/ETCiLwsyVWlGikwDj2X9PkEBnItwWArzXmO2lRqk0Zy89w?e=miPCXK",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/tao-bang-danh-sach-chung-chi-chuyen-mon/",
+    "detail": "Hướng dẫn cấu trúc bảng quản lý chứng chỉ, bằng cấp nghề nghiệp trên SharePoint List: lưu trữ hình ảnh chứng chỉ, ngày cấp, đơn vị đào tạo và thiết lập cảnh báo hạn gia hạn.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-03-03",
+    "post_date": "2025-03-03",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Tạo bảng danh sách dự án triển khai",
+    "article_link": "../../../../:w:/s/MyProfile/EXHpv_zM3r1JuKXsz2YdzCsBemwZkin79Qp-zEnpZ6FOhg?e=n1kpiP",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/tao-bang-danh-sach-du-an-trien-khai/",
+    "detail": "Phương pháp xây dựng bảng theo dõi danh mục dự án trên SharePoint List: ghi nhận khách hàng, phạm vi công việc, ngân sách, nhân sự tham gia và trạng thái triển khai từng giai đoạn.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-03-02",
+    "post_date": "2025-03-02",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Tạo bảng danh sách lộ trình sự nghiệp",
+    "article_link": "../../../../:w:/s/MyProfile/EdesawC_HJJElr_INqnVEzgBaXmLkVFPfAXHYggPWdW_8g?e=OcAdmr",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/tao-bang-danh-sach-lo-trinh-su-nghiep/",
+    "detail": "Hướng dẫn thiết kế bảng ghi nhận các cột mốc nghề nghiệp, vị trí công tác và thành tích đạt được qua từng năm trên SharePoint List phục vụ xây dựng hồ sơ năng lực số.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-02-28",
+    "post_date": "2025-02-28",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "Phân tích dữ liệu",
+      "Quản lý dữ liệu",
+      "SharePoint"
+    ],
+    "title": "Cách tích hợp SharePoint List với Microsoft Teams.",
+    "article_link": "../../../../:w:/s/MyProfile/EWbrSvGvs9hPkplUF35bp14BdQxyWEnZWOCMf6ZHKiEURQ?e=tvg4LY",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/cach-tich-hop-sharepoint-list-voi-microsoft-teams/",
+    "detail": "Hướng dẫn đưa SharePoint List trực tiếp vào các kênh làm việc Microsoft Teams dưới dạng một tab tương tác, giúp đội ngũ cộng tác, cập nhật và tra cứu dữ liệu không cần rời ứng dụng.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-02-26",
+    "post_date": "2025-02-26",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "Quản lý dữ liệu",
+      "SharePoint",
+      "Tự động hóa",
+      "Hiệu quả công việc"
+    ],
+    "title": "Quản lý lịch làm việc nhóm hiệu quả với SharePoint List.",
+    "article_link": "../../../../:w:/s/MyProfile/ERZnPqxVw2lOs8wGyz-u-OgBHstzbJ3K4QdJsKXNCltYAQ?e=rPpKqX",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/quan-ly-lich-lam-viec-nhom-hieu-qua-voi-sharepoint-list/",
+    "detail": "Cách cấu hình chế độ xem Calendar (Lịch) từ dữ liệu SharePoint List để theo dõi kế hoạch công tác, lịch họp dự án và phân bổ nguồn lực đội ngũ đồng bộ và trực quan.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-02-24",
+    "post_date": "2025-02-24",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Hướng dẫn sử dụng tính năng 'Version History' trong SharePoint List.",
+    "article_link": "../../../../:w:/s/MyProfile/ET6S0HtP8DdPtz5ryc1qnbwBETnz225vJLfOn7pl0sX9cQ?e=wTp1tA",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/huong-dan-su-dung-tinh-nang-version-history-trong-sharepoint-list/",
+    "detail": "Chi tiết cách kích hoạt và tận dụng lịch sử phiên bản (Version History) trong SharePoint List để theo dõi chi tiết người chỉnh sửa, nội dung thay đổi và khôi phục dữ liệu khi cần.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-02-22",
+    "post_date": "2025-02-22",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Tích hợp thông báo email khi có thay đổi trong SharePoint List.",
+    "article_link": "../../../../:w:/s/MyProfile/EXZn9mMCNQZNsAEwcIgke3UBxFBRYvdhLcYdDVzYZSPoSQ?e=MvPQqp",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/tich-hop-thong-bao-email-khi-co-thay-doi-trong-sharepoint-list/",
+    "detail": "Hướng dẫn thiết lập quy tắc tự động gửi email thông báo (Alert Me & Rules) ngay khi có bản ghi mới hoặc thay đổi trạng thái trong SharePoint List mà không cần viết mã.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-02-20",
+    "post_date": "2025-02-20",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Thực hành thay đổi View trong SharePoint List và tạo View phân quyền riêng",
+    "article_link": "../../../../:w:/s/MyProfile/ETUrebXK3WFKocG7jvBBK5IBHAPjQRNpOqD7g3AVXiDXhA?e=8oKd9q",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/thuc-hanh-thay-doi-view-trong-sharepoint-list-va-tao-view-phan-quyen-rieng/",
+    "detail": "Kỹ thuật tạo các bộ lọc hiển thị (Views) tùy biến, phân nhóm dữ liệu và cấu hình chế độ xem cá nhân hóa theo từng vai trò phòng ban để bảo mật luồng thông tin tác nghiệp.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-02-18",
+    "post_date": "2025-02-18",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Quản lý quyền truy cập và bảo mật trong SharePoint List.",
+    "article_link": "../../../../:w:/s/MyProfile/EaMywRk8F0tMggtWWUdH5L4BBz6dZAZ3HH_3LOnB7KN-dA?e=Zb9uzR",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/quan-ly-quyen-truy-cap-va-bao-mat-trong-sharepoint-list/",
+    "detail": "Hướng dẫn thiết lập ma trận phân quyền chi tiết cho SharePoint List: ngắt kế thừa quyền từ Site, cấp quyền Read/Contribute/Edit theo nhóm người dùng và bảo vệ dữ liệu nhạy cảm.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-02-05",
+    "post_date": "2025-02-10",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Hướng dẫn tạo một SharePoint List đơn giản từ đầu.",
+    "article_link": "../../../../:w:/s/MyProfile/EUWg2G0pUURAjGFQ0gC_H6YBYQJ3jpoIUlZSghAfxIl7aQ?e=Cafz5n",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/huong-dan-tao-mot-sharepoint-list-don-gian-tu-dau/",
+    "detail": "Các bước khởi tạo một SharePoint List hoàn toàn mới (Blank List) từ giao diện Microsoft 365, đặt tên chuẩn, mô tả mục đích và cấu hình các trường dữ liệu ban đầu cho người mới.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-02-04",
+    "post_date": "2025-02-09",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "SharePoint List là gì? Tại sao doanh nghiệp nên bắt đầu sử dụng?",
+    "article_link": "../../../../:w:/s/MyProfile/Ed-ZOpJt5ahHlefHHkXAbTcBytELBOmKahrfI0LUGrsKqQ?e=JmZh4B",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/sharepoint-list-la-gi-tai-sao-doanh-nghiep-nen-bat-dau-su-dung/",
+    "detail": "Giải thích bản chất, tính năng và lợi thế của SharePoint List như một giải pháp cơ sở dữ liệu đám mây linh hoạt, chi phí tối ưu đi kèm sẵn trong gói bản quyền Microsoft 365.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-02-02",
+    "post_date": "2025-02-08",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "SharePoint List",
+    "keywords": [
+      "SharePoint",
+      "Quản lý dữ liệu"
+    ],
+    "title": "Bắt đầu với SharePoint List cho người mới.",
+    "article_link": "../../../../:w:/s/MyProfile/ERLt35E1AlxGqsel71WpOWUBSM-qEThu8phLkAGg3h0QAw?e=NAblMS",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/bat-dau-voi-sharepoint-list-cho-nguoi-moi",
+    "detail": "Cẩm nang nhập môn toàn diện giúp người mới làm quen với giao diện, tư duy tổ chức dữ liệu dạng danh sách và các thao tác cơ bản để số hóa công việc văn phòng với SharePoint List.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2025-01-22",
+    "post_date": "2025-01-22",
+    "status": "4. Posted",
+    "category": "Câu chuyện thực tế",
+    "topic": "Data Visualization",
+    "keywords": [
+      "Phân tích dữ liệu",
+      "Business Intelligence",
+      "Excel",
+      "SharePoint",
+      "Power BI"
+    ],
+    "title": "Ý tưởng ứng dụng Power BI xây dựng Resume, CV và hồ sơ năng lực!",
+    "article_link": "../../../../:w:/s/MyProfile/Eck4kBgD6IlOhf3TDOGrcsIBf1RkCxeO0SnjwzHuOgG_zg?e=9NHJkc",
+    "compa_link": "",
+    "website_link": "https://kpim.vn/xay-dung-resume-va-ho-so-nang-luc-dinh-cao-voi-power-bi-cau-chuyen-tu-thuc-te",
+    "detail": "Chia sẻ câu chuyện và phương pháp biến hồ sơ học vấn, chứng chỉ và dự án thành báo cáo Power BI tương tác (Digital Resume), cho phép nhà tuyển dụng lọc năng lực trực quan.",
+    "channel": "kpim_blog"
+  },
+  {
+    "schedule_date": "2026-12-03",
+    "post_date": "2026-12-03",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Vali quá cân: nhồi hết tài liệu vào không phải là tốt — context stuffing",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/vali-qua-can-nhoi-het-tai-lieu-vao-khong-phai-la-tot-context-stuffing.html",
+    "detail": "Giải mã hiện tượng nhồi nhét ngữ cảnh (Context Stuffing) làm tăng chi phí token, giảm độ tập trung của LLM và gây lỗi Lost in the Middle khi xử lý tài liệu lớn.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-12-01",
+    "post_date": "2026-12-01",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Người trực điện thoại ca đêm: vì sao AI quên — token và giới hạn cửa sổ",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/nguoi-truc-dien-thoai-ca-dem-vi-sao-ai-quen-token-va-gioi-han-cua-so.html",
+    "detail": "Giải thích trực quan cơ chế suy hao ngữ cảnh khi hội thoại kéo dài vượt quá cửa sổ token và chiến lược tóm tắt, nén thông tin để giữ mạch suy luận cho AI.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-11-29",
+    "post_date": "2026-11-29",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Cái bàn làm việc và cái kho: cửa sổ ngữ cảnh (context window) rộng bao nhiêu",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/cai-ban-lam-viec-va-cai-kho-cua-so-ngu-canh-context-window-rong-bao-nhieu.html",
+    "detail": "Ẩn dụ chiếc bàn làm việc và nhà kho giúp phân định rõ vai trò giữa cửa sổ ngữ cảnh ngắn hạn và kho tri thức dài hạn, tối ưu hóa cách tổ chức dữ liệu nạp vào mô hình.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-11-27",
+    "post_date": "2026-11-27",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Bác sĩ không có bệnh án: context engineering là gì, khác prompt chỗ nào",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/bac-si-khong-co-benh-an-context-engineering-la-gi-khac-prompt-cho-nao.html",
+    "detail": "Phân biệt bản chất giữa Prompt Engineering (câu lệnh tức thời) và Context Engineering (kiến trúc bối cảnh toàn diện), chìa khóa đưa AI từ trợ lý chat thành hệ thống nghiệp vụ.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-11-25",
+    "post_date": "2026-11-25",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "AI Agent & Vibe Coding",
+    "keywords": [
+      "AI Agent",
+      "Vibe Coding",
+      "Claude Code",
+      "Codex",
+      "Google Antigravity"
+    ],
+    "title": "[Chốt chặng 1] Prompt giỏi không cứu nổi agent tồi: giới hạn của prompt engineering",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/chot-chang-1-prompt-gioi-khong-cuu-noi-agent-toi-gioi-han-cua-prompt-engineering.html",
+    "detail": "Tổng kết chặng 1 về giới hạn của kỹ thuật viết prompt đơn lẻ và sự chuyển dịch tất yếu sang thiết kế hệ thống Agent tự hành có quy trình, công cụ và bộ nhớ dài hạn.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-11-23",
+    "post_date": "2026-11-23",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Quán phở đổi công thức mà không ai nếm lại: đo prompt bằng bộ thử (prompt testing)",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/quan-pho-doi-cong-thuc-ma-khong-ai-nem-lai-do-prompt-bang-bo-thu-prompt-testing.html",
+    "detail": "Phương pháp xây dựng bộ thử nghiệm kiểm chuẩn (Prompt Test Suite) và chỉ số đánh giá tự động (LLM-as-Judge) để đo lường độ chính xác trước khi đưa prompt vào vận hành thực tế.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-11-21",
+    "post_date": "2026-11-21",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Người phiên dịch giỏi: tách chỉ dẫn khỏi dữ liệu (instruction vs data) trong prompt",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/nguoi-phien-dich-gioi-tach-chi-dan-khoi-du-lieu-instruction-vs-data-trong-prompt.html",
+    "detail": "Kỹ thuật phân tách rõ ràng giữa khối câu lệnh chỉ dẫn và khối dữ liệu đầu vào bằng thẻ cấu trúc (XML/Markdown), phòng chống triệt để lỗi prompt injection và lẫn lộn ngữ nghĩa.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-11-19",
+    "post_date": "2026-11-19",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Biểu mẫu ở phường: khi nào nên biến câu hỏi thành prompt template",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/bieu-mau-o-phuong-khi-nao-nen-bien-cau-hoi-thanh-prompt-template.html",
+    "detail": "Hướng dẫn chuẩn hóa các câu hỏi lặp lại thành bộ khung mẫu prompt (Prompt Template) có tham số động, giúp nâng cao tính nhất quán và tự động hóa quy trình xử lý văn bản.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-11-17",
+    "post_date": "2026-11-17",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Cái cân lệch: prompt đúng mà kết quả vẫn khác nhau — temperature và tính ngẫu nhiên",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/cai-can-lech-prompt-dung-ma-ket-qua-van-khac-nhau-temperature-va-tinh-ngau-nhien.html",
+    "detail": "Giải thích tham số Temperature và Top-p trong mô hình ngôn ngữ lớn: cơ chế ngẫu nhiên hóa và cách thiết lập độ chính xác tuyệt đối cho bài toán dữ liệu hay sáng tạo ý tưởng.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-11-15",
+    "post_date": "2026-11-15",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Cãi nhau với AI: nói to hơn vô ích — bẫy nhân hoá (anthropomorphism)",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/cai-nhau-voi-ai-noi-to-hon-vo-ich-bay-nhan-hoa-anthropomorphism.html",
+    "detail": "Cảnh báo bẫy tâm lý nhân hóa AI và phương pháp tiếp cận kỹ thuật: thay vì tranh luận cảm tính, hãy điều chỉnh ràng buộc, cung cấp dữ kiện phản chứng và tái cấu trúc đề bài.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-11-13",
+    "post_date": "2026-11-13",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Hỏi đường ở ngã tư: hỏi một lượt hay nhiều lượt — single-turn và multi-turn",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/hoi-duong-o-nga-tu-hoi-mot-luot-hay-nhieu-luot-single-turn-va-multi-turn.html",
+    "detail": "So sánh chiến lược giao tiếp một lượt (Zero-shot/Single-turn) và nhiều lượt (Multi-turn CoT): thời điểm phù hợp để chia nhỏ tác vụ phức tạp thành chuỗi tương tác tuần tự.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-11-11",
+    "post_date": "2026-11-11",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Nhân viên không dám nói em không biết: ảo giác (hallucination) đến từ đâu",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/nhan-vien-khong-dam-noi-em-khong-biet-ao-giac-hallucination-den-tu-dau.html",
+    "detail": "Phân tích nguyên nhân gốc rễ gây ra ảo giác (Hallucination) ở mô hình ngôn ngữ và cách thiết lập cơ chế buộc AI thừa nhận khi thiếu dữ liệu thay vì tự suy diễn sai lệch.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-11-09",
+    "post_date": "2026-11-09",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Tấm bản đồ thiếu tỉ lệ: vì sao ràng buộc phủ định (negative constraint) hay trượt",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/tam-ban-do-thieu-ti-le-vi-sao-rang-buoc-phu-dinh-negative-constraint-hay-truot.html",
+    "detail": "Lý giải nguyên nhân các câu lệnh cấm đoán (đừng làm X) thường bị mô hình bỏ qua và cách chuyển đổi hiệu quả sang các ràng buộc khẳng định hành động mong muốn cụ thể.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-11-07",
+    "post_date": "2026-11-07",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Người kể chuyện bị ngắt lời: khai output format và độ dài ngay trong prompt",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/nguoi-ke-chuyen-bi-ngat-loi-khai-output-format-va-do-dai-ngay-trong-prompt.html",
+    "detail": "Kỹ thuật thiết lập định dạng đầu ra chuẩn mực (JSON, bảng Markdown, số từ tối đa) ngay từ đầu prompt để kiểm soát độ dài câu trả lời và tránh lỗi phản hồi bị cắt ngang giữa chừng.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-11-05",
+    "post_date": "2026-11-05",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Dạy người nước ngoài phân biệt có và vâng: sức mạnh của few-shot (cho ví dụ mẫu)",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/day-nguoi-nuoc-ngoai-phan-biet-co-va-vang-suc-manh-cua-few-shot-cho-vi-du-mau.html",
+    "detail": "Ứng dụng kỹ thuật Few-shot Prompting: cách chọn lọc và đưa các cặp ví dụ mẫu (Input - Output) chuẩn xác vào câu lệnh để định hình phong cách và định dạng kết quả nhanh nhất.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-11-03",
+    "post_date": "2026-11-03",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Bài kiểm tra không có ba-rem: tiêu chí chấp nhận (acceptance criteria) trong prompt",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt.html",
+    "detail": "Phương pháp đưa tiêu chuẩn nghiệm thu rõ ràng (Acceptance Criteria) vào prompt, giúp AI tự rà soát và đảm bảo sản phẩm đầu ra đáp ứng trọn vẹn yêu cầu nghiệp vụ phức tạp.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-11-01",
+    "post_date": "2026-11-01",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Ông thợ may đo áo: gán vai (role prompting) thật ra là đặt ràng buộc",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/ong-tho-may-do-ao-gan-vai-role-prompting-that-ra-la-dat-rang-buoc.html",
+    "detail": "Bản chất kỹ thuật của việc phân vai (Role Prompting): cách gán bối cảnh chuyên gia để thu hẹp không gian xác suất từ vựng, giúp AI trả lời đúng chuẩn mực chuyên môn mong đợi.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-10-30",
+    "post_date": "2026-10-30",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Ngày đầu đi làm: system prompt chính là bản mô tả công việc của AI",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/ngay-dau-di-lam-system-prompt-chinh-la-ban-mo-ta-cong-viec-cua-ai.html",
+    "detail": "Hướng dẫn thiết kế System Prompt như một bản mô tả công việc (Job Description) toàn diện: xác lập ranh giới quyền hạn, giọng văn, mục tiêu cốt lõi và quy chuẩn xử lý ngoại lệ.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-10-28",
+    "post_date": "2026-10-28",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Gọi món ở quán lạ: viết prompt tả KẾT QUẢ, đừng tả từng bước",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc.html",
+    "detail": "Tư duy viết prompt hướng kết quả (Outcome-oriented): tập trung mô tả chi tiết trạng thái đích cần đạt thay vì sa đà chỉ đạo từng bước vụn vặt, phát huy tối đa năng lực mô hình.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-10-26",
+    "post_date": "2026-10-26",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Người thợ khoá và bản vẽ sai: prompt không phải câu thần chú, nó là bản vẽ",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve.html",
+    "detail": "Xóa bỏ tư duy tìm kiếm câu thần chú kỳ diệu: coi prompt như một bản vẽ kỹ thuật chi tiết, nơi cấu trúc rõ ràng và dữ liệu đầu vào chuẩn xác quyết định chất lượng thành phẩm.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-09-28",
+    "post_date": "2026-09-28",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "AI Agent & Vibe Coding",
+    "keywords": [
+      "AI Agent",
+      "Vibe Coding",
+      "Claude Code",
+      "Codex",
+      "Google Antigravity"
+    ],
+    "title": "Claude Code cho người mới: Cài đặt, tạo bối cảnh và làm việc an toàn",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/claude-code-cho-nguoi-moi.html",
+    "detail": "Người không chuyên kỹ thuật có thể bắt đầu với Claude Code bằng ứng dụng Desktop, folder cục bộ và một quy trình review rõ ràng.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-09-28",
+    "post_date": "2026-09-28",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "AI Agent & Vibe Coding",
+    "keywords": [
+      "AI Agent",
+      "Vibe Coding",
+      "Claude Code",
+      "Codex",
+      "Google Antigravity"
+    ],
+    "title": "Codex cho người mới: Cài đặt, mở folder và hoàn thành tác vụ đầu tiên",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/codex-cho-nguoi-moi.html",
+    "detail": "Hướng dẫn bắt đầu với OpenAI Codex bằng một folder nhỏ, prompt kiểm tra quyền và hoàn thành tác vụ đầu tiên an toàn trong 15 phút.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-09-28",
+    "post_date": "2026-09-28",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "AI Agent & Vibe Coding",
+    "keywords": [
+      "AI Agent",
+      "Vibe Coding",
+      "Claude Code",
+      "Codex",
+      "Google Antigravity"
+    ],
+    "title": "Google Antigravity cho người mới: Cài đặt, tạo Project và làm việc với Agent",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/google-antigravity-cho-nguoi-moi.html",
+    "detail": "Bắt đầu với Antigravity IDE theo hướng review-driven: mở project local, kiểm tra quyền, tạo tác vụ nhỏ rồi mới mở rộng Skill và Plugin.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-09-28",
+    "post_date": "2026-09-28",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "AI Agent & Vibe Coding",
+    "keywords": [
+      "AI Agent",
+      "Vibe Coding",
+      "Claude Code",
+      "Codex",
+      "Google Antigravity"
+    ],
+    "title": "Skill là gì? Khi nào nên dùng Skill thay vì một Prompt thật dài?",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/skill-va-prompt.html",
+    "detail": "Prompt là lời giao việc; Skill là quy trình tái sử dụng. Bài viết giúp người mới biết khi nào nên đóng gói và khi nào chưa cần.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-09-28",
+    "post_date": "2026-09-28",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "AI Agent & Vibe Coding",
+    "keywords": [
+      "AI Agent",
+      "Vibe Coding",
+      "Claude Code",
+      "Codex",
+      "Google Antigravity"
+    ],
+    "title": "Từ ô chat đến AI Agent: Biến một folder trên máy tính thành không gian làm việc chung",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/ai-agent-folder-may-tinh.html",
+    "detail": "Hướng dẫn người mới tổ chức folder, quyền và quy trình để AI Agent làm việc an toàn, có đầu ra kiểm tra được thay vì chỉ trả lời trong ô chat.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-09-04",
+    "post_date": "2026-09-04",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "GPT-6 Astra: điều đáng chú ý không nằm ở điểm benchmark",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/gpt6-astra-dieu-dang-chu-y.html",
+    "detail": "Phân tích chuyên sâu GPT-6 Astra: bước đột phá thực sự không nằm ở benchmark điểm số mà ở năng lực tương tác hệ điều hành và tự duy trì bối cảnh suy luận.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-08-08",
+    "post_date": "2026-08-08",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "HR & Marketing Analytics",
+    "keywords": [
+      "E-Learning",
+      "Cheatsheet",
+      "Analytics",
+      "AI"
+    ],
+    "title": "MKA-101 · Cheatsheet Ứng dụng AI và Phân tích dữ liệu cho Marketing Ngân hàng",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/elearning/mka-101-digital-marketing.html",
+    "detail": "Bộ cheatsheet tra cứu MKA-101: 100 use case campaign, thư viện prompt, bộ câu hỏi phân tích, data dictionary, 73 chỉ số phân tích và 2 quy trình chuẩn cho marketing ngân hàng.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-07-16",
+    "post_date": "2026-07-16",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "HR & Marketing Analytics",
+    "keywords": [
+      "E-Learning",
+      "Cheatsheet",
+      "Analytics",
+      "AI"
+    ],
+    "title": "HR Analytics · Chuẩn hóa dữ liệu · KPI · Báo cáo · Mở rộng AI (HRA-101)",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/elearning/hr-analytics.html",
+    "detail": "Bộ tài liệu HR Analytics: Data Dictionary 42 bảng, KPI Dictionary 6 nhóm chỉ tiêu, Report List 13 báo cáo và tư vấn mở rộng ứng dụng AI cho nghiệp vụ nhân sự — kèm ERD, mindmap và luồng dữ liệu tương tác (zoom, pan, toàn màn hình).",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-06-27",
+    "post_date": "2026-06-27",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Data Automation",
+    "keywords": [
+      "Automation",
+      "n8n",
+      "KNIME",
+      "AI Agent"
+    ],
+    "title": "Báo cáo So sánh Chuyên sâu: n8n vs KNIME",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/automation/n8n-vs-knime.html",
+    "detail": "Tài liệu phân tích kiến trúc công nghệ, mô hình vận hành và định hướng ứng dụng n8n vs KNIME trong Ngân hàng, HR & Hệ thống AI Agent.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-06-27",
+    "post_date": "2026-06-27",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Databricks GenAI Engineer · Study Tool",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/databricks-genai.html",
+    "detail": "Công cụ học tập tương tác cho chứng chỉ Databricks Generative AI Engineer Associate, tích hợp tra cứu thuật ngữ, flashcards phản xạ và khung đánh giá 5 giai đoạn.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-06-27",
+    "post_date": "2026-06-27",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "Data Automation",
+    "keywords": [
+      "n8n",
+      "Docker",
+      "Non-Tech",
+      "Hướng dẫn cài đặt"
+    ],
+    "title": "Hướng dẫn Cài đặt n8n chi tiết cho người mới bắt đầu (Non-Tech)",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/instruction/cai-dat-n8n-desktop-1.html",
+    "detail": "Hướng dẫn từng bước cài đặt n8n trên máy tính cá nhân bằng Node.js và Docker Desktop chi tiết, trực quan và dễ hiểu dành cho người dùng non-tech.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-06-27",
+    "post_date": "2026-06-27",
+    "status": "4. Posted",
+    "category": "Câu chuyện thực tế",
+    "topic": "Data Analytics & BI",
+    "keywords": [
+      "Strategy",
+      "Loyalty OS",
+      "Customer Analytics"
+    ],
+    "title": "LaSoong Loyalty OS V1.1 — Interactive Overview",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/strategy/LaSoong_Loyalty_OS.html",
+    "detail": "Công cụ mô hình hóa kiến trúc hệ điều hành khách hàng thân thiết LaSoong Loyalty OS V1.1: phân tầng hội viên, cơ chế tích điểm và giả lập giá trị vòng đời khách hàng (LTV).",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-06-27",
+    "post_date": "2026-06-27",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Data Visualization",
+    "keywords": [
+      "Power BI",
+      "PL-300",
+      "Glossary",
+      "Business Intelligence"
+    ],
+    "title": "Power BI Glossary & Domain Knowledge",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/bi/powerbi-glossary-domain-knowledge.html",
+    "detail": "Công cụ tra cứu tương tác 376 thuật ngữ Power BI và kiến thức nghiệp vụ ôn thi chứng chỉ PL-300, tích hợp flashcards, khung vòng đời dữ liệu và bộ lọc theo mảng kỹ năng.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-06-27",
+    "post_date": "2026-06-27",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Prompt không chỉ là câu hỏi: viết prompt như một bản yêu cầu",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/prompt-nhu-mot-ban-yeu-cau.html",
+    "detail": "Thay đổi tư duy viết prompt từ câu hỏi đơn thuần sang một bản đặc tả yêu cầu chi tiết (spec), giúp mô hình ngôn ngữ hiểu chính xác kết quả mong đợi và giảm thiểu sai lệch.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-06-27",
+    "post_date": "2026-06-27",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Prompt & Context Engineering",
+    "keywords": [
+      "AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "LLM"
+    ],
+    "title": "Tư duy \"người ra đề\" thay vì \"người làm bài\": Bạn không cần biết nấu, bạn cần biết gọi đúng món",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/tu-duy-nguoi-ra-de.html",
+    "detail": "Chuyển đổi góc nhìn từ người làm bài sang người ra đề bài: cách định nghĩa rõ tiêu chí đầu ra, phạm vi bài toán và ngữ cảnh mà không cần trực tiếp gõ từng dòng mã kỹ thuật.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-06-27",
+    "post_date": "2026-06-27",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "AI Agent & Vibe Coding",
+    "keywords": [
+      "AI Agent",
+      "Vibe Coding",
+      "Claude Code",
+      "Codex",
+      "Google Antigravity"
+    ],
+    "title": "Vibe coding thực ra là gì khi bạn không phải dân code",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://ducnguyen.vn/atlas/content/ai/vibe-coding-thuc-ra-la-gi.html",
+    "detail": "Bản chất của Vibe Coding dành cho người non-tech: thay đổi vai trò từ người viết mã thủ công sang người định hướng kiến trúc, đặc tả trải nghiệm và điều phối AI Agent thực thi.",
+    "channel": "atlas_ducnguyen"
+  },
+  {
+    "schedule_date": "2026-04-26",
+    "post_date": "2026-04-26",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "AI Agent & Vibe Coding",
+    "keywords": [
+      "Artificial Intelligence",
+      "Vibe Coding",
+      "Google Antigravity",
+      "Google AI Studio",
+      "VS Code",
+      "AI Agent",
+      "Claude Code",
+      "Codex"
+    ],
+    "title": "Vibe Coding cho người non-tech: Không biết code vẫn có thể bắt đầu tạo sản phẩm với AI Agent như thế nào?",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/vibe-coding-cho-nguoi-non-tech-khong-biet-code-van-co-the-bat-au-tao-san-pham-voi-ai-agent-nhu-the-nao-qLiSr",
+    "website_link": "",
+    "detail": "Hướng dẫn người non-tech phương pháp phối hợp cùng các AI Agent (Antigravity, Claude Code, Codex) để chuyển hóa ý tưởng thành sản phẩm phần mềm hoàn chỉnh theo tinh thần Vibe Coding.",
+    "channel": "compa_blog (Duc Nguyen)"
+  },
+  {
+    "schedule_date": "2026-04-22",
+    "post_date": "2026-04-22",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Artificial Intelligence",
+    "keywords": [
+      "Power BI",
+      "Data Analysis",
+      "sql",
+      "Artificial Intelligence",
+      "Tableau",
+      "Databricks"
+    ],
+    "title": "Tại sao AI \"nói hay nhưng tính sai\" — và cách kết hợp AI với Data Analytics đúng cách",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/tai-sao-ai-noi-hay-nhung-tinh-sai-va-cach-ket-hop-ai-voi-data-analytics-ung-cach-oObKj",
+    "website_link": "",
+    "detail": "Giải mã nguyên nhân LLM tính toán sai số học và kiến trúc phối hợp chuẩn giữa động cơ tính toán chính xác (SQL, Power BI) với năng lực phân tích diễn giải ngữ nghĩa của AI.",
+    "channel": "compa_blog (Duc Nguyen)"
+  },
+  {
+    "schedule_date": "2026-04-16",
+    "post_date": "2026-04-16",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "AI Agent & Vibe Coding",
+    "keywords": [
+      "Artificial Intelligence",
+      "Github",
+      "Netlify",
+      "Vercel",
+      "Cloudfare",
+      "Firebase"
+    ],
+    "title": "KHÔNG PHẢI CỨ MUỐN ĐƯA Ý TƯỞNG LÊN MẠNG LÀ PHẢI DÙNG GITHUB",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/khong-phai-cu-muon-ua-y-tuong-len-mang-la-phai-dung-github-ssqnX",
+    "website_link": "",
+    "detail": "Giới thiệu các phương thức đưa sản phẩm lên internet không cần dùng GitHub qua Vercel, Netlify và Cloudflare Pages, giúp người làm kinh doanh triển khai web nhanh chóng.",
+    "channel": "compa_blog (Duc Nguyen)"
+  },
+  {
+    "schedule_date": "2026-04-12",
+    "post_date": "2026-04-12",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "AI Agent & Vibe Coding",
+    "keywords": [
+      "Artificial Intelligence",
+      "Github",
+      "Opensource"
+    ],
+    "title": "KHÔNG BIẾT CODE CÓ DÙNG ĐƯỢC REPO OPEN SOURCE KHÔNG?",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/khong-biet-code-co-dung-uoc-repo-open-source-khong-TkHz4",
+    "website_link": "",
+    "detail": "Hướng dẫn người không chuyên kỹ thuật cách tận dụng kho mã nguồn mở GitHub, sử dụng AI Agent để đọc hiểu tài liệu, cài đặt môi trường và tùy biến tính năng ứng dụng dễ dàng.",
+    "channel": "compa_blog (Duc Nguyen)"
+  },
+  {
+    "schedule_date": "2026-04-07",
+    "post_date": "2026-04-07",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Artificial Intelligence",
+    "keywords": [
+      "Artificial Intelligence"
+    ],
+    "title": "Những gì đã thay đổi trong cách chúng ta làm việc với AI từ 2024 - 2026",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/nhung-gi-a-thay-oi-trong-cach-chung-ta-lam-viec-voi-ai-tu-2024-2026-tXEO8",
+    "website_link": "",
+    "detail": "Tổng kết bước chuyển dịch tư duy từ tương tác chatbot đơn lẻ (2024) sang điều phối hệ thống Agent tự hành đa tác vụ (2026) và sự thay đổi trong kỹ năng làm việc cốt lõi của con người.",
+    "channel": "compa_blog (Duc Nguyen)"
+  },
+  {
+    "schedule_date": "2025-12-19",
+    "post_date": "2025-12-19",
+    "status": "4. Posted",
+    "category": "Tin tức & Sự kiện",
+    "topic": "EdTech & COMPA",
+    "keywords": [
+      "COMPA CLASS",
+      "EdTech",
+      "Startup"
+    ],
+    "title": "CEO COMPA CLASS phỏng vấn độc quyền cùng Cafebiz.vn",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/ceo-compa-class-phong-van-oc-quyen-cung-cafebiz.vn-3KT2I",
+    "website_link": "",
+    "detail": "Bài phỏng vấn độc quyền trên Cafebiz về tầm nhìn xây dựng studio số cho giảng viên của CEO COMPA Class và triết lý tăng trưởng bền vững trong thị trường công nghệ giáo dục.",
+    "channel": "compa_blog (COMPACLASS)"
+  },
+  {
+    "schedule_date": "2025-08-19",
+    "post_date": "2025-08-19",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "Artificial Intelligence",
+    "keywords": [
+      "AI",
+      "ChatGPT"
+    ],
+    "title": "THỰC HÀNH AI: TÓM TẮT VÀ TỔNG HỢP BÁO CÁO PDF BẰNG CHATGPT",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/thuc-hanh-ai-tom-tat-va-tong-hop-bao-cao-pdf-bang-chatgpt-eKcUz",
+    "website_link": "",
+    "detail": "Bài tập thực hành sử dụng ChatGPT để xử lý bộ báo cáo tài chính ngành ngân hàng dạng PDF nhiều trang: kỹ thuật trích xuất số liệu, phân tích xu hướng và tổng hợp one-page summary.",
+    "channel": "compa_blog (Duc Nguyen)"
+  },
+  {
+    "schedule_date": "2025-08-19",
+    "post_date": "2025-08-19",
+    "status": "4. Posted",
+    "category": "Lesson khóa học",
+    "topic": "Artificial Intelligence",
+    "keywords": [
+      "AI",
+      "ChatGPT"
+    ],
+    "title": "THỰC HÀNH: RÀ SOÁT BÁO CÁO HỢP NHẤT BẰNG AI (ChatGPT)",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/thuc-hanh-ra-soat-bao-cao-hop-nhat-bang-ai-chatgpt-0OLyV",
+    "website_link": "",
+    "detail": "Hướng dẫn kiểm toán và kiểm soát nội bộ sử dụng ChatGPT đối chiếu số liệu báo cáo hợp nhất với chi nhánh ngân hàng, phát hiện sai lệch và tự động soạn thảo biên bản quản trị.",
+    "channel": "compa_blog (Duc Nguyen)"
+  },
+  {
+    "schedule_date": "2025-08-05",
+    "post_date": "2025-08-05",
+    "status": "4. Posted",
+    "category": "Tin tức & Sự kiện",
+    "topic": "EdTech & COMPA",
+    "keywords": [
+      "COMPA CLASS",
+      "EdTech",
+      "Startup"
+    ],
+    "title": "Quy định về thanh toán và thuế dành cho việc kinh doanh khóa học trên COMPA",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/quy-inh-ve-thanh-toan-va-thue-danh-cho-viec-kinh-doanh-khoa-hoc-tren-compa-Gon1G",
+    "website_link": "",
+    "detail": "Quy định chi tiết về cơ chế thanh toán doanh thu khóa học, chính sách thuế, phí nền tảng và trách nhiệm xuất hóa đơn giá trị gia tăng minh bạch cho đối tác giảng viên trên COMPA.",
+    "channel": "compa_blog (COMPACLASS)"
+  },
+  {
+    "schedule_date": "2025-07-02",
+    "post_date": "2025-07-02",
+    "status": "4. Posted",
+    "category": "Tin tức & Sự kiện",
+    "topic": "EdTech & COMPA",
+    "keywords": [
+      "COMPA CLASS",
+      "EdTech",
+      "Startup"
+    ],
+    "title": "COMPA được vinh danh tại Industrie  4.0 Awards 2025",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/compa-uoc-vinh-danh-tai-industrie-4.0-awards-2025-G3JgQ",
+    "website_link": "",
+    "detail": "COMPA Class được vinh danh tại Industrie 4.0 Awards 2025 tại hạng mục Top Doanh nghiệp có Sản phẩm số thông minh và Giải pháp công nghệ giáo dục đổi mới sáng tạo.",
+    "channel": "compa_blog (COMPACLASS)"
+  },
+  {
+    "schedule_date": "2025-07-01",
+    "post_date": "2025-07-01",
+    "status": "4. Posted",
+    "category": "Tin tức & Sự kiện",
+    "topic": "EdTech & COMPA",
+    "keywords": [
+      "COMPA CLASS",
+      "EdTech",
+      "Startup"
+    ],
+    "title": "COMPA khấu trừ và nộp thuế cho người bán khóa học trên nền tảng",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/compa-khau-tru-va-nop-thue-cho-nguoi-ban-khoa-hoc-tren-nen-tang-Xi1Ok",
+    "website_link": "",
+    "detail": "Thông báo chính sách hỗ trợ giảng viên: COMPA Class chính thức thực hiện khấu trừ, kê khai và nộp thuế TNCN tự động thay người bán khóa học theo quy định của Tổng cục Thuế Việt Nam.",
+    "channel": "compa_blog (COMPACLASS)"
+  },
+  {
+    "schedule_date": "2025-06-11",
+    "post_date": "2025-06-11",
+    "status": "4. Posted",
+    "category": "Câu chuyện thực tế",
+    "topic": "EdTech & COMPA",
+    "keywords": [
+      "COMPA",
+      "E Learning",
+      "GiảngDạy",
+      "GiáoDục"
+    ],
+    "title": "TỪ MỘT NGƯỜI \"NGHIỆN CÔNG CỤ\" ĐẾN MỘT NGƯỜI \"GIẢNG DẠY TẬP TRUNG\" — HÀNH TRÌNH CỦA TÔI CÙNG COMPA CLASS",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/tu-mot-nguoi-nghien-cong-cu-en-mot-nguoi-giang-day-tap-trung-hanh-trinh-cua-toi-cung-compa-class-SMs8b",
+    "website_link": "",
+    "detail": "Câu chuyện tự sự của Đức Nguyễn (Tobi) về hành trình chuyển dịch từ việc phụ thuộc vào hàng chục phần mềm rời rạc sang xây dựng nền tảng E-Learning khép kín COMPA Class.",
+    "channel": "compa_blog (Duc Nguyen)"
+  },
+  {
+    "schedule_date": "2025-06-01",
+    "post_date": "2025-06-01",
+    "status": "4. Posted",
+    "category": "Tin tức & Sự kiện",
+    "topic": "EdTech & COMPA",
+    "keywords": [
+      "COMPA CLASS",
+      "EdTech",
+      "Startup"
+    ],
+    "title": "Ưu đãi Early Bird – Món quà tri ân dành riêng cho những giảng viên tiên phong tại COMPA",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/uu-ai-early-bird-mon-qua-tri-an-danh-rieng-cho-nhung-giang-vien-tien-phong-tai-compa-Rap5o",
+    "website_link": "",
+    "detail": "Chính sách tri ân dành riêng cho các chuyên gia và giảng viên tiên phong tham gia giảng dạy trên nền tảng COMPA Class trong giai đoạn Early Access với nhiều đặc quyền hỗ trợ phát hành.",
+    "channel": "compa_blog (COMPACLASS)"
+  },
+  {
+    "schedule_date": "2025-05-31",
+    "post_date": "2025-05-31",
+    "status": "4. Posted",
+    "category": "Tin tức & Sự kiện",
+    "topic": "EdTech & COMPA",
+    "keywords": [
+      "COMPA CLASS",
+      "EdTech",
+      "Startup"
+    ],
+    "title": "COMPA Góp Mặt Trong Top 100 Startup Xuất Sắc Tại Startup Wheel 2025",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/compa-gop-mat-trong-top-100-startup-xuat-sac-tai-startup-wheel-2025-S6KVA",
+    "website_link": "",
+    "detail": "Nền tảng E-Learning COMPA Class xuất sắc vượt qua hàng nghìn dự án khởi nghiệp công nghệ để lọt vào Top 100 Startup tiêu biểu tại cuộc thi đổi mới sáng tạo Startup Wheel 2025.",
+    "channel": "compa_blog (COMPACLASS)"
+  },
+  {
+    "schedule_date": "2025-05-21",
+    "post_date": "2025-05-21",
+    "status": "4. Posted",
+    "category": "Tin tức & Sự kiện",
+    "topic": "EdTech & COMPA",
+    "keywords": [
+      "COMPA CLASS",
+      "EdTech",
+      "Startup"
+    ],
+    "title": "COMPA chính thức xuất hiện tại Tiger Funding Vietnam",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/compa-chinh-thuc-xuat-hien-tai-tiger-funding-vietnam-cHIjE",
+    "website_link": "",
+    "detail": "COMPA Class ra mắt giới đầu tư mạo hiểm và cộng đồng công nghệ giáo dục tại Tiger Funding Vietnam, khẳng định giải pháp số hóa toàn diện quy trình đào tạo và chia sẻ học liệu.",
+    "channel": "compa_blog (COMPACLASS)"
+  },
+  {
+    "schedule_date": "2025-05-10",
+    "post_date": "2025-05-10",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Artificial Intelligence",
+    "keywords": [
+      "AI"
+    ],
+    "title": "Trí tuệ nhân tạo (AI): Khái niệm cơ bản và ứng dụng thực tiễn",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/tri-tue-nhan-tao-ai-khai-niem-co-ban-va-ung-dung-thuc-tien-ccTuD",
+    "website_link": "",
+    "detail": "Tổng quan nhập môn về Trí tuệ Nhân tạo (AI): các khái niệm nền tảng từ Machine Learning đến Deep Learning và bức tranh toàn cảnh về những ứng dụng thực tiễn trong công việc hiện đại.",
+    "channel": "compa_blog (Duc Nguyen)"
+  },
+  {
+    "schedule_date": "2025-05-10",
+    "post_date": "2025-05-10",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Artificial Intelligence",
+    "keywords": [
+      "AI",
+      "artificial intelligence",
+      "RAG"
+    ],
+    "title": "RAG: Bí kíp giúp AI \"thông minh\" hơn, hiểu bạn hơn!",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/rag-bi-kip-giup-ai-thong-minh-hon-hieu-ban-hon-Doguk",
+    "website_link": "",
+    "detail": "Khám phá kỹ thuật RAG (Retrieval-Augmented Generation): giải pháp kết nối mô hình ngôn ngữ lớn với kho tri thức riêng của doanh nghiệp để đưa ra câu trả lời chuẩn xác, không bịa đặt.",
+    "channel": "compa_blog (Duc Nguyen)"
+  },
+  {
+    "schedule_date": "2025-05-07",
+    "post_date": "2025-05-07",
+    "status": "4. Posted",
+    "category": "Kiến thức chuyên môn",
+    "topic": "Artificial Intelligence",
+    "keywords": [
+      "AI",
+      "Google",
+      "Learn"
+    ],
+    "title": "Google ra mắt \"Little Language Lessons\" - công cụ AI giúp học ngoại ngữ cực đỉnh",
+    "article_link": "",
+    "compa_link": "https://compaclass.com/blog/google-ra-mat-little-language-lessons-cong-cu-ai-giup-hoc-ngoai-ngu-cuc-inh-RtVgG",
+    "website_link": "",
+    "detail": "Giới thiệu công cụ Little Language Lessons của Google: ứng dụng công nghệ AI tạo sinh trong việc thiết kế các bài học ngôn ngữ tương tác vi mô (micro-learning) thông minh và cá nhân hóa.",
+    "channel": "compa_blog (KPIM Academy)"
+  }
+]

@@ -1,0 +1,948 @@
+[
+  {
+    "entity_ref": "[62.56](../62_ORGANIZATIONS/62.56_ADCo_Profile.md)",
+    "primary_name": "ADCo",
+    "names": [
+      "ADCo"
+    ],
+    "legal_name": "Công ty Cổ phần Nông dược ADCo",
+    "tax_code": "0313068089",
+    "industry": "Retail and Consumer Goods",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/adco.svg",
+    "summary": "Đào tạo xây dựng báo cáo kế toán với Power BI (`PBI-ADCO`) năm 2022"
+  },
+  {
+    "entity_ref": "[62.17](../62_ORGANIZATIONS/62.17_AEON_MALL_Vietnam_Profile.md)",
+    "primary_name": "AEON MALL",
+    "names": [
+      "AEON MALL"
+    ],
+    "legal_name": "Công ty TNHH AEONMALL Việt Nam",
+    "tax_code": "0106121948",
+    "industry": "Real Estate and Construction",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/aeon-mall.png",
+    "summary": "Báo cáo vận hành & quản trị TTTM trên Power BI"
+  },
+  {
+    "entity_ref": "[62.39](../62_ORGANIZATIONS/62.39_Agribank_Profile.md)",
+    "primary_name": "Agribank",
+    "names": [
+      "Agribank"
+    ],
+    "legal_name": "Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam",
+    "tax_code": "0100686174",
+    "industry": "Finance and Insurance",
+    "logo_url": "https://ducnguyen.vn/profile/courses/agribank-data/assets/logos/agribank-crop.png",
+    "summary": "Đối tác chiến lược 2025–2026 với 22+ lớp chuyển đổi số, Power BI & AI Marketing/HR"
+  },
+  {
+    "entity_ref": "[62.47](../62_ORGANIZATIONS/62.47_Amkor_Technology_Vietnam_Profile.md)",
+    "primary_name": "Amkor",
+    "names": [
+      "Amkor"
+    ],
+    "legal_name": "Công ty TNHH Amkor Technology Việt Nam",
+    "tax_code": "2301199732",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/amkor.jpg",
+    "summary": "Đào tạo Phân tích dữ liệu Power BI & Fabric cho nhà máy bán dẫn tỷ USD năm 2026"
+  },
+  {
+    "primary_name": "Arm In Arm",
+    "legal_name": "Arm In Arm, Inc.",
+    "tax_code": "Hoa Kỳ (501c3)",
+    "industry": "Nonprofit",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/arm-in-arm.png",
+    "summary": "Tổ chức phi lợi nhuận hỗ trợ an sinh xã hội tại New Jersey, Hoa Kỳ."
+  },
+  {
+    "entity_ref": "[62.41](../62_ORGANIZATIONS/62.41_BIDV_Profile.md)",
+    "primary_name": "BIDV",
+    "names": [
+      "BIDV"
+    ],
+    "legal_name": "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam",
+    "tax_code": "0100150619",
+    "industry": "Finance and Insurance",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/bidv.png",
+    "summary": "Viện Đào tạo BIDV tổ chức chuỗi 6 khóa Power BI chuyên sâu giai đoạn 2024–2026"
+  },
+  {
+    "entity_ref": "[62.18](../62_ORGANIZATIONS/62.18_BIM_Group_Profile.md)",
+    "primary_name": "BIM Group",
+    "names": [
+      "BIM Group"
+    ],
+    "legal_name": "Công ty Cổ phần Tập đoàn BIM",
+    "tax_code": "5700101641",
+    "industry": "Real Estate and Construction",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/bim-group.png",
+    "summary": "Báo cáo BI quản trị tập đoàn đa ngành, PnL hợp nhất & CDP"
+  },
+  {
+    "entity_ref": "[62.46](../62_ORGANIZATIONS/62.46_BSC_Securities_Profile.md)",
+    "primary_name": "BSC",
+    "names": [
+      "BSC"
+    ],
+    "legal_name": "Công ty Cổ phần Chứng khoán BIDV",
+    "tax_code": "0100999689",
+    "industry": "Finance and Insurance",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/bsc.jpg",
+    "summary": "Đào tạo Power BI cho đội ngũ phân tích tài chính & môi giới năm 2024"
+  },
+  {
+    "entity_ref": "[62.23](../62_ORGANIZATIONS/62.23_BW_Industrial_Profile.md)",
+    "primary_name": "BW Industrial",
+    "names": [
+      "BW Industrial"
+    ],
+    "legal_name": "Công ty Cổ phần Phát triển Công nghiệp BW",
+    "tax_code": "3702636386",
+    "industry": "Real Estate and Construction",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/bw-industrial.png",
+    "summary": "Nền tảng BĐS công nghiệp lớn nhất VN; giải pháp BI & tự động hóa dữ liệu"
+  },
+  {
+    "entity_ref": "[62.57](../62_ORGANIZATIONS/62.57_BestWorks_Profile.md)",
+    "primary_name": "BestWorks",
+    "names": [
+      "BestWorks"
+    ],
+    "legal_name": "BestWorks Inc.",
+    "tax_code": "Quốc tế",
+    "industry": "Technology and IT Services",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/bestworks.svg",
+    "summary": "Đối tác công nghệ quốc tế; giải pháp phân tích dữ liệu & dashboard vận hành"
+  },
+  {
+    "primary_name": "Bộ Công Thương",
+    "legal_name": "Bộ Công Thương Việt Nam",
+    "tax_code": "0100108920",
+    "industry": "Government Agency",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/bo-cong-thuong.webp",
+    "summary": "Cơ quan thuộc Chính phủ Việt Nam quản lý nhà nước về công nghiệp và thương mại."
+  },
+  {
+    "entity_ref": "[62.03](../62_ORGANIZATIONS/62.03_COMPA_Company_Profile.md)",
+    "primary_name": "COMPA",
+    "names": [
+      "COMPA",
+      "COMPA CLASS"
+    ],
+    "legal_name": "Công ty Cổ phần Công nghệ Giáo dục COMPA",
+    "tax_code": "Nền tảng EdTech (compaclass.com)",
+    "industry": "Education",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/COMPA-CLASS.jpg",
+    "summary": "Nền tảng LMS & E-Learning quản lý khóa học, học viên, blog chuyên môn (Founder & CEO)"
+  },
+  {
+    "entity_ref": "[62.52](../62_ORGANIZATIONS/62.52_Career_Pass_Institute_Profile.md)",
+    "primary_name": "Career Pass Institute",
+    "names": [
+      "Career Pass Institute"
+    ],
+    "legal_name": "Career Pass Institute (CPI)",
+    "tax_code": "Đối tác EdTech",
+    "industry": "Education",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/career-pass-institute.png",
+    "summary": "Đối tác liên kết 7 mùa chương trình đào tạo dài hạn Analytics Program 2021–2024"
+  },
+  {
+    "entity_ref": "[62.58](../62_ORGANIZATIONS/62.58_Central_Retail_Vietnam_Profile.md)",
+    "primary_name": "Central Retail",
+    "names": [
+      "Central Retail"
+    ],
+    "legal_name": "Tập đoàn Central Retail tại Việt Nam",
+    "tax_code": "0105936919",
+    "industry": "Retail and Consumer Goods",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/central-retail.png",
+    "summary": "Tập đoàn bán lẻ hàng đầu Thái Lan; phân tích dữ liệu bán lẻ đa kênh"
+  },
+  {
+    "entity_ref": "[62.59](../62_ORGANIZATIONS/62.59_Chevron_Profile.md)",
+    "primary_name": "Chevron",
+    "names": [
+      "Chevron"
+    ],
+    "legal_name": "Chevron Corporation",
+    "tax_code": "NYSE: CVX",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/chevron.svg",
+    "summary": "Tập đoàn năng lượng đa quốc gia Hoa Kỳ; phân tích dữ liệu vận hành & tài chính"
+  },
+  {
+    "primary_name": "Citicom",
+    "legal_name": "Công ty Cổ phần Thương mại Citicom",
+    "tax_code": "0101344485",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/citicom.png",
+    "summary": "Doanh nghiệp hàng đầu Việt Nam về kinh doanh và gia công thép công nghiệp."
+  },
+  {
+    "entity_ref": "[62.60](../62_ORGANIZATIONS/62.60_Coherent_Vietnam_Profile.md)",
+    "primary_name": "Coherent",
+    "names": [
+      "Coherent"
+    ],
+    "legal_name": "Coherent Corp. (II-VI Vietnam)",
+    "tax_code": "3700626243",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/coherent.svg",
+    "summary": "Tập đoàn vật liệu quang học & bán dẫn Hoa Kỳ; phân tích dữ liệu sản xuất"
+  },
+  {
+    "entity_ref": "[62.09](../62_ORGANIZATIONS/62.09_Consortio_Profile.md)",
+    "primary_name": "Consortio",
+    "names": [
+      "Consortio"
+    ],
+    "legal_name": "Công ty TNHH Consortio",
+    "tax_code": "0109551621",
+    "industry": "Consulting Service",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/consortio.png",
+    "summary": "Doanh nghiệp tư vấn & thương mại số; hệ thống báo cáo quản trị Power BI"
+  },
+  {
+    "entity_ref": "[62.20](../62_ORGANIZATIONS/62.20_Co_Dien_Tran_Phu_Profile.md)",
+    "primary_name": "Cơ Điện Trần Phú",
+    "names": [
+      "Cơ Điện Trần Phú"
+    ],
+    "legal_name": "Công ty Cổ phần Cơ điện Trần Phú",
+    "tax_code": "0100101072",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/co-dien-tran-phu.png",
+    "summary": "Data Warehouse & Power BI báo cáo bán hàng, sản xuất, tài chính dây cáp điện"
+  },
+  {
+    "entity_ref": "[62.61](../62_ORGANIZATIONS/62.61_Golden_Gate_Group_Profile.md)",
+    "primary_name": "Cổng Vàng (Golden Gate)",
+    "names": [
+      "Cổng Vàng (Golden Gate)"
+    ],
+    "legal_name": "Công ty Cổ phần Tập đoàn Cổng Vàng (Golden Gate Group)",
+    "tax_code": "0102721191",
+    "industry": "Hospitality",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/cong-vang-golden-gate.png",
+    "summary": "Chuỗi 400+ nhà hàng F&B; tư vấn & phân tích dữ liệu chuỗi nhà hàng"
+  },
+  {
+    "entity_ref": "[62.06](../62_ORGANIZATIONS/62.06_DG_Profile.md)",
+    "primary_name": "D&G",
+    "names": [
+      "D&G"
+    ],
+    "legal_name": "Công ty Cổ phần D&G Việt Nam",
+    "tax_code": "0106024600",
+    "industry": "Retail and Consumer Goods",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/dg-training.jpg",
+    "summary": "Báo cáo quản trị bán hàng & tồn kho thời trang trên Power BI"
+  },
+  {
+    "entity_ref": "[62.50](../62_ORGANIZATIONS/62.50_DINCO_Profile.md)",
+    "primary_name": "DINCO",
+    "names": [
+      "DINCO"
+    ],
+    "legal_name": "Công ty Cổ phần Kỹ thuật Xây dựng DINCO (và Dufago)",
+    "tax_code": "0400462851",
+    "industry": "Real Estate and Construction",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/dinco.jpg",
+    "summary": "Đào tạo chuỗi 5 khóa Power BI cho tổng thầu xây dựng công nghiệp 2024–2025"
+  },
+  {
+    "entity_ref": "[62.49](../62_ORGANIZATIONS/62.49_Denso_Vietnam_Profile.md)",
+    "primary_name": "DMVN",
+    "names": [
+      "DMVN"
+    ],
+    "legal_name": "Công ty TNHH Denso Việt Nam (Denso Manufacturing Vietnam)",
+    "tax_code": "0101189526",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/dmvn.svg",
+    "summary": "Đào tạo Excel Nâng cao và Power BI Cơ bản cho sản xuất linh kiện ô tô năm 2025"
+  },
+  {
+    "entity_ref": "[62.19](../62_ORGANIZATIONS/62.19_Decathlon_Profile.md)",
+    "primary_name": "Decathlon",
+    "names": [
+      "Decathlon"
+    ],
+    "legal_name": "Công ty TNHH Decathlon Việt Nam",
+    "tax_code": "0301465423",
+    "industry": "Retail and Consumer Goods",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/decathlon.svg",
+    "summary": "Tập đoàn bán lẻ đồ thể thao Pháp; phân tích dữ liệu chuỗi cung ứng & vận hành"
+  },
+  {
+    "entity_ref": "[62.38](../62_ORGANIZATIONS/62.38_Drexel_University_Profile.md)",
+    "primary_name": "Drexel University",
+    "names": [
+      "Drexel University"
+    ],
+    "legal_name": "Drexel University — LeBow College of Business",
+    "tax_code": "Hoa Kỳ (drexel.edu)",
+    "industry": "Education",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/drexel-university.svg",
+    "summary": "Trường Đại học công tác & tốt nghiệp cử nhân tại Philadelphia, PA"
+  },
+  {
+    "entity_ref": "[62.62](../62_ORGANIZATIONS/62.62_F88_Profile.md)",
+    "primary_name": "F88",
+    "names": [
+      "F88"
+    ],
+    "legal_name": "Công ty Cổ phần Kinh doanh F88",
+    "tax_code": "0107490572",
+    "industry": "Finance and Insurance",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/f88.png",
+    "summary": "Chuỗi tài chính tiện ích 800+ PGD; báo cáo phân tích dữ liệu tài chính & vận hành"
+  },
+  {
+    "primary_name": "Fly Up Vietnam",
+    "legal_name": "Fly Up Vietnam",
+    "tax_code": "N/A",
+    "industry": "Education",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/fly-up-vietnam.png",
+    "summary": "Dự án giáo dục phát triển kỹ năng và hướng nghiệp cho thanh thiếu niên."
+  },
+  {
+    "entity_ref": "[62.25](../62_ORGANIZATIONS/62.25_Gia_Long_Profile.md)",
+    "primary_name": "Gia Long",
+    "names": [
+      "Gia Long"
+    ],
+    "legal_name": "Công ty TNHH Thương mại Gia Long",
+    "tax_code": "Doanh nghiệp TM",
+    "industry": "Retail and Consumer Goods",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/gia-long.png",
+    "summary": "Báo cáo quản trị kinh doanh và tài chính trên Power BI"
+  },
+  {
+    "primary_name": "Habitat for Humanity",
+    "legal_name": "Habitat for Humanity International",
+    "tax_code": "Hoa Kỳ (501c3)",
+    "industry": "Nonprofit",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/habitat-for-humanity.webp",
+    "summary": "Tổ chức phi chính phủ quốc tế hỗ trợ xây dựng nhà ở xã hội và cộng đồng."
+  },
+  {
+    "entity_ref": "[62.13](../62_ORGANIZATIONS/62.13_Hafele_Vietnam_Profile.md)",
+    "primary_name": "Hafele",
+    "names": [
+      "Hafele"
+    ],
+    "legal_name": "Công ty TNHH Häfele Việt Nam",
+    "tax_code": "0301479169",
+    "industry": "Retail and Consumer Goods",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/hafele.jpg",
+    "summary": "Thiết bị nội thất & phụ kiện công trình Đức; báo cáo BI quản trị bán hàng & kênh"
+  },
+  {
+    "entity_ref": "[62.51](../62_ORGANIZATIONS/62.51_Hanoi_Telecom_Profile.md)",
+    "primary_name": "Hanoi Telecom",
+    "names": [
+      "Hanoi Telecom"
+    ],
+    "legal_name": "Công ty Cổ phần Viễn thông Hà Nội",
+    "tax_code": "0101134147",
+    "industry": "Telecommunications",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/hanoi-telecom.jpg",
+    "summary": "Đào tạo Analytics Mindset & Power BI Dashboard (`PBICBO-HTC`) năm 2024"
+  },
+  {
+    "entity_ref": "[62.63](../62_ORGANIZATIONS/62.63_Healthy_Humor_Profile.md)",
+    "primary_name": "Healthy Humor",
+    "names": [
+      "Healthy Humor"
+    ],
+    "legal_name": "Healthy Humor, Inc.",
+    "tax_code": "Hoa Kỳ (501c3)",
+    "industry": "Nonprofit",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/healthy-humor.svg",
+    "summary": "Tổ chức phi lợi nhuận bệnh viện nhi Hoa Kỳ; phân tích tài chính & vận hành"
+  },
+  {
+    "entity_ref": "[62.64](../62_ORGANIZATIONS/62.64_Hoang_Hai_Forever_Profile.md)",
+    "primary_name": "Hoàng Hải Forever",
+    "names": [
+      "Hoàng Hải Forever"
+    ],
+    "legal_name": "Công ty Cổ phần Thương mại Hoàng Hải (Forever)",
+    "tax_code": "0100516601",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/hoang-hai-forever.png",
+    "summary": "Chăn ga gối đệm Forever; báo cáo sản xuất & bán lẻ chuỗi showroom"
+  },
+  {
+    "entity_ref": "[62.05](../62_ORGANIZATIONS/62.05_BF_Chemicals_Profile.md)",
+    "primary_name": "Hóa Chất BF",
+    "names": [
+      "Hóa Chất BF"
+    ],
+    "legal_name": "Công ty Cổ phần Hóa chất BF",
+    "tax_code": "0106684434",
+    "industry": "Retail and Consumer Goods",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/bfc.png",
+    "summary": "Phân phối hóa chất; Data Warehouse & hệ thống báo cáo Power BI toàn diện"
+  },
+  {
+    "primary_name": "Học viện đổi mới sáng tạo",
+    "legal_name": "Học viện Đổi mới Sáng tạo (Innovation Academy)",
+    "tax_code": "N/A",
+    "industry": "Education",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/hoc-vien-doi-moi-sang-tao.jpg",
+    "summary": "Tổ chức đào tạo ươm mầm khởi nghiệp và chuyển đổi số."
+  },
+  {
+    "entity_ref": "[62.26](../62_ORGANIZATIONS/62.26_IDC_Group_Profile.md)",
+    "primary_name": "IDC Group",
+    "names": [
+      "IDC Group"
+    ],
+    "legal_name": "Công ty Cổ phần Tập đoàn Công nghệ IDC",
+    "tax_code": "0101218636",
+    "industry": "Technology and IT Services",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/idc-group.webp",
+    "summary": "Tích hợp giải pháp CNTT; hệ thống báo cáo quản trị tài chính & kinh doanh"
+  },
+  {
+    "entity_ref": "[62.12](../62_ORGANIZATIONS/62.12_IIG_Vietnam_Profile.md)",
+    "primary_name": "IIG Việt Nam",
+    "names": [
+      "IIG Việt Nam"
+    ],
+    "legal_name": "Công ty Cổ phần IIG Việt Nam",
+    "tax_code": "0100996670",
+    "industry": "Education",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/iig-viet-nam.png",
+    "summary": "Khảo thí và kiểm định giáo dục (TOEIC, MOS); Data Warehouse & Power BI quản trị"
+  },
+  {
+    "primary_name": "IPP",
+    "legal_name": "Tập đoàn Liên Thái Bình Dương (IPPG)",
+    "tax_code": "0303889098",
+    "industry": "Retail and Consumer Goods",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/ipp.jpg",
+    "summary": "Tập đoàn kinh doanh bán lẻ và phân phối hàng hiệu hàng đầu Việt Nam."
+  },
+  {
+    "entity_ref": "[62.22](../62_ORGANIZATIONS/62.22_Jeisys_Vietnam_Profile.md)",
+    "primary_name": "Jeisys",
+    "names": [
+      "Jeisys"
+    ],
+    "legal_name": "Jeisys Medical Vietnam",
+    "tax_code": "FDI Hàn Quốc",
+    "industry": "Healthcare and Pharmaceuticals",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/jeisys.png",
+    "summary": "Thiết bị y tế thẩm mỹ Hàn Quốc; báo cáo quản trị bán hàng và dịch vụ khách hàng"
+  },
+  {
+    "entity_ref": "[62.01](../62_ORGANIZATIONS/62.01_KPIM_Company_Profile.md)",
+    "primary_name": "KPIM",
+    "names": [
+      "KPIM"
+    ],
+    "legal_name": "Công ty Cổ phần KPIM",
+    "tax_code": "0109159225",
+    "industry": "Information Technology & Services",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/Picture3.png",
+    "summary": "Đơn vị tư vấn & triển khai BI, DW, Fabric, AI Agent (Co-Founder & CEO)"
+  },
+  {
+    "entity_ref": "[62.02](../62_ORGANIZATIONS/62.02_KPIM_Academy_Profile.md)",
+    "primary_name": "KPIM Academy",
+    "names": [
+      "KPIM Academy"
+    ],
+    "legal_name": "Học viện Đào tạo Phân tích Dữ liệu KPIM",
+    "tax_code": "Trực thuộc KPIM (0109159225)",
+    "industry": "Education",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/Picture3.png",
+    "summary": "Học viện đào tạo doanh nghiệp & đại trà về Power BI, Fabric, AI"
+  },
+  {
+    "entity_ref": "[62.65](../62_ORGANIZATIONS/62.65_KPMG_Vietnam_Profile.md)",
+    "primary_name": "KPMG",
+    "names": [
+      "KPMG"
+    ],
+    "legal_name": "Công ty TNHH KPMG (KPMG Việt Nam)",
+    "tax_code": "0100112042",
+    "industry": "Consulting Service",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/kpmg.svg",
+    "summary": "Kiểm toán & tư vấn Big4; phối hợp triển khai phân tích dữ liệu chuyên sâu"
+  },
+  {
+    "entity_ref": "[62.21](../62_ORGANIZATIONS/62.21_KRIK_Profile.md)",
+    "primary_name": "KRIK",
+    "names": [
+      "KRIK"
+    ],
+    "legal_name": "Công ty TNHH Thời trang KRIK Việt Nam",
+    "tax_code": "0108523989",
+    "industry": "Retail and Consumer Goods",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/krik.png",
+    "summary": "Bán lẻ thời trang nam; báo cáo BI bán lẻ, tồn kho và khách hàng"
+  },
+  {
+    "entity_ref": "[62.14](../62_ORGANIZATIONS/62.14_LaSoong_Profile.md)",
+    "primary_name": "LaSoong",
+    "names": [
+      "LaSoong"
+    ],
+    "legal_name": "Thương hiệu LaSoong",
+    "tax_code": "Doanh nghiệp bán lẻ",
+    "industry": "Retail and Consumer Goods",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/Picture3.png",
+    "summary": "Tư vấn chiến lược sản phẩm, Loyalty OS và quản trị dữ liệu khách hàng"
+  },
+  {
+    "entity_ref": "[62.35](../62_ORGANIZATIONS/62.35_Lazada_Group_Profile.md)",
+    "primary_name": "Lazada",
+    "names": [
+      "Lazada"
+    ],
+    "legal_name": "Lazada Group (Alibaba Group)",
+    "tax_code": "FDI — Singapore / VN",
+    "industry": "E-Commerce",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/lazada.svg",
+    "summary": "Trưởng phòng Vận hành & Chiến lược Khu vực (2017–2018)"
+  },
+  {
+    "entity_ref": "[62.04](../62_ORGANIZATIONS/62.04_MB_Ageas_Life_Profile.md)",
+    "primary_name": "MB Ageas Life",
+    "names": [
+      "MB Ageas Life"
+    ],
+    "legal_name": "Công ty TNHH Bảo hiểm Nhân thọ MB Ageas",
+    "tax_code": "0107372652",
+    "industry": "Finance and Insurance",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/mb-ageas.svg",
+    "summary": "Tư vấn BI Report Server 2020 và đào tạo quản trị Power BI Cloud (`MBAG102`)"
+  },
+  {
+    "entity_ref": "[62.45](../62_ORGANIZATIONS/62.45_MB_Bank_Profile.md)",
+    "primary_name": "MB Bank",
+    "names": [
+      "MB Bank"
+    ],
+    "legal_name": "Ngân hàng TMCP Quân Đội",
+    "tax_code": "0100283873",
+    "industry": "Finance and Insurance",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/mb-bank.png",
+    "summary": "Đào tạo Power BI Cơ bản Online và hợp tác sâu tại MB Ageas Life"
+  },
+  {
+    "entity_ref": "[62.66](../62_ORGANIZATIONS/62.66_MobiFone_Profile.md)",
+    "primary_name": "Mobifone",
+    "names": [
+      "Mobifone"
+    ],
+    "legal_name": "Tổng Công ty Viễn thông MobiFone",
+    "tax_code": "0100686209",
+    "industry": "Telecommunications",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/mobifone.svg",
+    "summary": "Mạng viễn thông di động; phân tích dữ liệu khách hàng, cước và vận hành mạng lưới"
+  },
+  {
+    "entity_ref": "[62.67](../62_ORGANIZATIONS/62.67_Goldsun_Food_Profile.md)",
+    "primary_name": "Mặt trời vàng (Goldsun Food)",
+    "names": [
+      "Mặt trời vàng (Goldsun Food)"
+    ],
+    "legal_name": "Công ty Cổ phần Thực phẩm Mặt Trời Vàng (Goldsun Food)",
+    "tax_code": "0106651783",
+    "industry": "Hospitality",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/mat-troi-vang-goldsun-food.png",
+    "summary": "Chuỗi 200 nhà hàng F&B; Power BI phân tích vận hành & chi phí thực phẩm"
+  },
+  {
+    "entity_ref": "[62.43](../62_ORGANIZATIONS/62.43_NCB_Bank_Profile.md)",
+    "primary_name": "NCB",
+    "names": [
+      "NCB"
+    ],
+    "legal_name": "Ngân hàng TMCP Quốc Dân",
+    "tax_code": "0100157595",
+    "industry": "Finance and Insurance",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/ncb.jpg",
+    "summary": "Đào tạo Power BI Training & SQL Cơ bản (`PBCBO-NCB01`, `02`) năm 2024"
+  },
+  {
+    "entity_ref": "[62.36](../62_ORGANIZATIONS/62.36_NRG_Energy_Profile.md)",
+    "primary_name": "NRG",
+    "names": [
+      "NRG"
+    ],
+    "legal_name": "NRG Energy, Inc.",
+    "tax_code": "NYSE: NRG (Hoa Kỳ)",
+    "industry": "Energy",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/nrg.svg",
+    "summary": "Business & Financial Data Analyst tại Philadelphia, Hoa Kỳ (2014–2015)"
+  },
+  {
+    "entity_ref": "[62.55](../62_ORGANIZATIONS/62.55_Olmix_Vietnam_Profile.md)",
+    "primary_name": "Olmix Group",
+    "names": [
+      "Olmix Group"
+    ],
+    "legal_name": "Công ty TNHH Olmix Asialand Việt Nam",
+    "tax_code": "3700807443",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/olmix-group.gif",
+    "summary": "Đào tạo Power BI Hero (`PBIH-OM01`) phân tích nông nghiệp & công nghệ sinh học năm 2022"
+  },
+  {
+    "entity_ref": "[62.68](../62_ORGANIZATIONS/62.68_One_Mount_Group_Profile.md)",
+    "primary_name": "One Mount",
+    "names": [
+      "One Mount"
+    ],
+    "legal_name": "Công ty Cổ phần Tập đoàn One Mount",
+    "tax_code": "0108902916",
+    "industry": "Technology and IT Services",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/one-mount.png",
+    "summary": "Hệ sinh thái công nghệ số (VinShop, OneHousing); phân tích dữ liệu lớn"
+  },
+  {
+    "primary_name": "PLC",
+    "legal_name": "Tổng Công ty Hóa dầu Petrolimex - CTCP",
+    "tax_code": "0101458999",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/plc.png",
+    "summary": "Doanh nghiệp sản xuất dầu mỡ nhờn, nhựa đường và hóa chất hàng đầu Việt Nam."
+  },
+  {
+    "entity_ref": "[62.53](../62_ORGANIZATIONS/62.53_PV_Gas_Profile.md)",
+    "primary_name": "PV Gas",
+    "names": [
+      "PV Gas"
+    ],
+    "legal_name": "Công ty Cổ phần Phân phối Khí thấp áp Dầu khí Việt Nam (PV Gas D)",
+    "tax_code": "0304998686",
+    "industry": "Energy and Utilities",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/pv-gas.jpg",
+    "summary": "Đào tạo Power BI Hero (`PBIH-PVG01`) số hóa dữ liệu phân phối khí năm 2022"
+  },
+  {
+    "entity_ref": "[62.11](../62_ORGANIZATIONS/62.11_PVI_Holdings_Profile.md)",
+    "primary_name": "PVI",
+    "names": [
+      "PVI",
+      "PVI AM"
+    ],
+    "legal_name": "Công ty Cổ phần PVI / Công ty CP Quản lý Quỹ PVI",
+    "tax_code": "0100151161 / 0106760638",
+    "industry": "Finance and Insurance",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/pvi.svg",
+    "summary": "Triển khai báo cáo tài chính hợp nhất Power BI và đào tạo Microsoft 365"
+  },
+  {
+    "entity_ref": "[62.34](../62_ORGANIZATIONS/62.34_POSHACO_Profile.md)",
+    "primary_name": "Poshaco",
+    "names": [
+      "Poshaco"
+    ],
+    "legal_name": "Công ty Cổ phần Thương mại và Sản xuất Poshaco",
+    "tax_code": "0101407419",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/poshaco.jpg",
+    "summary": "Tôn mạ màu và thép; báo cáo sản xuất & kinh doanh trên Power BI"
+  },
+  {
+    "entity_ref": "[62.27](../62_ORGANIZATIONS/62.27_Royal_HaskoningDHV_Profile.md)",
+    "primary_name": "Royal HaskoningDHV",
+    "names": [
+      "Royal HaskoningDHV"
+    ],
+    "legal_name": "Công ty TNHH HaskoningDHV Việt Nam",
+    "tax_code": "0301451237",
+    "industry": "Real Estate and Construction",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/royal-haskoningdhv.png",
+    "summary": "Tư vấn kỹ thuật & quản lý dự án Hà Lan; tự động hóa báo cáo dự án"
+  },
+  {
+    "primary_name": "Rồng Việt",
+    "legal_name": "Công ty Cổ phần Chứng khoán Rồng Việt (VDSC)",
+    "tax_code": "0304734965",
+    "industry": "Finance and Insurance",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/rong-viet.jpg",
+    "summary": "Công ty chứng khoán hàng đầu Việt Nam cung cấp dịch vụ môi giới và IB."
+  },
+  {
+    "entity_ref": "[62.33](../62_ORGANIZATIONS/62.33_Sovigaz_Profile.md)",
+    "primary_name": "SOVIGAZ",
+    "names": [
+      "SOVIGAZ"
+    ],
+    "legal_name": "Công ty Cổ phần Hơi kỹ nghệ Que hàn (Sovigaz)",
+    "tax_code": "0300394810",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/sovigaz.png",
+    "summary": "Khí công nghiệp và que hàn; báo cáo BI sản xuất & tài chính"
+  },
+  {
+    "entity_ref": "[62.28](../62_ORGANIZATIONS/62.28_SQ_Dentist_Profile.md)",
+    "primary_name": "SQ Dentist",
+    "names": [
+      "SQ Dentist"
+    ],
+    "legal_name": "Hệ thống Nha khoa Quốc tế SQ Dentist",
+    "tax_code": "0315916420",
+    "industry": "Healthcare and Pharmaceuticals",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/sq-dentist.png",
+    "summary": "Chuỗi nha khoa thẩm mỹ; báo cáo Marketing, CRM và vận hành phòng khám"
+  },
+  {
+    "entity_ref": "[62.24](../62_ORGANIZATIONS/62.24_Sonion_Profile.md)",
+    "primary_name": "Sonion",
+    "names": [
+      "Sonion"
+    ],
+    "legal_name": "Công ty TNHH Sonion Việt Nam",
+    "tax_code": "0304741227",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/sonion.webp",
+    "summary": "Linh kiện âm thanh vi cơ điện tử Đan Mạch; giải pháp BI & tự động hóa sản xuất"
+  },
+  {
+    "entity_ref": "[62.69](../62_ORGANIZATIONS/62.69_Thien_Long_Group_Profile.md)",
+    "primary_name": "TLG",
+    "names": [
+      "TLG"
+    ],
+    "legal_name": "Công ty Cổ phần Tập đoàn Thiên Long",
+    "tax_code": "0301464830",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/tlg.png",
+    "summary": "Tập đoàn văn phòng phẩm số 1 VN; tư vấn & báo cáo phân tích quản trị"
+  },
+  {
+    "entity_ref": "[62.29](../62_ORGANIZATIONS/62.29_Talentnet_Profile.md)",
+    "primary_name": "Talentnet",
+    "names": [
+      "Talentnet"
+    ],
+    "legal_name": "Công ty Cổ phần Kết Nối Nhân Tài (Talentnet Corporation)",
+    "tax_code": "0305302835",
+    "industry": "Consulting Service",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/talentnet.png",
+    "summary": "Tư vấn nhân sự Mercer/ADP; Microsoft Fabric & Power BI phân tích HR/Payroll"
+  },
+  {
+    "primary_name": "TechImpact",
+    "legal_name": "Tech Impact, Inc.",
+    "tax_code": "Hoa Kỳ (501c3)",
+    "industry": "Nonprofit",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/techimpact.webp",
+    "summary": "Tổ chức cung cấp giải pháp công nghệ và phân tích dữ liệu cho cộng đồng."
+  },
+  {
+    "entity_ref": "[62.44](../62_ORGANIZATIONS/62.44_Techcombank_Profile.md)",
+    "primary_name": "Techcombank",
+    "names": [
+      "Techcombank"
+    ],
+    "legal_name": "Ngân hàng TMCP Kỹ Thương Việt Nam",
+    "tax_code": "0100230800",
+    "industry": "Finance and Insurance",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/techcombank.jpg",
+    "summary": "Đào tạo chuỗi 3 lớp Power BI Cơ bản (`PBICBO-TC01` → `03`) năm 2023"
+  },
+  {
+    "primary_name": "The Mission Continues",
+    "legal_name": "The Mission Continues",
+    "tax_code": "Hoa Kỳ (501c3)",
+    "industry": "Nonprofit",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/the-mission-continues.jpg",
+    "summary": "Tổ chức phi lợi nhuận quốc gia tại Mỹ kết nối cựu chiến binh phục vụ cộng đồng."
+  },
+  {
+    "entity_ref": "[62.10](../62_ORGANIZATIONS/62.10_Traphaco_Profile.md)",
+    "primary_name": "Traphaco",
+    "names": [
+      "Traphaco"
+    ],
+    "legal_name": "Công ty Cổ phần Traphaco",
+    "tax_code": "0100108656",
+    "industry": "Healthcare and Pharmaceuticals",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/traphaco.webp",
+    "summary": "Dược phẩm hàng đầu (HOSE: `TRA`); báo cáo kinh doanh OTC/ETC và tài chính"
+  },
+  {
+    "primary_name": "Trường Ngô Sỹ Liên",
+    "legal_name": "Trường THCS Ngô Sỹ Liên",
+    "tax_code": "0103133379",
+    "industry": "Education",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/truong-ngo-sy-lien.jpg",
+    "summary": "Trường trung học cơ sở trọng điểm chất lượng cao tại Hà Nội."
+  },
+  {
+    "entity_ref": "[62.08](../62_ORGANIZATIONS/62.08_Tam_Long_Pharma_Profile.md)",
+    "primary_name": "Tâm Long",
+    "names": [
+      "Tâm Long"
+    ],
+    "legal_name": "Công ty TNHH Dược phẩm Tâm Long",
+    "tax_code": "0101432849",
+    "industry": "Healthcare and Pharmaceuticals",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/tam-long.jpg",
+    "summary": "Phân phối dược phẩm; Data Warehouse & báo cáo bán hàng, công nợ, tồn kho"
+  },
+  {
+    "entity_ref": "[62.30](../62_ORGANIZATIONS/62.30_Tan_A_Dai_Thanh_Profile.md)",
+    "primary_name": "Tân Á Đại Thành",
+    "names": [
+      "Tân Á Đại Thành"
+    ],
+    "legal_name": "Công ty Cổ phần Tập đoàn Tân Á Đại Thành",
+    "tax_code": "0100792910",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/tan-a-dai-thanh.jpg",
+    "summary": "Kim khí gia dụng & bồn nước số 1 VN; hệ thống báo cáo quản trị tập đoàn quy mô lớn"
+  },
+  {
+    "entity_ref": "[62.48](../62_ORGANIZATIONS/62.48_URC_Vietnam_Profile.md)",
+    "primary_name": "URC",
+    "names": [
+      "URC"
+    ],
+    "legal_name": "Công ty TNHH URC Việt Nam",
+    "tax_code": "3700516145",
+    "industry": "Retail and Consumer Goods",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/urc.png",
+    "summary": "Đào tạo 2 khóa Power BI Cơ bản & Nâng cao cho khối Vận hành/Sản xuất năm 2026"
+  },
+  {
+    "entity_ref": "[62.32](../62_ORGANIZATIONS/62.32_VIS_Rating_Profile.md)",
+    "primary_name": "VIS Rating",
+    "names": [
+      "VIS Rating"
+    ],
+    "legal_name": "Công ty Cổ phần Xếp hạng Tín nhiệm Đầu tư Việt Nam",
+    "tax_code": "0109848394",
+    "industry": "Finance and Insurance",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/vis-rating.jpg",
+    "summary": "Tư vấn dữ liệu xếp hạng tín nhiệm và đào tạo Power BI (`PBCBO-VIS` 2024)"
+  },
+  {
+    "entity_ref": "[62.16](../62_ORGANIZATIONS/62.16_VMO_Holdings_Profile.md)",
+    "primary_name": "VMO",
+    "names": [
+      "VMO"
+    ],
+    "legal_name": "Công ty Cổ phần Công nghệ VMO Holdings",
+    "tax_code": "0105918193",
+    "industry": "Technology and IT Services",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/vmo.png",
+    "summary": "Xuất khẩu phần mềm Top 10 VN (1.300+ kỹ sư); báo cáo nguồn lực, dự án & tài chính"
+  },
+  {
+    "entity_ref": "[62.42](../62_ORGANIZATIONS/62.42_VNPT_Profile.md)",
+    "primary_name": "VNPT",
+    "names": [
+      "VNPT"
+    ],
+    "legal_name": "Tập đoàn Bưu chính Viễn thông Việt Nam",
+    "tax_code": "0100684378",
+    "industry": "Telecommunications",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/vnpt.jpg",
+    "summary": "Đào tạo Phân tích điều hành SXKD và Growth Analytics trên Power BI năm 2026"
+  },
+  {
+    "entity_ref": "[62.40](../62_ORGANIZATIONS/62.40_VietinBank_Profile.md)",
+    "primary_name": "VietinBank",
+    "names": [
+      "VietinBank"
+    ],
+    "legal_name": "Ngân hàng TMCP Công Thương Việt Nam",
+    "tax_code": "0100111948",
+    "industry": "Finance and Insurance",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/vietinbank.jpg",
+    "summary": "Trường Đào tạo VietinBank đặt hàng liên tục 2022–2026 với 22+ lớp Power BI & AI HR"
+  },
+  {
+    "entity_ref": "[62.07](../62_ORGANIZATIONS/62.07_Viettelimex_Profile.md)",
+    "primary_name": "Viettelimex",
+    "names": [
+      "Viettelimex"
+    ],
+    "legal_name": "Công ty TNHH Nhà nước MTV Thương mại và Xuất nhập khẩu Viettel",
+    "tax_code": "0101916207",
+    "industry": "Retail and Consumer Goods",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/viettelimex.svg",
+    "summary": "Chuỗi Viettel Store; Data Warehouse & 6 phân hệ báo cáo Power BI"
+  },
+  {
+    "entity_ref": "[62.54](../62_ORGANIZATIONS/62.54_Vinasoy_Profile.md)",
+    "primary_name": "Vinasoy",
+    "names": [
+      "Vinasoy"
+    ],
+    "legal_name": "Công ty Cổ phần Đường Quảng Ngãi — Nhà máy Sữa đậu nành Việt Nam Vinasoy",
+    "tax_code": "4300205943",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/vinasoy.png",
+    "summary": "Đào tạo Power BI Hero (`PBIH-VNS01`) cho khối kinh doanh và chuỗi cung ứng năm 2022"
+  },
+  {
+    "entity_ref": "[62.31](../62_ORGANIZATIONS/62.31_Vinatex_Profile.md)",
+    "primary_name": "Vinatex",
+    "names": [
+      "Vinatex"
+    ],
+    "legal_name": "Tập đoàn Dệt May Việt Nam",
+    "tax_code": "0100100008",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/vinatex.png",
+    "summary": "Tập đoàn dệt may lớn nhất VN; báo cáo quản trị hợp nhất & phân tích SXKD"
+  },
+  {
+    "entity_ref": "[62.15](../62_ORGANIZATIONS/62.15_ViTech_Profile.md)",
+    "primary_name": "Vitech",
+    "names": [
+      "Vitech"
+    ],
+    "legal_name": "CÔNG TY TNHH DỊCH VỤ VÀ ĐẦU TƯ VITECH",
+    "tax_code": "0107007382",
+    "industry": "Real Estate and Construction",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/vitech.png",
+    "summary": "Công ty của Đức (CEO); đầu tư BĐS & nền tảng SaaS BDSmo (`bdsmo.vn`)"
+  },
+  {
+    "primary_name": "Vĩnh Cường",
+    "legal_name": "Công ty Cổ phần Sản xuất và Thương mại Vĩnh Cường",
+    "tax_code": "0102027581",
+    "industry": "Manufacturing",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/vinh-cuong.jpg",
+    "summary": "Doanh nghiệp sản xuất bao bì và phụ liệu công nghiệp."
+  },
+  {
+    "entity_ref": "[62.70](../62_ORGANIZATIONS/62.70_Woori_Bank_Vietnam_Profile.md)",
+    "primary_name": "Woori Bank",
+    "names": [
+      "Woori Bank"
+    ],
+    "legal_name": "Ngân hàng TNHH MTV Woori Việt Nam",
+    "tax_code": "0107625356",
+    "industry": "Finance and Insurance",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/woori-bank.svg",
+    "summary": "Ngân hàng FDI Hàn Quốc; dự án phân tích dữ liệu & báo cáo quản trị ngân hàng"
+  },
+  {
+    "entity_ref": "[62.37](../62_ORGANIZATIONS/62.37_YPTC_Profile.md)",
+    "primary_name": "YPTC",
+    "names": [
+      "YPTC"
+    ],
+    "legal_name": "Your Part-Time Controller, LLC",
+    "tax_code": "Hoa Kỳ (yptc.com)",
+    "industry": "Consulting Service",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/YPTC-Logo.png",
+    "summary": "Tư vấn tài chính & kế toán quản trị phi lợi nhuận tại Mỹ (2015–2016)"
+  }
+]

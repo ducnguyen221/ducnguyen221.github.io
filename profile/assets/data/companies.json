@@ -1,0 +1,51 @@
+[
+  {
+    "name": "COMPA JSC",
+    "industry": "Education",
+    "location": "Việt Nam",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/COMPA-CLASS.jpg",
+    "description": "Công ty Cổ phần Công nghệ Giáo dục COMPA — Nền tảng công nghệ giáo dục số toàn diện và hệ thống quản lý học tập (LMS) tiên tiến tại Việt Nam."
+  },
+  {
+    "name": "KPIM JSC",
+    "industry": "Information Technology & Services",
+    "location": "Việt Nam",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/Picture3.png",
+    "description": "Công ty Cổ phần KPIM — Đơn vị tiên phong tư vấn, triển khai giải pháp Business Intelligence, Data Warehouse, Microsoft Fabric, AI Agent và đào tạo phân tích dữ liệu doanh nghiệp."
+  },
+  {
+    "name": "KPIM Academy",
+    "industry": "Education",
+    "location": "Việt Nam",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/Picture3.png",
+    "description": "Học viện Đào tạo Phân tích Dữ liệu KPIM Academy — Đào tạo thực chiến Power BI, Data Analytics, Microsoft Fabric và Ứng dụng AI cho doanh nghiệp."
+  },
+  {
+    "name": "Agribank",
+    "industry": "Finance and Insurance",
+    "location": "Việt Nam",
+    "logo_url": "https://ducnguyen.vn/profile/courses/agribank-data/assets/logos/agribank-crop.png",
+    "description": "Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam (Agribank) — Ngân hàng thương mại Nhà nước lớn nhất Việt Nam."
+  },
+  {
+    "name": "VietinBank",
+    "industry": "Finance and Insurance",
+    "location": "Việt Nam",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/vietinbank.jpg",
+    "description": "Ngân hàng TMCP Công Thương Việt Nam (VietinBank) — Ngân hàng thương mại quốc doanh hàng đầu Việt Nam."
+  },
+  {
+    "name": "BIDV",
+    "industry": "Finance and Insurance",
+    "location": "Việt Nam",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/clients/bidv.png",
+    "description": "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam (BIDV)."
+  },
+  {
+    "name": "Your Part-Time Controllers",
+    "industry": "Consulting Service",
+    "location": "Hoa Kỳ",
+    "logo_url": "https://ducnguyen.vn/profile/assets/images/YPTC-Logo.png",
+    "description": "Your Part-Time Controller, LLC (YPTC) — Công ty tư vấn quản trị tài chính và kế toán hàng đầu tại Hoa Kỳ."
+  }
+]

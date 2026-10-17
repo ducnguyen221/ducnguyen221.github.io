@@ -1,114 +1,194 @@
 [
   {
-    "name": "Talentnet Data Warehouse Project",
-    "client": "Talentnet",
-    "client_logo": "https://logo.clearbit.com/talentnet.com",
-    "industry": "Consulting Service",
-    "domain": "Sales",
-    "category": "Triển khai Data Warehouse",
+    "code": "TLN-01",
+    "projectName": "Talentnet Data Warehouse Project",
+    "clientName": "Talentnet",
+    "clientLogo": "./assets/images/clients/talentnet.png",
+    "clientLegalName": "Công ty Cổ phần Kết Nối Nhân Tài (Talentnet Corporation)",
+    "clientTaxCode": "0305302835",
+    "clientSummary": "Tư vấn nhân sự Mercer/ADP; Microsoft Fabric & Power BI phân tích HR/Payroll",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2025-10-01",
-    "end_date": "2025-12-31",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2025",
+    "startDate": "2025-10",
+    "endDate": "2025-12",
     "technologies": [
       "SQL",
       "T-SQL"
     ],
+    "skills": [
+      "SQL",
+      "T-SQL"
+    ],
+    "category": "Triển khai Data Warehouse",
+    "domain": [
+      "Sales"
+    ],
+    "industry": "Consulting Service",
     "overview": "Với vai trò Project Manager tôi tham gia hỗ trợ thúc đẩy dự án truển khai sau giai đoạn trước đõ xây dựng hệ thống 10 báo cáo về dịch vụ và quản lý nhân sự. Hiện tại đội ngũ DE hỗ trợ chuyển dữ liệu nguồn tự động thông qua ETL dữ liệu từ phần mềm về Data Warehouse thay thế nguồn Excel xuất ra.",
+    "summary": "Với vai trò Project Manager tôi tham gia hỗ trợ thúc đẩy dự án truển khai sau giai đoạn trước đõ xây dựng hệ thống 10 báo cáo về dịch vụ và quản lý nhân sự. Hiện tại đội ngũ DE hỗ trợ chuyển dữ liệu nguồn tự động thông qua ETL dữ liệu từ phần mềm về Data Warehouse thay thế nguồn Excel xuất ra.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Data Pipeline Sonion",
-    "client": "Sonion",
-    "client_logo": "https://logo.clearbit.com/sonion.com",
-    "industry": "Manufacturing",
-    "domain": "Manufacturing",
-    "category": "Triển khai Data Warehouse",
+    "code": "SN-01",
+    "projectName": "Data Pipeline Sonion",
+    "clientName": "Sonion",
+    "clientLogo": "./assets/images/clients/sonion.webp",
+    "clientLegalName": "Công ty TNHH Sonion Việt Nam",
+    "clientTaxCode": "0304741227",
+    "clientSummary": "Linh kiện âm thanh vi cơ điện tử Đan Mạch; giải pháp BI & tự động hóa sản xuất",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2025-09-01",
-    "end_date": "2025-11-01",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2025",
+    "startDate": "2025-09",
+    "endDate": "2025-11",
     "technologies": [
       "T-SQL"
     ],
+    "skills": [
+      "T-SQL"
+    ],
+    "category": "Triển khai Data Warehouse",
+    "domain": [
+      "Manufacturing"
+    ],
+    "industry": "Manufacturing",
     "overview": "Tôi tham gia dự án với vai trò PM hỗ trợ mở rộng các dữ liệu ở giai đoạn trước và đưa vào các báo cáo trên Excel",
+    "summary": "Tôi tham gia dự án với vai trò PM hỗ trợ mở rộng các dữ liệu ở giai đoạn trước và đưa vào các báo cáo trên Excel",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "BIM Room Pickup DB & REPORT",
-    "client": "BM",
-    "client_logo": "https://logo.clearbit.com/bm.com",
-    "industry": "Hospitality",
-    "domain": "Sales",
-    "category": "Triển khai Data Warehouse",
+    "code": "BIM-01",
+    "projectName": "BIM Room Pickup DB & REPORT",
+    "clientName": "BM",
+    "clientLogo": "./assets/images/clients/bim-group.png",
+    "clientLegalName": "Công ty Cổ phần Tập đoàn BIM",
+    "clientTaxCode": "5700101641",
+    "clientSummary": "Báo cáo BI quản trị tập đoàn đa ngành, PnL hợp nhất & CDP.",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2025-07-01",
-    "end_date": "2025-11-01",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2025",
+    "startDate": "2025-07",
+    "endDate": "2025-11",
     "technologies": [
       "Power BI",
       "SQL"
     ],
+    "skills": [
+      "Power BI",
+      "SQL"
+    ],
+    "category": "Triển khai Data Warehouse",
+    "domain": [
+      "Sales"
+    ],
+    "industry": "Hospitality",
     "overview": "Với vai trò Project Manager tôi đã hỗ trợ các DE và BI team để xây dựng quy trình đồng bộ dữ liệu từ nguồn phần mềm quản lý booking và phân tích dữ liệu theo lịch sử trên SQL Server và PowerBI",
+    "summary": "Với vai trò Project Manager tôi đã hỗ trợ các DE và BI team để xây dựng quy trình đồng bộ dữ liệu từ nguồn phần mềm quản lý booking và phân tích dữ liệu theo lịch sử trên SQL Server và PowerBI",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Triển khai Microsoft Fabric và PowerBI Embedded",
-    "client": "PLC",
-    "client_logo": "https://logo.clearbit.com/plc.com",
-    "industry": "Manufacturing",
-    "domain": "Sales;#Accounting;#Manufacturing",
-    "category": "Triển khai Microsoft Fabric",
+    "code": "PLC-01",
+    "projectName": "Triển khai Microsoft Fabric và PowerBI Embedded",
+    "clientName": "PLC",
+    "clientLogo": "./assets/images/clients/plc.png",
+    "clientLegalName": "Tổng Công ty Hóa dầu Petrolimex - CTCP",
+    "clientTaxCode": "0101458999",
+    "clientSummary": "Doanh nghiệp sản xuất dầu mỡ nhờn, nhựa đường và hóa chất hàng đầu Việt Nam.",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2025-03-01",
-    "end_date": "2025-11-01",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2025",
+    "startDate": "2025-03",
+    "endDate": "2025-11",
     "technologies": [
       "Power BI",
       "Microsoft Fabric"
     ],
+    "skills": [
+      "Power BI",
+      "Microsoft Fabric"
+    ],
+    "category": "Triển khai Microsoft Fabric",
+    "domain": [
+      "Sales",
+      "Accounting",
+      "Manufacturing"
+    ],
+    "industry": "Manufacturing",
     "overview": "Với vai trò PM tôi đã hỗ trợ tư vấn chiến lược, mô hình kiến trúc hạ tầng và quản lý đội ngũ gồm 3 DE và  BI thiết ké hệ thống Data Lakehouse trên Microsoft Fabric từ các nguồn đơn vị thành viên và tổng hợp các tính toán chỉ số theo dõi báo cáo trên PowerBI Embedded đi kèm giải pháp sẵn có. Đồng thời customize mở rộng giải pháp theo yêu cầu.",
+    "summary": "Với vai trò PM tôi đã hỗ trợ tư vấn chiến lược, mô hình kiến trúc hạ tầng và quản lý đội ngũ gồm 3 DE và  BI thiết ké hệ thống Data Lakehouse trên Microsoft Fabric từ các nguồn đơn vị thành viên và tổng hợp các tính toán chỉ số theo dõi báo cáo trên PowerBI Embedded đi kèm giải pháp sẵn có. Đồng thời customize mở rộng giải pháp theo yêu cầu.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "BIM Hospitality Report",
-    "client": "BIM Group",
-    "client_logo": "https://logo.clearbit.com/bimgroup.com",
-    "industry": "Hospitality",
-    "domain": "Sales",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "BIM-02",
+    "projectName": "BIM Hospitality Report",
+    "clientName": "BIM Group",
+    "clientLogo": "./assets/images/clients/bim-group.png",
+    "clientLegalName": "Công ty Cổ phần Tập đoàn BIM",
+    "clientTaxCode": "5700101641",
+    "clientSummary": "Báo cáo BI quản trị tập đoàn đa ngành, PnL hợp nhất & CDP",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2025-03-01",
-    "end_date": "2025-06-01",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2025",
+    "startDate": "2025-03",
+    "endDate": "2025-06",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales"
+    ],
+    "industry": "Hospitality",
     "overview": "Với vai trò PM cùng 2 BI Analyst phối hợp chúng tôi đã xây dựng thành công nhóm 3 bộ báo cáo phân tích và tổng hợp các chỉ số Hospitality để so sánh với cùng kỳ và các thời điểm khác nhau theo các Dự án và khách sạn quản lý.",
+    "summary": "Với vai trò PM cùng 2 BI Analyst phối hợp chúng tôi đã xây dựng thành công nhóm 3 bộ báo cáo phân tích và tổng hợp các chỉ số Hospitality để so sánh với cùng kỳ và các thời điểm khác nhau theo các Dự án và khách sạn quản lý.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Microsoft Fabric và PowerBI Embedded Hệ thống đầu tư PVI",
-    "client": "PVI",
-    "client_logo": "./assets/images/clients/pvi.svg",
-    "industry": "Finance and Insurance",
-    "domain": "Finance;#Accounting",
-    "category": "Triển khai Microsoft Fabric",
+    "code": "PVI-01",
+    "projectName": "Microsoft Fabric và PowerBI Embedded Hệ thống đầu tư PVI",
+    "clientName": "PVI",
+    "clientLogo": "./assets/images/clients/pvi.svg",
+    "clientLegalName": "Công ty Cổ phần PVI / Công ty CP Quản lý Quỹ PVI",
+    "clientTaxCode": "0100151161 / 0106760638",
+    "clientSummary": "Triển khai báo cáo tài chính hợp nhất Power BI và đào tạo Microsoft 365",
     "role": "Project Manager",
-    "team_size": 4,
-    "start_date": "2025-01-01",
-    "end_date": "2025-12-31",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2025",
+    "startDate": "2025-01",
+    "endDate": "2025-12",
     "technologies": [
       "Microsoft Fabric",
       "T-SQL",
       "Power BI"
     ],
+    "skills": [
+      "Microsoft Fabric",
+      "T-SQL",
+      "Power BI"
+    ],
+    "category": "Triển khai Microsoft Fabric",
+    "domain": [
+      "Finance",
+      "Accounting"
+    ],
+    "industry": "Finance and Insurance",
     "overview": "Với vai trò PM tôi đãnh lead team gồm 3DE và 2 BI để phân tích và xây dựng hệ thống Data Lakehouse trên nền tảng Microsoft tổng hợp dữ liệu từ các hệ thống kế toán và quản lý quỹ đưa ra hệ thống hóa dữ liệu đầu tư và bộ báo cáo trên PowerBI Embedded cho đội ngũ lãnh đạo và quỹ đầu tư giám sát.",
+    "summary": "Với vai trò PM tôi đãnh lead team gồm 3DE và 2 BI để phân tích và xây dựng hệ thống Data Lakehouse trên nền tảng Microsoft tổng hợp dữ liệu từ các hệ thống kế toán và quản lý quỹ đưa ra hệ thống hóa dữ liệu đầu tư và bộ báo cáo trên PowerBI Embedded cho đội ngũ lãnh đạo và quỹ đầu tư giám sát.",
     "responsibilities": [
       "Consult data entry patterns on Excel and storage processes on SharePoint.",
       "Build automated data crawling from CafeF to SQL Server.",
@@ -118,39 +198,70 @@
     "featured": true
   },
   {
-    "name": "Triển khai phần mềm nhân sự cho IPP",
-    "client": "IPP",
-    "client_logo": "https://logo.clearbit.com/ipp.com",
-    "industry": "Retail and Consumer Goods",
-    "domain": "Human Resources (HR);#Information Technology (IT);#Management",
-    "category": "Xây dựng phần mềm",
+    "code": "IPP-01",
+    "projectName": "Triển khai phần mềm nhân sự cho IPP",
+    "clientName": "IPP",
+    "clientLogo": "./assets/images/clients/ipp.jpg",
+    "clientLegalName": "Tập đoàn Liên Thái Bình Dương (IPPG)",
+    "clientTaxCode": "0303889098",
+    "clientSummary": "Tập đoàn kinh doanh bán lẻ và phân phối hàng hiệu hàng đầu Việt Nam.",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2024-12-20",
-    "end_date": "2025-09-30",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-12",
+    "endDate": "2025-09",
     "technologies": [
       "Figma"
     ],
+    "skills": [
+      "Figma"
+    ],
+    "category": "Xây dựng phần mềm",
+    "domain": [
+      "Human Resources (HR)",
+      "Information Technology (IT)",
+      "Management"
+    ],
+    "industry": "Retail and Consumer Goods",
     "overview": "Với vai trò Project Manager tại KPIM, tôi đã dẫn dắt dự án Xây dựng phần mềm cho IPP, hỗ trợ cải thiện quy trình kinh doanh và tối ưu hóa hệ thống vận hành trong lĩnh vực Retail and Consumer Goods.",
+    "summary": "Với vai trò Project Manager tại KPIM, tôi đã dẫn dắt dự án Xây dựng phần mềm cho IPP, hỗ trợ cải thiện quy trình kinh doanh và tối ưu hóa hệ thống vận hành trong lĩnh vực Retail and Consumer Goods.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Xây dựng Data Warehouse đầu tư cho PVI",
-    "client": "PVI",
-    "client_logo": "./assets/images/clients/pvi.svg",
-    "industry": "Finance and Insurance",
-    "domain": "Sales;#Accounting;#Finance;#Management;#Strategy and Planning",
-    "category": "Triển khai Microsoft Fabric",
+    "code": "PVI-02",
+    "projectName": "Xây dựng Data Warehouse đầu tư cho PVI",
+    "clientName": "PVI",
+    "clientLogo": "./assets/images/clients/pvi.svg",
+    "clientLegalName": "Công ty Cổ phần PVI / Công ty CP Quản lý Quỹ PVI",
+    "clientTaxCode": "0100151161 / 0106760638",
+    "clientSummary": "Triển khai báo cáo tài chính hợp nhất Power BI và đào tạo Microsoft 365",
     "role": "Project Manager",
-    "team_size": 4,
-    "start_date": "2024-12-16",
-    "end_date": "2025-04-15",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-12",
+    "endDate": "2025-04",
     "technologies": [
       "Power BI",
       "SQL"
     ],
+    "skills": [
+      "Power BI",
+      "SQL"
+    ],
+    "category": "Triển khai Microsoft Fabric",
+    "domain": [
+      "Sales",
+      "Accounting",
+      "Finance",
+      "Management",
+      "Strategy and Planning"
+    ],
+    "industry": "Finance and Insurance",
     "overview": "Trong dự án tại KPIM, tôi đã đóng vai trò Project Manager và tham gia vào việc triển khai giải pháp Triển khai Microsoft Fabric cho PVI, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Finance and Insurance.",
+    "summary": "Trong dự án tại KPIM, tôi đã đóng vai trò Project Manager và tham gia vào việc triển khai giải pháp Triển khai Microsoft Fabric cho PVI, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Finance and Insurance.",
     "responsibilities": [
       "Consult data entry patterns on Excel and storage processes on SharePoint.",
       "Build automated data crawling from CafeF to SQL Server.",
@@ -160,464 +271,824 @@
     "featured": true
   },
   {
-    "name": "Triển khai hệ thống Data Warehouse cho IPP",
-    "client": "IPP",
-    "client_logo": "https://logo.clearbit.com/ipp.com",
-    "industry": "Retail and Consumer Goods",
-    "domain": "Sales;#Marketing;#Customer Service;#Human Resources (HR)",
-    "category": "Triển khai Data Lakehouse",
+    "code": "IPP-02",
+    "projectName": "Triển khai hệ thống Data Warehouse cho IPP",
+    "clientName": "IPP",
+    "clientLogo": "./assets/images/clients/ipp.jpg",
+    "clientLegalName": "Tập đoàn Liên Thái Bình Dương (IPPG)",
+    "clientTaxCode": "0303889098",
+    "clientSummary": "Tập đoàn kinh doanh bán lẻ và phân phối hàng hiệu hàng đầu Việt Nam.",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2024-09-05",
-    "end_date": "2025-06-25",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-09",
+    "endDate": "2025-06",
     "technologies": [
       "SQL"
     ],
+    "skills": [
+      "SQL"
+    ],
+    "category": "Triển khai Data Lakehouse",
+    "domain": [
+      "Sales",
+      "Marketing",
+      "Customer Service",
+      "Human Resources (HR)"
+    ],
+    "industry": "Retail and Consumer Goods",
     "overview": "Trong dự án tại KPIM, tôi đã đóng vai trò Project Manager và tham gia vào việc triển khai giải pháp Triển khai Data Lake và Warehouse cho IPP, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Retail and Consumer Goods.",
+    "summary": "Trong dự án tại KPIM, tôi đã đóng vai trò Project Manager và tham gia vào việc triển khai giải pháp Triển khai Data Lake và Warehouse cho IPP, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Retail and Consumer Goods.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Triển khai hệ thống báo cáo Excel và PowerBI cho IPP",
-    "client": "IPP",
-    "client_logo": "https://logo.clearbit.com/ipp.com",
-    "industry": "Retail and Consumer Goods",
-    "domain": "Sales;#Accounting",
-    "category": "Triển khai Data Lakehouse",
+    "code": "IPP-03",
+    "projectName": "Triển khai hệ thống báo cáo Excel và PowerBI cho IPP",
+    "clientName": "IPP",
+    "clientLogo": "./assets/images/clients/ipp.jpg",
+    "clientLegalName": "Tập đoàn Liên Thái Bình Dương (IPPG)",
+    "clientTaxCode": "0303889098",
+    "clientSummary": "Tập đoàn kinh doanh bán lẻ và phân phối hàng hiệu hàng đầu Việt Nam.",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2024-09-05",
-    "end_date": "2025-06-25",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-09",
+    "endDate": "2025-06",
     "technologies": [
       "Power BI",
       "Excel"
     ],
+    "skills": [
+      "Power BI",
+      "Excel"
+    ],
+    "category": "Triển khai Data Lakehouse",
+    "domain": [
+      "Sales",
+      "Accounting"
+    ],
+    "industry": "Retail and Consumer Goods",
     "overview": "Trong dự án tại KPIM, tôi đã đóng vai trò Project Manager và tham gia vào việc triển khai giải pháp Triển khai Data Lake và Warehouse cho IPP, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Retail and Consumer Goods.",
+    "summary": "Trong dự án tại KPIM, tôi đã đóng vai trò Project Manager và tham gia vào việc triển khai giải pháp Triển khai Data Lake và Warehouse cho IPP, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Retail and Consumer Goods.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Triển khai PowerBI Embedded và Customize",
-    "client": "Hafele",
-    "client_logo": "https://logo.clearbit.com/hafele.com",
-    "industry": "Retail and Consumer Goods",
-    "domain": "Accounting;#Finance;#Sales;#Management;#Customer Service",
+    "code": "HAF-01",
+    "projectName": "Triển khai PowerBI Embedded và Customize",
+    "clientName": "Hafele",
+    "clientLogo": "./assets/images/clients/hafele.jpg",
+    "clientLegalName": "Công ty TNHH Häfele Việt Nam",
+    "clientTaxCode": "0301479169",
+    "clientSummary": "Thiết bị nội thất & phụ kiện công trình Đức; báo cáo BI quản trị bán hàng & kênh",
+    "role": "Project Manager",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-09",
+    "endDate": "2024-09",
+    "technologies": [
+      "Power BI"
+    ],
+    "skills": [
+      "Power BI"
+    ],
     "category": "Triển khai Power BI Embedded",
-    "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2024-09-01",
-    "end_date": "2024-09-07",
-    "technologies": [
-      "Power BI"
+    "domain": [
+      "Accounting",
+      "Finance",
+      "Sales",
+      "Management",
+      "Customer Service"
     ],
+    "industry": "Retail and Consumer Goods",
     "overview": "",
+    "summary": "",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Bộ báo cáo phân tích thành viên mới",
-    "client": "COMPACLASS",
-    "client_logo": "https://logo.clearbit.com/compaclass.com",
-    "industry": "Education",
-    "domain": "Sales;#Customer Service;#Marketing;#Management",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "COMPA-01",
+    "projectName": "Bộ báo cáo phân tích thành viên mới",
+    "clientName": "COMPACLASS",
+    "clientLogo": "./assets/images/COMPA-CLASS.jpg",
+    "clientLegalName": "COMPACLASS",
+    "clientTaxCode": "",
+    "clientSummary": "",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2024-07-01",
-    "end_date": "2024-07-15",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-07",
+    "endDate": "2024-07",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales",
+      "Customer Service",
+      "Marketing",
+      "Management"
+    ],
+    "industry": "Education",
     "overview": "",
+    "summary": "",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Triển khai báo cáo quản lý đề tài cho Học viện",
-    "client": "Học viện đổi mới sáng tạo",
-    "client_logo": "https://logo.clearbit.com/hcvinimisngto.com",
-    "industry": "Education",
-    "domain": "Human Resources (HR);#Strategy and Planning;#Management",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "INN-01",
+    "projectName": "Triển khai báo cáo quản lý đề tài cho Học viện",
+    "clientName": "Học viện đổi mới sáng tạo",
+    "clientLogo": "./assets/images/clients/hoc-vien-doi-moi-sang-tao.jpg",
+    "clientLegalName": "Học viện Đổi mới Sáng tạo (Innovation Academy)",
+    "clientTaxCode": "N/A",
+    "clientSummary": "Tổ chức đào tạo ươm mầm khởi nghiệp và chuyển đổi số.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2024-06-15",
-    "end_date": "2024-12-15",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-06",
+    "endDate": "2024-12",
     "technologies": [
       "Power BI",
       "Excel"
     ],
+    "skills": [
+      "Power BI",
+      "Excel"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Human Resources (HR)",
+      "Strategy and Planning",
+      "Management"
+    ],
+    "industry": "Education",
     "overview": "Với vai trò BI Analyst tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Học viện đổi mới sáng tạo. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Education.",
+    "summary": "Với vai trò BI Analyst tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Học viện đổi mới sáng tạo. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Education.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Hệ thống báo cáo quản trị CRM",
-    "client": "IDC Group",
-    "client_logo": "https://logo.clearbit.com/idcgroup.com",
-    "industry": "Technology and IT Services",
-    "domain": "Sales;#Marketing",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "IDC-01",
+    "projectName": "Hệ thống báo cáo quản trị CRM",
+    "clientName": "IDC Group",
+    "clientLogo": "./assets/images/clients/idc-group.webp",
+    "clientLegalName": "Công ty Cổ phần Tập đoàn Công nghệ IDC",
+    "clientTaxCode": "0101218636",
+    "clientSummary": "Tích hợp giải pháp CNTT; hệ thống báo cáo quản trị tài chính & kinh doanh",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2024-05-01",
-    "end_date": "2024-07-01",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-05",
+    "endDate": "2024-07",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales",
+      "Marketing"
+    ],
+    "industry": "Technology and IT Services",
     "overview": "Dự án nhằm mục tiêu xây dựng hệ thống biểu mẫu nhập liệu và báo cáo quản trị khách hàng CRM, giúp doanh nghiệp tối ưu hóa quy trình thu thập, quản lý và phân tích dữ liệu khách hàng. Giải pháp này không chỉ hỗ trợ doanh nghiệp theo dõi thông tin khách hàng một cách chính xác mà còn cung cấp các báo cáo trực quan, giúp đưa ra các chiến lược kinh doanh hiệu quả. Trong vai trò Quản lý Dự án (PM), tôi chịu trách nhiệm điều phối các nguồn lực, đảm bảo tiến độ và chất lượng triển khai, mang lại giá trị bền vững, giúp doanh nghiệp nâng cao hiệu quả quản lý và tăng cường trải nghiệm khách hàng.",
+    "summary": "Dự án nhằm mục tiêu xây dựng hệ thống biểu mẫu nhập liệu và báo cáo quản trị khách hàng CRM, giúp doanh nghiệp tối ưu hóa quy trình thu thập, quản lý và phân tích dữ liệu khách hàng. Giải pháp này không chỉ hỗ trợ doanh nghiệp theo dõi thông tin khách hàng một cách chính xác mà còn cung cấp các báo cáo trực quan, giúp đưa ra các chiến lược kinh doanh hiệu quả. Trong vai trò Quản lý Dự án (PM), tôi chịu trách nhiệm điều phối các nguồn lực, đảm bảo tiến độ và chất lượng triển khai, mang lại giá trị bền vững, giúp doanh nghiệp nâng cao hiệu quả quản lý và tăng cường trải nghiệm khách hàng.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Triển khai Data LakeHouse cho COMPA",
-    "client": "COMPACLASS",
-    "client_logo": "https://logo.clearbit.com/compaclass.com",
-    "industry": "Education",
-    "domain": "Sales;#Customer Service;#Management;#Strategy and Planning",
-    "category": "Triển khai Data Lakehouse",
+    "code": "COMPA-02",
+    "projectName": "Triển khai Data LakeHouse cho COMPA",
+    "clientName": "COMPACLASS",
+    "clientLogo": "./assets/images/COMPA-CLASS.jpg",
+    "clientLegalName": "COMPACLASS",
+    "clientTaxCode": "",
+    "clientSummary": "",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2024-05-01",
-    "end_date": "2024-07-01",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-05",
+    "endDate": "2024-07",
     "technologies": [
       "Microsoft Fabric",
       "Power BI"
     ],
+    "skills": [
+      "Microsoft Fabric",
+      "Power BI"
+    ],
+    "category": "Triển khai Data Lakehouse",
+    "domain": [
+      "Sales",
+      "Customer Service",
+      "Management",
+      "Strategy and Planning"
+    ],
+    "industry": "Education",
     "overview": "",
+    "summary": "",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Xây dựng hệ thống báo cáo tuyển dụng cho Talentnet",
-    "client": "Talentnet",
-    "client_logo": "https://logo.clearbit.com/talentnet.com",
-    "industry": "Consulting Service",
-    "domain": "Human Resources (HR);#Recruiting;#Management",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "TLN-02",
+    "projectName": "Xây dựng hệ thống báo cáo tuyển dụng cho Talentnet",
+    "clientName": "Talentnet",
+    "clientLogo": "./assets/images/clients/talentnet.png",
+    "clientLegalName": "Công ty Cổ phần Kết Nối Nhân Tài (Talentnet Corporation)",
+    "clientTaxCode": "0305302835",
+    "clientSummary": "Tư vấn nhân sự Mercer/ADP; Microsoft Fabric & Power BI phân tích HR/Payroll",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2024-04-02",
-    "end_date": "2024-09-15",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-04",
+    "endDate": "2024-09",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Human Resources (HR)",
+      "Recruiting",
+      "Management"
+    ],
+    "industry": "Consulting Service",
     "overview": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Talentnet. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Consulting Service.",
+    "summary": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Talentnet. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Consulting Service.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Triển khai hạ tầng Microsoft Fabric cho Elearning",
-    "client": "COMPACLASS",
-    "client_logo": "https://logo.clearbit.com/compaclass.com",
-    "industry": "Education",
-    "domain": "Sales;#Marketing;#Customer Service;#Management",
-    "category": "Triển khai Microsoft Fabric",
+    "code": "COMPA-03",
+    "projectName": "Triển khai hạ tầng Microsoft Fabric cho Elearning",
+    "clientName": "COMPACLASS",
+    "clientLogo": "./assets/images/COMPA-CLASS.jpg",
+    "clientLegalName": "COMPACLASS",
+    "clientTaxCode": "",
+    "clientSummary": "",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2024-04-01",
-    "end_date": "2024-05-01",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-04",
+    "endDate": "2024-05",
     "technologies": [
       "Microsoft Fabric"
     ],
+    "skills": [
+      "Microsoft Fabric"
+    ],
+    "category": "Triển khai Microsoft Fabric",
+    "domain": [
+      "Sales",
+      "Marketing",
+      "Customer Service",
+      "Management"
+    ],
+    "industry": "Education",
     "overview": "",
+    "summary": "",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Triển khai báo cáo kế toán cho Hafele",
-    "client": "Hafele",
-    "client_logo": "https://logo.clearbit.com/hafele.com",
-    "industry": "Retail and Consumer Goods",
-    "domain": "Accounting;#Finance;#Management",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "HAF-02",
+    "projectName": "Triển khai báo cáo kế toán cho Hafele",
+    "clientName": "Hafele",
+    "clientLogo": "./assets/images/clients/hafele.jpg",
+    "clientLegalName": "Công ty TNHH Häfele Việt Nam",
+    "clientTaxCode": "0301479169",
+    "clientSummary": "Thiết bị nội thất & phụ kiện công trình Đức; báo cáo BI quản trị bán hàng & kênh",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2024-03-15",
-    "end_date": "2024-09-30",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-03",
+    "endDate": "2024-09",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Accounting",
+      "Finance",
+      "Management"
+    ],
+    "industry": "Retail and Consumer Goods",
     "overview": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Hafele. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Real Estate and Construction.",
+    "summary": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Hafele. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Real Estate and Construction.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Bộ Báo Cáo Quản Trị Tài Chính Doanh Nghiệp",
-    "client": "Fly Up Vietnam",
-    "client_logo": "https://logo.clearbit.com/flyupvietnam.com",
-    "industry": "Finance and Insurance",
-    "domain": "Accounting;#Finance",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "FUV-01",
+    "projectName": "Bộ Báo Cáo Quản Trị Tài Chính Doanh Nghiệp",
+    "clientName": "Fly Up Vietnam",
+    "clientLogo": "./assets/images/clients/fly-up-vietnam.png",
+    "clientLegalName": "Fly Up Vietnam",
+    "clientTaxCode": "N/A",
+    "clientSummary": "Dự án giáo dục phát triển kỹ năng và hướng nghiệp cho thanh thiếu niên.",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2024-03-01",
-    "end_date": "2024-09-01",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-03",
+    "endDate": "2024-09",
     "technologies": [
       "Power BI",
       "Excel"
     ],
+    "skills": [
+      "Power BI",
+      "Excel"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Accounting",
+      "Finance"
+    ],
+    "industry": "Finance and Insurance",
     "overview": "Dự án nhằm mục tiêu xây dựng một bộ công cụ quản trị tài chính hiện đại, sử dụng sự kết hợp mạnh mẽ giữa Power BI và SharePoint List. Giải pháp này không chỉ giúp Flyup quản lý hiệu quả tài chính nội bộ mà còn tạo điều kiện để doanh nghiệp truyền đạt các thông tin tài chính đến khách hàng một cách minh bạch, dễ hiểu và tương tác cao. Vai trò của tôi trong dự án không chỉ tập trung vào khía cạnh kỹ thuật mà còn hướng đến việc tạo ra giá trị bền vững cho Flyup, giúp doanh nghiệp phát triển mạnh mẽ hơn trong môi trường cạnh tranh hiện nay.",
+    "summary": "Dự án nhằm mục tiêu xây dựng một bộ công cụ quản trị tài chính hiện đại, sử dụng sự kết hợp mạnh mẽ giữa Power BI và SharePoint List. Giải pháp này không chỉ giúp Flyup quản lý hiệu quả tài chính nội bộ mà còn tạo điều kiện để doanh nghiệp truyền đạt các thông tin tài chính đến khách hàng một cách minh bạch, dễ hiểu và tương tác cao. Vai trò của tôi trong dự án không chỉ tập trung vào khía cạnh kỹ thuật mà còn hướng đến việc tạo ra giá trị bền vững cho Flyup, giúp doanh nghiệp phát triển mạnh mẽ hơn trong môi trường cạnh tranh hiện nay.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Hệ thống báo cáo bán hàng và kế toán",
-    "client": "IDC Group",
-    "client_logo": "https://logo.clearbit.com/idcgroup.com",
-    "industry": "Technology and IT Services",
-    "domain": "Sales;#Marketing",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "IDC-02",
+    "projectName": "Hệ thống báo cáo bán hàng và kế toán",
+    "clientName": "IDC Group",
+    "clientLogo": "./assets/images/clients/idc-group.webp",
+    "clientLegalName": "Công ty Cổ phần Tập đoàn Công nghệ IDC",
+    "clientTaxCode": "0101218636",
+    "clientSummary": "Tích hợp giải pháp CNTT; hệ thống báo cáo quản trị tài chính & kinh doanh",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2024-03-01",
-    "end_date": "2024-05-01",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-03",
+    "endDate": "2024-05",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales",
+      "Marketing"
+    ],
+    "industry": "Technology and IT Services",
     "overview": "Dự án nhằm mục tiêu xây dựng bộ công cụ báo cáo kế toán hiện đại cho IDC Group, tổng hợp dữ liệu từ hệ thống BRAVO và phát triển các báo cáo quản trị bán hàng và công nợ. Giải pháp này giúp IDC Group tối ưu hóa việc theo dõi và phân tích dữ liệu kinh doanh, đồng thời hỗ trợ ra quyết định chính xác, nhanh chóng. Trong vai trò Quản lý Dự án (PM), tôi đảm bảo định hướng, phối hợp các nguồn lực, và triển khai giải pháp một cách hiệu quả, mang lại giá trị lâu dài, giúp IDC Group tăng cường khả năng quản trị và cạnh tranh trên thị trường.",
+    "summary": "Dự án nhằm mục tiêu xây dựng bộ công cụ báo cáo kế toán hiện đại cho IDC Group, tổng hợp dữ liệu từ hệ thống BRAVO và phát triển các báo cáo quản trị bán hàng và công nợ. Giải pháp này giúp IDC Group tối ưu hóa việc theo dõi và phân tích dữ liệu kinh doanh, đồng thời hỗ trợ ra quyết định chính xác, nhanh chóng. Trong vai trò Quản lý Dự án (PM), tôi đảm bảo định hướng, phối hợp các nguồn lực, và triển khai giải pháp một cách hiệu quả, mang lại giá trị lâu dài, giúp IDC Group tăng cường khả năng quản trị và cạnh tranh trên thị trường.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Triển khai hệ báo cáo bán hàng cho Tân Á Đại Thành",
-    "client": "Tân Á Đại Thành",
-    "client_logo": "https://logo.clearbit.com/tnithnh.com",
-    "industry": "Retail and Consumer Goods",
-    "domain": "Sales",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "TADT-01",
+    "projectName": "Triển khai hệ báo cáo bán hàng cho Tân Á Đại Thành",
+    "clientName": "Tân Á Đại Thành",
+    "clientLogo": "./assets/images/clients/tan-a-dai-thanh.jpg",
+    "clientLegalName": "Công ty Cổ phần Tập đoàn Tân Á Đại Thành",
+    "clientTaxCode": "0100792910",
+    "clientSummary": "Kim khí gia dụng & bồn nước số 1 VN; hệ thống báo cáo quản trị tập đoàn quy mô lớn",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2024-02-20",
-    "end_date": "2024-06-28",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-02",
+    "endDate": "2024-06",
     "technologies": [
       "Power BI",
       "SQL"
     ],
+    "skills": [
+      "Power BI",
+      "SQL"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales"
+    ],
+    "industry": "Retail and Consumer Goods",
     "overview": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Tân Á Đại Thành. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Retail and Consumer Goods.",
+    "summary": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Tân Á Đại Thành. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Retail and Consumer Goods.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Tư vấn Microsoft Fabric và giải pháp cho Jeisys",
-    "client": "Jeisys",
-    "client_logo": "https://logo.clearbit.com/jeisys.com",
-    "industry": "Healthcare and Pharmaceuticals",
-    "domain": "Sales;#Customer Service;#Management;#Information Technology (IT)",
-    "category": "Triển khai Microsoft Fabric",
+    "code": "JSY-01",
+    "projectName": "Tư vấn Microsoft Fabric và giải pháp cho Jeisys",
+    "clientName": "Jeisys",
+    "clientLogo": "./assets/images/clients/jeisys.png",
+    "clientLegalName": "Jeisys Medical Vietnam",
+    "clientTaxCode": "FDI Hàn Quốc",
+    "clientSummary": "Thiết bị y tế thẩm mỹ Hàn Quốc; báo cáo quản trị bán hàng và dịch vụ khách hàng",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2024-01-30",
-    "end_date": "2024-03-30",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-01",
+    "endDate": "2024-03",
     "technologies": [
       "Microsoft Fabric"
     ],
+    "skills": [
+      "Microsoft Fabric"
+    ],
+    "category": "Triển khai Microsoft Fabric",
+    "domain": [
+      "Sales",
+      "Customer Service",
+      "Management",
+      "Information Technology (IT)"
+    ],
+    "industry": "Healthcare and Pharmaceuticals",
     "overview": "Trong dự án tại KPIM, tôi đã đóng vai trò Project Manager và tham gia vào việc triển khai giải pháp Triển khai Microsoft Fabric cho Jeisys, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Healthcare and Pharmaceuticals.",
+    "summary": "Trong dự án tại KPIM, tôi đã đóng vai trò Project Manager và tham gia vào việc triển khai giải pháp Triển khai Microsoft Fabric cho Jeisys, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Healthcare and Pharmaceuticals.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Xây dựng hệ thống báo cáo nhân sự cho Talentnet",
-    "client": "Talentnet",
-    "client_logo": "https://logo.clearbit.com/talentnet.com",
-    "industry": "Consulting Service",
-    "domain": "Human Resources (HR);#Management",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "TLN-03",
+    "projectName": "Xây dựng hệ thống báo cáo nhân sự cho Talentnet",
+    "clientName": "Talentnet",
+    "clientLogo": "./assets/images/clients/talentnet.png",
+    "clientLegalName": "Công ty Cổ phần Kết Nối Nhân Tài (Talentnet Corporation)",
+    "clientTaxCode": "0305302835",
+    "clientSummary": "Tư vấn nhân sự Mercer/ADP; Microsoft Fabric & Power BI phân tích HR/Payroll",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2024-01-20",
-    "end_date": "2024-03-25",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2024",
+    "startDate": "2024-01",
+    "endDate": "2024-03",
     "technologies": [
       "Power BI",
       "Excel",
       "SQL"
     ],
+    "skills": [
+      "Power BI",
+      "Excel",
+      "SQL"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Human Resources (HR)",
+      "Management"
+    ],
+    "industry": "Consulting Service",
     "overview": "Với vai trò Project Manager tại KPIM, tôi đã dẫn dắt dự án triển khai hệ thống báo cáo nhân sự Power BI cho Talentnet. Dự án tập trung vào việc cung cấp các báo cáo chi tiết về hiệu suất nhân sự, phân tích dữ liệu tuyển dụng, và hỗ trợ các quyết định chiến lược liên quan đến nguồn nhân lực. Hệ thống đã giúp Talentnet tiết kiệm thời gian trong việc xử lý dữ liệu và cải thiện khả năng ra quyết định dựa trên thông tin đáng tin cậy.",
+    "summary": "Với vai trò Project Manager tại KPIM, tôi đã dẫn dắt dự án triển khai hệ thống báo cáo nhân sự Power BI cho Talentnet. Dự án tập trung vào việc cung cấp các báo cáo chi tiết về hiệu suất nhân sự, phân tích dữ liệu tuyển dụng, và hỗ trợ các quyết định chiến lược liên quan đến nguồn nhân lực. Hệ thống đã giúp Talentnet tiết kiệm thời gian trong việc xử lý dữ liệu và cải thiện khả năng ra quyết định dựa trên thông tin đáng tin cậy.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Triển khai báo cáo bán hàng cho Hafele",
-    "client": "Hafele",
-    "client_logo": "https://logo.clearbit.com/hafele.com",
+    "code": "HAF-03",
+    "projectName": "Triển khai báo cáo bán hàng cho Hafele",
+    "clientName": "Hafele",
+    "clientLogo": "./assets/images/clients/hafele.jpg",
+    "clientLegalName": "Công ty TNHH Häfele Việt Nam",
+    "clientTaxCode": "0301479169",
+    "clientSummary": "Thiết bị nội thất & phụ kiện công trình Đức; báo cáo BI quản trị bán hàng & kênh",
+    "role": "Project Manager",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2023",
+    "startDate": "2023-09",
+    "endDate": "2024-01",
+    "technologies": [
+      "Power BI",
+      "Excel"
+    ],
+    "skills": [
+      "Power BI",
+      "Excel"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales",
+      "Marketing",
+      "Management"
+    ],
     "industry": "Real Estate and Construction",
-    "domain": "Sales;#Marketing;#Management",
-    "category": "Triển khai báo cáo Power BI",
-    "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2023-09-30",
-    "end_date": "2024-01-05",
-    "technologies": [
-      "Power BI",
-      "Excel"
-    ],
     "overview": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Hafele. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Real Estate and Construction.",
+    "summary": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Hafele. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Real Estate and Construction.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Triển khai báo cáo gói cước cho Consortio",
-    "client": "Consortio",
-    "client_logo": "https://logo.clearbit.com/consortio.com",
-    "industry": "Telecommunications",
-    "domain": "Sales;#Customer Service",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "CSO-01",
+    "projectName": "Triển khai báo cáo gói cước cho Consortio",
+    "clientName": "Consortio",
+    "clientLogo": "./assets/images/clients/consortio.png",
+    "clientLegalName": "Công ty TNHH Consortio",
+    "clientTaxCode": "0109551621",
+    "clientSummary": "Doanh nghiệp tư vấn & thương mại số; hệ thống báo cáo quản trị Power BI",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2023-03-25",
-    "end_date": "2023-09-15",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2023",
+    "startDate": "2023-03",
+    "endDate": "2023-09",
     "technologies": [
       "Power BI",
       "Excel"
     ],
+    "skills": [
+      "Power BI",
+      "Excel"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales",
+      "Customer Service"
+    ],
+    "industry": "Telecommunications",
     "overview": "Với vai trò BI Analyst tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Consortio. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Telecommunications.",
+    "summary": "Với vai trò BI Analyst tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Consortio. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Telecommunications.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Xây dựng hệ thống bao cáo Sales và CRM cho Jeisys",
-    "client": "Jeisys",
-    "client_logo": "https://logo.clearbit.com/jeisys.com",
-    "industry": "Healthcare and Pharmaceuticals",
-    "domain": "Sales;#Marketing;#Customer Service;#Management",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "JSY-02",
+    "projectName": "Xây dựng hệ thống bao cáo Sales và CRM cho Jeisys",
+    "clientName": "Jeisys",
+    "clientLogo": "./assets/images/clients/jeisys.png",
+    "clientLegalName": "Jeisys Medical Vietnam",
+    "clientTaxCode": "FDI Hàn Quốc",
+    "clientSummary": "Thiết bị y tế thẩm mỹ Hàn Quốc; báo cáo quản trị bán hàng và dịch vụ khách hàng",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2023-03-15",
-    "end_date": "2025-01-30",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2023",
+    "startDate": "2023-03",
+    "endDate": "2025-01",
     "technologies": [
       "Power BI",
       "SQL"
     ],
+    "skills": [
+      "Power BI",
+      "SQL"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales",
+      "Marketing",
+      "Customer Service",
+      "Management"
+    ],
+    "industry": "Healthcare and Pharmaceuticals",
     "overview": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Jeisys. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Healthcare and Pharmaceuticals.",
+    "summary": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Jeisys. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Healthcare and Pharmaceuticals.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Bộ báo cáo đầu tư trên PBI Cloud Service cho PVI AM",
-    "client": "PVI AM",
-    "client_logo": "https://logo.clearbit.com/pviam.com",
-    "industry": "Finance and Insurance",
-    "domain": "Finance;#Accounting;#Management;#Strategy and Planning",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "PVI-03",
+    "projectName": "Bộ báo cáo đầu tư trên PBI Cloud Service cho PVI AM",
+    "clientName": "PVI AM",
+    "clientLogo": "./assets/images/clients/pvi-am.svg",
+    "clientLegalName": "Công ty Cổ phần PVI / Công ty CP Quản lý Quỹ PVI",
+    "clientTaxCode": "0100151161 / 0106760638",
+    "clientSummary": "Triển khai báo cáo tài chính hợp nhất Power BI và đào tạo Microsoft 365",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2023-01-15",
-    "end_date": "2023-07-15",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2023",
+    "startDate": "2023-01",
+    "endDate": "2023-07",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Finance",
+      "Accounting",
+      "Management",
+      "Strategy and Planning"
+    ],
+    "industry": "Finance and Insurance",
     "overview": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho PVI AM. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Finance and Insurance.",
+    "summary": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho PVI AM. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Finance and Insurance.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Triển khai Data Warehouse cho Citicom",
-    "client": "Citicom",
-    "client_logo": "https://logo.clearbit.com/citicom.com",
-    "industry": "Finance and Insurance",
-    "domain": "Sales;#Operation;#Logistic",
-    "category": "Triển khai Data Lakehouse",
+    "code": "CTC-01",
+    "projectName": "Triển khai Data Warehouse cho Citicom",
+    "clientName": "Citicom",
+    "clientLogo": "./assets/images/clients/citicom.png",
+    "clientLegalName": "Công ty Cổ phần Thương mại Citicom",
+    "clientTaxCode": "0101344485",
+    "clientSummary": "Doanh nghiệp hàng đầu Việt Nam về kinh doanh và gia công thép công nghiệp.",
     "role": "Data Analyst",
-    "team_size": null,
-    "start_date": "2023-01-15",
-    "end_date": "2024-08-15",
+    "roleText": "Data Analyst",
+    "teamSize": 4,
+    "year": "2023",
+    "startDate": "2023-01",
+    "endDate": "2024-08",
     "technologies": [
       "SQL",
       "T-SQL"
     ],
+    "skills": [
+      "SQL",
+      "T-SQL"
+    ],
+    "category": "Triển khai Data Lakehouse",
+    "domain": [
+      "Sales",
+      "Operation",
+      "Logistic"
+    ],
+    "industry": "Finance and Insurance",
     "overview": "Trong dự án tại KPIM, tôi đã đóng vai trò Data Analyst và tham gia vào việc triển khai giải pháp Triển khai Data Lake và Warehouse cho Citicom, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Finance and Insurance.",
+    "summary": "Trong dự án tại KPIM, tôi đã đóng vai trò Data Analyst và tham gia vào việc triển khai giải pháp Triển khai Data Lake và Warehouse cho Citicom, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Finance and Insurance.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Triển khai báo cáo Tableau cho Citicom",
-    "client": "Citicom",
-    "client_logo": "https://logo.clearbit.com/citicom.com",
-    "industry": "Finance and Insurance",
-    "domain": "Sales;#Operation;#Logistic",
-    "category": "Triển khai báo cáo Tableau",
+    "code": "CTC-02",
+    "projectName": "Triển khai báo cáo Tableau cho Citicom",
+    "clientName": "Citicom",
+    "clientLogo": "./assets/images/clients/citicom.png",
+    "clientLegalName": "Công ty Cổ phần Thương mại Citicom",
+    "clientTaxCode": "0101344485",
+    "clientSummary": "Doanh nghiệp hàng đầu Việt Nam về kinh doanh và gia công thép công nghiệp.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2023-01-15",
-    "end_date": "2024-08-15",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2023",
+    "startDate": "2023-01",
+    "endDate": "2024-08",
     "technologies": [
       "Tableau"
     ],
+    "skills": [
+      "Tableau"
+    ],
+    "category": "Triển khai báo cáo Tableau",
+    "domain": [
+      "Sales",
+      "Operation",
+      "Logistic"
+    ],
+    "industry": "Finance and Insurance",
     "overview": "Trong dự án tại KPIM, tôi đã đóng vai trò BI Analyst và tham gia vào việc triển khai giải pháp Triển khai báo cáo Tableau cho Citicom, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Finance and Insurance.",
+    "summary": "Trong dự án tại KPIM, tôi đã đóng vai trò BI Analyst và tham gia vào việc triển khai giải pháp Triển khai báo cáo Tableau cho Citicom, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Finance and Insurance.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Xây dựng app quản trị sản phẩm cho SATURN",
-    "client": "Vĩnh Cường",
-    "client_logo": "https://logo.clearbit.com/vnhcng.com",
-    "industry": "Retail and Consumer Goods",
-    "domain": "Sales;#Marketing;#Management",
-    "category": "Xây dựng phần mềm",
+    "code": "VC-01",
+    "projectName": "Xây dựng app quản trị sản phẩm cho SATURN",
+    "clientName": "Vĩnh Cường",
+    "clientLogo": "./assets/images/clients/vinh-cuong.jpg",
+    "clientLegalName": "Công ty Cổ phần Sản xuất và Thương mại Vĩnh Cường",
+    "clientTaxCode": "0102027581",
+    "clientSummary": "Doanh nghiệp sản xuất bao bì và phụ liệu công nghiệp.",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2022-09-20",
-    "end_date": "2023-03-25",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2022",
+    "startDate": "2022-09",
+    "endDate": "2023-03",
     "technologies": [
       "Figma"
     ],
+    "skills": [
+      "Figma"
+    ],
+    "category": "Xây dựng phần mềm",
+    "domain": [
+      "Sales",
+      "Marketing",
+      "Management"
+    ],
+    "industry": "Retail and Consumer Goods",
     "overview": "Với vai trò Project Manager tại KPIM, tôi đã dẫn dắt dự án Xây dựng phần mềm cho Vĩnh Cường, hỗ trợ cải thiện quy trình kinh doanh và tối ưu hóa hệ thống vận hành trong lĩnh vực Retail and Consumer Goods.",
+    "summary": "Với vai trò Project Manager tại KPIM, tôi đã dẫn dắt dự án Xây dựng phần mềm cho Vĩnh Cường, hỗ trợ cải thiện quy trình kinh doanh và tối ưu hóa hệ thống vận hành trong lĩnh vực Retail and Consumer Goods.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Xây dựng hệ thống dữ liệu cho Tam Long",
-    "client": "Tam Long",
-    "client_logo": "https://logo.clearbit.com/tamlong.com",
-    "industry": "Healthcare and Pharmaceuticals",
-    "domain": "",
-    "category": "Tối ưu hóa hạ tầng dữ liệu",
+    "code": "TLP-01",
+    "projectName": "Xây dựng hệ thống dữ liệu cho Tam Long",
+    "clientName": "Tam Long",
+    "clientLogo": "./assets/images/clients/tam-long.jpg",
+    "clientLegalName": "Công ty TNHH Dược phẩm Tâm Long",
+    "clientTaxCode": "0101432849",
+    "clientSummary": "Phân phối dược phẩm; Data Warehouse & báo cáo bán hàng, công nợ, tồn kho.",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2022-06-03",
-    "end_date": "2022-09-15",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2022",
+    "startDate": "2022-06",
+    "endDate": "2022-09",
     "technologies": [
       "Power BI",
       "Excel"
     ],
+    "skills": [
+      "Power BI",
+      "Excel"
+    ],
+    "category": "Tối ưu hóa hạ tầng dữ liệu",
+    "domain": [],
+    "industry": "Healthcare and Pharmaceuticals",
     "overview": "Trong dự án tại KPIM, tôi đã đóng vai trò Project Manager và tham gia vào việc triển khai giải pháp Tối ưu hóa hạ tầng dữ liệu cho Tam Long, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Healthcare and Pharmaceuticals.",
+    "summary": "Trong dự án tại KPIM, tôi đã đóng vai trò Project Manager và tham gia vào việc triển khai giải pháp Tối ưu hóa hạ tầng dữ liệu cho Tam Long, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Healthcare and Pharmaceuticals.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Xây dựng báo cáo cho BSC",
-    "client": "BSC",
-    "client_logo": "https://logo.clearbit.com/bsc.com",
-    "industry": "Finance and Insurance",
-    "domain": "Finance;#Accounting;#Management;#Strategy and Planning",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "BSC-01",
+    "projectName": "Xây dựng báo cáo cho BSC",
+    "clientName": "BSC",
+    "clientLogo": "./assets/images/clients/bsc.jpg",
+    "clientLegalName": "Công ty Cổ phần Chứng khoán BIDV",
+    "clientTaxCode": "0100999689",
+    "clientSummary": "Đào tạo Power BI cho đội ngũ phân tích tài chính & môi giới năm 2024",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2022-05-20",
-    "end_date": "2022-06-24",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2022",
+    "startDate": "2022-05",
+    "endDate": "2022-06",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Finance",
+      "Accounting",
+      "Management",
+      "Strategy and Planning"
+    ],
+    "industry": "Finance and Insurance",
     "overview": "Trong vai trò BI Analyst tại KPIM, tôi đã tham gia vào dự án xây dựng báo cáo Power BI cho BIDV Securities Company (BSC). Mục tiêu chính của dự án là cung cấp các báo cáo chi tiết về hoạt động kinh doanh và đầu tư, giúp đội ngũ quản lý của BSC dễ dàng theo dõi hiệu suất và đưa ra các quyết định kịp thời. Dự án đã giúp chuẩn hóa luồng dữ liệu, tăng cường tính minh bạch và hỗ trợ chiến lược phát triển dài hạn của BSC.",
+    "summary": "Trong vai trò BI Analyst tại KPIM, tôi đã tham gia vào dự án xây dựng báo cáo Power BI cho BIDV Securities Company (BSC). Mục tiêu chính của dự án là cung cấp các báo cáo chi tiết về hoạt động kinh doanh và đầu tư, giúp đội ngũ quản lý của BSC dễ dàng theo dõi hiệu suất và đưa ra các quyết định kịp thời. Dự án đã giúp chuẩn hóa luồng dữ liệu, tăng cường tính minh bạch và hỗ trợ chiến lược phát triển dài hạn của BSC.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Hệ thống báo cáo quản trị cho PVI",
-    "client": "PVI",
-    "client_logo": "./assets/images/clients/pvi.svg",
-    "industry": "Finance and Insurance",
-    "domain": "Sales;#Accounting;#Management",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "PVI-04",
+    "projectName": "Hệ thống báo cáo quản trị cho PVI",
+    "clientName": "PVI",
+    "clientLogo": "./assets/images/clients/pvi.svg",
+    "clientLegalName": "Công ty Cổ phần PVI / Công ty CP Quản lý Quỹ PVI",
+    "clientTaxCode": "0100151161 / 0106760638",
+    "clientSummary": "Triển khai báo cáo tài chính hợp nhất Power BI và đào tạo Microsoft 365",
     "role": "Project Manager",
-    "team_size": 4,
-    "start_date": "2022-05-04",
-    "end_date": "2023-01-02",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2022",
+    "startDate": "2022-05",
+    "endDate": "2023-01",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales",
+      "Accounting",
+      "Management"
+    ],
+    "industry": "Finance and Insurance",
     "overview": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho PVI. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Finance and Insurance.",
+    "summary": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho PVI. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Finance and Insurance.",
     "responsibilities": [
       "Consult data entry patterns on Excel and storage processes on SharePoint.",
       "Build automated data crawling from CafeF to SQL Server.",
@@ -627,239 +1098,417 @@
     "featured": true
   },
   {
-    "name": "Power Automate tự động hóa nhập liệu cho PVI AM",
-    "client": "PVI AM",
-    "client_logo": "https://logo.clearbit.com/pviam.com",
-    "industry": "Finance and Insurance",
-    "domain": "Accounting;#Finance;#Operation",
-    "category": "Tự động hóa Power Automate",
+    "code": "PVI-05",
+    "projectName": "Power Automate tự động hóa nhập liệu cho PVI AM",
+    "clientName": "PVI AM",
+    "clientLogo": "./assets/images/clients/pvi-am.svg",
+    "clientLegalName": "Công ty Cổ phần PVI / Công ty CP Quản lý Quỹ PVI",
+    "clientTaxCode": "0100151161 / 0106760638",
+    "clientSummary": "Triển khai báo cáo tài chính hợp nhất Power BI và đào tạo Microsoft 365",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2022-05-04",
-    "end_date": "2023-05-02",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2022",
+    "startDate": "2022-05",
+    "endDate": "2023-05",
     "technologies": [
       "Power Automate",
       "Power App"
     ],
-    "overview": "Trong vai trò Project Manager tại KPIM, tôi đã tham gia dự án Tự động hóa Power Automate nhằm cải tiến quy trình xử lý dữ liệu nội bộ cho PVI AM, đảm bảo tiết kiệm thời gian và tăng hiệu quả làm việc trong lĩnh vực Finance and Insurance.",
-    "responsibilities": [],
-    "featured": false
-  },
-  {
-    "name": "Triển khai PowerBI Embedded cho Traphaco",
-    "client": "Traphaco",
-    "client_logo": "https://logo.clearbit.com/traphaco.com",
-    "industry": "Healthcare and Pharmaceuticals",
-    "domain": "Sales;#Management;#Strategy and Planning",
-    "category": "Triển khai Power BI Embedded",
-    "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2022-03-24",
-    "end_date": "2023-04-10",
-    "technologies": [
-      "Power BI"
+    "skills": [
+      "Power Automate",
+      "Power App"
     ],
-    "overview": "Tại KPIM, tôi đã đảm nhận vai trò Project Manager trong dự án triển khai Power BI Embedded cho Traphaco, một công ty hàng đầu trong lĩnh vực dược phẩm. Dự án tập trung vào việc tích hợp Power BI trực tiếp vào hệ thống quản lý nội bộ, cung cấp các báo cáo theo thời gian thực để tối ưu hóa quy trình vận hành và hỗ trợ ra quyết định. Kết quả là một hệ thống báo cáo hiện đại, thân thiện với người dùng, góp phần nâng cao hiệu quả quản lý của Traphaco.",
-    "responsibilities": [],
-    "featured": false
-  },
-  {
-    "name": "Báo cáo phân tích bán hàng và nhà thuốc",
-    "client": "Traphaco",
-    "client_logo": "https://logo.clearbit.com/traphaco.com",
-    "industry": "Healthcare and Pharmaceuticals",
-    "domain": "Sales;#Management;#Strategy and Planning",
-    "category": "Triển khai báo cáo Power BI",
-    "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2022-03-24",
-    "end_date": "2023-04-10",
-    "technologies": [
-      "Power BI"
+    "category": "Tự động hóa Power Automate",
+    "domain": [
+      "Accounting",
+      "Finance",
+      "Operation"
     ],
-    "overview": "Tại KPIM, tôi đã đảm nhận vai trò Project Manager trong dự án triển khai Power BI Embedded cho Traphaco, một công ty hàng đầu trong lĩnh vực dược phẩm. Dự án tập trung vào việc tích hợp Power BI trực tiếp vào hệ thống quản lý nội bộ, cung cấp các báo cáo theo thời gian thực để tối ưu hóa quy trình vận hành và hỗ trợ ra quyết định. Kết quả là một hệ thống báo cáo hiện đại, thân thiện với người dùng, góp phần nâng cao hiệu quả quản lý của Traphaco.",
-    "responsibilities": [],
-    "featured": false
-  },
-  {
-    "name": "Xây dựng báo cáo đầu tư cho Rồng Việt",
-    "client": "Rồng Việt",
-    "client_logo": "https://logo.clearbit.com/rngvit.com",
     "industry": "Finance and Insurance",
-    "domain": "Sales;#Accounting;#Finance",
+    "overview": "Trong vai trò Project Manager tại KPIM, tôi đã tham gia dự án Tự động hóa Power Automate nhằm cải tiến quy trình xử lý dữ liệu nội bộ cho PVI AM, đảm bảo tiết kiệm thời gian và tăng hiệu quả làm việc trong lĩnh vực Finance and Insurance.",
+    "summary": "Trong vai trò Project Manager tại KPIM, tôi đã tham gia dự án Tự động hóa Power Automate nhằm cải tiến quy trình xử lý dữ liệu nội bộ cho PVI AM, đảm bảo tiết kiệm thời gian và tăng hiệu quả làm việc trong lĩnh vực Finance and Insurance.",
+    "responsibilities": [],
+    "featured": false
+  },
+  {
+    "code": "TRA-01",
+    "projectName": "Triển khai PowerBI Embedded cho Traphaco",
+    "clientName": "Traphaco",
+    "clientLogo": "./assets/images/clients/traphaco.webp",
+    "clientLegalName": "Công ty Cổ phần Traphaco",
+    "clientTaxCode": "0100108656",
+    "clientSummary": "Dược phẩm hàng đầu (HOSE: `TRA`); báo cáo kinh doanh OTC/ETC và tài chính",
+    "role": "Project Manager",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2022",
+    "startDate": "2022-03",
+    "endDate": "2023-04",
+    "technologies": [
+      "Power BI"
+    ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai Power BI Embedded",
+    "domain": [
+      "Sales",
+      "Management",
+      "Strategy and Planning"
+    ],
+    "industry": "Healthcare and Pharmaceuticals",
+    "overview": "Tại KPIM, tôi đã đảm nhận vai trò Project Manager trong dự án triển khai Power BI Embedded cho Traphaco, một công ty hàng đầu trong lĩnh vực dược phẩm. Dự án tập trung vào việc tích hợp Power BI trực tiếp vào hệ thống quản lý nội bộ, cung cấp các báo cáo theo thời gian thực để tối ưu hóa quy trình vận hành và hỗ trợ ra quyết định. Kết quả là một hệ thống báo cáo hiện đại, thân thiện với người dùng, góp phần nâng cao hiệu quả quản lý của Traphaco.",
+    "summary": "Tại KPIM, tôi đã đảm nhận vai trò Project Manager trong dự án triển khai Power BI Embedded cho Traphaco, một công ty hàng đầu trong lĩnh vực dược phẩm. Dự án tập trung vào việc tích hợp Power BI trực tiếp vào hệ thống quản lý nội bộ, cung cấp các báo cáo theo thời gian thực để tối ưu hóa quy trình vận hành và hỗ trợ ra quyết định. Kết quả là một hệ thống báo cáo hiện đại, thân thiện với người dùng, góp phần nâng cao hiệu quả quản lý của Traphaco.",
+    "responsibilities": [],
+    "featured": false
+  },
+  {
+    "code": "TRA-02",
+    "projectName": "Báo cáo phân tích bán hàng và nhà thuốc",
+    "clientName": "Traphaco",
+    "clientLogo": "./assets/images/clients/traphaco.webp",
+    "clientLegalName": "Công ty Cổ phần Traphaco",
+    "clientTaxCode": "0100108656",
+    "clientSummary": "Dược phẩm hàng đầu (HOSE: `TRA`); báo cáo kinh doanh OTC/ETC và tài chính",
+    "role": "Project Manager",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2022",
+    "startDate": "2022-03",
+    "endDate": "2023-04",
+    "technologies": [
+      "Power BI"
+    ],
+    "skills": [
+      "Power BI"
+    ],
     "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales",
+      "Management",
+      "Strategy and Planning"
+    ],
+    "industry": "Healthcare and Pharmaceuticals",
+    "overview": "Tại KPIM, tôi đã đảm nhận vai trò Project Manager trong dự án triển khai Power BI Embedded cho Traphaco, một công ty hàng đầu trong lĩnh vực dược phẩm. Dự án tập trung vào việc tích hợp Power BI trực tiếp vào hệ thống quản lý nội bộ, cung cấp các báo cáo theo thời gian thực để tối ưu hóa quy trình vận hành và hỗ trợ ra quyết định. Kết quả là một hệ thống báo cáo hiện đại, thân thiện với người dùng, góp phần nâng cao hiệu quả quản lý của Traphaco.",
+    "summary": "Tại KPIM, tôi đã đảm nhận vai trò Project Manager trong dự án triển khai Power BI Embedded cho Traphaco, một công ty hàng đầu trong lĩnh vực dược phẩm. Dự án tập trung vào việc tích hợp Power BI trực tiếp vào hệ thống quản lý nội bộ, cung cấp các báo cáo theo thời gian thực để tối ưu hóa quy trình vận hành và hỗ trợ ra quyết định. Kết quả là một hệ thống báo cáo hiện đại, thân thiện với người dùng, góp phần nâng cao hiệu quả quản lý của Traphaco.",
+    "responsibilities": [],
+    "featured": false
+  },
+  {
+    "code": "RVD-01",
+    "projectName": "Xây dựng báo cáo đầu tư cho Rồng Việt",
+    "clientName": "Rồng Việt",
+    "clientLogo": "./assets/images/clients/rong-viet.jpg",
+    "clientLegalName": "Công ty Cổ phần Chứng khoán Rồng Việt (VDSC)",
+    "clientTaxCode": "0304734965",
+    "clientSummary": "Công ty chứng khoán hàng đầu Việt Nam cung cấp dịch vụ môi giới và IB.",
     "role": "Data Analyst",
-    "team_size": null,
-    "start_date": "2022-03-21",
-    "end_date": "2022-06-26",
+    "roleText": "Data Analyst",
+    "teamSize": 4,
+    "year": "2022",
+    "startDate": "2022-03",
+    "endDate": "2022-06",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales",
+      "Accounting",
+      "Finance"
+    ],
+    "industry": "Finance and Insurance",
     "overview": "Với vai trò Data Analyst tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Rồng Việt. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Finance and Insurance.",
+    "summary": "Với vai trò Data Analyst tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho Rồng Việt. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Finance and Insurance.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Báo cáo kế toán từ Fast",
-    "client": "ADCo",
-    "client_logo": "https://logo.clearbit.com/adco.com",
-    "industry": "Manufacturing",
-    "domain": "Accounting",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "ADC-01",
+    "projectName": "Báo cáo kế toán từ Fast",
+    "clientName": "ADCo",
+    "clientLogo": "./assets/images/clients/adco.svg",
+    "clientLegalName": "Công ty Cổ phần Nông dược ADCo",
+    "clientTaxCode": "0313068089",
+    "clientSummary": "Đào tạo xây dựng báo cáo kế toán với Power BI (`PBI-ADCO`) năm 2022",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2021-12-15",
-    "end_date": "2022-03-01",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2021",
+    "startDate": "2021-12",
+    "endDate": "2022-03",
     "technologies": [
       "Power BI"
     ],
-    "overview": "Nhằm giúp ADCO quản lý và phân tích dữ liệu tài chính một cách hiệu quả hơn, dự án tập trung xây dựng bộ báo cáo kế toán tổng hợp từ phần mềm kế toán FAST. Giải pháp này hỗ trợ doanh nghiệp trong việc tự động hóa quy trình tổng hợp số liệu, cung cấp các báo cáo tài chính chi tiết và trực quan, phục vụ cho việc ra quyết định nhanh chóng và chính xác. Với vai trò Quản lý Dự án (PM), tôi chịu trách nhiệm điều phối các nguồn lực, giám sát tiến độ và đảm bảo chất lượng triển khai, giúp ADCO nâng cao hiệu quả quản trị tài chính và tối ưu hóa quy trình vận hành.",
-    "responsibilities": [],
-    "featured": false
-  },
-  {
-    "name": "Triển khai báo cáo kế toán cho POSHACO",
-    "client": "POSHACO",
-    "client_logo": "https://logo.clearbit.com/poshaco.com",
-    "industry": "Retail and Consumer Goods",
-    "domain": "Accounting;#Sales",
+    "skills": [
+      "Power BI"
+    ],
     "category": "Triển khai báo cáo Power BI",
-    "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2021-11-24",
-    "end_date": "2022-01-15",
-    "technologies": [
-      "Power BI"
+    "domain": [
+      "Accounting"
     ],
-    "overview": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho POSHACO. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Retail and Consumer Goods.",
+    "industry": "Manufacturing",
+    "overview": "Nhằm giúp ADCO quản lý và phân tích dữ liệu tài chính một cách hiệu quả hơn, dự án tập trung xây dựng bộ báo cáo kế toán tổng hợp từ phần mềm kế toán FAST. Giải pháp này hỗ trợ doanh nghiệp trong việc tự động hóa quy trình tổng hợp số liệu, cung cấp các báo cáo tài chính chi tiết và trực quan, phục vụ cho việc ra quyết định nhanh chóng và chính xác. Với vai trò Quản lý Dự án (PM), tôi chịu trách nhiệm điều phối các nguồn lực, giám sát tiến độ và đảm bảo chất lượng triển khai, giúp ADCO nâng cao hiệu quả quản trị tài chính và tối ưu hóa quy trình vận hành.",
+    "summary": "Nhằm giúp ADCO quản lý và phân tích dữ liệu tài chính một cách hiệu quả hơn, dự án tập trung xây dựng bộ báo cáo kế toán tổng hợp từ phần mềm kế toán FAST. Giải pháp này hỗ trợ doanh nghiệp trong việc tự động hóa quy trình tổng hợp số liệu, cung cấp các báo cáo tài chính chi tiết và trực quan, phục vụ cho việc ra quyết định nhanh chóng và chính xác. Với vai trò Quản lý Dự án (PM), tôi chịu trách nhiệm điều phối các nguồn lực, giám sát tiến độ và đảm bảo chất lượng triển khai, giúp ADCO nâng cao hiệu quả quản trị tài chính và tối ưu hóa quy trình vận hành.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Triển khai hệ thống E-Learning cho Ngô Sỹ Liên",
-    "client": "Trường Ngô Sỹ Liên",
-    "client_logo": "https://logo.clearbit.com/trngngslin.com",
-    "industry": "Education",
-    "domain": "Operation;#Management",
-    "category": "Xây dựng phần mềm",
+    "code": "POS-01",
+    "projectName": "Triển khai báo cáo kế toán cho POSHACO",
+    "clientName": "POSHACO",
+    "clientLogo": "./assets/images/clients/poshaco.jpg",
+    "clientLegalName": "Công ty Cổ phần Thương mại và Sản xuất Poshaco",
+    "clientTaxCode": "0101407419",
+    "clientSummary": "Tôn mạ màu và thép; báo cáo sản xuất & kinh doanh trên Power BI",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2021-08-25",
-    "end_date": "2021-09-15",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2021",
+    "startDate": "2021-11",
+    "endDate": "2022-01",
+    "technologies": [
+      "Power BI"
+    ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Accounting",
+      "Sales"
+    ],
+    "industry": "Retail and Consumer Goods",
+    "overview": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho POSHACO. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Retail and Consumer Goods.",
+    "summary": "Với vai trò Project Manager tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho POSHACO. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Retail and Consumer Goods.",
+    "responsibilities": [],
+    "featured": false
+  },
+  {
+    "code": "NSL-01",
+    "projectName": "Triển khai hệ thống E-Learning cho Ngô Sỹ Liên",
+    "clientName": "Trường Ngô Sỹ Liên",
+    "clientLogo": "./assets/images/clients/truong-ngo-sy-lien.jpg",
+    "clientLegalName": "Trường THCS Ngô Sỹ Liên",
+    "clientTaxCode": "0103133379",
+    "clientSummary": "Trường trung học cơ sở trọng điểm chất lượng cao tại Hà Nội.",
+    "role": "Project Manager",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2021",
+    "startDate": "2021-08",
+    "endDate": "2021-09",
     "technologies": [
       "Power Automate"
     ],
+    "skills": [
+      "Power Automate"
+    ],
+    "category": "Xây dựng phần mềm",
+    "domain": [
+      "Operation",
+      "Management"
+    ],
+    "industry": "Education",
     "overview": "Với vai trò Project Manager tại KPIM, tôi đã dẫn dắt dự án Xây dựng phần mềm cho Trường Ngô Sỹ Liên, hỗ trợ cải thiện quy trình kinh doanh và tối ưu hóa hệ thống vận hành trong lĩnh vực Education.",
+    "summary": "Với vai trò Project Manager tại KPIM, tôi đã dẫn dắt dự án Xây dựng phần mềm cho Trường Ngô Sỹ Liên, hỗ trợ cải thiện quy trình kinh doanh và tối ưu hóa hệ thống vận hành trong lĩnh vực Education.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Tối ưu hạ tầng Database cho SONION",
-    "client": "SONION",
-    "client_logo": "https://logo.clearbit.com/sonion.com",
-    "industry": "Retail and Consumer Goods",
-    "domain": "Manufacturing",
-    "category": "Tối ưu hóa hạ tầng dữ liệu",
+    "code": "SN-02",
+    "projectName": "Tối ưu hạ tầng Database cho SONION",
+    "clientName": "SONION",
+    "clientLogo": "./assets/images/clients/sonion.webp",
+    "clientLegalName": "Công ty TNHH Sonion Việt Nam",
+    "clientTaxCode": "0304741227",
+    "clientSummary": "Linh kiện âm thanh vi cơ điện tử Đan Mạch; giải pháp BI & tự động hóa sản xuất",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2021-05-15",
-    "end_date": "2025-05-15",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2021",
+    "startDate": "2021-05",
+    "endDate": "2025-05",
     "technologies": [
       "SQL",
       "T-SQL"
     ],
+    "skills": [
+      "SQL",
+      "T-SQL"
+    ],
+    "category": "Tối ưu hóa hạ tầng dữ liệu",
+    "domain": [
+      "Manufacturing"
+    ],
+    "industry": "Retail and Consumer Goods",
     "overview": "Trong dự án tại KPIM, tôi đã đóng vai trò Project Manager và tham gia vào việc triển khai giải pháp Tối ưu hóa hạ tầng dữ liệu cho SONION, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Retail and Consumer Goods.",
+    "summary": "Trong dự án tại KPIM, tôi đã đóng vai trò Project Manager và tham gia vào việc triển khai giải pháp Tối ưu hóa hạ tầng dữ liệu cho SONION, góp phần nâng cao hiệu quả hoạt động trong lĩnh vực Retail and Consumer Goods.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Xây dựng báo quản trị cho BFC",
-    "client": "BFC",
-    "client_logo": "https://logo.clearbit.com/bfc.com",
-    "industry": "Retail and Consumer Goods",
-    "domain": "Sales;#Marketing;#Logistic;#Operation",
+    "code": "BFC-01",
+    "projectName": "Xây dựng báo quản trị cho BFC",
+    "clientName": "BFC",
+    "clientLogo": "./assets/images/clients/bfc.png",
+    "clientLegalName": "Công ty Cổ phần Hóa chất BF",
+    "clientTaxCode": "0106684434",
+    "clientSummary": "Phân phối hóa chất; Data Warehouse & hệ thống báo cáo Power BI toàn diện",
+    "role": "Project Manager",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2021",
+    "startDate": "2021-01",
+    "endDate": "2021-04",
+    "technologies": [
+      "Power BI"
+    ],
+    "skills": [
+      "Power BI"
+    ],
     "category": "Triển khai báo cáo Power BI",
-    "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2021-01-20",
-    "end_date": "2021-04-14",
-    "technologies": [
-      "Power BI"
+    "domain": [
+      "Sales",
+      "Marketing",
+      "Logistic",
+      "Operation"
     ],
-    "overview": "Trong vai trò Project Manager, tôi đã lãnh đạo đội ngũ KPIM triển khai dự án báo cáo quản trị Power BI cho BFC. Dự án tập trung vào lĩnh vực bán lẻ và hàng tiêu dùng, cung cấp các báo cáo phân tích hiệu suất bán hàng, tồn kho, và xu hướng thị trường. Nhờ sự hợp tác chặt chẽ giữa các bên, chúng tôi đã xây dựng thành công hệ thống báo cáo giúp BFC nắm bắt kịp thời các cơ hội kinh doanh và nâng cao khả năng cạnh tranh.",
-    "responsibilities": [],
-    "featured": false
-  },
-  {
-    "name": "Triển khai và Customize Power BI Embedded",
-    "client": "BFC",
-    "client_logo": "https://logo.clearbit.com/bfc.com",
     "industry": "Retail and Consumer Goods",
-    "domain": "Sales;#Marketing;#Logistic;#Operation",
-    "category": "Triển khai Power BI Embedded",
-    "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2021-01-20",
-    "end_date": "2021-04-14",
-    "technologies": [
-      "Power BI"
-    ],
     "overview": "Trong vai trò Project Manager, tôi đã lãnh đạo đội ngũ KPIM triển khai dự án báo cáo quản trị Power BI cho BFC. Dự án tập trung vào lĩnh vực bán lẻ và hàng tiêu dùng, cung cấp các báo cáo phân tích hiệu suất bán hàng, tồn kho, và xu hướng thị trường. Nhờ sự hợp tác chặt chẽ giữa các bên, chúng tôi đã xây dựng thành công hệ thống báo cáo giúp BFC nắm bắt kịp thời các cơ hội kinh doanh và nâng cao khả năng cạnh tranh.",
+    "summary": "Trong vai trò Project Manager, tôi đã lãnh đạo đội ngũ KPIM triển khai dự án báo cáo quản trị Power BI cho BFC. Dự án tập trung vào lĩnh vực bán lẻ và hàng tiêu dùng, cung cấp các báo cáo phân tích hiệu suất bán hàng, tồn kho, và xu hướng thị trường. Nhờ sự hợp tác chặt chẽ giữa các bên, chúng tôi đã xây dựng thành công hệ thống báo cáo giúp BFC nắm bắt kịp thời các cơ hội kinh doanh và nâng cao khả năng cạnh tranh.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Dự án tạo Form nhập liệu Excel",
-    "client": "COMPA",
-    "client_logo": "https://logo.clearbit.com/compa.com",
-    "industry": "Education",
-    "domain": "Management",
-    "category": "Tự động hóa Excel VBA",
+    "code": "BFC-02",
+    "projectName": "Triển khai và Customize Power BI Embedded",
+    "clientName": "BFC",
+    "clientLogo": "./assets/images/clients/bfc.png",
+    "clientLegalName": "Công ty Cổ phần Hóa chất BF",
+    "clientTaxCode": "0106684434",
+    "clientSummary": "Phân phối hóa chất; Data Warehouse & hệ thống báo cáo Power BI toàn diện",
+    "role": "Project Manager",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2021",
+    "startDate": "2021-01",
+    "endDate": "2021-04",
+    "technologies": [
+      "Power BI"
+    ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai Power BI Embedded",
+    "domain": [
+      "Sales",
+      "Marketing",
+      "Logistic",
+      "Operation"
+    ],
+    "industry": "Retail and Consumer Goods",
+    "overview": "Trong vai trò Project Manager, tôi đã lãnh đạo đội ngũ KPIM triển khai dự án báo cáo quản trị Power BI cho BFC. Dự án tập trung vào lĩnh vực bán lẻ và hàng tiêu dùng, cung cấp các báo cáo phân tích hiệu suất bán hàng, tồn kho, và xu hướng thị trường. Nhờ sự hợp tác chặt chẽ giữa các bên, chúng tôi đã xây dựng thành công hệ thống báo cáo giúp BFC nắm bắt kịp thời các cơ hội kinh doanh và nâng cao khả năng cạnh tranh.",
+    "summary": "Trong vai trò Project Manager, tôi đã lãnh đạo đội ngũ KPIM triển khai dự án báo cáo quản trị Power BI cho BFC. Dự án tập trung vào lĩnh vực bán lẻ và hàng tiêu dùng, cung cấp các báo cáo phân tích hiệu suất bán hàng, tồn kho, và xu hướng thị trường. Nhờ sự hợp tác chặt chẽ giữa các bên, chúng tôi đã xây dựng thành công hệ thống báo cáo giúp BFC nắm bắt kịp thời các cơ hội kinh doanh và nâng cao khả năng cạnh tranh.",
+    "responsibilities": [],
+    "featured": false
+  },
+  {
+    "code": "COMPA-04",
+    "projectName": "Dự án tạo Form nhập liệu Excel",
+    "clientName": "COMPA",
+    "clientLogo": "./assets/images/COMPA-CLASS.jpg",
+    "clientLegalName": "Công ty Cổ phần Công nghệ Giáo dục COMPA",
+    "clientTaxCode": "Nền tảng EdTech (compaclass.com)",
+    "clientSummary": "Nền tảng LMS & E-Learning quản lý khóa học, học viên, blog chuyên môn (Founder & CEO)",
     "role": "Business Analyst",
-    "team_size": null,
-    "start_date": "2021-01-06",
-    "end_date": "2021-01-15",
+    "roleText": "Business Analyst",
+    "teamSize": 4,
+    "year": "2021",
+    "startDate": "2021-01",
+    "endDate": "2021-01",
     "technologies": [
       "Excel",
       "VBA"
     ],
+    "skills": [
+      "Excel",
+      "VBA"
+    ],
+    "category": "Tự động hóa Excel VBA",
+    "domain": [
+      "Management"
+    ],
+    "industry": "Education",
     "overview": "Trong vai trò Business Analyst tại KPIM, tôi đã tham gia dự án Tự động hóa Excel VBA nhằm cải tiến quy trình xử lý dữ liệu nội bộ cho COMPA, đảm bảo tiết kiệm thời gian và tăng hiệu quả làm việc trong lĩnh vực Education.",
+    "summary": "Trong vai trò Business Analyst tại KPIM, tôi đã tham gia dự án Tự động hóa Excel VBA nhằm cải tiến quy trình xử lý dữ liệu nội bộ cho COMPA, đảm bảo tiết kiệm thời gian và tăng hiệu quả làm việc trong lĩnh vực Education.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Báo cáo bất động sản cho DG",
-    "client": "DG Training",
-    "client_logo": "https://logo.clearbit.com/dgtraining.com",
-    "industry": "Real Estate and Construction",
-    "domain": "Sales;#Accounting;#Finance;#Management",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "DG-01",
+    "projectName": "Báo cáo bất động sản cho DG",
+    "clientName": "DG Training",
+    "clientLogo": "./assets/images/clients/dg-training.jpg",
+    "clientLegalName": "Công ty Cổ phần D&G Việt Nam",
+    "clientTaxCode": "0106024600",
+    "clientSummary": "Báo cáo quản trị bán hàng & tồn kho thời trang trên Power BI.",
     "role": "Data Analyst",
-    "team_size": null,
-    "start_date": "2020-11-12",
-    "end_date": "2021-02-15",
+    "roleText": "Data Analyst",
+    "teamSize": 4,
+    "year": "2020",
+    "startDate": "2020-11",
+    "endDate": "2021-02",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales",
+      "Accounting",
+      "Finance",
+      "Management"
+    ],
+    "industry": "Real Estate and Construction",
     "overview": "Với vai trò Data Analyst tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho DG Training. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Real Estate and Construction.",
+    "summary": "Với vai trò Data Analyst tại KPIM, tôi đã tham gia vào dự án Triển khai báo cáo Power BI cho DG Training. Dự án tập trung vào việc triển khai báo cáo nhằm cải thiện hiệu quả quản lý và hỗ trợ ra quyết định trong lĩnh vực Real Estate and Construction.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Triển khai hệ thống PowerBI Report Server cho MobiFone",
-    "client": "Mobifone",
-    "client_logo": "./assets/images/clients/mobifone.svg",
-    "industry": "Telecommunications",
-    "domain": "Sales",
-    "category": "Triển khai Power BI Report Server",
+    "code": "MOB-01",
+    "projectName": "Triển khai hệ thống PowerBI Report Server cho MobiFone",
+    "clientName": "Mobifone",
+    "clientLogo": "./assets/images/clients/mobifone.svg",
+    "clientLegalName": "Tổng Công ty Viễn thông MobiFone",
+    "clientTaxCode": "0100686209",
+    "clientSummary": "Mạng viễn thông di động; phân tích dữ liệu khách hàng, cước và vận hành mạng lưới",
     "role": "Project Manager",
-    "team_size": 2,
-    "start_date": "2020-09-16",
-    "end_date": "2024-12-31",
+    "roleText": "Project Manager",
+    "teamSize": 2,
+    "year": "2020",
+    "startDate": "2020-09",
+    "endDate": "2024-12",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai Power BI Report Server",
+    "domain": [
+      "Sales"
+    ],
+    "industry": "Telecommunications",
     "overview": "Dự án triển khai Power BI Report Server cho Mobifone, một trong những công ty viễn thông hàng đầu tại Việt Nam, nhằm tối ưu hóa khả năng phân tích và báo cáo dữ liệu kinh doanh. Mục tiêu chính của dự án là tôi lãnh đạo đội ngũ các chuyên gia về DE và BI giúp tư vấn lựa chọn giải pháp và xây dựng một hệ thống báo cáo mạnh mẽ, tập trung vào hai mảng nghiệp vụ cốt lõi: bán hàng và số thuê bao đăng ký, đồng thời cung cấp cái nhìn chi tiết về doanh thu từ các dịch vụ viễn thông. Các báo cáo được các chuyên viên KPIM thiết kế để hỗ trợ đội ngũ quản lý đưa ra quyết định chiến lược thông qua việc hiển thị trực quan dữ liệu theo thời gian thực, phân tích xu hướng thị trường và đo lường hiệu quả kinh doanh. Với việc sử dụng Power BI Report Server, dự án đảm bảo sự bảo mật cao, khả năng tích hợp với hệ thống hiện tại và khả năng mở rộng linh hoạt, từ đó đáp ứng nhu cầu ngày càng tăng của Mobifone trong việc tối ưu hóa dữ liệu và tăng cường hiệu quả hoạt động.",
+    "summary": "Dự án triển khai Power BI Report Server cho Mobifone, một trong những công ty viễn thông hàng đầu tại Việt Nam, nhằm tối ưu hóa khả năng phân tích và báo cáo dữ liệu kinh doanh. Mục tiêu chính của dự án là tôi lãnh đạo đội ngũ các chuyên gia về DE và BI giúp tư vấn lựa chọn giải pháp và xây dựng một hệ thống báo cáo mạnh mẽ, tập trung vào hai mảng nghiệp vụ cốt lõi: bán hàng và số thuê bao đăng ký, đồng thời cung cấp cái nhìn chi tiết về doanh thu từ các dịch vụ viễn thông. Các báo cáo được các chuyên viên KPIM thiết kế để hỗ trợ đội ngũ quản lý đưa ra quyết định chiến lược thông qua việc hiển thị trực quan dữ liệu theo thời gian thực, phân tích xu hướng thị trường và đo lường hiệu quả kinh doanh. Với việc sử dụng Power BI Report Server, dự án đảm bảo sự bảo mật cao, khả năng tích hợp với hệ thống hiện tại và khả năng mở rộng linh hoạt, từ đó đáp ứng nhu cầu ngày càng tăng của Mobifone trong việc tối ưu hóa dữ liệu và tăng cường hiệu quả hoạt động.",
     "responsibilities": [
       "Receive reporting requests and advise on business visualizations.",
       "Coordinate with devops to set up Power BI Report Server.",
@@ -869,76 +1518,135 @@
     "featured": true
   },
   {
-    "name": "Xây dựng báo cáo CRM cho MBAL",
-    "client": "MB Ageas Life",
-    "client_logo": "https://logo.clearbit.com/mbageaslife.com",
-    "industry": "Finance and Insurance",
-    "domain": "Sales",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "MBAG-01",
+    "projectName": "Xây dựng báo cáo CRM cho MBAL",
+    "clientName": "MB Ageas Life",
+    "clientLogo": "./assets/images/clients/mb-ageas.svg",
+    "clientLegalName": "Công ty TNHH Bảo hiểm Nhân thọ MB Ageas",
+    "clientTaxCode": "0107372652",
+    "clientSummary": "Tư vấn BI Report Server 2020 và đào tạo quản trị Power BI Cloud (`MBAG102`)",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2020-09-05",
-    "end_date": "2020-10-01",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2020",
+    "startDate": "2020-09",
+    "endDate": "2020-10",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales"
+    ],
+    "industry": "Finance and Insurance",
     "overview": "Dự án triển khai hệ thống báo cáo phân tích CRM nội bộ cho MB Ageas Life do tôi đảm nhận vai trò Project Manager (PM), cùng với đội ngũ BI của KPIM, đã thành công trong việc tạo ra một nền tảng báo cáo thông minh và toàn diện. Dự án tập trung vào việc kết nối và phân tích thông tin các hợp đồng giữa khối BANCA và bảo hiểm giúp cải thiện hiệu quả quản lý dữ liệu và hỗ trợ ra quyết định chiến lược. Hệ thống báo cáo được thiết kế để cung cấp cái nhìn tổng quan, trực quan về hiệu quả bán hàng, tỷ lệ chuyển đổi, và tình trạng thực hiện hợp đồng, đồng thời tăng cường khả năng theo dõi và tối ưu hóa quy trình hợp tác giữa các khối. Với sự lãnh đạo của anh Đức và sự phối hợp chặt chẽ giữa các bên, dự án không chỉ đảm bảo tích hợp hệ thống CRM hiệu quả mà còn đáp ứng đầy đủ các yêu cầu bảo mật, khả năng mở rộng và sự linh hoạt trong phân tích dữ liệu, góp phần quan trọng vào sự thành công và phát triển của MB Ageas Life.",
+    "summary": "Dự án triển khai hệ thống báo cáo phân tích CRM nội bộ cho MB Ageas Life do tôi đảm nhận vai trò Project Manager (PM), cùng với đội ngũ BI của KPIM, đã thành công trong việc tạo ra một nền tảng báo cáo thông minh và toàn diện. Dự án tập trung vào việc kết nối và phân tích thông tin các hợp đồng giữa khối BANCA và bảo hiểm giúp cải thiện hiệu quả quản lý dữ liệu và hỗ trợ ra quyết định chiến lược. Hệ thống báo cáo được thiết kế để cung cấp cái nhìn tổng quan, trực quan về hiệu quả bán hàng, tỷ lệ chuyển đổi, và tình trạng thực hiện hợp đồng, đồng thời tăng cường khả năng theo dõi và tối ưu hóa quy trình hợp tác giữa các khối. Với sự lãnh đạo của anh Đức và sự phối hợp chặt chẽ giữa các bên, dự án không chỉ đảm bảo tích hợp hệ thống CRM hiệu quả mà còn đáp ứng đầy đủ các yêu cầu bảo mật, khả năng mở rộng và sự linh hoạt trong phân tích dữ liệu, góp phần quan trọng vào sự thành công và phát triển của MB Ageas Life.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Tư vấn triển khai Power BI (Techcombank)",
-    "client": "Techcombank",
-    "client_logo": "https://logo.clearbit.com/techcombank.com",
-    "industry": "Finance and Insurance",
-    "domain": "Sales;#Accounting;#Finance;#Human Resources (HR);#Management;#Strategy and Planning",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "TCB-01",
+    "projectName": "Tư vấn triển khai Power BI (Techcombank)",
+    "clientName": "Techcombank",
+    "clientLogo": "./assets/images/clients/techcombank.jpg",
+    "clientLegalName": "Ngân hàng TMCP Kỹ Thương Việt Nam",
+    "clientTaxCode": "0100230800",
+    "clientSummary": "Đào tạo chuỗi 3 lớp Power BI Cơ bản (`PBICBO-TC01` → `03`) năm 2023",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2020-09-02",
-    "end_date": "2020-10-05",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2020",
+    "startDate": "2020-09",
+    "endDate": "2020-10",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales",
+      "Accounting",
+      "Finance",
+      "Human Resources (HR)",
+      "Management",
+      "Strategy and Planning"
+    ],
+    "industry": "Finance and Insurance",
     "overview": "Với vai trò Project Manager tại KPIM, tôi đã dẫn dắt dự án tư vấn triển khai hệ thống báo cáo Power BI cho Techcombank, một trong những ngân hàng hàng đầu tại Việt Nam. Dự án tập trung vào việc xây dựng các báo cáo phân tích tài chính và vận hành nhằm tối ưu hóa quá trình quản lý dữ liệu và đưa ra các quyết định chiến lược. Với sự phối hợp chặt chẽ cùng đội ngũ của Techcombank, chúng tôi đã đảm bảo hệ thống không chỉ trực quan mà còn bảo mật và dễ dàng mở rộng, đáp ứng được yêu cầu cao từ ngành tài chính",
+    "summary": "Với vai trò Project Manager tại KPIM, tôi đã dẫn dắt dự án tư vấn triển khai hệ thống báo cáo Power BI cho Techcombank, một trong những ngân hàng hàng đầu tại Việt Nam. Dự án tập trung vào việc xây dựng các báo cáo phân tích tài chính và vận hành nhằm tối ưu hóa quá trình quản lý dữ liệu và đưa ra các quyết định chiến lược. Với sự phối hợp chặt chẽ cùng đội ngũ của Techcombank, chúng tôi đã đảm bảo hệ thống không chỉ trực quan mà còn bảo mật và dễ dàng mở rộng, đáp ứng được yêu cầu cao từ ngành tài chính",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Hệ thống báo cáo hiệu suất chấm công",
-    "client": "Your Part-Time Controllers",
-    "client_logo": "https://logo.clearbit.com/yourparttimecontrollers.com",
-    "industry": "Consulting Service",
-    "domain": "Human Resources (HR)",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "YPTC-01",
+    "projectName": "Hệ thống báo cáo hiệu suất chấm công",
+    "clientName": "Your Part-Time Controllers",
+    "clientLogo": "./assets/images/YPTC-Logo.png",
+    "clientLegalName": "Your Part-Time Controller, LLC",
+    "clientTaxCode": "Hoa Kỳ (yptc.com)",
+    "clientSummary": "Tư vấn tài chính & kế toán quản trị phi lợi nhuận tại Mỹ.",
     "role": "Project Manager",
-    "team_size": null,
-    "start_date": "2020-08-01",
-    "end_date": "2021-04-01",
+    "roleText": "Project Manager",
+    "teamSize": 4,
+    "year": "2020",
+    "startDate": "2020-08",
+    "endDate": "2021-04",
     "technologies": [
       "Excel",
       "Power BI",
       "SQL"
     ],
+    "skills": [
+      "Excel",
+      "Power BI",
+      "SQL"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Human Resources (HR)"
+    ],
+    "industry": "Consulting Service",
     "overview": "Để hỗ trợ công ty YPTC quản lý hiệu quả hơn trong việc chấm công, tính công và giám sát tiến độ công việc hàng ngày, dự án được triển khai nhằm xây dựng một hệ thống báo cáo hiệu suất toàn diện. Giải pháp không chỉ giúp tự động hóa quy trình theo dõi và đánh giá hiệu quả làm việc mà còn cung cấp các báo cáo chi tiết, trực quan, hỗ trợ đưa ra quyết định nhanh chóng. Với vai trò Quản lý Dự án (PM), tôi đảm bảo sự phối hợp nhịp nhàng giữa các nhóm, tối ưu hóa nguồn lực và giám sát tiến độ để đảm bảo dự án được thực hiện thành công, mang lại giá trị bền vững cho YPTC.",
+    "summary": "Để hỗ trợ công ty YPTC quản lý hiệu quả hơn trong việc chấm công, tính công và giám sát tiến độ công việc hàng ngày, dự án được triển khai nhằm xây dựng một hệ thống báo cáo hiệu suất toàn diện. Giải pháp không chỉ giúp tự động hóa quy trình theo dõi và đánh giá hiệu quả làm việc mà còn cung cấp các báo cáo chi tiết, trực quan, hỗ trợ đưa ra quyết định nhanh chóng. Với vai trò Quản lý Dự án (PM), tôi đảm bảo sự phối hợp nhịp nhàng giữa các nhóm, tối ưu hóa nguồn lực và giám sát tiến độ để đảm bảo dự án được thực hiện thành công, mang lại giá trị bền vững cho YPTC.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Triển khai PowerBI Cloud Service cho Viettelimex",
-    "client": "Viettelimex",
-    "client_logo": "./assets/images/clients/viettelimex.svg",
-    "industry": "Retail and Consumer Goods",
-    "domain": "Sales;#Management;#Strategy and Planning;#Accounting;#Finance",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "VTM-01",
+    "projectName": "Triển khai PowerBI Cloud Service cho Viettelimex",
+    "clientName": "Viettelimex",
+    "clientLogo": "./assets/images/clients/viettelimex.svg",
+    "clientLegalName": "Công ty TNHH Nhà nước MTV Thương mại và Xuất nhập khẩu Viettel",
+    "clientTaxCode": "0101916207",
+    "clientSummary": "Chuỗi Viettel Store; Data Warehouse & 6 phân hệ báo cáo Power BI",
     "role": "BI Analyst",
-    "team_size": 4,
-    "start_date": "2020-06-03",
-    "end_date": "2021-01-04",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2020",
+    "startDate": "2020-06",
+    "endDate": "2021-01",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales",
+      "Management",
+      "Strategy and Planning",
+      "Accounting",
+      "Finance"
+    ],
+    "industry": "Retail and Consumer Goods",
     "overview": "Build a Power BI-based analytics reporting system from a consolidated repository of multiple sources.",
+    "summary": "Build a Power BI-based analytics reporting system from a consolidated repository of multiple sources.",
     "responsibilities": [
       "Analyze new requirements and operating models from the client.",
       "Design report and dashboard interfaces that match management needs.",
@@ -948,58 +1656,97 @@
     "featured": true
   },
   {
-    "name": "Xây dựng báo cáo PowerBI Bộ Công Thương",
-    "client": "Bộ Công Thương",
-    "client_logo": "https://logo.clearbit.com/bcngthng.com",
-    "industry": "Healthcare and Pharmaceuticals",
-    "domain": "Finance",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "BCT-01",
+    "projectName": "Xây dựng báo cáo PowerBI Bộ Công Thương",
+    "clientName": "Bộ Công Thương",
+    "clientLogo": "./assets/images/clients/bo-cong-thuong.webp",
+    "clientLegalName": "Bộ Công Thương Việt Nam",
+    "clientTaxCode": "0100108920",
+    "clientSummary": "Cơ quan thuộc Chính phủ Việt Nam quản lý nhà nước về công nghiệp và thương mại.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2020-03-15",
-    "end_date": "2020-05-01",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2020",
+    "startDate": "2020-03",
+    "endDate": "2020-05",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Finance"
+    ],
+    "industry": "Healthcare and Pharmaceuticals",
     "overview": "Tôi đã đảm nhận vai trò chuyên viên cấp cao xây dựng và triển khai hệ thống báo cáo phân tích chỉ số thị trường cho Bộ Công Thương, tập trung vào việc xây dựng một nền tảng dữ liệu mạnh mẽ và trực quan để hỗ trợ công tác quản lý và điều hành. Dự án được thiết kế nhằm cung cấp các báo cáo chi tiết về xu hướng thị trường, chỉ số kinh tế ngành, và các yếu tố cung cầu, giúp Bộ Công Thương đưa ra các quyết sách kịp thời và hiệu quả. Với sự phối hợp chặt chẽ giữa đội ngũ dự án và các chuyên gia trong ngành, tôi đã dẫn dắt việc tích hợp các nguồn dữ liệu từ nhiều hệ thống khác nhau, đảm bảo tính chính xác, bảo mật và khả năng mở rộng. Thông qua các báo cáo trực quan và phân tích sâu, dự án đã góp phần cung cấp góc nhìn toàn diện về thị trường, hỗ trợ Bộ Công Thương trong việc xây dựng chính sách và định hướng chiến lược phát triển kinh tế quốc gia.",
+    "summary": "Tôi đã đảm nhận vai trò chuyên viên cấp cao xây dựng và triển khai hệ thống báo cáo phân tích chỉ số thị trường cho Bộ Công Thương, tập trung vào việc xây dựng một nền tảng dữ liệu mạnh mẽ và trực quan để hỗ trợ công tác quản lý và điều hành. Dự án được thiết kế nhằm cung cấp các báo cáo chi tiết về xu hướng thị trường, chỉ số kinh tế ngành, và các yếu tố cung cầu, giúp Bộ Công Thương đưa ra các quyết sách kịp thời và hiệu quả. Với sự phối hợp chặt chẽ giữa đội ngũ dự án và các chuyên gia trong ngành, tôi đã dẫn dắt việc tích hợp các nguồn dữ liệu từ nhiều hệ thống khác nhau, đảm bảo tính chính xác, bảo mật và khả năng mở rộng. Thông qua các báo cáo trực quan và phân tích sâu, dự án đã góp phần cung cấp góc nhìn toàn diện về thị trường, hỗ trợ Bộ Công Thương trong việc xây dựng chính sách và định hướng chiến lược phát triển kinh tế quốc gia.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Báo cáo tài chính kế toán",
-    "client": "Habitat for Humanity",
-    "client_logo": "https://logo.clearbit.com/habitatforhumanity.com",
-    "industry": "Nonprofit",
-    "domain": "Accounting;#Management",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "HFH-01",
+    "projectName": "Báo cáo tài chính kế toán",
+    "clientName": "Habitat for Humanity",
+    "clientLogo": "./assets/images/clients/habitat-for-humanity.webp",
+    "clientLegalName": "Habitat for Humanity International",
+    "clientTaxCode": "Hoa Kỳ (501c3)",
+    "clientSummary": "Tổ chức phi chính phủ quốc tế hỗ trợ xây dựng nhà ở xã hội và cộng đồng.",
     "role": "Data Analyst",
-    "team_size": null,
-    "start_date": "2018-09-01",
-    "end_date": "2019-03-01",
+    "roleText": "Data Analyst",
+    "teamSize": 4,
+    "year": "2018",
+    "startDate": "2018-09",
+    "endDate": "2019-03",
     "technologies": [
       "Power BI",
       "Excel"
     ],
+    "skills": [
+      "Power BI",
+      "Excel"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Accounting",
+      "Management"
+    ],
+    "industry": "Nonprofit",
     "overview": "",
+    "summary": "",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Báo cáo phân tích kinh doanh",
-    "client": "Healthy Humor",
-    "client_logo": "./assets/images/clients/healthy-humor.svg",
-    "industry": "Nonprofit",
-    "domain": "Accounting",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "HH-01",
+    "projectName": "Báo cáo phân tích kinh doanh",
+    "clientName": "Healthy Humor",
+    "clientLogo": "./assets/images/clients/healthy-humor.svg",
+    "clientLegalName": "Healthy Humor, Inc.",
+    "clientTaxCode": "Hoa Kỳ (501c3)",
+    "clientSummary": "Tổ chức phi lợi nhuận bệnh viện nhi Hoa Kỳ; phân tích tài chính & vận hành",
     "role": "Data Analyst",
-    "team_size": 2,
-    "start_date": "2018-09-01",
-    "end_date": "2019-03-01",
+    "roleText": "Data Analyst",
+    "teamSize": 2,
+    "year": "2018",
+    "startDate": "2018-09",
+    "endDate": "2019-03",
     "technologies": [
       "Power BI",
       "SQL"
     ],
+    "skills": [
+      "Power BI",
+      "SQL"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Accounting"
+    ],
+    "industry": "Nonprofit",
     "overview": "Consult and build accounting and financial administration reports based on synchronized SharePoint and QuickBooks data.",
+    "summary": "Consult and build accounting and financial administration reports based on synchronized SharePoint and QuickBooks data.",
     "responsibilities": [
       "Study accounting data structures and financial indicator formulas.",
       "Consult report form and build finance reporting suites.",
@@ -1009,314 +1756,536 @@
     "featured": true
   },
   {
-    "name": "Xây dựng bao cáo kế toán",
-    "client": "TechImpact",
-    "client_logo": "https://logo.clearbit.com/techimpact.com",
-    "industry": "Technology and IT Services",
-    "domain": "Accounting",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "TI-01",
+    "projectName": "Xây dựng bao cáo kế toán",
+    "clientName": "TechImpact",
+    "clientLogo": "./assets/images/clients/techimpact.webp",
+    "clientLegalName": "Tech Impact, Inc.",
+    "clientTaxCode": "Hoa Kỳ (501c3)",
+    "clientSummary": "Tổ chức cung cấp giải pháp công nghệ và phân tích dữ liệu cho cộng đồng.",
     "role": "Data Analyst",
-    "team_size": null,
-    "start_date": "2018-08-01",
-    "end_date": "2019-03-01",
+    "roleText": "Data Analyst",
+    "teamSize": 4,
+    "year": "2018",
+    "startDate": "2018-08",
+    "endDate": "2019-03",
     "technologies": [
       "Power BI",
       "Excel"
     ],
+    "skills": [
+      "Power BI",
+      "Excel"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Accounting"
+    ],
+    "industry": "Technology and IT Services",
     "overview": "",
+    "summary": "",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Báo cáo phân tích chuyển đổi trên Hubspot",
-    "client": "Your Part-Time Controllers",
-    "client_logo": "https://logo.clearbit.com/yourparttimecontrollers.com",
-    "industry": "Consulting Service",
-    "domain": "Marketing;#Customer Service;#Sales",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "YPTC-02",
+    "projectName": "Báo cáo phân tích chuyển đổi trên Hubspot",
+    "clientName": "Your Part-Time Controllers",
+    "clientLogo": "./assets/images/YPTC-Logo.png",
+    "clientLegalName": "Your Part-Time Controller, LLC",
+    "clientTaxCode": "Hoa Kỳ (yptc.com)",
+    "clientSummary": "Tư vấn tài chính & kế toán quản trị phi lợi nhuận tại Mỹ.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2018-06-01",
-    "end_date": "2018-09-01",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2018",
+    "startDate": "2018-06",
+    "endDate": "2018-09",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Marketing",
+      "Customer Service",
+      "Sales"
+    ],
+    "industry": "Consulting Service",
     "overview": "",
+    "summary": "",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Báo cáo phân tích dòng tiền",
-    "client": "The Mission Continues",
-    "client_logo": "https://logo.clearbit.com/themissioncontinues.com",
-    "industry": "Nonprofit",
-    "domain": "Accounting",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "TMC-01",
+    "projectName": "Báo cáo phân tích dòng tiền",
+    "clientName": "The Mission Continues",
+    "clientLogo": "./assets/images/clients/the-mission-continues.jpg",
+    "clientLegalName": "The Mission Continues",
+    "clientTaxCode": "Hoa Kỳ (501c3)",
+    "clientSummary": "Tổ chức phi lợi nhuận quốc gia tại Mỹ kết nối cựu chiến binh phục vụ cộng đồng.",
     "role": "Data Analyst",
-    "team_size": null,
-    "start_date": "2018-06-01",
-    "end_date": "2018-09-01",
+    "roleText": "Data Analyst",
+    "teamSize": 4,
+    "year": "2018",
+    "startDate": "2018-06",
+    "endDate": "2018-09",
     "technologies": [
       "Power BI",
       "SQL"
     ],
+    "skills": [
+      "Power BI",
+      "SQL"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Accounting"
+    ],
+    "industry": "Nonprofit",
     "overview": "",
+    "summary": "",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Mô hình tư vấn kiểm tra dịch vụ khách hàng",
-    "client": "Your Part-Time Controllers",
-    "client_logo": "https://logo.clearbit.com/yourparttimecontrollers.com",
-    "industry": "Consulting Service",
-    "domain": "Management;#Human Resources (HR);#Customer Service;#Accounting",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "YPTC-03",
+    "projectName": "Mô hình tư vấn kiểm tra dịch vụ khách hàng",
+    "clientName": "Your Part-Time Controllers",
+    "clientLogo": "./assets/images/YPTC-Logo.png",
+    "clientLegalName": "Your Part-Time Controller, LLC",
+    "clientTaxCode": "Hoa Kỳ (yptc.com)",
+    "clientSummary": "Tư vấn tài chính & kế toán quản trị phi lợi nhuận tại Mỹ.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2018-04-01",
-    "end_date": "2018-06-01",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2018",
+    "startDate": "2018-04",
+    "endDate": "2018-06",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Management",
+      "Human Resources (HR)",
+      "Customer Service",
+      "Accounting"
+    ],
+    "industry": "Consulting Service",
     "overview": "",
+    "summary": "",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Báo cáo kế toán quản trị",
-    "client": "Arm In Arm",
-    "client_logo": "https://logo.clearbit.com/arminarm.com",
-    "industry": "Nonprofit",
-    "domain": "Accounting",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "AIA-01",
+    "projectName": "Báo cáo kế toán quản trị",
+    "clientName": "Arm In Arm",
+    "clientLogo": "./assets/images/clients/arm-in-arm.png",
+    "clientLegalName": "Arm In Arm, Inc.",
+    "clientTaxCode": "Hoa Kỳ (501c3)",
+    "clientSummary": "Tổ chức phi lợi nhuận hỗ trợ an sinh xã hội tại New Jersey, Hoa Kỳ.",
     "role": "Data Analyst",
-    "team_size": null,
-    "start_date": "2018-03-01",
-    "end_date": "2018-09-01",
+    "roleText": "Data Analyst",
+    "teamSize": 4,
+    "year": "2018",
+    "startDate": "2018-03",
+    "endDate": "2018-09",
     "technologies": [
       "Power BI",
       "SQL"
     ],
+    "skills": [
+      "Power BI",
+      "SQL"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Accounting"
+    ],
+    "industry": "Nonprofit",
     "overview": "",
+    "summary": "",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Mô hình phân loại khách hàng RFMQ",
-    "client": "Your Part-Time Controllers",
-    "client_logo": "https://logo.clearbit.com/yourparttimecontrollers.com",
-    "industry": "Consulting Service",
-    "domain": "Sales;#Customer Service",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "YPTC-04",
+    "projectName": "Mô hình phân loại khách hàng RFMQ",
+    "clientName": "Your Part-Time Controllers",
+    "clientLogo": "./assets/images/YPTC-Logo.png",
+    "clientLegalName": "Your Part-Time Controller, LLC",
+    "clientTaxCode": "Hoa Kỳ (yptc.com)",
+    "clientSummary": "Tư vấn tài chính & kế toán quản trị phi lợi nhuận tại Mỹ.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2018-02-01",
-    "end_date": "2018-04-01",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2018",
+    "startDate": "2018-02",
+    "endDate": "2018-04",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Sales",
+      "Customer Service"
+    ],
+    "industry": "Consulting Service",
     "overview": "",
+    "summary": "",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Mô hình tối ưu chi phí cung ứng vật dụng",
-    "client": "Your Part-Time Controllers",
-    "client_logo": "https://logo.clearbit.com/yourparttimecontrollers.com",
-    "industry": "Consulting Service",
-    "domain": "Management;#Human Resources (HR)",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "YPTC-05",
+    "projectName": "Mô hình tối ưu chi phí cung ứng vật dụng",
+    "clientName": "Your Part-Time Controllers",
+    "clientLogo": "./assets/images/YPTC-Logo.png",
+    "clientLegalName": "Your Part-Time Controller, LLC",
+    "clientTaxCode": "Hoa Kỳ (yptc.com)",
+    "clientSummary": "Tư vấn tài chính & kế toán quản trị phi lợi nhuận tại Mỹ.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2018-01-01",
-    "end_date": "2018-02-01",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2018",
+    "startDate": "2018-01",
+    "endDate": "2018-02",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Management",
+      "Human Resources (HR)"
+    ],
+    "industry": "Consulting Service",
     "overview": "",
+    "summary": "",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Bao cáo phân tích Web Traffic",
-    "client": "Your Part-Time Controllers",
-    "client_logo": "https://logo.clearbit.com/yourparttimecontrollers.com",
-    "industry": "Consulting Service",
-    "domain": "Marketing",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "YPTC-06",
+    "projectName": "Bao cáo phân tích Web Traffic",
+    "clientName": "Your Part-Time Controllers",
+    "clientLogo": "./assets/images/YPTC-Logo.png",
+    "clientLegalName": "Your Part-Time Controller, LLC",
+    "clientTaxCode": "Hoa Kỳ (yptc.com)",
+    "clientSummary": "Tư vấn tài chính & kế toán quản trị phi lợi nhuận tại Mỹ.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2017-12-01",
-    "end_date": "2018-01-01",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2017",
+    "startDate": "2017-12",
+    "endDate": "2018-01",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Marketing"
+    ],
+    "industry": "Consulting Service",
     "overview": "",
+    "summary": "",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Bao cáo tính công và quỹ nghỉ phép nhân sự",
-    "client": "Your Part-Time Controllers",
-    "client_logo": "https://logo.clearbit.com/yourparttimecontrollers.com",
-    "industry": "Consulting Service",
-    "domain": "Human Resources (HR)",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "YPTC-07",
+    "projectName": "Bao cáo tính công và quỹ nghỉ phép nhân sự",
+    "clientName": "Your Part-Time Controllers",
+    "clientLogo": "./assets/images/YPTC-Logo.png",
+    "clientLegalName": "Your Part-Time Controller, LLC",
+    "clientTaxCode": "Hoa Kỳ (yptc.com)",
+    "clientSummary": "Tư vấn tài chính & kế toán quản trị phi lợi nhuận tại Mỹ.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2017-11-01",
-    "end_date": "2017-12-01",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2017",
+    "startDate": "2017-11",
+    "endDate": "2017-12",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Human Resources (HR)"
+    ],
+    "industry": "Consulting Service",
     "overview": "Dự án tập trung xây dựng hệ thống báo cáo Power BI về tính công và quản lý quỹ nghỉ phép nhân sự, giúp YPTC theo dõi và quản lý thông tin nhân sự một cách hiệu quả. Hệ thống báo cáo hỗ trợ minh bạch hóa dữ liệu, tối ưu hóa quy trình quản lý và tăng cường trải nghiệm của nhân viê",
+    "summary": "Dự án tập trung xây dựng hệ thống báo cáo Power BI về tính công và quản lý quỹ nghỉ phép nhân sự, giúp YPTC theo dõi và quản lý thông tin nhân sự một cách hiệu quả. Hệ thống báo cáo hỗ trợ minh bạch hóa dữ liệu, tối ưu hóa quy trình quản lý và tăng cường trải nghiệm của nhân viê",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Hệ thống báo công nợ khách hàng",
-    "client": "Your Part-Time Controllers",
-    "client_logo": "https://logo.clearbit.com/yourparttimecontrollers.com",
-    "industry": "Consulting Service",
-    "domain": "Accounting;#Customer Service",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "YPTC-08",
+    "projectName": "Hệ thống báo công nợ khách hàng",
+    "clientName": "Your Part-Time Controllers",
+    "clientLogo": "./assets/images/YPTC-Logo.png",
+    "clientLegalName": "Your Part-Time Controller, LLC",
+    "clientTaxCode": "Hoa Kỳ (yptc.com)",
+    "clientSummary": "Tư vấn tài chính & kế toán quản trị phi lợi nhuận tại Mỹ.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2017-10-01",
-    "end_date": "2017-11-01",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2017",
+    "startDate": "2017-10",
+    "endDate": "2017-11",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Accounting",
+      "Customer Service"
+    ],
+    "industry": "Consulting Service",
     "overview": "Dự án phát triển hệ thống báo cáo công nợ khách hàng trên nền tảng Power BI, tích hợp các dữ liệu từ kế toán và dịch vụ khách hàng. Giải pháp cung cấp cái nhìn tổng quan và chi tiết về công nợ, giúp YPTC dễ dàng quản lý và theo dõi tình hình tài chính, đồng thời cải thiện quy trình thu hồi nợ và giao tiếp với khách hàng",
+    "summary": "Dự án phát triển hệ thống báo cáo công nợ khách hàng trên nền tảng Power BI, tích hợp các dữ liệu từ kế toán và dịch vụ khách hàng. Giải pháp cung cấp cái nhìn tổng quan và chi tiết về công nợ, giúp YPTC dễ dàng quản lý và theo dõi tình hình tài chính, đồng thời cải thiện quy trình thu hồi nợ và giao tiếp với khách hàng",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Hệ thống báo cáo chi phí vận hành",
-    "client": "Your Part-Time Controllers",
-    "client_logo": "https://logo.clearbit.com/yourparttimecontrollers.com",
-    "industry": "Consulting Service",
-    "domain": "Accounting",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "YPTC-09",
+    "projectName": "Hệ thống báo cáo chi phí vận hành",
+    "clientName": "Your Part-Time Controllers",
+    "clientLogo": "./assets/images/YPTC-Logo.png",
+    "clientLegalName": "Your Part-Time Controller, LLC",
+    "clientTaxCode": "Hoa Kỳ (yptc.com)",
+    "clientSummary": "Tư vấn tài chính & kế toán quản trị phi lợi nhuận tại Mỹ.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2017-09-01",
-    "end_date": "2017-10-01",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2017",
+    "startDate": "2017-09",
+    "endDate": "2017-10",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Accounting"
+    ],
+    "industry": "Consulting Service",
     "overview": "Dự án cung cấp giải pháp báo cáo Power BI để quản lý chi phí vận hành cho YPTC, tập trung vào việc tối ưu hóa và phân tích các khoản chi phí. Hệ thống báo cáo trực quan này giúp doanh nghiệp kiểm soát hiệu quả nguồn lực tài chính và đưa ra các quyết định chiến lược kịp thời.",
+    "summary": "Dự án cung cấp giải pháp báo cáo Power BI để quản lý chi phí vận hành cho YPTC, tập trung vào việc tối ưu hóa và phân tích các khoản chi phí. Hệ thống báo cáo trực quan này giúp doanh nghiệp kiểm soát hiệu quả nguồn lực tài chính và đưa ra các quyết định chiến lược kịp thời.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Báo cáo kế toán từ Dynamics 365",
-    "client": "Bestwork",
-    "client_logo": "https://logo.clearbit.com/bestwork.com",
-    "industry": "Nonprofit",
-    "domain": "Accounting",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "BWK-01",
+    "projectName": "Báo cáo kế toán từ Dynamics 365",
+    "clientName": "Bestwork",
+    "clientLogo": "./assets/images/clients/bestworks.svg",
+    "clientLegalName": "BestWorks Inc.",
+    "clientTaxCode": "Quốc tế",
+    "clientSummary": "Đối tác công nghệ quốc tế; giải pháp phân tích dữ liệu & dashboard vận hành.",
     "role": "Data Analyst",
-    "team_size": null,
-    "start_date": "2017-08-01",
-    "end_date": "2018-08-01",
+    "roleText": "Data Analyst",
+    "teamSize": 4,
+    "year": "2017",
+    "startDate": "2017-08",
+    "endDate": "2018-08",
     "technologies": [
       "Power BI",
       "SQL"
     ],
+    "skills": [
+      "Power BI",
+      "SQL"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Accounting"
+    ],
+    "industry": "Nonprofit",
     "overview": "",
+    "summary": "",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Hệ thống báo cáo kế toán từ YUMS",
-    "client": "Your Part-Time Controllers",
-    "client_logo": "https://logo.clearbit.com/yourparttimecontrollers.com",
-    "industry": "Consulting Service",
-    "domain": "Accounting",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "YPTC-10",
+    "projectName": "Hệ thống báo cáo kế toán từ YUMS",
+    "clientName": "Your Part-Time Controllers",
+    "clientLogo": "./assets/images/YPTC-Logo.png",
+    "clientLegalName": "Your Part-Time Controller, LLC",
+    "clientTaxCode": "Hoa Kỳ (yptc.com)",
+    "clientSummary": "Tư vấn tài chính & kế toán quản trị phi lợi nhuận tại Mỹ.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2017-03-01",
-    "end_date": "2017-06-01",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2017",
+    "startDate": "2017-03",
+    "endDate": "2017-06",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Accounting"
+    ],
+    "industry": "Consulting Service",
     "overview": "Dự án triển khai báo cáo Power BI nhằm tổng hợp và phân tích dữ liệu kế toán từ hệ thống YUMS, giúp YPTC theo dõi các số liệu tài chính một cách hiệu quả và chi tiết. Hệ thống không chỉ tự động hóa quy trình tổng hợp dữ liệu mà còn tạo ra các báo cáo trực quan, phục vụ tốt cho việc quản trị tài chính.",
+    "summary": "Dự án triển khai báo cáo Power BI nhằm tổng hợp và phân tích dữ liệu kế toán từ hệ thống YUMS, giúp YPTC theo dõi các số liệu tài chính một cách hiệu quả và chi tiết. Hệ thống không chỉ tự động hóa quy trình tổng hợp dữ liệu mà còn tạo ra các báo cáo trực quan, phục vụ tốt cho việc quản trị tài chính.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Bộ báo cáo quy trình tuyển dụng từ iCIMS",
-    "client": "Your Part-Time Controllers",
-    "client_logo": "https://logo.clearbit.com/yourparttimecontrollers.com",
-    "industry": "Consulting Service",
-    "domain": "Recruiting",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "YPTC-11",
+    "projectName": "Bộ báo cáo quy trình tuyển dụng từ iCIMS",
+    "clientName": "Your Part-Time Controllers",
+    "clientLogo": "./assets/images/YPTC-Logo.png",
+    "clientLegalName": "Your Part-Time Controller, LLC",
+    "clientTaxCode": "Hoa Kỳ (yptc.com)",
+    "clientSummary": "Tư vấn tài chính & kế toán quản trị phi lợi nhuận tại Mỹ.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2016-12-01",
-    "end_date": "2017-03-01",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2016",
+    "startDate": "2016-12",
+    "endDate": "2017-03",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Recruiting"
+    ],
+    "industry": "Consulting Service",
     "overview": "Dự án xây dựng bộ báo cáo Power BI dành riêng cho quy trình tuyển dụng từ hệ thống iCIMS, giúp YPTC quản lý và phân tích hiệu quả các dữ liệu liên quan đến tuyển dụng. Giải pháp cung cấp các báo cáo trực quan về tiến trình, hiệu quả và kết quả tuyển dụng, hỗ trợ tối ưu hóa quy trình thu hút nhân tài.",
+    "summary": "Dự án xây dựng bộ báo cáo Power BI dành riêng cho quy trình tuyển dụng từ hệ thống iCIMS, giúp YPTC quản lý và phân tích hiệu quả các dữ liệu liên quan đến tuyển dụng. Giải pháp cung cấp các báo cáo trực quan về tiến trình, hiệu quả và kết quả tuyển dụng, hỗ trợ tối ưu hóa quy trình thu hút nhân tài.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Hệ thống báo cáo quản trị nhân sự YUMS",
-    "client": "Your Part-Time Controllers",
-    "client_logo": "https://logo.clearbit.com/yourparttimecontrollers.com",
-    "industry": "Consulting Service",
-    "domain": "Human Resources (HR)",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "YPTC-12",
+    "projectName": "Hệ thống báo cáo quản trị nhân sự YUMS",
+    "clientName": "Your Part-Time Controllers",
+    "clientLogo": "./assets/images/YPTC-Logo.png",
+    "clientLegalName": "Your Part-Time Controller, LLC",
+    "clientTaxCode": "Hoa Kỳ (yptc.com)",
+    "clientSummary": "Tư vấn tài chính & kế toán quản trị phi lợi nhuận tại Mỹ.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2016-09-01",
-    "end_date": "2016-12-01",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2016",
+    "startDate": "2016-09",
+    "endDate": "2016-12",
     "technologies": [
       "Power BI"
     ],
+    "skills": [
+      "Power BI"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Human Resources (HR)"
+    ],
+    "industry": "Consulting Service",
     "overview": "Dự án triển khai hệ thống báo cáo quản trị nhân sự trên nền tảng Power BI, giúp doanh nghiệp YPTC dễ dàng theo dõi, phân tích và quản lý các chỉ số liên quan đến nhân sự. Hệ thống cung cấp các báo cáo trực quan, hỗ trợ ra quyết định chiến lược trong việc quản lý nguồn lực. Với vai trò tư vấn, dự án đảm bảo đáp ứng tốt nhu cầu quản trị nhân sự hiện đại và hiệu quả.",
+    "summary": "Dự án triển khai hệ thống báo cáo quản trị nhân sự trên nền tảng Power BI, giúp doanh nghiệp YPTC dễ dàng theo dõi, phân tích và quản lý các chỉ số liên quan đến nhân sự. Hệ thống cung cấp các báo cáo trực quan, hỗ trợ ra quyết định chiến lược trong việc quản lý nguồn lực. Với vai trò tư vấn, dự án đảm bảo đáp ứng tốt nhu cầu quản trị nhân sự hiện đại và hiệu quả.",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Hệ thống báo cáo quản trị DynamicsCRM",
-    "client": "Your Part-Time Controllers",
-    "client_logo": "https://logo.clearbit.com/yourparttimecontrollers.com",
-    "industry": "Consulting Service",
-    "domain": "Accounting;#Sales;#Marketing;#Customer Service",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "YPTC-13",
+    "projectName": "Hệ thống báo cáo quản trị DynamicsCRM",
+    "clientName": "Your Part-Time Controllers",
+    "clientLogo": "./assets/images/YPTC-Logo.png",
+    "clientLegalName": "Your Part-Time Controller, LLC",
+    "clientTaxCode": "Hoa Kỳ (yptc.com)",
+    "clientSummary": "Tư vấn tài chính & kế toán quản trị phi lợi nhuận tại Mỹ.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2016-07-01",
-    "end_date": "2016-09-01",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2016",
+    "startDate": "2016-07",
+    "endDate": "2016-09",
     "technologies": [
       "Power BI",
       "Tableau"
     ],
+    "skills": [
+      "Power BI",
+      "Tableau"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Accounting",
+      "Sales",
+      "Marketing",
+      "Customer Service"
+    ],
+    "industry": "Consulting Service",
     "overview": "",
+    "summary": "",
     "responsibilities": [],
     "featured": false
   },
   {
-    "name": "Hệ thống báo cáo đánh giá công cụ BI",
-    "client": "Your Part-Time Controllers",
-    "client_logo": "https://logo.clearbit.com/yourparttimecontrollers.com",
-    "industry": "Consulting Service",
-    "domain": "Information Technology (IT);#Accounting",
-    "category": "Triển khai báo cáo Power BI",
+    "code": "YPTC-14",
+    "projectName": "Hệ thống báo cáo đánh giá công cụ BI",
+    "clientName": "Your Part-Time Controllers",
+    "clientLogo": "./assets/images/YPTC-Logo.png",
+    "clientLegalName": "Your Part-Time Controller, LLC",
+    "clientTaxCode": "Hoa Kỳ (yptc.com)",
+    "clientSummary": "Tư vấn tài chính & kế toán quản trị phi lợi nhuận tại Mỹ.",
     "role": "BI Analyst",
-    "team_size": null,
-    "start_date": "2015-09-01",
-    "end_date": "2016-06-01",
+    "roleText": "BI Analyst",
+    "teamSize": 4,
+    "year": "2015",
+    "startDate": "2015-09",
+    "endDate": "2016-06",
     "technologies": [
       "Power BI",
       "Tableau"
     ],
+    "skills": [
+      "Power BI",
+      "Tableau"
+    ],
+    "category": "Triển khai báo cáo Power BI",
+    "domain": [
+      "Information Technology (IT)",
+      "Accounting"
+    ],
+    "industry": "Consulting Service",
     "overview": "Để hỗ trợ YPTC nắm bắt xu hướng và đưa ra các quyết định chiến lược về lựa chọn công cụ BI, dự án được triển khai nhằm xây dựng bộ báo cáo khảo sát thị trường. Bộ báo cáo này tập trung đánh giá các công cụ BI hàng đầu dựa trên các tiêu chí dành cho người sử dụng, tính năng nổi bật và khả năng công nghệ. Giải pháp không chỉ cung cấp cái nhìn toàn diện, mà còn giúp YPTC lựa chọn các công cụ phù hợp nhất với nhu cầu và định hướng phát triển. Trong vai trò Quản lý Dự án (PM), tôi đảm bảo quá trình nghiên cứu, phân tích và tổng hợp dữ liệu diễn ra hiệu quả, đồng thời phối hợp chặt chẽ với các bên liên quan để hoàn thành báo cáo với chất lượng cao nhất.",
+    "summary": "Để hỗ trợ YPTC nắm bắt xu hướng và đưa ra các quyết định chiến lược về lựa chọn công cụ BI, dự án được triển khai nhằm xây dựng bộ báo cáo khảo sát thị trường. Bộ báo cáo này tập trung đánh giá các công cụ BI hàng đầu dựa trên các tiêu chí dành cho người sử dụng, tính năng nổi bật và khả năng công nghệ. Giải pháp không chỉ cung cấp cái nhìn toàn diện, mà còn giúp YPTC lựa chọn các công cụ phù hợp nhất với nhu cầu và định hướng phát triển. Trong vai trò Quản lý Dự án (PM), tôi đảm bảo quá trình nghiên cứu, phân tích và tổng hợp dữ liệu diễn ra hiệu quả, đồng thời phối hợp chặt chẽ với các bên liên quan để hoàn thành báo cáo với chất lượng cao nhất.",
     "responsibilities": [],
     "featured": false
   }
