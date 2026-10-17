@@ -270,13 +270,14 @@
             background: var(--bg-panel);
             overflow: hidden;
             box-shadow: 0 6px 20px -8px rgba(0, 0, 0, 0.18);
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+            cursor: pointer;
         }
 
         .pbi-card:hover {
             transform: translateY(-4px);
             border-color: rgba(242, 200, 17, 0.65);
-            box-shadow: 0 16px 36px -12px rgba(242, 200, 17, 0.2);
+            box-shadow: 0 16px 36px -12px rgba(242, 200, 17, 0.22);
         }
 
         .pbi-card-thumb {
@@ -337,19 +338,47 @@
             backdrop-filter: blur(8px);
         }
 
-        .pbi-status-pill--live {
-            background: rgba(16, 185, 129, 0.9);
-            color: #ffffff;
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        .pbi-live-pulse-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: #ffffff !important;
+            border: 1px solid rgba(16, 185, 129, 0.65);
+            background: rgba(16, 185, 129, 0.28);
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.45);
+            cursor: pointer;
+            pointer-events: auto;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+            animation: pbiLivePulse 2s infinite ease-in-out;
+            text-decoration: none;
         }
 
-        .pbi-status-pill--live::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            box-shadow: 0 0 6px #ffffff;
+        .pbi-live-pulse-btn:hover {
+            background: rgba(16, 185, 129, 0.95);
+            color: #ffffff !important;
+            border-color: #6ee7b7;
+            box-shadow: 0 0 16px rgba(16, 185, 129, 0.9);
+            transform: translateY(-1px) scale(1.05);
+        }
+
+        @keyframes pbiLivePulse {
+            0%, 100% {
+                box-shadow: 0 0 4px rgba(16, 185, 129, 0.35);
+                border-color: rgba(16, 185, 129, 0.65);
+                background: rgba(16, 185, 129, 0.28);
+            }
+            50% {
+                box-shadow: 0 0 14px 3px rgba(16, 185, 129, 0.85);
+                border-color: #6ee7b7;
+                background: rgba(16, 185, 129, 0.48);
+                color: #ffffff !important;
+            }
         }
 
         .pbi-status-pill--showcase {
@@ -359,7 +388,7 @@
         }
 
         .pbi-card-body {
-            padding: 0.95rem;
+            padding: 1rem 1.05rem 1.15rem 1.05rem;
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
@@ -950,32 +979,18 @@
                 }
 
                 grid.innerHTML = filtered.map(r => {
-                    const liveBadge = r.is_interactive ?
-                        `<span class="pbi-status-pill pbi-status-pill--live">Live Embed</span>` :
-                        `<span class="pbi-status-pill pbi-status-pill--showcase">Showcase</span>`;
-
-                    const viewActionBtn = r.embed_url ?
-                        `<a href="${r.embed_url}" target="_blank" rel="noreferrer" class="pbi-btn pbi-btn--primary">
-                            <span class="material-symbols-outlined" style="font-size:16px;">open_in_new</span>
-                            <span class="t-lang" data-en="Open Live" data-vi="Xem Báo Cáo">Xem Báo Cáo</span>
-                        </a>` :
-                        `<button class="pbi-btn pbi-btn--outline" disabled style="opacity:0.6;">
-                            <span class="material-symbols-outlined" style="font-size:16px;">lock</span>
-                            <span class="t-lang" data-en="Internal" data-vi="Nội bộ">Nội bộ</span>
-                        </button>`;
-
-                    const previewActionBtn = r.is_interactive ?
-                        `<button class="pbi-btn pbi-btn--outline btn-preview-modal" data-id="${r.id}">
-                            <span class="material-symbols-outlined" style="font-size:16px;">visibility</span>
-                            <span class="t-lang" data-en="Preview" data-vi="Xem Trực Tiếp">Xem Trực Tiếp</span>
+                    const liveActionBtn = r.is_interactive ?
+                        `<button class="pbi-live-pulse-btn btn-preview-modal" data-id="${r.id}" type="button" title="Xem trực tiếp báo cáo ${r.title_vi}">
+                            <span class="material-symbols-outlined" style="font-size:13px;">visibility</span>
+                            <span class="t-lang" data-en="Live Preview" data-vi="Xem Trực Tiếp">Xem Trực Tiếp</span>
                         </button>` :
-                        `<button class="pbi-btn pbi-btn--outline btn-detail-toggle" data-id="${r.id}">
-                            <span class="material-symbols-outlined" style="font-size:16px;">info</span>
-                            <span class="t-lang" data-en="Details" data-vi="Chi tiết">Chi tiết</span>
-                        </button>`;
+                        `<span class="pbi-status-pill pbi-status-pill--showcase">
+                            <span class="material-symbols-outlined" style="font-size:12px;">article</span>
+                            <span>Showcase</span>
+                        </span>`;
 
                     return `
-                        <article class="pbi-card" data-domain="${r.domain}">
+                        <article class="pbi-card" data-domain="${r.domain}" data-id="${r.id}" role="button" tabindex="0" title="Nhấp để xem trực tiếp báo cáo ${r.title_vi}">
                             <div class="pbi-card-thumb">
                                 <img src="./${r.thumbnail}" alt="${r.title_vi}" loading="lazy" />
                                 <div class="pbi-card-badges">
@@ -983,36 +998,31 @@
                                         <span class="material-symbols-outlined" style="font-size:14px; color:${r.domain_color};">${r.domain_icon}</span>
                                         ${r.domain_vi}
                                     </span>
-                                    ${liveBadge}
+                                    ${liveActionBtn}
                                 </div>
                             </div>
                             <div class="pbi-card-body">
                                 <span class="pbi-card-code">${r.id} • ${r.category}</span>
                                 <h3 class="pbi-card-title t-lang" data-en="${r.title_en}" data-vi="${r.title_vi}">${r.title_vi}</h3>
                                 <p class="pbi-card-desc t-lang" data-en="${r.description_en}" data-vi="${r.description_vi}">${r.description_vi}</p>
-                                <div class="pbi-card-meta">
-                                    <span class="pbi-card-author">
-                                        <span class="material-symbols-outlined" style="font-size:14px;">person</span>
-                                        ${r.author}
-                                    </span>
-                                    <span>${r.supervisor ? 'Mentor: ' + r.supervisor : 'KPIM Solution'}</span>
-                                </div>
-                            </div>
-                            <div class="pbi-card-actions">
-                                ${viewActionBtn}
-                                ${previewActionBtn}
                             </div>
                         </article>
                     `;
                 }).join("");
 
-                // Attach modal preview events
-                document.querySelectorAll(".btn-preview-modal").forEach(btn => {
-                    btn.addEventListener("click", function() {
+                // Attach click event for entire card or preview button
+                document.querySelectorAll(".pbi-card").forEach(card => {
+                    card.addEventListener("click", function(e) {
                         const id = this.getAttribute("data-id");
                         const report = POWERBI_REPORTS.find(x => x.id === id);
                         if (report && report.embed_url) {
                             openModal(report);
+                        }
+                    });
+                    card.addEventListener("keydown", function(e) {
+                        if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            this.click();
                         }
                     });
                 });
