@@ -1,5 +1,468 @@
 [
   {
+    "schedule_date": "2026-10-17",
+    "post_date": "2026-10-17",
+    "status": "4. Posted",
+    "category": "Video bài giảng",
+    "topic": "Data News",
+    "keywords": [
+      "YouTube",
+      "AI",
+      "Data",
+      "Tech",
+      "Shorts"
+    ],
+    "title": "Data News tuan W42 - Top 5 tin Data #Shorts",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.youtube.com/watch?v=yolDF9FelO4",
+    "detail": "Top 5 tin Dữ liệu & AI nóng nhất tuần 42 (12/10 - 18/10/2026) trong 2 phút.",
+    "channel": "youtube_ducnguyen",
+    "thumbnail": "https://i.ytimg.com/vi/yolDF9FelO4/hqdefault.jpg"
+  },
+  {
+    "schedule_date": "2026-10-17",
+    "post_date": "2026-10-17",
+    "status": "4. Posted",
+    "category": "Video bài giảng",
+    "topic": "Data News",
+    "keywords": [
+      "YouTube",
+      "AI",
+      "Data",
+      "Tech"
+    ],
+    "title": "Data News tuan W42 - Tom tat tin Du lieu noi bat (12/10 - 18/10/2026)",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.youtube.com/watch?v=oXMV0lZlVqs",
+    "detail": "Bản tin Dữ liệu & AI tuần 42 (12/10 - 18/10/2026) — tóm tắt 5 tin data nóng nhất tuần, tuyển chọn, biên tập và lồng tiếng bởi Duc Nguyen.",
+    "channel": "youtube_ducnguyen",
+    "thumbnail": "https://i.ytimg.com/vi/oXMV0lZlVqs/hqdefault.jpg"
+  },
+  {
+    "schedule_date": "2026-10-17",
+    "post_date": "2026-10-17",
+    "status": "4. Posted",
+    "category": "Video bài giảng",
+    "topic": "Data News",
+    "keywords": [
+      "YouTube",
+      "AI",
+      "Data",
+      "Tech"
+    ],
+    "title": "Hot Data | 17/10/2026 | Snowflake mở Data Mirroring: Khai tử đường ống ETL truyền thống",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.youtube.com/watch?v=w2E5ie-ADSo",
+    "detail": "Nỗi ám ảnh lớn nhất của bất kỳ kỹ sư dữ liệu nào chính là việc bảo trì các đường ống ETL kéo dữ liệu từ cơ sở dữ liệu tác nghiệp sang kho phân tích. Mỗi khi đội ngũ backend thêm một cột hay sửa kiểu dữ liệu, các công cụ CDC trung gian như Debezium ha",
+    "channel": "youtube_ducnguyen",
+    "thumbnail": "https://i.ytimg.com/vi/w2E5ie-ADSo/hqdefault.jpg"
+  },
+  {
+    "schedule_date": "2026-10-17",
+    "post_date": "2026-10-17",
+    "status": "4. Posted",
+    "category": "Video bài giảng",
+    "topic": "Data News",
+    "keywords": [
+      "YouTube",
+      "AI",
+      "Data",
+      "Tech",
+      "Shorts"
+    ],
+    "title": "⚡ 60 giây | Snowflake mở Data Mirroring: Khai tử đường ống ETL truyền thống #Shorts",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.youtube.com/watch?v=leFc66ZXkc8",
+    "detail": "🔥 Hot News 17/10/2026: Snowflake mở Data Mirroring: Khai tử đường ống ETL truyền thống",
+    "channel": "youtube_ducnguyen",
+    "thumbnail": "https://i.ytimg.com/vi/leFc66ZXkc8/hqdefault.jpg"
+  },
+  {
+    "schedule_date": "2026-10-16",
+    "post_date": "2026-10-16",
+    "status": "4. Posted",
+    "category": "Video bài giảng",
+    "topic": "AI News",
+    "keywords": [
+      "YouTube",
+      "AI",
+      "Data",
+      "Tech",
+      "Shorts"
+    ],
+    "title": "AI News tuan W42 - Top 5 tin AI #Shorts",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.youtube.com/watch?v=wEZGtqJ_nCU",
+    "detail": "Top 5 tin AI nóng nhất tuần 42 (12/10 - 18/10/2026) trong 2 phút.",
+    "channel": "youtube_ducnguyen",
+    "thumbnail": "https://i.ytimg.com/vi/wEZGtqJ_nCU/hqdefault.jpg"
+  },
+  {
+    "schedule_date": "2026-10-16",
+    "post_date": "2026-10-16",
+    "status": "4. Posted",
+    "category": "Video bài giảng",
+    "topic": "AI News",
+    "keywords": [
+      "YouTube",
+      "AI",
+      "Data",
+      "Tech"
+    ],
+    "title": "AI News tuan W42 - Tom tat tin AI noi bat (12/10 - 18/10/2026)",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.youtube.com/watch?v=LGqKHzKLpJA",
+    "detail": "Bản tin AI tuần 42 (12/10 - 18/10/2026) — tóm tắt 5 tin AI nóng nhất tuần, tuyển chọn, biên tập và lồng tiếng bởi Duc Nguyen.",
+    "channel": "youtube_ducnguyen",
+    "thumbnail": "https://i.ytimg.com/vi/LGqKHzKLpJA/hqdefault.jpg"
+  },
+  {
+    "schedule_date": "2026-10-16",
+    "post_date": "2026-10-16",
+    "status": "4. Posted",
+    "category": "Video bài giảng",
+    "topic": "AI News",
+    "keywords": [
+      "YouTube",
+      "AI",
+      "Data",
+      "Tech"
+    ],
+    "title": "Hot News | 16/10/2026 | Anthropic: Sâu AI tự nhân bản qua thiết bị gia đình",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.youtube.com/watch?v=pc9wBvcQNlw",
+    "detail": "Chúng ta thường nghĩ các mô hình trí tuệ nhân tạo mạnh mẽ chỉ có thể sống trong những trung tâm dữ liệu khổng lồ, ngốn hàng triệu kilowatt điện và cần cả một đội ngũ kỹ sư túc trực ngày đêm. Nhưng nếu một ngày, AI có thể tự sao chép chính mình, lén l",
+    "channel": "youtube_ducnguyen",
+    "thumbnail": "https://i.ytimg.com/vi/pc9wBvcQNlw/hqdefault.jpg"
+  },
+  {
+    "schedule_date": "2026-10-16",
+    "post_date": "2026-10-16",
+    "status": "4. Posted",
+    "category": "Video bài giảng",
+    "topic": "AI News",
+    "keywords": [
+      "YouTube",
+      "AI",
+      "Data",
+      "Tech",
+      "Shorts"
+    ],
+    "title": "⚡ 60 giây | Anthropic: Sâu AI tự nhân bản qua thiết bị gia đình #Shorts",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.youtube.com/watch?v=qtsBlczJJeA",
+    "detail": "🔥 Hot News 16/10/2026: Anthropic: Sâu AI tự nhân bản qua thiết bị gia đình",
+    "channel": "youtube_ducnguyen",
+    "thumbnail": "https://i.ytimg.com/vi/qtsBlczJJeA/hqdefault.jpg"
+  },
+  {
+    "schedule_date": "2026-10-15",
+    "post_date": "2026-10-15",
+    "status": "4. Posted",
+    "category": "Video bài giảng",
+    "topic": "Data News",
+    "keywords": [
+      "YouTube",
+      "AI",
+      "Data",
+      "Tech"
+    ],
+    "title": "Hot Data | 15/10/2026 | BigQuery khóa trần token: Chặn thảm họa hóa đơn SQL",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.youtube.com/watch?v=JOGzc-4yA8Y",
+    "detail": "Nỗi sợ lớn nhất của kỹ sư dữ liệu trong kỷ nguyên AI không phải là lỗi cú pháp, mà là một câu lệnh SQL chạy thành công nhưng đốt sạch ngân sách cả tháng. Khi nhúng các hàm LLM vào BigQuery, chỉ một sơ suất nhỏ không đặt điều kiện WHERE có thể khiến m",
+    "channel": "youtube_ducnguyen",
+    "thumbnail": "https://i.ytimg.com/vi/JOGzc-4yA8Y/hqdefault.jpg"
+  },
+  {
+    "schedule_date": "2026-10-15",
+    "post_date": "2026-10-15",
+    "status": "4. Posted",
+    "category": "Video bài giảng",
+    "topic": "Kiến thức công nghệ",
+    "keywords": [
+      "YouTube",
+      "AI",
+      "Data",
+      "Tech",
+      "Shorts"
+    ],
+    "title": "⚡ 60 giây | BigQuery khóa trần token: Chặn thảm họa hóa đơn SQL #Shorts",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.youtube.com/watch?v=2dKuVv7GSHI",
+    "detail": "🔥 Hot News 15/10/2026: BigQuery khóa trần token: Chặn thảm họa hóa đơn SQL",
+    "channel": "youtube_ducnguyen",
+    "thumbnail": "https://i.ytimg.com/vi/2dKuVv7GSHI/hqdefault.jpg"
+  },
+  {
+    "schedule_date": "2026-10-14",
+    "post_date": "2026-10-14",
+    "status": "4. Posted",
+    "category": "Video bài giảng",
+    "topic": "AI News",
+    "keywords": [
+      "YouTube",
+      "AI",
+      "Data",
+      "Tech",
+      "Shorts"
+    ],
+    "title": "⚡ 60 giây | Gartner: 3.500 tỷ đô hạ tầng AI nguy cơ bốc hơi #Shorts",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.youtube.com/watch?v=j0fk5UkEIRs",
+    "detail": "🔥 Hot News 14/10/2026: Gartner: 3.500 tỷ đô hạ tầng AI nguy cơ bốc hơi",
+    "channel": "youtube_ducnguyen",
+    "thumbnail": "https://i.ytimg.com/vi/j0fk5UkEIRs/hqdefault.jpg"
+  },
+  {
+    "schedule_date": "2026-10-14",
+    "post_date": "2026-10-14",
+    "status": "4. Posted",
+    "category": "Video bài giảng",
+    "topic": "AI News",
+    "keywords": [
+      "YouTube",
+      "AI",
+      "Data",
+      "Tech"
+    ],
+    "title": "Hot News | 14/10/2026 | Gartner: 3.500 tỷ đô hạ tầng AI nguy cơ bốc hơi",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.youtube.com/watch?v=PvGLG9LR1b8",
+    "detail": "Các tập đoàn công nghệ đang đổ hàng trăm tỷ đô la mỗi quý vào trung tâm dữ liệu và chip AI. Nhưng nếu những cỗ máy ngốn điện ấy không đem lại doanh thu như kỳ vọng thì sao? Hôm nay, tổ chức nghiên cứu hàng đầu Gartner cùng Quỹ Tiền tệ Quốc tế IMF vừa",
+    "channel": "youtube_ducnguyen",
+    "thumbnail": "https://i.ytimg.com/vi/PvGLG9LR1b8/hqdefault.jpg"
+  },
+  {
+    "schedule_date": "2026-10-13",
+    "post_date": "2026-10-13",
+    "status": "4. Posted",
+    "category": "Video bài giảng",
+    "topic": "Data News",
+    "keywords": [
+      "YouTube",
+      "AI",
+      "Data",
+      "Tech"
+    ],
+    "title": "Hot Data | 13/10/2026 | Amazon EMR Data Quality: Chặn dữ liệu bẩn tận gốc trên Spark",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.youtube.com/watch?v=FMK4e7fs0Ag",
+    "detail": "Trong ngành dữ liệu, có một câu châm ngôn kinh điển: Rác vào thì rác ra. Bất kỳ ai từng làm việc với Apache Spark đều hiểu nỗi sợ khi một tệp dữ liệu lỗi âm thầm lọt vào kho Lakehouse, làm sai lệch toàn bộ báo cáo doanh thu hay khiến mô hình AI đưa r",
+    "channel": "youtube_ducnguyen",
+    "thumbnail": "https://i.ytimg.com/vi/FMK4e7fs0Ag/hqdefault.jpg"
+  },
+  {
+    "schedule_date": "2026-10-13",
+    "post_date": "2026-10-13",
+    "status": "4. Posted",
+    "category": "Video bài giảng",
+    "topic": "Data News",
+    "keywords": [
+      "YouTube",
+      "AI",
+      "Data",
+      "Tech",
+      "Shorts"
+    ],
+    "title": "⚡ 60 giây | Amazon EMR Data Quality: Chặn dữ liệu bẩn tận gốc trên Spark #Shorts",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.youtube.com/watch?v=AuWBQZaSL_s",
+    "detail": "🔥 Hot News 13/10/2026: Amazon EMR Data Quality: Chặn dữ liệu bẩn tận gốc trên Spark",
+    "channel": "youtube_ducnguyen",
+    "thumbnail": "https://i.ytimg.com/vi/AuWBQZaSL_s/hqdefault.jpg"
+  },
+  {
+    "schedule_date": "2026-10-12",
+    "post_date": "2026-10-12",
+    "status": "4. Posted",
+    "category": "Video bài giảng",
+    "topic": "AI News",
+    "keywords": [
+      "YouTube",
+      "AI",
+      "Data",
+      "Tech"
+    ],
+    "title": "Hot News | 12/10/2026 | Karpathy: Chỉ 5.000 người thấy AI thật sự mạnh cỡ nào",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.youtube.com/watch?v=DwKcYG6rsSY",
+    "detail": "Có bao giờ bạn hỏi ChatGPT một câu rất đơn giản, nhận về câu trả lời ngớ ngẩn, rồi tự hỏi sao người ta cứ bảo AI sắp thay con người? Bạn không sai. Nhưng theo một trong những người hiểu AI nhất thế giới, có thể bạn chỉ đang nhìn thấy phần nhỏ nhất củ",
+    "channel": "youtube_ducnguyen",
+    "thumbnail": "https://i.ytimg.com/vi/DwKcYG6rsSY/hqdefault.jpg"
+  },
+  {
+    "schedule_date": "2026-10-16",
+    "post_date": "2026-10-16",
+    "status": "4. Posted",
+    "category": "Tin tức & Phân tích",
+    "topic": "AI News",
+    "keywords": [
+      "Facebook",
+      "AI News",
+      "Tobi Nguyen"
+    ],
+    "title": "AI News Tuần W42: Top 5 tin AI nóng nhất tuần (12/10 - 18/10/2026)",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.facebook.com/TobiNguyenData/",
+    "detail": "Điểm tin 5 sự kiện trí tuệ nhân tạo nổi bật nhất trong tuần và bình luận chuyên sâu từ Tobi Nguyen về bước nhảy vọt của AI Agent.",
+    "channel": "facebook_tobinguyen",
+    "thumbnail": "./assets/images/facebook/fb_ai_news_w42.png"
+  },
+  {
+    "schedule_date": "2026-10-17",
+    "post_date": "2026-10-17",
+    "status": "4. Posted",
+    "category": "Tin tức & Phân tích",
+    "topic": "Data News",
+    "keywords": [
+      "Facebook",
+      "Data News",
+      "Data Platform"
+    ],
+    "title": "Data News Tuần W42: Top 5 chuyển dịch hạ tầng dữ liệu và công nghệ Data Platform",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.facebook.com/TobiNguyenData/",
+    "detail": "Tổng hợp các bước tiến quan trọng của Snowflake, BigQuery và Amazon EMR trong việc hiện đại hóa đường ống dữ liệu doanh nghiệp.",
+    "channel": "facebook_tobinguyen",
+    "thumbnail": "./assets/images/facebook/fb_data_news_w42.png"
+  },
+  {
+    "schedule_date": "2026-10-16",
+    "post_date": "2026-10-16",
+    "status": "4. Posted",
+    "category": "An toàn & Bảo mật",
+    "topic": "AI Security",
+    "keywords": [
+      "Facebook",
+      "Anthropic",
+      "AI Agent",
+      "Bảo mật"
+    ],
+    "title": "Hot News: Anthropic công bố nghiên cứu về sâu AI tự nhân bản qua thiết bị gia đình",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.facebook.com/TobiNguyenData/",
+    "detail": "Cảnh báo và phân tích kỹ thuật về lỗ hổng bảo mật khi mô hình ngôn ngữ lớn tương tác với các thiết bị vật lý và môi trường mở.",
+    "channel": "facebook_tobinguyen",
+    "thumbnail": "./assets/images/facebook/fb_anthropic_worm.png"
+  },
+  {
+    "schedule_date": "2026-10-17",
+    "post_date": "2026-10-17",
+    "status": "4. Posted",
+    "category": "Kiến trúc dữ liệu",
+    "topic": "Data Architecture",
+    "keywords": [
+      "Facebook",
+      "Snowflake",
+      "Data Mirroring",
+      "ETL"
+    ],
+    "title": "Hot Data: Snowflake mở tính năng Data Mirroring — Khai tử đường ống ETL truyền thống?",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.facebook.com/TobiNguyenData/",
+    "detail": "Đánh giá tác động của cơ chế Data Mirroring thời gian thực tới chi phí vận hành kho dữ liệu đám mây và tương lai của kỹ sư dữ liệu.",
+    "channel": "facebook_tobinguyen",
+    "thumbnail": "./assets/images/facebook/fb_snowflake_mirror.png"
+  },
+  {
+    "schedule_date": "2026-10-14",
+    "post_date": "2026-10-14",
+    "status": "4. Posted",
+    "category": "Chiến lược công nghệ",
+    "topic": "AI Strategy",
+    "keywords": [
+      "Facebook",
+      "Gartner",
+      "AI Infrastructure",
+      "ROI"
+    ],
+    "title": "Gartner: 3.500 tỷ đô hạ tầng AI nguy cơ bốc hơi vì bài toán hiệu suất đầu tư",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.facebook.com/TobiNguyenData/",
+    "detail": "Phân tích báo cáo của Gartner về làn sóng đầu tư GPU và cảnh báo rủi ro lãng phí tài nguyên khi doanh nghiệp chưa rõ use-case thực tế.",
+    "channel": "facebook_tobinguyen",
+    "thumbnail": "./assets/images/facebook/fb_gartner_ai.png"
+  },
+  {
+    "schedule_date": "2026-10-12",
+    "post_date": "2026-10-12",
+    "status": "4. Posted",
+    "category": "Triết lý công nghệ",
+    "topic": "AI Perspective",
+    "keywords": [
+      "Facebook",
+      "Karpathy",
+      "Tương lai AI"
+    ],
+    "title": "Andrej Karpathy: Chỉ 5.000 người trên thế giới thật sự hiểu AI đang mạnh cỡ nào",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.facebook.com/TobiNguyenData/",
+    "detail": "Góc nhìn sâu sắc của cựu Giám đốc AI Tesla về khoảng cách nhận thức công nghệ và lời khuyên chuẩn bị kỹ năng cho người lao động tri thức.",
+    "channel": "facebook_tobinguyen",
+    "thumbnail": "./assets/images/facebook/fb_karpathy.png"
+  },
+  {
+    "schedule_date": "2026-10-10",
+    "post_date": "2026-10-10",
+    "status": "4. Posted",
+    "category": "Kỹ năng lập trình",
+    "topic": "Vibe Coding",
+    "keywords": [
+      "Facebook",
+      "Vibe Coding",
+      "Non-tech",
+      "Claude Code"
+    ],
+    "title": "Vibe Coding: Khi một người non-tech có thể tự dựng sản phẩm số với AI Agent",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.facebook.com/TobiNguyenData/",
+    "detail": "Chia sẻ kinh nghiệm thực tế về phương pháp Vibe Coding, biến ý tưởng thành phần mềm hoàn chỉnh mà không cần học code truyền thống.",
+    "channel": "facebook_tobinguyen",
+    "thumbnail": "./assets/images/facebook/fb_vibe_coding.png"
+  },
+  {
+    "schedule_date": "2026-10-05",
+    "post_date": "2026-10-05",
+    "status": "4. Posted",
+    "category": "Hành trình Founder",
+    "topic": "EdTech & Startup",
+    "keywords": [
+      "Facebook",
+      "COMPA Class",
+      "Founder Journey"
+    ],
+    "title": "Hành trình xây dựng COMPA Class: Từ một người nghiện công cụ đến giảng dạy tập trung",
+    "article_link": "",
+    "compa_link": "",
+    "website_link": "https://www.facebook.com/TobiNguyenData/",
+    "detail": "Tự sự của Tobi Nguyen về con đường phát triển COMPA Class và sứ mệnh phổ cập năng lực AI & Dữ liệu cho cộng đồng người đi làm Việt Nam.",
+    "channel": "facebook_tobinguyen",
+    "thumbnail": "./assets/images/facebook/fb_compa_journey.png"
+  },
+  {
     "schedule_date": "2025-05-12",
     "post_date": "2025-05-12",
     "status": "1. Planning",

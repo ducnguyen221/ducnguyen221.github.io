@@ -3138,3 +3138,177 @@ html:not(.dark) .client-floating-popover {
     min-width: 140px;
 }
 
+/* YouTube & Facebook Pulsing Highlight Buttons */
+.youtube-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 9px;
+    border-radius: 6px;
+    background: rgba(239, 68, 68, 0.16);
+    border: 1px solid rgba(239, 68, 68, 0.65);
+    color: #ef4444 !important;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    letter-spacing: 0.02em;
+    animation: youtubePulseRed 2.2s infinite ease-in-out;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.youtube-pill-btn:hover {
+    background: rgba(239, 68, 68, 0.35);
+    color: #ffffff !important;
+    border-color: #f87171;
+    box-shadow: 0 0 14px rgba(239, 68, 68, 0.85);
+    transform: translateY(-1px) scale(1.05);
+}
+
+@keyframes youtubePulseRed {
+    0%, 100% {
+        box-shadow: 0 0 3px rgba(239, 68, 68, 0.25);
+        border-color: rgba(239, 68, 68, 0.55);
+        background: rgba(239, 68, 68, 0.15);
+    }
+    50% {
+        box-shadow: 0 0 12px 2px rgba(239, 68, 68, 0.75);
+        border-color: #f87171;
+        background: rgba(239, 68, 68, 0.32);
+        color: #ffffff !important;
+    }
+}
+
+.facebook-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 9px;
+    border-radius: 6px;
+    background: rgba(24, 119, 242, 0.16);
+    border: 1px solid rgba(24, 119, 242, 0.65);
+    color: #3b82f6 !important;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    letter-spacing: 0.02em;
+    animation: facebookPulseBlue 2.2s infinite ease-in-out;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.facebook-pill-btn:hover {
+    background: rgba(24, 119, 242, 0.35);
+    color: #ffffff !important;
+    border-color: #60a5fa;
+    box-shadow: 0 0 14px rgba(24, 119, 242, 0.85);
+    transform: translateY(-1px) scale(1.05);
+}
+
+@keyframes facebookPulseBlue {
+    0%, 100% {
+        box-shadow: 0 0 3px rgba(24, 119, 242, 0.25);
+        border-color: rgba(24, 119, 242, 0.55);
+        background: rgba(24, 119, 242, 0.15);
+    }
+    50% {
+        box-shadow: 0 0 12px 2px rgba(24, 119, 242, 0.75);
+        border-color: #60a5fa;
+        background: rgba(24, 119, 242, 0.32);
+        color: #ffffff !important;
+    }
+}
+
+.post-card-thumb-badge--youtube {
+    background: rgba(220, 38, 38, 0.9) !important;
+    color: #ffffff !important;
+}
+
+.post-card-thumb-badge--facebook {
+    background: rgba(24, 119, 242, 0.9) !important;
+    color: #ffffff !important;
+}
+
+.post-platform-badge--youtube {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.45);
+    color: #ef4444;
+}
+
+.post-platform-badge--facebook {
+    background: rgba(24, 119, 242, 0.15);
+    border: 1px solid rgba(24, 119, 242, 0.45);
+    color: #3b82f6;
+}
+
+/* Social Embed Dual Section */
+.social-embed-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+@media (max-width: 960px) {
+    .social-embed-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.social-embed-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    overflow: hidden;
+    padding: 1.25rem;
+    gap: 1rem;
+}
+
+.social-embed-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.youtube-embed-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: #0f172a;
+    border: 1px solid var(--border-color);
+}
+
+.youtube-embed-frame iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.facebook-embed-frame {
+    width: 100%;
+    min-height: 380px;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: #0f172a;
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+}
+
+.facebook-embed-frame iframe {
+    width: 100%;
+    height: 380px;
+    border: 0;
+}
+
+
