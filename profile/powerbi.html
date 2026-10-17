@@ -187,23 +187,19 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* Filter Tabs */
+        /* Filter Tabs - 2 Rows */
         .pbi-filter-scroll {
             display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            width: 100%;
+        }
+
+        .pbi-filter-row {
+            display: flex;
             align-items: center;
+            flex-wrap: wrap;
             gap: 0.55rem;
-            overflow-x: auto;
-            padding-bottom: 0.4rem;
-            scrollbar-width: thin;
-        }
-
-        .pbi-filter-scroll::-webkit-scrollbar {
-            height: 4px;
-        }
-
-        .pbi-filter-scroll::-webkit-scrollbar-thumb {
-            background: rgba(148, 163, 184, 0.25);
-            border-radius: 999px;
         }
 
         .pbi-filter-btn {
@@ -761,55 +757,59 @@
                 </div>
 
                 <div class="pbi-filter-scroll" id="pbiFilterBar">
-                    <button class="pbi-filter-btn active" data-filter="all">
-                        <span class="t-lang" data-en="All Reports" data-vi="Tất cả">Tất cả</span>
-                        <span class="pbi-filter-badge">91</span>
-                    </button>
-                    <button class="pbi-filter-btn" data-filter="interactive">
-                        <span class="material-symbols-outlined" style="font-size:15px; color:#10b981;">sensors</span>
-                        <span class="t-lang" data-en="Live Embed" data-vi="Live Embed">Live Embed</span>
-                        <span class="pbi-filter-badge">64</span>
-                    </button>
-                    <button class="pbi-filter-btn" data-filter="Accounting">
-                        <span class="material-symbols-outlined" style="font-size:15px;">account_balance</span>
-                        <span class="t-lang" data-en="Finance &amp; Accounting" data-vi="Tài chính &amp; Kế toán">Tài chính &amp; Kế toán</span>
-                        <span class="pbi-filter-badge" id="badge-Accounting">0</span>
-                    </button>
-                    <button class="pbi-filter-btn" data-filter="Sales">
-                        <span class="material-symbols-outlined" style="font-size:15px;">trending_up</span>
-                        <span class="t-lang" data-en="Sales &amp; Customer" data-vi="Bán hàng &amp; Khách hàng">Bán hàng &amp; Khách hàng</span>
-                        <span class="pbi-filter-badge" id="badge-Sales">0</span>
-                    </button>
-                    <button class="pbi-filter-btn" data-filter="Marketing">
-                        <span class="material-symbols-outlined" style="font-size:15px;">campaign</span>
-                        <span class="t-lang" data-en="Marketing &amp; Ads" data-vi="Marketing &amp; Ads">Marketing &amp; Ads</span>
-                        <span class="pbi-filter-badge" id="badge-Marketing">0</span>
-                    </button>
-                    <button class="pbi-filter-btn" data-filter="Recruiting">
-                        <span class="material-symbols-outlined" style="font-size:15px;">badge</span>
-                        <span class="t-lang" data-en="HR &amp; People" data-vi="Nhân sự &amp; Tuyển dụng">Nhân sự &amp; Tuyển dụng</span>
-                        <span class="pbi-filter-badge" id="badge-Recruiting">0</span>
-                    </button>
-                    <button class="pbi-filter-btn" data-filter="Supply Chain">
-                        <span class="material-symbols-outlined" style="font-size:15px;">local_shipping</span>
-                        <span class="t-lang" data-en="Supply Chain &amp; Logistics" data-vi="Chuỗi cung ứng &amp; Kho">Chuỗi cung ứng &amp; Kho</span>
-                        <span class="pbi-filter-badge" id="badge-SupplyChain">0</span>
-                    </button>
-                    <button class="pbi-filter-btn" data-filter="Manufacturing">
-                        <span class="material-symbols-outlined" style="font-size:15px;">precision_manufacturing</span>
-                        <span class="t-lang" data-en="Manufacturing" data-vi="Sản xuất &amp; Chế tạo">Sản xuất &amp; Chế tạo</span>
-                        <span class="pbi-filter-badge" id="badge-Manufacturing">0</span>
-                    </button>
-                    <button class="pbi-filter-btn" data-filter="Management">
-                        <span class="material-symbols-outlined" style="font-size:15px;">monitoring</span>
-                        <span class="t-lang" data-en="IT &amp; Management" data-vi="Quản trị &amp; Hệ thống">Quản trị &amp; Hệ thống</span>
-                        <span class="pbi-filter-badge" id="badge-Management">0</span>
-                    </button>
-                    <button class="pbi-filter-btn" data-filter="Other">
-                        <span class="material-symbols-outlined" style="font-size:15px;">public</span>
-                        <span class="t-lang" data-en="Public Sector &amp; Cases" data-vi="Xã hội &amp; Đa ngành">Xã hội &amp; Đa ngành</span>
-                        <span class="pbi-filter-badge" id="badge-Other">0</span>
-                    </button>
+                    <div class="pbi-filter-row">
+                        <button class="pbi-filter-btn active" data-filter="all">
+                            <span class="t-lang" data-en="All Reports" data-vi="Tất cả">Tất cả</span>
+                            <span class="pbi-filter-badge">91</span>
+                        </button>
+                        <button class="pbi-filter-btn" data-filter="interactive">
+                            <span class="material-symbols-outlined" style="font-size:15px; color:#10b981;">sensors</span>
+                            <span class="t-lang" data-en="Live Embed" data-vi="Live Embed">Live Embed</span>
+                            <span class="pbi-filter-badge">64</span>
+                        </button>
+                        <button class="pbi-filter-btn" data-filter="Accounting">
+                            <span class="material-symbols-outlined" style="font-size:15px;">account_balance</span>
+                            <span class="t-lang" data-en="Finance &amp; Accounting" data-vi="Tài chính &amp; Kế toán">Tài chính &amp; Kế toán</span>
+                            <span class="pbi-filter-badge" id="badge-Accounting">0</span>
+                        </button>
+                        <button class="pbi-filter-btn" data-filter="Sales">
+                            <span class="material-symbols-outlined" style="font-size:15px;">trending_up</span>
+                            <span class="t-lang" data-en="Sales &amp; Customer" data-vi="Bán hàng &amp; Khách hàng">Bán hàng &amp; Khách hàng</span>
+                            <span class="pbi-filter-badge" id="badge-Sales">0</span>
+                        </button>
+                        <button class="pbi-filter-btn" data-filter="Marketing">
+                            <span class="material-symbols-outlined" style="font-size:15px;">campaign</span>
+                            <span class="t-lang" data-en="Marketing &amp; Ads" data-vi="Marketing &amp; Ads">Marketing &amp; Ads</span>
+                            <span class="pbi-filter-badge" id="badge-Marketing">0</span>
+                        </button>
+                    </div>
+                    <div class="pbi-filter-row">
+                        <button class="pbi-filter-btn" data-filter="Recruiting">
+                            <span class="material-symbols-outlined" style="font-size:15px;">badge</span>
+                            <span class="t-lang" data-en="HR &amp; People" data-vi="Nhân sự &amp; Tuyển dụng">Nhân sự &amp; Tuyển dụng</span>
+                            <span class="pbi-filter-badge" id="badge-Recruiting">0</span>
+                        </button>
+                        <button class="pbi-filter-btn" data-filter="Supply Chain">
+                            <span class="material-symbols-outlined" style="font-size:15px;">local_shipping</span>
+                            <span class="t-lang" data-en="Supply Chain &amp; Logistics" data-vi="Chuỗi cung ứng &amp; Kho">Chuỗi cung ứng &amp; Kho</span>
+                            <span class="pbi-filter-badge" id="badge-SupplyChain">0</span>
+                        </button>
+                        <button class="pbi-filter-btn" data-filter="Manufacturing">
+                            <span class="material-symbols-outlined" style="font-size:15px;">precision_manufacturing</span>
+                            <span class="t-lang" data-en="Manufacturing" data-vi="Sản xuất &amp; Chế tạo">Sản xuất &amp; Chế tạo</span>
+                            <span class="pbi-filter-badge" id="badge-Manufacturing">0</span>
+                        </button>
+                        <button class="pbi-filter-btn" data-filter="Management">
+                            <span class="material-symbols-outlined" style="font-size:15px;">monitoring</span>
+                            <span class="t-lang" data-en="IT &amp; Management" data-vi="Quản trị &amp; Hệ thống">Quản trị &amp; Hệ thống</span>
+                            <span class="pbi-filter-badge" id="badge-Management">0</span>
+                        </button>
+                        <button class="pbi-filter-btn" data-filter="Other">
+                            <span class="material-symbols-outlined" style="font-size:15px;">public</span>
+                            <span class="t-lang" data-en="Public Sector &amp; Cases" data-vi="Xã hội &amp; Đa ngành">Xã hội &amp; Đa ngành</span>
+                            <span class="pbi-filter-badge" id="badge-Other">0</span>
+                        </button>
+                    </div>
                 </div>
             </section>
 
