@@ -138,13 +138,16 @@
         }
 
         #more-menu {
-            background: rgba(248, 250, 252, 0.97);
+            background: rgba(248, 250, 252, 0.98);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
+            border-radius: 0.85rem !important;
+            box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.28);
         }
 
         .dark #more-menu {
-            background: rgba(30, 41, 59, 0.97);
+            background: rgba(30, 41, 59, 0.98);
+            box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.55);
         }
 
         .glass-panel:hover {
@@ -270,10 +273,10 @@
         }
 
         /* 3-Tier Adaptive Navigation matching Google & CompaClass */
-        @media (min-width: 1200px) {
+        @media (min-width: 1240px) {
             #desktop-top-nav {
                 display: flex !important;
-                gap: 1.5rem;
+                gap: 1.35rem;
             }
             #desktop-top-nav .nav-icon {
                 display: inline-flex !important;
@@ -286,7 +289,7 @@
             }
         }
 
-        @media (min-width: 992px) and (max-width: 1199px) {
+        @media (min-width: 1024px) and (max-width: 1239px) {
             #desktop-top-nav {
                 display: flex !important;
                 gap: 0.65rem;
@@ -303,7 +306,7 @@
             }
         }
 
-        @media (max-width: 991px) {
+        @media (max-width: 1023px) {
             #desktop-top-nav {
                 display: none !important;
             }
@@ -330,7 +333,7 @@ html { overscroll-behavior-y: none; }
 
     <!-- TopAppBar -->
     <header
-        class="h-[72px] flex-shrink-0 w-full border-b border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl sticky top-0 z-50 flex justify-between items-center pl-5 pr-4 md:px-[25px] overflow-hidden whitespace-nowrap flex-nowrap">
+        class="h-[72px] flex-shrink-0 w-full border-b border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl sticky top-0 z-50 flex justify-between items-center pl-5 pr-4 md:px-[25px] whitespace-nowrap flex-nowrap">
         <div class="flex items-center gap-3 shrink-0 min-w-0">
             <img class="w-10 h-10 rounded-full object-cover border border-[var(--primary-color)] p-0.5 bg-[var(--bg-start)] shrink-0"
                 src="./assets/images/KPIM-Duc-Nguyen.png" />
@@ -392,9 +395,9 @@ html { overscroll-behavior-y: none; }
                 class="material-symbols-outlined text-[var(--soft-text-color)] hover:text-[var(--accent-color)] transition-colors cursor-pointer">dark_mode</span>
             <div class="relative" id="more-menu-container">
                 <span id="more-menu-btn"
-                    class="material-symbols-outlined text-[var(--soft-text-color)] hover:text-[var(--accent-color)] transition-colors cursor-pointer block">more_vert</span>
+                    class="material-symbols-outlined text-[var(--soft-text-color)] hover:text-[var(--accent-color)] transition-colors cursor-pointer block select-none">more_vert</span>
                 <div id="more-menu"
-                    class="absolute right-0 top-full mt-4 w-56 glass-panel !rounded-none shadow-2xl border border-[var(--border-color)] hidden flex-col overflow-hidden z-[100] transform origin-top-right transition-all">
+                    class="absolute right-0 top-full mt-2.5 w-56 glass-panel rounded-xl shadow-2xl border border-[var(--border-color)] hidden flex-col overflow-hidden z-[100] transform origin-top-right transition-all">
                     <button id="share-btn"
                         class="flex items-center gap-3 px-4 py-3 hover:bg-[var(--card-hover-bg)] transition-colors text-left text-sm border-b border-[var(--border-color)]">
                         <span class="material-symbols-outlined text-[var(--accent-color)] text-[1.1rem]">share</span>
