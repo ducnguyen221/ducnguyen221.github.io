@@ -82,7 +82,7 @@ select {
 .site-header {
     position: sticky;
     top: 0;
-    z-index: 20;
+    z-index: 60;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -95,7 +95,6 @@ select {
     -webkit-backdrop-filter: blur(18px);
     white-space: nowrap;
     flex-wrap: nowrap;
-    overflow: hidden;
 }
 
 .brand {
@@ -196,6 +195,8 @@ select {
 
 .header-menu-container {
     position: relative;
+    display: inline-flex;
+    align-items: center;
 }
 
 .header-icon-btn {
@@ -203,7 +204,10 @@ select {
     background: transparent;
     color: var(--soft-text-color);
     cursor: pointer;
-    padding: 0;
+    padding: 0.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     transition: color 0.2s ease;
 }
 
@@ -213,19 +217,19 @@ select {
 
 .header-menu {
     position: absolute;
-    top: calc(100% + 0.9rem);
+    top: calc(100% + 0.65rem);
     right: 0;
     width: 14rem;
     display: none;
     flex-direction: column;
     overflow: hidden;
     border: 1px solid var(--border-color);
-    border-radius: 1rem;
-    background: rgba(248, 250, 252, 0.97);
-    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.22);
+    border-radius: 0.85rem;
+    background: rgba(248, 250, 252, 0.98);
+    box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.25), 0 0 0 1px var(--border-color);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    z-index: 35;
+    z-index: 100;
 }
 
 .dark .header-menu {

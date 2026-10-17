@@ -218,7 +218,7 @@
         const modalTitle = document.getElementById("modal-title");
         const modalBody = document.getElementById("modal-body");
         const closeModalBtn = document.getElementById("close-modal-btn");
-        const businessCardUrl = "./assets/images/Business%20Card.png";
+        const businessCardUrl = (currentPage === "courses" ? "../assets/images/Business%20Card.png" : "./assets/images/Business%20Card.png");
 
         function closeMenu() {
             moreMenu.classList.remove("open");
