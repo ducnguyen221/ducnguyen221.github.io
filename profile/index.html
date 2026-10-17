@@ -269,9 +269,49 @@
             }
         }
 
-        @media (min-width: 768px) {
+        /* 3-Tier Adaptive Navigation matching Google & CompaClass */
+        @media (min-width: 1200px) {
+            #desktop-top-nav {
+                display: flex !important;
+                gap: 1.5rem;
+            }
+            #desktop-top-nav .nav-icon {
+                display: inline-flex !important;
+            }
+            #desktop-top-nav .nav-text {
+                font-size: 0.875rem;
+            }
             .bottom-nav {
-                display: none;
+                display: none !important;
+            }
+        }
+
+        @media (min-width: 992px) and (max-width: 1199px) {
+            #desktop-top-nav {
+                display: flex !important;
+                gap: 0.65rem;
+            }
+            #desktop-top-nav .nav-icon {
+                display: none !important;
+            }
+            #desktop-top-nav .nav-text {
+                font-size: 0.82rem;
+                white-space: nowrap;
+            }
+            .bottom-nav {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 991px) {
+            #desktop-top-nav {
+                display: none !important;
+            }
+            .bottom-nav {
+                display: flex !important;
+            }
+            body {
+                padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px));
             }
         }
     </style>
@@ -290,57 +330,57 @@ html { overscroll-behavior-y: none; }
 
     <!-- TopAppBar -->
     <header
-        class="h-[72px] flex-shrink-0 w-full border-b border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl sticky top-0 z-50 flex justify-between items-center pl-5 pr-4 md:px-[25px]">
-        <div class="flex items-center gap-3">
-            <img class="w-10 h-10 rounded-full object-cover border border-[var(--primary-color)] p-0.5 bg-[var(--bg-start)]"
+        class="h-[72px] flex-shrink-0 w-full border-b border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl sticky top-0 z-50 flex justify-between items-center pl-5 pr-4 md:px-[25px] overflow-hidden whitespace-nowrap flex-nowrap">
+        <div class="flex items-center gap-3 shrink-0 min-w-0">
+            <img class="w-10 h-10 rounded-full object-cover border border-[var(--primary-color)] p-0.5 bg-[var(--bg-start)] shrink-0"
                 src="./assets/images/KPIM-Duc-Nguyen.png" />
             <span
-                class="inline-flex md:hidden xl:flex items-center gap-2 text-[0.95rem] sm:text-base xl:text-xl font-bold tracking-tight text-[var(--text-color)] whitespace-nowrap font-['Inter'] t-lang"
+                class="inline-flex items-center gap-2 text-[0.95rem] sm:text-base xl:text-xl font-bold tracking-tight text-[var(--text-color)] whitespace-nowrap font-['Inter'] t-lang truncate"
                 data-en="E-Profile" data-vi="Hồ sơ Điện tử">
                 E-Profile
             </span>
         </div>
 
         <!-- Desktop Top Navigation Buttons -->
-        <nav class="hidden md:flex items-center gap-5 lg:gap-8 absolute left-1/2 transform -translate-x-1/2 h-full">
+        <nav id="desktop-top-nav" class="hidden items-center absolute left-1/2 transform -translate-x-1/2 h-full whitespace-nowrap">
             <a href="./index.html" aria-current="page" aria-disabled="true" tabindex="-1" onclick="return false;"
                 class="pointer-events-none cursor-default flex items-center gap-1.5 text-[var(--accent-color)] font-bold transition-all border-b-2 border-[var(--accent-color)] h-full">
-                <span class="material-symbols-outlined text-[1.2rem]">person</span>
-                <span class="text-sm t-lang" data-en="My Profile" data-vi="Hồ sơ">My Profile</span>
+                <span class="material-symbols-outlined nav-icon text-[1.2rem]">person</span>
+                <span class="text-sm nav-text t-lang" data-en="My Profile" data-vi="Hồ sơ">My Profile</span>
             </a>
             <a href="./experience.html"
                 class="flex items-center gap-1.5 text-[var(--soft-text-color)] hover:text-[var(--primary-light)] font-medium transition-all h-full border-b-2 border-transparent">
-                <span class="material-symbols-outlined text-[1.2rem]">work</span>
-                <span class="text-sm t-lang" data-en="Experience" data-vi="Kinh nghiệm">Experience</span>
+                <span class="material-symbols-outlined nav-icon text-[1.2rem]">work</span>
+                <span class="text-sm nav-text t-lang" data-en="Experience" data-vi="Kinh nghiệm">Experience</span>
             </a>
             <a href="./projects.html"
                 class="flex items-center gap-1.5 text-[var(--soft-text-color)] hover:text-[var(--primary-light)] font-medium transition-all h-full border-b-2 border-transparent">
-                <span class="material-symbols-outlined text-[1.2rem]">workspaces</span>
-                <span class="text-sm t-lang" data-en="Projects" data-vi="D&#7921; &#225;n">Projects</span>
+                <span class="material-symbols-outlined nav-icon text-[1.2rem]">workspaces</span>
+                <span class="text-sm nav-text t-lang" data-en="Projects" data-vi="Dự án">Projects</span>
             </a>
             <a href="./courses/"
                 class="flex items-center gap-1.5 text-[var(--soft-text-color)] hover:text-[var(--primary-light)] font-medium transition-all h-full border-b-2 border-transparent">
-                <span class="material-symbols-outlined text-[1.2rem]">school</span>
-                <span class="text-sm t-lang" data-en="LMS" data-vi="Học tập">LMS</span>
+                <span class="material-symbols-outlined nav-icon text-[1.2rem]">school</span>
+                <span class="text-sm nav-text t-lang" data-en="LMS" data-vi="Học tập">LMS</span>
             </a>
             <a href="./socials.html"
                 class="flex items-center gap-1.5 text-[var(--soft-text-color)] hover:text-[var(--primary-light)] font-medium transition-all h-full border-b-2 border-transparent">
-                <span class="material-symbols-outlined text-[1.2rem]">subscriptions</span>
-                <span class="text-sm t-lang" data-en="Social" data-vi="Xã hội">Social</span>
+                <span class="material-symbols-outlined nav-icon text-[1.2rem]">subscriptions</span>
+                <span class="text-sm nav-text t-lang" data-en="Social" data-vi="Xã hội">Social</span>
             </a>
             <a href="./solutions.html"
                 class="flex items-center gap-1.5 text-[var(--soft-text-color)] hover:text-[var(--primary-light)] font-medium transition-all h-full border-b-2 border-transparent">
-                <span class="material-symbols-outlined text-[1.2rem]">widgets</span>
-                <span class="text-sm t-lang" data-en="Solutions" data-vi="Gi&#7843;i ph&#225;p">Solutions</span>
+                <span class="material-symbols-outlined nav-icon text-[1.2rem]">widgets</span>
+                <span class="text-sm nav-text t-lang" data-en="Solutions" data-vi="Giải pháp">Solutions</span>
             </a>
             <a href="./powerbi.html"
                 class="flex items-center gap-1.5 text-[var(--soft-text-color)] hover:text-[var(--primary-light)] font-medium transition-all h-full border-b-2 border-transparent">
-                <span class="material-symbols-outlined text-[1.2rem]">bar_chart</span>
-                <span class="text-sm t-lang" data-en="Actions" data-vi="Tương tác">Actions</span>
+                <span class="material-symbols-outlined nav-icon text-[1.2rem]">bar_chart</span>
+                <span class="text-sm nav-text t-lang" data-en="Actions" data-vi="Tương tác">Actions</span>
             </a>
         </nav>
 
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-3 sm:gap-4 shrink-0">
             <a href="https://ducnguyen.vn" title="Về ducnguyen.vn"
                 class="flex items-center gap-1 text-sm font-medium text-[var(--soft-text-color)] hover:text-[var(--accent-color)] transition-colors cursor-pointer">
                 <span class="material-symbols-outlined text-[1.2rem]">home</span>
@@ -1297,7 +1337,7 @@ html { overscroll-behavior-y: none; }
         function fitDashboardLayout() {
             if (!dashboardStage || !dashboardFrame) return;
 
-            const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+            const isDesktop = window.matchMedia('(min-width: 992px)').matches;
             if (!isDesktop) {
                 resetDashboardFit();
                 return;

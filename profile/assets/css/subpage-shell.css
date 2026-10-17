@@ -86,13 +86,16 @@ select {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 0.75rem;
     height: 72px;
     padding: 0 1rem;
     border-bottom: 1px solid var(--border-color);
     background: var(--card-bg);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    overflow: hidden;
 }
 
 .brand {
@@ -100,6 +103,7 @@ select {
     align-items: center;
     gap: 0.75rem;
     min-width: 0;
+    flex-shrink: 0;
 }
 
 .brand img {
@@ -110,13 +114,16 @@ select {
     border: 1px solid var(--primary-color);
     padding: 2px;
     background: var(--bg-start);
+    flex-shrink: 0;
 }
 
 .brand-title {
-    font-size: 1.15rem;
+    font-size: clamp(0.95rem, 2.2vw, 1.15rem);
     font-weight: 800;
     letter-spacing: -0.02em;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .top-nav {
@@ -127,6 +134,7 @@ select {
     height: 100%;
     align-items: stretch;
     gap: 1.1rem;
+    white-space: nowrap;
 }
 
 .nav-link {
@@ -182,7 +190,8 @@ select {
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 0.9rem;
+    gap: 0.75rem;
+    flex-shrink: 0;
 }
 
 .header-menu-container {
@@ -514,24 +523,38 @@ select {
 }
 
 .section-title {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.55rem;
     margin: 0;
     color: var(--accent-color);
-    font-size: 1rem;
+    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
     font-weight: 700;
+    line-height: 1.35;
+    flex-wrap: wrap;
 }
 
 .section-title .material-symbols-outlined {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.section-title [class*="badge"],
+.section-title .badge,
+.section-head [class*="badge"],
+.section-head .badge {
+    white-space: nowrap;
+    flex-shrink: 0;
+    vertical-align: middle;
 }
 
 .section-subtitle {
     margin: 0.35rem 0 0;
     color: var(--soft-text-color);
-    font-size: 0.92rem;
-    line-height: 1.6;
+    font-size: clamp(0.82rem, 1.1vw, 0.92rem);
+    line-height: 1.55;
+    max-width: 82ch;
 }
 
 .hero-panel {
@@ -1867,10 +1890,6 @@ html:not(.dark) .project-role-chart::after {
         padding: 0 1.5rem;
     }
 
-    .top-nav {
-        display: flex;
-    }
-
     .shell-main {
         width: min(1440px, calc(100% - 3rem));
         margin: 1.35rem auto;
@@ -1999,15 +2018,106 @@ html:not(.dark) .project-role-chart::after {
     .mobile-card-list {
         display: none;
     }
+}
+
+/* ==========================================================================
+   Header Navigation Responsive Tiering (Google & CompaClass Architecture)
+   ========================================================================== */
+
+/* Tier 1: Wide Desktop (>= 1200px) - Full top navigation with icons and labels */
+@media (min-width: 1200px) {
+    .site-header {
+        padding: 0 1.5rem;
+    }
+
+    .top-nav {
+        display: flex !important;
+        gap: 1.1rem;
+    }
+
+    .top-nav .nav-link {
+        font-size: 0.92rem;
+        padding: 0 0.45rem;
+    }
+
+    .top-nav .nav-link .material-symbols-outlined {
+        display: inline-flex !important;
+    }
 
     .bottom-nav {
-        display: none;
+        display: none !important;
+    }
+
+    .site-shell {
+        padding-bottom: 0;
+    }
+
+    .powerbi-report-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
 
-@media (min-width: 1200px) {
-    .powerbi-report-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+/* Tier 2: Compact Desktop / Tablet Landscape / Zoom 125%-150% (992px to 1199px)
+   Keeps top-nav visible but compacts it (hides icons, tightens gap) so it fits in ~400px with zero wrapping */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .site-header {
+        padding: 0 1rem;
+    }
+
+    .top-nav {
+        display: flex !important;
+        gap: 0.55rem;
+    }
+
+    .top-nav .nav-link {
+        font-size: 0.85rem;
+        padding: 0 0.35rem;
+        white-space: nowrap;
+    }
+
+    .top-nav .nav-link .material-symbols-outlined {
+        display: none !important;
+    }
+
+    .bottom-nav {
+        display: none !important;
+    }
+
+    .site-shell {
+        padding-bottom: 0;
+    }
+}
+
+/* Tier 3: Tablet Portrait, Mobile & Heavy Zoom >= 175% (< 992px)
+   Seamless transition into interactive mobile/tablet mode with bottom navigation */
+@media (max-width: 991px) {
+    .site-header {
+        height: 64px;
+        padding: 0 1rem;
+    }
+
+    .top-nav {
+        display: none !important;
+    }
+
+    .bottom-nav {
+        display: flex !important;
+    }
+
+    .site-shell {
+        padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .brand-title {
+        font-size: clamp(0.95rem, 3.2vw, 1.1rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .section-head {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
     }
 }
 
