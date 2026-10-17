@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d"/>
+      <stop offset="50%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="barGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#eab308" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#eab308" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+    <linearGradient id="glowPill" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#eab308" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#eab308" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#bg)" rx="14"/>
+  
+  <!-- Subtle Grid Lines -->
+  <path d="M0 60 H640 M0 120 H640 M0 180 H640 M0 240 H640 M0 300 H640" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+  <path d="M80 0 V360 M160 0 V360 M240 0 V360 M320 0 V360 M400 0 V360 M480 0 V360 M560 0 V360" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+  
+  <!-- Ambient light orb -->
+  <circle cx="560" cy="80" r="140" fill="#eab308" opacity="0.08" filter="blur(40px)"/>
+
+  <!-- Domain Badge -->
+  <rect x="32" y="26" width="160" height="26" rx="13" fill="url(#glowPill)" stroke="#eab308" stroke-width="1" stroke-opacity="0.5"/>
+  <circle cx="45" cy="39" r="4" fill="#eab308"/>
+  <text x="56" y="43" fill="#eab308" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" letter-spacing="0.6">PUBLIC SECTOR & INDUSTRY CASES</text>
+
+  <!-- Power BI Emblem -->
+  <g transform="translate(548, 24)">
+    <rect width="60" height="26" rx="6" fill="#f2c811"/>
+    <rect x="8" y="13" width="3.5" height="7" rx="0.8" fill="#1e293b"/>
+    <rect x="13.5" y="9.5" width="3.5" height="10.5" rx="0.8" fill="#1e293b"/>
+    <rect x="19" y="6" width="3.5" height="14" rx="0.8" fill="#1e293b"/>
+    <text x="27" y="17" fill="#1e293b" font-family="system-ui, sans-serif" font-size="10" font-weight="800">DEMO</text>
+  </g>
+
+  <!-- Report Title Section -->
+  <text x="32" y="94" fill="#ffffff" font-family="'Be Vietnam Pro', system-ui, sans-serif" font-size="20" font-weight="700">Báo cáo hoạt động cho thuê BĐS</text>
+  <text x="32" y="118" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12.5" font-weight="400">hoạt động cho thuê BĐS Report</text>
+
+  <!-- Interactive Dashboard Wireframe Mockup -->
+  <g transform="translate(32, 142)">
+    <!-- KPI 1 -->
+    <rect x="0" y="0" width="134" height="66" rx="8" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <text x="14" y="22" fill="#64748b" font-family="system-ui" font-size="10.5" font-weight="500">Executive KPI</text>
+    <text x="14" y="48" fill="#38bdf8" font-family="system-ui" font-size="17" font-weight="700">+34.8%</text>
+    <path d="M85 45 L98 38 L108 42 L120 30" stroke="#38bdf8" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- KPI 2 -->
+    <rect x="148" y="0" width="134" height="66" rx="8" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <text x="162" y="22" fill="#64748b" font-family="system-ui" font-size="10.5" font-weight="500">Target Attainment</text>
+    <text x="162" y="48" fill="#34d399" font-family="system-ui" font-size="17" font-weight="700">98.2%</text>
+    <path d="M232 46 L244 42 L256 36 L268 30" stroke="#34d399" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- KPI 3 -->
+    <rect x="296" y="0" width="134" height="66" rx="8" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <text x="310" y="22" fill="#64748b" font-family="system-ui" font-size="10.5" font-weight="500">Efficiency Index</text>
+    <text x="310" y="48" fill="#f59e0b" font-family="system-ui" font-size="17" font-weight="700">1.42x</text>
+    <path d="M380 44 L392 40 L404 43 L416 32" stroke="#f59e0b" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- KPI 4 -->
+    <rect x="444" y="0" width="132" height="66" rx="8" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <text x="458" y="22" fill="#64748b" font-family="system-ui" font-size="10.5" font-weight="500">Active Records</text>
+    <text x="458" y="48" fill="#a78bfa" font-family="system-ui" font-size="17" font-weight="700">25.4K</text>
+    <path d="M524 45 L536 39 L548 41 L560 34" stroke="#a78bfa" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- Chart Block 1: Trend Bar Chart -->
+    <rect x="0" y="78" width="365" height="106" rx="8" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <text x="14" y="98" fill="#94a3b8" font-family="system-ui" font-size="10.5" font-weight="600">Cross-Period Trend &amp; Variance Analysis</text>
+    
+    <rect x="24" y="145" width="18" height="28" rx="2" fill="url(#barGrad)"/>
+    <rect x="54" y="132" width="18" height="41" rx="2" fill="url(#barGrad)"/>
+    <rect x="84" y="118" width="18" height="55" rx="2" fill="url(#barGrad)"/>
+    <rect x="114" y="110" width="18" height="63" rx="2" fill="#f59e0b" opacity="0.95"/>
+    <rect x="144" y="125" width="18" height="48" rx="2" fill="url(#barGrad)"/>
+    <rect x="174" y="115" width="18" height="58" rx="2" fill="url(#barGrad)"/>
+    <rect x="204" y="104" width="18" height="69" rx="2" fill="#34d399" opacity="0.95"/>
+    <rect x="234" y="122" width="18" height="51" rx="2" fill="url(#barGrad)"/>
+    <rect x="264" y="112" width="18" height="61" rx="2" fill="url(#barGrad)"/>
+    <rect x="294" y="98" width="18" height="75" rx="2" fill="#38bdf8" opacity="0.95"/>
+    <rect x="324" y="116" width="18" height="57" rx="2" fill="url(#barGrad)"/>
+
+    <!-- Chart Block 2: Donut & Category Breakdown -->
+    <rect x="380" y="78" width="196" height="106" rx="8" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <text x="394" y="98" fill="#94a3b8" font-family="system-ui" font-size="10.5" font-weight="600">Breakdown</text>
+    
+    <circle cx="445" cy="144" r="28" fill="none" stroke="#1e293b" stroke-width="11"/>
+    <circle cx="445" cy="144" r="28" fill="none" stroke="#eab308" stroke-width="11" stroke-dasharray="88 176" stroke-dashoffset="0"/>
+    <circle cx="445" cy="144" r="28" fill="none" stroke="#f59e0b" stroke-width="11" stroke-dasharray="52 176" stroke-dashoffset="-88"/>
+    <circle cx="445" cy="144" r="28" fill="none" stroke="#34d399" stroke-width="11" stroke-dasharray="36 176" stroke-dashoffset="-140"/>
+    
+    <g transform="translate(492, 122)">
+      <circle cx="4" cy="4" r="3" fill="#eab308"/>
+      <text x="12" y="7" fill="#cbd5e1" font-family="system-ui" font-size="9.5">Segment A</text>
+      <circle cx="4" cy="19" r="3" fill="#f59e0b"/>
+      <text x="12" y="22" fill="#cbd5e1" font-family="system-ui" font-size="9.5">Segment B</text>
+      <circle cx="4" cy="34" r="3" fill="#34d399"/>
+      <text x="12" y="37" fill="#cbd5e1" font-family="system-ui" font-size="9.5">Segment C</text>
+    </g>
+  </g>
+
+  <!-- Footer Info -->
+  <g transform="translate(32, 342)">
+    <text fill="rgba(255,255,255,0.38)" font-family="system-ui, sans-serif" font-size="10" font-weight="500" letter-spacing="0.4">POWER BI INTERACTIVE ANALYTICS • KPIM BUSINESS INTELLIGENCE</text>
+  </g>
+</svg>

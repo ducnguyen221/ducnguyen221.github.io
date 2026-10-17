@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>PowerBI Demo | Nguyen Quang Duc</title>
+    <title>PowerBI Gallery &amp; Demo | Nguyen Quang Duc</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
@@ -13,14 +13,618 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block"
         rel="stylesheet" />
     <link href="./assets/css/subpage-shell.css" rel="stylesheet" />
-<style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
-html { overscroll-behavior-y: none; }
-/* KHONG dat len body: body co overflow-x:hidden nen overflow-y tu dong thanh
-   `auto` -> body la mot vung cuon KHONG cuon duoc gi (cao dung bang noi dung).
-   Them overscroll-behavior:none vao do = chan luon viec chuyen tiep cuon sang
-   html => lan chuot tren noi dung khong an, chi lan tren dung thanh cuon moi
-   duoc. Chan keo-tuot chi can dat o html (phan tu cuon that su). */
-</style>
+    <style>
+        html { overscroll-behavior-y: none; }
+
+        /* Power BI Gallery Specific Styling */
+        .pbi-hero-panel {
+            padding: 1.5rem 1.8rem;
+            margin-bottom: 1.5rem;
+            border-radius: 1.2rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-panel);
+            box-shadow: 0 16px 40px -20px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(16px);
+        }
+
+        .pbi-hero-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .pbi-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .pbi-page-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.75rem;
+            width: fit-content;
+            border-radius: 999px;
+            background: rgba(242, 200, 17, 0.15);
+            border: 1px solid rgba(242, 200, 17, 0.4);
+            color: #f2c811;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .pbi-page-title {
+            margin: 0;
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: var(--text-color);
+            letter-spacing: -0.02em;
+        }
+
+        .pbi-page-desc {
+            margin: 0;
+            color: var(--soft-text-color);
+            font-size: 0.95rem;
+            line-height: 1.55;
+            max-width: 820px;
+        }
+
+        /* Stats Grid */
+        .pbi-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.9rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.15);
+        }
+
+        .pbi-stat-card {
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .pbi-stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(242, 200, 17, 0.12);
+            color: #f2c811;
+            font-size: 1.35rem;
+            flex-shrink: 0;
+        }
+
+        .pbi-stat-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pbi-stat-val {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-color);
+            line-height: 1.2;
+        }
+
+        .pbi-stat-lbl {
+            font-size: 0.75rem;
+            color: var(--soft-text-color);
+            font-weight: 500;
+        }
+
+        /* Controls: Filter & Search */
+        .pbi-controls-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pbi-search-wrap {
+            position: relative;
+            width: 100%;
+        }
+
+        .pbi-search-input {
+            width: 100%;
+            height: 46px;
+            padding: 0 3rem 0 2.8rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-panel);
+            color: var(--text-color);
+            font-size: 0.92rem;
+            outline: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .pbi-search-input:focus {
+            border-color: #f2c811;
+            box-shadow: 0 0 0 3px rgba(242, 200, 17, 0.18);
+        }
+
+        .pbi-search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--soft-text-color);
+            font-size: 1.2rem;
+            pointer-events: none;
+        }
+
+        .pbi-search-clear {
+            position: absolute;
+            right: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--soft-text-color);
+            cursor: pointer;
+            padding: 0.2rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .pbi-search-clear:hover {
+            color: var(--text-color);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Filter Tabs */
+        .pbi-filter-scroll {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            overflow-x: auto;
+            padding-bottom: 0.4rem;
+            scrollbar-width: thin;
+        }
+
+        .pbi-filter-scroll::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .pbi-filter-scroll::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.25);
+            border-radius: 999px;
+        }
+
+        .pbi-filter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.95rem;
+            border-radius: 999px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-panel);
+            color: var(--soft-text-color);
+            font-size: 0.82rem;
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            user-select: none;
+        }
+
+        .pbi-filter-btn:hover {
+            border-color: #f2c811;
+            color: var(--text-color);
+            transform: translateY(-1px);
+        }
+
+        .pbi-filter-btn.active {
+            background: #f2c811;
+            border-color: #f2c811;
+            color: #111827;
+            font-weight: 700;
+            box-shadow: 0 4px 14px rgba(242, 200, 17, 0.35);
+        }
+
+        .pbi-filter-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 1.35rem;
+            height: 1.35rem;
+            padding: 0 0.35rem;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            background: rgba(0, 0, 0, 0.08);
+        }
+
+        .pbi-filter-btn.active .pbi-filter-badge {
+            background: rgba(0, 0, 0, 0.25);
+            color: #ffffff;
+        }
+
+        /* Reports Grid */
+        .pbi-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.35rem;
+        }
+
+        .pbi-card {
+            display: flex;
+            flex-direction: column;
+            border-radius: 0.95rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-panel);
+            overflow: hidden;
+            box-shadow: 0 6px 20px -8px rgba(0, 0, 0, 0.18);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .pbi-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(242, 200, 17, 0.65);
+            box-shadow: 0 16px 36px -12px rgba(242, 200, 17, 0.2);
+        }
+
+        .pbi-card-thumb {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #0f172a;
+            overflow: hidden;
+        }
+
+        .pbi-card-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+
+        .pbi-card:hover .pbi-card-thumb img {
+            transform: scale(1.04);
+        }
+
+        .pbi-card-badges {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            right: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .pbi-domain-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.22rem 0.65rem;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 600;
+        }
+
+        .pbi-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.22rem 0.65rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            backdrop-filter: blur(8px);
+        }
+
+        .pbi-status-pill--live {
+            background: rgba(16, 185, 129, 0.9);
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        .pbi-status-pill--live::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 0 6px #ffffff;
+        }
+
+        .pbi-status-pill--showcase {
+            background: rgba(30, 41, 59, 0.88);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            color: #cbd5e1;
+        }
+
+        .pbi-card-body {
+            padding: 1.15rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            flex: 1;
+        }
+
+        .pbi-card-code {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #f2c811;
+            letter-spacing: 0.05em;
+        }
+
+        .pbi-card-title {
+            margin: 0;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-color);
+            line-height: 1.38;
+        }
+
+        .pbi-card-desc {
+            margin: 0;
+            font-size: 0.84rem;
+            color: var(--soft-text-color);
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex: 1;
+        }
+
+        .pbi-card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 0.65rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.12);
+            font-size: 0.74rem;
+            color: var(--soft-text-color);
+        }
+
+        .pbi-card-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .pbi-card-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            padding: 0 1.15rem 1.15rem 1.15rem;
+        }
+
+        .pbi-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            height: 36px;
+            padding: 0 0.85rem;
+            border-radius: 0.55rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.18s ease;
+        }
+
+        .pbi-btn--primary {
+            background: #f2c811;
+            color: #111827;
+            border: 1px solid #f2c811;
+        }
+
+        .pbi-btn--primary:hover {
+            background: #e2b90b;
+            box-shadow: 0 4px 12px rgba(242, 200, 17, 0.35);
+        }
+
+        .pbi-btn--outline {
+            background: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .pbi-btn--outline:hover {
+            border-color: #f2c811;
+            color: #f2c811;
+            background: rgba(242, 200, 17, 0.08);
+        }
+
+        .pbi-btn-full {
+            grid-column: 1 / -1;
+        }
+
+        /* Empty state */
+        .pbi-empty-state {
+            grid-column: 1 / -1;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            color: var(--soft-text-color);
+        }
+
+        .pbi-empty-icon {
+            font-size: 3rem;
+            color: #f2c811;
+            opacity: 0.7;
+        }
+
+        /* Modal Preview */
+        .pbi-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 15, 29, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 100000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .pbi-modal-overlay.active {
+            display: flex;
+        }
+
+        .pbi-modal-shell {
+            position: relative;
+            width: 95vw;
+            height: 90vh;
+            max-width: 1400px;
+            background: #0f172a;
+            border: 1px solid rgba(242, 200, 17, 0.35);
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .pbi-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.85rem 1.25rem;
+            background: #1e293b;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pbi-modal-title {
+            margin: 0;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .pbi-modal-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+        }
+
+        .pbi-modal-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            width: 34px;
+            height: 34px;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.18s ease;
+        }
+
+        .pbi-modal-btn:hover {
+            background: rgba(242, 200, 17, 0.2);
+            border-color: #f2c811;
+            color: #f2c811;
+        }
+
+        .pbi-modal-body {
+            flex: 1;
+            position: relative;
+            background: #0b0f19;
+        }
+
+        .pbi-modal-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .pbi-modal-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        .pbi-spinner {
+            width: 36px;
+            height: 36px;
+            border: 3px solid rgba(242, 200, 17, 0.2);
+            border-top-color: #f2c811;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1200px) {
+            .pbi-gallery-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .pbi-stats-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pbi-hero-panel {
+                padding: 1.25rem 1rem;
+            }
+            .pbi-page-title {
+                font-size: 1.35rem;
+            }
+            .pbi-stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .pbi-gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .pbi-modal-shell {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+            }
+        }
+    </style>
 </head>
 
 <body data-page="powerbi">
@@ -63,214 +667,153 @@ html { overscroll-behavior-y: none; }
         </header>
 
         <main class="shell-main">
-            <section class="glass-panel hero-panel powerbi-gallery-panel">
-                <div class="powerbi-gallery-shell">
-                    <section class="powerbi-group">
-                        <div class="powerbi-group-head">
-                            <div class="powerbi-group-title-wrap">
-                                <h2 class="powerbi-group-title">Population &amp; Geography</h2>
-                                <span class="powerbi-group-count">4</span>
-                            </div>
-                            <a class="powerbi-group-link t-lang"
-                                href="https://app.powerbi.com/view?r=eyJrIjoiYmY4ODMyOWMtOTRkNC00MDEwLWEyYzItYzEzYmI5NWM4ZmVkIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D"
-                                rel="noreferrer" target="_blank" data-en="View all" data-vi="Xem tất cả">View all</a>
+            <!-- Hero Panel -->
+            <section class="pbi-hero-panel">
+                <div class="pbi-hero-head">
+                    <div class="pbi-title-group">
+                        <span class="pbi-page-badge"><span class="material-symbols-outlined" style="font-size:14px;">analytics</span> Microsoft Power BI &amp; Fabric Gallery</span>
+                        <h1 class="pbi-page-title t-lang" data-en="Interactive Power BI Dashboard Gallery" data-vi="Kho Báo Cáo Phân Tích &amp; Dashboard Power BI">Kho Báo Cáo Phân Tích &amp; Dashboard Power BI</h1>
+                        <p class="pbi-page-desc t-lang"
+                            data-en="Explore 91 production-grade Power BI reports and KPIM BI capstone solutions across 8 core domains. Experience live interactive reports directly on Power BI Service."
+                            data-vi="Khám phá hệ thống 91 báo cáo phân tích quản trị doanh nghiệp và dự án tốt nghiệp KPIM BI Capstone trên 8 lĩnh vực nghiệp vụ. Trực tiếp tương tác thời gian thực trên nền tảng Power BI Service &amp; Microsoft Fabric.">
+                            Khám phá hệ thống 91 báo cáo phân tích quản trị doanh nghiệp và dự án tốt nghiệp KPIM BI Capstone trên 8 lĩnh vực nghiệp vụ. Trực tiếp tương tác thời gian thực trên nền tảng Power BI Service &amp; Microsoft Fabric.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Metrics Overview -->
+                <div class="pbi-stats-grid">
+                    <div class="pbi-stat-card">
+                        <div class="pbi-stat-icon"><span class="material-symbols-outlined">play_circle</span></div>
+                        <div class="pbi-stat-info">
+                            <span class="pbi-stat-val">64</span>
+                            <span class="pbi-stat-lbl t-lang" data-en="Interactive Live Embeds" data-vi="Báo Cáo Live Embed">Báo Cáo Live Embed</span>
                         </div>
-
-                        <div class="powerbi-report-grid">
-                            <a class="powerbi-report-card"
-                                href="https://app.powerbi.com/view?r=eyJrIjoiNTE5NTQyNzUtM2ZjMy00N2MwLTgyOGEtYTc1NzMwYTAzNzVlIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D"
-                                rel="noreferrer" target="_blank">
-                                <div class="powerbi-report-thumb">
-                                    <img alt="Store Sales" src="./assets/images/asset_013.png" />
-                                </div>
-                                <h3 class="powerbi-report-title">1. Store Sales</h3>
-                                <div class="powerbi-report-meta">
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">calendar_today</span><time>18/08/2021
-                                            10:01:13</time></span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">visibility</span>68</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_up</span>0</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_down</span>0</span>
-                                    <span class="powerbi-report-meta-item powerbi-report-meta-item--accent"><span
-                                            class="material-symbols-outlined">star</span>0</span>
-                                </div>
-                            </a>
-
-                            <a class="powerbi-report-card"
-                                href="https://app.powerbi.com/view?r=eyJrIjoiYmY4ODMyOWMtOTRkNC00MDEwLWEyYzItYzEzYmI5NWM4ZmVkIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D"
-                                rel="noreferrer" target="_blank">
-                                <div class="powerbi-report-thumb">
-                                    <img alt="Tinh hinh COVID-19" src="./assets/images/asset_017.png" />
-                                </div>
-                                <h3 class="powerbi-report-title">2. Tình hình COVID-19</h3>
-                                <div class="powerbi-report-meta">
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">calendar_today</span><time>20/04/2026
-                                            21:53:25</time></span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">visibility</span>57</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_up</span>1</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_down</span>0</span>
-                                    <span class="powerbi-report-meta-item powerbi-report-meta-item--accent"><span
-                                            class="material-symbols-outlined">star</span>0</span>
-                                </div>
-                            </a>
-
-                            <a class="powerbi-report-card"
-                                href="https://app.powerbi.com/view?r=eyJrIjoiYmY4ODMyOWMtOTRkNC00MDEwLWEyYzItYzEzYmI5NWM4ZmVkIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D"
-                                rel="noreferrer" target="_blank">
-                                <div class="powerbi-report-thumb">
-                                    <img alt="Cac tinh Viet Nam" src="./assets/images/image.png" />
-                                </div>
-                                <h3 class="powerbi-report-title">3. Các tỉnh Việt Nam</h3>
-                                <div class="powerbi-report-meta">
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">calendar_today</span><time>18/08/2021
-                                            14:20:54</time></span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">visibility</span>36</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_up</span>0</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_down</span>0</span>
-                                    <span class="powerbi-report-meta-item powerbi-report-meta-item--accent"><span
-                                            class="material-symbols-outlined">star</span>0</span>
-                                </div>
-                            </a>
-
-                            <a class="powerbi-report-card"
-                                href="https://app.powerbi.com/view?r=eyJrIjoiNTE5NTQyNzUtM2ZjMy00N2MwLTgyOGEtYTc1NzMwYTAzNzVlIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D"
-                                rel="noreferrer" target="_blank">
-                                <div class="powerbi-report-thumb">
-                                    <img alt="VietNam Map" src="./assets/images/images.png" />
-                                </div>
-                                <h3 class="powerbi-report-title">4. VietNam Map</h3>
-                                <div class="powerbi-report-meta">
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">calendar_today</span><time>17/08/2021
-                                            10:53:34</time></span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">visibility</span>32</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_up</span>0</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_down</span>0</span>
-                                    <span class="powerbi-report-meta-item powerbi-report-meta-item--accent"><span
-                                            class="material-symbols-outlined">star</span>0</span>
-                                </div>
-                            </a>
+                    </div>
+                    <div class="pbi-stat-card">
+                        <div class="pbi-stat-icon"><span class="material-symbols-outlined">dashboard_customize</span></div>
+                        <div class="pbi-stat-info">
+                            <span class="pbi-stat-val">91</span>
+                            <span class="pbi-stat-lbl t-lang" data-en="Total BI Solutions" data-vi="Tổng Giải Pháp Báo Cáo">Tổng Giải Pháp Báo Cáo</span>
                         </div>
-                    </section>
-
-                    <section class="powerbi-group">
-                        <div class="powerbi-group-head">
-                            <div class="powerbi-group-title-wrap">
-                                <h2 class="powerbi-group-title">01. Accounting &amp; Finance</h2>
-                                <span class="powerbi-group-count">4</span>
-                            </div>
-                            <a class="powerbi-group-link t-lang"
-                                href="https://app.powerbi.com/view?r=eyJrIjoiYmY4ODMyOWMtOTRkNC00MDEwLWEyYzItYzEzYmI5NWM4ZmVkIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D"
-                                rel="noreferrer" target="_blank" data-en="View all" data-vi="Xem tất cả">View all</a>
+                    </div>
+                    <div class="pbi-stat-card">
+                        <div class="pbi-stat-icon"><span class="material-symbols-outlined">category</span></div>
+                        <div class="pbi-stat-info">
+                            <span class="pbi-stat-val">18</span>
+                            <span class="pbi-stat-lbl t-lang" data-en="Business Domains" data-vi="Lĩnh Vực Chuyên Sâu">Lĩnh Vực Chuyên Sâu</span>
                         </div>
-
-                        <div class="powerbi-report-grid">
-                            <a class="powerbi-report-card"
-                                href="https://app.powerbi.com/view?r=eyJrIjoiYmY4ODMyOWMtOTRkNC00MDEwLWEyYzItYzEzYmI5NWM4ZmVkIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D"
-                                rel="noreferrer" target="_blank">
-                                <div class="powerbi-report-thumb">
-                                    <img alt="Finance Forecast" src="./assets/images/asset_010.png" />
-                                </div>
-                                <h3 class="powerbi-report-title">1. Finance Forecast</h3>
-                                <div class="powerbi-report-meta">
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">calendar_today</span><time>14/09/2022
-                                            09:41:21</time></span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">visibility</span>74</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_up</span>2</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_down</span>0</span>
-                                    <span class="powerbi-report-meta-item powerbi-report-meta-item--accent"><span
-                                            class="material-symbols-outlined">star</span>1</span>
-                                </div>
-                            </a>
-
-                            <a class="powerbi-report-card"
-                                href="https://app.powerbi.com/view?r=eyJrIjoiNTE5NTQyNzUtM2ZjMy00N2MwLTgyOGEtYTc1NzMwYTAzNzVlIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D"
-                                rel="noreferrer" target="_blank">
-                                <div class="powerbi-report-thumb">
-                                    <img alt="Accounts Receivable Report" src="./assets/images/asset_014.png" />
-                                </div>
-                                <h3 class="powerbi-report-title">2. Accounts Receivable Report</h3>
-                                <div class="powerbi-report-meta">
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">calendar_today</span><time>07/02/2023
-                                            11:25:40</time></span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">visibility</span>61</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_up</span>1</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_down</span>0</span>
-                                    <span class="powerbi-report-meta-item powerbi-report-meta-item--accent"><span
-                                            class="material-symbols-outlined">star</span>0</span>
-                                </div>
-                            </a>
-
-                            <a class="powerbi-report-card"
-                                href="https://app.powerbi.com/view?r=eyJrIjoiYmY4ODMyOWMtOTRkNC00MDEwLWEyYzItYzEzYmI5NWM4ZmVkIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D"
-                                rel="noreferrer" target="_blank">
-                                <div class="powerbi-report-thumb">
-                                    <img alt="Income Statement Report" src="./assets/images/asset_016.png" />
-                                </div>
-                                <h3 class="powerbi-report-title">3. Income Statement Report</h3>
-                                <div class="powerbi-report-meta">
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">calendar_today</span><time>24/06/2023
-                                            13:18:09</time></span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">visibility</span>49</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_up</span>0</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_down</span>0</span>
-                                    <span class="powerbi-report-meta-item powerbi-report-meta-item--accent"><span
-                                            class="material-symbols-outlined">star</span>0</span>
-                                </div>
-                            </a>
-
-                            <a class="powerbi-report-card"
-                                href="https://app.powerbi.com/view?r=eyJrIjoiNTE5NTQyNzUtM2ZjMy00N2MwLTgyOGEtYTc1NzMwYTAzNzVlIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D"
-                                rel="noreferrer" target="_blank">
-                                <div class="powerbi-report-thumb">
-                                    <img alt="Bank Loan Report" src="./assets/images/asset_011.png" />
-                                </div>
-                                <h3 class="powerbi-report-title">4. Bank Loan Report</h3>
-                                <div class="powerbi-report-meta">
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">calendar_today</span><time>09/11/2023
-                                            08:44:17</time></span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">visibility</span>53</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_up</span>1</span>
-                                    <span class="powerbi-report-meta-item"><span
-                                            class="material-symbols-outlined">thumb_down</span>0</span>
-                                    <span class="powerbi-report-meta-item powerbi-report-meta-item--accent"><span
-                                            class="material-symbols-outlined">star</span>1</span>
-                                </div>
-                            </a>
+                    </div>
+                    <div class="pbi-stat-card">
+                        <div class="pbi-stat-icon"><span class="material-symbols-outlined">schema</span></div>
+                        <div class="pbi-stat-info">
+                            <span class="pbi-stat-val">100%</span>
+                            <span class="pbi-stat-lbl t-lang" data-en="Star Schema &amp; DAX" data-vi="Star Schema &amp; DAX">Star Schema &amp; DAX</span>
                         </div>
-                    </section>
+                    </div>
                 </div>
             </section>
+
+            <!-- Controls Panel: Search & Domain Filters -->
+            <section class="pbi-controls-panel">
+                <div class="pbi-search-wrap">
+                    <span class="material-symbols-outlined pbi-search-icon">search</span>
+                    <input type="text" id="pbiSearch" class="pbi-search-input" placeholder="Tìm kiếm báo cáo theo tên, nghiệp vụ, tác giả hoặc từ khóa..." />
+                    <button id="pbiSearchClear" class="pbi-search-clear material-symbols-outlined">close</button>
+                </div>
+
+                <div class="pbi-filter-scroll" id="pbiFilterBar">
+                    <button class="pbi-filter-btn active" data-filter="all">
+                        <span class="t-lang" data-en="All Reports" data-vi="Tất cả">Tất cả</span>
+                        <span class="pbi-filter-badge">91</span>
+                    </button>
+                    <button class="pbi-filter-btn" data-filter="interactive">
+                        <span class="material-symbols-outlined" style="font-size:15px; color:#10b981;">sensors</span>
+                        <span class="t-lang" data-en="Live Embed" data-vi="Live Embed">Live Embed</span>
+                        <span class="pbi-filter-badge">64</span>
+                    </button>
+                    <button class="pbi-filter-btn" data-filter="Accounting">
+                        <span class="material-symbols-outlined" style="font-size:15px;">account_balance</span>
+                        <span class="t-lang" data-en="Finance &amp; Accounting" data-vi="Tài chính &amp; Kế toán">Tài chính &amp; Kế toán</span>
+                        <span class="pbi-filter-badge" id="badge-Accounting">0</span>
+                    </button>
+                    <button class="pbi-filter-btn" data-filter="Sales">
+                        <span class="material-symbols-outlined" style="font-size:15px;">trending_up</span>
+                        <span class="t-lang" data-en="Sales &amp; Customer" data-vi="Bán hàng &amp; Khách hàng">Bán hàng &amp; Khách hàng</span>
+                        <span class="pbi-filter-badge" id="badge-Sales">0</span>
+                    </button>
+                    <button class="pbi-filter-btn" data-filter="Marketing">
+                        <span class="material-symbols-outlined" style="font-size:15px;">campaign</span>
+                        <span class="t-lang" data-en="Marketing &amp; Ads" data-vi="Marketing &amp; Ads">Marketing &amp; Ads</span>
+                        <span class="pbi-filter-badge" id="badge-Marketing">0</span>
+                    </button>
+                    <button class="pbi-filter-btn" data-filter="Recruiting">
+                        <span class="material-symbols-outlined" style="font-size:15px;">badge</span>
+                        <span class="t-lang" data-en="HR &amp; People" data-vi="Nhân sự &amp; Tuyển dụng">Nhân sự &amp; Tuyển dụng</span>
+                        <span class="pbi-filter-badge" id="badge-Recruiting">0</span>
+                    </button>
+                    <button class="pbi-filter-btn" data-filter="Supply Chain">
+                        <span class="material-symbols-outlined" style="font-size:15px;">local_shipping</span>
+                        <span class="t-lang" data-en="Supply Chain &amp; Logistics" data-vi="Chuỗi cung ứng &amp; Kho">Chuỗi cung ứng &amp; Kho</span>
+                        <span class="pbi-filter-badge" id="badge-SupplyChain">0</span>
+                    </button>
+                    <button class="pbi-filter-btn" data-filter="Manufacturing">
+                        <span class="material-symbols-outlined" style="font-size:15px;">precision_manufacturing</span>
+                        <span class="t-lang" data-en="Manufacturing" data-vi="Sản xuất &amp; Chế tạo">Sản xuất &amp; Chế tạo</span>
+                        <span class="pbi-filter-badge" id="badge-Manufacturing">0</span>
+                    </button>
+                    <button class="pbi-filter-btn" data-filter="Management">
+                        <span class="material-symbols-outlined" style="font-size:15px;">monitoring</span>
+                        <span class="t-lang" data-en="IT &amp; Management" data-vi="Quản trị &amp; Hệ thống">Quản trị &amp; Hệ thống</span>
+                        <span class="pbi-filter-badge" id="badge-Management">0</span>
+                    </button>
+                    <button class="pbi-filter-btn" data-filter="Other">
+                        <span class="material-symbols-outlined" style="font-size:15px;">public</span>
+                        <span class="t-lang" data-en="Public Sector &amp; Cases" data-vi="Xã hội &amp; Đa ngành">Xã hội &amp; Đa ngành</span>
+                        <span class="pbi-filter-badge" id="badge-Other">0</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Results Counter & Grid -->
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; font-size:0.85rem; color:var(--soft-text-color);">
+                <span id="resultsCount">Đang hiển thị 91 báo cáo</span>
+                <span style="font-size:0.78rem;">Power BI Service • Direct Embed</span>
+            </div>
+
+            <!-- Report Grid -->
+            <div class="pbi-gallery-grid" id="powerbiGrid"></div>
         </main>
+
+        <!-- Live Interactive Embed Modal -->
+        <div class="pbi-modal-overlay" id="powerbiModal">
+            <div class="pbi-modal-shell">
+                <div class="pbi-modal-header">
+                    <div class="pbi-modal-title">
+                        <span class="material-symbols-outlined" style="color:#f2c811;">bar_chart</span>
+                        <span id="modalReportTitle">Power BI Interactive Report</span>
+                    </div>
+                    <div class="pbi-modal-actions">
+                        <a id="modalExternalBtn" href="#" target="_blank" rel="noreferrer" class="pbi-modal-btn" title="Mở trang mới">
+                            <span class="material-symbols-outlined" style="font-size:18px;">open_in_new</span>
+                        </a>
+                        <button id="modalReloadBtn" class="pbi-modal-btn" title="Tải lại">
+                            <span class="material-symbols-outlined" style="font-size:18px;">refresh</span>
+                        </button>
+                        <button id="modalCloseBtn" class="pbi-modal-btn" title="Đóng">
+                            <span class="material-symbols-outlined" style="font-size:18px;">close</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="pbi-modal-body">
+                    <div class="pbi-modal-loader" id="modalLoader">
+                        <div class="pbi-spinner"></div>
+                        <span>Đang kết nối Microsoft Power BI Service...</span>
+                    </div>
+                    <iframe id="modalIframe" class="pbi-modal-iframe" allowFullScreen="true"></iframe>
+                </div>
+            </div>
+        </div>
 
         <nav class="bottom-nav">
             <a class="bottom-link" data-page-link="profile" href="./index.html"><span
@@ -296,6 +839,242 @@ html { overscroll-behavior-y: none; }
                     data-vi="PowerBI">PowerBI</span></a>
         </nav>
     </div>
+
+    <!-- Data & Client-Side Controller -->
+    <script>
+        const POWERBI_REPORTS = [{"id": "PBI-001", "title_vi": "Báo Cáo Phân Tích Kết Quả Bán Hàng", "title_en": "Phân Tích Kết Quả Bán Hàng Report", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZjE5ZDA4M2EtZDI0Yy00YjUwLTg5ODMtYjdkYjY0NmI2ZmRhIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/g0YTRh7uRHpbWQgSZz62bO050.png", "pick_to_demo": true, "author": "Duc Nguyen", "supervisor": "Duc Nguyen", "score": 10, "description_vi": "KPIM - Supermarket Chain Sales Monitoring and Analysis Solution\n\nA.\tSUMMARY\nThis solution is a comprehensive dashboard that helps supermarket managers and executives track and optimize their sales performance across multiple stores and regions. The solution integrates data from various sources, including Point-of-sale Systems, Customer Loyalty Application, and Sales Planning Module in Accounting Software to provide insights into key metrics, such as sales trends, revenue plan progress, customer behavior and order processing quality. The solution also enables users to drill down into specific store, regional manager, and product, and to compare different scenarios and forecasts. The solution helps supermarket chains gain a competitive edge in the dynamic and challenging retail industry.\n\nB.\tSOLUTION DETAIL\nKPIM consulted and implemented the solution with Power BI and can apply to various difference datasource to combine data and create key reports, dashboards and scorecards to monitor in real-time. The client can monitor their business performance, be alerted with bad KPIs and easily create different views of metrics to drill-down and answer business questions.", "description_en": "Interactive analytics dashboard for Sales & Commercial, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-002", "title_vi": "Báo Cáo Tổng Quan Công Nợ", "title_en": "Tổng Quan Công Nợ Report", "domain": "Accounting", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "account_balance", "domain_color": "#3b82f6", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiYTE2YmE5NGUtYTE4Ny00MWY0LWIxMGMtN2U4NjI5ZTE1ZjkwIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/asset_014.png", "pick_to_demo": true, "author": "Duc Nguyen", "supervisor": "Duc Nguyen", "score": 10, "description_vi": "A.\tTỔNG QUAN BỘ BÁO CÁO\nKPIM xây dựng giải pháp phân tích về dữ liệu công nợ khách hàng dựa trên mẫu dữ liệu tại file Excel với cấu trúc chuẩn của các báo cáo công nợ và dễ dàng cho người dùng tay thế và nhập liệu dữ liệu công nợ của công ty mình. Đồng thời bao gồm báo cáo Power BI Report đã được kết nối trực tiếp với dữ liệu mẫu Excel để tự động cập nhật các tính toán và nội dung phân tích, biểu đồ.\n Bộ báo cáo cung cấp một cái nhìn phân tích toàn diện thông qua các biểu đồ (Data Visualization & Charts) và bảng phân tích (Matrix) trên các trang báo cáo (Reports & Dashboard) giúp người dùng dễ dàng theo dõi, giám sát công nợ của khách hàng theo các kỳ báo cáo tháng và phân tích về kỳ đáo hạn cũng như so sánh giữa các kỳ. Người dùng có thể theo theo dõi các chỉ tiêu này theo từng tháng, kỳ hạn, khu vực bán hàng và khách hàng dựa trên thông tin từ dữ liệu tương ứng.\nDữ liệu được KPIM xây dựng dựa trên mẫu báo dữ liệu cụ thể có thể thay thế bằng dữ liệu thực và tùy chỉnh theo mô hình trong Power BI cũng như có thể thay đổi các chiều thông tin tương ứng nếu cần mở rộng. Nội dung phân tích được KPIM tổng hợp theo các góc nhìn phân tích công nợ dựa trên kinh nghiệm các chuyên gia trong các dự án thực tế từ đó cho phép người dùng có một mẫu báo cáo vừa trực quan và đầy đủ thông tin có thể áp dụng và sử dụng ngay.\nB.\tCHI TIẾT GIẢI PHÁP\nKPIM đã thực hiện triển khai giải pháp sử dụng Power BI, một nền tảng phân tích dữ liệu và tạo lập báo cáo do Microsoft phát triển. Power BI có khả năng tổng hợp và xử lý mạnh mẽ với lượng dữ liệu lớn từ nhiều nguồn khác nhau, cung cấp nhiều loại hình biểu đồ và tính năng thiết kế báo cáo đa dạng, có khả năng cập nhật dữ liệu thời gian thực, và tính năng phân quyền truy cập báo cáo ở nhiều cấp độ khác nhau. \nVới nền tảng này, người dùng hoàn toàn có thể giám sát, so sánh các chỉ tiêu công nợ một cách linh hoạt từ tổng quan đến chi tiết, giúp giải đáp các câu hỏi nghiệp vụ một cách trực quan. Giải pháp có thể được mở rộng hoặc tùy chỉnh theo mong muốn người sử dụng một cách dễ dàng từ các mô hình và công thức được tạo sẵn. KPIM cung cấp chuyên viên hỗ trợ thay đổi tùy biến và mở rộng báo cáo theo nhu cầu miễn phí với các yêu cầu cơ bản và thu phí với nhu cầu chỉnh sửa mở rộng lớn.", "description_en": "Interactive analytics dashboard for Accounting & Finance, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-003", "title_vi": "Báo Cáo Phân Tích Chỉ Số Tài Chính", "title_en": "Phân Tích Chỉ Số Tài Chính Report", "domain": "Accounting", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "account_balance", "domain_color": "#3b82f6", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMTI5OTcyMmQtMjZiMC00NTIzLTg3MzYtYjBhY2NhMjkxOThhIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/asset_010.png", "pick_to_demo": true, "author": "Nguyễn Hoàng Thiện", "supervisor": "Cao Nhựt Minh", "score": 7, "description_vi": "Dễ dàng theo dõi tổng quan tình hình thu chi, tiết kiệm và tỷ lệ giữ lại hiện đang có so với thu nhập đầu vào.\nXem phân bổ chi phí theo từng phân loại chi tiêu. So sánh với giá trị ngân sách kế hoạch và giá trị trung bình lũy kế của ngân sách kế hoạch đến thời điểm hiện tại.\nGiám sát các nguồn thu nhập đầu vào, và quản lý dòng tiền trong từng danh mục tài khoản.\nTheo dõi xu hướng tiêu dùng các ngày trong tháng, so sánh với lượng tiền trung bình còn lại và lượng tiền tiêu dùng trung bình trong tháng. Ngoài ra báo cáo cũng so sánh chi phí tháng hiện tại với cùng kỳ năm ngoái và xem xu hướng tổng quan của ba chỉ tiêu cùng lúc bao gồm: thu nhập, chi tiêu, % nợ /thu nhập ròng.\nThống kê tình trạng và xu hướng nợ đáo hạn theo từng tháng, và tổng quan chi tiết nợ lũy kế đến hiện tại.", "description_en": "Interactive analytics dashboard for Accounting & Finance, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-004", "title_vi": "Báo Cáo Quy Trình Tuyển Dụng", "title_en": "Quy Trình Tuyển Dụng Report", "domain": "Recruiting", "domain_vi": "Nhân sự & Tuyển dụng", "domain_en": "HR & Recruiting", "domain_icon": "badge", "domain_color": "#ec4899", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiY2M2MDAwNmYtYjE3Ny00MWMxLThjOTktZTczMGU5N2FiNmM3IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/hr-analytics.webp", "pick_to_demo": true, "author": "KPIM BI Team", "supervisor": "Nguyễn Quang Đức", "score": 100, "description_vi": "Báo cáo phân tích chuyên sâu mảng Nhân sự & Tuyển dụng, trực quan hóa chỉ số KPI và phân tích biến động dữ liệu phục vụ điều hành.", "description_en": "Interactive analytics dashboard for HR & Recruiting, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-005", "title_vi": "Báo Cáo Quản Lý Hệ Thống Thông Tin", "title_en": "Quản Lý Hệ Thống Thông Tin Report", "domain": "IT", "domain_vi": "Công nghệ & Hệ thống", "domain_en": "IT & Systems Management", "domain_icon": "terminal", "domain_color": "#6366f1", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMTBiOTg4ZDItMTE3Zi00YzgyLTk5MTAtMGEwMDkwMmEwY2JmIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/congnhe_nancao_compaclass.jpg", "pick_to_demo": true, "author": "Nguyễn Hoàng Thiện", "supervisor": "Cao Nhựt Minh", "score": 8, "description_vi": "Theo dõi tổng quan các chỉ số chính giúp đánh giá hiệu suất tương tác trên hệ thống BI của công ty bao gồm số lượng người dùng tương tác, số lượng query được tạo mới và số lần câu lệnh truy vấn được sử dụng.\nSo sánh tình trạng phân bổ các câu lệnh query theo từng hệ thống, khu vực, và quốc gia được truy vấn.\nPhân tích xu hướng tăng giảm và tốc độ tăng trưởng lũy kế của tần suất các câu lệnh truy vấn được tạo mới và sử dụng theo từng quý qua các năm.\nĐánh giá và so sánh hiệu suất tương tác trên hệ thống BI của các phòng ban với nhau và với giá trị trung bình tổng thể của các phòng.\nQuan sát tần suất truy vấn và sử dụng theo tên câu lệnh, giúp nắm được nhu cầu truy vấn của đại đa số các phòng ban.", "description_en": "Interactive analytics dashboard for IT & Systems Management, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-006", "title_vi": "Báo Cáo Phân Tích Đánh Giá Sản Phẩm", "title_en": "Phân Tích Đánh Giá Sản Phẩm Report", "domain": "Product Analysis", "domain_vi": "Sản phẩm & Danh mục", "domain_en": "Product Analytics", "domain_icon": "category", "domain_color": "#6366f1", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiN2NmZDJmYzAtMDM2ZC00N2Y5LWJiYjAtMDdkMTQxM2E0ZTdhIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/data-analytics-fundamental.webp", "pick_to_demo": true, "author": "Nguyễn Hoàng Thiện", "supervisor": "Cao Nhựt Minh", "score": 9, "description_vi": "Thống kê số lượng reviews, số lượng khách hàng đánh giá và điểm đánh giá trung bình của toàn bộ sản phẩm.\nSo sánh số lượng đánh giá theo phân loại điểm, cung cấp cái nhìn nhanh chóng và trực quan về tổng quan cảm nhận khách hàng về các sản phẩm đang phân phối.\nThống kê top các khách hàng có lượt đánh giá nhiều nhất, và so sánh số lượng đánh giá theo điểm review, phân bổ xuống từng cửa hàng và thương hiệu.\nXu hướng biến động số lượng đánh giá và điểm review trung bình theo từng tháng trong năm\nSử dụng Wordcloud, nhấn mạnh và năm bắt nhanh chóng các từ khóa nổi bật về nội dung review của sản phẩm.\nTính hệ số tương quan và phân tích mức độ ảnh hưởng của hai biến giá bán và điểm review với nhau.", "description_en": "Interactive analytics dashboard for Product Analytics, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-007", "title_vi": "Báo Cáo Phân Tích Hiệu Quả Marketing", "title_en": "Phân Tích Hiệu Quả Marketing Report", "domain": "Marketing", "domain_vi": "Marketing & Quảng cáo", "domain_en": "Marketing & Advertising", "domain_icon": "campaign", "domain_color": "#f59e0b", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiYzk2ZDI0Y2EtMTM3Ni00NDRmLTgzNTAtZDQwNmNhNjgzOWFiIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/ai-data-analytics.webp", "pick_to_demo": true, "author": "KPIM BI Team", "supervisor": "Nguyễn Quang Đức", "score": 100, "description_vi": "Báo cáo phân tích chuyên sâu mảng Marketing & Quảng cáo, trực quan hóa chỉ số KPI và phân tích biến động dữ liệu phục vụ điều hành.", "description_en": "Interactive analytics dashboard for Marketing & Advertising, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-008", "title_vi": "Báo cáo kết quả kinh doanh", "title_en": "kết quả kinh doanh Report", "domain": "Accounting", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "account_balance", "domain_color": "#3b82f6", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZGM3NGZhZjYtOGI0My00ODQ0LWJjYWUtNmI5MDZiODQxNjQ4IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/asset_016.png", "pick_to_demo": true, "author": "KPIM BI Team", "supervisor": "Nguyễn Quang Đức", "score": 100, "description_vi": "Báo cáo phân tích chuyên sâu mảng Tài chính & Kế toán, trực quan hóa chỉ số KPI và phân tích biến động dữ liệu phục vụ điều hành.", "description_en": "Interactive analytics dashboard for Accounting & Finance, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-009", "title_vi": "Báo Cáo Lô Hàng Sản Xuất", "title_en": "Lô Hàng Sản Xuất Report", "domain": "Manufacturing", "domain_vi": "Sản xuất & Chế tạo", "domain_en": "Manufacturing & Production", "domain_icon": "precision_manufacturing", "domain_color": "#06b6d4", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiYTFhODAwMTgtMjQ1Yi00NmUyLWJjMTUtYTg5ZThkNDVlZTEwIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/asset_001.png", "pick_to_demo": true, "author": "KPIM BI Team", "supervisor": "Nguyễn Quang Đức", "score": 100, "description_vi": "Báo cáo phân tích chuyên sâu mảng Sản xuất & Chế tạo, trực quan hóa chỉ số KPI và phân tích biến động dữ liệu phục vụ điều hành.", "description_en": "Interactive analytics dashboard for Manufacturing & Production, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-010", "title_vi": "Báo Cáo Thu Chi", "title_en": "Thu Chi Report", "domain": "Accounting", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "account_balance", "domain_color": "#3b82f6", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiNWY0OGEzMDEtYTU4NS00NmJhLThlN2ItODY2NjQ2YTM1NzgwIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/excel-data-analytics.webp", "pick_to_demo": true, "author": "Duc Nguyen", "supervisor": "Duc Nguyen", "score": 9, "description_vi": "Báo cáo thu chi phân tích doanh thu chi phí và lợi nhuận so với các kế hoạch dự trù và kèm các nội dung hữ phân tích. Lấy từ mẫu khóa học Power BI Hero", "description_en": "Interactive analytics dashboard for Accounting & Finance, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-011", "title_vi": "Báo Cáo Quản Lý Khách Hàng", "title_en": "Quản Lý Khách Hàng Report", "domain": "Customer Analysis", "domain_vi": "Bán hàng & Khách hàng", "domain_en": "Sales & Customer Analytics", "domain_icon": "groups", "domain_color": "#10b981", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZDBjODY5MTEtODUxNy00NmM0LWJiZjctMmViMzdjOGM1YzM4IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/ai-data-analytics.webp", "pick_to_demo": true, "author": "KPIM BI Team", "supervisor": "Nguyễn Quang Đức", "score": 100, "description_vi": "Báo cáo phân tích chuyên sâu mảng Bán hàng & Khách hàng, trực quan hóa chỉ số KPI và phân tích biến động dữ liệu phục vụ điều hành.", "description_en": "Interactive analytics dashboard for Sales & Customer Analytics, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-012", "title_vi": "Báo Cáo Tổng Quan Bán Hàng", "title_en": "Tổng Quan Bán Hàng Report", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiYWZjNGZkMGItMjIwYy00MGQzLTljODQtOTczODM1YzFjYjg4IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/asset_013.png", "pick_to_demo": true, "author": "KPIM BI Team", "supervisor": "Nguyễn Quang Đức", "score": 100, "description_vi": "Báo cáo phân tích chuyên sâu mảng Bán hàng & Thương mại, trực quan hóa chỉ số KPI và phân tích biến động dữ liệu phục vụ điều hành.", "description_en": "Interactive analytics dashboard for Sales & Commercial, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-013", "title_vi": "Báo Cáo Hệ Thống CRM", "title_en": "Hệ Thống CRM Report", "domain": "Customer Analysis", "domain_vi": "Bán hàng & Khách hàng", "domain_en": "Sales & Customer Analytics", "domain_icon": "groups", "domain_color": "#10b981", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiOWQ5NTU0NGEtOTZmZC00YTQ3LTljOTUtOTVmYzk2ZjQyOGI4IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/ms-fabric-basic.webp", "pick_to_demo": true, "author": "KPIM BI Team", "supervisor": "Nguyễn Quang Đức", "score": 100, "description_vi": "Báo cáo phân tích chuyên sâu mảng Bán hàng & Khách hàng, trực quan hóa chỉ số KPI và phân tích biến động dữ liệu phục vụ điều hành.", "description_en": "Interactive analytics dashboard for Sales & Customer Analytics, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-014", "title_vi": "Báo Cáo Kết Quả Kinh Doanh", "title_en": "Kết Quả Kinh Doanh Report", "domain": "Accounting", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "account_balance", "domain_color": "#3b82f6", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZGM3NGZhZjYtOGI0My00ODQ0LWJjYWUtNmI5MDZiODQxNjQ4IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/asset_016.png", "pick_to_demo": true, "author": "KPIM BI Team", "supervisor": "Nguyễn Quang Đức", "score": 100, "description_vi": "Báo cáo phân tích chuyên sâu mảng Tài chính & Kế toán, trực quan hóa chỉ số KPI và phân tích biến động dữ liệu phục vụ điều hành.", "description_en": "Interactive analytics dashboard for Accounting & Finance, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-015", "title_vi": "Báo Cáo Ngân Sách Thu Chi", "title_en": "Ngân Sách Thu Chi Report", "domain": "Accounting", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "account_balance", "domain_color": "#3b82f6", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiYzAxNDhiMWEtZjYxMS00ODAwLWJmMDktODAxYzk3OTQ2NzY4IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/excel-data-analytics.webp", "pick_to_demo": true, "author": "KPIM BI Team", "supervisor": "Nguyễn Quang Đức", "score": 100, "description_vi": "Báo cáo phân tích chuyên sâu mảng Tài chính & Kế toán, trực quan hóa chỉ số KPI và phân tích biến động dữ liệu phục vụ điều hành.", "description_en": "Interactive analytics dashboard for Accounting & Finance, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-016", "title_vi": "Báo Cáo Kế Toán Quản Trị", "title_en": "Kế Toán Quản Trị Report", "domain": "Accounting", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "account_balance", "domain_color": "#3b82f6", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiYjU1MjFhOWQtZmUyNi00ODQ5LWIxZmMtYzUwYjJhNDlmZTE3IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/asset_010.png", "pick_to_demo": true, "author": "KPIM BI Team", "supervisor": "Nguyễn Quang Đức", "score": 100, "description_vi": "Báo cáo phân tích chuyên sâu mảng Tài chính & Kế toán, trực quan hóa chỉ số KPI và phân tích biến động dữ liệu phục vụ điều hành.", "description_en": "Interactive analytics dashboard for Accounting & Finance, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-017", "title_vi": "Báo Cáo Quản Trị KPI", "title_en": "Quản Trị KPI Report", "domain": "Management", "domain_vi": "Quản trị & Dự án", "domain_en": "Management & Projects", "domain_icon": "monitoring", "domain_color": "#14b8a6", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZTFjNzg5MmQtMWIzMS00ZWIwLWE4MDktNWE1MjZiNmUyNzI1IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/KPI.png", "pick_to_demo": true, "author": "KPIM BI Team", "supervisor": "Nguyễn Quang Đức", "score": 100, "description_vi": "Báo cáo phân tích chuyên sâu mảng Quản trị & Dự án, trực quan hóa chỉ số KPI và phân tích biến động dữ liệu phục vụ điều hành.", "description_en": "Interactive analytics dashboard for Management & Projects, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-018", "title_vi": "Báo Cáo Xuất Nhập Tồn", "title_en": "Xuất Nhập Tồn Report", "domain": "Inventory", "domain_vi": "Kho & Tồn trữ", "domain_en": "Inventory Management", "domain_icon": "inventory_2", "domain_color": "#8b5cf6", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMDczMWQwMDQtMDg0OC00M2U4LTk1YjAtNDlkMGYyYWMyMWUyIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/asset_007.png", "pick_to_demo": true, "author": "KPIM BI Team", "supervisor": "Nguyễn Quang Đức", "score": 100, "description_vi": "Báo cáo phân tích chuyên sâu mảng Kho & Tồn trữ, trực quan hóa chỉ số KPI và phân tích biến động dữ liệu phục vụ điều hành.", "description_en": "Interactive analytics dashboard for Inventory Management, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-019", "title_vi": "Báo Cáo Tổng Quan Kế Toán", "title_en": "Tổng Quan Kế Toán Report", "domain": "Accounting", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "account_balance", "domain_color": "#3b82f6", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiOTFlNDc5YWUtZmJiZi00NzI2LTgyMDgtNTlkNGZlNzFjZTQ1IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/asset_014.png", "pick_to_demo": true, "author": "Võ Bá Tùng", "supervisor": "Cao Nhựt Minh", "score": 8, "description_vi": "• Theo dõi tình hình kình doanh với các chỉ tiêu doanh thu, chi phí, lợi nhuận theo các chiều phân tích\n• So sánh giá trị thực hiện so với kế hoạch, cùng kỳ, cùng kỳ năm tước và theo dõi lũy kế các giá trị\n•  Phân tích cơ cấu doanh thu, lãi gộp, danh mục đầu tư theo các dịch vụ\n• Phân tích tỷ lệ hoàn thành các dự án thuộc dịch vụ triển khai của doanh nghiệp\n• Tạo các bộ lọc để quản lý xem báo cáo theo tháng/ quý/ năm.", "description_en": "Interactive analytics dashboard for Accounting & Finance, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-020", "title_vi": "Báo Cáo Quản Lý Đề Tài", "title_en": "Quản Lý Đề Tài Report", "domain": "Management", "domain_vi": "Quản trị & Dự án", "domain_en": "Management & Projects", "domain_icon": "monitoring", "domain_color": "#14b8a6", "category": "Power BI Demo", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiM2ZmYzU3ODktMTA3NC00MGQxLTkwYzgtYTcxNzc5ZjhjMDc3IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/Picture3.png", "pick_to_demo": true, "author": "Hồ Vinh Danh", "supervisor": "Duc Nguyen", "score": 7, "description_vi": "Tìm hiểu về báo cáo quản lý và đánh giá quá trình phê duyệt, thực hiện các đề tài nghiên cứu. Dữ liệu nên được cân nhắc tinh chỉnh thành nội dung về KPIM tương tự với data trên trog quy trình triển khai 1 dự án với khách hàng. Để mockup thông tin trên, tìm hiểu và trao đổi với Supervisor để đưa ra dữ liệu phù hợp. Yêu cầu nhân sự tìm hiểu, thực hiện tài liệu hóa vào các file Excel và Word cũng như xây dựng dữ liệu mock-up làm giàu nội dung dự án và xây dựng báo cáo mới tối ưu hơn giải pháp đã làm.\n\n1/ Hoàn thiện file Word Project Showcase (tiếng Anh + tiếng Việt)\n2/ Hoàn thiện các thông tin trong file Excel (Data / Mindmap / Chỉ tiêu / Nội dung báo cáo / Timeline)\n3/ Hoàn thiện các dữ liệu mẫu mockup lưu vào folder Data\n4/ Hoàn thiện version báo cáo mới xây dựng bằng Power BI Desktop\n5/ Chụp ảnh và lưu trong folder Picture.\n6/ Thuyết trình trong meeting và xác nhận hoàn thiện với supervisor", "description_en": "Interactive analytics dashboard for Management & Projects, visualizing KPI metrics and variance trends for decision-making.", "source_sheet": "query"}, {"id": "PBI-021", "title_vi": "Báo cáo phân tích cảm xúc khách hàng", "title_en": "phân tích cảm xúc khách hàng Report", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMDVkMzQ0MGEtMTFhYy00YTIxLTgzNmMtNTEyYjI5NjllZWZlIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-029_sales.svg", "pick_to_demo": true, "author": "Trần Mạnh Phúc", "supervisor": "Duc Nguyen", "score": 8, "description_vi": "Xây dựng báo cáo dánh giá cảm xúc theo nhận xét khách hàng.", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-022", "title_vi": "Báo cáo đánh giá sản phẩm", "title_en": "đánh giá sản phẩm Report", "domain": "Product Management", "domain_vi": "Sản phẩm & Danh mục", "domain_en": "Product Management", "domain_icon": "category", "domain_color": "#6366f1", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZTA0MDFlNmQtNjk2Yy00MWNiLWFjOTUtYzY4NWViOGQ3OGJmIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/data-analytics-fundamental.webp", "pick_to_demo": true, "author": "Hồ Vinh Danh", "supervisor": "Duc Nguyen", "score": 8, "description_vi": "Dựa trên nội dung yêu cầu của bài Capstone Project kèm bóa cóa mẫu làm cảm hứng, xây dựng một dự án tư vấn dựa trên đầu bài sẵn có và hoàn thiện các nội dung phân tích theo yêu cầu:\n1/ Hoàn thiện các nội dung trong file Excel Project Management\n2/ Hoàn thiện các nội dung trong file Word về Project Showcase\n3/ Xây dựng báo cáo Power BI\n4 Trình bày nội dung, xác nhận hoàn thành các tài liệu và project với supervisor", "description_en": "Power BI analytics solution for Product Management developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-023", "title_vi": "Recruiting Pipeline", "title_en": "Recruiting Pipeline", "domain": "Recruiting", "domain_vi": "Nhân sự & Tuyển dụng", "domain_en": "HR & Recruiting", "domain_icon": "badge", "domain_color": "#ec4899", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiNDFmNjhlODEtOGM2Yi00YWQwLWFjMmItOTQ5MWRhMjk4ZTFjIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/hr-analytics.webp", "pick_to_demo": true, "author": "Nguyễn Hoàng Thiện", "supervisor": "Cao Nhựt Minh", "score": 8, "description_vi": "Theo dõi số lượng ứng viên hiện tại cần xử lý, số lượng vị trí đang tuyển và thời gian trung bình xử lý trạng thái ứng viên theo phễu tuyển dụng.\nTổng quan số lượng người ứng tuyển theo vị trí địa lý, chức vụ, hình thức làm việc, và nguồn tuyển dụng.\nSo sánh xu hướng tuyển dụng với giá trị cùng kỳ năm ngoái theo từng tháng trong năm\nTheo dõi tỷ lệ tuyển dụng, rút hồ sơ, hoặc chờ xử lý trên tổng số lượng ứng viên\nĐánh giá hiệu suất tuyển dụng dựa trên tỷ lệ chuyển đổi theo nguồn tuyển dụng, chức vụ, vị trí địa lý.", "description_en": "Power BI analytics solution for HR & Recruiting developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-024", "title_vi": "KPIM DEMO - Báo cáo đánh giá điểm học viên", "title_en": "KPIM DEMO -  đánh giá điểm học viên Report", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiNTAxM2NkY2MtMzZkMi00MGVhLWJlYmYtNDZkNTFiZTQwOWUzIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-063_other.svg", "pick_to_demo": true, "author": "Hồ Vinh Danh", "supervisor": "Duc Nguyen", "score": 7, "description_vi": "Tìm hiểu về đề tài xây dựng dữ liệu và báo cáo đánh giá triến độ hoàn thành khóa học. Trong đó, lưu ý áp dụng tương tự quy tình đánh giá tiến độ của việc học tập bởi KPIM bao gồm việc tư duy và xây dựng cá bảng dữ liệu cũng như biểu mẫu hợp lý phục vụ thao tác nhập liệu và quản lý dữ liệu. Từ đó xây dựng báo cáo phân tích và đánh giá điểm học viên.\n\n1/ Hoàn thiện file Word Project Showcase (tiếng Anh + tiếng Việt)\n2/ Hoàn thiện các thông tin trong file Excel Project Management (Data / Mindmap / Chỉ tiêu / Nội dung báo cáo / Timeline)\n3/ Hoàn thiện các dữ liệu mẫu mockup lưu vào folder Data\n4/ Hoàn thiện version báo cáo mới xây dựng bằng Power BI Desktop\n5/ Chụp ảnh và lưu trong folder Picture.\n6/ Thuyết trình trong meeting và xác nhận hoàn thiện với supervisor", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-025", "title_vi": "Bộ Báo Cáo Quản Lý Thuê BĐS", "title_en": "Bộ  Quản Lý Thuê BĐS Report", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiOTIwZmU3NDUtNGQ4ZS00NzYxLTk0ZTItNzJkNGY3OTM0ZGY0IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-064_other.svg", "pick_to_demo": true, "author": "Trần Mạnh Phúc", "supervisor": "Duc Nguyen", "score": 9, "description_vi": "Xây dựng giải pháp giúp chủ các BĐS có thể ứng dụng đẻ lưu trữ các tài liệu và dữ liệu liên quan đến các căn BĐS và quá trình cùng dòng tiền thu chi theo các hợp đồng thuê. Tính toán và tạo các báo cáo về KQKD và tiến độ đóng tiền", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-026", "title_vi": "Báo cáo quản lý khách sạn", "title_en": "quản lý khách sạn Report", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiOTRiNDNjMDMtZTQyNS00MjRkLTgxNzAtZmQ2ZjIwMDY1MWU5IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-071_other.svg", "pick_to_demo": true, "author": "Nguyễn Thành Trung", "supervisor": "Duc Nguyen", "score": 7, "description_vi": "Sẽ update sau", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-027", "title_vi": "Life Insurance Financial Report", "title_en": "Life Insurance Financial Report", "domain": "Accounting", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "account_balance", "domain_color": "#3b82f6", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMjc5YmUyNGItNmYwNC00YmExLTg4OTAtZDU5ODhlN2ExMDA3IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-072_accounting.svg", "pick_to_demo": true, "author": "Trương Minh Vương", "supervisor": "Duc Nguyen", "score": 9, "description_vi": "A.\tSUMMARY\nKPIM cung cấp giải pháp xây dựng một báo cáo Power BI giúp các nhà quản lý theo dõi tình hình kinh doanh tổng thể của công ty trên nhiều chiều dữ liệu khác nhau. Giải pháp tích hợp và tính toán dữ liệu từ nguồn dữ liệu để cung cấp thông tin về các chỉ số kinh doanh quan trọng để theo dõi và so sánh theo các chiều thời gian khác nhau, bao gồm các chỉ số kinh doanh chung như doanh thu, chi phí, lợi nhuận, chỉ số tài chính, kết quả kinh doanh bảo hiểm gốc, tái bảo hiểm, hoạt động đầu tư tài chính và phân bổ vốn đầu tư. Tóm lại, đây là một giải pháp giúp công ty bảo hiểm có thể theo dõi tình hình hoạt động kinh doanh từ tổng quan đến chi tiết, giúp các nhà quản lý thích ứng và tối ưu hóa hoạt động kinh doanh của mình.", "description_en": "Power BI analytics solution for Accounting & Finance developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-028", "title_vi": "Employee Management Report", "title_en": "Employee Management Report", "domain": "Human Resource", "domain_vi": "Nhân sự & Đào tạo", "domain_en": "HR & People Operations", "domain_icon": "badge", "domain_color": "#ec4899", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiYzNkMmZkZjctZGNjNi00NjYzLWFlMmEtMWVkOWQ1ZjU5YmRlIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/ai-hr-automation.webp", "pick_to_demo": true, "author": "Duc Nguyen", "supervisor": "Duc Nguyen", "score": 8, "description_vi": "Sẽ update sau", "description_en": "Power BI analytics solution for HR & People Operations developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-029", "title_vi": "Báo cáo thu chi ngân sách bộ TNMT", "title_en": "thu chi ngân sách bộ TNMT Report", "domain": "Accounting", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "account_balance", "domain_color": "#3b82f6", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiODUyZjdkNzYtY2EzNC00YjMwLTgxOWItOGU2MDgxZDU0NzlmIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/excel-data-analytics.webp", "pick_to_demo": true, "author": "Duc Nguyen", "supervisor": "Duc Nguyen", "score": 9, "description_vi": "DEMO cho Bộ TNMTT lấy ví dụ báo cáo", "description_en": "Power BI analytics solution for Accounting & Finance developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-030", "title_vi": "Báo cáo thị trường doanh nghiệp BĐS", "title_en": "thị trường doanh nghiệp BĐS Report", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiNTdmODVjODgtYzE3Zi00YzhkLTg2MTctOTZiYmM5YWRhMmIyIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-075_other.svg", "pick_to_demo": true, "author": "Duc Nguyen", "supervisor": "Duc Nguyen", "score": 7, "description_vi": "Sẽ update sau", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-031", "title_vi": "Báo cáo dấn số tỉnh thành Việt Nam", "title_en": "dấn số tỉnh thành Việt Nam Report", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiNzM5ZTAwMzktOGU5OS00ODViLTk5NzktZDU0OGM0M2MxYmI4IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/image.png", "pick_to_demo": true, "author": "Duc Nguyen", "supervisor": "Duc Nguyen", "score": 9, "description_vi": "Báo cáo thống kê lượng dân số tại các tỉnh thành Việt Nam", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-032", "title_vi": "KPIM Datathon", "title_en": "KPIM Datathon", "domain": "Logistic", "domain_vi": "Logistics & Vận tải", "domain_en": "Logistics & Operations", "domain_icon": "navigation", "domain_color": "#8b5cf6", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMjdkMzhlMjItY2NmYS00YjVjLWFkYTAtMTVlZDk4NzU1OWE1IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-077_logistic.svg", "pick_to_demo": true, "author": "Duc Nguyen", "supervisor": "Duc Nguyen", "score": 9, "description_vi": "Báo cáo phân tích hiệu qua giao hàng và phân tích bài toán thương mại điện tử", "description_en": "Power BI analytics solution for Logistics & Operations developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-033", "title_vi": "Báo cáo hiệu suất bán hàng", "title_en": "hiệu suất bán hàng Report", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZjFiNzU3MzktN2I1Ni00Yjc2LTlmNDUtYWI2OGFlYTUxNDIxIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-079_sales.svg", "pick_to_demo": true, "author": "Duc Nguyen", "supervisor": "Duc Nguyen", "score": 9, "description_vi": "ABC.Inc là một công ty dịch vụ công nghệ thông tin tập trung vào mạng lưới và an ninh mạng. Trong quy trình bán hàng của công ty, khách hàng được phân loại thành các trạng thái dựa trên mức độ tiềm năng: khách hàng đầu mối (Lead), khách hàng tiềm năng (Opportunity), khách hàng thực sự của công ty (Customer). Đội ngũ bán hàng phụ trách nghiên cứu thị trường, tiếp cận khách hàng tiềm năng. Khách hàng được đánh giá là tiềm năng sẽ được chuyển sang cho đội ngũ quản lý khách hàng phụ trách và chuyển đổi thành khách hàng thực sự của công ty. Dưới dây là quy trình bán hàng của công ty ABC.Inc: \n  \nBan quản lý của ABC. Inc muốn đánh giá chất lượng công việc của đội ngũ bán hàng và người quản lý khách hàng hàng ngày (theo dữ liệu mẫu ở dưới). Báo cáo cần giải quyết được các câu hỏi sau:\n1.\tChỉ ra số lượng đầu mối và khách hàng tiềm năng đang được xử lý theo từng giai đoạn.\n2.\tPhân loại đầu mối, khách hàng tiềm năng được xử lý theo ngân sách và địa điểm. \n3.\tPhân tích quy trình bán hàng theo từng giai đoạn dựa trên tổng số đầu mối, khách hàng tiềm năng và tổng số khách hàng thực sự. \n4.\tChỉ ra xu hướng 12 tháng của tổng số đầu mối, tỷ lệ đủ điều kiện chuyển đổi, tổng số khách hàng đạt được và tỷ lệ chuyển đổi.\n5.\tPhân tích các kênh tiếp cận khách hàng tiềm năng. Chỉ ra tỷ lệ đủ điều kiện chuyển đổi và tỷ lệ đạt được của mỗi kênh.\n6.\tPhân loại khách hàng tiềm năng theo ngân sách chi trả.\n7.\tChỉ ra lí do đầu mối chuyển đổi thất bại và mất khách hàng tiềm năng.\n8.\tPhân loại đội ngũ bán hàng theo tỉ lệ chuyển đổi thành khách hàng tiềm năng và phân loại đội ngũ quản lý theo tỉ lệ chuyển đổi thành khách hàng thực sự.", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-034", "title_vi": "Báo cáo quản lý kho hàng", "title_en": "quản lý kho hàng Report", "domain": "Supply Chain", "domain_vi": "Chuỗi cung ứng & Kho", "domain_en": "Supply Chain & Inventory", "domain_icon": "local_shipping", "domain_color": "#8b5cf6", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiNGFkM2YyYWUtOTFjZS00ZmJkLWFjM2QtMjk5ZGE2M2M2NzZmIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-080_supply chain.svg", "pick_to_demo": true, "author": "Duc Nguyen", "supervisor": "Duc Nguyen", "score": 9, "description_vi": "Sẽ update", "description_en": "Power BI analytics solution for Supply Chain & Inventory developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-035", "title_vi": "Global External Debt", "title_en": "Global External Debt", "domain": "Accounting", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "account_balance", "domain_color": "#3b82f6", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMGRjOTFjMDQtNDkyZC00MjA5LTgwMWItMjJkOTljN2FhYTVmIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-083_accounting.svg", "pick_to_demo": true, "author": "Nguyễn Hoàng Thiện", "supervisor": "Cao Nhựt Minh", "score": 8, "description_vi": "Dễ dàng theo dõi và đánh giá và so sánh tình trạng nợ của khu vực và xu hướng năm theo các loại chỉ tiêu khác nhau: tổng nợ lũy kế, % nợ lũy kế / GDP, ...\nXem các chỉ tiêu nợ lũy kế của từng quốc gia, phân bổ theo từng chủ thể vay, chủ thể cho vay. Đánh giá phần trăm nợ trên quy mô GDP, dự trữ, xuất khẩu, dân số\nPhân tích xu hướng nợ, tỷ lệ tăng trưởng qua các năm và thời gian trung bình trả hết nợ\nĐánh giá khả năng thanh toán nợ đến hạn của quốc gia. Tỷ lệ lãi suất, thanh toán nợ gốc và DSCR (Debt Service Coverage Ratio)\nBáo cáo có tính năng chyển đổi đơn vị, ngôn ngữ, và có thanh điều hướng trang. Bố cục và biểu đồ được thiết kế trực quan, dễ dàng thay đổi chỉ tiêu và hướng phân tích.", "description_en": "Power BI analytics solution for Accounting & Finance developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-036", "title_vi": "Báo cáo tình hình môi trường Việt Nam", "title_en": "tình hình môi trường Việt Nam Report", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiYWVmZWUwZDEtMmI1Ny00OTAwLWJmY2UtMmRkZTc1MDY4NWJiIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/asset_017.png", "pick_to_demo": true, "author": "Nguyễn Đức Duy", "supervisor": "Cao Nhựt Minh", "score": 8, "description_vi": "👉Tổng quan - dễ dàng theo dõi các chỉ số đánh giá về tình hình môi trường. \n👉 Đa chiều và linh hoạt - theo dõi sự thay đổi của các chỉ tiêu môi trường theo giai đoạn hoặc thời gian cụ thể. \n\n👉 Tích hợp và chuẩn hóa dữ liệu - tổng hợp dữ liệu từ các nguồn phức tạp và đưa về dạng chuẩn, tạo điều kiện thuận lợi cho việc phân tích và hiểu dữ liệu. \n\n👉 Tùy chỉnh và cá nhân hóa - có thể tập trung vào các khía cạnh quan trọng và cần thiết nhất, lọc dữ liệu, thay đổi tham số và tạo biểu đồ theo ý muốn. \n\n👉 Phân tích chi tiết và trực quan - biểu đồ, bảng và biểu đồ mô tả dữ liệu một cách chi tiết và trực quan. Điều này giúp người dùng theo dõi dễ dàng và hiểu rõ hơn về tình hình môi trường", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-037", "title_vi": "Profit & Loss Statement Report", "title_en": "Profit & Loss Statement Report", "domain": "Accounting", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "account_balance", "domain_color": "#3b82f6", "category": "Revised Client Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMzIzMjcwNTEtMTczYS00NmU1LWE5OTgtMjU4ZDc5ZWNjYjM5IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/asset_016.png", "pick_to_demo": true, "author": "Đào Đức Trung", "supervisor": "Duc Nguyen", "score": 8, "description_vi": "A.\tTỔNG QUAN GIẢI PHÁP\nKPIM ra mắt một giải pháp độc đáo để hỗ trợ các doanh nghiệp xây dựng báo cáo kết quả hoạt động kinh doanh (P&L) một cách hiệu quả. Bằng cách tạo ra các bảng điều khiển (dashboard) thông minh, giải pháp này mang lại cái nhìn tổng quan về hiệu suất tài chính của doanh nghiệp, từ đó giúp quản lí dễ dàng theo dõi và đánh giá tình hình kinh doanh. Thông qua việc tổ chức và trực quan hóa dữ liệu, các bảng điều khiển P&L giúp doanh nghiệp nhanh chóng nhận biết các yếu tố ảnh hưởng đến tình hình lợi nhuận của mình. Điều này bao gồm việc phân tích chi tiết về doanh thu từ các nguồn khác nhau, chi phí và lợi nhuận từng mảng kinh doanh, cũng như xác định các khoản chi phí không hiệu quả và tiềm ẩn.\nĐể xây dựng báo cáo P&L, KPIM còn đề xuất thu thập và tổng hợp dữ liệu từ nhiều nguồn khác nhau. Điều này bao gồm dữ liệu từ hệ thống quản lí tài chính, kế toán, và các hoạt động kinh doanh khác của doanh nghiệp. Thông qua việc tích hợp dữ liệu từ các nguồn này, bảng điều khiển P&L không chỉ cung cấp cái nhìn tổng quan mà còn giúp phân tích chi tiết về hiệu suất tài chính từ mọi góc độ. \nMột điểm đặc biệt nổi bật của giải pháp này là khả năng tùy chỉnh linh hoạt. KPIM cung cấp một mô hình dữ liệu được thiết kế một cách linh hoạt và tối ưu, cho phép người dùng tùy chỉnh trang báo cáo P&L theo nhu cầu cụ thể của doanh nghiệp. Điều này bao gồm việc thực hiện phân tích theo định dạng thời gian, phân loại theo từng sản phẩm, kênh phân phối và so sánh hiệu suất với các chu kì trước đó.\nCuối cùng, giải pháp xây dựng báo cáo P&L của KPIM giúp doanh nghiệp ra quyết định dựa trên dữ liệu và thông tin chính xác. Bằng cách cung cấp cái nhìn toàn diện về tình hình tài chính, từ các khoản thu đến chi phí, giải pháp này hỗ trợ quá trình ra quyết định trở nên khoa học hơn và giúp doanh nghiệp đạt được hiệu suất tối ưu trong kinh doanh và cạnh tranh mạnh mẽ trên thị trường.\n\nB.\tCHI TIẾT GIẢI PHÁP\nKPIM đã hỗ trợ và triển khai giải pháp sử dụng Power BI, một công cụ phân tích dữ liệu và tạo báo cáo do Microsoft phát triển. Power BI có khả năng mạnh mẽ trong việc tổng hợp và xử lý lượng dữ liệu lớn từ nhiều nguồn khác nhau. Nền tảng này cung cấp nhiều loại biểu đồ và tính năng thiết kế báo cáo đa dạng, hỗ trợ cập nhật dữ liệu thời gian thực, và có khả năng quản lí quyền truy cập ở nhiều cấp độ khác nhau. Với Power BI, các nhà quản lí có khả năng theo dõi tình hình hoạt động kinh doanh một cách tổng quan nhất, giúp doanh nghiệp nắm bắt kịp thời tình hình ngay khi có sự biến động, từ đó cung cấp cơ hội tối ưu hóa lợi thế cạnh tranh và quy trình vận hành. \nTrong báo cáo này, KPIM tập trung phân tích tình hình hoạt động kinh doanh theo các chỉ tiêu kinh doanh.\n\tTrực quan hóa thông tin hấp dẫn, rõ ràng\n\tDễ dàng so sánh tình hình hiện tại với kế hoạch đề ra và cùng kì năm ngoái cả về giá trị hàng tháng và lũy kế\n\tTheo dõi xu hướng biến động của các chỉ tiêu kinh doanh trong năm\n\tỨng dụng dự báo và phân tích những biến động bất thường trong phân tích xu hướng doanh thu\n\tTự động cập nhật dữ liệu mới, đánh giá khách quan tình hình chung và hỗ trợ quá trình ra quyết định nhanh chóng, linh hoạt.\nCác trang báo cáo thuộc phạm vi giải pháp bao gồm:", "description_en": "Power BI analytics solution for Accounting & Finance developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-038", "title_vi": "Báo cáo quản lý hợp đồng và công nợ", "title_en": "quản lý hợp đồng và công nợ Report", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "Revised Client Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMTliZThkY2YtYmI4Ni00MGM3LThmNDktZDc0ZTQ3NTQ0YTg4IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ==", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-089_other.svg", "pick_to_demo": true, "author": "Đặng Phạm Huy Hoàng", "supervisor": "Cao Nhựt Minh", "score": 8, "description_vi": "- Theo dõi được tổng quan và chi tiết các hợp đồng đang quản lý\n- Nắm được sẽ có bao nhiêu hợp đồng đến hạn trong 3 tháng tới hay 6 tháng tới cũng như các thông tin hợp đồng\n- Nắm rõ được tình hình công nợ, đến hạn và quá hạn\n- Chi tiết các khách hàng có bao nhiêu công nợ đến hạn, quá hạn\n- Trực quan dễ hiểu và chuyên nghiệp, dễ dàng đưa vào sử dụng", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-039", "title_vi": "RongViet Venture Capital Investment Report", "title_en": "RongViet Venture Capital Investment Report", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "Revised Client Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZWI3NjRhMzgtMTMxNC00MDkwLTlhZGMtMmQxNjNjYzQxNzBmIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-090_other.svg", "pick_to_demo": true, "author": "Nguyễn Hoàng Thiện", "supervisor": "Cao Nhựt Minh", "score": 9, "description_vi": "Trang Tổng Quan Hoạt Động Kinh Doanh, người dùng sẽ xem được các chỉ số tài chính quan trọng và so sánh chúng với giá trị của kỳ trước và cùng kỳ (theo tháng/quý/năm). Quan sát Top 5 phòng ban và nhân viên theo doanh thu, cùng xu hướng và phân bổ các loại chỉ tiêu theo các chiều phân tích khác nhau như cây tổ chức, sản phẩm, khách hàng.\nTrang báo cáo Tổng Quan Tình Hình Khách Hàng sẽ phân tích số lượng và giá trị giao dịch theo từng phân loại (mới, cũ) và phân khúc RFM của khách hàng. Ngoài ra báo cáo cũng cho thấy xu hướng tăng trưởng trong thị phần doanh nghiệp và phần trăm trung bình thị phần của 12 tháng gần nhất.\nPhân tích tổng quan các chỉ tiêu tài chính theo xu hướng tháng/quý/năm, phân bổ chỉ tiêu theo các chiều phân tích, và so sánh với giá trị của cùng kỳ và kỳ trước.\nTheo dõi Top 5 phòng ban, nhân viên theo doanh thu và tỷ lệ đóng góp tương ứng của từng đối tượng vào tổng doanh thu.\nPhân tích dòng tiền lợi nhuận gộp từ loại hình sản phẩm dịch vụ qua các năm\nTổng quan số lượng khách hàng theo phân loại (mới, cũ) và phân khúc RFM. Dễ dàng phân tích các nhóm khách hàng trên theo các chỉ tiêu khác nhau như số lượng, giá trị giao dịch, số lượng hợp đồng, mức sinh lời,...\nPhân tích các chỉ tiêu khách hàng theo các chiều cây tổ chức, sản phẩm, sàn kênh, nhân khẩu. Giám sát xu hướng biến động chỉ tiêu và nắm bắt thị phần doanh nghiệp 12 tháng trong năm.", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-040", "title_vi": "Báo cáo tình hình dây chuyền sản xuất", "title_en": "tình hình dây chuyền sản xuất Report", "domain": "Manufacture", "domain_vi": "Sản xuất & Chế tạo", "domain_en": "Manufacturing & Production", "domain_icon": "precision_manufacturing", "domain_color": "#06b6d4", "category": "Revised Client Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZjllZGJjMWMtM2Y4ZC00ZDE3LTg3MzQtZjBlYjc3OGFlMjYwIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/asset_001.png", "pick_to_demo": true, "author": "Nguyễn Đức Duy", "supervisor": "Cao Nhựt Minh", "score": 7, "description_vi": "👉 Đa chiều - báo cáo có thể quan sát theo thời gian linh hoạt và quan sát theo từng chiều phân tích cụ thể \n\n👉 Tích hợp dữ liệu - tổng hợp từ những cấu trúc dữ liệu phức tạp, đưa về dạng chuẩn để dễ dàng phân tích \n\n👉 Tùy chỉnh - linh hoạt và có thể tùy chỉnh theo nhu cầu và yêu cầu của người dùng, cho phép tập trung vào các khía cạnh quan trọng và cần thiết nhất \n\n👉 Phân tích chuyên sâu - những biểu đồ, bảng biểu mô tả dữ liệu một cách chi tiết và trực quan nhất giúp người dùng theo dõi dễ dàng và có được nhiều thông tin quan trọng \n\n👉 Cập nhật - cập nhật dữ liệu liên tục giúp người dùng quan sát tình hình realtime", "description_en": "Power BI analytics solution for Manufacturing & Production developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-041", "title_vi": "Recruiting Pipeline Report", "title_en": "Recruiting Pipeline Report", "domain": "Recruiting", "domain_vi": "Nhân sự & Tuyển dụng", "domain_en": "HR & Recruiting", "domain_icon": "badge", "domain_color": "#ec4899", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZGE3Mzc0N2ItZWJiZC00YzBiLTg5YTgtMTQ3NmI4NWFiMTJmIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/hr-analytics.webp", "pick_to_demo": false, "author": "Phạm Mai Linh", "supervisor": "Duc Nguyen", "score": "", "description_vi": "- Thống kê và biểu thị số lượng ứng viên đang trong từng giai đoạn tuyển dụng. \n\n- Thống kê số lượng ứng viên được tuyển dụng và tổng số lượng các ứng viên theo: \n• Kênh và thị trường tuyển dụng \n• Vị trí, hồ sơ của người ứng viên \n \n- Thống kê tỉ lệ tuyển dụng thành công theo các vị trí, thị trường và kênh tuyển dụng. \n\n- Tính tỉ lệ phần trăm ứng viên làm Part-time, Full-time.\n\n- Tạo một bộ lọc tương tác để trường phòng có thể lọc báo cáo theo: \n• Ngày hồ sơ ứng viên được gửi \n• Giai đoạn tuyển dụng trong recruiting pipeline \n• Thị trường tuyển dụng \n• Chức vụ ứng tuyển", "description_en": "Power BI analytics solution for HR & Recruiting developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-042", "title_vi": "KPIM Mart - Product and Sales Analysis", "title_en": "KPIM Mart - Product and Sales Analysis", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Capstone Project", "embed_url": "https://app.fabric.microsoft.com/view?r=eyJrIjoiMTEwNTI4YWMtOGUxYi00NzM0LWJkNjItZWNmYzM4YjU0OTMzIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-026_sales.svg", "pick_to_demo": false, "author": "Đặng Lê Hoàng Vinh", "supervisor": "Nguyễn Hoàng Thiện", "score": "", "description_vi": "Capstone project:\n- Assign to Đặng Lê Hoàng Vinh\n- Estimated Time: From 04/12/2024 to 10/12/2024\nDocuments:\n- File pbix\n- Project Capstone\n- Project Showcase", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-043", "title_vi": "Báo cáo phân tích Doanh thu cửa hàng", "title_en": "phân tích Doanh thu cửa hàng Report", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZmQ0NTI2ZmQtOWE1YS00N2EyLTk2MmItMTEyZWZhMjA4MzU0IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-027_sales.svg", "pick_to_demo": false, "author": "Bùi Quang Minh", "supervisor": "Trần Mạnh Phúc", "score": "", "description_vi": "Phân tích doanh thu của các cửa hàng trong một hệ thống siêu thị, đối chiếu với kế hoạch và số liệu cùng kỳ năm ngoái", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-044", "title_vi": "Báo cáo Phân Tích Cửa Hàng", "title_en": "Phân Tích Cửa Hàng Report", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiNGU2ODc4ZWMtODdkMC00ZWUwLWExMjctNmI3MjhjNDM2N2YwIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-028_sales.svg", "pick_to_demo": false, "author": "Vũ Tuyên Hoàng", "supervisor": "Trương Minh Vương", "score": "", "description_vi": "Dựa trên nội dung yêu cầu của bài Capstone Project kèm báo cáo mẫu làm cảm hứng, xây dựng một dự án tư vấn dựa trên đầu bài sẵn có và hoàn thiện các nội dung phân tích theo yêu cầu:\n1/ Hoàn thiện các nội dung trong file Excel Project Management\n2/ Hoàn thiện các nội dung trong file Word về Project Showcase\n3/ Xây dựng báo cáo Power BI\n4/ Trình bày nội dung, xác nhận hoàn thành các tài liệu và project với supervisor", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-045", "title_vi": "Báo Cáo Xuất Nhập Tồn", "title_en": "Xuất Nhập Tồn Report", "domain": "Supply Chain", "domain_vi": "Chuỗi cung ứng & Kho", "domain_en": "Supply Chain & Inventory", "domain_icon": "local_shipping", "domain_color": "#8b5cf6", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMDcyZTg1MjgtNDRkYS00ZTg1LThlZTEtMWRkZDJiZTk3NTQwIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/asset_007.png", "pick_to_demo": false, "author": "Đỗ Thiên Phúc", "supervisor": "Duc Nguyen", "score": 5, "description_vi": "Dựa trên nội dung yêu cầu của bài Capstone Project kèm bóa cóa mẫu làm cảm hứng, xây dựng một dự án tư vấn dựa trên đầu bài sẵn có và hoàn thiện các nội dung phân tích theo yêu cầu", "description_en": "Power BI analytics solution for Supply Chain & Inventory developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-046", "title_vi": "Internet Ads Impact (Ver 2)", "title_en": "Internet Ads Impact (Ver 2)", "domain": "Marketing", "domain_vi": "Marketing & Quảng cáo", "domain_en": "Marketing & Advertising", "domain_icon": "campaign", "domain_color": "#f59e0b", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMTU3ZTI1NjMtZGY3NC00NTk4LWJiOTYtNGFlNWI1NDNkOGExIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-035_marketing.svg", "pick_to_demo": false, "author": "Hoàng Thị Thanh Phương", "supervisor": "Cao Nhựt Minh", "score": 6, "description_vi": "Dễ dàng theo dõi các chỉ tiêu từ tổng quan tới trung bình mỗi ngày \nSo sánh độ hiệu quả của chiến dịch so với mục tiêu đề ra và đưa ra cảnh báo \nSo sánh chỉ tiêu tiếp cận với cùng kỳ tháng trước \nThể hiện sự biến động và xu hướng của các chỉ tiêu theo thời gian \nTrực quan và chuyên nghiệp, cập nhật số liệu được lưu trữ ở Cloud", "description_en": "Power BI analytics solution for Marketing & Advertising developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-047", "title_vi": "Internet Ads Impact (Ver 1)", "title_en": "Internet Ads Impact (Ver 1)", "domain": "Marketing", "domain_vi": "Marketing & Quảng cáo", "domain_en": "Marketing & Advertising", "domain_icon": "campaign", "domain_color": "#f59e0b", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZTg5ZDRiMjEtMjk3Mi00YjJmLWE3YmYtMGRkYjcwYTZmMTAzIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-036_marketing.svg", "pick_to_demo": false, "author": "Hoàng Thị Thanh Phương", "supervisor": "Cao Nhựt Minh", "score": 6, "description_vi": "-Dễ dàng theo dõi các chỉ tiêu từ tổng quan tới trung bình mỗi ngày \n-So sánh độ hiệu quả của chiến dịch so với mục tiêu đề ra và đưa ra cảnh báo \n-So sánh chỉ tiêu tiếp cận với cùng kỳ tháng trước \n-Thể hiện sự biến động và xu hướng của các chỉ tiêu theo thời gian \n-Trực quan và chuyên nghiệp, cập nhật số liệu được lưu trữ ở Cloud", "description_en": "Power BI analytics solution for Marketing & Advertising developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-048", "title_vi": "Product Delivery Report", "title_en": "Product Delivery Report", "domain": "Logistic", "domain_vi": "Logistics & Vận tải", "domain_en": "Logistics & Operations", "domain_icon": "navigation", "domain_color": "#8b5cf6", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiNThlMTYyZGYtNmI4OC00NTFmLTg0MDAtZWRkMWViMmRhMmY4IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-037_logistic.svg", "pick_to_demo": false, "author": "Đoàn Thu Trang", "supervisor": "Đào Đức Trung", "score": 6, "description_vi": "Theo dõi và đánh giá các chỉ số quan trọng như: Biến động doanh thu, phân tích số lượng đơn hàng qua thời gian, ...", "description_en": "Power BI analytics solution for Logistics & Operations developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-049", "title_vi": "Sales Performance Report", "title_en": "Sales Performance Report", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMDgyNzNkNDktNzNlMS00ZDA1LThlMDYtMTc1MWEyNzkxYTI2IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-038_sales.svg", "pick_to_demo": false, "author": "Bùi Thị Ngọc Phương", "supervisor": "Nguyễn Đức Anh", "score": 6, "description_vi": "1.\tCó được cái nhìn tổng quan về tình hình bán hàng của doanh nghiệp \n2.\tNắm bắt chi tiết tình hình bán hàng theo nhóm sản phẩm và thị trường\n3.\tPhân tích sự phân phối của các đơn hàng và xem xét khả năng đạt mục tiêu bán hàng\n4.\tNhìn nhận vấn đề hiện tại của doanh nghiệp để có hướng giải quyết kịp thời\n5.\tĐưa ra chiến lược kinh doanh thông minh hơn dựa trên việc xác định thị trường mục tiêu và nhóm sản phẩm cốt lõi của doanh nghiệp", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-050", "title_vi": "Advertising Performance Report", "title_en": "Advertising Performance Report", "domain": "Marketing", "domain_vi": "Marketing & Quảng cáo", "domain_en": "Marketing & Advertising", "domain_icon": "campaign", "domain_color": "#f59e0b", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMDVlZmQ2MDAtNTM0Yy00OGQwLTlkNmYtNmZlYmVjMjU0N2RkIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-039_marketing.svg", "pick_to_demo": false, "author": "Trương Minh Vương", "supervisor": "Nguyễn Đức Anh", "score": 7, "description_vi": "-\tDễ dàng theo dõi hiệu quả quảng cáo cũng như KPI theo từng ngày\n-\tXu hướng tiếp cận quảng cáo của khách hàng\n-\tSo sánh lượng người tiếp cận theo từng chiến dịch và kênh quảng cáo\n-\tBảng theo dõi chi tiết về các metric, cho phép theo dõi hiệu quả theo từng ngày\n-\tTrực quan và chuyên nghiệp, dễ dàng áp dụng cho nhiều chiến dịch khác nhau theo nhiều thời điểm triển khai", "description_en": "Power BI analytics solution for Marketing & Advertising developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-051", "title_vi": "Retail Sales", "title_en": "Retail Sales", "domain": "Retail", "domain_vi": "Bán lẻ & Tiêu dùng", "domain_en": "Retail & FMCG", "domain_icon": "storefront", "domain_color": "#10b981", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZjhhZmJlZjAtMzkzZS00NTNkLTg4NjUtZmJiMTA3ZTU5NzQ5IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ==", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-040_retail.svg", "pick_to_demo": false, "author": "Đặng Phạm Huy Hoàng", "supervisor": "Cao Nhựt Minh", "score": 6, "description_vi": "- Theo dõi được tổng quan và chi tiết tình hình kinh doanh\n- So sánh tình hình kinh doanh năm này và năm trước\n- Phân tích số khách hàng, số sản phẩm, cửa hàng theo các chiều khác nhau\n- Phân tích biến động doanh thu với cùng kì năm trước, cùng kì trước\n- Trực quan dễ hiểu và chuyên nghiệp, dễ dàng đưa vào sử dụng", "description_en": "Power BI analytics solution for Retail & FMCG developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-052", "title_vi": "Professional Service", "title_en": "Professional Service", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiNmMyMzM4M2YtYjQ0NS00NTE3LThmNDQtMDI5ZWMwY2RlOGFmIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ==", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-041_other.svg", "pick_to_demo": false, "author": "Đặng Phạm Huy Hoàng", "supervisor": "Cao Nhựt Minh", "score": 6, "description_vi": "-Dễ dàng theo dõi được cấu trúc Nguồn vốn và tài sản theo dài hạn và ngắn hạn.\n-Nắm được tình hình Nguồn tài trợ cũng như tính Cân bằng tài chính của doanh nghiệp.\n-Biết được doanh nghiệp có đang hoạt động hiệu quả không nhờ vào các chỉ số Hiệu quả sử dụng tài sản, các chỉ số Khả năng sinh lời và mô hình Dupont.\n-Phân tích được Hiệu suất hoạt động của doanh nghiệp.\n-Làm chủ được Rủi ro kinh doanh, tài chính cũng như về Khả năng thanh toán của doanh nghiệp.", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-053", "title_vi": "IT Service Report", "title_en": "IT Service Report", "domain": "IT", "domain_vi": "Công nghệ & Hệ thống", "domain_en": "IT & Systems Management", "domain_icon": "terminal", "domain_color": "#6366f1", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiNTliODFlOGQtYWFmMi00OGU2LWE2MjEtNTAxMzAxMjA3NGM5IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-042_it.svg", "pick_to_demo": false, "author": "Nguyễn Hoàng Bảo Trân", "supervisor": "Cao Nhựt Minh", "score": 6, "description_vi": "-Đánh giá mức độ hài lòng của khách hàng/người dùng dựa trên ticket, bao gồm cả Issue và Request. \n-Đánh giá cấp độ nghiêm trọng của ticket theo chức vụ, dựa trên Issue Area. \n-Tính trung bình cộng tổng số ticket, xem xét Priority và số ngày mở.\n-Thống kê tổng số vé ở mỗi loại Ticket và Issue Area để hiểu rõ hơn về xu hướng.\n-Tổng hợp số liệu đánh giá các tiêu chí tại mục Total Ticket Analysis để có cái nhìn tổng quan về tình hình.", "description_en": "Power BI analytics solution for IT & Systems Management developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-054", "title_vi": "Internet Ads Impact", "title_en": "Internet Ads Impact", "domain": "Marketing", "domain_vi": "Marketing & Quảng cáo", "domain_en": "Marketing & Advertising", "domain_icon": "campaign", "domain_color": "#f59e0b", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiYmQzMzU0OGItNzE1Ni00Y2MzLTk1ZjEtOTc5MzFhOWFlODg1IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-043_marketing.svg", "pick_to_demo": false, "author": "Võ Bá Tùng", "supervisor": "Cao Nhựt Minh", "score": 6, "description_vi": "• So sánh tính hiệu quả các chiến dịch quảng cáo thông qua lượng view, click và input của từng chiến dịch qua các kênh quảng cáo khác nhau. So sánh chi phí cho các chiến dịch quảng cáo với ngân sách dự kiến đề ra. \n• Phân tích xu hướng tăng giảm của tổng lượng view, click, input và tổng chi phí của chiến dịch quảng cáo theo thời gian. \n• Tính và phân tích tỉ lệ click (click rate), tỉ lệ chuyển đổi (conversion rate) theo các kênh Social Media và theo từng chiến dịch. Phân tích xu hướng tăng giảm của tỉ lệ click và tỉ lệ chuyển đổi theo thời gian. \n• Đánh giá các chiến dịch quảng cáo thông qua lượng view, click, input. Đánh giá việc quảng cáo trên các kênh Social Media thông qua lượng view, click, input. \n• Tạo bảng matrix thống kê lượng click, view và input theo từng chiến dịch và kênh Social Media khác nhau. Trong đó phân hóa các chiến dịch dựa vào lượng click, view, input, tỉ lệ click (click rate), chi phí mỗi lần nhấp(cost per click), và tỉ lệ chuyển đổi (conversion rate). \n• Cuối cùng, tạo bộ lọc để quản lý của bạn có thể xem báo cáo theo ngày xem quảng cáo, tên chiến dịch quảng cáo, offer, và kênh Social Media.", "description_en": "Power BI analytics solution for Marketing & Advertising developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-055", "title_vi": "Báo cáo doanh số bán hàng", "title_en": "doanh số bán hàng Report", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiZmY4N2NmMjgtMzQxMi00ZmNmLWJkYWEtOWVjZWE3NDU0MTYwIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-045_sales.svg", "pick_to_demo": false, "author": "Nguyễn Đức Duy", "supervisor": "Cao Nhựt Minh", "score": 5, "description_vi": "👉 Tổng quan - dễ dàng theo dõi các chỉ số chung của doanh nghiệp từ đó nắm được tình\nhình hiện tại của doanh nghiệp\n👉 Chi tiết - So sánh thực trạng với các thông số của kỳ trước, xu hướng thay đổi theo\nthời gian và so sánh giữa các chiều phân tích khác nhau\n👉 Cập nhật - dễ dàng quản lý và cập nhật dữ liệu mới\n👉 Linh hoạt - quan sát nhiều chỉ tiêu và nhiều chiều cùng một lúc một cách linh hoạt và\ndễ dàng\n👉 Trực quan - các biểu đồ được thiết kế chuyên nghiệp, hợp mắt và mô tả thông tin rõ\nràng", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-056", "title_vi": "Product Sales Report", "title_en": "Product Sales Report", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiN2QwODE0MzktOWRjNS00YzNkLWFlNTMtOWJjNzY2YTk5YTc5IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-046_sales.svg", "pick_to_demo": false, "author": "Đào Đức Trung", "supervisor": "Duc Nguyen", "score": 7, "description_vi": "- Theo dõi thông tin về doanh thu theo các chiều phân tích (vị trí địa lí, loại cửa hàng, loại sản phẩm và chương trình khuyến mãi). \n- So sánh tình hình hiện tại với kế hoạch đề ra và cùng kì năm ngoái cả về giá trị hàng tháng và lũy kế. \n- Theo dõi xu hướng biến động của doanh thu bán hàng trong một khoảng thời gian bất kì. \n- Ứng dụng dự báo và phân tích những biến động bất thường trong phân tích xu hướng doanh thu", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-057", "title_vi": "COMPA CLASS Sales Report - YTD Performance", "title_en": "COMPA CLASS Sales Report - YTD Performance", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Internal Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMWViZTExNmQtMjEwZC00N2Q4LWFkN2ItZTMwOTg0NTVkYzFmIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi_coban_compaclass.jpg", "pick_to_demo": false, "author": "Nguyễn Thành Toàn", "supervisor": "Duc Nguyen", "score": "", "description_vi": "YTD Performance Report :\nFilter: Luôn lọc tới thời điểm hôm nay (hiện tại) -> tiêu đề as of ngày ...\nCard: Revenue YTD / Tổng đơn hàng YTD/ Số khách hàng có license hiện tại / Lead-to-Client Conversion Cohort YTD / Opp to ClientConverssion Cohort YTD\nCác card đề có so với YTD SameperiodLastYear và Target\nBullet Chart só sánh metrics YTD vs Sameperiod Lasty Year và Target(nếu có).\nCho chọn metrics từ các metrics trong card\nChiều xem: Product Category / Customer Category / Source / Location\nHiển thị so sánh YTD vs YTD Last Year vs Target YTD\nLine: So sánh Metrics vs SMLY hiển thị theo các tháng trong năm hiện tại đang chọn:\nTruy vết xuống tuần / ngày\nChọn metrics từ danh sách metrics trên\nHiển thị Sales vs Last Year\nMatrix: Bảng liệt kê các chiều và hàm gồm:\nRow: Source -> Customer Cat -> Product Cat -> Product\nValues:\nRevenue YTD\nRevenue YTD Last Year\n% Revenue YTD vs Last Year\nRevenue Target YTD\n% Revenue YTD vs Target YTD\nRevenue Target Full Year\n% Revenue YTD vs Target Year Full Year\n% Gross Profit \n% Lead - Client Conversion\n% Opp - Cleant Conversion\nDays in pipeline (Lead - Client)\n% Days in pipeline vs last year\nDays to convert (Opp-Client)\n% Days to convert vs Last Year", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-058", "title_vi": "Inventory Management Project", "title_en": "Inventory Management Project", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "Internal Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiNGE3NWZlN2EtZmMxMS00Yjg4LThiNjAtNjkxNDA0NDQyYjU5IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-049_other.svg", "pick_to_demo": false, "author": "Phạm Mai Linh", "supervisor": "Duc Nguyen", "score": "", "description_vi": "Xây dựng Hệ thống Quản lý Tồn kho từ A-Z: Dữ liệu giả lập, SharePoint và Power BI. Dự án kết hợp giữa mô hình dữ liệu, Python, làm việc nhóm trên nền tảng đám mây và dashboard Power BI.", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-059", "title_vi": "Demo Project", "title_en": "Demo Project", "domain": "Recruiting", "domain_vi": "Nhân sự & Tuyển dụng", "domain_en": "HR & Recruiting", "domain_icon": "badge", "domain_color": "#ec4899", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiYzc3ZjYyZWUtY2RmZC00NzhmLWE2MmYtNzAwMjFjMTRiYWQ3IiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-059_recruiting.svg", "pick_to_demo": false, "author": "Thân Ngọc Thiên Thảo", "supervisor": "Duc Nguyen", "score": "", "description_vi": "Làm báo cáo Power Bi theo chủ đề tự chọn", "description_en": "Power BI analytics solution for HR & Recruiting developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-060", "title_vi": "KPIM Demo Project - KCRM", "title_en": "KPIM Demo Project - KCRM", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "KPIM DEMO", "embed_url": "https://app.fabric.microsoft.com/view?r=eyJrIjoiYTIzN2NkZjItYzcyOS00MGQ3LWJkYjEtZGFiODlhMWQ1ZDFiIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/ms-fabric-basic.webp", "pick_to_demo": false, "author": "Đặng Lê Hoàng Vinh", "supervisor": "Nguyễn Hoàng Thiện", "score": "", "description_vi": "KPIM Demo Project\nAssign to BI Intern HCM\nEstimated Time: From 16/12 - 17/02/2025\n\nDocuments:\n- File Pbix\n- Project Showcase\n- Project Management file\n- Thông tin dữ liệu\n- Thông tin chỉ tiêu công thức\n- Mô tả báo cáo", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-061", "title_vi": "ETF Management Report", "title_en": "ETF Management Report", "domain": "Finance", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "payments", "domain_color": "#3b82f6", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiMDBkNmFhOTItY2NmMi00N2IxLTg5NzQtYjNmNDUwY2ZhMWVmIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-070_finance.svg", "pick_to_demo": false, "author": "Kim Hoàng Vũ", "supervisor": "Đào Đức Trung", "score": "", "description_vi": "Trong báo cáo này chúng ta sẽ theo về các chỉ số quan trọng và cập nhật tình trạng kết quả kinh doanh và hiệu quả tài chính, bao gồm thông tin về tình hình của tài chính, doanh thu, chi phí, lợi nhuận và tỷ tăng trưởng của quỹ. Báo cáo cũng cho phép chúng ta đào sâu vào phân tích, đánh giá kết quả kinh doanh của từng quỹ cũng như theo dõi tình hình giao dịch các mã cổ phiếu có trong danh mục đầu tư của quỹ \n1.\tDễ dàng theo dõi các chỉ số hiệu quả tài chính và đánh giá, so sánh với cùng kì các năm\n2.\tTheo dõi NAV và Giá trị chứng chỉ quỹ theo thời gian\n3.\tTheo dõi tỉ trọng danh mục đầu tư và danh mục cổ phiếu của quỹ\n4.\tTheo dõi tình hình giao dịch các mã Cổ phiếu và tỷ trọng tương ứng của mã trong danh mục đầu tư\n5.\t Bảng dữ liệu chi tiết kết quả hoạt động kinh doanh của quỹ\n6.\tTrực quan và chuyên nghiệp, dễ dàng thay đổi số liệu", "description_en": "Power BI analytics solution for Accounting & Finance developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-062", "title_vi": "Layoffs report", "title_en": "Layoffs report", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiODJlNDNkMjItMTE0ZS00OGY5LWJlZmYtN2NmZDU5ZWZkZjYwIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D&fbclid=IwAR144-8MIIUXW_wBHlLLwjwGWfvJJloIC5ykS3otFl-dOiY0tfT46hfKmYU", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-081_other.svg", "pick_to_demo": false, "author": "Nguyễn Hoàng Bảo Trân", "supervisor": "Cao Nhựt Minh", "score": "", "description_vi": "Người dùng sẽ xem được các chỉ số sa thải nhân sự của thế giới, xác định và so sánh số lượng nhân sự sa thải cùng với tỷ lệ phần trăm so với tổng số nhân viên \n\nPhân tích tổng quan các chỉ tiêu sa thải theo xu hướng tháng/quý/năm, và so sánh được với giá trị của cùng kỳ năm trước. Thấy được xu hướng sa thải nhân cũng như tỉ lệ sa thải thay đổi qua thời gian. \n\nPhân bổ chỉ tiêu sa thải theo các chiều phân tích khác nhau, cụ thể như theo các công ty, lĩnh vực, vùng, quốc gia để có cái nhìn một cách rõ ràng giữa các giá trị phân tích  \n\nDựa vào các chiều phân tích, so sách chỉ tiêu sa thải với cùng kỳ năm trước để thấy mức độ thay đổi giữa 2 năm \n\nPhân tích mức độ tương quan giữa quỹ gọi vốn và số lượng nhân sự sa thải theo các chiều phân tích khác nhau", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-063", "title_vi": "World Bank Loan for VietNam", "title_en": "World Bank Loan for VietNam", "domain": "Accounting", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "account_balance", "domain_color": "#3b82f6", "category": "KPIM DEMO", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiNzEwZGQ1NDktNjU3Yi00MmY2LWE2ZWUtYzVlNDhmYzI0YjNlIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ%3D%3D", "is_interactive": true, "thumbnail": "assets/images/asset_011.png", "pick_to_demo": false, "author": "Võ Bá Tùng", "supervisor": "Cao Nhựt Minh", "score": 7, "description_vi": "• Theo dõi các khoản vốn vay của các dự án được World Bank cho vay theo các chỉ tiêu Tổng giá trị dự án, Giá trị khoản vay, Giá trị đã giải ngân, khoản bị hủy, khoản đã hoàn trả theo các chiều phân tích.\n• Phân tích xu hướng giải ngân, hoàn trả, hủy khoản vay của các dự án theo thời gian\n• Tính số lượng các dự án được cho vay đầu tư tại Việt Nam và các nước trong khu vực. Phân tích mức độ hoàn thành và đang thực hiện theo các lĩnh vực đầu tư dự án.\n• Tạo bảng matrix thống kê các chỉ tiêu của từng dự án theo lĩnh vực, nhóm ngành nghề khác nhau.\n• Tạo bộ lọc để quản lý xem báo cáo theo thời gian, tổ chức cho vay và quốc gia trong khu vực Đông Á và Thái Bình Dương.", "description_en": "Power BI analytics solution for Accounting & Finance developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-064", "title_vi": "HAFELE (Phân tích khách hàng và sản phẩm)", "title_en": "HAFELE (Phân tích khách hàng và sản phẩm)", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "Revised Client Project", "embed_url": "https://app.powerbi.com/view?r=eyJrIjoiNGU5ZWYwMjUtOTdjMi00OGQ2LWI3NzEtODk5MWRiYjBiYWFkIiwidCI6IjQxYWI0MmE5LTM4MWItNDhjZi04YTg1LTcyMDQ2NDkyMjk3NiIsImMiOjEwfQ==", "is_interactive": true, "thumbnail": "assets/images/powerbi/pbi-088_other.svg", "pick_to_demo": false, "author": "Đặng Phạm Huy Hoàng", "supervisor": "Cao Nhựt Minh", "score": 6, "description_vi": "- Theo dõi được tổng quan và chi tiết tình hình kinh doanh\n- Theo dõi tình hình đóng góp doanh thu của khách hàng dựa trên bảng đồ dễ hiểu\n- Phân tích khách hàng, sản phẩm theo các chỉ số hiệu quả\n- Chi tiết phân tích khách hàng, sản phẩm theo các chiều phân tích\n- Trực quan dễ hiểu và chuyên nghiệp, dễ dàng đưa vào sử dụng", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-065", "title_vi": "HR Management", "title_en": "HR Management", "domain": "Human Resource", "domain_vi": "Nhân sự & Đào tạo", "domain_en": "HR & People Operations", "domain_icon": "badge", "domain_color": "#ec4899", "category": "Capstone Project", "embed_url": "https://app.powerbi.com/links/LuStuOxMEV?ctid=41ab42a9-381b-48cf-8a85-720464922976&pbi_source=linkShare", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-021_human resource.svg", "pick_to_demo": false, "author": "Phạm Ngọc Minh", "supervisor": "Duc Nguyen", "score": "", "description_vi": "Trang báo cáo - QLNS (Tổng quan nhân sự)\nXây dựng dashboard theo dõi nhân sự mới, hết hạn HĐ, kỷ luật, biến động và thu nhập; hỗ trợ giám sát tình trạng và cơ cấu nhân sự theo thời gian & đơn vị.\nTrang báo cáo 2 – Tuyển dụng\nTheo dõi số lượng tuyển dụng, tỷ lệ đáp ứng kế hoạch và SLA; đánh giá hiệu quả tuyển dụng theo thời gian & phòng ban.\nTrang báo cáo 3 – Tiền lương & Phúc lợi\nPhân tích quỹ lương, bảo hiểm, thuế TNCN, OT và biến động chi phí lương; hỗ trợ kiểm soát ngân sách nhân sự.\nTrang báo cáo 4 – Đào tạo\nTheo dõi kế hoạch, thực hiện đào tạo, số giờ học và ngân sách; đánh giá hiệu quả đào tạo theo đơn vị & thời gian.", "description_en": "Power BI analytics solution for HR & People Operations developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-066", "title_vi": "Capstone Project", "title_en": "Capstone Project", "domain": "Retail", "domain_vi": "Bán lẻ & Tiêu dùng", "domain_en": "Retail & FMCG", "domain_icon": "storefront", "domain_color": "#10b981", "category": "Capstone Project", "embed_url": "https://kpimvn-my.sharepoint.com/:u:/g/personal/nam_vh_kpim_vn/EbdxeUMnowBEgZvNhM3Q15oBhUEuskuP119Xfh0xp16QMA?e=DfeBgT", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-022_retail.svg", "pick_to_demo": false, "author": "Vũ Hoàng Nam", "supervisor": "Duc Nguyen", "score": "", "description_vi": "Tạo trang báo cáo về thông số các cửa hàng", "description_en": "Power BI analytics solution for Retail & FMCG developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-067", "title_vi": "Báo cáo Phân tích khách hàng", "title_en": "Phân tích khách hàng Report", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Capstone Project", "embed_url": "https://kpimvn.sharepoint.com/:u:/s/businessintelligence/EXgk6hfhE9NPul2nzS9sIl8BIP-CKLguZcc4M2CVfg_kRg?e=I0jked", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-024_sales.svg", "pick_to_demo": false, "author": "Trương Hiểu Nghi", "supervisor": "Nguyễn Hoàng Thiện", "score": "", "description_vi": "Yêu cầu sử dụng công cụ PowerBI và xây dựng các báo cáo theo từng chủ đề phục vụ cho các đối tượng khác nhau tại nhiều đơn vị. Chọn 1 trong các yêu cầu phân tích trong để hoàn thành 1 trang báo cáo hoàn thiện ứng dụng các kỹ năng đã học trong Power BI.", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-068", "title_vi": "Báo cáo phân tích doanh thu KPIM MART", "title_en": "phân tích doanh thu KPIM MART Report", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Capstone Project", "embed_url": "https://kpimvn.sharepoint.com/:u:/s/businessintelligence/EfRYLTx2c0pJiFGUGZhS_-QBOD9omajIr16zHYEdJMax-g?e=oMvK8u", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-025_sales.svg", "pick_to_demo": false, "author": "Trần Như Đại", "supervisor": "Nguyễn Hoàng Thiện", "score": "", "description_vi": "Chi tiết phân tích gồm:\n- Chỉ số KPI về Tổng Doanh Thu thực hiện so với Tổng Doanh Thu Kế Hoạch (cùng cảnh báo theo % Tỷ lệ Hoàn Thành Kế Hoạch) trong cùng khoảng thời gian theo dõi.\n- Chỉ số KPI về Tổng Doanh Thu thực hiện so với Tổng Doanh Thu Cùng Kỳ Năm Ngoái (cùng cảnh báo theo % Tăng Trưởng so với năm trước)\n- Giám sát Doanh Thu thực hiện so với Kế hoạch theo từng Quản Lý / Khu Vực / Cửa Hàng và % tỷ lệ hoàn thành kế hoạch với từng đối tượng\n- So sánh Doanh Thu thực hiện so với Doanh Thu cùng thời điểm đang xem của năm ngoài theo từng Sản Phẩm / Nhóm Sản Phẩm và % tăng trưởng / sụt giảm\n- So sánh xu hướng theo 12 tháng giữa Doanh Thu thực hiện so với Doanh Thu Kế Hoạch đã đề ra và cả với Doanh Thu của tháng đó nhưng năm ngoái", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-069", "title_vi": "Báo cáo quản lý nhân sự", "title_en": "quản lý nhân sự Report", "domain": "Human Resource", "domain_vi": "Nhân sự & Đào tạo", "domain_en": "HR & People Operations", "domain_icon": "badge", "domain_color": "#ec4899", "category": "Capstone Project", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-030_human resource.svg", "pick_to_demo": false, "author": "Nguyễn Đức Huy", "supervisor": "Trương Minh Vương", "score": "", "description_vi": "Dựa trên nội dung yêu cầu của bài Capstone Project kèm báo cáo mẫu làm cảm hứng, xây dựng một dự án tư vấn dựa trên đầu bài sẵn có và hoàn thiện các nội dung phân tích theo yêu cầu:\n1/ Hoàn thiện các nội dung trong file Excel Project Management\n2/ Hoàn thiện các nội dung trong file Word về Project Showcase\n3/ Xây dựng báo cáo Power BI\n4/ Trình bày nội dung, xác nhận hoàn thành các tài liệu và project với supervisor", "description_en": "Power BI analytics solution for HR & People Operations developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-070", "title_vi": "Báo Cáo Hỗ Trợ Kỹ Thuật", "title_en": "Hỗ Trợ Kỹ Thuật Report", "domain": "IT", "domain_vi": "Công nghệ & Hệ thống", "domain_en": "IT & Systems Management", "domain_icon": "terminal", "domain_color": "#6366f1", "category": "Capstone Project", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-032_it.svg", "pick_to_demo": false, "author": "Dương Ngọc Quang Anh", "supervisor": "Duc Nguyen", "score": "", "description_vi": "Dựa trên nội dung yêu cầu của bài Capstone Project kèm bóa cóa mẫu làm cảm hứng, xây dựng một dự án tư vấn dựa trên đầu bài sẵn có và hoàn thiện các nội dung phân tích theo yêu cầu", "description_en": "Power BI analytics solution for IT & Systems Management developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-071", "title_vi": "Báo Cáo Quản Lý Nhân Sự", "title_en": "Quản Lý Nhân Sự Report", "domain": "Human Resource", "domain_vi": "Nhân sự & Đào tạo", "domain_en": "HR & People Operations", "domain_icon": "badge", "domain_color": "#ec4899", "category": "Capstone Project", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-033_human resource.svg", "pick_to_demo": false, "author": "Nguyễn Thị Phương Thảo", "supervisor": "Duc Nguyen", "score": "", "description_vi": "Dựa trên nội dung yêu cầu của bài Capstone Project kèm bóa cóa mẫu làm cảm hứng, xây dựng một dự án tư vấn dựa trên đầu bài sẵn có và hoàn thiện các nội dung phân tích theo yêu cầu", "description_en": "Power BI analytics solution for HR & People Operations developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-072", "title_vi": "HR Analytics Report - Đào tạo nhân sự", "title_en": "HR Analytics Report - Đào tạo nhân sự", "domain": "Human Resource", "domain_vi": "Nhân sự & Đào tạo", "domain_en": "HR & People Operations", "domain_icon": "badge", "domain_color": "#ec4899", "category": "Internal Project", "embed_url": "https://app.powerbi.com/links/kyTQ0N7o2_?ctid=41ab42a9-381b-48cf-8a85-720464922976&pbi_source=linkShare", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-048_human resource.svg", "pick_to_demo": false, "author": "Nguyễn Thành Toàn", "supervisor": "Duc Nguyen", "score": "", "description_vi": "Nhóm chỉ số: Học hỏi và phát triển\n1. Chỉ số gắn kết nhân viên (eNPS): \n- Giờ đào tạo bình quân\n- Lập và triển khai kế hoạch đào tạo\n2. Cách tính/ Định nghĩa\n- Số giờ học bình quân / nhân viên\n- Số giờ học / dạy theo ngành, địa điểm, cấp bậc\n- Số giờ dạy của CBQL, CBLĐ\n- Tỷ lệ lớp học/chương trình đào tạo được thực hiện theo đúng KH.\n3. Ý nghĩa\n- Phản ánh mức đầu tư của Tập đoàn/BU cho phát triển năng lực.\n- Đánh giá kỷ luật học tập của Tập đoàn.\n- Đánh giá khả năng lập và triển khai kế hoạch của Tập đoàn.", "description_en": "Power BI analytics solution for HR & People Operations developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-073", "title_vi": "CRM DEMO", "title_en": "CRM DEMO", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Internal Project", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-050_sales.svg", "pick_to_demo": false, "author": "Trần Nguyễn Nguyên Thảo", "supervisor": "Cao Nhựt Minh", "score": "", "description_vi": "Xây dựng hệ thống CRM dựa trên Share Point List + Power Automate + Power BI", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-074", "title_vi": "Báo cáo quản lý khách hàng tiềm năng", "title_en": "quản lý khách hàng tiềm năng Report", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Internal Project", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/ai-data-analytics.webp", "pick_to_demo": false, "author": "Đào Đức Trung", "supervisor": "Duc Nguyen", "score": "", "description_vi": "Nhìn vào các dữ liệu cũ trên Excel + các tài liệu về quy trình team Sales và CRM hiện tại. \n1/ Kiến trúc lại các bảng dữ liệu và trường dữ liệu cụ thể\n2/ Xây một bộ dữ liệu mẫu trên Share Point (CRM)\n3/ Xây dựng một số các quy trình tự động Automate\n4/ Triển khai thực tế trên Team Sales\n5/ Xay báo cáo quản lý khách hàng tiềm năng", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-075", "title_vi": "Báo cáo điểm học viên COMPA", "title_en": "điểm học viên COMPA Report", "domain": "Human Resource", "domain_vi": "Nhân sự & Đào tạo", "domain_en": "HR & People Operations", "domain_icon": "badge", "domain_color": "#ec4899", "category": "Internal Project", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-052_human resource.svg", "pick_to_demo": false, "author": "Đặng Phạm Huy Hoàng", "supervisor": "Cao Nhựt Minh", "score": "", "description_vi": "XD báo cáo học viên cũ CŨ LẤY DATA TỪ COMPA", "description_en": "Power BI analytics solution for HR & People Operations developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-076", "title_vi": "Báo cáo chỉ số phát triển COMPA", "title_en": "chỉ số phát triển COMPA Report", "domain": "Human Resource", "domain_vi": "Nhân sự & Đào tạo", "domain_en": "HR & People Operations", "domain_icon": "badge", "domain_color": "#ec4899", "category": "Internal Project", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-053_human resource.svg", "pick_to_demo": false, "author": "Nguyễn Đức Duy", "supervisor": "Cao Nhựt Minh", "score": "", "description_vi": "Chỉ số (top 5KPI đánh giá ptr compa, giám sát, t trưởng, \ntần suất ...\nxem dữ liệu đến hiện tại...", "description_en": "Power BI analytics solution for HR & People Operations developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-077", "title_vi": "Báo cáo hành vi người dùng (COMPA)", "title_en": "hành vi người dùng (COMPA) Report", "domain": "Human Resource", "domain_vi": "Nhân sự & Đào tạo", "domain_en": "HR & People Operations", "domain_icon": "badge", "domain_color": "#ec4899", "category": "Internal Project", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-054_human resource.svg", "pick_to_demo": false, "author": "Nguyễn Hoàng Thiện", "supervisor": "Cao Nhựt Minh", "score": "", "description_vi": "Dữ kiện thao tác người dùng trên màn hình COMPA...", "description_en": "Power BI analytics solution for HR & People Operations developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-078", "title_vi": "Báo cáo kế hoạch làm việc (COMPA HR)", "title_en": "kế hoạch làm việc (COMPA HR) Report", "domain": "Human Resource", "domain_vi": "Nhân sự & Đào tạo", "domain_en": "HR & People Operations", "domain_icon": "badge", "domain_color": "#ec4899", "category": "Internal Project", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-055_human resource.svg", "pick_to_demo": false, "author": "Đặng Phạm Huy Hoàng", "supervisor": "Cao Nhựt Minh", "score": "", "description_vi": "...", "description_en": "Power BI analytics solution for HR & People Operations developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-079", "title_vi": "Báo cáo vi phạm nội quy (COMPA HR)", "title_en": "vi phạm nội quy (COMPA HR) Report", "domain": "Human Resource", "domain_vi": "Nhân sự & Đào tạo", "domain_en": "HR & People Operations", "domain_icon": "badge", "domain_color": "#ec4899", "category": "Internal Project", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-056_human resource.svg", "pick_to_demo": false, "author": "Nguyễn Đức Duy", "supervisor": "Cao Nhựt Minh", "score": "", "description_vi": "...", "description_en": "Power BI analytics solution for HR & People Operations developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-080", "title_vi": "Báo cáo tính công nhân sự (COMPA HR)", "title_en": "tính công nhân sự (COMPA HR) Report", "domain": "Human Resource", "domain_vi": "Nhân sự & Đào tạo", "domain_en": "HR & People Operations", "domain_icon": "badge", "domain_color": "#ec4899", "category": "Internal Project", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-057_human resource.svg", "pick_to_demo": false, "author": "Nguyễn Hoàng Thiện", "supervisor": "Cao Nhựt Minh", "score": "", "description_vi": "....", "description_en": "Power BI analytics solution for HR & People Operations developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-081", "title_vi": "User Registration Report", "title_en": "User Registration Report", "domain": "Product Management", "domain_vi": "Sản phẩm & Danh mục", "domain_en": "Product Management", "domain_icon": "category", "domain_color": "#6366f1", "category": "Internal Project", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-058_product management.svg", "pick_to_demo": false, "author": "Trương Minh Vương", "supervisor": "Duc Nguyen", "score": "", "description_vi": "Tạo báo cáo phân tích về sản phẩm COMPA liên quan đến tìm hiểu số lượng users, khóa học và lớp học tạo ra trên COMPA. Phân tích so sánh với cùng kỳ tháng trước và tăng trưởng của users trên hệ thống", "description_en": "Power BI analytics solution for Product Management developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-082", "title_vi": "KPIM SCHOOL DEMO", "title_en": "KPIM SCHOOL DEMO", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "KPIM DEMO", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-061_other.svg", "pick_to_demo": false, "author": "Trần Mạnh Phúc", "supervisor": "Duc Nguyen", "score": "", "description_vi": "Xây dựng một giải pháp DEMO dựa trên một trường học cấp 1-2-3 với các nghiệp vụ đăng ký tuyển học sinh, chấm sĩ số học sinh, tổng kết các hoạt động học tập từ việc làm bài, điểm kiểm tra 15 phút, điểm kiểm tra đầu kỳ, giữa kỳ, cuối kỳ ... Đầu tiên xây dựng cụ thể mục tiêu dự án, ý tưởng và các nghiệp vụ liên quan (hoàn thành trong file Showcase). Trao đổi với bạn Doanh dựa trên dự án KPIM DEMO của doanh cũng về mảng đào tạo để lấy ý tưởng hoặc kết hợp với nhau. Sau khi hoàn thiện showcase và xác nhận về nội dung với Supervisor, tiến hành tạo mockup dữ liệu trong Excel từ đó làm cơ sở để xây dựng Share Point và tạo nhập liệu / báo cáo.\n\n1/ Hoàn thiện file Word Project Showcase (tiếng Anh + tiếng Việt)\n2/ Hoàn thiện các thông tin trong file Excel Project Management (Data / Mindmap / Chỉ tiêu / Nội dung báo cáo / Timeline)\n3/ Hoàn thiện các dữ liệu mẫu mockup lưu vào folder Data\n4/ Hoàn thiện version báo cáo mới xây dựng bằng Power BI Desktop\n5/ Chụp ảnh và lưu trong folder Picture.\n6/ Thuyết trình trong meeting và xác nhận hoàn thiện với supervisor", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-083", "title_vi": "KPIM HR DEMO", "title_en": "KPIM HR DEMO", "domain": "Human Resource", "domain_vi": "Nhân sự & Đào tạo", "domain_en": "HR & People Operations", "domain_icon": "badge", "domain_color": "#ec4899", "category": "KPIM DEMO", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-062_human resource.svg", "pick_to_demo": false, "author": "Nguyễn Đức Huy", "supervisor": "Trương Minh Vương", "score": "", "description_vi": "Tìm hiểu về đề tài xây dựng dữ liệu và báo cáo quản trị về nhân sự. Lưu ý dự án này kế thừa từ dữ liệu ở Capstone Project dược giao nhưng yêu cầu với sự hỗ trợ của Supervisor Vương cùng triển khai dữ liệu và báo cáo về nhân sự. Vai trò của bạn là hỗ trợ supervisor trong việc xây dựng hoàn thiện báo cáo, hỗ trợ mockup dữ liệu trên SharePoint. Các tài liệu và yêu cầu hoàn thiện gồm:\n\n1/ Hoàn thiện file Word Project Showcase (tiếng Anh + tiếng Việt)\n2/ Hoàn thiện các thông tin trong file Excel Project Management (Data / Mindmap / Chỉ tiêu / Nội dung báo cáo / Timeline)\n3/ Hoàn thiện các dữ liệu mẫu mockup lưu vào folder Data\n4/ Hoàn thiện version báo cáo mới xây dựng bằng Power BI Desktop\n5/ Chụp ảnh và lưu trong folder Picture.\n6/ Thuyết trình trong meeting và xác nhận hoàn thiện với supervisor", "description_en": "Power BI analytics solution for HR & People Operations developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-084", "title_vi": "Báo Cáo Kế Toán Quản Trị (Flyup)", "title_en": "Kế Toán Quản Trị (Flyup) Report", "domain": "Accounting", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "account_balance", "domain_color": "#3b82f6", "category": "KPIM DEMO", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/asset_010.png", "pick_to_demo": false, "author": "Trương Minh Vương", "supervisor": "Duc Nguyen", "score": "", "description_vi": "Kết hợp với công ty tư vấn quản trị kế toán xây dựng một giải pháp nhập liệu ứng dụng SharePoint List tích hợp với Power BI để tạo ra giải pháp quản lý thông tin và báo cáo về kế toán và tài chính", "description_en": "Power BI analytics solution for Accounting & Finance developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-085", "title_vi": "KPIM DEMO - Nguyễn Thị Phương Thảo", "title_en": "KPIM DEMO - Nguyễn Thị Phương Thảo", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "KPIM DEMO", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-066_other.svg", "pick_to_demo": false, "author": "Nguyễn Thị Phương Thảo", "supervisor": "Duc Nguyen", "score": "", "description_vi": "Nội dung đề tài dự án sẽ được xác nhận và cập nhật sau.", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-086", "title_vi": "KPIM DEMO - Dương Ngọc Quang Anh", "title_en": "KPIM DEMO - Dương Ngọc Quang Anh", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "KPIM DEMO", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-067_other.svg", "pick_to_demo": false, "author": "Dương Ngọc Quang Anh", "supervisor": "Duc Nguyen", "score": "", "description_vi": "Nội dung đề tài dự án sẽ được xác nhận và cập nhật sau.", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-087", "title_vi": "Báo cáo kế toán quản trị (FlyUp)", "title_en": "kế toán quản trị (FlyUp) Report", "domain": "Accounting", "domain_vi": "Tài chính & Kế toán", "domain_en": "Accounting & Finance", "domain_icon": "account_balance", "domain_color": "#3b82f6", "category": "KPIM DEMO", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/asset_010.png", "pick_to_demo": false, "author": "Trương Minh Vương", "supervisor": "Đào Đức Trung", "score": "", "description_vi": "Xây dựng bộ báo cáo kế toán quản trị bao gồm:\nI. Báo cáo thuế\nII. Báo cáo quản trị", "description_en": "Power BI analytics solution for Accounting & Finance developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-088", "title_vi": "Báo cáo hoạt động cho thuê BĐS", "title_en": "hoạt động cho thuê BĐS Report", "domain": "Other", "domain_vi": "Xã hội & Đa ngành", "domain_en": "Public Sector & Industry Cases", "domain_icon": "public", "domain_color": "#eab308", "category": "KPIM DEMO", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-069_other.svg", "pick_to_demo": false, "author": "Trương Minh Vương", "supervisor": "Đào Đức Trung", "score": "", "description_vi": "Demo hệ thống báo cáo hoạt động cho thuê Bất động sản \n- Thiết kế Sharepoint List nhập liệu\n- Thiết kế Sharepoint Page như một trang web nội bộ\n- Xây dựng các báo cáo demo tình hình kinh doanh, thu chi", "description_en": "Power BI analytics solution for Public Sector & Industry Cases developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-089", "title_vi": "Bao cáo phân tích doanh thu", "title_en": "Bao cáo phân tích doanh thu", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "KPIM DEMO", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-078_sales.svg", "pick_to_demo": false, "author": "Duc Nguyen", "supervisor": "Duc Nguyen", "score": 10, "description_vi": "Báo cáo phân tích doanh thu xây dựng dựa trên nội dung thực hành và bài tập của khóa học Power BI Nâng Cao với những biểu mẫu so sánh tiến độ thực hiện ké hoạch và tăng trưởng của doanh số theo từng tháng / quản lý và cửa hàng. Đồng thời đưa ra trang phân tích TOP sản phẩm để truy vấn khai thác.", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-090", "title_vi": "HubJS Sales Report", "title_en": "HubJS Sales Report", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Revised Client Project", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-085_sales.svg", "pick_to_demo": false, "author": "Nguyễn Thị Phương Thảo", "supervisor": "Duc Nguyen", "score": "", "description_vi": "Tìm hiểu về báo cáo Phân tích bán hàng Ecommerce KPIM đã xây dựng thành công dành cho HubJS. DỮ liệu từ báo cáo này nằm ở các database vì vậy hãy tham khảo tải dữ liệu trực tiếp từ file PowerBI mẫu để tìm hiểu trong folder Client Project. Dự án không phức tạp nhưng chưa có nhiều trường thông tin do bi mã hóa -> Dữ liệu nên được cân nhắc tinh chỉnh cắt bỏ bớt các cột dữ liệu không cần và bổ sung thêm một số trường màu giàu nội dung báo cáo. Yêu cầu nhân sự tìm hiểu, thực hiện tài liệu hóa vào các file Excel và Word cũng như xây dựng dữ liệu mock-up làm giàu nội dung dự án và xây dựng báo cáo mới tối ưu hơn giải pháp đã làm.\n\n1/ Hoàn thiện file Word Project Showcase (tiếng Anh + tiếng Việt)\n2/ Hoàn thiện các thông tin trong file Excel (Data / Mindmap / Chỉ tiêu / Nội dung báo cáo / Timeline)\n3/ Hoàn thiện các dữ liệu mẫu mockup lưu vào folder Data\n4/ Hoàn thiện version báo cáo mới xây dựng bằng Power BI Desktop\n5/ Chụp ảnh và lưu trong folder Picture.", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}, {"id": "PBI-091", "title_vi": "AEON MALL Sales Report", "title_en": "AEON MALL Sales Report", "domain": "Sales", "domain_vi": "Bán hàng & Thương mại", "domain_en": "Sales & Commercial", "domain_icon": "trending_up", "domain_color": "#10b981", "category": "Revised Client Project", "embed_url": "", "is_interactive": false, "thumbnail": "assets/images/powerbi/pbi-086_sales.svg", "pick_to_demo": false, "author": "Dương Ngọc Quang Anh", "supervisor": "Duc Nguyen", "score": "", "description_vi": "Tìm hiểu về báo cáo Business Executive Sumamry Report KPIM đã xây dựng POC dành cho AEON MALL. DỮ liệu từ báo cáo này nằm ở các file Excel và file PowerBI mẫu để tìm hiểu trong folder Client Project. Yêu cầu nhân sự tìm hiểu, thực hiện tài liệu hóa vào các file Excel và Word cũng như xây dựng dữ liệu mock-up làm giàu nội dung dự án và xây dựng báo cáo mới tối ưu hơn giải pháp đã làm.\n\n1/ Hoàn thiện file Word Project Showcase (tiếng Anh + tiếng Việt)\n2/ Hoàn thiện các thông tin trong file Excel (Data / Mindmap / Chỉ tiêu / Nội dung báo cáo / Timeline)\n3/ Hoàn thiện các dữ liệu mẫu mockup lưu vào folder Data\n4/ Hoàn thiện version báo cáo mới xây dựng bằng Power BI Desktop\n5/ Chụp ảnh và lưu trong folder Picture.", "description_en": "Power BI analytics solution for Sales & Commercial developed at KPIM.", "source_sheet": "Sheet1"}];
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const grid = document.getElementById("powerbiGrid");
+            const searchInput = document.getElementById("pbiSearch");
+            const searchClear = document.getElementById("pbiSearchClear");
+            const filterBar = document.getElementById("pbiFilterBar");
+            const resultsCount = document.getElementById("resultsCount");
+
+            const modal = document.getElementById("powerbiModal");
+            const modalTitle = document.getElementById("modalReportTitle");
+            const modalIframe = document.getElementById("modalIframe");
+            const modalLoader = document.getElementById("modalLoader");
+            const modalExternalBtn = document.getElementById("modalExternalBtn");
+            const modalCloseBtn = document.getElementById("modalCloseBtn");
+            const modalReloadBtn = document.getElementById("modalReloadBtn");
+
+            let currentFilter = "all";
+            let currentSearch = "";
+
+            // Calculate Domain Counts
+            const domainCounts = {};
+            POWERBI_REPORTS.forEach(r => {
+                let d = r.domain;
+                if (d === 'Finance') d = 'Accounting';
+                if (d === 'Customer Analysis' || d === 'Retail') d = 'Sales';
+                if (d === 'Human Resource') d = 'Recruiting';
+                if (d === 'Inventory' || d === 'Logistic') d = 'Supply Chain';
+                if (d === 'Manufacture') d = 'Manufacturing';
+                if (d === 'Product Analysis' || d === 'Product Management' || d === 'IT') d = 'Management';
+                
+                domainCounts[d] = (domainCounts[d] || 0) + 1;
+            });
+
+            const badgeAccounting = document.getElementById("badge-Accounting");
+            if (badgeAccounting) badgeAccounting.textContent = domainCounts['Accounting'] || 0;
+            const badgeSales = document.getElementById("badge-Sales");
+            if (badgeSales) badgeSales.textContent = domainCounts['Sales'] || 0;
+            const badgeMarketing = document.getElementById("badge-Marketing");
+            if (badgeMarketing) badgeMarketing.textContent = domainCounts['Marketing'] || 0;
+            const badgeRecruiting = document.getElementById("badge-Recruiting");
+            if (badgeRecruiting) badgeRecruiting.textContent = domainCounts['Recruiting'] || 0;
+            const badgeSupplyChain = document.getElementById("badge-SupplyChain");
+            if (badgeSupplyChain) badgeSupplyChain.textContent = domainCounts['Supply Chain'] || 0;
+            const badgeManufacturing = document.getElementById("badge-Manufacturing");
+            if (badgeManufacturing) badgeManufacturing.textContent = domainCounts['Manufacturing'] || 0;
+            const badgeManagement = document.getElementById("badge-Management");
+            if (badgeManagement) badgeManagement.textContent = domainCounts['Management'] || 0;
+            const badgeOther = document.getElementById("badge-Other");
+            if (badgeOther) badgeOther.textContent = domainCounts['Other'] || 0;
+
+            function isMatch(report) {
+                // Domain match
+                if (currentFilter === "interactive") {
+                    if (!report.is_interactive) return false;
+                } else if (currentFilter !== "all") {
+                    let d = report.domain;
+                    if (currentFilter === 'Accounting' && (d === 'Accounting' || d === 'Finance')) {}
+                    else if (currentFilter === 'Sales' && (d === 'Sales' || d === 'Customer Analysis' || d === 'Retail')) {}
+                    else if (currentFilter === 'Recruiting' && (d === 'Recruiting' || d === 'Human Resource')) {}
+                    else if (currentFilter === 'Supply Chain' && (d === 'Supply Chain' || d === 'Inventory' || d === 'Logistic')) {}
+                    else if (currentFilter === 'Manufacturing' && (d === 'Manufacturing' || d === 'Manufacture')) {}
+                    else if (currentFilter === 'Management' && (d === 'Management' || d === 'IT' || d === 'Product Analysis' || d === 'Product Management')) {}
+                    else if (currentFilter === report.domain) {}
+                    else return false;
+                }
+
+                // Search match
+                if (currentSearch) {
+                    const q = currentSearch.toLowerCase();
+                    const titleVi = (report.title_vi || "").toLowerCase();
+                    const titleEn = (report.title_en || "").toLowerCase();
+                    const descVi = (report.description_vi || "").toLowerCase();
+                    const domainVi = (report.domain_vi || "").toLowerCase();
+                    const author = (report.author || "").toLowerCase();
+                    const id = (report.id || "").toLowerCase();
+                    if (!titleVi.includes(q) && !titleEn.includes(q) && !descVi.includes(q) && !domainVi.includes(q) && !author.includes(q) && !id.includes(q)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function render() {
+                const filtered = POWERBI_REPORTS.filter(isMatch);
+                resultsCount.textContent = `Đang hiển thị ${filtered.length} / ${POWERBI_REPORTS.length} báo cáo`;
+
+                if (filtered.length === 0) {
+                    grid.innerHTML = `
+                        <div class="pbi-empty-state">
+                            <span class="material-symbols-outlined pbi-empty-icon">search_off</span>
+                            <h3 style="margin:0; font-size:1.15rem; color:var(--text-color);">Không tìm thấy báo cáo phù hợp</h3>
+                            <p style="margin:0; font-size:0.88rem;">Hãy thử từ khóa khác hoặc chuyển sang danh mục "Tất cả".</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                grid.innerHTML = filtered.map(r => {
+                    const liveBadge = r.is_interactive ?
+                        `<span class="pbi-status-pill pbi-status-pill--live">Live Embed</span>` :
+                        `<span class="pbi-status-pill pbi-status-pill--showcase">Showcase</span>`;
+
+                    const viewActionBtn = r.embed_url ?
+                        `<a href="${r.embed_url}" target="_blank" rel="noreferrer" class="pbi-btn pbi-btn--primary">
+                            <span class="material-symbols-outlined" style="font-size:16px;">open_in_new</span>
+                            <span class="t-lang" data-en="Open Live" data-vi="Xem Báo Cáo">Xem Báo Cáo</span>
+                        </a>` :
+                        `<button class="pbi-btn pbi-btn--outline" disabled style="opacity:0.6;">
+                            <span class="material-symbols-outlined" style="font-size:16px;">lock</span>
+                            <span class="t-lang" data-en="Internal" data-vi="Nội bộ">Nội bộ</span>
+                        </button>`;
+
+                    const previewActionBtn = r.is_interactive ?
+                        `<button class="pbi-btn pbi-btn--outline btn-preview-modal" data-id="${r.id}">
+                            <span class="material-symbols-outlined" style="font-size:16px;">visibility</span>
+                            <span class="t-lang" data-en="Preview" data-vi="Xem Trực Tiếp">Xem Trực Tiếp</span>
+                        </button>` :
+                        `<button class="pbi-btn pbi-btn--outline btn-detail-toggle" data-id="${r.id}">
+                            <span class="material-symbols-outlined" style="font-size:16px;">info</span>
+                            <span class="t-lang" data-en="Details" data-vi="Chi tiết">Chi tiết</span>
+                        </button>`;
+
+                    return `
+                        <article class="pbi-card" data-domain="${r.domain}">
+                            <div class="pbi-card-thumb">
+                                <img src="./${r.thumbnail}" alt="${r.title_vi}" loading="lazy" />
+                                <div class="pbi-card-badges">
+                                    <span class="pbi-domain-pill">
+                                        <span class="material-symbols-outlined" style="font-size:14px; color:${r.domain_color};">${r.domain_icon}</span>
+                                        ${r.domain_vi}
+                                    </span>
+                                    ${liveBadge}
+                                </div>
+                            </div>
+                            <div class="pbi-card-body">
+                                <span class="pbi-card-code">${r.id} • ${r.category}</span>
+                                <h3 class="pbi-card-title t-lang" data-en="${r.title_en}" data-vi="${r.title_vi}">${r.title_vi}</h3>
+                                <p class="pbi-card-desc t-lang" data-en="${r.description_en}" data-vi="${r.description_vi}">${r.description_vi}</p>
+                                <div class="pbi-card-meta">
+                                    <span class="pbi-card-author">
+                                        <span class="material-symbols-outlined" style="font-size:14px;">person</span>
+                                        ${r.author}
+                                    </span>
+                                    <span>${r.supervisor ? 'Mentor: ' + r.supervisor : 'KPIM Solution'}</span>
+                                </div>
+                            </div>
+                            <div class="pbi-card-actions">
+                                ${viewActionBtn}
+                                ${previewActionBtn}
+                            </div>
+                        </article>
+                    `;
+                }).join("");
+
+                // Attach modal preview events
+                document.querySelectorAll(".btn-preview-modal").forEach(btn => {
+                    btn.addEventListener("click", function() {
+                        const id = this.getAttribute("data-id");
+                        const report = POWERBI_REPORTS.find(x => x.id === id);
+                        if (report && report.embed_url) {
+                            openModal(report);
+                        }
+                    });
+                });
+
+                // Sync language strings if subpage-shell has lang helper
+                if (window.syncLanguageState) {
+                    window.syncLanguageState();
+                }
+            }
+
+            function openModal(report) {
+                modalTitle.textContent = report.title_vi;
+                modalExternalBtn.href = report.embed_url;
+                modalLoader.style.display = "flex";
+                modalIframe.src = report.embed_url;
+                modal.classList.add("active");
+                document.body.style.overflow = "hidden";
+
+                modalIframe.onload = function() {
+                    modalLoader.style.display = "none";
+                };
+            }
+
+            function closeModal() {
+                modal.classList.remove("active");
+                modalIframe.src = "";
+                document.body.style.overflow = "";
+            }
+
+            modalCloseBtn.addEventListener("click", closeModal);
+            modalReloadBtn.addEventListener("click", function() {
+                modalLoader.style.display = "flex";
+                const current = modalIframe.src;
+                modalIframe.src = current;
+            });
+
+            modal.addEventListener("click", function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Filter Tabs Click
+            filterBar.addEventListener("click", function(e) {
+                const btn = e.target.closest(".pbi-filter-btn");
+                if (!btn) return;
+                filterBar.querySelectorAll(".pbi-filter-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                currentFilter = btn.getAttribute("data-filter");
+                render();
+            });
+
+            // Search
+            searchInput.addEventListener("input", function() {
+                currentSearch = this.value.trim();
+                searchClear.style.display = currentSearch ? "flex" : "none";
+                render();
+            });
+
+            searchClear.addEventListener("click", function() {
+                searchInput.value = "";
+                currentSearch = "";
+                searchClear.style.display = "none";
+                render();
+                searchInput.focus();
+            });
+
+            // Initial render
+            render();
+        });
+    </script>
 
     <script src="./assets/js/subpage-shell.js"></script>
 </body>
