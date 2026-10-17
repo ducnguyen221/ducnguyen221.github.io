@@ -4300,7 +4300,7 @@ html { overscroll-behavior-y: none; }
                             </div>
                         </td>
                         <td>
-                            <div style="display:flex; align-items:center; gap:10px;">
+                            <div style="display:flex; align-items:center; gap:12px;">
                                 <img class="class-thumb-mini" src="${escapeHtml(thumb)}" alt="${escapeHtml(c.title)}" onerror="this.src='../assets/images/powerbi_coban_compaclass.jpg'" />
                                 <div style="display:flex; flex-direction:column; gap:2px; min-width:0;">
                                     <strong style="font-size:0.85rem; color:var(--text-color); line-height:1.3;">${escapeHtml(c.title)}</strong>
@@ -4349,7 +4349,7 @@ html { overscroll-behavior-y: none; }
                 const year = (c.start_date || "").slice(0, 4);
                 const thumb = c.image_url || "../assets/images/powerbi_coban_compaclass.jpg";
                 const logo = c.logo_url || "";
-                const compaLink = c.compa_link ? `<a href="${c.compa_link}" target="_blank" rel="noreferrer" class="compa-pill-btn" title="Mở khóa học trên COMPA Class"><span>COMPA</span><span class="material-symbols-outlined text-[12px]">open_in_new</span></a>` : '';
+                const compaLink = c.compa_link ? `<a href="${c.compa_link}" target="_blank" rel="noreferrer" class="compa-pill-btn" title="Mở khóa học trên COMPA Class"><span>COMPA</span><span class="material-symbols-outlined text-[11px]">open_in_new</span></a>` : '';
 
                 return `
                     <article class="mobile-card">
@@ -4358,7 +4358,7 @@ html { overscroll-behavior-y: none; }
                             <span style="font-weight:700; color:var(--accent-color); font-size:0.82rem;">${year}</span>
                         </div>
                         <div style="display:flex; gap:10px; margin:8px 0; align-items:flex-start;">
-                            <img class="class-thumb-mini" style="width:54px; height:36px;" src="${escapeHtml(thumb)}" alt="${escapeHtml(c.title)}" onerror="this.src='../assets/images/powerbi_coban_compaclass.jpg'" />
+                            <img class="class-thumb-mini" style="width:72px; height:48px;" src="${escapeHtml(thumb)}" alt="${escapeHtml(c.title)}" onerror="this.src='../assets/images/powerbi_coban_compaclass.jpg'" />
                             <div style="flex:1; min-width:0;">
                                 <h3 style="font-size:0.88rem; line-height:1.3; margin:0 0 4px;">${escapeHtml(c.title)}</h3>
                                 <div style="font-size:0.72rem; color:var(--soft-text-color);">${escapeHtml(c.client || 'COMPA')} • ${escapeHtml(c.province || '')}</div>

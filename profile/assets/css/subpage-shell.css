@@ -2266,13 +2266,35 @@ html:not(.dark) .project-role-chart::after {
     color: var(--soft-text-color);
 }
 
+#classesTable th,
+#classesTable td {
+    padding: 0.5rem 0.8rem;
+    vertical-align: middle;
+}
+
 .class-thumb-mini {
-    width: 48px;
-    height: 32px;
-    border-radius: 5px;
+    width: 72px;
+    height: 48px;
+    border-radius: 6px;
     object-fit: cover;
     background: rgba(0, 0, 0, 0.15);
     flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+}
+
+#classesTable .compa-pill-btn {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 4px;
+    gap: 3px;
+    line-height: 1.25;
+    vertical-align: middle;
+}
+
+#classesTable .compa-pill-btn .material-symbols-outlined {
+    font-size: 11px !important;
+    line-height: 1;
 }
 
 .class-partner-cell {
