@@ -30,6 +30,7 @@
             padding: 16px;
             box-sizing: border-box;
             overflow: hidden;
+            transition: all 0.3s ease;
         }
 
         @media (max-width: 768px) {
@@ -182,6 +183,37 @@
             color: #ffffff;
         }
 
+        .action-icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.8);
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        html.dark .action-icon-btn {
+            background: #1e2530;
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+        }
+
+        .action-icon-btn:hover {
+            transform: translateY(-1px);
+            border-color: #c69749;
+            color: #c69749;
+        }
+
+        html.dark .action-icon-btn:hover {
+            border-color: #c69749;
+            color: #f1c40f;
+        }
+
         .download-btn {
             display: inline-flex;
             align-items: center;
@@ -280,6 +312,44 @@
             right: 14px;
         }
 
+        /* Fullscreen Mode styling (both Native & Fallback) */
+        .resume-stage.is-fullscreen,
+        .resume-stage:fullscreen {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            max-height: 100vh !important;
+            max-width: 100vw !important;
+            z-index: 999999 !important;
+            border-radius: 0 !important;
+            margin: 0 !important;
+            padding: 12px 20px 20px 20px !important;
+            background: #0b0f17 !important;
+            border: none !important;
+        }
+
+        .resume-stage.is-fullscreen .resume-toolbar,
+        .resume-stage:fullscreen .resume-toolbar {
+            background: rgba(22, 28, 38, 0.9) !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            border-radius: 12px;
+            margin-bottom: 4px;
+        }
+
+        .resume-stage.is-fullscreen .resume-viewport,
+        .resume-stage:fullscreen .resume-viewport {
+            border-radius: 12px;
+            background: #000000 !important;
+            border-color: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        .resume-stage.is-fullscreen .resume-page-img,
+        .resume-stage:fullscreen .resume-page-img {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+        }
+
         @media (max-width: 640px) {
             .nav-side-btn {
                 width: 36px;
@@ -346,7 +416,7 @@
         </header>
 
         <main class="shell-main" style="padding-top: 10px;">
-            <section class="glass-panel resume-stage">
+            <section class="glass-panel resume-stage" id="resumeStage">
                 <!-- Toolbar -->
                 <div class="resume-toolbar">
                     <div class="toolbar-group">
@@ -371,6 +441,11 @@
                                 <span class="material-symbols-outlined">arrow_forward</span>
                             </button>
                         </div>
+
+                        <!-- Fullscreen Toggle Button -->
+                        <button type="button" class="action-icon-btn" id="fullscreenBtn" title="Toàn màn hình (F11)">
+                            <span class="material-symbols-outlined" id="fullscreenIcon">fullscreen</span>
+                        </button>
 
                         <!-- Download Button -->
                         <a id="downloadPdfBtn" href="./assets/docs/CV_NguyenQuangDuc_VN.pdf" download="CV_NguyenQuangDuc_VN.pdf" class="download-btn">
@@ -443,6 +518,7 @@
                 en: 6
             };
 
+            const resumeStage = document.getElementById("resumeStage");
             const resumeImg = document.getElementById("resumeImg");
             const pageIndicator = document.getElementById("pageIndicator");
             const prevPageBtn = document.getElementById("prevPageBtn");
@@ -452,6 +528,8 @@
             const downloadPdfBtn = document.getElementById("downloadPdfBtn");
             const cvLangVi = document.getElementById("cvLangVi");
             const cvLangEn = document.getElementById("cvLangEn");
+            const fullscreenBtn = document.getElementById("fullscreenBtn");
+            const fullscreenIcon = document.getElementById("fullscreenIcon");
 
             function updateView() {
                 const max = totalPages[currentLang];
@@ -530,12 +608,80 @@
             nextPageBtn.addEventListener("click", goNext);
             sideNextBtn.addEventListener("click", goNext);
 
-            // Keyboard navigation (ArrowLeft / ArrowRight)
+            // Fullscreen handling (HTML5 Fullscreen API with fallback)
+            function isElementInFullscreen() {
+                return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement || resumeStage.classList.contains("is-fullscreen"));
+            }
+
+            function toggleFullscreen() {
+                if (!isElementInFullscreen()) {
+                    if (resumeStage.requestFullscreen) {
+                        resumeStage.requestFullscreen().catch(() => {
+                            resumeStage.classList.add("is-fullscreen");
+                            updateFullscreenBtn(true);
+                        });
+                    } else if (resumeStage.webkitRequestFullscreen) {
+                        resumeStage.webkitRequestFullscreen();
+                    } else if (resumeStage.msRequestFullscreen) {
+                        resumeStage.msRequestFullscreen();
+                    } else {
+                        resumeStage.classList.add("is-fullscreen");
+                        updateFullscreenBtn(true);
+                    }
+                } else {
+                    if (document.exitFullscreen && document.fullscreenElement) {
+                        document.exitFullscreen().catch(() => {});
+                    } else if (document.webkitExitFullscreen && document.webkitFullscreenElement) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen && document.msFullscreenElement) {
+                        document.msExitFullscreen();
+                    }
+                    resumeStage.classList.remove("is-fullscreen");
+                    updateFullscreenBtn(false);
+                }
+            }
+
+            function updateFullscreenBtn(active) {
+                if (active) {
+                    fullscreenIcon.textContent = "fullscreen_exit";
+                    fullscreenBtn.title = "Thoát toàn màn hình (Esc)";
+                } else {
+                    fullscreenIcon.textContent = "fullscreen";
+                    fullscreenBtn.title = "Toàn màn hình (F11)";
+                }
+            }
+
+            fullscreenBtn.addEventListener("click", toggleFullscreen);
+
+            document.addEventListener("fullscreenchange", function () {
+                const active = !!document.fullscreenElement;
+                if (!active) {
+                    resumeStage.classList.remove("is-fullscreen");
+                }
+                updateFullscreenBtn(active);
+            });
+            document.addEventListener("webkitfullscreenchange", function () {
+                const active = !!document.webkitFullscreenElement;
+                if (!active) {
+                    resumeStage.classList.remove("is-fullscreen");
+                }
+                updateFullscreenBtn(active);
+            });
+
+            // Keyboard navigation (ArrowLeft / ArrowRight / 'f' for fullscreen / Esc for fallback)
             window.addEventListener("keydown", function (e) {
                 if (e.key === "ArrowLeft") {
                     goPrev();
                 } else if (e.key === "ArrowRight") {
                     goNext();
+                } else if (e.key === "f" || e.key === "F") {
+                    // Quick fullscreen toggle
+                    if (e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA") {
+                        toggleFullscreen();
+                    }
+                } else if (e.key === "Escape" && resumeStage.classList.contains("is-fullscreen")) {
+                    resumeStage.classList.remove("is-fullscreen");
+                    updateFullscreenBtn(false);
                 }
             });
 
