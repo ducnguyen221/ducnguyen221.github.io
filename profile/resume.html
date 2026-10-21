@@ -19,7 +19,7 @@
             overscroll-behavior-y: none;
         }
 
-        /* Resume Stage: Locked height, no outer vertical scroll */
+        /* Resume Stage */
         .resume-stage {
             display: flex;
             flex-direction: column;
@@ -53,6 +53,7 @@
             border: 1px solid rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
+            z-index: 20;
         }
 
         html.dark .resume-toolbar {
@@ -195,6 +196,7 @@
             color: #334155;
             cursor: pointer;
             transition: all 0.2s ease;
+            text-decoration: none;
         }
 
         html.dark .action-icon-btn {
@@ -234,7 +236,7 @@
             box-shadow: 0 5px 14px rgba(198, 151, 73, 0.45);
         }
 
-        /* Resume Viewport: Single page strictly contained */
+        /* Viewport */
         .resume-viewport {
             position: relative;
             flex: 1 1 auto;
@@ -258,7 +260,7 @@
             position: relative;
             height: 100%;
             max-width: 100%;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
         }
@@ -272,9 +274,37 @@
             border-radius: 8px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
             transition: opacity 0.15s ease-in-out;
+            display: block;
         }
 
-        /* Floating side-nav buttons inside viewport */
+        /* Interactive Link Layer */
+        .interactive-links-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .interactive-link {
+            position: absolute;
+            pointer-events: auto;
+            border-radius: 3px;
+            cursor: pointer;
+            background: rgba(198, 151, 73, 0.05);
+            border: 1px dashed rgba(198, 151, 73, 0.25);
+            transition: all 0.15s ease;
+        }
+
+        .interactive-link:hover {
+            background: rgba(198, 151, 73, 0.22);
+            border-color: #c69749;
+            box-shadow: 0 0 8px rgba(198, 151, 73, 0.4);
+        }
+
+        /* Floating side-nav buttons */
         .nav-side-btn {
             position: absolute;
             top: 50%;
@@ -312,7 +342,15 @@
             right: 14px;
         }
 
-        /* Fullscreen Mode styling (both Native & Fallback) */
+        /* Fullscreen Native PDF Reader View */
+        .pdf-fullscreen-frame {
+            display: none;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #323639;
+        }
+
         .resume-stage.is-fullscreen,
         .resume-stage:fullscreen {
             position: fixed !important;
@@ -325,29 +363,39 @@
             z-index: 999999 !important;
             border-radius: 0 !important;
             margin: 0 !important;
-            padding: 12px 20px 20px 20px !important;
-            background: #0b0f17 !important;
+            padding: 8px 12px 12px 12px !important;
+            background: #1e1e1e !important;
             border: none !important;
         }
 
         .resume-stage.is-fullscreen .resume-toolbar,
         .resume-stage:fullscreen .resume-toolbar {
-            background: rgba(22, 28, 38, 0.9) !important;
+            background: rgba(30, 35, 45, 0.95) !important;
             border: 1px solid rgba(255, 255, 255, 0.12) !important;
-            border-radius: 12px;
-            margin-bottom: 4px;
+            border-radius: 10px;
+            padding: 6px 14px;
         }
 
         .resume-stage.is-fullscreen .resume-viewport,
         .resume-stage:fullscreen .resume-viewport {
-            border-radius: 12px;
-            background: #000000 !important;
+            border-radius: 8px;
+            background: #2b2b2b !important;
             border-color: rgba(255, 255, 255, 0.08) !important;
         }
 
-        .resume-stage.is-fullscreen .resume-page-img,
-        .resume-stage:fullscreen .resume-page-img {
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+        /* In fullscreen, switch from image viewport to native PDF iframe for true browser PDF experience */
+        .resume-stage.is-fullscreen .resume-img-wrapper,
+        .resume-stage:fullscreen .resume-img-wrapper,
+        .resume-stage.is-fullscreen .nav-side-btn,
+        .resume-stage:fullscreen .nav-side-btn,
+        .resume-stage.is-fullscreen .page-controls,
+        .resume-stage:fullscreen .page-controls {
+            display: none !important;
+        }
+
+        .resume-stage.is-fullscreen .pdf-fullscreen-frame,
+        .resume-stage:fullscreen .pdf-fullscreen-frame {
+            display: block !important;
         }
 
         @media (max-width: 640px) {
@@ -431,8 +479,8 @@
                             <button type="button" class="lang-btn" id="cvLangEn" onclick="switchCvLang('en')">EN</button>
                         </div>
 
-                        <!-- Page Nav Controls -->
-                        <div class="page-controls">
+                        <!-- Page Nav Controls (visible in windowed mode) -->
+                        <div class="page-controls" id="pageControls">
                             <button type="button" class="ctrl-btn" id="prevPageBtn" title="Trang trước (Phím ←)">
                                 <span class="material-symbols-outlined">arrow_back</span>
                             </button>
@@ -442,10 +490,15 @@
                             </button>
                         </div>
 
-                        <!-- Fullscreen Toggle Button -->
-                        <button type="button" class="action-icon-btn" id="fullscreenBtn" title="Toàn màn hình (F11)">
+                        <!-- Fullscreen Toggle Button (PDF Online Browser Mode) -->
+                        <button type="button" class="action-icon-btn" id="fullscreenBtn" title="Xem PDF toàn màn hình (Trình đọc Browser)">
                             <span class="material-symbols-outlined" id="fullscreenIcon">fullscreen</span>
                         </button>
+
+                        <!-- Open in new browser tab -->
+                        <a id="openTabBtn" href="./assets/docs/CV_NguyenQuangDuc_VN.pdf" target="_blank" rel="noopener noreferrer" class="action-icon-btn" title="Mở trực tiếp trên tab mới của trình duyệt">
+                            <span class="material-symbols-outlined">open_in_new</span>
+                        </a>
 
                         <!-- Download Button -->
                         <a id="downloadPdfBtn" href="./assets/docs/CV_NguyenQuangDuc_VN.pdf" download="CV_NguyenQuangDuc_VN.pdf" class="download-btn">
@@ -455,17 +508,22 @@
                     </div>
                 </div>
 
-                <!-- Single Page Viewport without vertical scroll -->
+                <!-- Viewport -->
                 <div class="resume-viewport" id="resumeViewport">
+                    <!-- Standard Mode: Single page fitted with clickable interactive links -->
                     <button type="button" class="nav-side-btn prev" id="sidePrevBtn" title="Trang trước (Phím ←)">
                         <span class="material-symbols-outlined">chevron_left</span>
                     </button>
-                    <div class="resume-img-wrapper">
+                    <div class="resume-img-wrapper" id="resumeImgWrapper">
                         <img id="resumeImg" class="resume-page-img" src="./assets/docs/cv_pages_vn/page_1.webp" alt="CV Trang 1" />
+                        <div id="interactiveLinksLayer" class="interactive-links-layer"></div>
                     </div>
                     <button type="button" class="nav-side-btn next" id="sideNextBtn" title="Trang sau (Phím →)">
                         <span class="material-symbols-outlined">chevron_right</span>
                     </button>
+
+                    <!-- Fullscreen Browser PDF Reader -->
+                    <iframe id="pdfFullscreenFrame" class="pdf-fullscreen-frame" title="PDF Viewer" src="about:blank"></iframe>
                 </div>
             </section>
         </main>
@@ -518,18 +576,63 @@
                 en: 6
             };
 
+            // Link annotations extracted directly from PDF
+            let pdfLinksData = null;
+            fetch('./assets/docs/cv_links.json')
+                .then(r => r.json())
+                .then(data => {
+                    pdfLinksData = data;
+                    renderInteractiveLinks();
+                })
+                .catch(() => {});
+
             const resumeStage = document.getElementById("resumeStage");
             const resumeImg = document.getElementById("resumeImg");
+            const interactiveLinksLayer = document.getElementById("interactiveLinksLayer");
             const pageIndicator = document.getElementById("pageIndicator");
             const prevPageBtn = document.getElementById("prevPageBtn");
             const nextPageBtn = document.getElementById("nextPageBtn");
             const sidePrevBtn = document.getElementById("sidePrevBtn");
             const sideNextBtn = document.getElementById("sideNextBtn");
             const downloadPdfBtn = document.getElementById("downloadPdfBtn");
+            const openTabBtn = document.getElementById("openTabBtn");
             const cvLangVi = document.getElementById("cvLangVi");
             const cvLangEn = document.getElementById("cvLangEn");
             const fullscreenBtn = document.getElementById("fullscreenBtn");
             const fullscreenIcon = document.getElementById("fullscreenIcon");
+            const pdfFullscreenFrame = document.getElementById("pdfFullscreenFrame");
+
+            function positionLinksLayer() {
+                if (!resumeImg || !interactiveLinksLayer) return;
+                interactiveLinksLayer.style.width = resumeImg.clientWidth + 'px';
+                interactiveLinksLayer.style.height = resumeImg.clientHeight + 'px';
+                interactiveLinksLayer.style.top = resumeImg.offsetTop + 'px';
+                interactiveLinksLayer.style.left = resumeImg.offsetLeft + 'px';
+            }
+
+            function renderInteractiveLinks() {
+                if (!interactiveLinksLayer) return;
+                interactiveLinksLayer.innerHTML = '';
+                if (!pdfLinksData || !pdfLinksData[currentLang]) return;
+
+                const pageLinks = pdfLinksData[currentLang][String(currentPage)] || [];
+                pageLinks.forEach(link => {
+                    const a = document.createElement('a');
+                    a.href = link.uri;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.className = 'interactive-link';
+                    a.title = link.uri;
+                    a.style.left = link.x + '%';
+                    a.style.top = link.y + '%';
+                    a.style.width = link.w + '%';
+                    a.style.height = link.h + '%';
+                    interactiveLinksLayer.appendChild(a);
+                });
+                positionLinksLayer();
+            }
+
+            window.addEventListener('resize', positionLinksLayer);
 
             function updateView() {
                 const max = totalPages[currentLang];
@@ -546,6 +649,7 @@
                     resumeImg.src = targetSrc;
                     resumeImg.alt = `CV Page ${currentPage}`;
                     resumeImg.style.opacity = "1";
+                    renderInteractiveLinks();
                 };
                 img.src = targetSrc;
 
@@ -562,14 +666,20 @@
                 nextPageBtn.disabled = isLast;
                 sideNextBtn.disabled = isLast;
 
-                // Update download link
+                // Update download link and open tab link
                 const pdfName = currentLang === "vi" ? "CV_NguyenQuangDuc_VN.pdf" : "CV_NguyenQuangDuc_EN.pdf";
                 downloadPdfBtn.href = `./assets/docs/${pdfName}`;
                 downloadPdfBtn.download = pdfName;
+                openTabBtn.href = `./assets/docs/${pdfName}`;
 
                 // Update language buttons active state
                 cvLangVi.classList.toggle("active", currentLang === "vi");
                 cvLangEn.classList.toggle("active", currentLang === "en");
+
+                // If currently in fullscreen mode, update the native browser PDF frame
+                if (isElementInFullscreen()) {
+                    loadFullscreenPdf();
+                }
 
                 // Preload adjacent pages for seamless navigation
                 if (currentPage < max) {
@@ -608,13 +718,23 @@
             nextPageBtn.addEventListener("click", goNext);
             sideNextBtn.addEventListener("click", goNext);
 
-            // Fullscreen handling (HTML5 Fullscreen API with fallback)
+            // Fullscreen handling
             function isElementInFullscreen() {
                 return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement || resumeStage.classList.contains("is-fullscreen"));
             }
 
+            function loadFullscreenPdf() {
+                const pdfName = currentLang === "vi" ? "CV_NguyenQuangDuc_VN.pdf" : "CV_NguyenQuangDuc_EN.pdf";
+                const targetUrl = `./assets/docs/${pdfName}#page=${currentPage}&view=FitH`;
+                if (pdfFullscreenFrame.getAttribute('data-loaded-src') !== targetUrl) {
+                    pdfFullscreenFrame.src = targetUrl;
+                    pdfFullscreenFrame.setAttribute('data-loaded-src', targetUrl);
+                }
+            }
+
             function toggleFullscreen() {
                 if (!isElementInFullscreen()) {
+                    loadFullscreenPdf();
                     if (resumeStage.requestFullscreen) {
                         resumeStage.requestFullscreen().catch(() => {
                             resumeStage.classList.add("is-fullscreen");
@@ -638,6 +758,10 @@
                     }
                     resumeStage.classList.remove("is-fullscreen");
                     updateFullscreenBtn(false);
+                    // Clear frame to save memory
+                    pdfFullscreenFrame.src = "about:blank";
+                    pdfFullscreenFrame.removeAttribute('data-loaded-src');
+                    setTimeout(positionLinksLayer, 100);
                 }
             }
 
@@ -645,9 +769,10 @@
                 if (active) {
                     fullscreenIcon.textContent = "fullscreen_exit";
                     fullscreenBtn.title = "Thoát toàn màn hình (Esc)";
+                    loadFullscreenPdf();
                 } else {
                     fullscreenIcon.textContent = "fullscreen";
-                    fullscreenBtn.title = "Toàn màn hình (F11)";
+                    fullscreenBtn.title = "Xem PDF toàn màn hình (Trình đọc Browser)";
                 }
             }
 
@@ -657,6 +782,9 @@
                 const active = !!document.fullscreenElement;
                 if (!active) {
                     resumeStage.classList.remove("is-fullscreen");
+                    pdfFullscreenFrame.src = "about:blank";
+                    pdfFullscreenFrame.removeAttribute('data-loaded-src');
+                    setTimeout(positionLinksLayer, 100);
                 }
                 updateFullscreenBtn(active);
             });
@@ -664,24 +792,30 @@
                 const active = !!document.webkitFullscreenElement;
                 if (!active) {
                     resumeStage.classList.remove("is-fullscreen");
+                    pdfFullscreenFrame.src = "about:blank";
+                    pdfFullscreenFrame.removeAttribute('data-loaded-src');
+                    setTimeout(positionLinksLayer, 100);
                 }
                 updateFullscreenBtn(active);
             });
 
-            // Keyboard navigation (ArrowLeft / ArrowRight / 'f' for fullscreen / Esc for fallback)
+            // Keyboard navigation (ArrowLeft / ArrowRight / 'f' for fullscreen / Esc)
             window.addEventListener("keydown", function (e) {
+                if (isElementInFullscreen()) return; // Let native browser PDF handle keys in fullscreen
                 if (e.key === "ArrowLeft") {
                     goPrev();
                 } else if (e.key === "ArrowRight") {
                     goNext();
                 } else if (e.key === "f" || e.key === "F") {
-                    // Quick fullscreen toggle
                     if (e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA") {
                         toggleFullscreen();
                     }
                 } else if (e.key === "Escape" && resumeStage.classList.contains("is-fullscreen")) {
                     resumeStage.classList.remove("is-fullscreen");
                     updateFullscreenBtn(false);
+                    pdfFullscreenFrame.src = "about:blank";
+                    pdfFullscreenFrame.removeAttribute('data-loaded-src');
+                    setTimeout(positionLinksLayer, 100);
                 }
             });
 
@@ -691,10 +825,12 @@
             const viewport = document.getElementById("resumeViewport");
 
             viewport.addEventListener("touchstart", function (e) {
+                if (isElementInFullscreen()) return;
                 touchStartX = e.changedTouches[0].screenX;
             }, { passive: true });
 
             viewport.addEventListener("touchend", function (e) {
+                if (isElementInFullscreen()) return;
                 touchEndX = e.changedTouches[0].screenX;
                 handleGesture();
             }, { passive: true });
