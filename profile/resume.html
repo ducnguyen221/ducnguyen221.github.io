@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html class="dark" lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CV / Resume | Nguyen Quang Duc</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block"
+        rel="stylesheet" />
+    <link href="./assets/css/subpage-shell.css" rel="stylesheet" />
+    <style>
+        html {
+            overscroll-behavior-y: none;
+        }
+
+        /* Resume Stage: Locked height, no outer vertical scroll */
+        .resume-stage {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: calc(100vh - 100px);
+            min-height: 520px;
+            max-height: 980px;
+            padding: 16px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .resume-stage {
+                height: calc(100vh - 130px);
+                padding: 12px 10px;
+                gap: 8px;
+            }
+        }
+
+        .resume-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 8px 14px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        html.dark .resume-toolbar {
+            background: rgba(18, 22, 28, 0.6);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .toolbar-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tool-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-color, #1e293b);
+            margin: 0;
+        }
+
+        html.dark .tool-title {
+            color: #f1f5f9;
+        }
+
+        .page-controls {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 0, 0, 0.04);
+            padding: 3px 6px;
+            border-radius: 10px;
+        }
+
+        html.dark .page-controls {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .ctrl-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: #ffffff;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        html.dark .ctrl-btn {
+            background: #1e2530;
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+        }
+
+        .ctrl-btn:hover:not(:disabled) {
+            transform: translateY(-1px);
+            background: #f8fafc;
+            border-color: rgba(198, 151, 73, 0.6);
+            color: #c69749;
+        }
+
+        html.dark .ctrl-btn:hover:not(:disabled) {
+            background: #283241;
+            border-color: #c69749;
+            color: #f1c40f;
+        }
+
+        .ctrl-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        .page-badge {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0 8px;
+            min-width: 80px;
+            text-align: center;
+            color: #475569;
+        }
+
+        html.dark .page-badge {
+            color: #cbd5e1;
+        }
+
+        .lang-switch {
+            display: inline-flex;
+            background: rgba(0, 0, 0, 0.06);
+            border-radius: 8px;
+            padding: 2px;
+        }
+
+        html.dark .lang-switch {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .lang-btn {
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #64748b;
+            transition: all 0.2s;
+        }
+
+        html.dark .lang-btn {
+            color: #94a3b8;
+        }
+
+        .lang-btn.active {
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        html.dark .lang-btn.active {
+            background: #c69749;
+            color: #ffffff;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #c69749, #a87930);
+            color: #ffffff !important;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 3px 10px rgba(198, 151, 73, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 14px rgba(198, 151, 73, 0.45);
+        }
+
+        /* Resume Viewport: Single page strictly contained */
+        .resume-viewport {
+            position: relative;
+            flex: 1 1 auto;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            user-select: none;
+        }
+
+        html.dark .resume-viewport {
+            background: rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .resume-img-wrapper {
+            position: relative;
+            height: 100%;
+            max-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .resume-page-img {
+            max-height: 100%;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.15s ease-in-out;
+        }
+
+        /* Floating side-nav buttons inside viewport */
+        .nav-side-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(18, 24, 32, 0.7);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s;
+        }
+
+        .nav-side-btn:hover:not(:disabled) {
+            background: rgba(198, 151, 73, 0.95);
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .nav-side-btn:disabled {
+            opacity: 0.15;
+            cursor: not-allowed;
+        }
+
+        .nav-side-btn.prev {
+            left: 14px;
+        }
+
+        .nav-side-btn.next {
+            right: 14px;
+        }
+
+        @media (max-width: 640px) {
+            .nav-side-btn {
+                width: 36px;
+                height: 36px;
+            }
+            .nav-side-btn.prev { left: 6px; }
+            .nav-side-btn.next { right: 6px; }
+            .tool-title { font-size: 0.85rem; }
+            .download-btn span.label-text { display: none; }
+        }
+    </style>
+</head>
+
+<body data-page="resume">
+    <canvas id="bgCanvas" class="shell-canvas"></canvas>
+
+    <div class="site-shell">
+        <header class="site-header">
+            <a class="brand" href="./index.html">
+                <img alt="Nguyen Quang Duc" src="./assets/images/KPIM-Duc-Nguyen.png" />
+                <span class="brand-title t-lang" data-en="E-Profile" data-vi="Hồ sơ điện tử">E-Profile</span>
+            </a>
+
+            <nav class="top-nav">
+                <a class="nav-link" data-page-link="profile" href="./index.html">
+                    <span class="material-symbols-outlined">person</span>
+                    <span class="t-lang" data-en="Profile" data-vi="Hồ sơ">Profile</span>
+                </a>
+                <a class="nav-link" data-page-link="resume" href="./resume.html">
+                    <span class="material-symbols-outlined">description</span>
+                    <span class="t-lang" data-en="CV/Resume" data-vi="CV/Resume">CV/Resume</span>
+                </a>
+                <a class="nav-link" data-page-link="experience" href="./experience.html">
+                    <span class="material-symbols-outlined">work_history</span>
+                    <span class="t-lang" data-en="Experience" data-vi="Kinh nghiệm">Experience</span>
+                </a>
+                <a class="nav-link" data-page-link="projects" href="./projects.html">
+                    <span class="material-symbols-outlined">workspaces</span>
+                    <span class="t-lang" data-en="Projects" data-vi="Dự án">Projects</span>
+                </a>
+                <a class="nav-link" data-page-link="courses" href="./courses/">
+                    <span class="material-symbols-outlined">school</span>
+                    <span class="t-lang" data-en="Courses" data-vi="Khóa học">Courses</span>
+                </a>
+                <a class="nav-link" data-page-link="socials" href="./socials.html">
+                    <span class="material-symbols-outlined">subscriptions</span>
+                    <span class="t-lang" data-en="Socials" data-vi="Xã hội">Socials</span>
+                </a>
+                <a class="nav-link" data-page-link="solutions" href="./solutions.html">
+                    <span class="material-symbols-outlined">widgets</span>
+                    <span class="t-lang" data-en="Solutions" data-vi="Giải pháp">Solutions</span>
+                </a>
+                <a class="nav-link" data-page-link="powerbi" href="./powerbi.html">
+                    <span class="material-symbols-outlined">bar_chart</span>
+                    <span class="t-lang" data-en="PowerBI Demo" data-vi="PowerBI Demo">PowerBI Demo</span>
+                </a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="header-icon-btn" id="lang-toggle-btn" type="button">VI</button>
+                <button class="header-icon-btn material-symbols-outlined" id="theme-toggle-btn"
+                    type="button">dark_mode</button>
+            </div>
+        </header>
+
+        <main class="shell-main" style="padding-top: 10px;">
+            <section class="glass-panel resume-stage">
+                <!-- Toolbar -->
+                <div class="resume-toolbar">
+                    <div class="toolbar-group">
+                        <span class="material-symbols-outlined" style="color: #c69749;">description</span>
+                        <h2 class="tool-title t-lang" data-en="Curriculum Vitae" data-vi="Hồ sơ Năng lực (CV/Resume)">Hồ sơ Năng lực (CV/Resume)</h2>
+                    </div>
+
+                    <div class="toolbar-group">
+                        <!-- Language toggle for CV -->
+                        <div class="lang-switch" role="group" aria-label="CV Language">
+                            <button type="button" class="lang-btn active" id="cvLangVi" onclick="switchCvLang('vi')">VI</button>
+                            <button type="button" class="lang-btn" id="cvLangEn" onclick="switchCvLang('en')">EN</button>
+                        </div>
+
+                        <!-- Page Nav Controls -->
+                        <div class="page-controls">
+                            <button type="button" class="ctrl-btn" id="prevPageBtn" title="Trang trước (Phím ←)">
+                                <span class="material-symbols-outlined">arrow_back</span>
+                            </button>
+                            <span class="page-badge" id="pageIndicator">Trang 1 / 5</span>
+                            <button type="button" class="ctrl-btn" id="nextPageBtn" title="Trang sau (Phím →)">
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </button>
+                        </div>
+
+                        <!-- Download Button -->
+                        <a id="downloadPdfBtn" href="./assets/docs/CV_NguyenQuangDuc_VN.pdf" download="CV_NguyenQuangDuc_VN.pdf" class="download-btn">
+                            <span class="material-symbols-outlined">download</span>
+                            <span class="label-text t-lang" data-en="Download PDF" data-vi="Tải file PDF">Tải file PDF</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Single Page Viewport without vertical scroll -->
+                <div class="resume-viewport" id="resumeViewport">
+                    <button type="button" class="nav-side-btn prev" id="sidePrevBtn" title="Trang trước (Phím ←)">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <div class="resume-img-wrapper">
+                        <img id="resumeImg" class="resume-page-img" src="./assets/docs/cv_pages_vn/page_1.webp" alt="CV Trang 1" />
+                    </div>
+                    <button type="button" class="nav-side-btn next" id="sideNextBtn" title="Trang sau (Phím →)">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <nav class="bottom-nav">
+            <a class="bottom-link" data-page-link="profile" href="./index.html">
+                <span class="material-symbols-outlined">person</span>
+                <span class="t-lang" data-en="Profile" data-vi="Hồ sơ">Profile</span>
+            </a>
+            <a class="bottom-link active" data-page-link="resume" href="./resume.html">
+                <span class="material-symbols-outlined">description</span>
+                <span class="t-lang" data-en="CV" data-vi="CV">CV</span>
+            </a>
+            <a class="bottom-link" data-page-link="experience" href="./experience.html">
+                <span class="material-symbols-outlined">work_history</span>
+                <span class="t-lang" data-en="Exp" data-vi="KN">Exp</span>
+            </a>
+            <a class="bottom-link" data-page-link="projects" href="./projects.html">
+                <span class="material-symbols-outlined">workspaces</span>
+                <span class="t-lang" data-en="Projects" data-vi="Dự án">Projects</span>
+            </a>
+            <a class="bottom-link" data-page-link="courses" href="./courses/">
+                <span class="material-symbols-outlined">school</span>
+                <span class="t-lang" data-en="Courses" data-vi="Khóa học">Courses</span>
+            </a>
+            <a class="bottom-link" data-page-link="socials" href="./socials.html">
+                <span class="material-symbols-outlined">subscriptions</span>
+                <span class="t-lang" data-en="Social" data-vi="XH">Social</span>
+            </a>
+            <a class="bottom-link" data-page-link="solutions" href="./solutions.html">
+                <span class="material-symbols-outlined">widgets</span>
+                <span class="t-lang" data-en="Solutions" data-vi="Giải pháp">Solutions</span>
+            </a>
+            <a class="bottom-link" data-page-link="powerbi" href="./powerbi.html">
+                <span class="material-symbols-outlined">bar_chart</span>
+                <span class="t-lang" data-en="PowerBI" data-vi="PowerBI">PowerBI</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="./assets/js/subpage-shell.js"></script>
+    <script>
+        (function () {
+            let currentLang = (localStorage.getItem("profile-lang") || "vi").toLowerCase();
+            if (currentLang !== "en" && currentLang !== "vi") currentLang = "vi";
+            let currentPage = 1;
+
+            const totalPages = {
+                vi: 5,
+                en: 6
+            };
+
+            const resumeImg = document.getElementById("resumeImg");
+            const pageIndicator = document.getElementById("pageIndicator");
+            const prevPageBtn = document.getElementById("prevPageBtn");
+            const nextPageBtn = document.getElementById("nextPageBtn");
+            const sidePrevBtn = document.getElementById("sidePrevBtn");
+            const sideNextBtn = document.getElementById("sideNextBtn");
+            const downloadPdfBtn = document.getElementById("downloadPdfBtn");
+            const cvLangVi = document.getElementById("cvLangVi");
+            const cvLangEn = document.getElementById("cvLangEn");
+
+            function updateView() {
+                const max = totalPages[currentLang];
+                if (currentPage > max) currentPage = max;
+                if (currentPage < 1) currentPage = 1;
+
+                // Preload current page image
+                const folder = currentLang === "vi" ? "cv_pages_vn" : "cv_pages_en";
+                const targetSrc = `./assets/docs/${folder}/page_${currentPage}.webp`;
+
+                resumeImg.style.opacity = "0.4";
+                const img = new Image();
+                img.onload = function () {
+                    resumeImg.src = targetSrc;
+                    resumeImg.alt = `CV Page ${currentPage}`;
+                    resumeImg.style.opacity = "1";
+                };
+                img.src = targetSrc;
+
+                // Update text badge
+                const langLabel = document.documentElement.lang === "vi" ? "Trang" : "Page";
+                pageIndicator.textContent = `${langLabel} ${currentPage} / ${max}`;
+
+                // Update navigation buttons status
+                const isFirst = currentPage === 1;
+                const isLast = currentPage === max;
+
+                prevPageBtn.disabled = isFirst;
+                sidePrevBtn.disabled = isFirst;
+                nextPageBtn.disabled = isLast;
+                sideNextBtn.disabled = isLast;
+
+                // Update download link
+                const pdfName = currentLang === "vi" ? "CV_NguyenQuangDuc_VN.pdf" : "CV_NguyenQuangDuc_EN.pdf";
+                downloadPdfBtn.href = `./assets/docs/${pdfName}`;
+                downloadPdfBtn.download = pdfName;
+
+                // Update language buttons active state
+                cvLangVi.classList.toggle("active", currentLang === "vi");
+                cvLangEn.classList.toggle("active", currentLang === "en");
+
+                // Preload adjacent pages for seamless navigation
+                if (currentPage < max) {
+                    const nextImg = new Image();
+                    nextImg.src = `./assets/docs/${folder}/page_${currentPage + 1}.webp`;
+                }
+                if (currentPage > 1) {
+                    const prevImg = new Image();
+                    prevImg.src = `./assets/docs/${folder}/page_${currentPage - 1}.webp`;
+                }
+            }
+
+            window.switchCvLang = function (lang) {
+                if (currentLang === lang) return;
+                currentLang = lang;
+                currentPage = 1;
+                updateView();
+            };
+
+            function goPrev() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    updateView();
+                }
+            }
+
+            function goNext() {
+                if (currentPage < totalPages[currentLang]) {
+                    currentPage++;
+                    updateView();
+                }
+            }
+
+            prevPageBtn.addEventListener("click", goPrev);
+            sidePrevBtn.addEventListener("click", goPrev);
+            nextPageBtn.addEventListener("click", goNext);
+            sideNextBtn.addEventListener("click", goNext);
+
+            // Keyboard navigation (ArrowLeft / ArrowRight)
+            window.addEventListener("keydown", function (e) {
+                if (e.key === "ArrowLeft") {
+                    goPrev();
+                } else if (e.key === "ArrowRight") {
+                    goNext();
+                }
+            });
+
+            // Touch swipe support on viewport
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const viewport = document.getElementById("resumeViewport");
+
+            viewport.addEventListener("touchstart", function (e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            viewport.addEventListener("touchend", function (e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleGesture();
+            }, { passive: true });
+
+            function handleGesture() {
+                const diff = touchEndX - touchStartX;
+                if (Math.abs(diff) > 40) {
+                    if (diff < 0) {
+                        goNext();
+                    } else {
+                        goPrev();
+                    }
+                }
+            }
+
+            // Sync with global language toggle if user clicks header lang button
+            const globalLangBtn = document.getElementById("lang-toggle-btn");
+            if (globalLangBtn) {
+                globalLangBtn.addEventListener("click", function () {
+                    setTimeout(() => {
+                        const newLang = (localStorage.getItem("profile-lang") || "vi").toLowerCase();
+                        if (newLang !== currentLang && (newLang === "vi" || newLang === "en")) {
+                            currentLang = newLang;
+                            currentPage = 1;
+                            updateView();
+                        }
+                    }, 50);
+                });
+            }
+
+            // Initial view
+            updateView();
+        })();
+    </script>
+</body>
+
+</html>

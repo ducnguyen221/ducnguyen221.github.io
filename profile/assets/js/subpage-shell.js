@@ -1,10 +1,11 @@
-(function () {
+﻿(function () {
     const root = document.documentElement;
     const body = document.body;
     const currentPage = body.dataset.page || "profile";
 
     const pageAliases = {
         profile: "profile",
+        resume: "resume",
         experience: "experience",
         projects: "projects",
         courses: "courses",
@@ -467,3 +468,4 @@
 
     document.addEventListener("DOMContentLoaded", initPage);
 })();
+
