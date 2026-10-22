@@ -4,7 +4,7 @@
   --bg:#ffffff; --bg-tint:#f7f9fc; --surface:#ffffff; --surface-2:#f4f6fa; --surface-3:#eef1f6;
   --border:#e4e8ef; --border-strong:#d3d9e3; --text:#14161b; --muted:#565d69; --faint:#666c78;
   --accent:#2361e6; --accent-ink:#1b4fd0; --accent-weak:#e9f0fe; --accent-glow:rgba(47,109,246,.16);
-  --gold:#a86f00; --gold-weak:#fdf3d7;
+  --gold:#8f5d00; --gold-weak:#fdf3d7;
   --ok:#0b7a45; --ok-weak:#e4f5ec; --warn:#a86a05; --danger:#bb3645; --danger-weak:#fdecee;
   --code-bg:#0f1116; --code-text:#e8ebf1; --code-border:#20242e;
   --radius:16px; --radius-sm:11px;
@@ -226,7 +226,7 @@ table.tbl code{font-family:var(--mono);font-size:.95em;color:var(--accent-ink);o
     box-shadow:var(--shadow-sm);margin-bottom:12px;padding:6px 0}
   table.tbl tbody tr:not(:last-child) td{border-bottom:0}
   table.tbl td{padding:6px 16px}
-  table.tbl td::before{content:attr(data-label);display:block;font-size:11.5px;font-weight:700;letter-spacing:.04em;
+  table.tbl td::before{content:attr(data-label);display:block;font-size:12px;font-weight:700;letter-spacing:.04em;
     text-transform:uppercase;color:var(--faint);margin-bottom:2px}
   table.tbl td.lbl{font-size:16px}
   table.tbl td.lbl::before{display:none}
@@ -428,3 +428,23 @@ footer.site{border-top:1px solid var(--border);background:var(--bg-tint);padding
 .qgrid.q4{grid-template-columns:repeat(4,1fr)}
 @media (max-width:900px){.qgrid.q4{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.qgrid.q4{grid-template-columns:1fr}}
+
+/* dn: công tắc sáng/tối bằng tay — ghi đè lựa chọn theo máy khi người dùng bấm (khoá dn-theme) */
+html[data-theme="light"]{color-scheme:light;  --bg:#ffffff; --bg-tint:#f7f9fc; --surface:#ffffff; --surface-2:#f4f6fa; --surface-3:#eef1f6;  --border:#e4e8ef; --border-strong:#d3d9e3; --text:#14161b; --muted:#565d69; --faint:#666c78;  --accent:#2361e6; --accent-ink:#1b4fd0; --accent-weak:#e9f0fe; --accent-glow:rgba(47,109,246,.16);  --gold:#8f5d00; --gold-weak:#fdf3d7;  --ok:#0b7a45; --ok-weak:#e4f5ec; --warn:#a86a05; --danger:#bb3645; --danger-weak:#fdecee;  --code-bg:#0f1116; --code-text:#e8ebf1; --code-border:#20242e;  --radius:16px; --radius-sm:11px;  --shadow-sm:0 1px 2px rgba(16,24,40,.05),0 1px 3px rgba(16,24,40,.04);  --shadow-md:0 8px 24px -8px rgba(16,24,40,.12),0 2px 6px rgba(16,24,40,.05);  --shadow-lg:0 30px 70px -24px rgba(20,40,90,.28);  --mono:"JetBrains Mono",ui-monospace,"Cascadia Code",Consolas,monospace;  --font:"Be Vietnam Pro",-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif;  --maxw:1160px;}
+html[data-theme="dark"]{color-scheme:dark;--bg:#0e0f13; --bg-tint:#111318; --surface:#16181d; --surface-2:#1b1e24; --surface-3:#22262e;--border:#282c34; --border-strong:#343a44; --text:#e9ebef; --muted:#a4abb6; --faint:#8d949f;--accent:#5b8cff; --accent-ink:#8fb0ff; --accent-weak:#182338; --accent-glow:rgba(91,140,255,.20);--gold:#f2c811; --gold-weak:#2b2410;--ok:#3ec38a; --ok-weak:#12271d; --warn:#e0a032; --danger:#ef6d79; --danger-weak:#2c161a;--code-bg:#0a0c10; --code-text:#e4e8f0; --code-border:#20242e;--shadow-sm:0 1px 2px rgba(0,0,0,.4);--shadow-md:0 10px 28px -10px rgba(0,0,0,.6);--shadow-lg:0 34px 80px -28px rgba(0,0,0,.75);}
+html[data-theme="dark"] .btn-primary{background:#2361e6}
+html[data-theme="dark"] .btn-primary:hover{background:#1b4fd0}
+html[data-theme="light"] .btn-primary{background:var(--accent)}
+html[data-theme="light"] .btn-primary:hover{background:var(--accent-ink)}
+.nav > .dn-theme-btn{width:38px;height:38px;padding:0;justify-content:center;flex:none;margin-left:8px}
+.nav > .dn-home{margin-left:16px}
+.nav .dn-home svg{width:16px;height:16px}
+@media (max-width:1080px){.nav > .dn-home{margin-left:auto}.nav .gh{margin-left:0}}
+.nav-links .dn-m{display:none}
+@media (max-width:480px){
+  .nav > .dn-home,.nav > .dn-theme-btn{display:none}   /* header điện thoại giữ nguyên như cũ: các mục này nằm trong menu thả xuống */
+  .nav-links .dn-m{display:flex}
+  .nav-links button.dn-m{align-items:center;gap:10px;width:100%;padding:12px 0;background:none;border:0;border-bottom:1px solid var(--border);
+    color:var(--muted);font:500 15.5px var(--font);cursor:pointer;text-align:left}
+  .nav-links button.dn-m::before{margin:0}
+}

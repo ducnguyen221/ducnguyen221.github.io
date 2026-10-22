@@ -1,0 +1,29 @@
+/* ducnguyen.vn — Design System v1.0 · nút (BẤT BIẾN: chỉ thêm) */
+/* Vùng bấm ≥44px KHÔNG làm nút to ra: mở rộng vô hình quanh nút nhỏ */
+.dn-hit{position:relative}
+.dn-hit::after{content:"";position:absolute;left:50%;top:50%;width:max(100%,44px);height:max(100%,44px);transform:translate(-50%,-50%)}
+/* nút đổi sáng/tối + ô về Home dùng chung cụm điều khiển header */
+.dn-ctl{display:inline-flex;align-items:center;justify-content:center;gap:6px;box-sizing:border-box;min-height:36px;padding:0 12px;
+  border:1px solid var(--line,rgba(255,255,255,.16));border-radius:var(--dn-r-nav,6px);background:transparent;color:var(--muted,#94a3b8);
+  font:600 .78rem var(--dn-font-mono,monospace);text-decoration:none;cursor:pointer;transition:.25s cubic-bezier(.4,0,.2,1)}
+.dn-ctl:hover,.dn-ctl:focus-visible{color:var(--cyan,#00f0ff);border-color:var(--line-active,rgba(0,240,255,.45))}
+.dn-ctl:focus-visible{outline:2px solid var(--cyan,#00f0ff);outline-offset:2px}
+.dn-theme-btn{width:36px;padding:0;position:relative}
+.dn-theme-btn{visibility:visible!important}  /* nút được ẩn inline cho tới khi file này tải xong — tránh nút trống khi file chung lỗi */
+.dn-theme-btn::before{content:"";width:16px;height:16px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'/%3E%3C/svg%3E") center/contain no-repeat}
+html[data-theme="light"] .dn-theme-btn::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'/%3E%3C/svg%3E")}
+/* nút "mở web" nhấp nháy (bảng 05) */
+.dn-open{--c:0,240,255;--cl:#a5f3fc;display:inline-flex;align-items:center;gap:6px;box-sizing:border-box;min-height:32px;padding:4px 12px;
+  border-radius:var(--dn-r-nav,6px);border:1px solid rgba(var(--c),.55);background:rgba(var(--c),.15);color:var(--cl);
+  font:700 12.5px var(--dn-font-body,sans-serif);letter-spacing:.02em;text-decoration:none;cursor:pointer;vertical-align:middle;
+  animation:dnPulse 2.2s ease-in-out infinite;transition:background .25s,box-shadow .25s,transform .25s}
+.dn-open:hover,.dn-open:focus-visible{animation-play-state:paused;background:rgba(var(--c),.35);border-color:var(--cl);color:#fff;box-shadow:0 0 14px rgba(var(--c),.85);transform:translateY(-1px) scale(1.04)}
+.dn-open:focus-visible{outline:2px solid var(--cl);outline-offset:2px}
+.dn-open.atlas{--c:16,185,129;--cl:#6ee7b7}
+.dn-open.compa{--c:234,179,8;--cl:#fde047}
+.dn-open.youtube{--c:239,68,68;--cl:#fca5a5}
+.dn-open.facebook{--c:24,119,242;--cl:#93c5fd}
+@keyframes dnPulse{0%,100%{box-shadow:0 0 0 0 rgba(var(--c),0)}50%{box-shadow:0 0 12px 1px rgba(var(--c),.55);background:rgba(var(--c),.28)}}
+html[data-theme="light"] .dn-open{--c:0,122,135;--cl:#007a87}
+html[data-theme="light"] .dn-open:hover,html[data-theme="light"] .dn-open:focus-visible{color:#fff;background:rgba(var(--c),.9)}
+@media (prefers-reduced-motion:reduce){.dn-open{animation:none;box-shadow:0 0 8px rgba(var(--c),.5)}}

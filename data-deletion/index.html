@@ -10,9 +10,17 @@
   <meta property="og:title" content="Hướng dẫn xóa dữ liệu | Duc Nguyen">
   <meta property="og:description" content="User Data Deletion Instructions — Page Auto Post &amp; ducnguyen.vn.">
   <meta property="og:url" content="https://ducnguyen.vn/data-deletion/">
+  <meta property="og:image" content="https://ducnguyen.vn/assets/dn/v1/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://ducnguyen.vn/assets/dn/v1/og-default.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="/assets/dn/v1/theme.js"></script>
+  <link rel="stylesheet" href="/assets/dn/v1/tokens.css">
+  <link rel="stylesheet" href="/assets/dn/v1/buttons.css">
   <style>
     :root{color-scheme:dark;--bg:#04060a;--ink:#f8fafc;--muted:#94a3b8;--line:rgba(255,255,255,.14);
     --line-active:rgba(0,240,255,.45);--cyan:#00f0ff;--purple:#bd00ff;--green:#39ff7a;--amber:#ffb340;
@@ -20,7 +28,7 @@
     --font-body:'Be Vietnam Pro',system-ui,sans-serif;--font-heading:'Plus Jakarta Sans',system-ui,sans-serif;--font-mono:'JetBrains Mono',Consolas,monospace}
     *{box-sizing:border-box;margin:0;padding:0}
     html{background:var(--bg);scroll-behavior:smooth}
-    body{min-height:100vh;color:var(--ink);font-family:var(--font-body);line-height:1.7;letter-spacing:-.01em;
+    body{min-height:100vh;min-height:100dvh;color:var(--ink);font-family:var(--font-body);line-height:1.7;letter-spacing:-.01em;
     background:radial-gradient(circle at 10% 20%,rgba(0,240,255,.05),transparent 40rem),
     radial-gradient(circle at 90% 10%,rgba(189,0,255,.04),transparent 35rem),
     linear-gradient(180deg,#04060a 0%,#080d1a 60%,#030508 100%);padding-bottom:48px}
@@ -33,27 +41,27 @@
     background:radial-gradient(circle,rgba(0,240,255,.22),rgba(189,0,255,.06) 55%,rgba(4,6,10,.95) 78%);box-shadow:0 0 18px rgba(0,240,255,.3)}
     .brand-name{font-family:var(--font-heading);font-size:1.2rem;font-weight:800}
     .brand-name b{color:var(--cyan)}
-    .brand-sub{display:block;color:var(--muted);font-size:.66rem;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase}
+    .brand-sub{display:block;color:var(--muted);font-size:.75rem;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase}
     .nav{display:flex;gap:8px}
     .nav a{padding:8px 14px;border:1px solid var(--line);border-radius:8px;font-size:.84rem;color:var(--muted);transition:.2s}
     .nav a:hover{color:var(--cyan);border-color:var(--line-active)}
     .hero{margin-top:32px}
-    .label{font-family:var(--font-mono);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+    .label{font-family:var(--font-mono);font-size:.75rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
     .hero h1{font-family:var(--font-heading);font-size:2rem;font-weight:800;line-height:1.15;margin-bottom:10px}
-    .hero p{color:#cbd5e1;font-size:1rem}
+    .hero p{color:var(--ink-2,#cbd5e1);font-size:1rem}
     .meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
-    .chip{font-family:var(--font-mono);font-size:.72rem;color:#a5f3fc;border:1px solid var(--line-active);border-radius:99px;padding:4px 12px;background:rgba(0,240,255,.06)}
+    .chip{font-family:var(--font-mono);font-size:.75rem;color:var(--code-fg,#a5f3fc);border:1px solid var(--line-active);border-radius:99px;padding:4px 9px;background:rgba(0,240,255,.06)}
     .card{margin-top:22px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:26px 28px}
     .card h2{font-family:var(--font-heading);font-size:1.2rem;font-weight:800;margin-bottom:12px;display:flex;align-items:baseline;gap:10px}
     .card h2 .n{font-family:var(--font-mono);font-size:.8rem;color:var(--green);font-weight:700}
-    .card h3{font-family:var(--font-heading);font-size:.98rem;font-weight:700;margin:18px 0 8px;color:#e2e8f0}
-    .card p{color:#cbd5e1;font-size:.94rem;margin-bottom:10px}
-    .card ul,.card ol{margin:0 0 10px 20px;color:#cbd5e1;font-size:.94rem}
+    .card h3{font-family:var(--font-heading);font-size:.98rem;font-weight:700;margin:18px 0 8px;color:var(--ink-3,#e2e8f0)}
+    .card p{color:var(--ink-2,#cbd5e1);font-size:.94rem;margin-bottom:10px}
+    .card ul,.card ol{margin:0 0 10px 20px;color:var(--ink-2,#cbd5e1);font-size:.94rem}
     .card li{margin-bottom:8px}
     .card strong{color:var(--ink)}
-    code{font-family:var(--font-mono);font-size:.86em;color:#a5f3fc;background:rgba(0,240,255,.07);border:1px solid rgba(0,240,255,.18);border-radius:5px;padding:1px 6px}
+    code{font-family:var(--font-mono);font-size:.86em;color:var(--code-fg,#a5f3fc);background:rgba(0,240,255,.07);border:1px solid rgba(0,240,255,.18);border-radius:5px;padding:1px 6px}
     .callout{border:1px solid var(--line-active);border-radius:10px;background:linear-gradient(135deg,rgba(0,240,255,.07),rgba(8,12,22,.9));padding:16px 18px;margin:14px 0}
-    .callout p{margin:0;color:#e2e8f0;font-size:.92rem}
+    .callout p{margin:0;color:var(--ink-3,#e2e8f0);font-size:.92rem}
     .steps{counter-reset:s;list-style:none;margin-left:0}
     .steps li{counter-increment:s;position:relative;padding-left:38px;margin-bottom:12px}
     .steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:26px;height:26px;display:grid;place-items:center;
@@ -62,11 +70,26 @@
     .mailbox a{font-family:var(--font-mono);font-size:1.05rem;font-weight:600;color:var(--cyan)}
     .mailbox span{display:block;color:var(--muted);font-size:.78rem;font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
     .en{margin-top:34px;border-top:1px dashed var(--line);padding-top:26px}
-    .en .label{color:var(--purple)}
+    .en .label{color:#d38bff}
     .mail{color:var(--cyan);border-bottom:1px solid rgba(0,240,255,.35)}
-    .footer{margin-top:44px;text-align:center;font-size:.8rem;color:#4b5563}
-    .footer a{color:#818cf8}
+    .footer{margin-top:44px;text-align:center;font-size:.8rem;color:var(--foot,#94a3b8)}
+    .footer a{color:var(--link-alt,#818cf8)}
     @media (max-width:640px){.hero h1{font-size:1.5rem}.nav{order:3;width:100%}.nav a{flex:1;text-align:center}.card{padding:20px 18px}}
+  </style>
+  <style>/* dn-light: ghi đè riêng trang cho chế độ sáng (token ở /assets/dn/v1) */
+    .nav .dn-theme-btn{width:auto;min-height:0;padding:8px 12px;border-radius:8px;font-size:.84rem}
+    .brand-sub{line-height:1.45}
+    @media (max-width:640px){.nav .dn-theme-btn{flex:0 0 40px;padding:8px 0}}
+    @media (max-width:400px){.nav a{padding:8px 6px}.nav .dn-theme-btn{flex:0 0 36px}}
+    html[data-theme="light"] body{background:linear-gradient(180deg,#f6f8fb,#eaf0f6)}
+    html[data-theme="light"] .topbar{background:rgba(255,255,255,.92)}
+    html[data-theme="light"] .brand-mark{background:radial-gradient(circle,rgba(0,148,163,.18),rgba(138,31,209,.04) 55%,#fff 78%)}
+    html[data-theme="light"] .brand-mark svg{stroke:#007a87}
+    html[data-theme="light"] .callout,html[data-theme="light"] .mailbox{background:rgba(0,148,163,.06)}
+    html[data-theme="light"] .en .label{color:#8a1fd1}
+    html[data-theme="light"] th{background:rgba(0,148,163,.08)}
+    html[data-theme="light"] code{background:rgba(0,148,163,.08);border-color:rgba(0,148,163,.25)}
+    html[data-theme="light"] .chip{background:rgba(0,148,163,.08)}
   </style>
 <style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
 html { overscroll-behavior-y: none; }
@@ -92,6 +115,7 @@ html { overscroll-behavior-y: none; }
       <nav class="nav">
         <a href="/">← Trang chủ</a>
         <a href="/privacy/">Quyền riêng tư</a>
+              <button class="dn-ctl dn-theme-btn dn-hit" type="button" data-dn-theme-toggle style="visibility:hidden" aria-label="Chuyển sang giao diện sáng"></button>
       </nav>
     </header>
 
@@ -157,7 +181,7 @@ html { overscroll-behavior-y: none; }
     <section class="en">
       <div class="label">▍English version</div>
       <h1 style="font-family:var(--font-heading);font-size:1.6rem;font-weight:800;margin-bottom:8px">User Data Deletion Instructions</h1>
-      <p style="color:#cbd5e1">For the application <strong>Page Auto Post</strong> (Meta App ID <code>1012104197987184</code>) and the website <strong>ducnguyen.vn</strong>. Effective 5 August 2026.</p>
+      <p style="color:var(--ink-2,#cbd5e1)">For the application <strong>Page Auto Post</strong> (Meta App ID <code>1012104197987184</code>) and the website <strong>ducnguyen.vn</strong>. Effective 5 August 2026.</p>
 
       <div class="card">
         <h2><span class="n">01</span> What data exists</h2>

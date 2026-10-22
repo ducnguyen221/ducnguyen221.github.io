@@ -1,0 +1,52 @@
+/* ducnguyen.vn — Design System v1.0 · tokens (BẤT BIẾN: chỉ thêm, không đổi tên; bản mới = v2/)
+   Mọi giá trị dark là mặc định; trang nên dùng var(--x, <giá-trị-cũ>) để vẫn đúng khi file này không tải được. */
+:root{
+  /* hình học */
+  --dn-r-btn:12px;        /* nút hành động */
+  --dn-r-nav:6px;         /* nav, nút phụ */
+  --dn-r-chip:999px;      /* chip, lọc, tag */
+  /* font */
+  --dn-font-heading:'Plus Jakarta Sans',system-ui,sans-serif;
+  --dn-font-body:'Be Vietnam Pro',system-ui,sans-serif;
+  --dn-font-mono:'JetBrains Mono',Consolas,monospace;
+  /* màu chữ phụ (dark) — trang dùng var(--ink-2,#cbd5e1)… */
+  --ink-2:#cbd5e1;
+  --ink-3:#e2e8f0;
+  --code-fg:#a5f3fc;
+  --foot:#94a3b8;
+  --link-alt:#818cf8;
+  --ink-hi:#fff;
+  /* thang chữ — điện thoại (<640) */
+  --dn-fs-title:2rem;
+  --dn-fs-h1:1.75rem;
+  --dn-fs-h2:1.375rem;
+  --dn-fs-h3:1.125rem;
+  --dn-fs-body:1rem;
+  --dn-fs-sm:.875rem;
+  --dn-fs-xs:.75rem;      /* sàn: không chữ nào nhỏ hơn 12px */
+  --dn-lh-display:1.08;
+  --dn-lh-title:1.15;
+  --dn-lh-h1:1.2;
+  --dn-lh-h2:1.25;
+  --dn-lh-h3:1.3;
+  --dn-lh-body:1.6;
+  --dn-tr-display:-.03em;
+  --dn-tr-heading:-.02em;
+}
+@media (min-width:640px){
+  :root{--dn-fs-title:clamp(2rem,4.5vw,3.5rem);--dn-fs-h1:2rem;--dn-fs-h2:1.5rem;--dn-fs-h3:1.125rem}
+}
+@media (min-width:1280px){
+  :root{--dn-fs-title:3.5rem;--dn-fs-h1:2.5rem;--dn-fs-h2:1.75rem;--dn-fs-h3:1.25rem}
+}
+/* chế độ sáng — bảng 10 canvas: neon → mực đậm */
+html[data-theme="light"]{
+  color-scheme:light;
+  --bg:#f6f8fb;--ink:#0b1220;--muted:#475569;
+  --line:rgba(15,23,42,.14);--line-active:rgba(0,148,163,.5);
+  --panel:rgba(255,255,255,.94);--panel-strong:#fff;
+  --cyan:#007a87;--green:#15803d;--purple:#8a1fd1;--amber:#a16207;--coral:#b91c1c;
+  --ink-2:#334155;--ink-3:#1e293b;--code-fg:#0e7490;--foot:#475569;--link-alt:#4338ca;--ink-hi:#0b1220;
+}
+/* ngắt dòng cân bằng: CHỈ bật có chủ đích (class), vì có thể đổi số dòng — đã đo thấy h2 trong flex thêm dòng */
+.dn-balance{text-wrap:balance}

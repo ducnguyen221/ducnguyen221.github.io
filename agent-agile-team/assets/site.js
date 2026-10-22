@@ -45,9 +45,10 @@
   var ctx=c.getContext('2d');
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var darkQ=matchMedia('(prefers-color-scheme: dark)');
+  function isDark(){var t=document.documentElement.getAttribute('data-theme');return t?t==='dark':darkQ.matches;}
   var dpr=Math.min(window.devicePixelRatio||1,2), W=0,H=0,pts=[];
   var mouse={x:-9999,y:-9999};
-  function col(a){return (darkQ.matches?'rgba(120,160,255,':'rgba(47,109,246,')+a+')';}
+  function col(a){return (isDark()?'rgba(120,160,255,':'rgba(47,109,246,')+a+')';}
   function resize(){
     W=window.innerWidth;H=window.innerHeight;
     c.width=Math.floor(W*dpr);c.height=Math.floor(H*dpr);

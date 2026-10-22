@@ -10,9 +10,17 @@
   <meta property="og:title" content="Tài nguyên miễn phí | Duc Nguyen">
   <meta property="og:description" content="Template Power BI, cheat-sheet SQL/Excel, bộ prompt AI và mẫu dự án dữ liệu — tải miễn phí.">
   <meta property="og:url" content="https://ducnguyen.vn/resources/">
+  <meta property="og:image" content="https://ducnguyen.vn/assets/dn/v1/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://ducnguyen.vn/assets/dn/v1/og-default.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="/assets/dn/v1/theme.js"></script>
+  <link rel="stylesheet" href="/assets/dn/v1/tokens.css">
+  <link rel="stylesheet" href="/assets/dn/v1/buttons.css">
   <style>
     :root{color-scheme:dark;--bg:#04060a;--ink:#f8fafc;--muted:#94a3b8;--line:rgba(255,255,255,.14);
     --line-active:rgba(0,240,255,.45);--cyan:#00f0ff;--cyan-glow:rgba(0,240,255,.4);--purple:#bd00ff;
@@ -20,7 +28,7 @@
     --font-body:'Be Vietnam Pro',system-ui,sans-serif;--font-heading:'Plus Jakarta Sans',system-ui,sans-serif;--font-mono:'JetBrains Mono',Consolas,monospace}
     *{box-sizing:border-box;margin:0;padding:0}
     html{background:var(--bg);scroll-behavior:smooth}
-    body{min-height:100vh;color:var(--ink);font-family:var(--font-body);line-height:1.65;letter-spacing:-.01em;
+    body{min-height:100vh;min-height:100dvh;color:var(--ink);font-family:var(--font-body);line-height:1.65;letter-spacing:-.01em;
     background:radial-gradient(circle at 10% 20%,rgba(0,240,255,.05),transparent 40rem),
     radial-gradient(circle at 90% 10%,rgba(189,0,255,.04),transparent 35rem),
     linear-gradient(180deg,#04060a 0%,#080d1a 60%,#030508 100%);padding-bottom:48px}
@@ -33,14 +41,14 @@
     background:radial-gradient(circle,rgba(0,240,255,.22),rgba(189,0,255,.06) 55%,rgba(4,6,10,.95) 78%);box-shadow:0 0 18px rgba(0,240,255,.3)}
     .brand-name{font-family:var(--font-heading);font-size:1.2rem;font-weight:800}
     .brand-name b{color:var(--cyan)}
-    .brand-sub{display:block;color:var(--muted);font-size:.66rem;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase}
+    .brand-sub{display:block;color:var(--muted);font-size:.75rem;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase}
     .nav{display:flex;gap:8px}
     .nav a{padding:8px 14px;border:1px solid var(--line);border-radius:8px;font-size:.84rem;color:var(--muted);transition:.2s}
     .nav a:hover{color:var(--cyan);border-color:var(--cyan-glow)}
     .hero{margin-top:32px}
-    .label{font-family:var(--font-mono);font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+    .label{font-family:var(--font-mono);font-size:.75rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
     .hero h1{font-family:var(--font-heading);font-size:2rem;font-weight:800;line-height:1.15;margin-bottom:8px}
-    .hero p{color:#cbd5e1;font-size:1rem;max-width:60rem}
+    .hero p{color:var(--ink-2,#cbd5e1);font-size:1rem;max-width:60rem}
     .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:30px}
     .res-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:22px;display:flex;flex-direction:column;min-height:230px;transition:.25s}
     .res-card:hover{transform:translateY(-3px);border-color:var(--cyan);box-shadow:0 12px 32px rgba(0,240,255,.12)}
@@ -48,8 +56,8 @@
     border:1px solid var(--line-active);background:linear-gradient(135deg,rgba(0,240,255,.12),rgba(0,240,255,.02))}
     .res-icon svg{width:25px;height:25px}
     .res-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-    .res-code{font-family:var(--font-mono);font-size:.74rem;color:var(--green);font-weight:700}
-    .badge{font-family:var(--font-mono);font-size:.66rem;color:#a5f3fc;border:1px solid var(--line-active);border-radius:99px;padding:2px 9px;background:rgba(0,240,255,.06)}
+    .res-code{font-family:var(--font-mono);font-size:.75rem;color:var(--green);font-weight:700}
+    .badge{font-family:var(--font-mono);font-size:.75rem;color:var(--code-fg,#a5f3fc);border:1px solid var(--line-active);border-radius:99px;padding:2px 7px;background:rgba(0,240,255,.06)}
     .badge.soon{color:var(--amber);border-color:rgba(255,179,64,.4);background:rgba(255,179,64,.07)}
     .res-card h3{font-family:var(--font-heading);font-size:1.1rem;font-weight:800;margin-bottom:6px}
     .res-card p{color:var(--muted);font-size:.88rem;line-height:1.6;flex:1}
@@ -59,14 +67,29 @@
     .cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;
     border:1px solid var(--line-active);border-radius:16px;background:linear-gradient(135deg,rgba(189,0,255,.08),var(--panel));padding:22px 24px}
     .cta h3{font-family:var(--font-heading);font-size:1.15rem;font-weight:800}
-    .cta p{color:#cbd5e1;font-size:.9rem;margin-top:4px}
+    .cta p{color:var(--ink-2,#cbd5e1);font-size:.9rem;margin-top:4px}
     .cta a{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;font-weight:800;color:#04060a;
     background:linear-gradient(90deg,#00f0ff,#39ff7a);border-radius:10px;padding:12px 22px;font-size:.9rem}
     .cta a:hover{filter:brightness(1.1)}
-    .footer{margin-top:50px;text-align:center;font-size:.8rem;color:#4b5563}
-    .footer a{color:#818cf8}
+    .footer{margin-top:50px;text-align:center;font-size:.8rem;color:var(--foot,#94a3b8)}
+    .footer a{color:var(--link-alt,#818cf8)}
     @media (max-width:920px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media (max-width:640px){.grid{grid-template-columns:1fr}.hero h1{font-size:1.5rem}.nav{order:3;width:100%}.nav a{flex:1;text-align:center}.cta a{width:100%;justify-content:center}}
+  </style>
+  <style>/* dn-light: ghi đè riêng trang cho chế độ sáng (token ở /assets/dn/v1) */
+    .nav .dn-theme-btn{width:auto;min-height:0;padding:8px 12px;border-radius:8px;font-size:.84rem}
+    .brand-sub{line-height:1.45}
+    @media (max-width:640px){.nav .dn-theme-btn{flex:0 0 40px;padding:8px 0}}
+    @media (max-width:400px){.nav a{padding:8px 6px}.nav .dn-theme-btn{flex:0 0 36px}}
+    html[data-theme="light"] body{background:linear-gradient(180deg,#f6f8fb,#eaf0f6)}
+    html[data-theme="light"] .topbar{background:rgba(255,255,255,.92)}
+    html[data-theme="light"] .brand-mark{background:radial-gradient(circle,rgba(0,148,163,.18),rgba(138,31,209,.04) 55%,#fff 78%)}
+    html[data-theme="light"] .brand-mark svg{stroke:#007a87}
+    html[data-theme="light"] .res-icon{background:linear-gradient(135deg,rgba(0,148,163,.14),rgba(0,148,163,.03))}
+    html[data-theme="light"] .badge{background:rgba(0,148,163,.08)}
+    html[data-theme="light"] .badge.soon{background:rgba(161,98,7,.08);border-color:rgba(161,98,7,.4)}
+    html[data-theme="light"] .res-link.disabled{color:#94a3b8}
+    html[data-theme="light"] .cta{background:linear-gradient(135deg,rgba(138,31,209,.07),var(--panel))}
   </style>
 <style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
 html { overscroll-behavior-y: none; }
@@ -92,6 +115,7 @@ html { overscroll-behavior-y: none; }
       <nav class="nav">
         <a href="../">← Trang chủ</a>
         <a href="https://compaclass.com/academy/kpim-academy" target="_blank" rel="noopener">Khóa học ↗</a>
+              <button class="dn-ctl dn-theme-btn dn-hit" type="button" data-dn-theme-toggle style="visibility:hidden" aria-label="Chuyển sang giao diện sáng"></button>
       </nav>
     </header>
 
@@ -114,7 +138,7 @@ html { overscroll-behavior-y: none; }
         <div class="res-top"><span class="res-code">01 / powerbi</span><span class="badge soon">Sắp ra mắt</span></div>
         <h3>Template Power BI</h3>
         <p>Bộ báo cáo mẫu (sales, tài chính, KPI) với theme, đo lường DAX và bố cục dựng sẵn để bạn cắm dữ liệu vào dùng ngay.</p>
-        <span class="res-link disabled">Đang cập nhật</span>
+        <span class="dn-hit res-link disabled">Đang cập nhật</span>
       </article>
 
       <article class="res-card">
@@ -122,7 +146,7 @@ html { overscroll-behavior-y: none; }
         <div class="res-top"><span class="res-code">02 / sql-excel</span><span class="badge soon">Sắp ra mắt</span></div>
         <h3>Cheat-sheet SQL &amp; Excel</h3>
         <p>Tóm tắt cú pháp SQL hay dùng và các hàm Excel quan trọng cho phân tích dữ liệu, gói gọn trong vài trang dễ tra cứu.</p>
-        <span class="res-link disabled">Đang cập nhật</span>
+        <span class="dn-hit res-link disabled">Đang cập nhật</span>
       </article>
 
       <article class="res-card">
@@ -130,7 +154,7 @@ html { overscroll-behavior-y: none; }
         <div class="res-top"><span class="res-code">03 / prompts</span><span class="badge soon">Sắp ra mắt</span></div>
         <h3>Bộ prompt AI cho công việc</h3>
         <p>Tuyển tập prompt cho phân tích dữ liệu, viết báo cáo, tự động hóa và học tập — kèm ghi chú cách tinh chỉnh.</p>
-        <span class="res-link disabled">Đang cập nhật</span>
+        <span class="dn-hit res-link disabled">Đang cập nhật</span>
       </article>
 
       <article class="res-card">
@@ -138,7 +162,7 @@ html { overscroll-behavior-y: none; }
         <div class="res-top"><span class="res-code">04 / data-project</span><span class="badge soon">Sắp ra mắt</span></div>
         <h3>Mẫu dự án dữ liệu</h3>
         <p>Khung triển khai một dự án data từ đầu: thu thập, làm sạch, mô hình hóa, trực quan — kèm checklist và cấu trúc thư mục.</p>
-        <span class="res-link disabled">Đang cập nhật</span>
+        <span class="dn-hit res-link disabled">Đang cập nhật</span>
       </article>
 
       <article class="res-card">
@@ -146,7 +170,7 @@ html { overscroll-behavior-y: none; }
         <div class="res-top"><span class="res-code">05 / automation</span><span class="badge soon">Sắp ra mắt</span></div>
         <h3>Workflow tự động hóa</h3>
         <p>Các workflow mẫu cho n8n / Make / Power Automate giúp tự động hóa việc lặp đi lặp lại trong xử lý dữ liệu.</p>
-        <span class="res-link disabled">Đang cập nhật</span>
+        <span class="dn-hit res-link disabled">Đang cập nhật</span>
       </article>
 
       <article class="res-card">
@@ -154,7 +178,7 @@ html { overscroll-behavior-y: none; }
         <div class="res-top"><span class="res-code">06 / atlas</span><span class="badge">Có sẵn</span></div>
         <h3>Atlas — bản đồ tri thức</h3>
         <p>Kho kiến thức Data &amp; AI mình hệ thống thành bài viết và sơ đồ tương tác. Đọc miễn phí, không cần tải.</p>
-        <a class="res-link" href="/atlas/">Mở Atlas
+        <a class="dn-hit res-link" href="/atlas/">Mở Atlas
           <svg viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </article>
 
