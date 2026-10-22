@@ -277,33 +277,6 @@
             display: block;
         }
 
-        /* Interactive Link Layer */
-        .interactive-links-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        .interactive-link {
-            position: absolute;
-            pointer-events: auto;
-            border-radius: 3px;
-            cursor: pointer;
-            background: rgba(198, 151, 73, 0.05);
-            border: 1px dashed rgba(198, 151, 73, 0.25);
-            transition: all 0.15s ease;
-        }
-
-        .interactive-link:hover {
-            background: rgba(198, 151, 73, 0.22);
-            border-color: #c69749;
-            box-shadow: 0 0 8px rgba(198, 151, 73, 0.4);
-        }
-
         /* Floating side-nav buttons */
         .nav-side-btn {
             position: absolute;
@@ -510,13 +483,12 @@
 
                 <!-- Viewport -->
                 <div class="resume-viewport" id="resumeViewport">
-                    <!-- Standard Mode: Single page fitted with clickable interactive links -->
+                    <!-- Standard Mode: Clean single page fitted without vertical scroll -->
                     <button type="button" class="nav-side-btn prev" id="sidePrevBtn" title="Trang trước (Phím ←)">
                         <span class="material-symbols-outlined">chevron_left</span>
                     </button>
                     <div class="resume-img-wrapper" id="resumeImgWrapper">
                         <img id="resumeImg" class="resume-page-img" src="./assets/docs/cv_pages_vn/page_1.webp" alt="CV Trang 1" />
-                        <div id="interactiveLinksLayer" class="interactive-links-layer"></div>
                     </div>
                     <button type="button" class="nav-side-btn next" id="sideNextBtn" title="Trang sau (Phím →)">
                         <span class="material-symbols-outlined">chevron_right</span>
@@ -576,19 +548,8 @@
                 en: 6
             };
 
-            // Link annotations extracted directly from PDF
-            let pdfLinksData = null;
-            fetch('./assets/docs/cv_links.json')
-                .then(r => r.json())
-                .then(data => {
-                    pdfLinksData = data;
-                    renderInteractiveLinks();
-                })
-                .catch(() => {});
-
             const resumeStage = document.getElementById("resumeStage");
             const resumeImg = document.getElementById("resumeImg");
-            const interactiveLinksLayer = document.getElementById("interactiveLinksLayer");
             const pageIndicator = document.getElementById("pageIndicator");
             const prevPageBtn = document.getElementById("prevPageBtn");
             const nextPageBtn = document.getElementById("nextPageBtn");
@@ -601,38 +562,6 @@
             const fullscreenBtn = document.getElementById("fullscreenBtn");
             const fullscreenIcon = document.getElementById("fullscreenIcon");
             const pdfFullscreenFrame = document.getElementById("pdfFullscreenFrame");
-
-            function positionLinksLayer() {
-                if (!resumeImg || !interactiveLinksLayer) return;
-                interactiveLinksLayer.style.width = resumeImg.clientWidth + 'px';
-                interactiveLinksLayer.style.height = resumeImg.clientHeight + 'px';
-                interactiveLinksLayer.style.top = resumeImg.offsetTop + 'px';
-                interactiveLinksLayer.style.left = resumeImg.offsetLeft + 'px';
-            }
-
-            function renderInteractiveLinks() {
-                if (!interactiveLinksLayer) return;
-                interactiveLinksLayer.innerHTML = '';
-                if (!pdfLinksData || !pdfLinksData[currentLang]) return;
-
-                const pageLinks = pdfLinksData[currentLang][String(currentPage)] || [];
-                pageLinks.forEach(link => {
-                    const a = document.createElement('a');
-                    a.href = link.uri;
-                    a.target = '_blank';
-                    a.rel = 'noopener noreferrer';
-                    a.className = 'interactive-link';
-                    a.title = link.uri;
-                    a.style.left = link.x + '%';
-                    a.style.top = link.y + '%';
-                    a.style.width = link.w + '%';
-                    a.style.height = link.h + '%';
-                    interactiveLinksLayer.appendChild(a);
-                });
-                positionLinksLayer();
-            }
-
-            window.addEventListener('resize', positionLinksLayer);
 
             function updateView() {
                 const max = totalPages[currentLang];
@@ -649,7 +578,6 @@
                     resumeImg.src = targetSrc;
                     resumeImg.alt = `CV Page ${currentPage}`;
                     resumeImg.style.opacity = "1";
-                    renderInteractiveLinks();
                 };
                 img.src = targetSrc;
 
@@ -761,7 +689,6 @@
                     // Clear frame to save memory
                     pdfFullscreenFrame.src = "about:blank";
                     pdfFullscreenFrame.removeAttribute('data-loaded-src');
-                    setTimeout(positionLinksLayer, 100);
                 }
             }
 
@@ -784,7 +711,6 @@
                     resumeStage.classList.remove("is-fullscreen");
                     pdfFullscreenFrame.src = "about:blank";
                     pdfFullscreenFrame.removeAttribute('data-loaded-src');
-                    setTimeout(positionLinksLayer, 100);
                 }
                 updateFullscreenBtn(active);
             });
@@ -794,7 +720,6 @@
                     resumeStage.classList.remove("is-fullscreen");
                     pdfFullscreenFrame.src = "about:blank";
                     pdfFullscreenFrame.removeAttribute('data-loaded-src');
-                    setTimeout(positionLinksLayer, 100);
                 }
                 updateFullscreenBtn(active);
             });
@@ -815,7 +740,6 @@
                     updateFullscreenBtn(false);
                     pdfFullscreenFrame.src = "about:blank";
                     pdfFullscreenFrame.removeAttribute('data-loaded-src');
-                    setTimeout(positionLinksLayer, 100);
                 }
             });
 
