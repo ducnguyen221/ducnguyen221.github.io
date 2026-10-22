@@ -13,7 +13,7 @@
     }
   }
   /* mặc định TỐI (giao diện gốc của site); trang đặt data-dn-default="system" trên <html> thì theo máy */
-  var t = stored(); if (t !== 'light' && t !== 'dark') t = d.getAttribute('data-dn-default') === 'system' ? system() : 'dark';
+  var t = stored(); if (t !== 'light' && t !== 'dark') t = d.getAttribute('data-dn-default') === 'system' ? system() : (d.getAttribute('data-dn-default') === 'light' ? 'light' : 'dark');
   apply(t);
   document.addEventListener('click', function (e) {
     var b = e.target && e.target.closest ? e.target.closest('[data-dn-theme-toggle]') : null;

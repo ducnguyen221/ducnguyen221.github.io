@@ -33,6 +33,7 @@
 
     function setTheme(theme) {
         root.classList.toggle("dark", theme === "dark");
+        root.setAttribute("data-theme", theme);
         localStorage.setItem("profile-theme", theme);
         const toggle = document.getElementById("theme-toggle-btn");
         if (toggle) {

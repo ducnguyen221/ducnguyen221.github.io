@@ -342,6 +342,8 @@ body::before {
   padding: 24px 32px;
   margin-bottom: 8px;
 }
+/* dn: giữ chỗ chiều cao thanh số liệu bằng chiều cao thật để font tải xong không làm trang dịch (CLS) */
+.stats-strip { min-height: 122px; }
 .stat-item {
   text-align: center;
 }
@@ -693,7 +695,7 @@ body::before {
   }
   .hero h2 { font-size: 2rem; }
   .bio-text { font-size: .95rem; }
-  .stats-strip { gap: 24px; padding: 20px 16px; }
+  .stats-strip { gap: 24px; padding: 20px 16px; min-height: 104px; }
   .stat-item .num { font-size: 1.6rem; }
   .controls { padding: 0 16px 20px; }
   .grid-section { padding: 0 16px 60px 16px; }
@@ -746,3 +748,10 @@ body::before {
 @media (max-width: 720px) {
   .latest-card { flex-basis: 80%; }
 }
+
+/* dn: giữ chỗ chiều cao khối hero (nhỏ hơn hoặc bằng chiều cao thật ở mỗi dải rộng) để font tải xong không đẩy các khối bên dưới (CLS) */
+@media (max-width: 768px) { .hero { min-height: 577px; } }
+@media (max-width: 599px) { .hero { min-height: 603px; } }
+@media (max-width: 499px) { .hero { min-height: 667px; } }
+@media (max-width: 430px) { .hero { min-height: 742px; } }
+@media (max-width: 359px) { .hero { min-height: 800px; } }

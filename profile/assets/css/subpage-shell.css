@@ -1110,6 +1110,27 @@ html:not(.dark) .project-role-chart::after {
     font-size: 1rem;
 }
 
+/* Màn rất hẹp (<360px): thẻ di động không để nội dung kéo rộng hơn khung. Giới hạn ở đây để các khung >=360px giữ nguyên như cũ. */
+@media (max-width: 359px) {
+    .mobile-card-list {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .mobile-card .table-client-cell,
+    .mobile-card .table-client-text {
+        min-width: 0;
+    }
+
+    .mobile-card .project-code-badge {
+        flex: 0 0 auto;
+    }
+
+    .mobile-card .table-client-text strong,
+    .mobile-card .table-client-text span {
+        overflow-wrap: anywhere;
+    }
+}
+
 .mobile-card .mobile-meta {
     display: grid;
     gap: 0.5rem;

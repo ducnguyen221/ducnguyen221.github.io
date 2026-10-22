@@ -5,6 +5,22 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>E-Portfolio | Professional Identity</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="E-Portfolio | Professional Identity">
+    <meta property="og:description" content="Hồ sơ điện tử của Nguyễn Quang Đức — chuyên gia AI &amp; Data Analytics.">
+    <meta property="og:url" content="https://ducnguyen.vn/profile/">
+    <meta property="og:image" content="https://ducnguyen.vn/assets/dn/v1/og-default.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ducnguyen.vn/assets/dn/v1/og-default.png">
+    <script>/* dn: đọc lựa chọn giao diện đã lưu TRƯỚC khi vẽ để không chớp nền; mặc định giữ tối như cũ */
+    (function(){try{var t=localStorage.getItem("profile-theme");var d=document.documentElement;if(t==="light"||t==="dark"){d.classList.toggle("dark",t==="dark");d.setAttribute("data-theme",t);}else{d.setAttribute("data-theme","dark");}}catch(e){}})();</script>
+    <style>/* dn: vùng bấm vô hình ≥44px cho nút nhỏ, không đổi kích thước nhìn thấy */
+    #lang-toggle-btn,#spotlight-dots button{position:relative}
+    #lang-toggle-btn::after{content:"";position:absolute;left:50%;top:50%;width:max(100%,44px);height:max(100%,44px);transform:translate(-50%,-50%)}
+    @media (max-width:340px){.dashboard-column .justify-between{gap:6px}}
+    #spotlight-dots button::after{content:"";position:absolute;left:50%;top:50%;width:24px;height:24px;transform:translate(-50%,-50%)}</style>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -335,7 +351,7 @@ html { overscroll-behavior-y: none; }
     <header
         class="h-[72px] flex-shrink-0 w-full border-b border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl sticky top-0 z-50 flex justify-between items-center pl-5 pr-4 md:px-[25px] whitespace-nowrap flex-nowrap">
         <div class="flex items-center gap-3 shrink-0 min-w-0">
-            <img class="w-10 h-10 rounded-full object-cover border border-[var(--primary-color)] p-0.5 bg-[var(--bg-start)] shrink-0"
+            <img alt="Ảnh chân dung Nguyễn Quang Đức" class="w-10 h-10 rounded-full object-cover border border-[var(--primary-color)] p-0.5 bg-[var(--bg-start)] shrink-0"
                 src="./assets/images/KPIM-Duc-Nguyen.png" />
             <span
                 class="inline-flex items-center gap-2 text-[0.95rem] sm:text-base xl:text-xl font-bold tracking-tight text-[var(--text-color)] whitespace-nowrap font-['Inter'] t-lang truncate"
@@ -445,7 +461,7 @@ html { overscroll-behavior-y: none; }
                     <div class="relative w-full flex justify-center mt-2 mb-1">
                         <div
                             class="w-24 h-24 rounded-full border-2 border-[var(--primary-color)] p-1 relative z-10 bg-[var(--bg-start)]">
-                            <img class="w-full h-full rounded-full object-cover"
+                            <img alt="Ảnh chân dung Nguyễn Quang Đức" class="w-full h-full rounded-full object-cover"
                                 src="./assets/images/KPIM-Duc-Nguyen.png" />
                         </div>
                         <div
@@ -693,7 +709,7 @@ html { overscroll-behavior-y: none; }
                 <!-- Experience & Achievements -->
                 <section class="glass-panel p-5 rounded-[1.25rem] relative flex-shrink-0">
                     <div class="flex items-center justify-between gap-3 mb-4">
-                    <h3 class="text-[15px] font-semibold text-[var(--accent-color)] flex items-center gap-2 mb-0 t-lang"
+                    <h3 aria-level="2" class="text-[15px] font-semibold text-[var(--accent-color)] flex items-center gap-2 mb-0 t-lang"
                         data-en="Experience &amp; Achievements" data-vi="Kinh nghiệm &amp; Thành tích">
                         <span class="material-symbols-outlined text-[var(--accent-color)]"
                             style="font-variation-settings: 'FILL' 1;">emoji_events</span>
@@ -895,7 +911,7 @@ html { overscroll-behavior-y: none; }
                     class="glass-panel p-5 rounded-[1.25rem] relative overflow-hidden group flex flex-col flex-shrink-0 md:flex-1 md:min-h-[22rem] lg:min-h-[25rem] md:mb-1">
                     <div class="flex justify-between items-start mb-3 flex-shrink-0">
                         <div>
-                            <h3 class="text-[15px] font-semibold text-[var(--accent-color)] flex items-center gap-2 t-lang"
+                            <h3 aria-level="2" class="text-[15px] font-semibold text-[var(--accent-color)] flex items-center gap-2 t-lang"
                                 data-en="Social Media Highlights" data-vi="Tiêu điểm mạng xã hội">
                                 <span class="material-symbols-outlined text-[var(--accent-color)]" style="font-variation-settings: 'FILL' 1;">smart_display</span>
                                 Social Media Highlights
@@ -939,7 +955,7 @@ html { overscroll-behavior-y: none; }
                 <!-- Career Timeline swapped to right column -->
                 <section class="glass-panel p-5 rounded-[1.25rem] flex flex-col gap-5 relative flex-shrink-0">
                     <div class="flex items-center justify-between gap-3">
-                    <h3 class="text-[15px] font-semibold text-[var(--accent-color)] flex items-center gap-2 mb-0">
+                    <h3 aria-level="2" class="text-[15px] font-semibold text-[var(--accent-color)] flex items-center gap-2 mb-0">
                         <span class="material-symbols-outlined text-[var(--accent-color)]">work_history</span>
                         <span class="t-lang" data-en="Career Timeline" data-vi="Hành trình Sự nghiệp">Career
                             Timeline</span>
@@ -967,7 +983,7 @@ html { overscroll-behavior-y: none; }
                                     <span
                                         class="text-[9px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5 t-lang"
                                         data-en="Present (VN)" data-vi="Hiện Tại (VN)">Present (VN)</span>
-                                    <h4
+                                    <h4 aria-level="3"
                                         class="text-[12px] xl:text-[13px] font-bold text-[var(--text-color)] hover:text-[var(--primary-light)] transition-colors leading-tight truncate w-full">
                                         COMPA, JSC</h4>
                                     <p class="text-[9px] xl:text-[10px] text-[var(--accent-color)] font-medium italic mt-0.5 t-lang truncate w-full"
@@ -986,7 +1002,7 @@ html { overscroll-behavior-y: none; }
                                     <span
                                         class="text-[9px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5 t-lang"
                                         data-en="Present (VN)" data-vi="Hiện Tại (VN)">Present (VN)</span>
-                                    <h4
+                                    <h4 aria-level="3"
                                         class="text-[12px] xl:text-[13px] font-bold text-[var(--text-color)] hover:text-[var(--primary-light)] transition-colors leading-tight truncate w-full">
                                         KPIM, JSC</h4>
                                     <p class="text-[9px] xl:text-[10px] text-[var(--accent-color)] font-medium italic mt-0.5 t-lang truncate w-full"
@@ -1005,7 +1021,7 @@ html { overscroll-behavior-y: none; }
                                     <span
                                         class="text-[9px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5">2016-2020
                                         (USA)</span>
-                                    <h4
+                                    <h4 aria-level="3"
                                         class="text-[12px] xl:text-[13px] font-bold text-[var(--text-color)] hover:text-[var(--primary-light)] transition-colors leading-tight truncate w-full">
                                         YPTC, LLC</h4>
                                     <p class="text-[9px] xl:text-[10px] text-[var(--accent-color)] font-medium italic mt-0.5 t-lang truncate w-full"
@@ -1023,7 +1039,7 @@ html { overscroll-behavior-y: none; }
                                     <span
                                         class="text-[9px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5">2015
                                         (SG, VN)</span>
-                                    <h4
+                                    <h4 aria-level="3"
                                         class="text-[12px] xl:text-[13px] font-bold text-[var(--text-color)] hover:text-[var(--primary-light)] transition-colors leading-tight truncate w-full">
                                         LAZADA</h4>
                                     <p class="text-[9px] xl:text-[10px] text-[var(--accent-color)] font-medium italic mt-0.5 t-lang truncate w-full"
@@ -1044,7 +1060,7 @@ html { overscroll-behavior-y: none; }
                                     <span
                                         class="text-[9px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5">2014
                                         (USA)</span>
-                                    <h4
+                                    <h4 aria-level="3"
                                         class="text-[12px] xl:text-[13px] font-bold text-[var(--text-color)] hover:text-[var(--primary-light)] transition-colors leading-tight truncate w-full">
                                         NRG Energy</h4>
                                     <p class="text-[9px] xl:text-[10px] text-[var(--accent-color)] font-medium italic mt-0.5 t-lang truncate w-full"
@@ -1062,7 +1078,7 @@ html { overscroll-behavior-y: none; }
                                     <span
                                         class="text-[9px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5">2012-2016
                                         (USA)</span>
-                                    <h4
+                                    <h4 aria-level="3"
                                         class="text-[12px] xl:text-[13px] font-bold text-[var(--text-color)] hover:text-[var(--primary-light)] transition-colors leading-tight truncate w-full">
                                         Drexel Univ.</h4>
                                     <p class="text-[9px] xl:text-[10px] text-[var(--accent-color)] font-medium italic mt-0.5 t-lang leading-tight w-full"
@@ -1080,7 +1096,7 @@ html { overscroll-behavior-y: none; }
                                 <div class="flex flex-col items-start text-left mt-[-4px]">
                                     <span
                                         class="text-[9px] font-semibold text-[var(--soft-text-color)] tracking-wide uppercase mb-0.5">2007-2012</span>
-                                    <h4
+                                    <h4 aria-level="3"
                                         class="text-[12px] xl:text-[13px] font-bold text-[var(--text-color)] hover:text-[var(--primary-light)] transition-colors leading-tight truncate w-full">
                                         Hanoi Amsterdam</h4>
                                     <p class="text-[9px] xl:text-[10px] text-[var(--accent-color)] font-medium italic mt-0.5 t-lang leading-tight w-full"
@@ -1094,7 +1110,7 @@ html { overscroll-behavior-y: none; }
                 <!-- LMS & Courses -->
                 <section class="glass-panel p-5 rounded-[1.25rem] flex flex-col gap-3 md:flex-grow">
                     <div class="flex items-center justify-between mb-1">
-                        <h3 class="text-[15px] font-semibold text-[var(--accent-color)] flex items-center gap-2">
+                        <h3 aria-level="2" class="text-[15px] font-semibold text-[var(--accent-color)] flex items-center gap-2">
                             <span class="material-symbols-outlined text-[var(--accent-color)]">model_training</span>
                             <span class="t-lang" data-en="My Training Program" data-vi="Chương trình Đào tạo">My
                                 Training Program</span>
@@ -1110,7 +1126,7 @@ html { overscroll-behavior-y: none; }
                         <a href="https://compaclass.com/course/37c90656-6ef4-45f6-a767-bb00e1ee5342" target="_blank"
                             class="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group cursor-pointer border border-transparent hover:border-[var(--border-color)] flex-shrink-0">
                             <div class="w-14 h-9 overflow-hidden bg-[var(--bg-end)] flex-shrink-0 rounded-sm">
-                                <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                <img alt="" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                                     src="./assets/images/powerbi_coban_compaclass.jpg" />
                             </div>
                             <div class="flex flex-col flex-grow min-w-0">
@@ -1129,7 +1145,7 @@ html { overscroll-behavior-y: none; }
                             target="_blank"
                             class="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group cursor-pointer border border-transparent hover:border-[var(--border-color)] flex-shrink-0">
                             <div class="w-14 h-9 overflow-hidden bg-[var(--bg-end)] flex-shrink-0 rounded-sm">
-                                <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                <img alt="" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                                     src="./assets/images/data-analytics-fundamental.webp" />
                             </div>
                             <div class="flex flex-col flex-grow min-w-0">
@@ -1149,7 +1165,7 @@ html { overscroll-behavior-y: none; }
                             target="_blank"
                             class="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group cursor-pointer border border-transparent hover:border-[var(--border-color)] flex-shrink-0">
                             <div class="w-14 h-9 overflow-hidden bg-[var(--bg-end)] flex-shrink-0 rounded-sm">
-                                <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                <img alt="" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                                     src="./assets/images/ai-data-analytics.webp" />
                             </div>
                             <div class="flex flex-col flex-grow min-w-0">
@@ -1168,7 +1184,7 @@ html { overscroll-behavior-y: none; }
                         <a href="https://compaclass.com/vn/learn/course/hr-analytics-3/overview" target="_blank"
                             class="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group cursor-pointer border border-transparent hover:border-[var(--border-color)] flex-shrink-0">
                             <div class="w-14 h-9 overflow-hidden bg-[var(--bg-end)] flex-shrink-0 rounded-sm">
-                                <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                <img alt="" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                                     src="./assets/images/hr-analytics.webp" />
                             </div>
                             <div class="flex flex-col flex-grow min-w-0">
@@ -1188,7 +1204,7 @@ html { overscroll-behavior-y: none; }
                             target="_blank"
                             class="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group cursor-pointer border border-transparent hover:border-[var(--border-color)] flex-shrink-0">
                             <div class="w-14 h-9 overflow-hidden bg-[var(--bg-end)] flex-shrink-0 rounded-sm">
-                                <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                <img alt="" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                                     src="./assets/images/ai-hr-automation.webp" />
                             </div>
                             <div class="flex flex-col flex-grow min-w-0">
@@ -1208,7 +1224,7 @@ html { overscroll-behavior-y: none; }
                             target="_blank"
                             class="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group cursor-pointer border border-transparent hover:border-[var(--border-color)] flex-shrink-0">
                             <div class="w-14 h-9 overflow-hidden bg-[var(--bg-end)] flex-shrink-0 rounded-sm">
-                                <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                <img alt="" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                                     src="./assets/images/ms-fabric-basic.webp" />
                             </div>
                             <div class="flex flex-col flex-grow min-w-0">
@@ -1228,7 +1244,7 @@ html { overscroll-behavior-y: none; }
                             target="_blank"
                             class="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--card-hover-bg)] transition-colors group cursor-pointer border border-transparent hover:border-[var(--border-color)] flex-shrink-0">
                             <div class="w-14 h-9 overflow-hidden bg-[var(--bg-end)] flex-shrink-0 rounded-sm">
-                                <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                <img alt="" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                                     src="./assets/images/excel-data-analytics.webp" />
                             </div>
                             <div class="flex flex-col flex-grow min-w-0">
@@ -1455,10 +1471,13 @@ html { overscroll-behavior-y: none; }
         // Theme Toggle Logic
         const themeToggleBtn = document.getElementById('theme-toggle-btn');
         const htmlEl = document.documentElement;
+        themeToggleBtn.innerText = htmlEl.classList.contains('dark') ? 'dark_mode' : 'light_mode';
 
         themeToggleBtn.addEventListener('click', () => {
             htmlEl.classList.toggle('dark');
             const isDark = htmlEl.classList.contains('dark');
+            htmlEl.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            try { localStorage.setItem('profile-theme', isDark ? 'dark' : 'light'); } catch (e) {}
             themeToggleBtn.innerText = isDark ? 'dark_mode' : 'light_mode';
             scheduleDashboardFit();
         });
