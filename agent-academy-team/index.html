@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="vi" data-dn-default="system">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>agent-academy-team · Đội đào tạo cho AI agent</title>
+<meta name="description" content="agent-academy-team giúp AI agent hỗ trợ giảng viên: thiết kế khoá học, ra đề, chấm bài và viết nhận xét, review CV học viên, dựng tài liệu tra cứu nhanh. Giảng viên luôn duyệt cuối, dữ liệu học viên không rời tay giảng viên.">
+<meta name="theme-color" content="#2f6df6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e0f13" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="agent-academy-team · Đội đào tạo cho AI agent">
+<meta property="og:description" content="AI agent hỗ trợ giảng viên thiết kế khoá học, ra đề, chấm bài, viết nhận xét và review CV học viên — giảng viên luôn duyệt cuối.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:url" content="https://ducnguyen.vn/agent-academy-team/">
+<link rel="canonical" href="https://ducnguyen.vn/agent-academy-team/">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/dn/v1/theme.js"></script>
+<link rel="stylesheet" href="/assets/dn/v1/buttons.css">
+<link rel="stylesheet" href="assets/site.css">
+<style>/* dn-scroll-fix: chặn kéo tuột quá cuối trang (overscroll/rubber-band) trên mobile */
+html { overscroll-behavior-y: none; }
+</style>
+<!-- Meta Pixel (ID 1717041732866196) - do tuong tac tu Facebook. Cong bo tai /privacy/.
+     Chi chay tren ducnguyen.vn; ban doc offline (file://) va ban xem thu cuc bo khong gui gi. -->
+<script>if(location.hostname==='ducnguyen.vn'){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1717041732866196');fbq('track','PageView');}</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=1717041732866196&amp;ev=PageView&amp;noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+</head>
+<body>
+<canvas id="netbg" aria-hidden="true"></canvas>
+
+<header class="site" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="agent-academy-team — trang chủ">
+      <img src="assets/logo.svg" width="30" height="30" alt="">
+      agent-academy-team
+    </a>
+    <nav class="nav-links" id="siteNav" aria-label="Các mục">
+      <a class="dn-m" href="https://ducnguyen.vn/">← ducnguyen.vn (trang chủ)</a>
+      <a href="#nang-luc">Năng lực</a>
+      <a href="#nguyen-tac">Nguyên tắc</a>
+      <a href="#truy-cap">Truy cập</a>
+          <button class="dn-m dn-theme-btn" type="button" data-dn-theme-toggle style="visibility:hidden" aria-label="Chuyển sang giao diện sáng"><span>Đổi giao diện sáng / tối</span></button>
+    </nav>
+    <a class="btn btn-ghost btn-sm dn-home" href="https://ducnguyen.vn/" aria-label="ducnguyen.vn — về trang chủ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span class="dn-home-t">ducnguyen.vn</span></a>
+    <button class="btn btn-ghost btn-sm dn-theme-btn" type="button" data-dn-theme-toggle style="visibility:hidden" aria-label="Chuyển sang giao diện sáng"></button>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Mở menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ======= HERO ======= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="hero-badge">
+          <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></span>
+          <span>Đội đào tạo cho AI agent</span>
+        </span>
+        <h1>Bớt việc lặp lại.<br><span class="hl">Dành thời gian để dạy và kèm học viên.</span></h1>
+        <p class="lead">AI agent lo phần soạn đề cương, ra đề, chấm bài và viết nhận xét theo tiêu chí rõ ràng. Giảng viên giữ quyền quyết định cuối cùng.</p>
+        <p class="sub">Dự án đang <b>private</b> — liên hệ tác giả nếu bạn muốn dùng thử hoặc hợp tác.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#nang-luc">Xem agent làm được gì</a>
+          <a class="btn btn-ghost" href="https://ducnguyen.vn/">Về ducnguyen.vn</a>
+        </div>
+        <div class="tech-badges">
+          <span class="tb"><span class="g"></span>Claude Code · Codex · Antigravity</span>
+        </div>
+      </div>
+      <ul class="benefits reveal" aria-label="Lợi ích">
+        <li><span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span><span><b>Thiết kế khoá học</b> từ mục tiêu đến bài tập.</span></li>
+        <li><span class="bi gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></span><span><b>Chấm bài nhất quán,</b> nhận xét cụ thể, dễ hành động.</span></li>
+        <li><span class="bi ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/></svg></span><span><b>Dữ liệu học viên</b> luôn ở trong tay giảng viên.</span></li>
+        <li><span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span><b>Giảng viên duyệt cuối</b> trước khi gửi học viên.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ======= NĂNG LỰC ======= -->
+<section id="nang-luc" style="padding-top:24px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Năng lực</span>
+      <h2>Agent đỡ những phần việc nào</h2>
+      <p>Từ lúc lên ý tưởng khoá học đến khi trả nhận xét cho từng học viên.</p>
+    </div>
+    <div class="links reveal">
+      <div class="lcard"><h3>Thiết kế khoá học</h3><p>Từ mục tiêu học tập đến đề cương, bài giảng, bài tập và case study, theo các khung thiết kế giảng dạy quen thuộc.</p></div>
+      <div class="lcard"><h3>Ra đề và đánh giá</h3><p>Soạn đề thi, câu hỏi trắc nghiệm và tiêu chí chấm bám sát mục tiêu khoá học.</p></div>
+      <div class="lcard"><h3>Chấm bài và viết nhận xét</h3><p>Chấm dự án học viên theo thang tiêu chí rõ ràng, viết nhận xét cụ thể kèm hướng cải thiện.</p></div>
+      <div class="lcard"><h3>Chấm bài Power BI</h3><p>Hỗ trợ giảng viên chấm bài báo cáo Power BI của cả lớp một cách nhất quán.</p></div>
+      <div class="lcard"><h3>Review CV học viên</h3><p>Nhận xét CV theo góc nhìn nhà tuyển dụng ngành dữ liệu và gợi ý cách sửa.</p></div>
+      <div class="lcard"><h3>Tài liệu tra cứu nhanh</h3><p>Dựng trang cheatsheet gọn gàng để học viên ôn lại kiến thức.</p></div>
+      <div class="lcard"><h3>Tổng quan tài liệu</h3><p>Tìm, đọc và đánh giá tài liệu học thuật làm nền cho bài giảng hay nghiên cứu.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= NGUYÊN TẮC ======= -->
+<section id="nguyen-tac" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Nguyên tắc</span>
+      <h2>Agent hỗ trợ, con người quyết định</h2>
+    </div>
+    <div class="blocks reveal">
+      <div class="block">
+        <h3>Dữ liệu học viên ở ngoài</h3>
+        <p>Bài làm, điểm số và thông tin cá nhân không bao giờ nằm trong bộ công cụ — giảng viên giữ.</p>
+      </div>
+      <div class="block gold">
+        <h3>Giảng viên duyệt cuối</h3>
+        <p>Agent đề xuất điểm và nhận xét; con người xem lại và xác nhận trước khi gửi đi.</p>
+      </div>
+      <div class="block ok">
+        <h3>Chạy trên nhiều AI agent</h3>
+        <p>Cùng một bộ năng lực dùng được với các trợ lý AI phổ biến như Claude Code, Codex và Antigravity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= TRUY CẬP ======= -->
+<section class="final" id="truy-cap">
+  <div class="wrap reveal">
+    <h2>Quan tâm tới agent-academy-team?</h2>
+    <p>Dự án riêng, mã nguồn không công khai. Liên hệ tác giả nếu bạn muốn dùng thử cho lớp học hoặc hợp tác.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://ducnguyen.vn/profile/">Liên hệ tác giả</a>
+      <a class="btn btn-ghost" href="https://ducnguyen.vn/">Về ducnguyen.vn</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="index.html" aria-label="agent-academy-team — trang chủ">
+          <img src="assets/logo.svg" width="30" height="30" alt="">
+          agent-academy-team
+        </a>
+        <p class="foot-tag">Đội đào tạo cho AI agent: thiết kế khoá học, ra đề, chấm bài và nhận xét — giảng viên duyệt cuối.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <b>Trang này</b>
+          <a href="#nang-luc">Năng lực</a>
+          <a href="#nguyen-tac">Nguyên tắc</a>
+          <a href="#truy-cap">Truy cập</a>
+        </div>
+        <div class="foot-col">
+          <b>ducnguyen.vn</b>
+          <a href="https://ducnguyen.vn/">Trang chủ</a>
+          <a href="https://ducnguyen.vn/agent-agile-team/">agent-agile-team</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Nguyễn Quang Đức (Tobi)</span>
+      <span class="lic">Dự án private · bảo lưu mọi quyền</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

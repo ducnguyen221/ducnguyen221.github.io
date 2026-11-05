@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">agent-academy-team</title>
+  <path d="M32 12 4 25l28 13 28-13Z" fill="#2563EB"/>
+  <path d="M16 31v12c0 5 7.2 9 16 9s16-4 16-9V31l-16 7.5Z" fill="none" stroke="#2563EB" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M54 28v14" stroke="#F97316" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="54" cy="45" r="4" fill="#F97316"/>
+</svg>
