@@ -10,7 +10,7 @@
     "thumbnail": "content/ai/vali-qua-can-nhoi-het-tai-lieu-vao-khong-phai-la-tot-context-stuffing.jpg",
     "published": "2026-12-03",
     "lastModified": "2026-10-07",
-    "fileSize": 19328
+    "fileSize": 19538
   },
   {
     "slug": "nguoi-truc-dien-thoai-ca-dem-vi-sao-ai-quen-token-va-gioi-han-cua-so",
@@ -23,7 +23,7 @@
     "thumbnail": "content/ai/nguoi-truc-dien-thoai-ca-dem-vi-sao-ai-quen-token-va-gioi-han-cua-so.jpg",
     "published": "2026-12-01",
     "lastModified": "2026-10-07",
-    "fileSize": 19499
+    "fileSize": 19716
   },
   {
     "slug": "cai-ban-lam-viec-va-cai-kho-cua-so-ngu-canh-context-window-rong-bao-nhieu",
@@ -36,7 +36,7 @@
     "thumbnail": "content/ai/cai-ban-lam-viec-va-cai-kho-cua-so-ngu-canh-context-window-rong-bao-nhieu.jpg",
     "published": "2026-11-29",
     "lastModified": "2026-10-07",
-    "fileSize": 18340
+    "fileSize": 18549
   },
   {
     "slug": "bac-si-khong-co-benh-an-context-engineering-la-gi-khac-prompt-cho-nao",
@@ -49,7 +49,7 @@
     "thumbnail": "content/ai/bac-si-khong-co-benh-an-context-engineering-la-gi-khac-prompt-cho-nao.jpg",
     "published": "2026-11-27",
     "lastModified": "2026-10-07",
-    "fileSize": 18996
+    "fileSize": 19207
   },
   {
     "slug": "chot-chang-1-prompt-gioi-khong-cuu-noi-agent-toi-gioi-han-cua-prompt-engineering",
@@ -62,7 +62,7 @@
     "thumbnail": "content/ai/chot-chang-1-prompt-gioi-khong-cuu-noi-agent-toi-gioi-han-cua-prompt-engineering.jpg",
     "published": "2026-11-25",
     "lastModified": "2026-10-07",
-    "fileSize": 19859
+    "fileSize": 20070
   },
   {
     "slug": "quan-pho-doi-cong-thuc-ma-khong-ai-nem-lai-do-prompt-bang-bo-thu-prompt-testing",
@@ -75,7 +75,7 @@
     "thumbnail": "content/ai/quan-pho-doi-cong-thuc-ma-khong-ai-nem-lai-do-prompt-bang-bo-thu-prompt-testing.jpg",
     "published": "2026-11-23",
     "lastModified": "2026-10-07",
-    "fileSize": 18959
+    "fileSize": 19169
   },
   {
     "slug": "nguoi-phien-dich-gioi-tach-chi-dan-khoi-du-lieu-instruction-vs-data-trong-prompt",
@@ -88,7 +88,7 @@
     "thumbnail": "content/ai/nguoi-phien-dich-gioi-tach-chi-dan-khoi-du-lieu-instruction-vs-data-trong-prompt.jpg",
     "published": "2026-11-21",
     "lastModified": "2026-10-07",
-    "fileSize": 18973
+    "fileSize": 19186
   },
   {
     "slug": "bieu-mau-o-phuong-khi-nao-nen-bien-cau-hoi-thanh-prompt-template",
@@ -101,7 +101,7 @@
     "thumbnail": "content/ai/bieu-mau-o-phuong-khi-nao-nen-bien-cau-hoi-thanh-prompt-template.jpg",
     "published": "2026-11-19",
     "lastModified": "2026-10-07",
-    "fileSize": 19009
+    "fileSize": 19219
   },
   {
     "slug": "cai-can-lech-prompt-dung-ma-ket-qua-van-khac-nhau-temperature-va-tinh-ngau-nhien",
@@ -114,7 +114,7 @@
     "thumbnail": "content/ai/cai-can-lech-prompt-dung-ma-ket-qua-van-khac-nhau-temperature-va-tinh-ngau-nhien.jpg",
     "published": "2026-11-17",
     "lastModified": "2026-10-07",
-    "fileSize": 18654
+    "fileSize": 18865
   },
   {
     "slug": "cai-nhau-voi-ai-noi-to-hon-vo-ich-bay-nhan-hoa-anthropomorphism",
@@ -127,7 +127,7 @@
     "thumbnail": "content/ai/cai-nhau-voi-ai-noi-to-hon-vo-ich-bay-nhan-hoa-anthropomorphism.jpg",
     "published": "2026-11-15",
     "lastModified": "2026-10-07",
-    "fileSize": 19373
+    "fileSize": 19581
   },
   {
     "slug": "hoi-duong-o-nga-tu-hoi-mot-luot-hay-nhieu-luot-single-turn-va-multi-turn",
@@ -140,7 +140,7 @@
     "thumbnail": "content/ai/hoi-duong-o-nga-tu-hoi-mot-luot-hay-nhieu-luot-single-turn-va-multi-turn.jpg",
     "published": "2026-11-13",
     "lastModified": "2026-10-07",
-    "fileSize": 21557
+    "fileSize": 21772
   },
   {
     "slug": "nhan-vien-khong-dam-noi-em-khong-biet-ao-giac-hallucination-den-tu-dau",
@@ -153,7 +153,7 @@
     "thumbnail": "content/ai/nhan-vien-khong-dam-noi-em-khong-biet-ao-giac-hallucination-den-tu-dau.jpg",
     "published": "2026-11-11",
     "lastModified": "2026-10-07",
-    "fileSize": 21110
+    "fileSize": 21329
   },
   {
     "slug": "tam-ban-do-thieu-ti-le-vi-sao-rang-buoc-phu-dinh-negative-constraint-hay-truot",
@@ -166,7 +166,7 @@
     "thumbnail": "content/ai/tam-ban-do-thieu-ti-le-vi-sao-rang-buoc-phu-dinh-negative-constraint-hay-truot.jpg",
     "published": "2026-11-09",
     "lastModified": "2026-10-07",
-    "fileSize": 20685
+    "fileSize": 20902
   },
   {
     "slug": "nguoi-ke-chuyen-bi-ngat-loi-khai-output-format-va-do-dai-ngay-trong-prompt",
@@ -179,7 +179,33 @@
     "thumbnail": "content/ai/nguoi-ke-chuyen-bi-ngat-loi-khai-output-format-va-do-dai-ngay-trong-prompt.jpg",
     "published": "2026-11-07",
     "lastModified": "2026-10-07",
-    "fileSize": 20435
+    "fileSize": 20657
+  },
+  {
+    "slug": "huong-dan-codex",
+    "title": "Codex cho người mới: tổ chức tài liệu, giao việc bằng prompt và xây Brain cá nhân · Atlas",
+    "description": "Hướng dẫn Codex cho người mới: mở folder, phân loại tài liệu, tạo AGENTS.md, làm tác vụ đầu tiên, đóng gói skill và tạo Brain. Có prompt, sơ đồ và workspace mẫu.",
+    "categories": [
+      "instruction"
+    ],
+    "path": "content/instruction/huong-dan-codex.html",
+    "thumbnail": "content/instruction/huong-dan-codex.webp",
+    "published": "2026-11-06",
+    "lastModified": "2026-11-06",
+    "fileSize": 121558
+  },
+  {
+    "slug": "huong-dan-antigravity",
+    "title": "Google Antigravity cho người mới: từ folder đầu tiên đến trợ lý công việc có quy tắc · Atlas",
+    "description": "Hướng dẫn Antigravity từng bước: cài ứng dụng, mở folder, tổ chức tài liệu, tạo AGENTS.md, thử skill và xây Brain. Có prompt sao chép, sơ đồ và bộ mẫu tải về.",
+    "categories": [
+      "instruction"
+    ],
+    "path": "content/instruction/huong-dan-antigravity.html",
+    "thumbnail": "content/instruction/huong-dan-antigravity.webp",
+    "published": "2026-11-06",
+    "lastModified": "2026-11-06",
+    "fileSize": 123447
   },
   {
     "slug": "day-nguoi-nuoc-ngoai-phan-biet-co-va-vang-suc-manh-cua-few-shot-cho-vi-du-mau",
@@ -192,7 +218,7 @@
     "thumbnail": "content/ai/day-nguoi-nuoc-ngoai-phan-biet-co-va-vang-suc-manh-cua-few-shot-cho-vi-du-mau.jpg",
     "published": "2026-11-05",
     "lastModified": "2026-10-07",
-    "fileSize": 22742
+    "fileSize": 22965
   },
   {
     "slug": "bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt",
@@ -205,7 +231,7 @@
     "thumbnail": "content/ai/bai-kiem-tra-khong-co-ba-rem-tieu-chi-chap-nhan-acceptance-criteria-trong-prompt.jpg",
     "published": "2026-11-03",
     "lastModified": "2026-10-07",
-    "fileSize": 36576
+    "fileSize": 36819
   },
   {
     "slug": "ong-tho-may-do-ao-gan-vai-role-prompting-that-ra-la-dat-rang-buoc",
@@ -218,7 +244,7 @@
     "thumbnail": "content/ai/ong-tho-may-do-ao-gan-vai-role-prompting-that-ra-la-dat-rang-buoc.jpg",
     "published": "2026-11-01",
     "lastModified": "2026-10-07",
-    "fileSize": 38554
+    "fileSize": 38814
   },
   {
     "slug": "ngay-dau-di-lam-system-prompt-chinh-la-ban-mo-ta-cong-viec-cua-ai",
@@ -231,7 +257,7 @@
     "thumbnail": "content/ai/ngay-dau-di-lam-system-prompt-chinh-la-ban-mo-ta-cong-viec-cua-ai.jpg",
     "published": "2026-10-30",
     "lastModified": "2026-10-07",
-    "fileSize": 35102
+    "fileSize": 35341
   },
   {
     "slug": "goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc",
@@ -244,7 +270,7 @@
     "thumbnail": "content/ai/goi-mon-o-quan-la-viet-prompt-ta-ket-qua-dung-ta-tung-buoc.jpg",
     "published": "2026-10-28",
     "lastModified": "2026-10-07",
-    "fileSize": 34419
+    "fileSize": 34662
   },
   {
     "slug": "nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve",
@@ -257,7 +283,7 @@
     "thumbnail": "content/ai/nguoi-tho-khoa-va-ban-ve-sai-prompt-khong-phai-cau-than-chu-no-la-ban-ve.jpg",
     "published": "2026-10-26",
     "lastModified": "2026-10-07",
-    "fileSize": 36754
+    "fileSize": 37003
   },
   {
     "slug": "tesla-roadster-spacex-demo",
@@ -269,8 +295,8 @@
     "path": "content/ai/tesla-roadster-spacex-demo.html",
     "thumbnail": "content/ai/tesla-roadster-spacex-demo.jpg",
     "published": "2026-10-16",
-    "lastModified": "2026-10-16",
-    "fileSize": 23196
+    "lastModified": "2026-10-17",
+    "fileSize": 23533
   },
   {
     "slug": "claude-code-cho-nguoi-moi",
@@ -282,8 +308,8 @@
     "path": "content/ai/claude-code-cho-nguoi-moi.html",
     "thumbnail": "content/ai/claude-code-cho-nguoi-moi.jpg",
     "published": "2026-09-28",
-    "lastModified": "2026-09-30",
-    "fileSize": 270292
+    "lastModified": "2026-09-28",
+    "fileSize": 270656
   },
   {
     "slug": "codex-cho-nguoi-moi",
@@ -295,8 +321,8 @@
     "path": "content/ai/codex-cho-nguoi-moi.html",
     "thumbnail": "content/ai/codex-cho-nguoi-moi.jpg",
     "published": "2026-09-28",
-    "lastModified": "2026-09-30",
-    "fileSize": 261049
+    "lastModified": "2026-09-28",
+    "fileSize": 261410
   },
   {
     "slug": "google-antigravity-cho-nguoi-moi",
@@ -308,8 +334,8 @@
     "path": "content/ai/google-antigravity-cho-nguoi-moi.html",
     "thumbnail": "content/ai/google-antigravity-cho-nguoi-moi.jpg",
     "published": "2026-09-28",
-    "lastModified": "2026-09-30",
-    "fileSize": 324390
+    "lastModified": "2026-09-28",
+    "fileSize": 324754
   },
   {
     "slug": "skill-va-prompt",
@@ -321,8 +347,8 @@
     "path": "content/ai/skill-va-prompt.html",
     "thumbnail": "content/ai/skill-va-prompt.jpg",
     "published": "2026-09-28",
-    "lastModified": "2026-09-30",
-    "fileSize": 202321
+    "lastModified": "2026-09-28",
+    "fileSize": 202650
   },
   {
     "slug": "ai-agent-folder-may-tinh",
@@ -334,8 +360,8 @@
     "path": "content/ai/ai-agent-folder-may-tinh.html",
     "thumbnail": "content/ai/ai-agent-folder-may-tinh.jpg",
     "published": "2026-09-28",
-    "lastModified": "2026-09-30",
-    "fileSize": 222619
+    "lastModified": "2026-09-28",
+    "fileSize": 222977
   },
   {
     "slug": "gpt6-astra-dieu-dang-chu-y",
@@ -347,8 +373,8 @@
     "path": "content/ai/gpt6-astra-dieu-dang-chu-y.html",
     "thumbnail": "content/ai/gpt6-astra-dieu-dang-chu-y.jpg",
     "published": "2026-09-04",
-    "lastModified": "2026-09-30",
-    "fileSize": 32734
+    "lastModified": "2026-09-04",
+    "fileSize": 32978
   },
   {
     "slug": "mka-101-digital-marketing",
@@ -360,7 +386,7 @@
     "path": "content/elearning/mka-101-digital-marketing.html",
     "thumbnail": "",
     "published": "2026-08-08",
-    "lastModified": "2026-09-30",
+    "lastModified": "2026-09-17",
     "fileSize": 1603210
   },
   {
@@ -373,8 +399,8 @@
     "path": "content/elearning/hr-analytics.html",
     "thumbnail": "",
     "published": "2026-07-16",
-    "lastModified": "2026-09-30",
-    "fileSize": 176587
+    "lastModified": "2026-08-09",
+    "fileSize": 179828
   },
   {
     "slug": "n8n-vs-knime",
@@ -386,8 +412,8 @@
     "path": "content/automation/n8n-vs-knime.html",
     "thumbnail": "",
     "published": "2026-06-27",
-    "lastModified": "2026-09-30",
-    "fileSize": 80507
+    "lastModified": "2026-08-09",
+    "fileSize": 82712
   },
   {
     "slug": "databricks-genai",
@@ -399,8 +425,8 @@
     "path": "content/ai/databricks-genai.html",
     "thumbnail": "",
     "published": "2026-06-27",
-    "lastModified": "2026-09-30",
-    "fileSize": 93315
+    "lastModified": "2026-08-09",
+    "fileSize": 94456
   },
   {
     "slug": "cai-dat-n8n-desktop-1",
@@ -412,8 +438,8 @@
     "path": "content/instruction/cai-dat-n8n-desktop-1.html",
     "thumbnail": "",
     "published": "2026-06-27",
-    "lastModified": "2026-09-30",
-    "fileSize": 59995
+    "lastModified": "2026-08-09",
+    "fileSize": 61324
   },
   {
     "slug": "cai-dat-n8n-desktop",
@@ -425,8 +451,8 @@
     "path": "content/instruction/cai-dat-n8n-desktop.html",
     "thumbnail": "",
     "published": "2026-06-27",
-    "lastModified": "2026-09-30",
-    "fileSize": 55952
+    "lastModified": "2026-08-09",
+    "fileSize": 57242
   },
   {
     "slug": "lasoong-loyalty-os",
@@ -438,8 +464,8 @@
     "path": "content/strategy/LaSoong_Loyalty_OS.html",
     "thumbnail": "",
     "published": "2026-06-27",
-    "lastModified": "2026-09-30",
-    "fileSize": 31971
+    "lastModified": "2026-08-09",
+    "fileSize": 32323
   },
   {
     "slug": "powerbi-glossary-domain-knowledge",
@@ -451,8 +477,8 @@
     "path": "content/bi/powerbi-glossary-domain-knowledge.html",
     "thumbnail": "",
     "published": "2026-06-27",
-    "lastModified": "2026-09-30",
-    "fileSize": 140739
+    "lastModified": "2026-08-09",
+    "fileSize": 141572
   },
   {
     "slug": "prompt-nhu-mot-ban-yeu-cau",
@@ -464,8 +490,8 @@
     "path": "content/ai/prompt-nhu-mot-ban-yeu-cau.html",
     "thumbnail": "content/ai/prompt-nhu-mot-ban-yeu-cau.jpg",
     "published": "2026-06-27",
-    "lastModified": "2026-09-30",
-    "fileSize": 37075
+    "lastModified": "2026-08-09",
+    "fileSize": 37310
   },
   {
     "slug": "tu-duy-nguoi-ra-de",
@@ -477,8 +503,8 @@
     "path": "content/ai/tu-duy-nguoi-ra-de.html",
     "thumbnail": "content/ai/tu-duy-nguoi-ra-de.jpg",
     "published": "2026-06-27",
-    "lastModified": "2026-09-30",
-    "fileSize": 37814
+    "lastModified": "2026-08-09",
+    "fileSize": 38054
   },
   {
     "slug": "vibe-coding-thuc-ra-la-gi",
@@ -490,7 +516,7 @@
     "path": "content/ai/vibe-coding-thuc-ra-la-gi.html",
     "thumbnail": "content/ai/vibe-coding-thuc-ra-la-gi.jpg",
     "published": "2026-06-27",
-    "lastModified": "2026-09-30",
-    "fileSize": 26459
+    "lastModified": "2026-08-09",
+    "fileSize": 26683
   }
 ]
