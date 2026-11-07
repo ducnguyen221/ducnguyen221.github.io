@@ -57,7 +57,7 @@
 <h2>5. Thư mục làm việc</h2>
 <p>Phải là thư mục local đã có, <strong>ngoài repo</strong>, không reparse/cloud placeholder; chỉ nhận ổ Windows ánh xạ tới <code>\Device\HarddiskVolume&lt;n&gt;</code> (từ chối SUBST, ổ chuyển hướng). Tên run chỉ ASCII chữ, số, <code>-</code>, <code>_</code>; không dùng tên thiết bị Windows.</p>
 <h2>6. Mã lỗi và mã thoát</h2>
-<p>Mã lỗi ngắn, không lặp lại dữ liệu hay đường dẫn: <code>json</code>, <code>stale</code>, <code>temporal</code>, <code>text</code>, <code>workspace</code>, <code>platform</code>, <code>write</code>.</p>
+<p>Mã lỗi ngắn, không lặp lại dữ liệu hay đường dẫn. Ví dụ hay gặp: <code>path</code> (file đầu vào không phải file local thường, ví dụ nằm trên OneDrive hay ổ mạng), <code>json</code>, <code>schema</code>, <code>ohlcv</code>, <code>stale</code>, <code>temporal</code>, <code>text</code>, <code>workspace</code>, <code>platform</code>, <code>write</code>. Danh sách đủ nằm trong <code>fund_research/cli.py</code>.</p>
 <table><thead><tr><th>Mã thoát</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td>0</td><td>thành công</td></tr><tr><td>2</td><td>input, workspace hoặc nền tảng không hợp lệ</td></tr><tr><td>3</td><td>không xuất được</td></tr></tbody></table>
 <h2>7. Dạng phân phối</h2>
 <p>CLI Python ≥ 3.12, chỉ thư viện chuẩn; xuất kết quả <strong>chỉ trên Windows</strong>. <strong>Không</strong> có skill hay manifest plugin. Chạy từ checkout: xem <a href="../../install/index.html">README</a>.</p>

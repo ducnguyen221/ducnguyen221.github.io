@@ -56,10 +56,11 @@
     <div class="code-card"><div class="code-top"><span class="fn">Terminal</span><button class="copy-btn" type="button"><span class="lbl">Sao chép</span></button></div>
     <div class="code-scroll"><pre><code><span class="pr">python</span> --version
 <span class="pr">git</span> --version</code></pre></div></div></div></div>
-  <div class="step"><div class="num">3</div><div class="body"><h3>Tải mã nguồn</h3><p>Git sẽ hỏi đăng nhập GitHub bằng tài khoản đã được cấp quyền.</p>
+  <div class="step"><div class="num">3</div><div class="body"><h3>Lấy mã nguồn bản 0.1.0</h3><p>Git sẽ hỏi đăng nhập GitHub bằng tài khoản đã được cấp quyền.</p>
     <div class="code-card"><div class="code-top"><span class="fn">Terminal</span><button class="copy-btn" type="button"><span class="lbl">Sao chép</span></button></div>
-    <div class="code-scroll"><pre><code><span class="pr">git</span> clone https://github.com/ducnguyen221/agent-finance-legal-team.git
-<span class="pr">cd</span> agent-finance-legal-team</code></pre></div></div></div></div>
+    <div class="code-scroll"><pre><code><span class="cm"># bản 0.1.0</span>
+<span class="pr">git</span> clone https://github.com/ducnguyen221/agent-finance-legal-team.git agent-finance-legal-team-0.1.0
+<span class="pr">cd</span> agent-finance-legal-team-0.1.0</code></pre></div></div></div></div>
 </div></section>
 <section id="cach-cai"><div class="wrap">
   <div class="sec-head"><h2>Chọn cách chạy</h2><p>Hai cách cho cùng một kết quả; chọn theo việc bạn có muốn gọi lệnh từ thư mục khác hay không.</p></div>
@@ -71,7 +72,7 @@
 </div></section>
 <section id="venv"><div class="wrap">
   <div class="sec-head"><h2>Cài vào môi trường ảo</h2><p>Bỏ qua phần này nếu bạn chỉ chạy từ thư mục mã nguồn. Bước cài cần mạng một lần để tải công cụ đóng gói; khi chạy thì không.</p></div>
-  <div class="code-card"><div class="code-top"><span class="fn">Trong thư mục agent-finance-legal-team</span><button class="copy-btn" type="button"><span class="lbl">Sao chép</span></button></div>
+  <div class="code-card"><div class="code-top"><span class="fn">Trong thư mục agent-finance-legal-team-0.1.0</span><button class="copy-btn" type="button"><span class="lbl">Sao chép</span></button></div>
   <div class="code-scroll"><pre><code><span class="pr">python</span> -m venv .venv
 <span class="cm"># Windows PowerShell</span>
 .venv\Scripts\Activate.ps1

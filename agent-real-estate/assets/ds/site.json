@@ -41,5 +41,7 @@
       "href": "docs/index.html",
       "label": "Docs"
     }
-  ]
+  ],
+  "private": true,
+  "licenseNote": "Dự án riêng · chưa cấp phép dùng hay phân phối"
 }

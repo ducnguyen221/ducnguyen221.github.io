@@ -45,5 +45,7 @@
       "href": "docs/index.html",
       "label": "Docs"
     }
-  ]
+  ],
+  "private": true,
+  "licenseNote": "Dự án riêng · mã nguồn không công khai"
 }

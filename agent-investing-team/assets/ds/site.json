@@ -17,11 +17,31 @@
     }
   ],
   "menu": [
-    { "href": "index.html", "label": "Trang chủ" },
-    { "href": "install/index.html", "label": "Cài đặt" },
-    { "href": "guide/index.html", "label": "Cách dùng" },
-    { "href": "flow/index.html", "label": "Luồng & quy trình" },
-    { "href": "principles/index.html", "label": "Nguyên tắc" },
-    { "href": "docs/index.html", "label": "Docs" }
-  ]
+    {
+      "href": "index.html",
+      "label": "Trang chủ"
+    },
+    {
+      "href": "install/index.html",
+      "label": "Cài đặt"
+    },
+    {
+      "href": "guide/index.html",
+      "label": "Cách dùng"
+    },
+    {
+      "href": "flow/index.html",
+      "label": "Luồng & quy trình"
+    },
+    {
+      "href": "principles/index.html",
+      "label": "Nguyên tắc"
+    },
+    {
+      "href": "docs/index.html",
+      "label": "Docs"
+    }
+  ],
+  "private": true,
+  "licenseNote": "Dự án riêng · không phải tư vấn đầu tư"
 }
