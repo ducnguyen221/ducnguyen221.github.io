@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="vi" data-lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cách dùng · Agent Investing Team</title>
+<meta name="description" content="Chạy một lần nghiên cứu trên snapshot tổng hợp, đọc báo cáo và kiểm lại bằng manifest SHA-256.">
+<link rel="canonical" href="https://ducnguyen.vn/agent-investing-team/guide/">
+<link rel="icon" href="../assets/logo.svg">
+<link rel="stylesheet" href="../assets/ds/site.css?v=1.1.0">
+  <!-- Meta Pixel (ID 1717041732866196) - do tuong tac tu Facebook. Cong bo tai /privacy/ -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1717041732866196');fbq('track','PageView');</script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://www.facebook.com/tr?id=1717041732866196&amp;ev=PageView&amp;noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
+</head>
+<body>
+<canvas id="netbg" aria-hidden="true"></canvas>
+<svg class="ig-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+
+</svg>
+<a class="skip" href="#main">Bỏ qua điều hướng</a>
+<header class="site" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html"><img src="../assets/logo.svg" alt="">Agent Investing Team</a>
+    <nav class="nav-links" aria-label="Điều hướng chính">
+      <a href="../index.html">Trang chủ</a>
+      <a href="../install/index.html">Cài đặt</a>
+      <a href="../guide/index.html" class="active" aria-current="page">Cách dùng</a>
+      <a href="../flow/index.html">Luồng &amp; quy trình</a>
+      <a href="../principles/index.html">Nguyên tắc</a>
+      <a href="../docs/index.html">Docs</a>
+    </nav>
+    <button class="theme-btn" type="button" data-ds-theme-toggle aria-label="Giao diện"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+  </div>
+</header>
+<main id="main">
+<section class="page-hero"><div class="wrap">
+  <span class="eyebrow"><span class="dot"></span>Cách dùng</span>
+  <h1>Một lệnh ra báo cáo, vài lệnh để kiểm lại</h1>
+  <p class="lead">Bạn làm hai việc: chạy một lần nghiên cứu trên snapshot tổng hợp, rồi kiểm báo cáo khớp đúng đầu vào bằng manifest.</p>
+</div></section>
+<section id="chay"><div class="wrap">
+  <div class="sec-head"><h2>Chạy một lần nghiên cứu</h2><p>Dùng khi bạn có một snapshot giá tổng hợp và muốn có báo cáo. Nói với agent: «Chạy fund_research với snapshot mẫu, thư mục làm việc trong %TEMP%, tên lần chạy demo, rồi tóm tắt báo cáo.»</p></div>
+  <div class="step"><div class="num">1</div><div class="body"><h3>Tạo thư mục làm việc mới</h3><p>Thư mục phải có sẵn, nằm ngoài mã nguồn, trên ổ cục bộ.</p></div></div>
+  <div class="step"><div class="num">2</div><div class="body"><h3>Chạy từ thư mục mã nguồn</h3><p>Mỗi lần chạy cần một tên mới, chỉ gồm chữ ASCII, số, gạch ngang, gạch dưới.</p>
+    <div class="code-card"><div class="code-top"><span class="fn">PowerShell</span><button class="copy-btn" type="button"><span class="lbl">Sao chép</span></button></div>
+    <div class="code-scroll"><pre><code><span class="pr">$workspace</span> = Join-Path $env:TEMP 'investing-demo-workspace'
+<span class="pr">New-Item</span> -ItemType Directory -Path $workspace
+<span class="pr">python</span> -m fund_research --input tests/fixtures/snapshot.json --workspace $workspace --run-name demo</code></pre></div></div></div></div>
+  <div class="step"><div class="num">3</div><div class="body"><h3>Đọc kết quả</h3><p>Lệnh chạy xong không in gì và trả mã thoát 0.</p></div></div>
+  <p class="note ok"><b>Đầu ra:</b> thư mục <code class="inline">demo</code> trong workspace, gồm <code class="inline">report.json</code> (phân tích, nguồn, đơn vị, dự báo, giới hạn) và <code class="inline">manifest.json</code> (SHA-256 của đầu vào và báo cáo).</p>
+</div></section>
+<section id="lenh"><div class="wrap">
+  <div class="sec-head"><h2>Tham số của lệnh</h2><p>Lệnh duy nhất là <code class="inline">python -m fund_research</code>.</p></div>
+  <div class="tbl-wrap"><table class="tbl"><thead><tr><th scope="col">Tham số</th><th scope="col">Việc</th><th scope="col">Bắt buộc</th><th scope="col">Ví dụ</th></tr></thead>
+  <tbody>
+    <tr><td class="lbl"><code>--input</code></td><td>File snapshot JSON tổng hợp, trên ổ cục bộ.</td><td>Có</td><td><code>tests/fixtures/snapshot.json</code></td></tr>
+    <tr><td class="lbl"><code>--workspace</code></td><td>Thư mục làm việc có sẵn, ngoài mã nguồn.</td><td>Có</td><td><code>$workspace</code></td></tr>
+    <tr><td class="lbl"><code>--run-name</code></td><td>Tên lần chạy, phải mới; tên đã có bị từ chối.</td><td>Có</td><td><code>demo</code></td></tr>
+    <tr><td class="lbl"><code>--horizon</code></td><td>Số bước dự báo trong hợp đồng, 1 đến 512. Không bật model.</td><td>Không, mặc định 1</td><td><code>24</code></td></tr>
+  </tbody></table></div>
+</div></section>
+<section id="vi-du"><div class="wrap">
+  <div class="sec-head"><h2>Ví dụ đầu-cuối</h2><p>Chạy trong cùng cửa sổ PowerShell sau bước tạo <code class="inline">$workspace</code> ở trên.</p></div>
+  <div class="grid-2">
+    <div class="card" style="min-width:0"><h3>Xem kết luận của snapshot mẫu</h3><p>Giá mẫu tăng 10% giữa hai nến cuối nên vượt ngưỡng minh hoạ 5%, và nến cuối có volume bằng 0.</p>
+      <div class="code-card"><div class="code-top"><span class="fn">PowerShell</span><button class="copy-btn" type="button"><span class="lbl">Sao chép</span></button></div>
+    <div class="code-scroll"><pre><code><span class="pr">$report</span> = Get-Content (Join-Path $workspace 'demo\report.json') | ConvertFrom-Json
+<span class="pr">$report</span>.analysis | Select-Object risk_status, return_value, warnings, mandate_status
+<span class="cm"># BREACH · 0.1 · ZERO_VOLUME · REVIEW_REQUIRED</span>
+<span class="pr">$report</span>.forecast.status
+<span class="cm"># unavailable</span></code></pre></div></div></div>
+    <div class="card" style="min-width:0"><h3>Kiểm báo cáo khớp đầu vào</h3><p>Băm lại hai file và so với manifest; cả hai dòng phải là <code class="inline">True</code>.</p>
+      <div class="code-card"><div class="code-top"><span class="fn">PowerShell</span><button class="copy-btn" type="button"><span class="lbl">Sao chép</span></button></div>
+    <div class="code-scroll"><pre><code><span class="pr">$run</span> = Join-Path $workspace 'demo'
+<span class="pr">$m</span> = Get-Content (Join-Path $run 'manifest.json') | ConvertFrom-Json
+(Get-FileHash tests/fixtures/snapshot.json).Hash -eq $m.input_sha256
+(Get-FileHash (Join-Path $run 'report.json')).Hash -eq $m.report_sha256</code></pre></div></div></div>
+  </div>
+</div></section>
+<section id="tu-dien"><div class="wrap">
+  <div class="sec-head"><h2>Từ điển đầu ra</h2><p>Những giá trị bạn sẽ gặp trong báo cáo và thông báo lỗi.</p></div>
+  <dl class="glossary">
+    <dt><code>BREACH</code> / <code>WITHIN_DEMO_THRESHOLD</code></dt><dd>Biến động giữa hai nến cuối vượt hoặc không vượt ngưỡng minh hoạ 5%. Ngưỡng là ví dụ kỹ thuật, không phải ngưỡng đầu tư.</dd>
+    <dt><code>ZERO_VOLUME</code></dt><dd>Một trong hai nến cuối có volume bằng 0.</dd>
+    <dt><code>REVIEW_REQUIRED</code> / <code>UNKNOWN</code></dt><dd>Mandate luôn cần người xem xét; tuân thủ danh mục luôn chưa biết. Công cụ không tự kết luận đạt.</dd>
+    <dt><code>unavailable</code></dt><dd>Dự báo không có vì chưa cấu hình model; không có con số nào được bịa ra.</dd>
+    <dt>Mã thoát <code>0</code> · <code>2</code> · <code>3</code></dt><dd>Thành công · đầu vào, thư mục làm việc hoặc nền tảng không hợp lệ · không xuất được, ví dụ tên lần chạy đã có.</dd>
+    <dt><code>json</code>, <code>stale</code>, <code>temporal</code>, <code>workspace</code>, <code>write</code></dt><dd>Mã lỗi ngắn in sau <code>Invalid input:</code> hoặc <code>Unable to publish output:</code>: sai cú pháp, nến cuối quá hạn, sai thứ tự thời gian, đường dẫn không hợp lệ, không ghi được. Thông báo không lặp lại dữ liệu hay đường dẫn.</dd>
+  </dl>
+</div></section>
+<section id="hoi-dap"><div class="wrap">
+  <div class="sec-head"><h2>Hỏi đáp</h2></div>
+  <div class="faq">
+    <details><summary>Chạy lại lệnh cũ thì báo <code class="inline">Unable to publish output: write</code>?</summary><p>Đổi <code class="inline">--run-name</code> sang tên mới. Công cụ không bao giờ ghi đè lần chạy đã có.</p></details>
+    <details><summary>Tôi dùng dữ liệu giá thật được không?</summary><p>Không. Snapshot phải khai báo nguồn tổng hợp (<code class="inline">synthetic</code>); công cụ không đọc dữ liệu live hay kết nối mạng.</p></details>
+    <details><summary>Đặt <code class="inline">--horizon</code> lớn có ra dự báo không?</summary><p>Không. Đây chỉ là tham số của hợp đồng dự báo; dự báo vẫn là <code class="inline">unavailable</code>.</p></details>
+  </div>
+</div></section>
+<section class="final"><div class="wrap">
+  <h2>Muốn biết công cụ kiểm những gì?</h2>
+  <p>Xem từng bước của một lần chạy và chỗ công cụ dừng lại.</p>
+  <div class="hero-cta"><a class="btn btn-primary" href="../flow/index.html">Xem luồng &amp; quy trình</a><a class="btn btn-ghost" href="../docs/index.html">Đọc tài liệu</a></div>
+</div></section>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="../index.html"><img src="../assets/logo.svg" alt="" width="26" height="26">Agent Investing Team</a>
+        <p class="foot-tag">Nghiên cứu quỹ ngoại tuyến trên dữ liệu giá tổng hợp, ra báo cáo kiểm lại được.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <b>Sản phẩm</b>
+          <a href="../index.html">Trang chủ</a>
+          <a href="../install/index.html">Cài đặt</a>
+          <a href="../guide/index.html">Cách dùng</a>
+          <a href="../flow/index.html">Luồng &amp; quy trình</a>
+          <a href="../principles/index.html">Nguyên tắc</a>
+          <a href="../docs/index.html">Docs</a>
+        </div>
+        <div class="foot-col">
+          <b>Tài nguyên</b>
+          <a href="https://ducnguyen.vn" target="_blank" rel="noopener">Tác giả · ducnguyen.vn</a>
+          <a href="https://github.com/shiyu-coder/Kronos" target="_blank" rel="noopener">Kronos (nguồn ý tưởng, MIT)</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Nguyễn Quang Đức · UNLICENSED</span>
+      <span class="lic">Dự án riêng · không phải tư vấn đầu tư</span>
+    </div>
+  </div>
+</footer>
+<script src="../assets/ds/site.js?v=1.1.0"></script>
+</body>
+</html>

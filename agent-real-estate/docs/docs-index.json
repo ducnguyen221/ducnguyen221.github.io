@@ -1,0 +1,18 @@
+{
+  "generator": "opcos-site-kit/build-docs",
+  "version": 1,
+  "docs": [
+    {
+      "src": "FEATURES.md",
+      "out": "docs/FEATURES/index.html",
+      "title": "Tính năng — agent-real-estate",
+      "sha256": "ad497cb3533a3326691e4f87544e913bfa3b06fca4ef5210011d6ad7e79e9601"
+    },
+    {
+      "src": "offline-guide.md",
+      "out": "docs/offline-guide/index.html",
+      "title": "Hướng dẫn dữ liệu tổng hợp ngoại tuyến",
+      "sha256": "49ab87caf370de36bf6266ff7dd9a60491c83a932e3f0974fb4423a1a71af322"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "name": "Finance & Legal",
+  "tagline": "Nguyên mẫu ngoại tuyến biến một fixture tài chính–pháp lý tổng hợp thành memo để người xem xét.",
+  "repo": "https://github.com/ducnguyen221/agent-finance-legal-team",
+  "site": "https://ducnguyen.vn/agent-finance-legal-team/",
+  "logo": "assets/logo.svg",
+  "license": "UNLICENSED",
+  "year": 2026,
+  "resources": [
+    {
+      "href": "https://ducnguyen.vn/agent-finance-legal-team/docs/FEATURES/index.html",
+      "label": "Tính năng"
+    },
+    {
+      "href": "https://ducnguyen.vn/agent-finance-legal-team/docs/contract/index.html",
+      "label": "Hợp đồng fixture"
+    },
+    {
+      "href": "https://ducnguyen.vn",
+      "label": "Tác giả"
+    }
+  ],
+  "menu": [
+    {
+      "href": "index.html",
+      "label": "Trang chủ"
+    },
+    {
+      "href": "install/index.html",
+      "label": "Cài đặt"
+    },
+    {
+      "href": "guide/index.html",
+      "label": "Cách dùng"
+    },
+    {
+      "href": "flow/index.html",
+      "label": "Luồng & quy trình"
+    },
+    {
+      "href": "principles/index.html",
+      "label": "Nguyên tắc"
+    },
+    {
+      "href": "docs/index.html",
+      "label": "Docs"
+    }
+  ]
+}

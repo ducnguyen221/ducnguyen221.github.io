@@ -1,0 +1,24 @@
+{
+  "generator": "opcos-site-kit/build-docs",
+  "version": 1,
+  "docs": [
+    {
+      "src": "FEATURES.md",
+      "out": "docs/FEATURES/index.html",
+      "title": "Tính năng — agent-finance-legal-team",
+      "sha256": "4707779f1507232361dccdf6c6f4cd46019f678c784fccadb8929d1a9d6928f4"
+    },
+    {
+      "src": "contract.md",
+      "out": "docs/contract/index.html",
+      "title": "Hợp đồng fixture và output",
+      "sha256": "b8489913365a9d59ab3bfbe502b24b48d12185ff408be276886967eac79e6b84"
+    },
+    {
+      "src": "workflow.md",
+      "out": "docs/workflow/index.html",
+      "title": "Workflow và phạm vi",
+      "sha256": "c9ce275b993d2d7f77c858a973f85bfda868c544defa743bea8a2d2c76378b5e"
+    }
+  ]
+}

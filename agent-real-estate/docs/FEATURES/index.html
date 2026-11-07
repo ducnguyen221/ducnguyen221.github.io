@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="vi" data-lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tính năng — agent-real-estate · Docs · Agent Real Estate</title>
+<meta name="description" content="Tài liệu FEATURES.md của Agent Real Estate.">
+<link rel="canonical" href="https://ducnguyen.vn/agent-real-estate/docs/FEATURES/">
+<link rel="icon" href="../../assets/logo.svg">
+<link rel="stylesheet" href="../../assets/ds/site.css?v=1.1.0">
+  <!-- Meta Pixel (ID 1717041732866196) - do tuong tac tu Facebook. Cong bo tai /privacy/ -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1717041732866196');fbq('track','PageView');</script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://www.facebook.com/tr?id=1717041732866196&amp;ev=PageView&amp;noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
+</head>
+<body>
+<canvas id="netbg" aria-hidden="true"></canvas>
+<a class="skip" href="#main">Bỏ qua điều hướng</a>
+<header class="site" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="../../index.html"><img src="../../assets/logo.svg" alt="">Agent Real Estate</a>
+    <nav class="nav-links" aria-label="Điều hướng chính">
+      <a href="../../index.html">Trang chủ</a>
+      <a href="../../install/index.html">Cài đặt</a>
+      <a href="../../guide/index.html">Cách dùng</a>
+      <a href="../../flow/index.html">Luồng &amp; quy trình</a>
+      <a href="../../principles/index.html">Nguyên tắc</a>
+      <a href="../../docs/index.html" class="active" aria-current="page">Docs</a>
+    </nav>
+    <button class="theme-btn" type="button" data-ds-theme-toggle aria-label="Giao diện"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+  </div>
+</header>
+<main id="main">
+<div class="wrap"><div class="doc-layout">
+  <nav class="doc-toc" aria-label="Tài liệu">
+    <b>Tài liệu</b>
+    <ul>
+      <li><a href="../../docs/FEATURES/index.html" aria-current="page">Tính năng — agent-real-estate</a></li>
+      <li><a href="../../docs/offline-guide/index.html">Hướng dẫn dữ liệu tổng hợp ngoại tuyến</a></li>
+    </ul>
+  </nav>
+  <article class="prose">
+    <div class="doc-meta"><a href="../../docs/index.html">Docs</a> / <code>FEATURES.md</code></div>
+<h1>Tính năng — agent-real-estate</h1>
+<p>Nguyên mẫu CLI Python sàng lọc <strong>căn hộ và nhà ở</strong> trên <strong>dữ liệu tổng hợp</strong>. Một hồ sơ JSON vào qua stdin, một memo Markdown ra stdout. Không mạng, không tự mở hay ghi file, không dữ liệu thật.</p>
+<blockquote><p>Không dùng cho dữ liệu thật, dữ liệu cá nhân, thẩm định giá, tư vấn pháp lý hay tài chính, hay quyết định giao dịch.</p></blockquote>
+<h2>1. Kiểm hồ sơ đầu vào</h2>
+<table><thead><tr><th>Kiểm</th><th>Hành vi</th></tr></thead><tbody><tr><td>Kích thước</td><td>tối đa 65.536 byte UTF-8</td></tr><tr><td>Cấu trúc</td><td>từ chối key trùng, trường lạ, nội dung thừa sau JSON, lồng quá sâu, tham chiếu evidence sai</td></tr><tr><td>Số</td><td>chuỗi thập phân không âm, ≤ 15 chữ số nguyên, ≤ 2 chữ số thập phân (tỷ lệ ≤ 4); không dấu phẩy, số mũ, dấu cộng, số 0 thừa</td></tr><tr><td>Văn bản</td><td>từ chối ký tự điều khiển hai chiều; ID chỉ ASCII, ≤ 40 ký tự</td></tr><tr><td>Danh sách</td><td><code>evidence</code>, <code>comparables</code> mỗi loại ≤ 20 phần tử</td></tr></tbody></table>
+<p>Sai bất kỳ điều nào → mã thoát 2, <code>invalid_input</code> trên stderr, không in lại dữ liệu.</p>
+<h2>2. So sánh comparable</h2>
+<ul><li>Chỉ chọn comp <strong>cùng</strong> loại tài sản (<code>apartment</code> / <code>residential_house</code>), cơ sở diện tích, loại giá (<code>asking_sale</code> / <code>reported_transaction</code>) và có ngày không sau <code>as_of</code>.</li><li>Mỗi dòng ghi lý do được chọn hay bị loại.</li><li>Cần <strong>ít nhất ba</strong> dòng được chọn với ba evidence ID khác nhau mới hiện min / median / max đơn giá VND/m²; thiếu thì ghi <code>insufficient_evidence</code>.</li><li>Memo luôn nói rõ: giá rao không phải giao dịch; giao dịch &quot;báo cáo&quot; chưa được xác minh độc lập; mẫu không đại diện cho khu vực.</li></ul>
+<h2>3. Dòng tiền cho thuê</h2>
+<p><code>rental</code> là <code>null</code> (thiếu thông tin) hoặc đủ trường. Khi đủ:</p>
+<table><thead><tr><th>Chỉ số</th><th>Công thức</th></tr></thead><tbody><tr><td>Doanh thu tiềm năng năm</td><td>tiền thuê tháng × 12</td></tr><tr><td>Thất thu</td><td>doanh thu tiềm năng × tỷ lệ trống</td></tr><tr><td>NOI</td><td>doanh thu tiềm năng − thất thu − chi phí vận hành năm</td></tr><tr><td>Cap rate</td><td>NOI ÷ giá mua (tỷ lệ: <code>0.0480</code> = 4,8%)</td></tr></tbody></table>
+<p>Tính bằng <code>Decimal</code>, làm tròn nửa lên. Không tự suy nợ, thuế, chi phí đầu tư, giá bán hay pháp lý.</p>
+<h2>4. Memo</h2>
+<ul><li>Markdown theo CommonMark/GFM; mọi văn bản tự do được trung hoà ký tự chức năng.</li><li>Mục: thông tin case · bảng comparable · bằng chứng · dòng tiền thuê.</li><li><code>Decision status: needs_human_review</code> và <code>legal_status: unknown</code> luôn có.</li><li>Cùng input → cùng output.</li></ul>
+<h2>5. Mã thoát</h2>
+<table><thead><tr><th>Mã</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td>0</td><td>thành công</td></tr><tr><td>1</td><td><code>io_error</code> — lỗi đọc/ghi stream (memo có thể đã ra một phần)</td></tr><tr><td>2</td><td><code>invalid_input</code> — dữ liệu sai</td></tr></tbody></table>
+<h2>6. Dạng phân phối</h2>
+<p>CLI Python ≥ 3.11, chỉ thư viện chuẩn. <strong>Không</strong> có skill hay manifest plugin. Chạy từ checkout: xem <a href="../../install/index.html">README</a> và <a href="../../docs/offline-guide/index.html">hướng dẫn ngoại tuyến</a>.</p>
+<h2>Ngoài phạm vi hiện tại</h2>
+<p>Nguồn dữ liệu thật, crawl, OCR hồ sơ pháp lý, bản đồ/vị trí, mô hình định giá, kết nối CRM.</p>
+  </article>
+</div></div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="../../index.html"><img src="../../assets/logo.svg" alt="" width="26" height="26">Agent Real Estate</a>
+        <p class="foot-tag">Sàng lọc hồ sơ căn hộ, nhà ở tổng hợp thành memo có truy vết, chạy ngoại tuyến.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <b>Sản phẩm</b>
+          <a href="../../index.html">Trang chủ</a>
+          <a href="../../install/index.html">Cài đặt</a>
+          <a href="../../guide/index.html">Cách dùng</a>
+          <a href="../../flow/index.html">Luồng &amp; quy trình</a>
+          <a href="../../principles/index.html">Nguyên tắc</a>
+          <a href="../../docs/index.html">Docs</a>
+        </div>
+        <div class="foot-col">
+          <b>Tài nguyên</b>
+          <a href="https://ducnguyen.vn/agent-real-estate/docs/FEATURES/index.html" target="_blank" rel="noopener">Tính năng</a>
+          <a href="https://ducnguyen.vn/agent-real-estate/docs/offline-guide/index.html" target="_blank" rel="noopener">Hợp đồng dữ liệu</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Nguyễn Quang Đức · UNLICENSED</span>
+      <span class="lic">Dự án riêng · chưa cấp phép dùng hay phân phối</span>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/ds/site.js?v=1.1.0"></script>
+</body>
+</html>

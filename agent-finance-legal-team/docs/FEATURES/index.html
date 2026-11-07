@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="vi" data-lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tính năng — agent-finance-legal-team · Docs · Finance &amp; Legal</title>
+<meta name="description" content="Tài liệu FEATURES.md của Finance &amp; Legal.">
+<link rel="canonical" href="https://ducnguyen.vn/agent-finance-legal-team/docs/FEATURES/">
+<link rel="icon" href="../../assets/logo.svg">
+<link rel="stylesheet" href="../../assets/ds/site.css?v=1.1.0">
+  <!-- Meta Pixel (ID 1717041732866196) - do tuong tac tu Facebook. Cong bo tai /privacy/ -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1717041732866196');fbq('track','PageView');</script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://www.facebook.com/tr?id=1717041732866196&amp;ev=PageView&amp;noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
+</head>
+<body>
+<canvas id="netbg" aria-hidden="true"></canvas>
+<a class="skip" href="#main">Bỏ qua điều hướng</a>
+<header class="site" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="../../index.html"><img src="../../assets/logo.svg" alt="">Finance &amp; Legal</a>
+    <nav class="nav-links" aria-label="Điều hướng chính">
+      <a href="../../index.html">Trang chủ</a>
+      <a href="../../install/index.html">Cài đặt</a>
+      <a href="../../guide/index.html">Cách dùng</a>
+      <a href="../../flow/index.html">Luồng &amp; quy trình</a>
+      <a href="../../principles/index.html">Nguyên tắc</a>
+      <a href="../../docs/index.html" class="active" aria-current="page">Docs</a>
+    </nav>
+    <button class="theme-btn" type="button" data-ds-theme-toggle aria-label="Giao diện"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+  </div>
+</header>
+<main id="main">
+<div class="wrap"><div class="doc-layout">
+  <nav class="doc-toc" aria-label="Tài liệu">
+    <b>Tài liệu</b>
+    <ul>
+      <li><a href="../../docs/FEATURES/index.html" aria-current="page">Tính năng — agent-finance-legal-team</a></li>
+      <li><a href="../../docs/contract/index.html">Hợp đồng fixture và output</a></li>
+      <li><a href="../../docs/workflow/index.html">Workflow và phạm vi</a></li>
+    </ul>
+  </nav>
+  <article class="prose">
+    <div class="doc-meta"><a href="../../docs/index.html">Docs</a> / <code>FEATURES.md</code></div>
+<h1>Tính năng — agent-finance-legal-team</h1>
+<p>Nguyên mẫu CLI Python cho <strong>fixture tài chính–pháp lý tổng hợp</strong>. Một file JSON vào, một memo Markdown ra. Không mạng, không AI model, không dữ liệu thật.</p>
+<blockquote><p>Không dùng cho tư vấn tài chính hay pháp lý, dữ liệu khách hàng thật, phê duyệt hay quyết định tự động.</p></blockquote>
+<h2>1. Kiểm fixture</h2>
+<table><thead><tr><th>Kiểm</th><th>Hành vi</th></tr></thead><tbody><tr><td>Kích thước</td><td>JSON UTF-8 ≤ 1 MiB, ≤ 10 cấp object/array</td></tr><tr><td>Cấu trúc</td><td>schema đóng <code>finance_legal_fixture_v1</code>, mọi key bắt buộc; không key trùng, không NaN/Infinity</td></tr><tr><td>Số tiền</td><td><code>null</code> hoặc chuỗi thập phân ASCII ≤ 18 chữ số nguyên, ≤ 2 chữ số thập phân; không nhận JSON number, dấu cộng, số mũ</td></tr><tr><td>Văn bản</td><td>≤ 100 assumptions, ≤ 100 findings, text ≤ 2.000 ký tự, ID ≤ 128; chuỗi bắt buộc không chỉ có khoảng trắng</td></tr><tr><td>Định danh</td><td>finding ID duy nhất; evidence ID duy nhất trên toàn fixture</td></tr></tbody></table>
+<h2>2. Chênh lệch ngân sách</h2>
+<p><code>variance = actual − budget</code>. Ra <code>available</code> khi đủ số và khớp kỳ, tiền tệ, đơn vị; ngược lại <code>unknown</code> kèm lý do:</p>
+<p><code>missing_actual</code> · <code>missing_budget</code> · <code>period_mismatch</code> · <code>currency_mismatch</code> · <code>unit_mismatch</code></p>
+<h2>3. Kiểm metadata điều khoản</h2>
+<p>Mỗi finding ra <code>eligible_for_review</code> hoặc <code>unknown</code> kèm lý do:</p>
+<p><code>missing_locator</code> · <code>missing_version</code> · <code>missing_jurisdiction</code> · <code>missing_effective_from</code> · <code>jurisdiction_mismatch</code> · <code>not_yet_effective</code> · <code>expired</code></p>
+<p><code>eligible_for_review</code> chỉ nghĩa là metadata khai báo đủ để người xem — <strong>không</strong> xác thực nguồn hay hiệu lực pháp lý. Trạng thái tổng luôn <code>needs_review</code>.</p>
+<h2>4. Memo</h2>
+<ul><li>Kết quả tính nằm ngoài khối mã; fixture gốc giữ nguyên dạng JSON trong khối mã literal (CommonMark/GFM).</li><li>Cùng fixture → cùng memo.</li></ul>
+<h2>5. Xuất file an toàn</h2>
+<ul><li>Đích phải <strong>chưa tồn tại</strong>, thư mục cha có sẵn trên ổ cục bộ tin cậy; không tạo thư mục, không ghi đè.</li><li>Ghi temp cùng thư mục (<code>.finance-legal-&lt;tên&gt;.tmp-…</code>) rồi tạo hardlink độc quyền tới đích.</li><li>Từ chối UNC, đường thiết bị, alternate data stream, <code>..</code>, <code>C:foo</code>, symlink, reparse point; trên Windows còn từ chối ổ mạng ánh xạ, ổ <code>subst</code>, volume không phải đĩa cục bộ.</li></ul>
+<h2>6. Mã lỗi</h2>
+<p>Thành công: exit 0, stdout/stderr rỗng. Thất bại: exit 2, stderr đúng một mã:</p>
+<table><thead><tr><th>Mã</th><th>Khi nào</th></tr></thead><tbody><tr><td><code>INPUT_ERROR</code></td><td>đối số, đọc file, UTF-8, JSON, key trùng, kích thước, độ sâu</td></tr><tr><td><code>VALIDATION_ERROR</code></td><td>schema hoặc nội dung fixture</td></tr><tr><td><code>OUTPUT_ERROR</code></td><td>đường dẫn output hoặc ghi/link trước khi xuất</td></tr><tr><td><code>OUTPUT_PUBLISHED_CLEANUP_ERROR</code></td><td>output đã xuất đủ nhưng temp còn lại — kiểm tay trước khi xoá</td></tr></tbody></table>
+<h2>7. Dạng phân phối</h2>
+<p>CLI Python ≥ 3.11, chỉ thư viện chuẩn. <strong>Không</strong> có skill hay manifest plugin. Chạy từ checkout: xem <a href="../../install/index.html">README</a>, <a href="../../docs/contract/index.html">hợp đồng</a>, <a href="../../docs/workflow/index.html">workflow</a>.</p>
+<h2>Ngoài phạm vi hiện tại</h2>
+<p>Nguồn pháp lý thật, OCR, tra cứu văn bản, connector kế toán, vai trò chuyên sâu, phê duyệt.</p>
+  </article>
+</div></div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="../../index.html"><img src="../../assets/logo.svg" alt="" width="26" height="26">Finance &amp; Legal</a>
+        <p class="foot-tag">Nguyên mẫu ngoại tuyến biến một fixture tài chính–pháp lý tổng hợp thành memo để người xem xét.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <b>Sản phẩm</b>
+          <a href="../../index.html">Trang chủ</a>
+          <a href="../../install/index.html">Cài đặt</a>
+          <a href="../../guide/index.html">Cách dùng</a>
+          <a href="../../flow/index.html">Luồng &amp; quy trình</a>
+          <a href="../../principles/index.html">Nguyên tắc</a>
+          <a href="../../docs/index.html">Docs</a>
+        </div>
+        <div class="foot-col">
+          <b>Tài nguyên</b>
+          <a href="https://ducnguyen.vn/agent-finance-legal-team/docs/FEATURES/index.html" target="_blank" rel="noopener">Tính năng</a>
+          <a href="https://ducnguyen.vn/agent-finance-legal-team/docs/contract/index.html" target="_blank" rel="noopener">Hợp đồng fixture</a>
+          <a href="https://ducnguyen.vn" target="_blank" rel="noopener">Tác giả</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Nguyễn Quang Đức · UNLICENSED</span>
+      <span class="lic">Dự án riêng · mã nguồn không công khai</span>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/ds/site.js?v=1.1.0"></script>
+</body>
+</html>

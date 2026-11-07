@@ -1,0 +1,45 @@
+{
+  "name": "Agent Real Estate",
+  "tagline": "Sàng lọc hồ sơ căn hộ, nhà ở tổng hợp thành memo có truy vết, chạy ngoại tuyến.",
+  "repo": "https://github.com/ducnguyen221/agent-real-estate",
+  "site": "https://ducnguyen.vn/agent-real-estate/",
+  "logo": "assets/logo.svg",
+  "license": "UNLICENSED",
+  "year": 2026,
+  "resources": [
+    {
+      "href": "https://ducnguyen.vn/agent-real-estate/docs/FEATURES/index.html",
+      "label": "Tính năng"
+    },
+    {
+      "href": "https://ducnguyen.vn/agent-real-estate/docs/offline-guide/index.html",
+      "label": "Hợp đồng dữ liệu"
+    }
+  ],
+  "menu": [
+    {
+      "href": "index.html",
+      "label": "Trang chủ"
+    },
+    {
+      "href": "install/index.html",
+      "label": "Cài đặt"
+    },
+    {
+      "href": "guide/index.html",
+      "label": "Cách dùng"
+    },
+    {
+      "href": "flow/index.html",
+      "label": "Luồng & quy trình"
+    },
+    {
+      "href": "principles/index.html",
+      "label": "Nguyên tắc"
+    },
+    {
+      "href": "docs/index.html",
+      "label": "Docs"
+    }
+  ]
+}

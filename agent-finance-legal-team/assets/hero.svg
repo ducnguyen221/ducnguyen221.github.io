@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img"><title>Minh hoạ trừu tượng: tài liệu, cột số liệu và cán cân</title>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f6fa"/><stop offset="1" stop-color="#e9f0fe"/></linearGradient></defs>
+<rect width="1200" height="800" fill="url(#bg)"/>
+<g fill="none" stroke="#e4e8ef" stroke-width="2"><path d="M0 640h1200M0 520h1200M0 400h1200M0 280h1200M0 160h1200"/></g>
+<g transform="translate(150 170)">
+  <rect x="40" y="40" width="300" height="400" rx="18" fill="#ffffff" stroke="#e4e8ef" stroke-width="3"/>
+  <rect x="0" y="0" width="300" height="400" rx="18" fill="#ffffff" stroke="#2361e6" stroke-width="4"/>
+  <rect x="36" y="44" width="150" height="16" rx="8" fill="#2361e6"/>
+  <rect x="36" y="92" width="228" height="10" rx="5" fill="#e4e8ef"/>
+  <rect x="36" y="120" width="196" height="10" rx="5" fill="#e4e8ef"/>
+  <rect x="36" y="148" width="214" height="10" rx="5" fill="#e4e8ef"/>
+  <rect x="36" y="196" width="228" height="110" rx="10" fill="#f4f6fa"/>
+  <rect x="58" y="246" width="34" height="44" rx="4" fill="#2361e6" opacity=".55"/>
+  <rect x="108" y="226" width="34" height="64" rx="4" fill="#2361e6"/>
+  <rect x="158" y="256" width="34" height="34" rx="4" fill="#0d7280" opacity=".7"/>
+  <rect x="208" y="214" width="34" height="76" rx="4" fill="#e8a200"/>
+  <rect x="36" y="334" width="120" height="10" rx="5" fill="#e4e8ef"/>
+  <circle cx="246" cy="350" r="22" fill="#e4f5ec" stroke="#0b7a45" stroke-width="4"/>
+  <path d="M235 350l8 8 14-15" fill="none" stroke="#0b7a45" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g transform="translate(640 150)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="230" cy="250" r="230" fill="#ffffff" opacity=".55" stroke="none"/>
+  <path d="M230 70v370" stroke="#14161b" stroke-width="10"/>
+  <path d="M150 440h160" stroke="#14161b" stroke-width="12"/>
+  <path d="M70 140h320" stroke="#2361e6" stroke-width="10"/>
+  <circle cx="230" cy="70" r="16" fill="#e8a200" stroke="none"/>
+  <path d="M70 140l-56 136M70 140l56 136" stroke="#2361e6" stroke-width="5"/>
+  <path d="M390 140l-56 136M390 140l56 136" stroke="#2361e6" stroke-width="5"/>
+  <path d="M6 276h128a64 30 0 0 1-128 0z" fill="#e9f0fe" stroke="#2361e6" stroke-width="5"/>
+  <path d="M326 276h128a64 30 0 0 1-128 0z" fill="#fdf3d7" stroke="#e8a200" stroke-width="5"/>
+  <rect x="40" y="236" width="60" height="40" rx="6" fill="#2361e6" stroke="none" opacity=".85"/>
+  <rect x="352" y="222" width="76" height="54" rx="6" fill="#e8a200" stroke="none" opacity=".9"/>
+</g>
+<g fill="#2361e6" opacity=".25"><circle cx="1080" cy="120" r="10"/><circle cx="1120" cy="170" r="6"/><circle cx="110" cy="700" r="8"/><circle cx="560" cy="110" r="6"/></g>
+</svg>

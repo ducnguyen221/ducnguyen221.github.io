@@ -1,0 +1,12 @@
+{
+  "generator": "opcos-site-kit/build-docs",
+  "version": 1,
+  "docs": [
+    {
+      "src": "FEATURES.md",
+      "out": "docs/FEATURES/index.html",
+      "title": "Tính năng — agent-investing-team",
+      "sha256": "b3ad77bfe8321c4adede37f804fd35b307002ce90239599d3558f0d4bc142116"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Agent Investing Team",
+  "tagline": "Nghiên cứu quỹ ngoại tuyến trên dữ liệu giá tổng hợp, ra báo cáo kiểm lại được.",
+  "repo": "https://github.com/ducnguyen221/agent-investing-team",
+  "site": "https://ducnguyen.vn/agent-investing-team/",
+  "logo": "assets/logo.svg",
+  "license": "UNLICENSED",
+  "year": 2026,
+  "resources": [
+    {
+      "href": "https://ducnguyen.vn",
+      "label": "Tác giả · ducnguyen.vn"
+    },
+    {
+      "href": "https://github.com/shiyu-coder/Kronos",
+      "label": "Kronos (nguồn ý tưởng, MIT)"
+    }
+  ],
+  "menu": [
+    { "href": "index.html", "label": "Trang chủ" },
+    { "href": "install/index.html", "label": "Cài đặt" },
+    { "href": "guide/index.html", "label": "Cách dùng" },
+    { "href": "flow/index.html", "label": "Luồng & quy trình" },
+    { "href": "principles/index.html", "label": "Nguyên tắc" },
+    { "href": "docs/index.html", "label": "Docs" }
+  ]
+}
